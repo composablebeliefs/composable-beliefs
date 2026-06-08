@@ -39,10 +39,8 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
 
   use Mix.Task
 
-  alias CB.Belief
+  alias CB.Collection
   alias CB.Schema.Verifier
-
-  @default_registry "../belief-collections/collections.json"
 
   @impl Mix.Task
   def run(args) do
@@ -55,14 +53,11 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
     quiet = opts[:quiet] || false
     target = target_namespace(positional)
 
-    registry_path = Path.expand(opts[:registry] || Path.join(CB.repo_root(), @default_registry))
-    registry = load_registry(registry_path)
+    registry_path = opts[:registry] || Collection.default_registry_path()
+    reg = unwrap(Collection.registry(registry_path))
 
     # Target plus its transitive, cycle-safe depends_on closure (target first).
-    namespaces = resolve_closure(target, registry, registry_path)
-
-    loaded = Enum.map(namespaces, &{&1, load_collection(&1, registry, registry_path)})
-    union = Enum.flat_map(loaded, fn {_ns, beliefs} -> beliefs end)
+    %{collections: loaded, union: union} = unwrap(Collection.load_union(target, reg))
 
     unless quiet, do: print_context(target, loaded)
 
@@ -74,12 +69,15 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
 
     {passes, failures, skipped} = tally(results)
     IO.puts("")
-    IO.puts("#{passes} passed, #{failures} failed, #{skipped} skipped (#{length(results)} checks)")
+
+    IO.puts(
+      "#{passes} passed, #{failures} failed, #{skipped} skipped (#{length(results)} checks)"
+    )
 
     if failures > 0, do: System.halt(1)
   end
 
-  # --- argument + registry handling ---
+  # --- argument handling ---
 
   defp target_namespace([ns | _]), do: ns
 
@@ -88,56 +86,26 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
     System.halt(1)
   end
 
-  defp load_registry(path) do
-    case CB.JSON.read(path) do
-      {:ok, %{"collections" => map}} when is_map(map) -> map
-      {:ok, _} -> halt_err("registry #{path} has no \"collections\" map")
-      {:error, reason} -> halt_err("cannot read registry #{path}: #{inspect(reason)}")
-    end
-  end
+  # Unwrap a CB.Collection result, halting with a readable message on error so
+  # the task keeps its exit-1-on-resolution-error contract.
+  defp unwrap({:ok, value}), do: value
+  defp unwrap({:error, reason}), do: halt_err(format_error(reason))
 
-  # --- dependency closure (transitive, cycle-safe) ---
+  defp format_error({:registry_unreadable, path, reason}),
+    do: "cannot read registry #{path}: #{inspect(reason)}"
 
-  defp resolve_closure(target, registry, registry_path),
-    do: do_closure([target], registry, registry_path, [])
+  defp format_error({:bad_registry, message}), do: message
 
-  defp do_closure([], _registry, _registry_path, acc), do: Enum.reverse(acc)
+  defp format_error({:unknown_namespace, ns}),
+    do: "collection #{inspect(ns)} is not in the registry"
 
-  defp do_closure([ns | rest], registry, registry_path, acc) do
-    if ns in acc do
-      do_closure(rest, registry, registry_path, acc)
-    else
-      unless Map.has_key?(registry, ns),
-        do: halt_err("collection #{inspect(ns)} is not in the registry (#{registry_path})")
+  defp format_error({:not_an_array, ns, path}),
+    do: "collection #{ns} at #{path} is not a JSON array"
 
-      deps = manifest_depends_on(ns, registry, registry_path)
-      do_closure(rest ++ deps, registry, registry_path, [ns | acc])
-    end
-  end
+  defp format_error({:collection_unreadable, ns, path, reason}),
+    do: "cannot read collection #{ns} at #{path}: #{inspect(reason)}"
 
-  defp manifest_depends_on(ns, registry, registry_path) do
-    manifest_path =
-      ns |> collection_path(registry, registry_path) |> Path.dirname() |> Path.join("manifest.json")
-
-    case CB.JSON.read(manifest_path) do
-      {:ok, %{"depends_on" => deps}} when is_list(deps) -> deps
-      # No manifest, or one without depends_on, is a leaf (e.g. the cb: graph).
-      _ -> []
-    end
-  end
-
-  defp collection_path(ns, registry, registry_path),
-    do: Path.expand(Map.fetch!(registry, ns), Path.dirname(registry_path))
-
-  defp load_collection(ns, registry, registry_path) do
-    path = collection_path(ns, registry, registry_path)
-
-    case CB.JSON.read(path) do
-      {:ok, data} when is_list(data) -> Enum.map(data, &Belief.from_map/1)
-      {:ok, _} -> halt_err("collection #{ns} at #{path} is not a JSON array")
-      {:error, reason} -> halt_err("cannot read collection #{ns} at #{path}: #{inspect(reason)}")
-    end
-  end
+  defp format_error(other), do: inspect(other)
 
   # --- checks ---
 
