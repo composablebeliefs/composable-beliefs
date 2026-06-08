@@ -9,8 +9,5 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 
-# Pending: needs `workflow` OAuth scope to push (gh auth refresh -s workflow)
-/.github/workflows/composable-beliefs.yml
-
 # ExUnit @tag :tmp_dir scratch
 /tmp/
