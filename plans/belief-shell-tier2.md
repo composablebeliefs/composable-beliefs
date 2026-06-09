@@ -3,7 +3,7 @@
 **Status:** planned
 **Date:** 2026-03-14
 **Depends on:** Tier 1 implemented in `lib/mix/tasks/bs.ex` and `lib/cb/belief/graph.ex`
-**Spec:** `belief-shell-api-v1.md` (in `planning-data/shell/`)
+**Spec:** [`belief-shell-api-v1.md`](../docs/belief-shell/belief-shell-api-v1.md)
 
 > **Schema-refresh note (2026-06):** Tier 1 shipped as `mix bs` (`lib/mix/tasks/bs.ex`). Two schema changes postdate this plan: the `confidence` field was removed (replaced by *structural support* - artifact/evidence/dep counts), and the `implication` prose field was removed (meaning now lives in `claim` + `deps`). Read every "propose / assess / recalculate confidence" step below as proposing evidence and dependencies and letting support fall out structurally; treat "implication text" as folded into `claim`.
 
