@@ -63,9 +63,9 @@ mix cb.verify.schema      # check the struct against the in-graph schema contrac
 
 Belief ids are namespaced (`cb:`), so the shell takes the full id. See the guided tour in `belief-collections` (`../belief-collections/quickstart.md`).
 
-## Walkthrough: tracing an eval verdict to its evidence
+## Worked example: tracing an eval verdict to its evidence
 
-This walkthrough teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance`): a published eval, `silent-data-loss-v1`, rendered in miniature. Six beliefs capture two scorer observations of a single failing case, the cross-ruler verdict they compose into, the routing guidance that follows, and the collection's own artifact-scheme contract.
+This worked example teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance`): a published eval, `silent-data-loss-v1`, rendered in miniature. Six beliefs capture two scorer observations of a single failing case, the cross-ruler verdict they compose into, the routing guidance that follows, and the collection's own artifact-scheme contract.
 
 All commands run from the `composable-beliefs/` repo root and point at the sibling collection over `--beliefs`:
 
@@ -75,7 +75,7 @@ mix deps.get && mix compile          # one-time build
 mix bs <cmd> --beliefs ../belief-collections/eval-provenance/beliefs.json
 ```
 
-You can set `CB_BELIEFS=../belief-collections/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final two steps query CB's own graph (`beliefs/beliefs.json`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This walkthrough uses the explicit flag throughout.
+You can set `CB_BELIEFS=../belief-collections/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final two steps query CB's own graph (`beliefs/beliefs.json`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This worked example uses the explicit flag throughout.
 
 ### Verify the collection
 

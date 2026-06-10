@@ -57,10 +57,24 @@ Concretely:
 ## Acceptance criteria
 
 - **Mechanical rename check (falsifiable exit):** `grep -ri walkthrough` across active
-  artifacts, excluding `transcript.md` files and an explicitly enumerated whitelist of
-  generic-prose hits (the `README.md`/`quickstart.md` "guided tour" lines that do not
-  name the artifact), returns empty. Enumerate the whitelist in this plan before
-  executing so the check is reproducible.
+  artifacts, excluding `transcript.md` files and the whitelist below, returns empty.
+
+  Whitelist (enumerated 2026-06-09, before execution):
+  - `plans/interactive-walkthroughs-acp/plan.md` - the superseded origin record; kept
+    verbatim under its banner, all hits whitelisted.
+  - `plans/cb-codepath/README.md` and `plans/cb-codepath/plan-0-fold-and-rename.md` -
+    self-referential mentions of the old name (they define the rename).
+  - `plans/done/toy-domain-onramp.md:93` - "the guided walkthrough", generic prose in a
+    completed plan.
+  - `plans/cb-codepath/spec-notes.md` - the archived repo's SPEC.md carried forward
+    verbatim as plan-1 input (pre-rename terminology, marked as such in its header).
+  - The `_build/`, `deps/`, and `.git/` directories are excluded as non-artifacts.
+
+  The top-level `README.md` tutorial section formerly titled "Walkthrough: tracing an
+  eval verdict to its evidence" is reworded to "Worked example" rather than whitelisted
+  (decided 2026-06-09) - it never named this artifact, and rewording removes the
+  ambiguity. `belief-collections/library/README.md:19` ("this walkthrough", generic
+  tutorial prose in the sibling repo) is out of this repo's grep scope and left as is.
 - No active cb artifact uses "walkthrough" to name the artifact; `present-codepath` and
   `codepaths.json` exist in cb.
 - The standalone `code-walkthrough` repo is archived with a forward pointer; nothing in

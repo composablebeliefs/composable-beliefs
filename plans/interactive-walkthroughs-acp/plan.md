@@ -1,5 +1,12 @@
 # Interactive Code Walkthroughs over ACP
 
+> **Superseded (2026-06-09) by [`plans/cb-codepath/`](../cb-codepath/README.md).** The
+> design discussion collapsed this standalone-plugin framing into composable-beliefs
+> itself: cb is the single schema authority, and a codepath - what this plan calls a
+> "walkthrough" - is a cb collection. Kept verbatim below as the origin record; the
+> cb-codepath README's decision record explains why. The `code-walkthrough` repo this
+> plan created is archived.
+
 A persistent, refactor-tracking format for **agent-guided walkthroughs of the
 codebase**: an author working with the agent to build the app records ordered,
 branching "walk this code" paths to a data file; a later session loads that file
@@ -16,7 +23,7 @@ each stop with live values from the running app.
 > pricing, high-token edit/compile/run work); *present it in ACP* (metered, but
 > low-token - mostly read-file + emit-refs).
 
-**Status:** Proposed 2026-06-08; architecture revised 2026-06-09 (framework/instance split); all three phases in scope as of 2026-06-09. Nothing built. Phase 1 is pure data + one skill in a new repo, no new infra inside the consuming repos.
+**Status:** Superseded 2026-06-09 by `plans/cb-codepath/` (see banner). Previously: proposed 2026-06-08; architecture revised 2026-06-09 (framework/instance split); all three phases in scope as of 2026-06-09. Phases 1-2 were built as the standalone repo + plugin before the supersession.
 **Date:** 2026-06-09
 **Depends on:** nothing for Phases 1-2. Phase 3 (runtime) depends on the open-source `tidewave` Phoenix hex package (no subscription) + a booted `cb-dashboard`.
 **Touches:** a **new `code-walkthrough/` sibling repo** under `amieval/` (the framework: spec + skill + reasoning); a new `composable-beliefs/code-walkthrough/` instance directory; for Phase 3, `cb-dashboard/mix.exs` + `cb-dashboard/lib/cb_dashboard/endpoint.ex:63`.
