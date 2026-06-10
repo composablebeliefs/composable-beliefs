@@ -22,35 +22,21 @@ defmodule CB.Codepath.Predicates do
   alias CB.Belief.Store
   alias CB.{Config, JSON}
 
-  @name_invariant ~r/(\?|_check)$/
-
   @doc """
   Resolve a routed predicate name to a zero-arity function.
 
   Enforces the inspection-only naming invariant before any lookup, then
   requires the name to be an exported zero-arity function on `module`
-  (default: this module). Returns `{:ok, fun}`,
-  `{:error, :bad_name}` (invariant violated), or
+  (default: this module). Both checks live in the shared
+  `CB.PredicateGate`; this wrapper fixes the arity at zero. Returns
+  `{:ok, fun}`, `{:error, :bad_name}` (invariant violated), or
   `{:error, :unknown_predicate}`.
   """
   @spec resolve(module(), String.t()) :: {:ok, (-> boolean())} | {:error, atom()}
   def resolve(module \\ __MODULE__, name) when is_binary(name) do
-    cond do
-      not Regex.match?(@name_invariant, name) ->
-        {:error, :bad_name}
-
-      not predicate_exported?(module, name) ->
-        {:error, :unknown_predicate}
-
-      true ->
-        fun_name = String.to_existing_atom(name)
-        {:ok, fn -> apply(module, fun_name, []) end}
+    with {:ok, fun_name} <- CB.PredicateGate.resolve(module, name, 0) do
+      {:ok, fn -> apply(module, fun_name, []) end}
     end
-  end
-
-  defp predicate_exported?(module, name) do
-    Code.ensure_loaded?(module) and
-      name in Enum.map(module.module_info(:exports), fn {f, a} -> a == 0 && Atom.to_string(f) end)
   end
 
   @doc """

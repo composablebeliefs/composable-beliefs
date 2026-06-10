@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit tree: g:v1</title>
+<style>body{font-family:ui-sans-serif,system-ui,sans-serif;margin:2rem auto;max-width:60rem;padding:0 1rem;color:#1a1a1a;background:#fff}
+h1{font-size:1.2rem}
+code{font-family:ui-monospace,monospace;font-size:0.92em;background:#f4f4f4;padding:0 0.2em;border-radius:3px}
+details.node{margin:0.4rem 0 0.4rem 1.2rem;border-left:2px solid #d8d8d8;padding-left:0.8rem}
+main>details.node{margin-left:0}
+summary{cursor:pointer;line-height:1.5}
+.badge{font-size:0.72em;padding:0.1em 0.45em;border-radius:8px;background:#e8e8e8;color:#444;vertical-align:middle}
+.badge.contract{background:#e3d9f5;color:#4b2d83}
+.badge.superseded,.badge.retracted{background:#f6d6d6;color:#8a1f1f}
+.badge.stale{background:#fdeec9;color:#8a6100}
+.badge.link{background:#d8e9f7;color:#1c4f7c}
+.badge.missing{background:#f6d6d6;color:#8a1f1f}
+.name{font-weight:600}
+details.superseded>summary .claim,details.retracted>summary .claim{text-decoration:line-through;color:#777}
+.body{margin:0.2rem 0 0.4rem 0.2rem;font-size:0.9em;color:#444}
+.body p{margin:0.15rem 0}
+.succession,.stale-note{color:#8a1f1f}
+ul.evidence{margin:0.2rem 0 0.2rem 1rem;padding:0}
+ul.evidence li{margin:0.15rem 0;list-style:disc}
+.date{color:#666}
+footer{margin-top:2rem;border-top:1px solid #ddd;padding-top:0.6rem;font-size:0.8em;color:#666}
+footer p{margin:0.15rem 0}
+</style>
+</head>
+<body>
+<main>
+<h1>Audit tree: <code>g:v1</code></h1>
+<details open class="node belief active"><summary><code>g:v1</code> <span class="badge type">implication/verdict</span> <span class="badge stale">stale</span> <span class="name">the-verdict</span> <span class="claim">Model &lt;m&gt; drops fields &amp; nobody notices.</span></summary>
+<div class="body">
+<p class="stale-note">stale: depends on g:c1</p>
+<p class="meta">subjects: model/m (model)</p>
+<p class="meta">tags: eval-verdict</p>
+<ul class="evidence">
+<li><span class="date">2026-06-08</span> — Derived from g:c1. — <span class="evidence-artifact"><a href="https://example.org/post">https://example.org/post</a></span></li>
+</ul>
+</div>
+<details open class="node belief active"><summary><code>g:c1</code> <span class="badge type">compound/observation</span> <span class="badge stale">stale</span> <span class="claim">Two rulers agree.</span></summary>
+<div class="body">
+<p class="stale-note">stale: depends on g:p2</p>
+<p class="meta">tags: cross-ruler-agreement</p>
+</div>
+<details open class="node belief active"><summary><code>g:p1</code> <span class="badge type">primitive/observation</span> <span class="claim">Ruler det scored case c1 fail.</span></summary>
+<div class="body">
+<p class="meta">subjects: eval/e (eval), run/r1 (run)</p>
+<p class="meta">tags: outcome:fail</p>
+<p class="meta">artifact: <code>eval:e/r1/c1/det</code></p>
+<ul class="evidence">
+<li><span class="date">2026-06-07</span> — Raw log. — <span class="evidence-artifact"><code>document:logs/r1/c1.json</code></span></li>
+</ul>
+</div>
+</details>
+<details open class="node belief superseded"><summary><code>g:p2</code> <span class="badge type">primitive/observation</span> <span class="badge superseded">superseded</span> <span class="claim">Ruler judge scored case c1 fail.</span></summary>
+<div class="body">
+<p class="succession">superseded by <code>g:p3</code></p>
+<p class="meta">artifact: <code>eval:e/r1/c1/judge</code></p>
+</div>
+</details>
+</details>
+<details open class="node link active"><summary><code>x:doc1</code> <span class="badge type">primitive/convention</span> <span class="badge link">x: dep</span> <span class="claim">A borrowed convention in another namespace.</span></summary>
+<div class="body">
+</div>
+</details>
+<details class="node missing"><summary><code>g:gone</code> <span class="badge missing">missing</span></summary></details>
+</details>
+
+</main>
+<footer>
+<p>source: g</p>
+<p>namespaces: g, x</p>
+<p>beliefs in union: 6</p>
+<p>graph digest: <code>sha256:c364a11f715e50109bb159c8c49dc15db1175186fb215c95ebf01926ebc25a0f</code></p>
+<p>renderer: cb.render.audit/1</p>
+<p>rendered: 2026-06-10</p>
+</footer>
+</body>
+</html>

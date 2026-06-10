@@ -26,6 +26,17 @@ defmodule CB.Belief.Contract.Implies do
 
   A typical implies contract names struct-level invariants that only
   fire under particular field configurations.
+
+  ## Extra rule-entry keys
+
+  Rule entries tolerate keys beyond `when`/`requires` - the
+  contract-shape catalogue (`cb:c046`) declares those two as *required*
+  fields, not a closed set, and this interpreter reads nothing else.
+  The method-check pass (`CB.Method.Checks`) uses this for an optional
+  `"params"` map passed through to collection predicates, e.g.
+  `{"when": {"verify": "collection"}, "requires": "min_runs_met?",
+  "params": {"min": 3}}`. Params are data for the routed predicate,
+  never interpreted here.
   """
 
   alias CB.Belief

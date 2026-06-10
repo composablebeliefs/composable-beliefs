@@ -18,6 +18,13 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
   collection against the contracts it carries, this verifies a collection *in
   the context of* its declared dependencies.
 
+  After the schema checks, the **method-check pass** (`CB.Method.Checks`)
+  runs every routed methodology contract in the union: active `implies`-kind
+  contracts whose rules route on `{"when": {"verify": "collection"}}` (e.g.
+  the `method:` collection's m-* contracts) resolve to named predicates in
+  `CB.Eval.Predicates` and execute over the union - pure traversal, fully
+  deterministic. A union with no such contracts skips the pass.
+
   ## Usage
 
       mix cb.verify.collection NAMESPACE [--registry PATH] [--quiet]
@@ -61,8 +68,10 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
 
     unless quiet, do: print_context(target, loaded)
 
-    # Cross-namespace dep resolvability over the union, then the schema checks.
-    results = [check_dep_resolvability(union) | Verifier.check(union)]
+    # Cross-namespace dep resolvability over the union, then the schema
+    # checks, then the method-check pass over routed methodology contracts.
+    results =
+      [check_dep_resolvability(union) | Verifier.check(union)] ++ method_check_results(union)
 
     shown = if quiet, do: Enum.filter(results, fn {_, s, _} -> s == :fail end), else: results
     Enum.each(shown, &print_result/1)
@@ -120,6 +129,25 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
     else
       {"cross-namespace deps resolve", :fail,
        "unresolved deps (missing dependency collection?): #{inspect(Enum.uniq(dangling))}"}
+    end
+  end
+
+  # The method-check pass as result rows, one per routed rule. No routed
+  # contracts in the union -> a single skip row, per house convention.
+  defp method_check_results(union) do
+    case CB.Method.Checks.run(union) do
+      [] ->
+        [{"method-check", :skip, "no contract routes on verify: collection"}]
+
+      rows ->
+        Enum.map(rows, fn row ->
+          name = "method-check #{row.contract} #{row.name || row.predicate}"
+
+          case row.result do
+            "pass" -> {name, :ok, "#{row.predicate} holds over the union"}
+            _ -> {name, :fail, "#{row.predicate}: #{row.detail}"}
+          end
+        end)
     end
   end
 

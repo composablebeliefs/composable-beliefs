@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "root": "g:v1",
+    "source": "g",
+    "namespaces": [
+      "g",
+      "x"
+    ],
+    "belief_count": 6,
+    "digest": "sha256:c364a11f715e50109bb159c8c49dc15db1175186fb215c95ebf01926ebc25a0f",
+    "renderer": "cb.render.audit/1",
+    "date": "2026-06-10"
+  },
+  "root": {
+    "id": "g:v1",
+    "role": "belief",
+    "type": "implication",
+    "kind": "verdict",
+    "contract": false,
+    "name": "the-verdict",
+    "claim": "Model <m> drops fields & nobody notices.",
+    "status": "active",
+    "superseded_by": null,
+    "retracted_reason": null,
+    "stale_deps": [
+      "g:c1"
+    ],
+    "tags": [
+      "eval-verdict"
+    ],
+    "subjects": [
+      {
+        "ref": "model/m",
+        "type": "model"
+      }
+    ],
+    "artifact": null,
+    "evidence": [
+      {
+        "date": "2026-06-08",
+        "detail": "Derived from g:c1.",
+        "artifact": "https://example.org/post"
+      }
+    ],
+    "truncated": false,
+    "children": [
+      {
+        "id": "g:c1",
+        "role": "belief",
+        "type": "compound",
+        "kind": "observation",
+        "contract": false,
+        "name": null,
+        "claim": "Two rulers agree.",
+        "status": "active",
+        "superseded_by": null,
+        "retracted_reason": null,
+        "stale_deps": [
+          "g:p2"
+        ],
+        "tags": [
+          "cross-ruler-agreement"
+        ],
+        "subjects": [],
+        "artifact": null,
+        "evidence": [],
+        "truncated": false,
+        "children": [
+          {
+            "id": "g:p1",
+            "role": "belief",
+            "type": "primitive",
+            "kind": "observation",
+            "contract": false,
+            "name": null,
+            "claim": "Ruler det scored case c1 fail.",
+            "status": "active",
+            "superseded_by": null,
+            "retracted_reason": null,
+            "stale_deps": [],
+            "tags": [
+              "outcome:fail"
+            ],
+            "subjects": [
+              {
+                "ref": "eval/e",
+                "type": "eval"
+              },
+              {
+                "ref": "run/r1",
+                "type": "run"
+              }
+            ],
+            "artifact": "eval:e/r1/c1/det",
+            "evidence": [
+              {
+                "date": "2026-06-07",
+                "detail": "Raw log.",
+                "artifact": "document:logs/r1/c1.json"
+              }
+            ],
+            "truncated": false,
+            "children": []
+          },
+          {
+            "id": "g:p2",
+            "role": "belief",
+            "type": "primitive",
+            "kind": "observation",
+            "contract": false,
+            "name": null,
+            "claim": "Ruler judge scored case c1 fail.",
+            "status": "superseded",
+            "superseded_by": "g:p3",
+            "retracted_reason": null,
+            "stale_deps": [],
+            "tags": [],
+            "subjects": [],
+            "artifact": "eval:e/r1/c1/judge",
+            "evidence": [],
+            "truncated": false,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "x:doc1",
+        "role": "link",
+        "type": "primitive",
+        "kind": "convention",
+        "contract": false,
+        "name": null,
+        "claim": "A borrowed convention in another namespace.",
+        "status": "active",
+        "superseded_by": null,
+        "retracted_reason": null,
+        "stale_deps": [],
+        "tags": [],
+        "subjects": [],
+        "artifact": null,
+        "evidence": [],
+        "truncated": false,
+        "children": []
+      },
+      {
+        "id": "g:gone",
+        "role": "missing",
+        "type": null,
+        "kind": null,
+        "contract": false,
+        "name": null,
+        "claim": null,
+        "status": null,
+        "superseded_by": null,
+        "retracted_reason": null,
+        "stale_deps": [],
+        "tags": [],
+        "subjects": [],
+        "artifact": null,
+        "evidence": [],
+        "truncated": false,
+        "children": []
+      }
+    ]
+  }
+}
