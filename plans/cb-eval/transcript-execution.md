@@ -95,3 +95,15 @@ trees of composable-beliefs, belief-collections, and evals.
 collections verify green including method-checks; `sdl` fails its two documented
 checks by design. CLAUDE.md current. tmp/ holds disposable rendered samples
 (`audit-*.html`).
+
+## Postscript (2026-06-10): the bench extraction
+
+After committing, the execution infra moved out of `evals/cb-ledger` into its own
+sibling repo, **`bench`** - completing the four-repo split (ledger framework /
+graph data / execution infra / append-only run archive). Paths above that read
+`evals/cb-ledger/...` now live at `bench/...` (adapter at the root, the mockllm
+round-trip fixture under `smoke/`, the venv at `bench/.venv`). Revalidated
+post-move: adapter output byte-identical, re-import a no-op,
+`mix cb.verify.collection fxm --registry ../bench/smoke/collections.json` green.
+`evals` remains the archive of executed evals; a bench study that runs for real
+lands there as a snapshot.
