@@ -2,7 +2,7 @@ defmodule CB.Codepath do
   @moduledoc """
   Resolve a codepath output-target into ordered, anchored stops.
 
-  A codepath output-target (see the codepath contract, `cb:c044`) carries
+  A codepath output-target (see the codepath contract, `cb:c049`) carries
   `entry` plus `render_steps` rows; each row's belief anchors to source
   via a `code:` locator. This module owns load-resolve-emit: it validates
   the target, walks the step graph deterministically, and resolves every

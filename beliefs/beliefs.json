@@ -923,7 +923,8 @@
       }
     ],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c046",
     "created": "2026-04-22"
   },
   {
@@ -1365,7 +1366,8 @@
       "cb:c031",
       "cb:c035"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c047",
     "created": "2026-04-21"
   },
   {
@@ -2633,7 +2635,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a468",
     "created": "2026-06-07"
   },
   {
@@ -2679,7 +2682,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a469",
     "created": "2026-06-07"
   },
   {
@@ -2917,7 +2921,8 @@
       "cb:a457",
       "cb:a458"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c048",
     "created": "2026-06-07"
   },
   {
@@ -3248,7 +3253,8 @@
       "cb:a467",
       "cb:c042"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c049",
     "created": "2026-06-09"
   },
   {
@@ -3292,6 +3298,489 @@
     "deps": [
       "cb:a467",
       "cb:c037"
+    ],
+    "status": "superseded",
+    "superseded_by": "cb:c050",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:a468",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "claude-md",
+      "schema"
+    ],
+    "claim": "The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c029 (status lifecycle and immutability), c038 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), and c032 (conflict scope). Read one with `mix bs show cb:c038`.",
+    "artifact": "session:2026-06-07-cb-claude-md-generation",
+    "evidence": [
+      {
+        "date": "2026-06-07",
+        "detail": "Encoded from the framework's hand-written CLAUDE.md into the graph so the file compiles from beliefs via the c042 output-target contract.",
+        "artifact": "session:2026-06-07-cb-claude-md-generation"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "c043 superseded c040 when the code: scheme was added (cb-codepath plan-1); the rendered CLAUDE.md Schema line must name the active enum contract. Claim otherwise verbatim.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:a451. Reasoning: The CLAUDE.md Schema line names the artifact-scheme enum contract by id; c040 was superseded by c043 and a rendered doc should point readers at the active contract, not make them walk the supersession chain.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:a469",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "skills"
+    ],
+    "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assert-session` persists session rules and agent error patterns; `/assertions` queries and traverses the graph; `/materialize` turns implications into concrete tasks; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+    "artifact": "session:2026-06-07-cb-claude-md-generation",
+    "evidence": [
+      {
+        "date": "2026-06-07",
+        "detail": "Encoded from the framework's hand-written CLAUDE.md into the graph so the file compiles from beliefs via the c042 output-target contract.",
+        "artifact": "session:2026-06-07-cb-claude-md-generation"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "cb-codepath plan-2/3 added the present-codepath skill and the codepath verify task; the rendered CLAUDE.md Skills line enumerates the skills and must include it.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:a453. Reasoning: The Skills section of the rendered CLAUDE.md enumerates shipped skills; present-codepath shipped in plan-2 (renderer) and gained assertions in plan-3 Step A.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:c046",
+    "type": "implication",
+    "kind": "derivation-table",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "dsl"
+    ],
+    "name": "contract-shape-catalogue",
+    "claim": "Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry",
+    "rules": [
+      {
+        "exemplars": [
+          "c001"
+        ],
+        "fact_shape": "edge(From, To, Requires)",
+        "interpreter": "Belief.Contract.StateMachine",
+        "kind": "state-machine",
+        "required_rule_fields": [
+          "from",
+          "to",
+          "requires"
+        ]
+      },
+      {
+        "exemplars": [
+          "c010",
+          "c011",
+          "c012",
+          "c013",
+          "c016"
+        ],
+        "fact_shape": "allowed(Field, Value)",
+        "interpreter": "Belief.Contract.Enum",
+        "kind": "enum-registry",
+        "required_rule_fields": [
+          "field",
+          "values"
+        ]
+      },
+      {
+        "exemplars": [
+          "c003",
+          "c008",
+          "c009",
+          "c035"
+        ],
+        "fact_shape": "row(Col1, ..., ColN)",
+        "interpreter": "Belief.Contract.Table",
+        "kind": "derivation-table",
+        "required_rule_fields": []
+      },
+      {
+        "exemplars": [
+          "c036"
+        ],
+        "fact_shape": "implies(When, Requires)",
+        "interpreter": "Belief.Contract.Implies",
+        "kind": "implies",
+        "required_rule_fields": [
+          "when",
+          "requires"
+        ]
+      },
+      {
+        "exemplars": [
+          "c042",
+          "codepath:c005"
+        ],
+        "fact_shape": "field(Name, Spec)",
+        "interpreter": "OutputTarget",
+        "kind": "output-target",
+        "required_rule_fields": []
+      }
+    ],
+    "invariants": [
+      "Every contract with non-empty rules must have a kind matching one entry in this catalogue",
+      "Each kind has exactly one interpreter module",
+      "The catalogue is closed: new kinds require updating this contract"
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Added the output-target kind to the closed catalogue: rules are singleton field maps (output_path/header_comment/render_sections, or entry/render_steps for codepath targets), interpreted by CB.OutputTarget; per-shape required fields are enforced by the interpreter per tag, so required_rule_fields is empty. Closes the gap opened when c042 (CLAUDE.md) introduced the kind without updating the catalogue.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:c035. Reasoning: c035's own invariant says new rule kinds require updating this contract; output-target contracts (c042, codepath render-specs) have carried non-empty rules outside the catalogue since 2026-06-07. The catalogue is closed by supersession, exactly as it prescribes.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "assertions/",
+        "type": "assertions"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:c047",
+    "type": "implication",
+    "kind": "rule",
+    "domain": "system",
+    "tags": [
+      "dsl",
+      "contracts",
+      "architecture",
+      "dag-schema"
+    ],
+    "name": "predicate-routing-boundary",
+    "claim": "Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.",
+    "rules": [
+      {
+        "given": "A new contract is being authored",
+        "scenario": "The contract's rules specify which predicate fires on which condition",
+        "then": "The predicate body lives in Elixir (or the equivalent target language)",
+        "when": "The contract defines routing logic"
+      },
+      {
+        "given": "An existing module is being ported to DSL-driven mode",
+        "scenario": "Predicate bodies in the module stay in place",
+        "then": "Only the routing (which predicates fire on what condition) moves to the contract",
+        "when": "Ports land with module-resident predicates"
+      },
+      {
+        "given": "A proposal moves predicate bodies (implementation logic) into the DAG",
+        "scenario": "Any shape: inlined code, serialized AST, pseudo-DSL execution",
+        "then": "The proposal is stopped and raised for adjudication per the consensus mechanism",
+        "when": "The proposed change crosses the routing/implementation line"
+      }
+    ],
+    "invariants": [
+      "Contract rules express routing, never implementation",
+      "Predicate bodies are implemented in Elixir (or equivalent module-resident code)",
+      "No DAG-stored code execution - the DAG is source for what fires when, not how"
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-04-21",
+        "detail": "Stated explicitly by the DSL agent in the Phase 3 handoff as the single design line not to drift. Grounded in the six ported modules (c001, c003, c008, c009, c010, c036) where contract rules route to module-resident predicate implementations. Documented in an internal design doc",
+        "artifact": "session:dev-handoff"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Dep re-pointed from the superseded c035 to its successor c046 (catalogue gained the output-target row). Claim, rules, and invariants verbatim.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:c037. Reasoning: c035 was superseded by c046 in this batch; c037 deps the catalogue and would otherwise flag stale. Content unchanged - this is pure dep maintenance.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a300",
+      "cb:c031",
+      "cb:c046"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:c048",
+    "type": "implication",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:claude-md"
+    ],
+    "claim": "The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.",
+    "rules": [
+      {
+        "output_path": "CLAUDE.md"
+      },
+      {
+        "header_comment": "<!-- Generated by mix cb.generate.claude_md from the cb: DAG. Do not edit; run the task to regenerate. -->\n\n# Composable Beliefs\n\nA framework for giving AI agents persistent, source-grounded, inspectable reasoning that survives session boundaries and composes into understanding the agent never explicitly derived."
+      },
+      {
+        "render_sections": [
+          {
+            "beliefs": [
+              "cb:a459",
+              "cb:a444"
+            ],
+            "title": "Quick Start"
+          },
+          {
+            "beliefs": [
+              "cb:a445"
+            ],
+            "title": "Active directives"
+          },
+          {
+            "beliefs": [
+              "cb:a446",
+              "cb:a447",
+              "cb:a448"
+            ],
+            "title": "Architecture"
+          },
+          {
+            "beliefs": [
+              "cb:a449",
+              "cb:a450"
+            ],
+            "title": "Operations"
+          },
+          {
+            "beliefs": [
+              "cb:a468",
+              "cb:a452"
+            ],
+            "title": "Schema"
+          },
+          {
+            "beliefs": [
+              "cb:a469"
+            ],
+            "title": "Skills"
+          },
+          {
+            "beliefs": [
+              "cb:a454"
+            ],
+            "title": "Collections"
+          },
+          {
+            "beliefs": [
+              "cb:a455"
+            ],
+            "title": "Formatting"
+          },
+          {
+            "beliefs": [
+              "cb:a456"
+            ],
+            "title": "Git Policy"
+          },
+          {
+            "beliefs": [
+              "cb:a457"
+            ],
+            "title": "Data Protection"
+          },
+          {
+            "beliefs": [
+              "cb:a458"
+            ],
+            "title": "Origin"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "CLAUDE.md is read-only - edits are overwritten on next generation",
+      "Every line of output traces to exactly one belief's claim field",
+      "deps equals the union of all beliefs referenced in render_sections",
+      "Section titles are human-readable; tags remain free for cross-cutting audit queries"
+    ],
+    "contract": true,
+    "artifact": "session:2026-06-07-cb-claude-md-generation",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "render_sections and deps re-pointed at the superseded Schema/Skills claims' successors (a451->a468 names c043; a453->a469 adds present-codepath). Sections, output path, and header otherwise verbatim.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:c042. Reasoning: Two rendered claims were superseded in this batch (a468 names the active enum contract; a469 adds the present-codepath skill); the CLAUDE.md output-target must reference the active claims for the regenerated file to pick them up.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a459",
+      "cb:a444",
+      "cb:a445",
+      "cb:a446",
+      "cb:a447",
+      "cb:a448",
+      "cb:a449",
+      "cb:a450",
+      "cb:a468",
+      "cb:a452",
+      "cb:a469",
+      "cb:a454",
+      "cb:a455",
+      "cb:a456",
+      "cb:a457",
+      "cb:a458"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:c049",
+    "type": "implication",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:codepath",
+      "cb-codepath"
+    ],
+    "claim": "A codepath output-target is an output-target contract (kind 'output-target', tagged 'output:codepath') whose rules carry an 'entry' step id and 'render_steps' rows of shape {id, belief, goto?, choices?}. Each row's belief resolves to a belief anchored by a code: artifact; navigation (entry/goto/choices) is render metadata that never enters deps and never lives in the claim beliefs; deps equals the union of the rows' belief ids. Enforced statically by mix cb.verify.schema's codepath output-targets check; rendering the steps is the codepath renderer's job.",
+    "rules": [],
+    "invariants": [
+      "A codepath output-target has kind 'output-target' and tag 'output:codepath'.",
+      "Rules carry exactly one 'entry' and one non-empty 'render_steps' list; 'entry' names a step id.",
+      "Step rows are {id, belief, goto?, choices?}; step ids are unique within the target; every 'goto' and choice 'goto' names an existing step id.",
+      "Every step's 'belief' resolves to an existing belief whose artifact is a valid code: locator.",
+      "Navigation (entry, goto, choices) is render metadata only - it never enters deps and never lives in the claim beliefs.",
+      "deps equals the union of belief ids referenced by render_steps.",
+      "A codepath render-spec is drafted outside the graph and imported once settled; a post-import reorder supersedes the output-target belief itself, never the claim beliefs it references."
+    ],
+    "contract": true,
+    "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "cb-codepath plan-1 settled reusing the existing output-target kind (the mechanism cb:c042 demonstrates for CLAUDE.md) over minting a new c035 kind, with navigation on parallel render_steps rows rather than overloading render_sections. CB.OutputTarget.validate_codepath/2 and the verifier's codepath output-targets check implement these invariants.",
+        "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Dep re-pointed from the superseded c042 to its successor c048 (the CLAUDE.md output-target it derives its mechanism from). Claim and invariants verbatim.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:c044. Reasoning: c042 was superseded by c048 in this batch; c044's derivation dep follows the active successor. Content unchanged - pure dep maintenance.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "CB.OutputTarget",
+        "type": "module"
+      },
+      {
+        "ref": "CB.Schema.Verifier",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a467",
+      "cb:c048"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "cb:c050",
+    "type": "implication",
+    "kind": "rule",
+    "domain": "system",
+    "tags": [
+      "cb-codepath",
+      "dsl",
+      "inspection-only"
+    ],
+    "claim": "Codepath predicates are inspection-only: a routed predicate observes the system and never mutates it. The checkable proxy: every routed predicate name ends in '?' or '_check' and resolves to an exported zero-arity boolean function on the predicates module - CB.Codepath.Predicates.resolve/2 enforces the naming invariant and refuses to invoke anything else, so an executable string in the DAG has nothing to grab onto. The naming invariant is a verifiable proxy, not a proof of purity; the no-mutation rule itself is this contract.",
+    "rules": [],
+    "invariants": [
+      "Routed predicate names match /(\\?|_check)$/.",
+      "Predicates are zero-arity, exported by the predicates module, and return a boolean.",
+      "Predicates read state; they never mutate it (inspection-only).",
+      "eval invokes a named, repo-resident predicate - never an executable string stored in the DAG (per c037).",
+      "Resolution failures and raises report as predicate failures; an assertion run never crashes the suite."
+    ],
+    "contract": true,
+    "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "plan-3 encodes 'predicates only read, never mutate' as a contract rather than a review note. Implemented by CB.Codepath.Predicates.resolve/2 (naming invariant + exported-function check) and exercised by CB.Codepath.Assertions and mix cb.verify.codepath. Preflight 2026-06-09 surfaced tag-overlap matches only; the substantive neighbor is c037 (routing/implementation boundary), taken as a dep, not a conflict.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Dep re-pointed from the superseded c037 to its successor c047 (the routing/implementation boundary it builds on). Claim and invariants verbatim.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against cb:c045. Reasoning: c037 was superseded by c047 in this batch; c045's dep follows the active successor. Content unchanged - pure dep maintenance.",
+        "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "CB.Codepath.Predicates",
+        "type": "module"
+      },
+      {
+        "ref": "a mix task",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a467",
+      "cb:c047"
     ],
     "status": "active",
     "created": "2026-06-09"

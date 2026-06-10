@@ -2,10 +2,10 @@ defmodule CB.Codepath.Predicates do
   @moduledoc """
   Repo-resident predicate bodies for codepath assertions.
 
-  Per c037 (routing in data, implementation in code) the DAG stores only
+  Per c047 (routing in data, implementation in code; supersedes c037) the DAG stores only
   predicate *names* - `implies(When, Requires: "predicate_name")` on a
   contract-grade stop belief - and this module implements them. Per the
-  inspection-only contract (`cb:c045`), predicates observe and never
+  inspection-only contract (`cb:c050`), predicates observe and never
   mutate: names end in `?` or `_check`, take no arguments, and return a
   boolean. `resolve/2` enforces the naming invariant and refuses names
   that do not resolve to an exported zero-arity function, so an

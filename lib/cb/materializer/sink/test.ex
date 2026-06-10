@@ -12,7 +12,7 @@ defmodule CB.Materializer.Sink.Test do
   claim; a re-run replaces the prior record (the materialized field is
   the mutable action-history axis, orthogonal to status).
 
-  Inspection-only (cb:c045) is enforced underneath by
+  Inspection-only (cb:c050) is enforced underneath by
   `CB.Codepath.Predicates.resolve/2` - an action item naming anything
   but an exported, invariant-satisfying predicate fails its ref rather
   than executing.

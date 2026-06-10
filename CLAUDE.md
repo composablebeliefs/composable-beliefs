@@ -30,13 +30,13 @@ Verify with the graph's own tooling: `mix cb.verify.schema` checks a collection 
 
 ## Schema
 
-The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c029 (status lifecycle and immutability), c038 (schema discipline), c039/c040/c041 (the closed kind/artifact-scheme/domain enums), and c032 (conflict scope). Read one with `mix bs show cb:c038`.
+The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c029 (status lifecycle and immutability), c038 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), and c032 (conflict scope). Read one with `mix bs show cb:c038`.
 
 Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; primitives ground their claim with an `artifact` URI and dated `evidence`; and `contract: true` is biconditional with non-empty `rules`/`invariants` (per c038).
 
 ## Skills
 
-Skills coordinate authoring and query: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assert-session` persists session rules and agent error patterns; `/assertions` queries and traverses the graph; `/materialize` turns implications into concrete tasks.
+Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assert-session` persists session rules and agent error patterns; `/assertions` queries and traverses the graph; `/materialize` turns implications into concrete tasks; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).
 
 ## Collections
 
