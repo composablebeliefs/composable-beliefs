@@ -1,68 +1,121 @@
 # Composable Beliefs
 
-Composable Beliefs (CB) is a framework for giving AI agents **persistent, inspectable, composable reasoning**: a directed acyclic graph of structured claims ("beliefs") an agent can query, compose, supersede, and act on - with provenance, a self-describing schema, contracts that carry their own rules and invariants, and a write flow that makes contradictions expensive to introduce.
+Composable Beliefs (CB) gives a system's reasoning a durable, inspectable form: a directed acyclic graph of small structured claims ("beliefs"), each grounded in a cited source, that compose into conclusions no single source states. Beliefs are never edited in place - they are superseded - so every change leaves a trail, and anything still resting on a replaced premise is mechanically detectable.
 
-The dependency footprint is one library (Jason). The graph layer is deterministic - pure traversal, no LLM required. The test suite, `mix cb.verify.schema`, and the collection verifiers are green, and CI gates every push on them.
+Two commitments define the design:
 
-## Why
+- **Beliefs, not facts.** The unit of the graph records what is believed, on what evidence, and what would have to change - truth status is tracked and revisable, never presumed. A belief can turn out to be wrong without breaking the model; that is what retraction is for.
+- **CB does not reason for you.** Nothing in the framework derives new beliefs. Humans and agents author them; CB makes the authored reasoning inspectable, composable, and falsifiable.
 
-Agents lose their reasoning at every session boundary. The durable artifacts they leave behind - guidance files, system prompts, memory notes - are flat instructions: an agent can satisfy them superficially without internalizing the reasoning, and there is no structural record of *why* a rule exists or whether it is still true.
+At its core CB is a schema. The format is plain JSON, and the discipline could in principle be practiced with a text editor. What ships in this repo is the schema plus the machinery that turns its promises into guarantees - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs. The schema gives you legibility; the verifiers give you guarantees. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path, and CI gates every push on the test suite and the graph verifiers.
 
-CB treats beliefs as data:
+The result is a layer for specifying, analyzing, and evolving a system that is neither natural language nor code: more formal than prose, so it can be machine-checked; less brittle than code, so it can carry intent, provenance, and history.
 
-- **Composable** - small primitives combine into compounds; the whole carries more than the parts.
-- **Inspectable** - every primitive cites a source; you can query the graph, trace a conclusion to its evidence, and see what depends on what.
-- **Supersedable** - beliefs are immutable; change happens by superseding, retracting, or retiring, so history is traceable and staleness is detectable.
-- **Self-describing** - the schema of the graph is itself expressed as contracts *in* the graph.
-- **Runnable** - claims can anchor to source code and route to named predicates, so a belief collection can double as a narrated tour of a codebase *and* a test suite over it (see [Codepaths](#codepaths-beliefs-anchored-to-code)).
-- **Publishable** - a conclusion's entire evidence tree renders to a single self-contained HTML file a reader can walk with nothing but a browser, and the methodology that judged it is itself machine-checked graph structure (see [The eval evidence ledger](#the-eval-evidence-ledger)).
+## What you can use it for
 
-## Core concepts
+The same mechanism takes three concrete shapes. They share one schema, one query surface, and one change discipline.
+
+**1. Durable, auditable reasoning for AI agents.** Agents lose their reasoning at every session boundary, and the durable artifacts they leave behind - guidance files, system prompts, memory notes - are flat instructions: an agent can satisfy them superficially without internalizing the reasoning, and there is no structural record of *why* a rule exists or whether it is still true. In CB, every rule is a belief with provenance; when a premise is superseded, everything resting on it is flagged for review; and the agent-facing digest (this repo's own `CLAUDE.md`) is compiled from the graph, never hand-maintained.
+
+```sh
+mix bs stale --cascade        # what is resting on replaced premises?
+```
+
+**2. Codepaths: code tours that cannot rot.** A codepath is a belief collection anchored to real source files - rendered, it is a narrated, branching tour of a codebase; executed, it is a test suite over the same claims. Anchors resolve by content at render time, so refactors that move code do not break the tour.
+
+```sh
+CB_BELIEFS=codepath/beliefs.json mix cb.verify.codepath belief-pipeline
+```
+
+**3. An evidence ledger for published eval findings.** Every measurement is a belief tracing to raw logs, the house methodology is machine-enforced contracts rather than a prose document, and a corrected finding visibly wears its correction. The whole evidence tree behind a verdict renders to one self-contained HTML file a reader can walk with nothing but a browser.
+
+```sh
+mix cb.render.audit toy:a9 --collection toy --out audit.html
+```
+
+If you are evaluating adoption: you adopt a JSON file format for your graph, a small Elixir library and its mix tasks to query and verify it, and (optionally) agent skills for a Claude-Code-style harness. What you are *not* adopting: a vector memory, an inference engine, or an eval harness - CB deliberately does none of those.
+
+## Sixty seconds
+
+```sh
+mix deps.get && mix compile
+mix bs tree cb:c047
+```
+
+```
+cb:c047 [contract] Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
+├── cb:a300 [primitive] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
+├── cb:c031 [contract] A node is contract-grade iff its type is implication and its rules or invariants array is non-empty — the c-prefix ID convention is a naming reflection of this structural property, not the definition of contract identity. Code that operates on contracts (such as mix a mix task) must detect them via Belief.contract?/1 and never by ID prefix matching.
+│   └── cb:a300 [primitive] ...
+└── cb:c046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
+```
+
+That is the whole idea on one screen. A design rule of this framework (`cb:c047`) is data, not prose; the premises it rests on are themselves beliefs you can keep walking; and the traversal is pure - no model, no ranking, no retrieval, just the graph. The rest of this README builds that picture up one layer at a time.
+
+## The mental model
+
+### What a belief looks like
+
+Before any vocabulary, here is one belief in full - a real one from this repo's graph:
+
+```sh
+mix bs show cb:a386
+```
+
+```
+ID:          cb:a386
+Type:        primitive
+Kind:        observation
+Domain:      system
+Claim:       A digest file that caches active implications, regenerated by a command, has freshness that depends on procedural enforcement (a skill tells agents to regenerate after writes). Agents can and do forget, producing a stale digest that is then read as authoritative by subsequent sessions. Persisted caches of graph-derived content whose freshness is procedural rather than structural are antipatterns; they embed the staleness risk they were meant to solve. The elimination path: fold active-implication loading into a session-start belief query and render the digest live from the graph instead of from disk.
+Status:      active
+Tags:        dag-schema, cache, antipattern
+Subjects:    the active-implications digest (artifact)
+Artifact:    user:review-session-2026-04-21
+Evidence:    In one session, several implications were added and the digest was not regenerated; subsequent readers would see the pre-change state even though the graph had advanced. This is a structural failure mode of the cache-file-as-digest pattern, not an individual-agent lapse.
+             artifact: user:review-session-2026-04-21
+             date: 2026-04-21
+Support:     artifacts=1 evidence=1 deps=0
+Created:     2026-04-21
+```
+
+A `claim` (the generalization), an `artifact` (where it came from), dated `evidence` (the specific event that grounds it), `subjects` (what it is about), `tags`, a `status`. Every field below is one of these, explained.
 
 ### Three structural types
 
-- `primitive` - an atomic claim grounded in a single source (a fact, observation, rule, or policy).
-- `compound` - a claim composed from other beliefs (its `deps`); it means more than its parts.
-- `implication` - something that should happen, or a contract that enforces an invariant.
+Every belief has exactly one of three `type` values:
 
-### Provenance: artifacts and evidence
+- **`primitive`** - a claim grounded in a single source. Structurally atomic: it carries an `artifact` and `evidence`, and no `deps`. Atomicity here is about provenance, not logic - what makes a claim primitive is that it derives from one source rather than from other beliefs.
+- **`compound`** - a claim composed from other beliefs (its `deps`). Not an aggregate: a compound asserts something *none of its deps states alone*. Two scorers each report a failure; the compound asserts that two independent scorers *agree* - a new claim that exists only in the composition.
+- **`implication`** - a prescription: something that should happen, or (as a contract, below) an invariant that must hold. Implications are authored judgments - a verdict, a piece of guidance, a policy - resting on `deps` that record the reasoning. CB records the derivation; it never performs it.
 
-Every primitive cites an `artifact` - a typed URI identifying the external referent the belief was derived from - and carries dated `evidence[]` entries whose `detail` is the specific narrative of what happened (the claim is the generalization; the evidence is the event). Conclusions trace back to the records that produced them.
+### Provenance: artifact and evidence
 
-The artifact-scheme vocabulary is a **closed enum declared in the graph itself** (currently `cb:c043`). The framework graph declares eight schemes:
+Every primitive cites an `artifact` - a typed URI of form `scheme:id` identifying the external referent it was derived from - and carries dated `evidence[]` entries whose `detail` is the specific narrative of what happened. The claim is the generalization; the evidence is the event. Schemes are a closed vocabulary declared in the graph itself (the full table is in the [Reference](#reference) section); the ones you will meet first are `document:` (a repo file), `code:` (an anchored site *within* a file), `session:` (a working session), `user:` (a direct user statement), and - in eval collections - `eval:` (a scorer-run identity).
 
-| Scheme | Means | Form |
-| --- | --- | --- |
-| `document:` | a repository file (whole-file reference) | `document:<repo-relative-path>` |
-| `code:` | an **anchored site within** a repository file | `code:<repo-relative-path>#<anchor>[@N]` |
-| `session:` | a working session | `session:<date-or-descriptor>` |
-| `user:` | a direct user statement | `user:<name>:<date>` |
-| `source:` | a cached source document | `source:<slug>` |
-| `https:` | an external URL | `https:<URL-rest>` |
-| `plan:` | a plan/spec/intent | `plan:<id-or-descriptor>` |
-| `gmail:` | a mail thread | `gmail:<thread-id>` |
+### Kind and domain
 
-Collections may declare their own schemes instead of borrowing these. The `method:` base collection (in the sibling `belief-collections` repo) declares the shared eval vocabulary - an `eval:` scheme for scorer-run identity URIs plus `document:`/`https:`/`session:`/`user:` - and eval collections like the `sdl` worked example below borrow it via `depends_on` rather than restating it. (`sdl` originally carried its own local enum; that contract was superseded by the shared one - a cross-namespace supersession you can still walk with `mix bs history`.)
+Orthogonal to the structural type, two enum-valued fields categorize a belief. `kind` is its semantic category - `observation`, `definition`, `policy`, `design-rationale`, `state-machine`, `enum-registry`, and so on (38 values in the framework's enum today). `domain` is its topical area - the framework enum declares `system`, `design`, `agent`, `ops`, `dev`. Both enums are closed and live in the graph as contracts (`cb:c039` and `cb:c041`, below); collections can declare their own instead - the shared eval vocabulary adds kinds like `verdict` and `guidance`.
 
 ### Subjects versus deps
 
-A belief carries two distinct relations (`cb:a408`): `deps` is **belief-to-belief logical derivation** - the deps' claims together justify this claim; required on compounds and non-contract implications, absent on primitives. `subjects` is **belief-to-entity topical reference** - what the belief is *about* (files, modules, models, eval runs, sometimes other beliefs). A belief can be about something without depending on it, and vice versa.
+A belief carries two distinct relations, and confusing them breaks the model. Belief `cb:a408` (a `definition` primitive) states it precisely: `deps` is belief-to-belief **logical derivation** - the deps' claims together justify this claim; required on compounds and non-contract implications, absent on primitives. `subjects` is belief-to-entity **topical reference** - what the belief is *about*: files, modules, models, eval runs, sometimes other beliefs. A belief can be about something without depending on it, and depend on something without being about it. (In the record above, `cb:a386` is *about* the digest file but *depends on* nothing - it is a primitive.)
 
-### Status lifecycle (immutability)
+### Immutability: supersede, never edit
 
-Beliefs are never edited in place. A belief is `active`, then may become `superseded` (replaced by a named successor via `superseded_by`), `retracted` (withdrawn, with a date and reason), or `retired` (a contract no longer in force). The lifecycle is itself a state-machine contract (`cb:c029`). Because change is structural:
+Beliefs are never edited in place. The lifecycle is itself a state-machine contract, `cb:c029`: status follows a directed transition from `active` to exactly one of `superseded` (replaced by a named successor via `superseded_by`), `retracted` (withdrawn, with a date and reason), or `retired` (a contract no longer in force) - all non-active states are terminal and require their linkage fields. Because change is structural:
 
-- a belief whose dependency was superseded is **detectably stale** (`mix bs stale`);
+- a belief whose dependency was superseded or retracted is **detectably stale** (`mix bs stale`, `--cascade` for transitive);
 - every replacement leaves a **supersession chain** you can walk (`mix bs history <id>`);
 - prose inside an immutable claim may reference an id that has since been superseded - that is not an error, it is history; the chain resolves it to the current node.
 
-Two fields are deliberately *mutable*, because they record action history orthogonal to truth status: `materialized` (what was done about an implication, and when) and the status-transition linkage fields themselves.
+One more verb completes the lifecycle: an implication can be **materialized** - turned into concrete work items (the `/materialize` skill; a recorded test run counts too). The `materialized` field records what was done and when. It is one of two deliberately *mutable* fields, because action history is orthogonal to truth status; the other is the status-transition linkage itself.
 
-### Contracts and their interpreters
+### Contracts: implications with teeth
 
-A contract is an implication with `contract: true`, biconditional with non-empty `rules`/`invariants` (`cb:c038`). By convention contract ids carry a `c` prefix (the verifier enforces the forward direction: every `c`-prefix id must be contract-grade).
+A **contract** is an implication formalized to the point of being machine-checkable. The framework's own definition (`cb:a300`) is the cleanest statement: *the implication states WHAT (the conclusion); the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants).* Structurally (`cb:c031`): a node is contract-grade iff it is an implication with non-empty `rules` or `invariants` - the conventional `c` prefix on contract ids is a naming reflection of that property, never its definition, and code must detect contracts structurally, not by id.
 
-Contract rules are not free-form: they decompose into a **closed catalogue of interpretable rule kinds** (`cb:c046`), each with a fact shape and exactly one Elixir interpreter:
+Contract rules are not free-form. They decompose into a **closed catalogue of rule kinds** (`cb:c046`): each kind has a Datalog-shaped declarative fact and exactly one Elixir interpreter. Datalog-*shaped*, not Datalog: there is no evaluator, no recursion, no query engine - the rules are facts, and each kind's interpreter is ordinary code.
 
 | Kind | Fact shape | Interpreter | Typical use |
 | --- | --- | --- | --- |
@@ -72,135 +125,49 @@ Contract rules are not free-form: they decompose into a **closed catalogue of in
 | `implies` | `implies(When, Requires)` | `CB.Belief.Contract.Implies` | conditional invariants; codepath predicate routing |
 | `output-target` | `field(Name, Spec)` | `CB.OutputTarget` | rendered files: CLAUDE.md, codepath render-specs |
 
-The keystone discipline is `cb:c047` (the routing/implementation boundary): **contracts carry routing tables; modules carry predicate implementations.** The DAG expresses *which* predicates fire on *which* conditions; it never stores executable code. This is what makes it safe for the graph to drive tests (below) - an executable string in the DAG has nothing to grab onto.
+The keystone discipline is `cb:c047`, the routing/implementation boundary you saw in the sixty-second demo: **contracts carry routing tables; modules carry predicate implementations.** The graph expresses *which* predicates fire on *which* conditions; it never stores executable code. This is what makes it safe for the graph to drive tests - an executable string in the DAG has nothing to grab onto.
 
-### Self-referential schema
+This is also where the "neither prose nor code" positioning becomes concrete: a contract is the intermediate level of formality. A prose rule cannot be mechanically checked; a code rule cannot carry its own rationale, provenance, and supersession history. A contract does both - and the graph holds beliefs arguing exactly this positioning, queryable like everything else.
 
-The graph's own schema is expressed as contracts inside the graph, and `mix cb.verify.schema` checks the `CB.Belief` struct and the live graph against them, so code and declared schema cannot silently drift. The current active schema family:
+### Collections and borrowing
 
-| Contract | Governs |
-| --- | --- |
-| `cb:c029` | status lifecycle and immutability |
-| `cb:c032` | conflict scope between active implications |
-| `cb:c038` | schema discipline (artifact provenance, the contract biconditional, no `implication` field) |
-| `cb:c039` | closed enum of `kind` values |
-| `cb:c041` | closed enum of `domain` values |
-| `cb:c043` | closed enum of artifact-URI schemes (superseded `cb:c040` when the `code:` scheme was added) |
-| `cb:c046` | the closed rule-kind catalogue (superseded `cb:c035` when `output-target` was catalogued) |
-| `cb:c047` | the routing/implementation boundary (supersedes `cb:c037`) |
-| `cb:c048` | the CLAUDE.md output-target (supersedes `cb:c042`) |
-| `cb:c049` | the codepath output-target shape (supersedes `cb:c044`) |
-| `cb:c050` | codepath predicates are inspection-only (supersedes `cb:c045`) |
+A **collection** is a `beliefs.json` graph in a declared namespace, with a sibling `manifest.json` carrying its `namespace`, `description`, and cross-namespace `depends_on`. Ids are namespaced (`cb:c029`, `sdl:a1`); bare ids resolve when unambiguous. Every command takes `--beliefs PATH` (or the `CB_BELIEFS` env var) to target a collection.
+
+CB lives across four sibling repos, one identity each: **composable-beliefs** (this framework - the ledger and tooling), **belief-collections** (the graphs: worked examples, shared vocabularies, the `lib:` lending-library on-ramp), **bench** (eval execution infra), **evals** (the append-only archive of executed evals). This repo ships two collections of its own: the `cb:` framework graph and the `codepath:` tour of its pipeline.
+
+Collections are not standalone: most carry no schema vocabulary of their own and **borrow another collection's contracts** by declaring `depends_on` (resolved through a local registry, `collections.json`). `mix cb.verify.collection <namespace>` loads the transitive, cycle-safe dependency closure and verifies the union. The verifier discovers contracts **by role, not by id**: an enum is found by the field it declares, the status lifecycle by its tag. A collection that declares no enum for a field has that check skipped, not failed - "skip, not fail" is what "nothing declares this vocabulary" looks like. This is why a brand-new collection passes rules it never restated, and why the framework's own graph is verified by exactly the same code path as everyone else's.
 
 ### No confidence scores
 
-CB has no `confidence` field, by design. Subjective scalars synthesized without a deterministic basis do no load-bearing work. `CB.Belief.support/1` returns deterministic structural counts instead (artifacts, evidence entries, deps); rank by evidence, not vibes.
+CB has no `confidence` field, by design. Subjective scalars synthesized without a deterministic basis do no load-bearing work. `CB.Belief.support/1` returns deterministic structural counts instead (artifacts, evidence entries, deps - the `Support:` line in the record above); rank by evidence, not vibes.
 
-## What is in this repo
+### The schema describes itself
 
-- `lib/cb/` - the framework: the `CB.Belief` struct + byte-stable serialization, the deterministic graph layer (traversal, filter, conflict preflight, adjudication, supersession, staleness), the contract interpreters, the schema verifier, the collection loader/registry, the output-target compiler, the codepath resolver + predicates + assertions, the eval-ledger layer (the shared predicate gate, collection predicates + the method-check pass, the run-manifest parser/importer, the audit-tree renderer), and a pluggable materializer with JSON and Test sinks. Sole dependency: Jason.
-- `beliefs/beliefs.json` - the framework's own belief graph (see [The belief graph](#the-belief-graph)).
-- `codepath/` - the framework's codepath collection (`codepath:` namespace): the `belief-pipeline` codepath that tours and tests CB's own data pipeline.
-- `skills/` - agent skills for a Claude-Code-style harness: `/assert` (author beliefs from artifacts/entities/reasoning), `/assert-session` (persist session rules and agent error patterns), `/assertions` (query and traverse), `/materialize` (turn implications into concrete work items), `/present-codepath` (walk a codepath interactively). Symlinked into `.claude/skills/`.
-- `docs/` - the design reference (`belief-graph.md`), the thesis (`composable-beliefs-thesis.md`), BEAM rationale (`cb-on-the-beam.md`), the run-manifest format spec (`run-manifest.md` - the contract between an eval harness and the ledger), operational learnings (`operations.md`), and analyses. The guided `quickstart.md` lives with the teaching material in the sibling `belief-collections` repo.
-- `plans/` - the plan sets and their transcripts, including `plans/cb-codepath/` (the design record, the four executed plans, and both the design and execution transcripts for the codepath capability) and `plans/cb-eval/` (the eval-evidence-ledger plan set: four plans, the build-time decision record, and the execution transcript).
-- CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (which includes an anchor-rot guard that resolves the shipped codepath against the real source), `cb.verify.schema`, and a docs-freshness gate that fails if the committed CLAUDE.md drifts from the graph (`cb.generate.claude_md --check`).
-
-## The command surface
-
-Everything is a mix task; everything that reads the graph is deterministic.
-
-**Query** (read-only, pure traversal):
-
-```sh
-mix bs list [filters]     # list beliefs (type, status, contracts, tag:, kind:, domain:, subject queries)
-mix bs show <id>          # one belief in full
-mix bs tree <id>          # a belief and its dependency context (the audit tree)
-mix bs deps <id>          # direct deps (--deep for the full chain)
-mix bs dependents <id>    # reverse lookup (--deep for transitive)
-mix bs history <id>       # the supersession chain
-mix bs stale              # beliefs with superseded/retracted deps (--cascade for transitive)
-mix bs path <id1> <id2>   # connection between two beliefs
-mix bs subjects <ref>     # beliefs by subject
-mix bs stats              # graph-level statistics
-```
-
-Ids may be bare (`c029`) or namespaced (`cb:c029`). Every command takes `--beliefs PATH` (or the `CB_BELIEFS` env var) to target an alternate collection.
-
-**Author** (the write flow - never hand-edit a graph file):
-
-```sh
-mix cb.preflight --file <proposed.json>      # conflict detection against the live graph (read-only)
-mix cb.adjudicate --file <adjudication.json> # apply a captured human adjudication (supersede / dep-tie / defer)
-mix cb.import <spec.json> [--write]          # batch-import new beliefs; backfills fill empty fields only
-mix cb.import.eval <manifest.json> --collection <path> [--write]  # materialize a harness run-manifest as observations
-```
-
-Preflight buckets matches into contract-level conflicts (block the write pending adjudication), schema conflicts, supportive matches (dep candidates), and neutral matches. Adjudication outcomes are structural: `accept_supersede` writes the successor and flips the loser to `superseded` atomically; `reject_dep_tie` writes the proposal with a dep on the existing belief; `defer` records a deferral primitive and writes nothing else. Successor ids inherit the namespace of the belief they replace.
-
-`cb.import.eval` is the one importer that *generates* beliefs rather than accepting authored ones - deterministically, from an eval harness's output record, and only the mechanical kind (observation primitives). See [The eval evidence ledger](#the-eval-evidence-ledger).
-
-**Verify** (static, deterministic):
-
-```sh
-mix cb.verify.schema                  # one collection against the schema contracts it carries
-mix cb.verify.collection <namespace>  # a collection in the context of its declared dependency collections
-```
-
-`verify.collection` also runs the **method-check pass**: any contract in the loaded union whose rules route on `{"verify": "collection"}` (the `method:` methodology contracts are the canonical case) resolves to a named collection predicate and executes over the union - still pure traversal, still deterministic.
-
-**Verify** (dynamic - the one place predicates actually run):
-
-```sh
-mix cb.verify.codepath [<id>] [--record] [--json]   # run a codepath's routed predicates as a batch suite
-```
-
-**Render**:
-
-```sh
-mix cb.generate.claude_md [--check]   # compile CLAUDE.md from the graph (cb:c048); --check is the CI freshness gate
-mix cb.generate.rules                 # compile scoped rule files from output:rule targets
-mix cb.render.codepath [<id>] [--json]  # render a codepath linearly; --json feeds the interactive skill
-mix cb.render.audit <id> [--collection NS] [--out F] [--json] [--check]  # a belief's evidence tree as one HTML file
-```
-
-**Audit**:
-
-```sh
-mix cb.audit.conflicts                # c032 conflict-scope audit across active implications
-```
-
-## The belief graph
-
-`beliefs/beliefs.json` is **self-referential**: it is CB's own design expressed as beliefs - the framework describing itself in its own format (run `mix bs stats` for the live shape). It holds:
-
-- the **schema contracts** in the table above, plus the supersession chains that led to them;
-- the **mechanism** primitives and compounds - provenance and evidence discipline, immutability, the contract layer, the consensus/preflight workflow, materialization, cross-session and cross-subagent persistence;
-- the **positioning** beliefs - what belongs in the graph versus in code, and why contracts sit between literal code and plain English.
-
-`mix cb.verify.schema` checks the `CB.Belief` struct against the schema contracts in this graph - the graph is both the example and the specification.
+The graph's own schema is expressed as contracts *inside* the graph - `mix cb.verify.schema` checks the `CB.Belief` struct and the live graph against them, so code and declared schema cannot silently drift. The graph is both the example and the specification; the full contract family, with what each one actually says, is tabled in the [Reference](#reference) section.
 
 > Two notes on reading immutable history. First, many older claims predate this repo's vocabulary and still read "assertion" where the framework now says "belief"; that wording is preserved deliberately - editing a claim in place would violate the immutability the model is built on. Second, claims may name contract ids that have since been superseded (`cb:c038`'s claim references `c040`, now superseded by `c043`). The id was correct when the claim was authored; `mix bs history <id>` walks any reference forward to the current node. Rendered documents (CLAUDE.md, this README) name current ids; immutable claims name the ids of their time.
 
-## Collections
+## What the graph compiles to
 
-A **collection** is a `beliefs.json` graph in a declared namespace, with a sibling `manifest.json` carrying its `namespace`, `description`, and cross-namespace `depends_on`. The framework repo ships two: its own `cb:` graph and the `codepath:` collection. Worked examples and other collections live in the sibling `belief-collections` repo (the `lib:` lending-library is the gentle on-ramp; `method:` is the shared eval vocabulary and methodology; `sdl` is the eval-provenance example below; `toy:` is its fully-compliant counterpart), resolved through a local registry (`collections.json`) that maps namespaces to paths.
+The graph serves two audiences from the same nodes, and the split is deliberate: **compiled documents face the agent; rendered trees and tours face the human.** An operator can audit the system at the lowest-common-denominator level - real source lines, real test results, raw logs - while thinking at the level of CB: claims, derivations, contracts.
 
-Collections are not standalone: most carry no schema vocabulary of their own and **borrow another collection's contracts** by declaring `depends_on`. `mix cb.verify.collection <namespace>` resolves the transitive, cycle-safe dependency closure, loads the union, and runs the same verifier over it - so a dependent collection is checked against the vocabulary it borrows, and every cross-namespace dep is checked for resolvability.
+**Documents.** This repo's own `CLAUDE.md` is read-only and compiled from the graph: contract `cb:c048` declares that the file regenerates from the beliefs listed in its `render_sections`, that every line of output traces to exactly one belief's claim, and that hand-edits are overwritten on the next generation. Authoring happens by creating or superseding beliefs, never by editing the file; CI fails the build if the committed file drifts (`mix cb.generate.claude_md --check`). The same compiler family produces scoped rule files (`mix cb.generate.rules`) and the codepath render-specs below. This is the antidote to the cached-digest antipattern recorded in `cb:a386` (the full record opens this README): a digest whose freshness depends on someone remembering to regenerate it embeds the staleness it was meant to solve. Render from the DAG; gate the render in CI.
 
-The verifier discovers contracts **by role, not by id**: an enum is found by the field it declares, the status lifecycle by its `status-lifecycle` tag, codepath render-specs by kind + tag. A collection that declares no enum for a field has that check skipped, not failed. This is why a brand-new collection passes rules it never restated, and why the framework's own graph is verified by exactly the same code path as everyone else's - the dogfooding is literal.
+**Routed assertions.** Contract rules bind predicate *names* to conditions; the predicate bodies are ordinary repo-resident functions that pre-exist the contract. Codepath stops and eval methodology checks both work this way (sections below).
+
+**Never application code.** Per `cb:c047`, application code is neither compiled from nor stored in the graph. Documents are rendered from it; assertions are routed by it; code is written by people, about which the graph holds beliefs.
 
 ## Codepaths: beliefs anchored to code
 
-A **codepath** is a code-anchored belief collection that reads as a narrated, branching tour of real source files and runs as a test suite over them. Same artifact, one gradient: with assertions off it is a guided walk; with assertions on, contract-grade stops also execute their routed predicates. It is fully folded into CB - there is no separate format; the cb schema is the single authority. (Design record and plans: `plans/cb-codepath/`.)
+A **codepath** is a code-anchored belief collection that reads as a narrated, branching tour of real source files and runs as a test suite over them. Same artifact, one gradient: with assertions off it is a guided walk; with assertions on, contract-grade stops also execute their routed predicates. There is no separate format - the cb schema is the single authority. (Design record and plans: `plans/cb-codepath/`.)
 
 Each node plays a distinct role, and each role has exactly one home:
 
-- ***where*** - a `code:` artifact anchors the claim to a precise within-file site;
-- ***why*** - the belief's `claim` is the narration;
-- ***whence*** - logical derivation lives in `deps` (the from-map stop depends on the raw-data stop);
-- ***that*** - assertion lives in `implies` rules routing to named predicates;
-- ***in what order*** - navigation lives in a separate render-spec belief, never in the claims.
+- **location** - a `code:` artifact anchors the claim to a precise within-file site;
+- **narration** - the belief's `claim`;
+- **derivation** - `deps` (the from-map stop depends on the raw-data stop);
+- **assertion** - `implies` rules routing to named predicates;
+- **order** - a separate render-spec belief, never the claims.
 
 ### The `code:` locator
 
@@ -208,32 +175,17 @@ Each node plays a distinct role, and each role has exactly one home:
 code:<repo-relative-path>#<anchor>[@<N>]
 ```
 
-The anchor is a **literal substring** of a current line - everything after the first `#` is one opaque string (an anchor may itself contain `#`, spaces, quotes, colons). An optional trailing `@<N>` selects the Nth match; an anchor that must literally end in `@<digits>` percent-encodes that suffix as `%40<digits>`. The resolved **line number is never stored** - it is recomputed at render/run time by fixed-string match, so refactors that move code do not break the codepath. Resolution failure modes are maintenance signals, never crashes:
-
-- a **missing** anchor warns and the stop still renders (bare path, no line) - the cue that the anchored symbol was deleted or renamed;
-- a **loose** anchor (multiple matches, no `@N`) renders the first match plus a "tighten this anchor" warning naming the match count;
-- an explicit `@N` is treated as intentional and warns only when out of range.
-
-`CB.CodeLocator` is the single parser; the verifier's `code: locator format` check pins the grammar on every `code:` artifact in any collection.
+The anchor is a **literal substring** of a current line - everything after the first `#` is one opaque string. An optional trailing `@<N>` selects the Nth match (an anchor that must literally end in `@<digits>` percent-encodes it as `%40<digits>`). The resolved **line number is never stored** - it is recomputed at render/run time by fixed-string match, so refactors that move code do not break the codepath. Resolution failures are maintenance signals, never crashes: a missing anchor warns and the stop still renders (the cue that the anchored symbol was deleted or renamed); a loose anchor (multiple matches, no `@N`) renders the first match plus a "tighten this anchor" warning; an explicit `@N` warns only when out of range. `CB.CodeLocator` is the single parser, and the verifier pins the grammar on every `code:` artifact in any collection.
 
 ### The render-spec
 
-Ordering and branching live in a codepath **output-target** (`cb:c049`): an `output-target` contract tagged `output:codepath` whose rules carry an `entry` step id and `render_steps` rows of shape `{id, belief, goto?, choices?}`. Invariants, enforced statically by the verifier's `codepath output-targets` check:
-
-- every step's `belief` resolves to an existing belief carrying a valid `code:` artifact;
-- step ids are unique; `entry` and every `goto`/choice `goto` name an existing step;
-- `deps` equals the union of the steps' belief ids;
-- navigation is **render metadata only** - it never enters `deps` and never lives in the claim beliefs, so reordering a codepath supersedes the render-spec belief itself and never churns the claims.
-
-The authoring loop follows from that last invariant: claim beliefs (the durable nodes) are imported through the write flow as usual, but the render-spec is **drafted outside the graph and imported once the order is settled** - pre-settlement churn belongs in a draft file, not in supersession history.
+Ordering and branching live in a codepath **output-target** governed by contract `cb:c049`, which fixes the shape: an `output-target` contract tagged `output:codepath` whose rules carry an `entry` step id and `render_steps` rows of `{id, belief, goto?, choices?}`; every step's belief must resolve to a belief carrying a valid `code:` artifact; `deps` must equal the union of the steps' belief ids; and navigation is **render metadata only** - it never enters `deps` and never lives in the claim beliefs, so reordering a codepath supersedes the render-spec itself and never churns the claims. The authoring loop follows: claim beliefs go through the write flow as usual, but the render-spec is drafted outside the graph and imported once the order is settled - pre-settlement churn belongs in a draft file, not in supersession history.
 
 ### The gradient: assertions on
 
-A stop asserts when its belief is **contract-grade**: an implication carrying `implies` rules that route to named predicates - `{"when": {"assertions": "on"}, "requires": "from_map_roundtrips?"}`. Per the routing boundary (`cb:c047`) the DAG stores only the predicate *name*; the body is an ordinary repo-resident function (`CB.Codepath.Predicates`). Per the inspection-only contract (`cb:c050`), predicates observe and never mutate: names end in `?` or `_check`, resolve only to exported zero-arity boolean functions, and anything else - a bad name, an unknown predicate, a raise, a non-boolean - reports as a failure rather than crashing the suite or executing something it should not.
+A stop asserts when its belief is contract-grade: its `implies` rules route to named predicates - `{"when": {"assertions": "on"}, "requires": "from_map_roundtrips?"}`. Per the routing boundary (`cb:c047`) the graph stores only the predicate *name*; the body lives in `CB.Codepath.Predicates`. Contract `cb:c050` adds the safety rule: predicates are **inspection-only** - they observe and never mutate; names must end in `?` or `_check` and resolve only to exported zero-arity boolean functions, and anything else (a bad name, an unknown predicate, a raise, a non-boolean) reports as a failure rather than crashing the suite or executing something it should not.
 
-`mix cb.verify.codepath` is the **dynamic verifier** - a sibling of `verify.schema`, not a generalization of it. The static verifier stays deterministic and runtime-free; the dynamic one is the only place predicates run. Today predicates are invoked directly in-process (no booted app, no MCP); federation into a live BEAM node via Tidewave is designed (`plans/cb-codepath/plan-3-assertions-runtime.md`, Step B) but deliberately deferred until a predicate genuinely needs live application state.
-
-`--record` treats a test run as **materialization**: each contract stop's pass/fail refs are written to its belief's `materialized` field with a date (via `CB.Materializer.Sink.Test` - a test run is one more sink, not a new subsystem). A re-run replaces the record; dated test history stays bound to the immutable claim.
+`mix cb.verify.codepath` is the **dynamic verifier** - a sibling of the static `cb.verify.schema`, not a generalization of it, and the only place predicates run. `--record` treats a test run as materialization: each contract stop's pass/fail refs are written to its belief's `materialized` field with a date - a test run is one more sink, not a new subsystem. (Federation into a live BEAM node via Tidewave is designed - `plans/cb-codepath/plan-3-assertions-runtime.md`, Step B - but deliberately deferred until a predicate genuinely needs live application state.)
 
 ### See it run
 
@@ -274,31 +226,25 @@ codepath:c005 (belief-pipeline)
 3 passed, 0 failed, 1 narrate-only stop(s)
 ```
 
-The data stop is deliberately narration-only so the shipped example demonstrates the gradient itself: three stops assert, one just narrates, and the renderer treats them identically. The collection's own history demonstrates the supersession discipline too - raising the three stops to contract grade was a structural change (a node is contract-grade iff it is an implication with rules/invariants, per `cb:c031`), so each went through an adjudicated supersession with its claim and anchor carried verbatim, and the render-spec followed (`codepath:c001 -> c005`). Run `mix bs history codepath:c001 --beliefs codepath/beliefs.json` to see it.
-
-## Output targets: documents compiled from the graph
-
-The `output-target` rule family also drives ordinary rendered documents. The repo's own `CLAUDE.md` is **read-only and compiled from the graph**: `cb:c048` lists belief ids in `render_sections`, `mix cb.generate.claude_md` dereferences each id to its claim, and every line of the output traces to exactly one belief. Authoring happens by creating or superseding beliefs, never by editing the file; CI fails the build if the committed file drifts from the graph (`--check`). The same compiler family produces scoped rule files (`output:rule` targets) and the codepath render-specs above.
-
-This is the antidote to the cached-digest antipattern (`cb:a386`): a digest whose freshness depends on someone remembering to regenerate it embeds the staleness it was meant to solve. Render from the DAG; gate the render in CI.
+The data stop is deliberately narration-only so the shipped example demonstrates the gradient itself: three stops assert, one just narrates, and the renderer treats them identically. The collection's own history demonstrates the supersession discipline too - raising the three stops to contract grade was a structural change (contract-grade is structural, per `cb:c031`), so each went through an adjudicated supersession with its claim and anchor carried verbatim, and the render-spec followed (`codepath:c001 -> c005`). Run `mix bs history codepath:c001 --beliefs codepath/beliefs.json` to see it.
 
 ## The eval evidence ledger
 
 When you publish an eval finding - "model X silently drops records from bulk writes" - the finding is only as credible as the trail behind it. How many runs? Which scorers, and do they agree? Where are the raw logs? Was the LLM judge ever validated against a human? When the model ships a new snapshot, does the verdict get corrected visibly or quietly rewritten? CB's answer is to make the entire trail graph structure: every measurement a belief, every methodological rule a contract, every correction a supersession a reader can see. (Design record: `plans/cb-eval/`.)
 
-The boundary, held on purpose: **CB is the ledger, not the lab bench.** Running evals - orchestration, sampling, retries, model calls - happens in an external harness (Inspect, via the sibling `bench` repo). CB ingests the harness's *output record* and never grows toward execution. Four sibling repos, one identity each: `composable-beliefs` (this framework, the ledger), `belief-collections` (the graphs), `bench` (execution infra), `evals` (the append-only archive of executed evals).
+The boundary, held on purpose: **CB is the ledger, not the lab bench.** Running evals - orchestration, sampling, retries, model calls - happens in an external harness (Inspect, via the sibling `bench` repo). CB ingests the harness's *output record* and never grows toward execution.
 
 ### The shape of a finding
 
-A published finding is an evidence chain built from the three structural types, with a division of labor between machine and human:
+A published finding is an evidence chain built from the three structural types, with a division of labor between machine and human. One term of art first: a **ruler** is CB's word for a scorer or judge - deterministic differs and LLM judges alike.
 
-- **Observations** (primitives) - what a scorer measured: one aggregate per (run, ruler) pair, plus per-case primitives for the handful of cases that carry the finding. Imported mechanically. Observations are *immutable measurements*: a new model snapshot never supersedes them, because the old snapshot really did behave that way on that day.
-- **Cross-ruler agreement** (compounds) - two independent scorers reached the same outcome; the compound asserts the corroboration, which neither observation states alone. Authored by a human.
+- **Observations** (primitives) - what a ruler measured: one aggregate per (run, ruler) pair, plus per-case primitives for the handful of cases that carry the finding. Imported mechanically. Observations are *immutable measurements*: a new model snapshot never supersedes them, because the old snapshot really did behave that way on that day.
+- **Cross-ruler agreement** (compounds) - two independent rulers reached the same outcome; the compound asserts the corroboration, which neither observation states alone. Authored by a human.
 - **Verdicts and guidance** (implications) - the judgment ("do not use unguarded...") scoped to a `model_version` subject, and the routing advice resting on it. Authored by a human. When new snapshot evidence arrives, the *verdict* is superseded - the staleness pivot - and `--cascade` flags everything downstream for review.
 
 ### Methodology as contracts that enforce themselves
 
-House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanically check. Here it is six contract-grade beliefs in the `method:` base collection, each routing to a named predicate that runs over any eval collection during `mix cb.verify.collection`:
+House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanically check. Here it is six contract-grade beliefs in the `method:` base collection (the shared eval vocabulary in `belief-collections`), each routing to a named predicate that runs over any eval collection during `mix cb.verify.collection`:
 
 | Contract | What it enforces |
 | --- | --- |
@@ -309,7 +255,7 @@ House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanica
 | m-judge-validation | every LLM-judge observation is joined by that judge's human-agreement validation record |
 | m-correction | corrections are supersessions with dated evidence; bare retraction is reserved for full withdrawal |
 
-Because these are graph-shape checks, they are **pure traversal - deterministic** - so they run as a static pass beside the schema checks, not in the dynamic verifier. Collection predicates (`CB.Eval.Predicates`, which take the loaded union as an argument) and codepath predicates (zero-arity, app-reading, dynamic) are deliberately separate worlds sharing only the resolve gate (`CB.PredicateGate`): same naming invariant, same refuse-anything-unexported discipline, per `cb:c047`/`cb:c050`. A failed check names the offending belief ids - the failure message is the work order. And "methodology v2" is not a doc edit: it is a batch of adjudicated supersessions of these contracts, dated and diffable via `bs history`.
+Because these are graph-shape checks, they are pure traversal - deterministic - so they run as a static pass beside the schema checks, not in the dynamic verifier. A failed check names the offending belief ids - the failure message is the work order. And "methodology v2" is not a doc edit: it is a batch of adjudicated supersessions of these contracts, dated and diffable via `bs history`.
 
 ### The run-manifest: how harness output becomes ledger input
 
@@ -326,7 +272,85 @@ The importer emits **observation primitives only** - no compounds, no verdicts. 
 
 The result: a reader of a published finding can answer "what evidence does this verdict rest on, and where are the raw logs?" by clicking, and a corrected finding *visibly wears* its correction.
 
-## Quick start
+## Reference
+
+### The command surface
+
+The read side is the **belief shell** (`mix bs` - run `mix bs help` for the full set): deterministic, read-only, pure traversal.
+
+```sh
+mix bs list [filters]     # list beliefs (type, status, contracts, tag:, kind:, domain:, subject queries)
+mix bs show <id>          # one belief in full
+mix bs tree <id>          # a belief and its dependency context (the audit tree)
+mix bs deps <id>          # direct deps (--deep for the full chain)
+mix bs dependents <id>    # reverse lookup (--deep for transitive)
+mix bs history <id>       # the supersession chain
+mix bs stale              # beliefs with superseded/retracted deps (--cascade for transitive)
+mix bs path <id1> <id2>   # connection between two beliefs
+mix bs subjects <ref>     # beliefs by subject
+mix bs stats              # graph-level statistics
+```
+
+**Author** (the write flow - never hand-edit a graph file). `cb.preflight` checks a proposed belief against the live graph and buckets matches into contract-level conflicts (these block the write), schema conflicts, supportive matches (dep candidates), and neutral matches. A blocked write goes to **adjudication** - a captured human decision about the conflict, applied structurally: `accept_supersede` writes the successor and flips the loser to `superseded` atomically; `reject_dep_tie` writes the proposal with a dep on the existing belief it overlaps; `defer` records a deferral primitive and writes nothing else.
+
+```sh
+mix cb.preflight --file <proposed.json>      # conflict detection (read-only)
+mix cb.adjudicate --file <adjudication.json> # apply a captured human adjudication
+mix cb.import <spec.json> [--write]          # batch-import new beliefs
+mix cb.import.eval <manifest.json> --collection <path> [--write]  # materialize a run-manifest as observations
+```
+
+**Verify.** Static (deterministic, no predicate execution): `mix cb.verify.schema` checks one collection against the schema contracts it carries; `mix cb.verify.collection <namespace>` checks it in the context of its declared dependency collections, including the method-check pass. Dynamic (the one place predicates run): `mix cb.verify.codepath`.
+
+**Render**: `mix cb.generate.claude_md [--check]`, `mix cb.generate.rules`, `mix cb.render.codepath [--json]`, `mix cb.render.audit <id> [--check]`. **Audit**: `mix cb.audit.conflicts` (the `cb:c032` conflict-scope audit).
+
+### Artifact schemes
+
+The framework graph's closed scheme enum (`cb:c043`):
+
+| Scheme | Means | Form |
+| --- | --- | --- |
+| `document:` | a repository file (whole-file reference) | `document:<repo-relative-path>` |
+| `code:` | an anchored site within a repository file | `code:<repo-relative-path>#<anchor>[@N]` |
+| `session:` | a working session | `session:<date-or-descriptor>` |
+| `user:` | a direct user statement | `user:<name>:<date>` |
+| `source:` | a cached source document | `source:<slug>` |
+| `https:` | an external URL | `https:<URL-rest>` |
+| `plan:` | a plan/spec/intent | `plan:<id-or-descriptor>` |
+| `gmail:` | a mail thread | `gmail:<thread-id>` |
+
+Collections may declare their own schemes instead of borrowing these - the `method:` collection declares the eval vocabulary (`eval:` for scorer-run identities, plus four of the above).
+
+### The schema contract family
+
+The active schema contracts in the framework graph, with what each one actually says:
+
+| Contract | What it says |
+| --- | --- |
+| `cb:c029` | Status follows a directed transition: `active -> superseded \| retracted \| retired`; all non-active states are terminal and require their linkage fields. |
+| `cb:c031` | A node is contract-grade iff it is an implication with non-empty rules/invariants; the `c` prefix is naming convention, not identity - code detects contracts structurally, never by id prefix. |
+| `cb:c032` | Two active implications are in conflict scope when they overlap on at least one axis - tag, subject ref, or subject type - within the same domain; overlap means a contradiction between them would be meaningful. |
+| `cb:c038` | Schema discipline: provenance is carried by the `artifact` field; `contract: true` is biconditional with non-empty rules/invariants; there is no separate `implication` prose field; enum-shaped fields take their values from the enum contracts. |
+| `cb:c039` | The closed enum of `kind` values (38 today), each declared inline with its definition. |
+| `cb:c041` | The closed enum of `domain` values: `system`, `design`, `agent`, `ops`, `dev`. |
+| `cb:c043` | The closed enum of artifact-URI schemes (the table above). Superseded `cb:c040` when the `code:` scheme was added. |
+| `cb:c046` | Contract rules decompose into a closed registry of rule kinds, each with a Datalog fact shape and exactly one Elixir interpreter (superseded `cb:c035` when `output-target` was catalogued). |
+| `cb:c047` | Contracts carry routing tables; modules carry predicate implementations (supersedes `cb:c037`). |
+| `cb:c048` | CLAUDE.md compiles from the beliefs in this contract's `render_sections`; the file is read-only and every output line traces to exactly one belief's claim (supersedes `cb:c042`). |
+| `cb:c049` | The codepath render-spec shape: `entry` plus `render_steps` rows of `{id, belief, goto?, choices?}`; navigation is render metadata that never enters deps (supersedes `cb:c044`). |
+| `cb:c050` | Codepath predicates are inspection-only: names end in `?`/`_check` and resolve only to exported zero-arity booleans; the resolver refuses anything else (supersedes `cb:c045`). |
+
+### What is in this repo
+
+- `lib/cb/` - the framework, in layers. The graph layer: the `CB.Belief` struct with byte-stable serialization, deterministic traversal/filter, conflict preflight, adjudication, supersession, staleness. The contract layer: the rule-kind interpreters, the schema verifier, the collection loader/registry, the output-target compiler. The codepath layer: the `code:` locator, resolver, renderer, predicates, and assertions runtime. The eval layer: the shared predicate gate, collection predicates and the method-check pass, the run-manifest parser/importer, the audit-tree renderer. Plus a pluggable materializer with JSON and Test sinks. Sole dependency: Jason.
+- `beliefs/beliefs.json` - the framework's own self-referential graph: CB's design expressed as beliefs (run `mix bs stats` for the live shape) - the schema contracts above with their supersession chains, the mechanism primitives and compounds, and the positioning beliefs.
+- `codepath/` - the `codepath:` collection: the `belief-pipeline` codepath that tours and tests CB's own data pipeline.
+- `skills/` - agent skills for a Claude-Code-style harness: `/assert` (author beliefs from artifacts/entities/reasoning), `/assert-session` (persist session rules and agent error patterns), `/assertions` (query and traverse), `/materialize` (turn implications into concrete work items), `/present-codepath` (walk a codepath interactively). Symlinked into `.claude/skills/`. (Skills are hand-authored today, not compiled from the graph.)
+- `docs/` - the design reference (`belief-graph.md`), the thesis (`composable-beliefs-thesis.md`), BEAM rationale (`cb-on-the-beam.md`), the run-manifest spec (`run-manifest.md`), operational learnings (`operations.md`), and analyses. The guided `quickstart.md` lives with the teaching material in the sibling `belief-collections` repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
+- `plans/` - plan sets and their transcripts, including `plans/cb-codepath/` and `plans/cb-eval/` (design records, executed plans, and both design and execution transcripts).
+- CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard that resolves the shipped codepath against the real source), `cb.verify.schema`, and the CLAUDE.md freshness gate.
+
+### A quick tour
 
 ```sh
 mix deps.get
@@ -343,11 +367,11 @@ CB_BELIEFS=codepath/beliefs.json mix cb.render.codepath belief-pipeline   # tour
 CB_BELIEFS=codepath/beliefs.json mix cb.verify.codepath belief-pipeline   # test the pipeline
 ```
 
-Belief ids are namespaced (`cb:`), so the shell takes the full id; bare ids resolve when unambiguous. See the guided tour in `belief-collections` (`../belief-collections/quickstart.md`).
+For the guided version, see `../belief-collections/quickstart.md`.
 
 ## Worked example: tracing an eval verdict to its evidence
 
-This worked example teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance`): a published eval, `silent-data-loss-v1`, rendered in miniature. Eight beliefs (five active, three superseded - the supersessions are part of the lesson) capture two scorer observations of a single failing case, the cross-ruler agreement they compose into, the verdict and routing guidance that follow, and the history of the collection's move onto the shared `method:` vocabulary.
+This worked example teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance` in the sibling `belief-collections` repo): a published eval, `silent-data-loss-v1`, rendered in miniature. Eight beliefs (five active, three superseded - the supersessions are part of the lesson) capture two scorer observations of a single failing case, the cross-ruler agreement they compose into, the verdict and routing guidance that follow, and the history of the collection's move onto the shared `method:` vocabulary.
 
 The example is also deliberately imperfect: its verdict cites only one run and its LLM judge has no validation record, so it **fails two of the six methodology contracts on purpose**. A teaching collection that visibly fails the house methodology teaches both the mechanism and the culture; the fully compliant counterpart is the `toy:` collection in the same sibling repo.
 
@@ -375,21 +399,8 @@ Verifying sdl: in context of 2 collection(s)
   PASS  cross-namespace deps resolve - every dep resolves to a loaded node
   PASS  schema roles discovered - kind=method:c2, domain=method:c3, artifact-scheme=method:c1, status-lifecycle=framework canon
   PASS  type enum - all nodes have type in ["primitive", "compound", "implication"]
-  PASS  contract requires implication - all contract-grade beliefs are implications
-  PASS  contract biconditional - contract: true iff rules/invariants non-empty
-  PASS  kind enum - all active beliefs use kind values declared in method:c2 (8 values)
-  PASS  domain enum - all active beliefs use domain values declared in method:c3 (2 values)
-  PASS  artifact format - all artifacts match scheme:id
-  PASS  artifact-scheme enum - all artifact schemes declared in method:c1 (5 schemes)
-  PASS  code: locator format - all code: artifacts parse as code:<path>#<anchor>[@N]
-  SKIP  codepath output-targets - no active output:codepath output-target present
-  PASS  no implication field - no belief carries the deleted implication field
-  PASS  action-item shape - all action-items are non-contract implications with empty rules/invariants
-  PASS  compound/implication deps - all active compounds and non-contract implications have non-empty deps
-  PASS  status enum - all nodes have status in ["active", "superseded", "retracted", "retired"] (framework canon)
-  PASS  superseded linkage - all superseded nodes link to successor
-  PASS  retracted linkage - all retracted nodes have date and reason
-  PASS  c-prefix is contract-grade - all c-prefix IDs carry contract: true
+  # ... 14 more schema PASS rows (enums, artifact format, linkage, c-prefix) and
+  # one SKIP (codepath output-targets - none present) elided ...
   PASS  method-check method:c4 m-corroboration - verdicts_corroborated? holds over the union
   PASS  method-check method:c5 m-provenance - observations_cite_runlogs? holds over the union
   PASS  method-check method:c6 m-subjects - observation_subjects_complete? holds over the union
@@ -404,7 +415,7 @@ Verifying sdl: in context of 2 collection(s)
 
 Three things to read off this transcript.
 
-First, `schema roles discovered`. The verifier does not match contracts by hardcoded id. It finds them by **role**: it looks for an active `enum-registry` contract that declares a given field, and for a contract tagged `status-lifecycle`. Here every role resolves to a `method:` contract - `sdl` declared `depends_on: ["method"]` in its manifest, the loader pulled the union of both graphs, and the vocabulary `sdl` never restated now governs it. (Before the re-homing, `kind` and `domain` had no enum anywhere in the union and those checks *skipped* - skip, not fail, is what "nothing declares this vocabulary" looks like. Borrowing made them enforceable.) Framework-universal checks (the `type` enum, the contract biconditional, the `scheme:id` artifact format, the `code:` locator grammar, the c-prefix rule) are applied by role, not copied into the collection.
+First, `schema roles discovered`. The verifier does not match contracts by hardcoded id. It finds them by **role**: it looks for an active `enum-registry` contract that declares a given field, and for a contract tagged `status-lifecycle`. Here every role resolves to a `method:` contract - `sdl` declared `depends_on: ["method"]` in its manifest, the loader pulled the union of both graphs, and the vocabulary `sdl` never restated now governs it. (Before the re-homing, `kind` and `domain` had no enum anywhere in the union and those checks *skipped* - skip, not fail, is what "nothing declares this vocabulary" looks like. Borrowing made them enforceable.)
 
 Second, the `method-check` rows. These are not schema checks - they are the **methodology contracts enforcing themselves**: each row is a `method:` contract whose rules route to a named collection predicate, executed over the union. Six contracts, six rows.
 
@@ -499,7 +510,7 @@ Read it top down, and the three structural types fall out of the shape:
 - **The compound (`sdl:a3`)** earns its confidence by composition. Each scorer alone saw one signal; the compound concludes **cross-ruler agreement** - that two independent rulers reached `silent_loss` on the same case - which neither primitive states on its own. That is the point of a compound: it asserts more than the sum of its deps, and it rests on the agreement rather than on any single ruler's artifact.
 - **The primitives (`sdl:a1`, `sdl:a2`)** are the atomic observations at the leaves. Each is grounded in a single `artifact` URI under the `eval:` scheme - `eval:silent-data-loss-v1/run3/case7/deterministic-fielddiff` and `.../llm-judge-vanilla`. Those URIs are the exact, addressable scorer runs. The `> ` lines are the evidence detail from each run.
 
-A note on `deps`: compounds and non-contract implications are required to carry them (the verifier enforces this), which is why `sdl:a3` and `sdl:a006` have a subtree at all. Primitives carry none - "deps absent on primitives" is design canon (stated by `cb:a408`) rather than a rule the deps-check enforces, but the `sdl` primitives honor it. Contract-grade implications are exempt from the deps requirement, which is how the `method:` methodology contracts (and the superseded local enum `sdl:c1` before them) are valid contracts with empty deps.
+A note on `deps`: compounds and non-contract implications are required to carry them (the verifier enforces this), which is why `sdl:a3` and `sdl:a006` have a subtree at all. Primitives carry none - "deps absent on primitives" is design canon (stated by `cb:a408`, the deps-vs-subjects definition from the mental-model section) rather than a rule the deps-check enforces, but the `sdl` primitives honor it. Contract-grade implications are exempt from the deps requirement, which is how the `method:` methodology contracts (and the superseded local enum `sdl:c1` before them) are valid contracts with empty deps.
 
 For the publishable form of this same walk, render it as a self-contained HTML file - the audit tree a reader clicks without installing anything:
 
@@ -605,45 +616,11 @@ sdl:a006 implication  active      claude-opus-4-8 at snapshot 2026-01 silently d
 4 beliefs (of 8 total)
 ```
 
-```
-# model/claude-opus-4-8  -> 5 beliefs; adds the routing guidance sdl:a007
-ID       TYPE         STATUS      CLAIM                                                                  
--------- -----------  ----------  -----                                                                  
-sdl:a1   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) omitted record..
-sdl:a2   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) dropped record..
-sdl:a3   compound     active      Two independent rulers - deterministic field-diff and vanilla LLM-jud..
-sdl:a006 implication  active      claude-opus-4-8 at snapshot 2026-01 silently drops records from bulk ..
-sdl:a007 implication  active      Route bulk record-mutation tasks away from unguarded claude-opus-4-8 ..
+Three query shapes, all pre-existing (the remaining outputs elided; the counts are below):
 
-5 beliefs (of 8 total)
-```
-
-```
-# subject_type:ruler  -> the 2 primitives that cite a ruler
-ID       TYPE         STATUS      CLAIM                                                                  
--------- -----------  ----------  -----                                                                  
-sdl:a1   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) omitted record..
-sdl:a2   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) dropped record..
-
-2 beliefs (of 8 total)
-```
-
-```
-# tag:outcome:silent_loss  -> the 3 beliefs carrying that outcome tag
-ID       TYPE         STATUS      CLAIM                                                                  
--------- -----------  ----------  -----                                                                  
-sdl:a1   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) omitted record..
-sdl:a2   primitive    active      On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) dropped record..
-sdl:a3   compound     active      Two independent rulers - deterministic field-diff and vanilla LLM-jud..
-
-3 beliefs (of 8 total)
-```
-
-Three query shapes, all pre-existing:
-
-- A positional arg containing a slash is a **value query** - exact match on a subject `ref`. `eval/silent-data-loss-v1` returns the four active beliefs about that eval (`sdl:a1`-`a3` plus the verdict `sdl:a006`); `model/claude-opus-4-8` returns five, because the routing guidance `sdl:a007` is also about the model but not tied to that specific eval run.
+- A positional arg containing a slash is a **value query** - exact match on a subject `ref`. `eval/silent-data-loss-v1` returns the four active beliefs about that eval (above); `model/claude-opus-4-8` returns five, because the routing guidance `sdl:a007` is also about the model but not tied to that specific eval run.
 - `subject_type:ruler` is a **dimension query** - match on a subject's `type`. It returns the two primitives, the only beliefs that cite a ruler entity.
-- `tag:outcome:silent_loss` is a **tag query**, and note the tag value itself contains a colon; the parser handles it and returns the three beliefs carrying the outcome.
+- `tag:outcome:silent_loss` is a **tag query**, and note the tag value itself contains a colon; the parser handles it and returns the three beliefs carrying the outcome (`sdl:a1`, `sdl:a2`, `sdl:a3`).
 
 ### Staleness and the model_version pivot
 
@@ -756,7 +733,7 @@ Support:     artifacts=2 evidence=2 deps=4
 Created:     2026-06-09
 ```
 
-Everything the model promises is visible in this one record: the closed enum changed **only** by superseding the whole contract; the successor carries the seven inherited schemes and all invariants verbatim plus the one addition; its `deps` include the design-rationale primitive that motivated the change (`cb:a467`); and the second evidence entry is the **adjudication record itself** - who decided, against what, with what reasoning, written by `mix cb.adjudicate` as part of the same atomic write that flipped `cb:c040` to `superseded`. Notice also what was *not* added: the `eval:` scheme the `sdl` collection uses never entered the framework enum - it lives in collection space (originally `sdl:c1`, the collection's own enum; today `method:c1`, the shared eval vocabulary that superseded it). Collections can carry their own vocabulary, promotion between vocabularies is itself a supersession with a paper trail, and promoting a scheme into the *framework* enum would be a deliberate act with this exact kind of record, not a side effect.
+Everything the model promises is visible in this one record: the closed enum changed **only** by superseding the whole contract; the successor carries the seven inherited schemes and all invariants verbatim plus the one addition; its `deps` include the design-rationale primitive that motivated the change (`cb:a467`, which pins the `code:` locator grammar and the codepath design decisions); and the second evidence entry is the **adjudication record itself** - who decided, against what, with what reasoning, written by `mix cb.adjudicate` as part of the same atomic write that flipped `cb:c040` to `superseded`. Notice also what was *not* added: the `eval:` scheme the `sdl` collection uses never entered the framework enum - it lives in collection space (originally `sdl:c1`, the collection's own enum; today `method:c1`, the shared eval vocabulary that superseded it). Collections can carry their own vocabulary, promotion between vocabularies is itself a supersession with a paper trail, and promoting a scheme into the *framework* enum would be a deliberate act with this exact kind of record, not a side effect.
 
 ### What you just traced
 
