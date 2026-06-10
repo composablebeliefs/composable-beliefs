@@ -35,9 +35,39 @@ Add a new scheme to the closed c040 enum:
 - The line number is never stored; it is resolved at render/run time. A missing anchor
   is a maintenance signal, not corruption (surfaced by the renderer in plan-2).
 
+### Anchor encoding and match resolution (specify, do not hand-wave)
+
+A literal substring anchor will contain spaces, colons, quotes, and possibly `#`/`@` -
+all of which collide with the URI's own delimiters and the `verify.schema`
+artifact-format regex. Pin the grammar:
+
+- Everything after the **first** `#` is the anchor segment, treated as one opaque
+  literal string to end-of-value (no further delimiter parsing inside it). The path
+  segment before `#` is repo-relative and carries no scheme colon.
+- `@<N>` is recognized **only** as an optional trailing `@<digits>` selecting the Nth
+  match. If an anchor must literally end in `@<digits>`, percent-encode that suffix
+  (`%40<digits>`). This preserves hand-authorability for the common case and gives a
+  defined escape hatch for the rare literal `@2`.
+- The `verify.schema` artifact-format check must be widened for `code:` to accept this
+  richer form (it currently assumes a simple `scheme:id`).
+
+**Multiple matches are the common failure, not the rare one.** `grep -nF <anchor>`
+returning three lines is what happens when an anchor is too loose. Defined behavior:
+render against the **first** match (so the codepath still presents) **and** emit a
+maintenance warning naming the step and the match count, recommending a more precise
+anchor. Same philosophy as a missing anchor - a signal, not a crash. This rule is
+asserted here and tested in plan-2's acceptance.
+
 Because c040 is a *closed* enum enforced by a contract, this is a real schema edit: the
 enum contract, `belief.ex` artifact parsing, and the `verify.schema` artifact-format and
 artifact-scheme checks must all learn `code:` in the same change, atomically.
+
+> **Batch known scheme additions (cb:a397).** Each enum value added to c040 supersedes
+> the c040 contract. If more than one scheme is genuinely needed, add them in a single
+> atomic supersession to halve churn on the closed enum. cb-codepath itself needs only
+> `code:` - an `eval:` scheme belongs to the separate sdl / eval-provenance mission
+> (its own enum), not here, unless that mission is deliberately merged (see the README's
+> open question). Do not co-add it speculatively.
 
 ### The codepath output-target (reuse `output-target`)
 

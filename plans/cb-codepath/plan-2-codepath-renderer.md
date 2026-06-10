@@ -57,15 +57,32 @@ rather than batch, because it narrates and waits at branches):
 The skill lives in cb and is launched from the cb repo root, so step paths resolve from
 cwd and the editor host linkifies against the same root.
 
+### A deterministic renderer alongside the skill
+
+Add a non-interactive `mix cb.render.codepath <id>` that emits the codepath linearly
+(branches listed inline rather than waited on). The interactive skill is the product, but
+the mix task makes the render **testable in CI and harness-independent**, and it is the
+same code path the eventual HTML audit-tree export will reuse. Small addition,
+disproportionate payoff: the skill orchestrates presentation, the task owns
+load-resolve-emit so both share one tested resolver.
+
 ## Acceptance criteria
 
 - `present-codepath` on the `belief-pipeline` collection emits ordered `path:line -
   claim` stops; clicking a ref navigates the editor; the entry branch stops and waits,
   and the reader's pick resumes at the chosen step.
 - Reordering the render-spec draft and re-importing changes presentation order **without**
-  superseding or churning the claim beliefs.
+  superseding or churning the claim beliefs. (Honest scope: the draft-then-import loop
+  covers *pre-settlement* churn only - once imported, a reorder supersedes the
+  output-target belief itself. Only the claim beliefs are protected; the ordering carries
+  honest supersession history. State this so the criterion is not read as a stronger
+  guarantee.)
 - Moving anchored code re-resolves the line; deleting an anchored symbol yields a clear
   maintenance warning, not a silent wrong line.
+- An anchor matching **multiple** lines renders against the first match and emits a
+  "tighten this anchor" warning with the match count (per plan-1's rule).
+- `mix cb.render.codepath` produces the same stops deterministically and is covered by a
+  test (the harness-independent proof of the resolver).
 - The collection passes `mix cb.verify.collection`.
 
 ## Risks and non-goals

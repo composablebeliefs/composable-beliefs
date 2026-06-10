@@ -35,12 +35,26 @@ route to predicate names - `implies(When, Requires: "predicate_name")` per the c
 registry and c037 boundary. The DAG names the predicate and the anchored site; the repo
 implements it.
 
-### `eval` = invoke the named predicate
+### `eval` = invoke the named predicate (two channels, cheap first)
 
-`eval` is not "run this string"; it is "invoke the routed predicate via MCP federation
-into the running app." For the cb codebase that channel is Tidewave into the
-`cb-dashboard` BEAM (the structs, store, and materializer are already loaded there). The
-predicate executes in the app under test; the DAG and the renderer stay code-free.
+`eval` is not "run this string"; it is "invoke the routed predicate." The DAG names the
+predicate, the repo implements it, the verifier runs it - but *how* it runs depends on
+what the predicate needs, and most need very little:
+
+- **Step A - direct invocation (no new dependency).** The `belief-pipeline` predicates
+  (`belief_count_positive/0`, `from_map_roundtrips?/0`, ...) are ordinary pure library
+  functions over the belief graph. A plain mix task invokes them in-process - no booted
+  Phoenix app, no MCP. This is the cheap path that makes the test gradient real, and it
+  is where plan-3 starts.
+- **Step B - Tidewave federation (deferred, pulled by need).** Only predicates that
+  genuinely require **live application state** (e.g. inspecting the running dashboard's
+  in-memory state) need federation into the running BEAM via Tidewave MCP. Reserve this
+  channel for that case; do not route pure predicates through it.
+
+This converts plan-3 from one heavy gated step into an incremental two-step and removes
+the all-or-nothing "accept the runtime spine or nothing ships" risk. Step A ships the
+test capability on its own; Step B extends it when a live-state predicate first demands
+it.
 
 ### `Sink.Test` (test run as materialization)
 
@@ -57,33 +71,48 @@ deterministic, and runtime-free; the dynamic verifier requires a booted app + Ti
 and is where non-determinism is confined. Keeping them separate preserves cb's
 pure-traversal property.
 
-### Tidewave wiring
+### Inspection-only as a contract, not a convention
 
-Per the original deferred runtime layer: add `{:tidewave, "~> 0.x", only: :dev}` (pin at
-build time), mount it in the dev-only block at `cb-dashboard/lib/cb_dashboard/endpoint.ex:63`,
-register the MCP server (Claude connects MCP only at startup - restart after), and run
-`mix phx.server`. Wire it end to end in one pass; never ship routing that does not resolve
-to a runnable predicate.
+cb exists to turn conventions into contracts, so do not leave "predicates only read,
+never mutate" as a review note. Encode it: a contract carrying a checkable naming
+invariant (predicate names end in `?` or `_check`) plus the documented no-mutation rule.
+The naming invariant is a verifiable proxy, not a guarantee of purity - but it makes the
+rule a first-class, queryable part of the graph rather than tribal knowledge.
+
+### Tidewave wiring (Step B only)
+
+Needed only when Step B's live-state channel is first required. Per the original deferred
+runtime layer: add `{:tidewave, "~> 0.x", only: :dev}` (pin at build time), mount it in
+the dev-only block at `cb-dashboard/lib/cb_dashboard/endpoint.ex:63`, register the MCP
+server (Claude connects MCP only at startup - restart after), and run `mix phx.server`.
+Wire it end to end in one pass; never ship routing that does not resolve to a runnable
+predicate.
 
 ## Acceptance criteria
 
-- The `belief-pipeline` codepath with **assertions on** runs its predicates against the
-  live `cb-dashboard` app and records pass/fail to `belief.materialized` (dated; re-run
-  supersedes).
+- **Step A (no new dependency):** the `belief-pipeline` codepath with **assertions on**
+  invokes its pure predicates directly via a mix task and records pass/fail to
+  `belief.materialized` (dated; re-run supersedes). No Phoenix app, no MCP.
 - `present-codepath` with assertions on pairs each contract-grade stop's static
-  `path:line - claim` with its live predicate result; non-contract stops still narrate
-  only (the gradient).
+  `path:line - claim` with its predicate result; non-contract stops still narrate only
+  (the gradient).
 - `cb.verify.codepath` runs the assertions as a batch suite and reports pass/fail.
+- The inspection-only contract validates: predicate names satisfy the naming invariant.
 - `mix cb.verify.schema` still runs independently, unchanged, with no runtime dependency.
+- **Step B (only when first needed):** a predicate requiring live app state runs through
+  Tidewave federation into the booted `cb-dashboard`, with the static verifier still
+  independent.
 
 ## Risks and non-goals
 
-- **Runtime dependency.** Requires a booted `cb-dashboard` + Tidewave + an MCP restart.
-  This is the spine of the test capability now, not an optional stretch - accept it or
-  plan-3 does not ship.
-- **Determinism boundary.** Live predicate runs are non-deterministic; confine them to
-  the dynamic verifier so `bs`/`verify.schema` stay pure.
-- **Inspection only.** Predicates read, never mutate. Enforce by review convention and
-  document it in the routing contract.
+- **Runtime dependency is Step B only.** Step A needs no booted app or MCP, so the test
+  capability ships without the runtime spine. Tidewave (+ MCP restart) is required only
+  once a live-state predicate exists - let that need pull it, do not build it
+  speculatively.
+- **Determinism boundary.** Live (Step B) predicate runs are non-deterministic; confine
+  them to the dynamic verifier so `bs`/`verify.schema` stay pure. Step A predicates are
+  pure and deterministic.
+- **Inspection only.** Predicates read, never mutate - encoded as a contract with a
+  checkable naming invariant (see Design), not left to review convention.
 - **Non-goal:** multi-language predicate execution; a breakpoint debugger. Tidewave/BEAM
   is the one channel; REPL-style inspection is the chosen primitive.

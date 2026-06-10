@@ -49,11 +49,14 @@ transcripts kept as a record.
 | [plan-0](plan-0-fold-and-rename.md) | Fold `code-walkthrough` into cb; rename walkthrough -> codepath; archive the standalone repo | no | no |
 | [plan-1](plan-1-schema-groundwork.md) | The `code:` locator + the codepath output-target shape in the cb schema | **yes** | no |
 | [plan-2](plan-2-codepath-renderer.md) | `present-codepath`: the narrated, branching render of a cb collection (assertions off) | yes (new collection) | no |
-| [plan-3](plan-3-assertions-runtime.md) | Named predicates + `Sink.Test` + a dynamic verifier (assertions on) | yes | **yes (Tidewave)** |
+| [plan-3](plan-3-assertions-runtime.md) | Named predicates + `Sink.Test` + a dynamic verifier (assertions on) | yes | A: no / B: Tidewave |
 
-The collapse inverted the original cost curve: schema is now a *prerequisite* of even a
-read-only codepath (plan-1 before plan-2), and the runtime test layer is last and
-heaviest (plan-3). There is no cheap inline-`eval` shortcut anymore - c037 retired it.
+The collapse made schema a *prerequisite* of even a read-only codepath (plan-1 before
+plan-2). The runtime test layer (plan-3) splits: **Step A** invokes pure predicates
+directly via a mix task with no new dependency (the cheap path that ships the test
+gradient), and **Step B** reserves Tidewave federation for predicates that genuinely need
+live app state - pulled by a real use case, not built speculatively. There is no inline-
+`eval` shortcut - c037 retired it - but Step A restores a cheap end-to-end test path.
 
 ## Locked decisions (from the design discussion)
 
@@ -68,6 +71,18 @@ heaviest (plan-3). There is no cheap inline-`eval` shortcut anymore - c037 retir
 - Authoring: a codepath render-spec is drafted outside the graph and `cb.import`-ed once
   settled, to avoid supersession churn on every reorder.
 - Repo fate: fold the tooling into `composable-beliefs`; archive `code-walkthrough`.
+
+## Open question (raised by the Fable review)
+
+Does the **eval-provenance mission** (the `sdl` collection: published evaluations with
+eval/run/case/model/ruler subjects and its own `eval:` artifact scheme) converge with
+cb-codepath, or stay separate? Both are "claims anchored to artifacts that run/score,"
+which is why the question arises - but cb-codepath's `eval` is a *predicate-invocation
+mechanism* (no artifact scheme), while sdl's `eval:` is an *artifact scheme* in a
+different enum. If they merge, plan-1 batches `eval:` into the c040 supersession (per
+a397) and an eval-collection-conventions plan joins the set; if they stay separate, plan-1
+adds only `code:`. **Default: separate** until a concrete reason to unify appears - this
+set is scoped to code-anchored codepaths, not the evals domain.
 
 ## Non-goals (whole set)
 

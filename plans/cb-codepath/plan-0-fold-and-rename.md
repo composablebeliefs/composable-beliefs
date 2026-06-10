@@ -56,6 +56,11 @@ Concretely:
 
 ## Acceptance criteria
 
+- **Mechanical rename check (falsifiable exit):** `grep -ri walkthrough` across active
+  artifacts, excluding `transcript.md` files and an explicitly enumerated whitelist of
+  generic-prose hits (the `README.md`/`quickstart.md` "guided tour" lines that do not
+  name the artifact), returns empty. Enumerate the whitelist in this plan before
+  executing so the check is reproducible.
 - No active cb artifact uses "walkthrough" to name the artifact; `present-codepath` and
   `codepaths.json` exist in cb.
 - The standalone `code-walkthrough` repo is archived with a forward pointer; nothing in
