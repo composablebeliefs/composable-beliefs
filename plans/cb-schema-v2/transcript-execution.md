@@ -199,3 +199,10 @@ to main. All gates green on exactly the committed trees.
    anticipated - the kind-type table forces it.
 7. a304 grounding backfill (empty artifact and evidence; plan:cb-schema-v2 as
    the reaffirmation stipulation, reasoning in the evidence entry).
+8. cb-dashboard was outside the migration inventory (the design's code
+   touch points scoped composable-beliefs only) and broke against the
+   migrated library - `stats.unlinked_implications` crashed every dag render.
+   Found 2026-06-11 while wiring position deep links; minimal v2 compat pass
+   landed as cb-dashboard `5d988ec` (filter buttons, stats rows, kind colors,
+   type clauses). The viewer renders the four-type union; a fuller audit of
+   v1-type assumptions in the viewer has not been done.
