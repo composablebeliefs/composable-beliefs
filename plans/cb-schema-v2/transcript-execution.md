@@ -1,0 +1,201 @@
+# Transcript - cb-schema-v2: decision and execution (D1-D6, plans 0-4)
+
+**Date:** 2026-06-10
+**Surfaces:** a single composable-beliefs TUI thread (Fable 5), picking up the
+design record the previous session wrote, carrying the D1 naming debate to a
+decision, and executing the full plan series in the same thread.
+**Companion to:** [`design.md`](design.md) (the decided design record, with its
+execution amendments inline), the plan files `plan-0.md` through `plan-4.md`
+(each carrying its execution record), and [`why-inference.md`](why-inference.md)
+(the README source material the debate produced).
+
+> User turns are condensed to their substance; the load-bearing phrasings are
+> quoted. Assistant turns are condensed to what was read, decided, written, and
+> committed. Tool output is summarized, not reproduced.
+
+---
+
+## Summary
+
+One session took cb-schema-v2 from "design awaiting decisions" to shipped: D1-D6
+resolved (D1 `inference`, decided through a full adversarial debate the user
+requested after overriding the immutable-history consideration), plans 0-4 cut
+and executed end to end - canon beliefs through the write flow, the four-type
+code and migration tool, the framework contract supersessions, all eight
+collections migrated with the adjudicated splits, and the README rewritten with
+the naming debate's explanatory prose as its new centerpiece section.
+
+Commits: composable-beliefs `364233f` (the whole landing, 79 files),
+belief-collections `16e2fe8` (the six collection migrations); both pushed.
+261 tests green at the end; every framework-graph write through the write flow;
+all eight collections verify under v2 with sdl reproducing exactly its two
+teaching method-check failures.
+
+---
+
+## 1. Review: "examine the repo and plans/cb-schema-v2/design.md"
+
+The design doc's factual claims were verified against the live repo and graph:
+the migration inventory matched `bs stats` exactly (114/27/5/82), the sdl worked
+migration matched the collection node for node, the code touch points resolved
+to real functions (the verdict selector turned out to be one line in
+`CB.Eval.Predicates`). One real gap surfaced: **cb:c029 was missing from the
+supersession list** - its invariant "retired status is exclusive to
+contract-grade implications" changes on both words under v2, and the machinery
+table had the direction backwards (the v2 change is a widening, contract-grade
+to any directive). Also flagged: subject containment passes vacuously on the
+subject-sparse cb: graph, so its compound triage is pure judgment - the doc
+should say so. Both folded into design.md.
+
+## 2. "ok decide as you see fit, do d1-d6 need to be decided before beginning dev?"
+
+Decisions made and recorded in design.md: D1 `inference` (over retaining
+`implication`), D2 hybrid migration, D3 trim, D4 grounding rule confirmed, D5
+keep `primitive`, D6 conventions re-type. Gating answer: only D1/D2/D4 gate
+code; D3/D5/D6 gate graph content, but plan-0 leads the series so the plan cut
+wanted all six. One flag raised to the user: the session memory recorded an
+earlier lean toward keeping `implication`, and the decision overrode it -
+offered for veto.
+
+## 3. "i am overriding the immutable history consideration... present the case for both sides"
+
+Launch reframed the debate: not "what does the existing graph say" but "what
+word do we live with." Both cases presented in full. For `implication`:
+ordinary-English fit ("the implications of these findings" is colloquially
+ampliative), the relational grammar (an implication is *of* something - the
+name wears its grounding), the ML-serving collision avoided (`inference` is
+saturated vocabulary in the agent ecosystem). For `inference`: technical
+accuracy at the exact point the design cares about (the type's defining licence
+is to exceed its deps; entailment is precisely the licence it lacks; CB performs
+no deduction), the one-line glossary test (a definition of "implication" that
+grants the scope-widening licence fights its own noun), the lifecycle argument
+(the machinery supersedes a falsified conclusion while its deps stand - the
+signature of inference, paradoxical under "implication"), and the
+near-disqualifying in-framework collision (the contract kind `implies` is
+directive-only in v2; naming the descriptive type `implication` puts one lexeme
+on both sides of the very boundary v2 draws). Verdict held at roughly 60/40 for
+`inference`, with `conclusion` named as the strongest third option if the
+ML-collision worry dominated.
+
+## 4. "51% sold on inference but curious about conclusion" / "inference belief or inferred belief?"
+
+`conclusion` evaluated seriously: it wins on result-noun purity, zero ML
+collision, and lay accessibility, and its verb pairs as cleanly
+(attest/aggregate/conclude/prescribe). It loses on the finality connotation
+pointing the wrong way twice (the graph's riskiest type sounding most settled;
+mid-graph nodes sounding terminal), the prescriptive-mood leak ("the committee
+concluded we should divest" is idiomatic), no theory lineage (defeasible
+inference, nonmonotonic inference, belief revision - CB with
+supersession-on-falsification IS defeasible-inference machinery), the glossary
+direction (name the type with the technical word, define it with the lay one),
+and the compound/conclusion visual collision. Net: between `implication` and
+`inference`, closer to `inference`; 60/40 held.
+
+Grammar ruling: the house pattern is the bare noun ("an inference", like "a
+compound"); attributive form "inference belief" (type-as-classifier);
+"inferred belief" describes provenance rather than naming the type slot and
+starts a participle pattern the other types refuse.
+
+## 5. The deduction questions
+
+Three questions that became why-inference.md and then the README section:
+
+- *Why isn't the inference node a result of deduction?* Because the move is
+  ampliative: from "case 7 dropped a record" (twice) to "this snapshot drops
+  records from bulk writes over ten items" - the conclusion is about all bulk
+  writes, the premises about one case. The gap is the problem of induction,
+  unbridgeable by deduction; and the falsification lifecycle requires the gap,
+  since a clean future run kills the generalization while the observations
+  stand.
+- *Why CAN'T an implication exceed its premises?* By definition: "an entailment
+  of the premises that is not an entailment of the premises" has the shape of
+  "a bachelor's wife."
+- *Doesn't "fails only with a premise" imply deduction?* Yes - that is the
+  modus tollens: CB's machinery is built for these nodes to fail independently
+  of their deps, therefore they are not implications of their deps.
+
+Kicker that landed: **the compound is the one deduction CB stores**
+(conjunction introduction; subject containment as its formal shadow; the
+epistemic work is the selection). The user's follow-up - "so compound IS
+implication by another name?" - confirmed it precisely: the compound is the
+only node type whose claim genuinely is entailed by its deps; "implication" was
+technically accurate for compound and nothing else in the schema.
+
+## 6. "ready to go with inference and proceed" + the README directive
+
+The user directed: include the why-inference writeup semi-verbatim in the
+README - the positive case, no contest framing, "how the edges define the
+territory" - and extend that explanatory register through the README generally.
+Also (earlier in the same turn): philosophy's vocabulary for expressing and
+navigating ambiguity may be an increasingly valuable engineering skill; this
+design cycle consumed direction of fit, the deductive/ampliative boundary,
+defeasibility, and speech-act mood, and turned each into a check or a type.
+
+Execution followed in the same thread:
+
+- **Persisted the debate** as why-inference.md; cut plan-0 through plan-4.
+- **Plan-0.** Seven canon primitives (a470-a476) through preflight + import;
+  the preflight surfaced the dag-schema overlap family (reviewed per c032,
+  recorded in evidence, a467/c040 precedent) and **exposed two supersession
+  targets the design list had missed: c026 and c027** - added to design.md and
+  plan-2. Contract drafting deferred to plan-2 (successors are v2-typed).
+- **Plan-1.** Four-type enum; verifier checks (kind-type table by role
+  discovery, subject containment with vacuous pass and unresolvable-dep skip,
+  grounding, retired-is-directive); machinery re-attached; loader gate;
+  `mix cb.migrate.v2` with full-override `--resolutions`. First dry run on cb:
+  forced the **`document:` stipulation amendment**: D6's own confirmed
+  re-homes (method:a1-a5, the lib: rules) are document-grounded, so the
+  design's plan/user/session list was incomplete against its own intent.
+  cb: migrated (76 re-typed; a131/a138/a173 to inference by resolution;
+  a387/a438 mechanically via the prescriptive-kind-on-compound rule; **a304
+  grounding backfilled** via cb.import - artifact and evidence were both
+  empty, the one legitimate backfill shape). codepath: 5 contract re-types.
+  Test fixtures updated; 261 green except the sdl integration test, which
+  pulled plan-3 forward.
+- **Plan-2.** c026-c038 superseded to c051-c056 via cb.adjudicate; c057
+  (kind-type table, 38 rows), c058 (containment), c059 (grounding) imported;
+  CLAUDE.md render beliefs a445/a446/a447/a452/a468/a469 superseded by
+  a477-a482 - including moving "concludes what none of its inputs states
+  alone" from the compound to the inference per D3 - and **c048 superseded by
+  c060** because render_sections cite belief ids (the regenerated CLAUDE.md
+  was silently rendering the old text until the render contract followed).
+  Representational dep re-points (a387, c047, c049) cleared `bs stale`.
+- **Plan-3.** sdl split per the design's worked table (a006 to a008+a009, a3
+  trimmed to a010, a007 re-pointed); toy:a9 to a10+a11; method's 14 mechanical
+  re-types plus **method:c10** (verdict binds to inference only - c2's prose
+  strain became a check) and the consequent **c2 to c11 enum supersession**
+  (c10's own kind needed admitting); agent-behavior's seven triage nodes
+  adjudicated (a072 and a123 to inference - a123 the one genuine containment
+  escape, a "works because" abduction; six mood re-homes a396-a401, with
+  a359's stipulation untangled from its external source); paradigm's three
+  syntheses to inference; lib mechanical. All eight collections verified; sdl's
+  two teaching FAILs reproduced against a008.
+- **Plan-4.** README: the new "Why 'inference' - the edges define the
+  territory" section under a rewritten four-types section; every transcript
+  regenerated from the live graphs; the sdl worked example now walks all four
+  types and reads the split as history; the reference table carries c051-c060.
+  Quickstart re-targeted (its compound exemplar a138 is now the inference
+  exemplar - "notice the word doing the work: because"); the five skills and
+  the design-reference docs updated. Migration recorded as cb:a483.
+
+## 7. "commit" / "push"
+
+`364233f` (composable-beliefs) and `16e2fe8` (belief-collections), both pushed
+to main. All gates green on exactly the committed trees.
+
+## Deviations from the design, complete list
+
+1. c026 and c027 added to the supersession list (found by plan-0 preflight).
+2. c029 added to the supersession list (found in the pre-decision review).
+3. `document:` admitted as a stipulation scheme (forced by D6's own examples).
+4. c048 superseded by c060 (render_sections are id-bearing; the design's
+   "CLAUDE.md render-section beliefs" list implied but did not name it).
+5. method:c2 kept as the kind enum with a new c10 carrying the type bindings,
+   then c2 superseded by c11 anyway to admit `derivation-table` - the design
+   left "supersede c2 vs new c10" to plan time; the answer was both, for
+   different reasons.
+6. The grounding rule re-homed ~30 cb: primitives (prescriptive kinds with
+   stipulation artifacts), more than the design's "82 primitives unchanged"
+   anticipated - the kind-type table forces it.
+7. a304 grounding backfill (empty artifact and evidence; plan:cb-schema-v2 as
+   the reaffirmation stipulation, reasoning in the evidence entry).
