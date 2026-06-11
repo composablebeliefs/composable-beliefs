@@ -14,6 +14,10 @@ Query the graph with the belief shell, deterministic pure traversal with no LLM:
 
 Active behavioral directives are not cached to a digest file; load them live from the graph by querying active directives (`mix bs list directive`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
 
+## Session start
+
+A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each directive's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.
+
 ## Architecture
 
 The mechanism is a directed acyclic graph of beliefs with four structural types: primitive (what a single source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and directive (what should happen or must hold - a prescription the house stands behind).

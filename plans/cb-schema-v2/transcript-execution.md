@@ -347,3 +347,27 @@ reference convention through use before it hardens to canon). The position
 document for the glue-UI stance waits for the exploration to earn it, per
 a496's proportionality - the vision is quoted here so the source survives
 the session boundary.
+
+## Postscript 6 (2026-06-11): the bootstrap failure - resumption was not in the graph
+
+A fresh thread launched from a prose handoff note failed to bootstrap: it ran
+outside the framework repo (so neither CLAUDE.md nor the project-scoped agent
+memory loaded), conflated the graph with the operator's older global
+assertion system, and could not resolve `bs`, the id scheme, or the glue-UI
+context. Its reconstruction from the fragment alone was impressively close,
+which sharpened the diagnosis: the system's content was legible, but the
+*process to resume work was not self-evident from the graph* - the resume
+ritual lived in one agent's session memory and in handoff prose, and the
+backlog directives' `session:` stipulation artifacts are dead ends a fresh
+agent cannot read (the vision they stipulate from lives in postscript 5, two
+hops of tribal knowledge away).
+
+Architectural fixes, landed in response: cb:a507 (directives must be
+self-bootstrapping - context reachable through deps and resolvable
+document:/plan: artifacts; session: stipulations pair with a document:
+pointer), cb:a508 (the session-start ritual as a rendered CLAUDE.md belief:
+pull, desk query, stale check, follow each directive's artifacts; graph over
+memory), c060 -> c061 (render_sections gains the Session start section),
+evidence appends on a502/a503 adding the resolvable pointer to postscript 5,
+and the operational rule that sessions launch in the framework repo - the
+operating console where the compiled bootstrap actually loads.

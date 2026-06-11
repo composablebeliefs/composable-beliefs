@@ -3739,7 +3739,7 @@
     ],
     "deps": [
       "cb:a467",
-      "cb:c060"
+      "cb:c061"
     ],
     "status": "active",
     "created": "2026-06-09"
@@ -5040,7 +5040,8 @@
       "cb:a457",
       "cb:a458"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c061",
     "created": "2026-06-10"
   },
   {
@@ -5563,6 +5564,11 @@
         "date": "2026-06-11",
         "detail": "From the glue-UI exploration: cb references in conversation surfaces are positive alignment signals the operator cannot parse raw; the card is the readability layer between the gloss and the substrate. Prototyped as a scratch script rendering tmp/cards/ during the session; this directive is the productization. Preflight 2026-06-11: backlog/observability tag-overlap with sibling backlog directives only; no semantic conflict.",
         "artifact": "session:2026-06-11-glue-ui-exploration"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Self-bootstrapping pointer per cb:a507 (the session: stipulation above is unreadable to a fresh agent): the glue-UI vision this directive serves is preserved verbatim in transcript postscript 5, and the surface conventions are cb:a497.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
       }
     ],
     "subjects": [],
@@ -5588,6 +5594,11 @@
         "date": "2026-06-11",
         "detail": "Three-tier form demonstrated live in tmp/transcript.md during the exploration's first session; deliberately left as an action-item rather than a convention - the form should survive a few weeks of real reading before it hardens into canon. Preflight 2026-06-11: backlog/observability tag-overlap with sibling backlog directives only; no semantic conflict.",
         "artifact": "session:2026-06-11-glue-ui-exploration"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Self-bootstrapping pointer per cb:a507 (the session: stipulation above is unreadable to a fresh agent): the glue-UI vision this directive serves is preserved verbatim in transcript postscript 5, and the surface conventions are cb:a497.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
       }
     ],
     "subjects": [],
@@ -5665,6 +5676,195 @@
     ],
     "subjects": [],
     "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a507",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "authoring",
+      "backlog",
+      "bootstrapping"
+    ],
+    "claim": "A backlog directive is self-bootstrapping: an agent reading it cold must be able to reach everything needed to begin - the vision, the conventions, the prior work - through the directive's deps and resolvable artifacts (document:/plan:). A session: stipulation is a dead end for a fresh agent until the session-persistence pipeline lands; pair it with a document: pointer in evidence to the transcript or position where the stipulation is readable.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Minted from the bootstrap failure (postscript 6): a fresh thread could not reconstruct the glue-UI work because the backlog directives stipulated from session: references while the readable vision lived in a transcript postscript two unlinked hops away. First applications: evidence pointers appended to a502/a503. Preflight 2026-06-11: tag-overlap with the authoring/backlog convention family (a474/a489/a504 siblings); compatible, no semantic conflict.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a489",
+      "cb:a504"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a508",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "claude-md",
+      "session-start"
+    ],
+    "claim": "A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each directive's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The resume ritual, promoted from agent session memory and handoff prose into the graph after the bootstrap failure (postscript 6); rendered into CLAUDE.md via the output-target contract so every in-repo session receives it compiled, with no tribal knowledge required.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a489",
+      "cb:a504"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:c061",
+    "type": "directive",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:claude-md"
+    ],
+    "claim": "The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.",
+    "rules": [
+      {
+        "output_path": "CLAUDE.md"
+      },
+      {
+        "header_comment": "<!-- Generated by mix cb.generate.claude_md from the cb: DAG. Do not edit; run the task to regenerate. -->\n\n# Composable Beliefs\n\nA framework for giving AI agents persistent, source-grounded, inspectable reasoning that survives session boundaries and composes into understanding the agent never explicitly derived."
+      },
+      {
+        "render_sections": [
+          {
+            "beliefs": [
+              "cb:a459",
+              "cb:a444"
+            ],
+            "title": "Quick Start"
+          },
+          {
+            "beliefs": [
+              "cb:a477"
+            ],
+            "title": "Active directives"
+          },
+          {
+            "beliefs": [
+              "cb:a508"
+            ],
+            "title": "Session start"
+          },
+          {
+            "beliefs": [
+              "cb:a478",
+              "cb:a479",
+              "cb:a448"
+            ],
+            "title": "Architecture"
+          },
+          {
+            "beliefs": [
+              "cb:a449",
+              "cb:a450"
+            ],
+            "title": "Operations"
+          },
+          {
+            "beliefs": [
+              "cb:a482",
+              "cb:a481"
+            ],
+            "title": "Schema"
+          },
+          {
+            "beliefs": [
+              "cb:a480"
+            ],
+            "title": "Skills"
+          },
+          {
+            "beliefs": [
+              "cb:a454"
+            ],
+            "title": "Collections"
+          },
+          {
+            "beliefs": [
+              "cb:a455"
+            ],
+            "title": "Formatting"
+          },
+          {
+            "beliefs": [
+              "cb:a456"
+            ],
+            "title": "Git Policy"
+          },
+          {
+            "beliefs": [
+              "cb:a457"
+            ],
+            "title": "Data Protection"
+          },
+          {
+            "beliefs": [
+              "cb:a458"
+            ],
+            "title": "Origin"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "CLAUDE.md is read-only - edits are overwritten on next generation",
+      "Every line of output traces to exactly one belief's claim field",
+      "deps equals the union of all beliefs referenced in render_sections",
+      "Section titles are human-readable; tags remain free for cross-cutting audit queries"
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Accepted via human adjudication against cb:c060. Reasoning: Bootstrap fix (postscript 6): render_sections gains a Session start section carrying cb:a508, so the resume ritual ships compiled in CLAUDE.md and a fresh in-repo session needs no handoff prose or agent memory to begin. Claim and shape otherwise unchanged - editing render_sections is this contract's documented authoring path.",
+        "artifact": "adjudication:human:session:2026-06-11-bootstrap-fix"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a459",
+      "cb:a444",
+      "cb:a477",
+      "cb:a478",
+      "cb:a479",
+      "cb:a448",
+      "cb:a449",
+      "cb:a450",
+      "cb:a482",
+      "cb:a481",
+      "cb:a480",
+      "cb:a454",
+      "cb:a455",
+      "cb:a456",
+      "cb:a457",
+      "cb:a458",
+      "cb:a508"
+    ],
     "status": "active",
     "created": "2026-06-11"
   }

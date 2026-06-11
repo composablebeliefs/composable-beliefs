@@ -1,0 +1,57 @@
+{
+  "new_beliefs": [
+    {
+      "id": "cb:a507",
+      "type": "directive",
+      "kind": "convention",
+      "domain": "system",
+      "tags": [
+        "authoring",
+        "backlog",
+        "bootstrapping"
+      ],
+      "claim": "A backlog directive is self-bootstrapping: an agent reading it cold must be able to reach everything needed to begin - the vision, the conventions, the prior work - through the directive's deps and resolvable artifacts (document:/plan:). A session: stipulation is a dead end for a fresh agent until the session-persistence pipeline lands; pair it with a document: pointer in evidence to the transcript or position where the stipulation is readable.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Minted from the bootstrap failure (postscript 6): a fresh thread could not reconstruct the glue-UI work because the backlog directives stipulated from session: references while the readable vision lived in a transcript postscript two unlinked hops away. First applications: evidence pointers appended to a502/a503. Preflight 2026-06-11: tag-overlap with the authoring/backlog convention family (a474/a489/a504 siblings); compatible, no semantic conflict.",
+          "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a489",
+        "cb:a504"
+      ],
+      "status": "active",
+      "created": "2026-06-11"
+    },
+    {
+      "id": "cb:a508",
+      "type": "directive",
+      "kind": "convention",
+      "domain": "system",
+      "tags": [
+        "claude-md",
+        "session-start"
+      ],
+      "claim": "A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each directive's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "The resume ritual, promoted from agent session memory and handoff prose into the graph after the bootstrap failure (postscript 6); rendered into CLAUDE.md via the output-target contract so every in-repo session receives it compiled, with no tribal knowledge required.",
+          "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a489",
+        "cb:a504"
+      ],
+      "status": "active",
+      "created": "2026-06-11"
+    }
+  ]
+}
