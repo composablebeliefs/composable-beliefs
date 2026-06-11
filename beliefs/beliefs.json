@@ -5070,5 +5070,135 @@
     ],
     "status": "active",
     "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a484",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "design",
+    "tags": [
+      "design-policy",
+      "substrate"
+    ],
+    "claim": "Code is not an abstraction layer that persists; it is the operational substrate - the only artifact in the system whose meaning is enforced by execution.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Stated by the agent in the 2026-06-10 amieval discussion on anchored-answer schemas, against the claim that IDEs and code-reading become unnecessary as work migrates to NL agent discussion; the user directed verbatim conversion to a position and extraction into cb:. Grounded in a465's verification-not-generation principle: code is where enforcement lives, drift surfaces as a failing test.",
+        "artifact": "session:2026-06-10-substrate-position-discussion"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a465"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a485",
+    "type": "inference",
+    "kind": "design-rationale",
+    "domain": "design",
+    "tags": [
+      "design-policy",
+      "anchoring"
+    ],
+    "claim": "NL discussion above the substrate is productive exactly when every claim terminates in an anchor into the substrate; the anchor is what makes a prose claim adjudicable against the thing that runs.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "The position's central conditional, anchored to the mechanism that embodies it: CB.Codepath.resolve_anchor (lib/cb/codepath.ex) and the never-store-line-numbers rule (lib/cb/code_locator.ex). Both anchors verified resolving with exactly one grep -nF match at authoring time. Deps: the substrate claim (a484) plus a467's settled code-anchoring design.",
+        "artifact": "session:2026-06-10-substrate-position-discussion"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a484",
+      "cb:a467"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a486",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "design",
+    "tags": [
+      "design-policy",
+      "anchoring"
+    ],
+    "claim": "The editor's role shifts from authoring surface to adjudication surface - the place where claims meet the thing that actually runs.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Anchored to the present-codepath skill's own instruction ('the reader clicks, the editor navigates', skills/present-codepath/SKILL.md); anchor verified resolving with exactly one match at authoring time. The shift follows from a484/a485: if claims must terminate in the substrate, the editor is where termination is checked by a human.",
+        "artifact": "session:2026-06-10-substrate-position-discussion"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a484",
+      "cb:a485"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a487",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "design",
+    "tags": [
+      "design-policy",
+      "anchoring"
+    ],
+    "claim": "Reading code re-scopes from building a whole mental model to reading the anchored stops that carry an argument.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Anchored to the presenter rule that states the re-scoping ('the value is the reader reading the real file, not a wall of agent prose', skills/present-codepath/SKILL.md); anchor verified resolving with exactly one match at authoring time.",
+        "artifact": "session:2026-06-10-substrate-position-discussion"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a485",
+      "cb:a486"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a488",
+    "type": "directive",
+    "kind": "policy",
+    "domain": "agent",
+    "tags": [
+      "design-policy",
+      "anchoring",
+      "lifecycle:recurring"
+    ],
+    "claim": "Agent claims about code must carry code: anchors that resolve at read time; an unresolvable anchor is an ungrounded claim and must be fixed or withdrawn before the claim is presented.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "The prescriptive extraction of the position's conditional (a485), anchored to the resolver's enforcement site - the anchor-not-found warning constructor in lib/cb/codepath.ex; anchor verified resolving with exactly one match at authoring time. Recurring rule: fires on every agent answer that cites code; non-contract grade until a draft-mode verifier exists to machine-check compliance.",
+        "artifact": "session:2026-06-10-substrate-position-discussion"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a485"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-10"
   }
 ]
