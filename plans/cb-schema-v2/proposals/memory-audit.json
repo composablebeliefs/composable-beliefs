@@ -1,0 +1,77 @@
+{
+  "new_beliefs": [
+    {
+      "id": "cb:a504",
+      "type": "directive",
+      "kind": "convention",
+      "domain": "system",
+      "tags": [
+        "authoring",
+        "work-tracking",
+        "multi-session"
+      ],
+      "claim": "Author obligations against the live graph, never from session memory: before minting a backlog node, pull the repos and query the desk (unlinked + lifecycle:discrete) plus the work's artifacts. Session memory, digests, and other caches are orientation; the graph is the SSOT of what remains. Multiple sessions write these repos concurrently, and a memory snapshot rots the moment another thread pushes.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Grounded by the a367 incident: a stale-memory directive was authored for an extraction another session had already completed, caught at the first observation lap (postscript 4). Promoted from the agent's private session memory to the graph at the operator's direction, so any agent surfaces it - the rule's own content applied to the rule. Preflight 2026-06-11: authoring/work-tracking tag-overlap with sibling conventions (a474/a489 family); compatible, no semantic conflict.",
+          "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a489"
+      ],
+      "status": "active",
+      "created": "2026-06-11"
+    },
+    {
+      "id": "cb:a505",
+      "type": "directive",
+      "kind": "formatting-rule",
+      "domain": "system",
+      "tags": [
+        "prose",
+        "docs",
+        "formatting"
+      ],
+      "claim": "In docs and prose, state what things are directly. The contrastive sentence shape 'X doesn't Y, it Z' (denial followed by correction) is banned; lead with what the thing is. Sibling to the no-emdash rule (a455).",
+      "artifact": "user:mark",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Mark's standing prose directive, applied across the README rewrites and position documents but living only in agent session memory until now; promoted to the graph at the operator's direction. The README's 2026-06-10 'reframe positively' commit is the rule applied at scale.",
+          "artifact": "user:mark"
+        }
+      ],
+      "subjects": [],
+      "deps": [],
+      "status": "active",
+      "created": "2026-06-11"
+    },
+    {
+      "id": "cb:a506",
+      "type": "primitive",
+      "kind": "definition",
+      "domain": "design",
+      "tags": [
+        "dag-schema",
+        "entrenchment"
+      ],
+      "claim": "Axiom is a role, not a type: entrenchment is earned through fan-in. A belief that many active beliefs depend on is functionally axiomatic - the role is read off the graph (bs dependents), never declared, and the belief remains revisable like everything else; superseding it is expensive exactly in proportion to what rests on it.",
+      "artifact": "session:2026-06-10-cb-schema-design-threads",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Settled in the 2026-06-10 schema-design discussion alongside the no-deduction concession (the latter already canon via a473's deductive-consequences-are-free clause); this half lived only in session memory until the operator directed the memory audit. The same earned-not-declared logic as the no-confidence-scores doctrine (a448). Preflight 2026-06-11: dag-schema tag-family overlap only (17 contract-level / 34 schema); reviewed per c055 - a definition of a role the schema deliberately omits as a type, contradicting no active structure; a467/c040 review precedent.",
+          "artifact": "session:2026-06-10-cb-schema-design-threads"
+        }
+      ],
+      "subjects": [],
+      "deps": [],
+      "status": "active",
+      "created": "2026-06-11"
+    }
+  ]
+}
