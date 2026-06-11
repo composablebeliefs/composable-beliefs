@@ -1,0 +1,30 @@
+{
+  "new_beliefs": [
+    {
+      "type": "directive",
+      "kind": "convention",
+      "domain": "system",
+      "tags": [
+        "positions",
+        "authoring",
+        "ceremony"
+      ],
+      "claim": "Persistence ceremony is proportionate to stance. A position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - and its claims are then extracted into the graph. Observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them. If every wart became a three-artifact pipeline, the pipeline would stop being read.",
+      "artifact": "session:2026-06-11-stasis-observability",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Stated in the observability discussion when the user asked whether two tooling-gap findings (no cross-collection desk view, no recency view) should each get the transcript-position-extraction pipeline; the answer - directives, not positions - was then itself caught unpersisted by the user's follow-up, and lands here by its own light path. Preflight 2026-06-11: tag-overlap with the a474/a475 authoring doctrines only - compatible siblings in the same family; no semantic conflict.",
+          "artifact": "session:2026-06-11-stasis-observability"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a492"
+      ],
+      "id": "cb:a496",
+      "status": "active",
+      "created": "2026-06-11"
+    }
+  ]
+}

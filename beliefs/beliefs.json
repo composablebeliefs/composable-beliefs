@@ -5386,5 +5386,158 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a496",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "authoring",
+      "ceremony"
+    ],
+    "claim": "Persistence ceremony is proportionate to stance. A position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - and its claims are then extracted into the graph. Observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them. If every wart became a three-artifact pipeline, the pipeline would stop being read.",
+    "artifact": "session:2026-06-11-stasis-observability",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Stated in the observability discussion when the user asked whether two tooling-gap findings (no cross-collection desk view, no recency view) should each get the transcript-position-extraction pipeline; the answer - directives, not positions - was then itself caught unpersisted by the user's follow-up, and lands here by its own light path. Preflight 2026-06-11: tag-overlap with the a474/a475 authoring doctrines only - compatible siblings in the same family; no semantic conflict.",
+        "artifact": "session:2026-06-11-stasis-observability"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a492"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a497",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "observability",
+      "ide-as-ui",
+      "anchors"
+    ],
+    "claim": "Live agent work is observable through a lap log: a scratch markdown file (tmp/) the operator keeps open in an editor split, appended station by station as work proceeds. Entries follow the anchor discipline: the content anchor is the stored truth, the line number is a convenience snapshot resolved at write time and never copied forward, and any station that rewrites a file re-emits fresh locators on its way out. The log is scaffolding - whatever it surfaces that matters graduates to the transcript or the graph at lap end.",
+    "artifact": "session:2026-06-11-stasis-observability",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Settled in the observability discussion before the first paradigm:a367 lap: the operator wants to watch the agent work from inside the editor (IDE as UI), and static markdown cannot resolve anchors at click time, so write-time resolution with the anchor carried alongside is the honest rung below /present-codepath (agent as live resolver) and the ACP exploration (editor as resolver). Empirical Zed findings, current as of 2026-06-11: cmd-click follows markdown links in buffers, a :line suffix on a relative link opens at the line, zed://file/<abs-path>:<line> opens at the line, and links resolve relative to the containing file (a log in tmp/ reaches siblings via ../..). These are tool facts, recorded here as evidence rather than claims.",
+        "artifact": "session:2026-06-11-stasis-observability"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a467",
+      "cb:a485",
+      "cb:a488"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a498",
+    "type": "primitive",
+    "kind": "design-property",
+    "domain": "system",
+    "tags": [
+      "self-hosting",
+      "write-flow",
+      "dag-schema"
+    ],
+    "claim": "Framework canon changes only through its own write flow, including at the foundations: the status-lifecycle contract was superseded via the lifecycle it defines (c029 -> c053), and the type enum was replaced through adjudication by a node typed in the values it introduces (c026 -> c051). There is no maintenance hatch, so the completeness of the audit trail is structural rather than behavioral - the history can be trusted without trusting that everyone behaved, because there is no door to bypass it.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Observed during the four-type schema landing (2026-06-10) and named in the significance exchange the next day: the heaviest self-application load the change discipline has taken - its own type system - ran entirely through preflight, adjudication, and supersession, with the chains walkable via bs history and the migration recorded as a483. Preflight 2026-06-11: dag-schema tag-family overlap only (17 contract-level / 33 schema); reviewed per c055 - the claim attests a demonstrated property of the very contracts matched and contradicts none; a467/c040 review precedent.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a499",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "observability",
+      "collections"
+    ],
+    "claim": "Provide a default-overlay configuration: an operator-local setting that loads the union of the framework graph plus registered private collections on every query, without per-command flags, so private nodes' reverse-deps surface on public nodes by default. The mechanism exists (cross-namespace deps, the union loader, bs dependents over the loaded union); only the UX is missing - the public graph ships clean while the operator's private overlay projects onto it locally at load time.",
+    "artifact": "session:2026-06-11-stasis-observability",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "From the public/private graph discussion: the user asked whether a proprietary namespaced collection could outbound-dep public cb: nodes and appear on them; the answer is the existing collection mechanism, modulo this default-union convenience. Preflight 2026-06-11: observability tag-overlap with a497 (the lap-log convention, compatible sibling); no semantic conflict.",
+        "artifact": "session:2026-06-11-stasis-observability"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a500",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "observability",
+      "backlog-view"
+    ],
+    "claim": "Provide a cross-collection desk view: a single query surface for unmaterialized discrete directives across the framework graph and all registered collections, so the live backlog is one command rather than one command per collection.",
+    "artifact": "session:2026-06-11-stasis-observability",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "First finding of the observation-loop walkthrough: bs list unlinked tag:lifecycle:discrete shows only the targeted graph, so paradigm:a367 was invisible from the framework desk. Persisted as a directive per a496's proportionality rule - an observation with an obvious prescription, no position ceremony. Preflight 2026-06-11: observability tag-overlap with a497 (the lap-log convention, compatible sibling); no semantic conflict.",
+        "artifact": "session:2026-06-11-stasis-observability"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a501",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "observability",
+      "recency"
+    ],
+    "claim": "Provide a recency view: a query answering what changed in the graph over a given window (new nodes, supersessions, evidence appends, materializations), so concurrent multi-session activity is observable without reading git log on the JSON.",
+    "artifact": "session:2026-06-11-stasis-observability",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Second finding of the observation-loop walkthrough, made acute the same day by three sessions writing the repos concurrently. Persisted as a directive per a496. Preflight 2026-06-11: observability tag-overlap with a497 (the lap-log convention, compatible sibling); no semantic conflict.",
+        "artifact": "session:2026-06-11-stasis-observability"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]

@@ -268,3 +268,40 @@ the position extends standing canon rather than minting it.
 With this postscript the thread reaches the stasis it was wrapping toward:
 plans/ and positions/ hold records and rationale; the graph holds what
 remains to be done.
+
+## Postscript 3 (2026-06-11): observability, proportionate ceremony, and the significance exchange
+
+The thread continued toward the first full lap (paradigm:a367). Before it ran,
+three things got settled and persisted:
+
+- **The lap log** (cb:a497): live agent-process observability as a scratch
+  markdown pane the operator watches in the editor - IDE as UI, the a484-a488
+  stance applied. Anchor discipline per codepath canon: the content anchor is
+  the truth, the line number a write-time snapshot never copied forward;
+  stations that rewrite files re-emit fresh locators. Empirical Zed findings
+  (cmd-click follows buffer links; :line suffixes and zed:// URLs open at the
+  line; targets resolve relative to the containing file) recorded as evidence
+  and in docs/operations.md - tool facts, never claims.
+- **Proportionate ceremony** (cb:a496): a position document earns its keep
+  when the reasoning is the artifact; observations with an obvious
+  prescription go straight in as directives. Minted when the user asked
+  whether two tooling-gap findings deserved the position pipeline, then
+  caught unpersisted by the user's next question and landed by its own light
+  path - the first decision the rule governed was its own persistence, and
+  the second was a497's.
+- **The significance exchange.** The user asked whether the session
+  constituted anecdotal evidence for the system. The calibrated answer - four
+  observations (the checks did load-bearing work against their own authors;
+  the foundations changed through the system's own front door with no
+  maintenance hatch; three concurrent sessions coordinated through the graph
+  with no shared conversation memory; the meta-regress terminated in
+  practice), the deflators (n=1, no counterfactual, authoring-time only per
+  a493), the distinction that anecdote-with-inspectable-trail differs from
+  vibes, and the Temporal parallel (event-sourced execution vs event-sourced
+  epistemology) - is persisted as paradigm: nodes under the new `anecdote`
+  evidence-grade tag (the fixture-tag precedent applied to field use), with
+  the self-hosting property landing in cb: as shippable self-documentation.
+  The user's own formulation - granular SSOT ensuring DRY, so cognitive cruft
+  cannot layer silently - is captured as his observation. The dag-vs-prose
+  eval remains the place the felt significance gets adjudicated; these nodes
+  are the hypothesis, tagged as such.

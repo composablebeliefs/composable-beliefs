@@ -23,3 +23,18 @@ A productive extraction session processes source documents and produces concrete
 Every primitive sourced from a document or artifact carries an `evidence` array. The `claim` is the agent's interpretation; each evidence `detail` is the specific narrative of what the source said. A future session can read the evidence and ask "does this claim actually follow from these words?" - without it, the claim is uncheckable hearsay.
 
 **Schema note (historical):** an earlier schema used top-level `source`/`quote`; the current schema uses `artifact` + `evidence[]`. If you meet an old belief with `source`/`quote`, read `source` as `artifact` and `quote` as the first evidence entry's `detail`.
+
+## Observing live agent work: the lap log
+
+A working session is observable from inside the editor: the agent appends to a
+scratch markdown file (`tmp/lap-log.md`) station by station, and the operator
+keeps it open in a split - Zed reloads externally-changed buffers silently, so
+the pane updates live (per `cb:a497`). Entries follow the anchor discipline
+(`cb:a467`): the content anchor is the truth, the line number is a write-time
+snapshot, and stations that rewrite files re-emit fresh locators.
+
+Zed link mechanics, current as of 2026-06-11: cmd-click follows markdown links
+in buffers; a `:line` suffix on a relative link opens at the line; so does
+`zed://file/<absolute-path>:<line>`; link targets resolve relative to the
+containing file (a log in `tmp/` reaches sibling repos via `../../`). Terminal
+output `path:line` is also clickable and is the fallback surface.

@@ -1,0 +1,32 @@
+{
+  "new_beliefs": [
+    {
+      "type": "directive",
+      "kind": "convention",
+      "domain": "dev",
+      "tags": [
+        "observability",
+        "ide-as-ui",
+        "anchors"
+      ],
+      "claim": "Live agent work is observable through a lap log: a scratch markdown file (tmp/) the operator keeps open in an editor split, appended station by station as work proceeds. Entries follow the anchor discipline: the content anchor is the stored truth, the line number is a convenience snapshot resolved at write time and never copied forward, and any station that rewrites a file re-emits fresh locators on its way out. The log is scaffolding - whatever it surfaces that matters graduates to the transcript or the graph at lap end.",
+      "artifact": "session:2026-06-11-stasis-observability",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Settled in the observability discussion before the first paradigm:a367 lap: the operator wants to watch the agent work from inside the editor (IDE as UI), and static markdown cannot resolve anchors at click time, so write-time resolution with the anchor carried alongside is the honest rung below /present-codepath (agent as live resolver) and the ACP exploration (editor as resolver). Empirical Zed findings, current as of 2026-06-11: cmd-click follows markdown links in buffers, a :line suffix on a relative link opens at the line, zed://file/<abs-path>:<line> opens at the line, and links resolve relative to the containing file (a log in tmp/ reaches siblings via ../..). These are tool facts, recorded here as evidence rather than claims.",
+          "artifact": "session:2026-06-11-stasis-observability"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a467",
+        "cb:a485",
+        "cb:a488"
+      ],
+      "id": "cb:a497",
+      "status": "active",
+      "created": "2026-06-11"
+    }
+  ]
+}
