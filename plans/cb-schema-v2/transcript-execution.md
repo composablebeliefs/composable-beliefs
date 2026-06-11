@@ -226,3 +226,45 @@ to main. All gates green on exactly the committed trees.
    version check. "v2" survives only in plan records and immutable graph
    history. (If a pre-migration graph ever resurfaces, the migration tool is
    one git checkout away.)
+
+## Postscript 2 (2026-06-11): the stasis pipeline - obligation moves into the graph
+
+The thread continued past the push into wrap-up. An accounting of the open
+threads found three classes: persisted in the repos (kind-enum pruning,
+structured dissent, Tidewave, the mission gate, the staged paradigm
+extraction), persisted only in session memory (consensual primitives, the
+multi-agent consensus direction), and persisted nowhere (the bench stale-id
+check). Asked whether to do the residual work now or plan it for later, the
+recommendation was: persist now, work later - and persist as graph directives
+rather than plan files, since work-to-do is what the directive type and
+/materialize exist for.
+
+The user then asked the question that became policy: does this mean plans as
+the primary reference for work have migrated to graph nodes? Answer: yes, as
+an inversion of roles - the graph is the index of obligation; plans demote to
+the artifacts directives materialize into and cite, retained permanently as
+sources. The user directed the full pipeline: transcript postscript, the
+stance as a position document homed in this repo (his sharpening: the design
+intention and policy of the system should live within the system - backed by
+the distro-resolvability argument that cb: beliefs must ground in
+repo-relative document: URIs), and extraction into cb:.
+
+Executed: positions/2026-06-11-obligation-lives-in-the-graph.md, extracted as
+cb:a489-a493 (the obligation index, the plan-as-materialization-artifact rule
+with retention, the lifecycle-tag backlog discipline, the position-homing
+rule, and the authored-versus-working-time gap as the inference the testing
+phase falsifies one way or the other). The deferred work landed as backlog
+directives: cb:a494 (consensual primitives), cb:a495 (multi-agent consensus
+direction), paradigm:a367 (the now-unblocked eval-architecture extraction) -
+all tagged lifecycle:discrete, so `bs list unlinked tag:lifecycle:discrete`
+returns exactly the live backlog. The bench and evals repos were grepped for
+the split verdicts' old ids (sdl:a006, toy:a9): clean, nothing recorded.
+
+Notable deps surfaced during grounding: a382 (plans encode intent; intent
+lives in the DAG) and a380 (active-and-unmaterialized is still-actionable
+work) already carried both halves of the policy from the pre-four-type era -
+the position extends standing canon rather than minting it.
+
+With this postscript the thread reaches the stasis it was wrapping toward:
+plans/ and positions/ hold records and rationale; the graph holds what
+remains to be done.

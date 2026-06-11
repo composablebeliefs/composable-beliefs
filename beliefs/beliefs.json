@@ -5200,5 +5200,191 @@
     "materialized": null,
     "status": "active",
     "created": "2026-06-10"
+  },
+  {
+    "id": "cb:a489",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "work-tracking",
+      "backlog",
+      "positions"
+    ],
+    "claim": "The graph is the index of obligation: work to do lives as directives - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable. plans/ and docs/ hold records of designs and executions, never live todos; a live todo is an unmaterialized discrete directive.",
+    "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Extracted from the obligation-lives-in-the-graph position (the cb-schema-v2 wrap-up-to-stasis discussion). Extends a382's intent-lives-in-the-DAG authoring rule with the obligation-index half: the four-type schema gave work its own structural type, so the backlog can live where the reasoning lives.",
+        "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a382",
+      "cb:a380"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a490",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "work-tracking",
+      "plans",
+      "positions"
+    ],
+    "claim": "A plan is what a large directive materializes into: the materialized field's plan path links obligation to execution record. Plan files are retained permanently as source documents cited via document:/plan: URIs and evidence entries; the direction of reference inverts - query the graph for what is next, follow it into plans/ for how and history.",
+    "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Extracted from the obligation-lives-in-the-graph position. The relationship was already in the schema (a382's materialized shape carries a plan path) and the four-type landing ran in exactly this shape before anyone named it: canon in the graph, choreography and deviations in plans/cb-schema-v2/.",
+        "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a382",
+      "cb:a383"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a491",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "work-tracking",
+      "backlog",
+      "lifecycle",
+      "positions"
+    ],
+    "claim": "The lifecycle tag is load-bearing for the graph-as-backlog: recurring directives are standing rules that never materialize, discrete directives are completable work, and the backlog query is unlinked plus lifecycle:discrete (a380's still-actionable test, narrowed to the work-bearing lifecycle class). An untagged directive degrades the backlog view.",
+    "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Extracted from the obligation-lives-in-the-graph position. Without the discrete/recurring discipline, bs list unlinked conflates standing rules with actionable work and the native backlog view reads wrong. Preflight 2026-06-11: tag-overlap with a380/a383 (tied in as deps) and a390 (deprecation convention, compatible); no semantic conflict.",
+        "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a380"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a492",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "homing",
+      "distro"
+    ],
+    "claim": "Framework-policy position documents live in this repo (positions/): cb: beliefs ground in repo-relative document: URIs, and a distributable framework must resolve every artifact its own graph cites. The homing boundary is unchanged - claims about CB-the-system land in cb:, claims about the world or mission land in collections.",
+    "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "User decision in the wrap-up-to-stasis discussion (the design intention and policy of the system should live within the system), sharpened by the distro-resolvability argument: a cb: node citing a document in a sibling repo points across a boundary the standalone distro does not ship. Precedent: positions/2026-06-10-code-as-operational-substrate.md -> a484-a488.",
+        "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "positions/2026-06-11-obligation-lives-in-the-graph.md",
+        "type": "doc"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a493",
+    "type": "inference",
+    "kind": "design-gap",
+    "domain": "system",
+    "tags": [
+      "work-tracking",
+      "decision-time",
+      "positions"
+    ],
+    "claim": "The graph-as-work-index holds at authoring time and is untested at working time: no mechanism yet queries the graph contextually at decision time, and whether working sessions reach for the unlinked backlog rather than plan files is behavioral. The stasis-then-test phase is the experiment that decides it.",
+    "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Extracted from the obligation-lives-in-the-graph position; the same authored-versus-working-time gap the README's honest-status names for context loading, applied to work tracking. Falsified one way or the other by the testing phase.",
+        "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a489"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a494",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "design",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "dag-schema",
+      "consensual-primitives"
+    ],
+    "claim": "Design the consensual-primitives mechanism: when multiple sources state the same belief in different wording, the graph holds per-source attestation primitives plus a consensus compound carrying the shared formulation. Preflight's supportive-match bucket is the discovery mechanism; evaluate a new adjudication outcome (attest-and-corroborate: add the attestation and supersede the consensus compound with one more dep) alongside reject_dep_tie.",
+    "artifact": "session:2026-06-10-cb-schema-design-threads",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Raised by Mark 2026-06-10 in the post-README schema-design discussion, deferred behind the four-type schema change; persisted to the graph at stasis entry per a489 (previously living only in session memory). The alternative shape - one primitive, N evidence entries - fights the singular artifact field and evidence immutability. Preflight 2026-06-11: dag-schema tag-family overlap only (17 contract-level / 32 schema); reviewed per c055 - the item proposes future design work and contradicts no active structure; the a467/c040 review precedent applies.",
+        "artifact": "session:2026-06-10-cb-schema-design-threads"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a495",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "design",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "consensus",
+      "multi-agent"
+    ],
+    "claim": "Decide the multi-agent consensus direction: whether CB's eval focus is the mission or the on-ramp to cross-agent belief reconciliation (two publishers, same model_version, a detected verdict conflict, an adjudicated outcome). The smallest enabling tool either way is pairwise preflight: one collection's proposed beliefs preflighted against another collection's union.",
+    "artifact": "session:2026-06-10-cb-schema-design-threads",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Raised by Mark 2026-06-10 (CB as a consensus/negotiation/mediation mechanism across agentic belief graphs); the machinery is already consensus-shaped - namespaced collections, preflight, adjudication records, cross-namespace supersession, conflict scope, cross-ruler compounds. Persisted to the graph at stasis entry per a489.",
+        "artifact": "session:2026-06-10-cb-schema-design-threads"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
