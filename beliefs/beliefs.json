@@ -5544,5 +5544,55 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a502",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "glue-ui",
+      "observability"
+    ],
+    "claim": "Build the belief-card renderer: a mix task rendering any belief as a readable markdown mirror (claim, grounding, evidence, deps as resolved links) with a write-time locator back to its JSON definition - the middle tier of the in-document reference convention (gloss, card, substrate). Cards are derived views, regenerated on demand, never authoritative; the JSON is the graph.",
+    "artifact": "session:2026-06-11-glue-ui-exploration",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "From the glue-UI exploration: cb references in conversation surfaces are positive alignment signals the operator cannot parse raw; the card is the readability layer between the gloss and the substrate. Prototyped as a scratch script rendering tmp/cards/ during the session; this directive is the productization. Preflight 2026-06-11: backlog/observability tag-overlap with sibling backlog directives only; no semantic conflict.",
+        "artifact": "session:2026-06-11-glue-ui-exploration"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a503",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "glue-ui",
+      "observability"
+    ],
+    "claim": "Settle the in-document belief-reference convention for glue surfaces: every cb reference carries an italic gloss (enough meaning to keep reading), a link to its rendered card, and a link to the JSON definition at a write-time-resolved line. Settle it through use in the transcript/lap-log surfaces, then encode the settled form as a convention directive depping on a497.",
+    "artifact": "session:2026-06-11-glue-ui-exploration",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Three-tier form demonstrated live in tmp/transcript.md during the exploration's first session; deliberately left as an action-item rather than a convention - the form should survive a few weeks of real reading before it hardens into canon. Preflight 2026-06-11: backlog/observability tag-overlap with sibling backlog directives only; no semantic conflict.",
+        "artifact": "session:2026-06-11-glue-ui-exploration"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
