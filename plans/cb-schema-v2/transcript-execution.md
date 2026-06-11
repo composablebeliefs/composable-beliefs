@@ -204,5 +204,25 @@ to main. All gates green on exactly the committed trees.
    migrated library - `stats.unlinked_implications` crashed every dag render.
    Found 2026-06-11 while wiring position deep links; minimal v2 compat pass
    landed as cb-dashboard `5d988ec` (filter buttons, stats rows, kind colors,
-   type clauses). The viewer renders the four-type union; a fuller audit of
-   v1-type assumptions in the viewer has not been done.
+   type clauses). The fuller v1-assumption audit followed the same day and
+   closed the remainder: the `retired` status surfaced in the status filter
+   and color map (the directive-only state existed in the lifecycle but not
+   the UI); the materialized panel matched to the real sink shape
+   (`{date, todos: [{id, action, result}]}` plus a382's `plan`/`last_verified`
+   - it had been reading a nonexistent `object` key); standalone "graphs"
+   sources version-gated (they bypass the manifest schema_version check, so a
+   graph carrying v1 `implication` nodes now refuses to load with a
+   migrate-with-cb.migrate.v2 pointer - migrate, never shim, matching the
+   library's hard cutover); stale "contract-grade implication" comments,
+   the orphaned `--kind-implication` CSS var, and the policy placeholder's
+   v1-era bullet cleaned up.
+
+   Same day, Mark closed the chapter entirely: with every collection migrated
+   and no v1 graph left anywhere, the version vocabulary itself was retired
+   from the system. The loader's schema_version gate, the manifests'
+   schema_version field, mix cb.migrate.v2, and the viewer's standalone-graph
+   v1 gate (hours old) were all removed - as far as the system is concerned,
+   this is just the schema; an invalid shape fails verification, never a
+   version check. "v2" survives only in plan records and immutable graph
+   history. (If a pre-migration graph ever resurfaces, the migration tool is
+   one git checkout away.)

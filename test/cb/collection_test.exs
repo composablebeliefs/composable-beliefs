@@ -6,7 +6,7 @@ defmodule CB.CollectionTest do
 
   # Build a registry + collections under `dir`:
   #   collections.json  (namespace -> relative beliefs.json)
-  #   <ns>/manifest.json (namespace, schema_version, depends_on)
+  #   <ns>/manifest.json (namespace, depends_on)
   #   <ns>/beliefs.json  (array of belief maps)
   defp fixture(dir, collections) do
     registry = %{
@@ -20,7 +20,7 @@ defmodule CB.CollectionTest do
       File.mkdir_p!(ns_dir)
       File.write!(Path.join(ns_dir, "beliefs.json"), Jason.encode!(spec.beliefs))
 
-      manifest = %{"namespace" => ns, "schema_version" => spec[:schema_version] || 2}
+      manifest = %{"namespace" => ns}
 
       manifest =
         if deps = spec[:depends_on], do: Map.put(manifest, "depends_on", deps), else: manifest

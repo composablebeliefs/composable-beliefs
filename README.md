@@ -369,7 +369,7 @@ The active schema contracts in the framework graph, with what each one actually 
 | `cb:c049` | The codepath render-spec shape: `entry` plus `render_steps` rows of `{id, belief, goto?, choices?}`; navigation is render metadata that never enters deps (supersedes `cb:c044`). |
 | `cb:c050` | Codepath predicates are inspection-only: names end in `?`/`_check` and resolve only to exported zero-arity booleans; the resolver refuses anything else (supersedes `cb:c045`). |
 
-The 2026-06-10 move from three structural types to four is itself the largest worked example of the change discipline so far: six contracts superseded through adjudication (`c026`/`c027`/`c029`/`c031`/`c032`/`c038` to `c051`-`c056`), three new contracts landed, every collection migrated through `mix cb.migrate.v2`, and the conflated verdicts split into finding plus prescription. Walk any chain with `mix bs history`; the design record is `plans/cb-schema-v2/`.
+The 2026-06-10 move from three structural types to four is itself the largest worked example of the change discipline so far: six contracts superseded through adjudication (`c026`/`c027`/`c029`/`c031`/`c032`/`c038` to `c051`-`c056`), three new contracts landed, every collection migrated in one sweep, and the conflated verdicts split into finding plus prescription. Walk any chain with `mix bs history`; the design record is `plans/cb-schema-v2/`.
 
 ### What is in this repo
 
