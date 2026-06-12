@@ -371,3 +371,19 @@ memory), c060 -> c061 (render_sections gains the Session start section),
 evidence appends on a502/a503 adding the resolvable pointer to postscript 5,
 and the operational rule that sessions launch in the framework repo - the
 operating console where the compiled bootstrap actually loads.
+
+## Postscript 7 (2026-06-11): stasis, and the chronicle convention
+
+The thread's final movement: their-thread reconciliation (a516 stamped as
+discharged-by-deletion with operator confirmation; the a511 rationale
+appended to its position by the thread that held it), the emergence analysis
+persisted as the first analysis-class position (paradigm:a376-a378), nine
+blog drafts in cb-site wearing the ledger-box receipts format, and three
+threads closing through the substrate in interleaved commits. At the very
+end the operator asked where threads themselves persist - the answer was
+scattered - and observed that prose narrative is his steering bandwidth.
+Both became canon: cb:a520 (the chronicle convention - transcript for the
+audit, graph for the work, chronicle for the steering) and paradigm:a379
+(the observation, his). The epoch's first chronicle was written in the same
+change: chronicles/2026-06-10-the-schema-epoch.md. Stasis verified from
+three sides; the next session needs nothing from this one.

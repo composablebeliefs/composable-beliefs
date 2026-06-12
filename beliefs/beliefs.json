@@ -6199,5 +6199,32 @@
     ],
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a520",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "thread-persistence",
+      "chronicles",
+      "observability"
+    ],
+    "claim": "Every thread that does substantive work persists twice at close: a transcript (the condensed record, co-located with its plan set or the thread's center of gravity) and a chronicle (chronicles/, dated) - a prose narrative for the operator: where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits. The transcript serves the audit, the graph serves the work, the chronicle serves the steering; in a chronicle, narrative carries the load and ids stay subordinate - the inverse of the receipts register.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Formalized at stasis when the operator observed that the thread-persistence protocol felt scattered (the transcript convention was plan-shaped and the epoch outgrew it) and that prose narrative is what lets a human keep up with agent-speed work well enough to steer it (paradigm:a379). First instance: chronicles/2026-06-10-the-schema-epoch.md, written in the same change.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a489",
+      "cb:a497"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
