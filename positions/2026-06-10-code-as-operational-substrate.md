@@ -59,15 +59,15 @@ claims below stage for extraction when a511 executes. Anchors verified at
 append time, one match each.
 
 ### Claim: A position may carry a terms block: entries of shape {term, definition, anchor?}. A term naming a code construct anchors to its defining site, so a definition is a navigable stop; prose-only definitions remain valid for terms with no code referent.
-**DAG status:** pending
-**Intended:** schema rule, lands under cb:a511
+**DAG status:** extracted
+**Belief:** [[cb:a527]] (*the optional terms block, anchored definitions as navigable stops* - [json:6992](../beliefs/beliefs.json))
 
 ### Claim: Position names the epistemic artifact - the stance and its claims. Codepath names the render face - the navigable tour resolved from the position's anchors. A position with anchors has a codepath; the term "walkthrough" is retired with its repo.
-**DAG status:** pending
-**Intended:** definition, lands under cb:a511
+**DAG status:** extracted
+**Belief:** [[cb:a528]] (*position/codepath naming, walkthrough retired* - [json:7021](../beliefs/beliefs.json))
 **Anchor:** code:lib/cb/codepath.ex#Resolve a codepath output-target into ordered, anchored stops
 
 ### Claim: Anchored claims verify on a three-tier gradient: provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists in the substrate), and behavioral validity (predicates - the referent still behaves as claimed, contract grade). An anchor check is a necessary condition only: failure flags the claim for review, while success alone never re-validates the claim.
-**DAG status:** pending
-**Intended:** inference, kind design-rationale, lands under cb:a511
+**DAG status:** extracted
+**Belief:** [[cb:a529]] (*the three-tier verification gradient, anchor checks necessary-only* - [json:7047](../beliefs/beliefs.json))
 **Anchor:** code:lib/mix/tasks/cb.verify.codepath.ex#defmodule Mix.Tasks.Cb.Verify.Codepath

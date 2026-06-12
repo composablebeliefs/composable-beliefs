@@ -6094,6 +6094,11 @@
         "date": "2026-06-11",
         "detail": "Designed across the 2026-06-10/11 anchored-answer thread; the substrate position instantiated the format (five claims, six anchors, all verified one-match) before the format itself was pinned anywhere. a496's ceremony rule redirected this from a position to direct schema capture.",
         "artifact": "session:2026-06-10-substrate-position-discussion"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Discharged 2026-06-12 (materialized t0013): the format core lands as a526 (directive/schema - Class header, Anchor lines in the c043 grammar verified one-match at authoring time via the draft-mode resolver, claim order = default codepath walk order), the terms block as a527, the position/codepath naming definition as a528, and the three-tier verification gradient as a529 (inference/design-rationale). All anchors re-verified green via mix cb.resolve before authoring. Non-contract per the heading-toward-a-contract phrasing: escalation stays a deliberate act, the a488 pattern - no position-document verifier task exists yet.",
+        "artifact": "code:skills/position/SKILL.md#Decompose into claims"
       }
     ],
     "subjects": [],
@@ -6103,7 +6108,16 @@
       "cb:a492",
       "cb:a496"
     ],
-    "materialized": null,
+    "materialized": {
+      "date": "2026-06-12",
+      "todos": [
+        {
+          "action": "Pin the anchored-position format as schema beliefs: format core a526 (Class header, Anchor lines in c043 grammar verified one-match at authoring time, claim order = codepath walk order), terms block a527, position/codepath naming a528, three-tier verification gradient a529",
+          "id": "t0013",
+          "notes": "Discharged in the executing session itself. All seven worked-instance anchors plus the appendix anchors re-verified green via mix cb.resolve before authoring; the dag-schema mis-tag caught at preflight (52 tag-overlap matches collapsed to zero under the positions/schema/anchoring family); the a473 flag on a528 user-adjudicated proceed-unchanged."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-11"
   },
@@ -6941,6 +6955,118 @@
       }
     ],
     "deps": [],
+    "status": "active",
+    "created": "2026-06-12"
+  },
+  {
+    "id": "cb:a526",
+    "type": "directive",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "schema",
+      "anchoring",
+      "lifecycle:recurring"
+    ],
+    "claim": "Anchored-position format: a position document carries a **Class:** header field; its stance decomposes into ### Claim: sections, each of which may carry one or more **Anchor:** lines holding code: URIs in the c043 grammar; every anchor is verified resolving with exactly one match at authoring time via the draft-mode resolver; and claim order is the default codepath walk order.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511. Designed across the 2026-06-10/11 anchored-answer thread; the worked instance instantiated the format (five claims, six anchors, all verified one-match) before the format itself was pinned anywhere. The /position skill (a515, discharged 2026-06-11) already mechanizes every element: Class header in step 2, claim decomposition in walk order in step 3, Anchor lines in the c043 grammar in step 4, mandatory mix cb.resolve verification with loose anchors treated as authoring failures in step 5.",
+        "artifact": "code:skills/position/SKILL.md#Decompose into claims"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a485",
+      "cb:a488",
+      "cb:c043"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-12"
+  },
+  {
+    "id": "cb:a527",
+    "type": "directive",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "schema",
+      "anchoring",
+      "terms",
+      "lifecycle:recurring"
+    ],
+    "claim": "A position may carry a terms block: entries of shape {term, definition, anchor?}. A term naming a code construct anchors to its defining site, so the definition is a navigable stop; prose-only definitions remain valid for terms with no code referent.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511 from the position's design-rationale appendix (appended 2026-06-11 at user direction after the a511 self-bootstrap audit found the rationale reachable only through an unresolvable session: slug - the a518 gap). The terms block is the one a511 format element not yet mechanized in skills/position/SKILL.md; it stays optional in the format until a worked instance needs it.",
+        "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a526"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-12"
+  },
+  {
+    "id": "cb:a528",
+    "type": "directive",
+    "kind": "definition",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "codepath",
+      "naming",
+      "lifecycle:recurring"
+    ],
+    "claim": "Position names the epistemic artifact - the stance and its claims. Codepath names the render face - the navigable tour resolved from the position's anchors. A position with anchors has a codepath; the term 'walkthrough' is retired with its repo.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511 from the position's design-rationale appendix. The render face the name binds to is the codepath resolver's output-target contract; anchor verified resolving with exactly one match via mix cb.resolve at authoring time. The /position skill already states the convention in its Naming rule (position is the epistemic artifact; codepath is the render face resolved from its anchors). Preflight 2026-06-12: one non-contract flag, cb:a473, tag-overlap on 'naming' only - a473 explains the inference type's name, this belief defines position/codepath vocabulary; no semantic contact. User-adjudicated proceed-unchanged: no supersession, no dep tie.",
+        "artifact": "code:lib/cb/codepath.ex#Resolve a codepath output-target into ordered, anchored stops"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-12"
+  },
+  {
+    "id": "cb:a529",
+    "type": "inference",
+    "kind": "design-rationale",
+    "domain": "design",
+    "tags": [
+      "anchoring",
+      "verification",
+      "design-policy"
+    ],
+    "claim": "Anchored claims verify on a three-tier gradient: provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists in the substrate), and behavioral validity (predicates - the referent still behaves as claimed, contract grade). An anchor check is a necessary condition only: failure flags the claim for review, while success alone never re-validates the claim.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511 from the position's design-rationale appendix. The gradient has already been observed working: the a515 discharge dogfood found both lib/cb/codepath.ex anchors on the worked position had drifted to lib/cb/anchor.ex in the a512 extraction - the resolver flagged the failures for review, the anchors were re-pointed and verified green. Failure flagged the claims; success did not re-validate them - exactly the necessary-condition-only semantics. Anchored to the codepath verifier that runs the grounding-currency tier.",
+        "artifact": "code:lib/mix/tasks/cb.verify.codepath.ex#defmodule Mix.Tasks.Cb.Verify.Codepath"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a485",
+      "cb:a488"
+    ],
     "status": "active",
     "created": "2026-06-12"
   }
