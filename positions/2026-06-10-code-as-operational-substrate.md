@@ -32,7 +32,7 @@ resolve against the repo root.
 ### Claim: NL discussion above the substrate is productive exactly when every claim terminates in an anchor into the substrate.
 **DAG status:** extracted
 **Belief:** [[cb:a485]]
-**Anchor:** code:lib/cb/codepath.ex#defp resolve_anchor
+**Anchor:** code:lib/cb/anchor.ex#def resolve(
 **Anchor:** code:lib/cb/code_locator.ex#The resolved line number is never stored
 
 ### Claim: The editor's role shifts from authoring surface to adjudication surface - the place where claims meet the thing that actually runs.
@@ -48,7 +48,7 @@ resolve against the repo root.
 ### Claim: Agent claims about code must carry code: anchors that resolve at read time; an unresolvable anchor is an ungrounded claim.
 **DAG status:** extracted
 **Belief:** [[cb:a488]]
-**Anchor:** code:lib/cb/codepath.ex#anchor "#{anchor}" not found in
+**Anchor:** code:lib/cb/anchor.ex#anchor "#{anchor}" not found in
 
 ## Design rationale (appended 2026-06-11, for cb:a511)
 

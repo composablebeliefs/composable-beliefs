@@ -77,5 +77,13 @@
     "notes": "a523: the silent divergence between skill contract and sink behavior is the part that must not survive",
     "source": "cb:a523",
     "status": "done"
+  },
+  {
+    "action": "Author skills/position/SKILL.md - settle-time capture: a496 ceremony gate first, a492 homing, a511 format with claims in codepath walk order, anchors verified via mix cb.resolve (a512), a503 belief-ref rendering after extraction, extraction left to /assert - and register it via the .claude/skills symlink",
+    "created": "2026-06-11",
+    "id": "t0012",
+    "notes": "Discharged in the authoring session itself. Dogfooding the resolver gate on the worked position caught real drift: both lib/cb/codepath.ex anchors (resolve_anchor, the anchor-not-found constructor) had moved to lib/cb/anchor.ex in the a512 extraction; re-pointed and verified green.",
+    "source": "cb:a515",
+    "status": "done"
   }
 ]

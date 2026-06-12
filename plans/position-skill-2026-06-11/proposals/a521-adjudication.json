@@ -1,0 +1,28 @@
+{
+  "proposed": {
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "skills"
+    ],
+    "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns directives into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+    "artifact": "session:2026-06-11-position-skill-authoring",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Supersedes a521 to add /position, the settle-time capture skill the a515 discharge authored: it applies the a496 ceremony gate before any staging, homes the document per a492, stages the a511 format with claims in codepath walk order, verifies every anchor through mix cb.resolve (a512) with loose anchors treated as authoring failures, renders belief refs per a503 after extraction, and never writes beliefs/ - extraction stays with /assert. Skill readable at the artifact anchor per a507.",
+        "artifact": "code:skills/position/SKILL.md#name: position"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a470"
+    ]
+  },
+  "conflicting_id": "cb:a521",
+  "outcome": "accept_supersede",
+  "reasoning": "Operator-directed (2026-06-11, the a515 discharge): the /position capture skill joins the framework skill set, so the skills-line convention gains its fifth entry. Successor carries the four existing skill descriptions verbatim and adds /position between /materialize and /present-codepath.",
+  "session_ref": "session:2026-06-11-position-skill-authoring"
+}

@@ -3735,6 +3735,16 @@
         "date": "2026-06-12",
         "detail": "deps + cb:c062 via dag-proposal 2026-06-11-c049-repoint",
         "artifact": "session:2026-06-11-assert-session-fold"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "deps − cb:c062 via dag-proposal 2026-06-11-c049-repoint-c063",
+        "artifact": "session:2026-06-11-position-skill-authoring"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "deps + cb:c063 via dag-proposal 2026-06-11-c049-repoint-c063",
+        "artifact": "session:2026-06-11-position-skill-authoring"
       }
     ],
     "subjects": [
@@ -3749,7 +3759,7 @@
     ],
     "deps": [
       "cb:a467",
-      "cb:c062"
+      "cb:c063"
     ],
     "status": "active",
     "created": "2026-06-09"
@@ -6141,6 +6151,11 @@
         "date": "2026-06-11",
         "detail": "The thread executed the full capture pipeline by hand - stance posed, position staged with verified anchors, preflight, import, DAG-status flip - and the user asked for the skill that mechanizes it at a chosen point in a thread. Depends practically on a512 (the anchor verification gate) and on a503 settling the reference convention.",
         "artifact": "session:2026-06-10-substrate-position-discussion"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Discharged 2026-06-11 (materialized t0012): skills/position/SKILL.md authored and registered via the .claude/skills symlink; CLAUDE.md skills line updated through the write flow (a521 -> a524, c062 -> c063). The skill encodes the gate-first order (a496 before any staging), a492 homing, the a511 section format with claims in codepath walk order, mandatory mix cb.resolve verification with loose anchors treated as authoring failures (a512), a503 three-tier belief-ref rendering after extraction, and the settle-time rule the a518 near-loss taught. Dogfooding the gate on the worked position caught real drift - both lib/cb/codepath.ex anchors had moved to lib/cb/anchor.ex in the a512 extraction - re-pointed and verified green: anchor failure flagging for review, the gradient working as designed.",
+        "artifact": "code:skills/position/SKILL.md#name: position"
       }
     ],
     "subjects": [],
@@ -6149,7 +6164,16 @@
       "cb:a492",
       "cb:a488"
     ],
-    "materialized": null,
+    "materialized": {
+      "date": "2026-06-11",
+      "todos": [
+        {
+          "action": "Author skills/position/SKILL.md - settle-time capture: a496 ceremony gate first, a492 homing, a511 format with claims in codepath walk order, anchors verified via mix cb.resolve (a512), a503 belief-ref rendering after extraction, extraction left to /assert - and register it via the .claude/skills symlink",
+          "id": "t0012",
+          "notes": "Discharged in the authoring session itself. Dogfooding the resolver gate on the worked position caught real drift: both lib/cb/codepath.ex anchors (resolve_anchor, the anchor-not-found constructor) had moved to lib/cb/anchor.ex in the a512 extraction; re-pointed and verified green."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-11"
   },
@@ -6349,7 +6373,8 @@
     "deps": [
       "cb:a470"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a524",
     "created": "2026-06-11"
   },
   {
@@ -6495,7 +6520,8 @@
       "cb:a508",
       "cb:a521"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c063",
     "created": "2026-06-11"
   },
   {
@@ -6516,6 +6542,11 @@
         "date": "2026-06-11",
         "detail": "Three specimens in one session (postscript 8): the a501 link-back replay, the c049 dep re-point (whose Mutation clauses append evidence internally but expose no evidence-only type), and the close's own four appends (a519, a500, and the a507 retro-pairs on a521/c062) - each a hand-rolled script against CB.Belief.Store. Preflight 2026-06-11: backlog tag-family overlap only; no semantic conflict.",
         "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Third and fourth instances in one session (the a515 discharge thread): the discharge rationale append on a515 and this close's a507 retro-pairs both required raw CB.Belief.Store scripts because no sanctioned append entry point exists. Now the most-reproved gap on the desk.",
+        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
       }
     ],
     "subjects": [],
@@ -6572,5 +6603,220 @@
     },
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a524",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "skills"
+    ],
+    "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns directives into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+    "artifact": "session:2026-06-11-position-skill-authoring",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Supersedes a521 to add /position, the settle-time capture skill the a515 discharge authored: it applies the a496 ceremony gate before any staging, homes the document per a492, stages the a511 format with claims in codepath walk order, verifies every anchor through mix cb.resolve (a512) with loose anchors treated as authoring failures, renders belief refs per a503 after extraction, and never writes beliefs/ - extraction stays with /assert. Skill readable at the artifact anchor per a507.",
+        "artifact": "code:skills/position/SKILL.md#name: position"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Accepted via human adjudication against cb:a521. Reasoning: Operator-directed (2026-06-11, the a515 discharge): the /position capture skill joins the framework skill set, so the skills-line convention gains its fifth entry. Successor carries the four existing skill descriptions verbatim and adds /position between /materialize and /present-codepath.",
+        "artifact": "adjudication:human:session:2026-06-11-position-skill-authoring"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Self-bootstrapping pointer per cb:a507: the session: stipulation above resolves in chronicles/2026-06-11-the-position-skill-lands.md; the skill itself is readable at the evidence anchor.",
+        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a470"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:c063",
+    "type": "directive",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:claude-md"
+    ],
+    "claim": "The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.",
+    "rules": [
+      {
+        "output_path": "CLAUDE.md"
+      },
+      {
+        "header_comment": "<!-- Generated by mix cb.generate.claude_md from the cb: DAG. Do not edit; run the task to regenerate. -->\n\n# Composable Beliefs\n\nA framework for giving AI agents persistent, source-grounded, inspectable reasoning that survives session boundaries and composes into understanding the agent never explicitly derived."
+      },
+      {
+        "render_sections": [
+          {
+            "beliefs": [
+              "cb:a459",
+              "cb:a444"
+            ],
+            "title": "Quick Start"
+          },
+          {
+            "beliefs": [
+              "cb:a477"
+            ],
+            "title": "Active directives"
+          },
+          {
+            "beliefs": [
+              "cb:a508"
+            ],
+            "title": "Session start"
+          },
+          {
+            "beliefs": [
+              "cb:a478",
+              "cb:a479",
+              "cb:a448"
+            ],
+            "title": "Architecture"
+          },
+          {
+            "beliefs": [
+              "cb:a449",
+              "cb:a450"
+            ],
+            "title": "Operations"
+          },
+          {
+            "beliefs": [
+              "cb:a482",
+              "cb:a481"
+            ],
+            "title": "Schema"
+          },
+          {
+            "beliefs": [
+              "cb:a524"
+            ],
+            "title": "Skills"
+          },
+          {
+            "beliefs": [
+              "cb:a454"
+            ],
+            "title": "Collections"
+          },
+          {
+            "beliefs": [
+              "cb:a455"
+            ],
+            "title": "Formatting"
+          },
+          {
+            "beliefs": [
+              "cb:a456"
+            ],
+            "title": "Git Policy"
+          },
+          {
+            "beliefs": [
+              "cb:a457"
+            ],
+            "title": "Data Protection"
+          },
+          {
+            "beliefs": [
+              "cb:a458"
+            ],
+            "title": "Origin"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "CLAUDE.md is read-only - edits are overwritten on next generation",
+      "Every line of output traces to exactly one belief's claim field",
+      "deps equals the union of all beliefs referenced in render_sections",
+      "Section titles are human-readable; tags remain free for cross-cutting audit queries"
+    ],
+    "contract": true,
+    "artifact": "session:2026-06-11-position-skill-authoring",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Single change from cb:c062: the Skills section renders cb:a524 (the five-skill list including /position) in place of the superseded cb:a521; deps updated to match per the union invariant. All other sections, rules, and invariants carried verbatim. The chain is c060 -> c061 -> c062 -> this node.",
+        "artifact": "code:skills/position/SKILL.md#name: position"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Accepted via human adjudication against cb:c062. Reasoning: Render-list maintenance (2026-06-11, the a515 discharge): c062 Skills section references cb:a521, superseded today by cb:a524 when /position joined the framework skill set. The contract changes only that reference and the dep union; the chain is c060 -> c061 -> c062 -> this node. Preflight matched the c062 precedent: contract-level hits all bare tag_overlap from the dag-schema family (a519 calibration), the single contract claim_overlap being the supersession target, reviewed per c055.",
+        "artifact": "adjudication:human:session:2026-06-11-position-skill-authoring"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Self-bootstrapping pointer per cb:a507: the session: stipulation above resolves in chronicles/2026-06-11-the-position-skill-lands.md.",
+        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a444",
+      "cb:a448",
+      "cb:a449",
+      "cb:a450",
+      "cb:a454",
+      "cb:a455",
+      "cb:a456",
+      "cb:a457",
+      "cb:a458",
+      "cb:a459",
+      "cb:a477",
+      "cb:a478",
+      "cb:a479",
+      "cb:a481",
+      "cb:a482",
+      "cb:a508",
+      "cb:a524"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a525",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "docs",
+      "convention",
+      "readme"
+    ],
+    "claim": "The repository README is a succinct front door - pitch, the two commitments, use cases, the sixty-second demo, quick start, a documentation map, honest status - and stays near 100 lines. Narrative, reference, and worked-example material lives in docs/ files linked from the README's Documentation section (mental-model.md, codepaths.md, eval-ledger.md, reference.md, worked-example-eval-verdict.md). New deep material is added as or into a docs/ file and linked from the map, never appended to the README.",
+    "artifact": "user:mark:2026-06-11",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "The README had grown to 818 lines - a full manual fronting the repo. The operator asked whether a succinct README with expansive documentation elsewhere is a standard practice (it is: short README plus docs/ directory, Diataxis-shaped), then directed the split. Commit 0b8da60 reduced the README to 95 lines and moved the four deep sections verbatim into five docs/ files with cross-references retargeted. Minted at /end so the settled convention outlives the chat. Preflight 2026-06-12: clean - zero matches in all four buckets; no existing directive governs README or docs/ structure.",
+        "artifact": "document:docs/mental-model.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "README.md",
+        "type": "doc"
+      },
+      {
+        "ref": "docs/",
+        "type": "doc"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-12"
   }
 ]
