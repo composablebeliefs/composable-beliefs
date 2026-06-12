@@ -119,6 +119,36 @@ defmodule CB.Belief.MaterializerTest do
     assert String.match?(record["id"], ~r/^t\d+$/)
   end
 
+  test "JSON sink persists notes on the record and the link-back ref", %{todos: todos} do
+    spec = %{
+      "belief_id" => "a020",
+      "action_items" => [
+        %{
+          "action" => "Notify next member in queue",
+          "notes" => "a020: holds expire after 7 days"
+        },
+        %{"action" => "Flip item to available", "notes" => ""},
+        %{"action" => "Log the transition"}
+      ]
+    }
+
+    assert {:ok, %{entries: [noted, blank, bare]}} =
+             Materializer.materialize(spec, path: todos, today: "2026-06-03")
+
+    assert noted["notes"] == "a020: holds expire after 7 days"
+    refute Map.has_key?(blank, "notes")
+    refute Map.has_key?(bare, "notes")
+
+    written = Jason.decode!(File.read!(todos))
+    assert [%{"notes" => "a020: holds expire after 7 days"}, no_notes, _] = written
+    refute Map.has_key?(no_notes, "notes")
+
+    # The belief's materialized link-back carries the notes too.
+    {:ok, all} = Store.read()
+    node = Enum.find(all, &(&1.id == "a020"))
+    assert %{"todos" => [%{"notes" => "a020: holds expire after 7 days"} | _]} = node.materialized
+  end
+
   test "refuses to materialize a non-directive" do
     spec = %{"belief_id" => "a001", "action_items" => [%{"action" => "x"}]}
 

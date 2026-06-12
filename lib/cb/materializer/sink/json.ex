@@ -7,10 +7,16 @@ defmodule CB.Materializer.Sink.JSON do
       {
         "id": "t0007",
         "action": "<free text from the action item>",
+        "notes": "<traceability back to the directive's reasoning>",
         "source": "<belief id that produced it>",
         "created": "2026-06-03",
         "status": "open"
       }
+
+  `notes` is carried on both the record and the returned ref (so the
+  belief's `materialized` link-back keeps it too) whenever the action
+  item supplies a non-empty one; it is omitted otherwise. Other extra
+  keys are still ignored.
 
   Records are appended to the JSON array at `CB.Config.todos_path/0`
   (overridable via the `:path` opt, or globally via
@@ -40,15 +46,17 @@ defmodule CB.Materializer.Sink.JSON do
           id = format_id(seq)
           action = item["action"]
 
-          record = %{
-            "id" => id,
-            "action" => action,
-            "source" => source,
-            "created" => today,
-            "status" => "open"
-          }
+          record =
+            %{
+              "id" => id,
+              "action" => action,
+              "source" => source,
+              "created" => today,
+              "status" => "open"
+            }
+            |> put_notes(item)
 
-          ref = %{"action" => action, "id" => id}
+          ref = put_notes(%{"action" => action, "id" => id}, item)
           {[record | recs], [ref | refs], seq + 1}
         end)
 
@@ -61,6 +69,13 @@ defmodule CB.Materializer.Sink.JSON do
       end
     end
   end
+
+  # Notes are the traceability the /materialize flow promises; carry a
+  # non-empty one on both the record and the link-back ref.
+  defp put_notes(map, %{"notes" => notes}) when is_binary(notes) and notes != "",
+    do: Map.put(map, "notes", notes)
+
+  defp put_notes(map, _item), do: map
 
   # Read the existing todo array, tolerating a missing file (treated as []).
   defp read(path) do

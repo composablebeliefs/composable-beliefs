@@ -54,7 +54,7 @@ A directive identifies work that needs doing. Materializing it means turning tha
 
    The module:
    - Validates the node is an unmaterialized `directive`
-   - Hands the action items to the sink (default `CB.Materializer.Sink.JSON`, which appends `{id, action, source, created, status}` todo records to `CB.Config.todos_path/0`)
+   - Hands the action items to the sink (default `CB.Materializer.Sink.JSON`, which appends `{id, action, notes, source, created, status}` todo records to `CB.Config.todos_path/0`)
    - Records the returned refs on the belief's `materialized` field (date + entries)
 
 6. **Verify** by reading back the task collection and the belief (`mix bs show $ARGUMENTS`).
@@ -76,7 +76,8 @@ The spec map passed to `CB.Belief.Materializer.materialize/1`:
 ```
 
 Each action item:
-- `action` (required): the action text. The default JSON sink records only this, plus a generated `id`, `source` (the belief id), `created`, and `status`.
+- `action` (required): the action text.
+- `notes`: traceability back to the directive's reasoning. The default JSON sink persists a non-empty `notes` on both the todo record and the `materialized` link-back ref.
 - any other keys (e.g. `owner`, `due`, `object`) pass through to the sink untouched. The default JSON sink ignores them; a host that needs richer items supplies its own sink implementing the `CB.Materializer.Sink` behaviour.
 
 `action_items` may also be supplied under the legacy key `todos`.
