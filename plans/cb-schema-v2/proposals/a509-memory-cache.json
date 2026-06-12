@@ -1,0 +1,31 @@
+{
+  "new_beliefs": [
+    {
+      "type": "directive",
+      "kind": "convention",
+      "domain": "system",
+      "tags": [
+        "session-memory",
+        "cache-discipline",
+        "multi-session"
+      ],
+      "claim": "Agent session memory is an ephemeral cache, never a store: project and work state is banned from it - the graph owns obligations, the repos own records, CLAUDE.md compiles the bootstrap. At session end, promote anything load-bearing through the write flow, then prune; what survives between sessions is at most a thin operator-preferences layer, and only until a private overlay collection gives preferences a graph home. The a386 doctrine applied to the agent's own notebook: a cache whose freshness is procedural embeds the staleness it was meant to solve.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "detail": "Proposed by the operator after two same-week incidents of memory rot under multi-session concurrency (the a367 stale-todo authoring and the bootstrap handoff failure, postscripts 4 and 6). Viable now because the week's promotions emptied memory of load: a504-a506, a497, a508, and the desk made every formerly memory-resident fact graph-resident. Applied immediately: the session's memory files were pruned to a single index line pointing at the graph.",
+          "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+        }
+      ],
+      "subjects": [],
+      "deps": [
+        "cb:a504",
+        "cb:a386"
+      ],
+      "id": "cb:a509",
+      "status": "active",
+      "created": "2026-06-11"
+    }
+  ]
+}
