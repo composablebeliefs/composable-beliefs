@@ -6162,5 +6162,32 @@
     "materialized": null,
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "cb:a519",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "preflight",
+      "calibration"
+    ],
+    "claim": "Calibrate preflight conflict-level escalation: bare tag-overlap with a contract-grade node currently escalates a proposal to a contract-level block, costing an adjudication interrupt on genuinely disjoint matches - every dag-schema-tagged proposal hits the same multi-contract wall and receives the same boilerplate review. Decide and encode the criteria for when overlap warrants blocking versus informational priority (for example: require claim-overlap or subject-overlap in addition to a shared tag before contract-level), and land the change as a preflight-bucketing revision with a c055-family supersession if the scope doctrine moves.",
+    "artifact": "document:plans/thread-backlog-2026-06-11/adjudications/adj-ids-output.json",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Grounded in the adjudication machinery's first live user-decision exercise (the thread-backlog close, a517/a518): both contract-level blocks were bare tag-overlap escalations, one against a genuinely disjoint match, costing a user interrupt the calibration would have avoided. Corroborated by a week of identical reviews: every plan-0-onward dag-schema proposal triggered the same wall and the same overlap-is-necessary-but-not-sufficient boilerplate. Surfaced in the closing report of that thread and minted here per /end step 8 (the close sweeps itself). Adjacent to a494 (consensual primitives / supportive-match handling), deliberately separate from it. Preflight 2026-06-11: one non-contract tag-overlap (backlog family sibling); notably the calibration directive itself cleared without a contract-level wall - tagged by concern (preflight, calibration) rather than dag-schema, which is itself a data point for the calibration: the escalation tracks the tag, not the content.",
+        "artifact": "document:plans/thread-backlog-2026-06-11/adjudications/adj-session-res.json"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:c055"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
