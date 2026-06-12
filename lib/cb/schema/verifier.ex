@@ -7,6 +7,8 @@ defmodule CB.Schema.Verifier do
   - **Framework-universal structure** - the four structural types, the
     `contract: true` biconditional, the `c`-prefix convention, the
     grounding rule (deps, or a stipulation artifact for directives),
+    dep resolution (every dep of an active belief resolves in-collection,
+    with cross-namespace deps deferred to `mix cb.verify.collection`),
     subject containment on compounds, artifact format, status linkage.
     These hold for any well-formed collection and are checked against
     `CB.Belief`'s own canon, not against ids.
@@ -55,6 +57,7 @@ defmodule CB.Schema.Verifier do
       check_no_implication_field(beliefs),
       check_action_item_shape(beliefs),
       check_grounding(beliefs),
+      check_dep_resolution(beliefs),
       check_subject_containment(beliefs),
       check_retired_is_directive(beliefs),
       check_status_enum(beliefs),
@@ -401,6 +404,44 @@ defmodule CB.Schema.Verifier do
   end
 
   defp stipulation_artifact?(_), do: false
+
+  # --- dep resolution (framework-universal) ---
+
+  defp check_dep_resolution(beliefs) do
+    # Every dep of an active belief must resolve to a node in this collection.
+    # A dep in a namespace the collection's own ids never use is
+    # cross-namespace: unresolvable from this list alone, so it is counted
+    # and left to `mix cb.verify.collection`, which checks the loaded union.
+    # A bare dep is never cross-namespace - unresolved means dangling.
+    ids = MapSet.new(beliefs, & &1.id)
+    local_namespaces = beliefs |> Enum.map(&namespace_of(&1.id)) |> MapSet.new()
+
+    {cross, dangling} =
+      beliefs
+      |> Enum.filter(&(&1.status == "active"))
+      |> Enum.flat_map(fn b -> Enum.map(b.deps || [], &{b.id, &1}) end)
+      |> Enum.reject(fn {_, dep} -> MapSet.member?(ids, dep) end)
+      |> Enum.split_with(fn {_, dep} ->
+        ns = namespace_of(dep)
+        not is_nil(ns) and not MapSet.member?(local_namespaces, ns)
+      end)
+
+    if dangling == [] do
+      {"dep resolution", :ok,
+       "all local deps of active beliefs resolve (#{length(cross)} cross-namespace deferred to verify.collection)"}
+    else
+      {"dep resolution", :fail, "dangling deps: #{inspect(dangling)}"}
+    end
+  end
+
+  defp namespace_of(id) when is_binary(id) do
+    case String.split(id, ":", parts: 2) do
+      [ns, _] -> ns
+      _ -> nil
+    end
+  end
+
+  defp namespace_of(_), do: nil
 
   # --- subject containment (compound = conjunction) ---
 

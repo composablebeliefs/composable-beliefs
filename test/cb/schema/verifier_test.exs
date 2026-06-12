@@ -118,6 +118,43 @@ defmodule CB.Schema.VerifierTest do
     assert status_of(Verifier.check([anchored, broken]), "codepath output-targets") == :fail
   end
 
+  test "a dep resolving in-collection passes dep resolution" do
+    beliefs = [
+      b(id: "x:a001", type: "primitive"),
+      b(id: "x:a002", type: "compound", deps: ["x:a001"])
+    ]
+
+    assert status_of(Verifier.check(beliefs), "dep resolution") == :ok
+  end
+
+  test "a dep on a missing local id fails dep resolution" do
+    beliefs = [b(id: "x:a002", type: "compound", deps: ["x:a001"])]
+    assert status_of(Verifier.check(beliefs), "dep resolution") == :fail
+  end
+
+  test "a bare dep in a namespaced collection is dangling, not cross-namespace" do
+    # The live incident class: deps written bare while every node id is
+    # namespaced. Bare ids cannot be cross-namespace, so this must fail.
+    beliefs = [
+      b(id: "x:a001", type: "primitive"),
+      b(id: "x:a002", type: "compound", deps: ["a001"])
+    ]
+
+    assert status_of(Verifier.check(beliefs), "dep resolution") == :fail
+  end
+
+  test "a cross-namespace dep is deferred to verify.collection" do
+    beliefs = [b(id: "x:a002", type: "compound", deps: ["other:c001"])]
+    assert status_of(Verifier.check(beliefs), "dep resolution") == :ok
+  end
+
+  test "deps of non-active beliefs are not checked for resolution" do
+    superseded =
+      b(id: "x:a002", type: "compound", deps: ["x:gone"], status: "superseded")
+
+    assert status_of(Verifier.check([superseded]), "dep resolution") == :ok
+  end
+
   test "status falls back to framework canon when no status-lifecycle contract is present" do
     beliefs = [b(id: "x:a001", type: "primitive", kind: "rule", status: "active")]
     assert status_of(Verifier.check(beliefs), "status enum") == :ok

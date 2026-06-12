@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Cb.Import do
   {
     "new_beliefs": [
       {
-        "id": "a305",
+        "id": "cb:a305",
         "type": "primitive",
         "kind": "convention",
         "domain": "dev",
@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Cb.Import do
     ],
     "backfills": [
       {
-        "id": "a044",
+        "id": "cb:a044",
         "updates": {"domain": "agent", "tags": ["agent-role"]}
       }
     ]
@@ -44,6 +44,9 @@ defmodule Mix.Tasks.Cb.Import do
   ## Validation
 
   Exits non-zero before writing if:
+  - New belief IDs lack the graph's namespace prefix (bare `a305` in a
+    `cb:`-namespaced graph) - bare ids land silently inconsistent: every
+    namespaced lookup and intra-batch dep dangles
   - New belief IDs collide with existing nodes
   - Backfill target IDs don't exist
   - Spec file is malformed
@@ -84,7 +87,8 @@ defmodule Mix.Tasks.Cb.Import do
 
       existing_ids = MapSet.new(all, & &1.id)
 
-      with :ok <- validate_new_ids(new_beliefs, existing_ids),
+      with :ok <- validate_namespace_consistency(new_beliefs, all),
+           :ok <- validate_new_ids(new_beliefs, existing_ids),
            :ok <- validate_no_duplicate_new_ids(new_beliefs),
            :ok <- validate_backfill_targets(backfills, existing_ids) do
         report(new_beliefs, backfills)
@@ -106,6 +110,66 @@ defmodule Mix.Tasks.Cb.Import do
 
       {:error, reason} ->
         IO.puts(:stderr, "Error: #{inspect(reason)}")
+        System.halt(1)
+    end
+  end
+
+  @doc """
+  Ids in `new_beliefs` that lack the graph's namespace prefix.
+
+  Returns `{namespace, offending_ids}`. The graph's namespace is the single
+  prefix every existing id shares (`cb:a001` -> `"cb"`); a graph with no
+  nodes, or with mixed or bare ids, declares no namespace and the result is
+  `{nil, []}` - nothing to be consistent with. Pure - the halting wrapper
+  around it is `run/1`'s concern.
+  """
+  @spec namespace_violations([map()], [CB.Belief.t()]) :: {String.t() | nil, [String.t()]}
+  def namespace_violations(new_beliefs, existing) do
+    case graph_namespace(existing) do
+      nil ->
+        {nil, []}
+
+      ns ->
+        prefix = ns <> ":"
+
+        bad =
+          new_beliefs
+          |> Enum.map(& &1["id"])
+          |> Enum.reject(&(is_binary(&1) and String.starts_with?(&1, prefix)))
+
+        {ns, bad}
+    end
+  end
+
+  # The single namespace prefix shared by every existing id, or nil.
+  defp graph_namespace(existing) do
+    existing
+    |> Enum.map(fn b ->
+      case String.split(b.id, ":", parts: 2) do
+        [ns, _] -> ns
+        _ -> nil
+      end
+    end)
+    |> Enum.uniq()
+    |> case do
+      [ns] when is_binary(ns) -> ns
+      _ -> nil
+    end
+  end
+
+  defp validate_namespace_consistency(new_beliefs, all) do
+    case namespace_violations(new_beliefs, all) do
+      {_, []} ->
+        :ok
+
+      {ns, bad} ->
+        IO.puts(
+          :stderr,
+          "Error: new-belief ids missing the graph's #{ns}: namespace prefix: #{inspect(bad)}\n" <>
+            "Write spec ids namespaced (#{ns}:a305, not a305) - bare ids land " <>
+            "inconsistent and namespaced lookups and deps dangle."
+        )
+
         System.halt(1)
     end
   end
