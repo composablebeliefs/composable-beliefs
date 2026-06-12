@@ -45,3 +45,23 @@ a511 (pinning the anchored-position format) can cite real resolver behavior.
 a488's escalation to contract grade is available whenever the rules are worth
 writing. a523 has two specimens and is getting cheaper to fix than to keep
 documenting.
+
+## Postscript: a523 closes the same evening
+
+The "cheaper to fix than to keep documenting" line proved out immediately:
+the operator chose to fix a523 before closing the thread. Persistence won
+over dropping the mandate - the notes are real traceability, so the JSON
+sink now carries a non-empty `notes` key on both the todo record and the
+materialized link-back ref (blank or absent notes stay omitted; other extra
+keys still pass only to custom sinks), and the /materialize skill's sink
+description now tells the truth. The discharge was its own demonstration:
+a523's materialization (t0010-t0011) ran through the fixed sink and the
+notes landed in todos.json and the link-back.
+
+One small loop closed inside the loop: the discharge evidence's first anchor
+matched both `put_notes` clauses, `mix cb.resolve` warned to tighten it, and
+the anchor was tightened to a unique match before commit - the gate doing
+its job on the records of its own sibling fix.
+
+The desk stands at thirteen. a515 in a clean context is the natural next
+thread.

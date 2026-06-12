@@ -6546,10 +6546,30 @@
         "date": "2026-06-11",
         "detail": "Second live specimen, at the very next materialization (the a512 discharge, t0007-t0009): the skill's traceability mandate was followed - all three action items carried notes - and the JSON sink dropped them by documented design while the flow reported success. The divergence reproduces on every materialization until the sink persists notes or the skill stops mandating them.",
         "artifact": "document:chronicles/2026-06-11-draft-mode-anchoring.md"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Discharged 2026-06-11 (materialized t0010-t0011): persistence chosen over dropping the mandate - the notes are real traceability, so the JSON sink now carries a non-empty notes key on both the todo record and the materialized link-back ref (blank or absent notes stay omitted; other extra keys still pass to custom sinks only), and the /materialize skill's sink description matches. The discharge's own materialization ran through the fixed sink and its notes landed in todos.json and the link-back - the live demonstration that the divergence is closed.",
+        "artifact": "code:lib/cb/materializer/sink/json.ex#defp put_notes(map, %{"
       }
     ],
     "subjects": [],
     "deps": [],
+    "materialized": {
+      "date": "2026-06-11",
+      "todos": [
+        {
+          "action": "Persist a non-empty notes key on both the JSON sink's todo record and the materialized link-back ref (blank or absent notes stay omitted); cover record, ref, and link-back in tests",
+          "id": "t0010",
+          "notes": "a523: persistence chosen over dropping the mandate - the notes are real traceability; this materialization is itself the live demonstration that they now land"
+        },
+        {
+          "action": "Align the /materialize skill's sink description with the persisted-notes contract (record shape and the action-item key table)",
+          "id": "t0011",
+          "notes": "a523: the silent divergence between skill contract and sink behavior is the part that must not survive"
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-11"
   }
