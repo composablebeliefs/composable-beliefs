@@ -1,0 +1,174 @@
+{
+  "new_beliefs": [
+    {
+      "id": "cb:a511",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "system",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "positions",
+        "schema",
+        "anchoring"
+      ],
+      "claim": "Pin the anchored-position format as schema beliefs heading toward a contract: a position's `### Claim:` sections may carry one or more `**Anchor:**` lines of code: URIs (c043 grammar) verified resolving at authoring time; optional anchored terms entries; a `**Class:**` header field; claim order is the default codepath walk order. The worked instance is positions/2026-06-10-code-as-operational-substrate.md; per a496 this is spec, not stance, so it lands as schema/contract beliefs, not a position document.",
+      "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+      "deps": [
+        "cb:a485",
+        "cb:a488",
+        "cb:a492",
+        "cb:a496"
+      ],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "Designed across the 2026-06-10/11 anchored-answer thread; the substrate position instantiated the format (five claims, six anchors, all verified one-match) before the format itself was pinned anywhere. a496's ceremony rule redirected this from a position to direct schema capture."
+        }
+      ]
+    },
+    {
+      "id": "cb:a512",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "system",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "codepath",
+        "anchoring"
+      ],
+      "claim": "Provide draft-mode anchor resolution: a `mix cb.resolve --file` entry point that validates and resolves bare {path, anchor, nth} stop rows against a root, with no belief collection required. CB.Codepath.resolve/3 (lib/cb/codepath.ex) dereferences belief ids today, so unregistered artifacts - draft answers, anchored positions - cannot use the one tested resolver. This is the verification gate for answer-time anchoring (a488) and the /position capture skill, and it is a488's stated escalation condition to contract grade.",
+      "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+      "deps": [
+        "cb:a488",
+        "cb:a467"
+      ],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "The gap surfaced twice in the thread: presenting the substrate position as a codepath required hand-running grep -nF with the resolver's semantics because mix cb.render.codepath only loads codepath output-targets, and a488's evidence names a draft-mode verifier as its contract-escalation condition."
+        }
+      ]
+    },
+    {
+      "id": "cb:a513",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "system",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "tooling",
+        "import"
+      ],
+      "claim": "Make mix cb.import validate id-namespace consistency: a spec whose new-belief ids lack the graph's namespace prefix (bare a484 in a cb:-namespaced graph) should be normalized or rejected, and the moduledoc example (lib/mix/tasks/cb.import.ex, which shows a bare 'a305') corrected. Today the task stores spec ids verbatim, so a bare-id batch lands silently inconsistent.",
+      "artifact": "session:2026-06-10-substrate-position-discussion",
+      "deps": [],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-10",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "Observed live: the a484-a488 import followed the moduledoc's bare-id example, the batch stored bare while every other node is cb:-prefixed, namespaced lookups (mix bs tree cb:a488) and intra-batch deps dangled, and the ids were corrected surgically afterward. The 2026-06-11 stasis-backlog import used namespaced ids and landed clean, isolating the defect to validation plus the misleading example."
+        }
+      ]
+    },
+    {
+      "id": "cb:a514",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "system",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "tooling",
+        "verification"
+      ],
+      "claim": "Add a dangling-deps check to mix cb.verify.schema: every dep of every active belief must resolve to an existing node (in-graph or via a declared cross-namespace dependency). The grounding check today verifies deps are non-empty, not that they resolve, so a dep pointing at a nonexistent id passes all checks silently.",
+      "artifact": "session:2026-06-10-substrate-position-discussion",
+      "deps": [],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-10",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "Observed live: after the bare-id import, deps written as cb:a484 pointed at a node stored as a484; 19 of 19 applicable schema checks passed and the dangle surfaced only because mix bs tree happened to be run. A resolution check would have caught it at verify time."
+        }
+      ]
+    },
+    {
+      "id": "cb:a515",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "agent",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "skills",
+        "positions"
+      ],
+      "claim": "Author the /position capture skill (skills/position/): run at the moment a thread settles something concrete, it applies the a496 ceremony gate (position document only when the verbatim reasoning is the artifact; otherwise route to /assert), stages a position file in the host repo's positions/ - verbatim passages, claims with intended types, **Anchor:** lines verified via the draft-mode resolver, Class header, Origin citing the session - and never writes beliefs/ directly; extraction stays with /assert. Belief-ref rendering follows the a503 convention. The 2026-06-10 thread is the worked trace, including the failure modes the rules must guard.",
+      "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+      "deps": [
+        "cb:a496",
+        "cb:a492",
+        "cb:a488"
+      ],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "The thread executed the full capture pipeline by hand - stance posed, position staged with verified anchors, preflight, import, DAG-status flip - and the user asked for the skill that mechanizes it at a chosen point in a thread. Depends practically on a512 (the anchor verification gate) and on a503 settling the reference convention."
+        }
+      ]
+    },
+    {
+      "id": "cb:a516",
+      "type": "directive",
+      "kind": "action-item",
+      "domain": "dev",
+      "tags": [
+        "backlog",
+        "lifecycle:discrete",
+        "workspace"
+      ],
+      "claim": "Archive the code-walkthrough repo (../code-walkthrough): a467 records its collapse into cb as the single schema authority (2026-06-09), but the repo still sits live in the amieval workspace with no deprecation marker. Add a README notice pointing at the cb codepath machinery and a467, then archive or remove it from the workspace.",
+      "artifact": "session:2026-06-10-substrate-position-discussion",
+      "deps": [
+        "cb:a467"
+      ],
+      "subjects": [],
+      "materialized": null,
+      "status": "active",
+      "created": "2026-06-11",
+      "evidence": [
+        {
+          "date": "2026-06-11",
+          "artifact": "session:2026-06-10-substrate-position-discussion",
+          "detail": "The thread independently concluded code-walkthrough should be deprecated before discovering a467 already recorded the decision - the repo's continued undecorated presence is what made the re-derivation possible."
+        }
+      ]
+    }
+  ]
+}

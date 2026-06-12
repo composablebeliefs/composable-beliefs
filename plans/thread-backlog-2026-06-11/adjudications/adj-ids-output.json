@@ -1,0 +1,32 @@
+{
+  "proposed": {
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "system",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "glue-ui",
+      "provenance",
+      "output-target"
+    ],
+    "claim": "Emit belief ids in compiled output: CB.OutputTarget renders render_sections claims bare (render_section/3, lib/cb/output_target.ex), so a compiled digest like CLAUDE.md strips line-level provenance and anything quoting it cites the rendering instead of the graph. Each compiled line should carry its belief id per the a503 reference convention once settled, so quoting the digest is still citing the graph. c061 makes the digest read-only and canonical, which raises the stakes.",
+    "artifact": "session:2026-06-10-substrate-position-discussion",
+    "deps": [
+      "cb:a503"
+    ],
+    "subjects": [],
+    "materialized": null,
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "artifact": "session:2026-06-10-substrate-position-discussion",
+        "detail": "Surfaced when an agent cited the compiled CLAUDE.md as authority for the contracts-in-graph pattern instead of the contract ids it compiles from; the user flagged it and the mechanism traced to render_section emitting claims without ids. Coupled to the open a503 gloss convention and adjacent to the a502 belief-card renderer."
+      }
+    ]
+  },
+  "conflicting_id": "cb:c030",
+  "outcome": "reject_dep_tie",
+  "reasoning": "Tag-only overlap (provenance); subject matter disjoint - compiled-output rendering vs primitive source-identifier taxonomy. Dep-tie records the contract was reviewed; vacuous as grounding, harmless as constraint. User-adjudicated 2026-06-11.",
+  "session_ref": "review-session-2026-06-11-thread-backlog"
+}
