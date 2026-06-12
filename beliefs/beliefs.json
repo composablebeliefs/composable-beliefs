@@ -6085,13 +6085,23 @@
         "date": "2026-06-11",
         "detail": "The thread independently concluded code-walkthrough should be deprecated before discovering a467 already recorded the decision - the repo's continued undecorated presence is what made the re-derivation possible.",
         "artifact": "session:2026-06-10-substrate-position-discussion"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Discharged by deletion rather than archival: the operator removed both the GitHub repo and the local clone deliberately, confirming nothing in the repo's history needed preserving - the design content had already collapsed into cb (a467 records the absorption, 2026-06-09). The directive's intent (the repo no longer sits live in the workspace confusing reconciliation) is satisfied by the stronger act; this stamp records the truth of how, per the a367 discharged-not-retracted precedent. Operator confirmation captured in the stasis thread, 2026-06-11.",
+        "artifact": "user:mark"
       }
     ],
     "subjects": [],
     "deps": [
       "cb:a467"
     ],
-    "materialized": null,
+    "materialized": {
+      "date": "2026-06-11",
+      "todos": [
+        "repo-deleted:amieval/code-walkthrough"
+      ]
+    },
     "status": "active",
     "created": "2026-06-11"
   },
