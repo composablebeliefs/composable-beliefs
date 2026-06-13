@@ -6721,6 +6721,11 @@
         "date": "2026-06-12",
         "detail": "Discharged 2026-06-12 (materialized t0014): the append-evidence Mutation clause and the mix cb.evidence front door landed with clause and validator tests (308 passing, schema verify 20/20). The entry rides Belief.to_map key ordering and Store.write atomic serialization, so the encoder drift evidence 3 recorded cannot recur through this path - verified end-to-end on a temp graph copy before the live run. This entry is the front door appending its own discharge evidence: first production run.",
         "artifact": "code:lib/mix/tasks/cb.evidence.ex#defmodule Mix.Tasks.Cb.Evidence do"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "First-production-run catch, the a530 close: the front door's date default drifted from the system's convention - Mutation.resolve_date defaulted to Date.utc_today() while every other writer stamps CB.today() (local), so two appends run past midnight UTC landed dated 2026-06-13 on a 2026-06-12 ceremony. Fixed inline (resolve_date now stamps CB.today()); the two misstamped dates repaired surgically in the graph, the repair recorded in the chronicle. Date semantics of this front door are now: local date, same as the materializer.",
+        "artifact": "document:chronicles/2026-06-12-the-other-half-of-the-door.md"
       }
     ],
     "subjects": [],
@@ -7180,6 +7185,11 @@
         "date": "2026-06-12",
         "detail": "Surfaced at the a522 close: the discharge deliberately left CLAUDE.md untouched because the Operations mention requires the a449 supersession ceremony, which exceeded the discharge's authorized scope. Precedent: the a515 close updated the skills line the same way (a521 -> a524, c062 -> c063). Preflight 2026-06-12: 0 contract, 2 non-contract flags (a494, a498), both bare tag_overlap, no semantic contact; a449's claim_overlap surfaced neutral - it is the supersession target. Reviewed per c055 and proceeded.",
         "artifact": "document:chronicles/2026-06-12-the-front-door-opens.md"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Scope widened by the a530 close: the write surface now also includes mix cb.todo.close, so the a449 successor should name the whole surface in one pass - preflight/adjudicate/import, mix cb.evidence, and mix cb.todo.close - rather than adding the evidence task alone and leaving the todo task invisible to the next cold session.",
+        "artifact": "document:chronicles/2026-06-12-the-other-half-of-the-door.md"
       }
     ],
     "subjects": [],
