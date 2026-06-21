@@ -3218,7 +3218,8 @@
       "cb:a407",
       "cb:a467"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c066",
     "created": "2026-06-09"
   },
   {
@@ -7632,5 +7633,102 @@
     ],
     "status": "active",
     "created": "2026-06-12"
+  },
+  {
+    "id": "cb:c066",
+    "type": "directive",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "artifact-scheme"
+    ],
+    "claim": "Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
+    "rules": [
+      {
+        "definitions": {
+          "code": "An anchored site within a repository file. Form: code:<repo-relative-path>#<anchor>. Everything after the first '#' is one opaque literal substring anchor (the fixed-string grep target); an optional trailing '@<N>' selects the Nth match, and a literal trailing '@<digits>' is percent-encoded as '%40<digits>'. Line numbers are never stored - they resolve at render/run time. document: remains the whole-file reference.",
+          "document": "A repository file reference. Form: document:<repo-relative-path>. Files under ops/, dates/, lib/, etc.",
+          "https": "An external URL. Form: https:<URL-rest>. Web pages, papers, external resources.",
+          "plan": "A plan/spec/intent reference. Form: plan:<id-or-descriptor>.",
+          "session": "A working session reference. Form: session:<date-or-descriptor>. Resolved via session transcript (persistence pipeline pending).",
+          "source": "A cached source document reference. Form: source:<slug>. Documents stored under ops/sources/ or similar.",
+          "user": "A direct user statement. Form: user:<name>:<date>. Internal authorship provenance."
+        },
+        "field": "artifact-scheme",
+        "values": [
+          "session",
+          "user",
+          "document",
+          "source",
+          "https",
+          "plan",
+          "code"
+        ]
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'artifact-scheme'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+    ],
+    "contract": true,
+    "artifact": "session:2026-06-17-artifact-scheme-connector-cleanup",
+    "evidence": [
+      {
+        "date": "2026-06-17",
+        "detail": "Drops the gmail: scheme from the closed artifact-scheme enum. gmail: named a specific external product (a connector) inside a core schema enum; per the architectural invariant that CB's core may not name a specific connector, connector identity belongs in a source:/https: URI body, not in a scheme value. No active belief used gmail: (schemes in use: session, document, user, plan, source, https), so removal strands nothing. The seven inherited schemes and all five invariants carry forward verbatim from cb:c043; single-scheme supersession consistent with a397's batching discipline.",
+        "artifact": "session:2026-06-17-artifact-scheme-connector-cleanup"
+      },
+      {
+        "date": "2026-06-17",
+        "detail": "Accepted via human adjudication against cb:c043. Reasoning: Drop the gmail: scheme - it names a specific external product (a connector) inside CB's core artifact-scheme enum, violating the architectural invariant that the core may not name a connector. gmail: is unused by any active belief; the seven other schemes and all invariants carry forward verbatim. Connector identity belongs in a source:/https: URI body.",
+        "artifact": "adjudication:human:2026-06-17-artifact-scheme-connector-cleanup"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "a mix task",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a397",
+      "cb:a398",
+      "cb:a407",
+      "cb:a467"
+    ],
+    "status": "active",
+    "created": "2026-06-17"
+  },
+  {
+    "id": "cb:a540",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "thread-persistence",
+      "decision-weight",
+      "provenance"
+    ],
+    "claim": "A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of cb:a520. The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos (amieval-direction, cb-direction), plan-scale dev threads to the co-located plans/<set>/ convention. Every belief minted that session is then retro-paired (cb:a507) with a document: pointer to that thread. The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act. Until the session-artifact pipeline (cb:a518) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction, and this convention is the bridge to that mechanization. A plan is optional scaffolding warranted only at plan-scale (cb:a496), authored in the repo whose system it concerns (cb:a492) and never standing in for the directive it grounds.",
+    "artifact": "user:thread-persistence-protocol-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "Adopted after the monetization-contingency close (2026-06-12) added its thread verbatim to amieval-direction per the a504/a507 precedent, and the operator asked whether to enshrine that as general policy. The increment over a520: a520's transcript is the condensed record triggered by plan-scale work; this adds the verbatim requirement and a decision-weight trigger that also catches strategy threads which mint directives but no plan. Enforced operationally by the /end skill step 5. Tag-overlap review: deps cb:a520 (transcript+chronicle close) and cb:a507 (pair stipulations with document: pointers) are the family this composes on; no existing convention governs verbatim-vs-condensed or the decision-weight trigger, so no conflict. Verbatim thread of the originating arc: ../amieval-direction/direction/2026-06-12-thread/conversation.md.",
+        "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a520",
+      "cb:a507"
+    ],
+    "status": "active",
+    "created": "2026-06-21"
   }
 ]
