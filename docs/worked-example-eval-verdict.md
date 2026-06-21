@@ -23,7 +23,7 @@ mix cb.verify.collection sdl
 ```
 Verifying sdl: in context of 2 collection(s)
   sdl              11 beliefs (target)
-  method           16 beliefs (dep)
+  method           18 beliefs (dep)
 
   PASS  cross-namespace deps resolve - every dep resolves to a loaded node
   PASS  schema roles discovered - kind=method:c11, domain=method:c3, artifact-scheme=method:c1, status-lifecycle=framework canon
@@ -31,7 +31,7 @@ Verifying sdl: in context of 2 collection(s)
   PASS  kind-type table - all active beliefs with table-bound kinds use an allowed type (method:c10)
   PASS  grounding - compounds and inferences have deps; non-contract directives have deps or a stipulation artifact
   PASS  subject containment - compound subjects contained in dep subject union (1 checked, 0 skipped on unresolvable deps)
-  # ... 13 more schema PASS rows (enums, artifact format, linkage, c-prefix) and
+  # ... 15 more schema PASS rows (enums, artifact format, linkage, c-prefix) and
   # one SKIP (codepath output-targets - none present) elided ...
   PASS  method-check method:c4 m-corroboration - verdicts_corroborated? holds over the union
   PASS  method-check method:c5 m-provenance - observations_cite_runlogs? holds over the union
@@ -42,7 +42,7 @@ Verifying sdl: in context of 2 collection(s)
         llm_judges_validated?: LLM-judge observations with no judge-validation record for their (ruler, eval) pair: sdl:a2 (ruler/llm-judge-vanilla)
   PASS  method-check method:c9 m-correction - corrections_are_supersessions? holds over the union
 
-24 passed, 2 failed, 1 skipped (27 checks)
+25 passed, 2 failed, 1 skipped (28 checks)
 ```
 
 Three things to read off this transcript.
