@@ -7730,5 +7730,57 @@
     ],
     "status": "active",
     "created": "2026-06-21"
+  },
+  {
+    "id": "cb:a541",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "plan-app",
+      "provenance"
+    ],
+    "claim": "Render a plan in plan-app as a live view over its directive nodes, the way positions already join beliefs. A plan currently references beliefs only in prose; give it the same structural join positions have (PlanApp.BeliefJoin resolves **Belief:** [[id]] refs against the live graph and pills each with active/superseded/dangling state). Then a plan page shows its directives' live status - which are still open desk items, which were materialized, which got superseded - making the plan a dashboard over the obligations it grounds rather than a static doc. Reuses BeliefJoin; needs a plan-side convention for listing directive ids. Holds the a382/a489 boundary: the directive stays the SSOT, the plan is the record/view, never the source of obligation.",
+    "artifact": "user:plan-as-directive-view-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "Surfaced while answering whether plans are decomposed into directives (they are not; a382/a489 already make the directive the SSOT and the plan a record). The operator's gesture - 'plan then provenance for the directives, possibly abstracted into directives on top' - points at a real unbuilt feature: plan-app already has the join machinery for positions (PlanApp.BeliefJoin), so extending it to plans is incremental. Tag-overlap review: deps a489 (graph is the index of obligation) and a382 (plans encode intent, not implementation) are the boundary this must hold; no existing directive covers plan-app's belief join, so no conflict. Thread: ../amieval-direction/direction/2026-06-12-thread/conversation.md.",
+        "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a489",
+      "cb:a382"
+    ],
+    "status": "active",
+    "created": "2026-06-21"
+  },
+  {
+    "id": "cb:a542",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "plan-app"
+    ],
+    "claim": "Fix plan-app status mis-bucketing: PlanApp.Sources.Plans.classify/1 matches the bucket regexes against the START of the **Status:** value (^superseded, ^done, ...), so a non-canonical header like 'largely superseded (2026-06)' falls through to :pending and a superseded plan renders as live work. Either canonicalize status headers to a leading keyword, or loosen classify to recognize the keyword anywhere in the value (carefully, to avoid false positives). Observed on cb-direction/plans/composable-beliefs-plans.md, which is largely superseded but buckets pending.",
+    "artifact": "user:plan-as-directive-view-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "Observed when confirming the cb-direction registry render: the one cb-direction plan is headed 'Status: largely superseded' yet surfaced in the pending bucket. classify/1 anchors each pattern with ^, so only a value beginning with the keyword classifies. A latent correctness gap for any non-canonical status string, not specific to this plan. Tag-overlap review: plan-app backlog family only; no existing directive covers status parsing, so no conflict.",
+        "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-21"
   }
 ]
