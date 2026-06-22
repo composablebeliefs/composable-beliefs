@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Conformance adapter: lets the `knowledge` standard's conformance runner target this
+# Elixir implementation. Compiles quietly, then runs the validate task.
+#
+#   VALIDATE_CMD="/path/to/cb/bin/knowledge-validate" ./conformance/run.sh
+#
+set -uo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+mix compile >/dev/null 2>&1 || true
+exec mix knowledge.validate "$@"
