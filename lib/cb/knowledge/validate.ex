@@ -15,18 +15,21 @@ defmodule CB.Knowledge.Validate do
   @date ~r/^\d{4}-\d{2}-\d{2}$/
   @placeholder ~r/<[A-Za-z][^>\n]*>/
   @link ~r/\[[^\]]*\]\((?!https?:|#|mailto:)([^)#]+\.md)(?:#[^)]*)?\)/
+  # Soft convention: ids are namespace:local (lowercase). A CB-dialect addition, not
+  # OKF-native; warned, not failed.
+  @id_format ~r/^[a-z][a-z0-9]*:[a-z0-9-]+$/
 
   def run(root) do
     root = Path.expand(root)
 
     st =
       Manifest.doc_paths(root)
-      |> Enum.reduce(%{errors: [], ids: %{}, cb_deps: [], dirs: %{}}, fn {full, rel}, acc ->
+      |> Enum.reduce(%{errors: [], warnings: [], ids: %{}, cb_deps: [], dirs: %{}}, fn {full, rel}, acc ->
         check_file(full, rel, acc)
       end)
 
     errors = Enum.reverse(st.errors) ++ manifest_check(root)
-    warnings = dep_warnings(st.cb_deps, st.ids) ++ dir_warnings(st.dirs)
+    warnings = Enum.reverse(st.warnings) ++ dep_warnings(st.cb_deps, st.ids) ++ dir_warnings(st.dirs)
     {errors, warnings}
   end
 
@@ -120,6 +123,11 @@ defmodule CB.Knowledge.Validate do
         st
 
       id ->
+        st =
+          if Regex.match?(@id_format, id),
+            do: st,
+            else: add_warn(st, rel, "id_format_invalid", "id '#{id}' is not namespace:local form")
+
         if Map.has_key?(st.ids, id) do
           add_err(st, rel, "duplicate_id", "duplicate id '#{id}' (also in #{st.ids[id]})")
         else
@@ -193,6 +201,8 @@ defmodule CB.Knowledge.Validate do
   end
 
   defp add_err(st, path, code, msg), do: %{st | errors: [finding(path, code, msg) | st.errors]}
+
+  defp add_warn(st, path, code, msg), do: %{st | warnings: [finding(path, code, msg) | st.warnings]}
 
   defp finding(path, code, msg), do: %{path: path, code: code, msg: msg}
 end
