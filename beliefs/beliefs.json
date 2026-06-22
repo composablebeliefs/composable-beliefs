@@ -6423,6 +6423,11 @@
         "date": "2026-06-12",
         "detail": "Retro-pair per the a507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
         "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      },
+      {
+        "date": "2026-06-21",
+        "detail": "Landed: /end step 5 now duplicates the real session .jsonl byte-for-byte from ~/.claude/projects/<encoded-project>/ into the subject-appropriate repo as a type:source per the knowledge standard (amieval/knowledge standard/types.md source+thread rule + threads:[] provenance), replacing the faithful-reconstruction bridge. session: artifacts now resolve to the copied file.",
+        "artifact": "document:../knowledge/standard/types.md"
       }
     ],
     "subjects": [],
@@ -7721,6 +7726,11 @@
         "date": "2026-06-21",
         "detail": "Adopted after the monetization-contingency close (2026-06-12) added its thread verbatim to amieval-direction per the a504/a507 precedent, and the operator asked whether to enshrine that as general policy. The increment over a520: a520's transcript is the condensed record triggered by plan-scale work; this adds the verbatim requirement and a decision-weight trigger that also catches strategy threads which mint directives but no plan. Enforced operationally by the /end skill step 5. Tag-overlap review: deps cb:a520 (transcript+chronicle close) and cb:a507 (pair stipulations with document: pointers) are the family this composes on; no existing convention governs verbatim-vs-condensed or the decision-weight trigger, so no conflict. Verbatim thread of the originating arc: ../amieval-direction/direction/2026-06-12-thread/conversation.md.",
         "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+      },
+      {
+        "date": "2026-06-21",
+        "detail": "The reconstruction bridge is retired: cb:a518 landed, so /end now duplicates the real .jsonl rather than reconstructing verbatim prose. The 'faithful reconstruction' clause of this directive's claim is superseded in practice by the file copy; format follows the knowledge standard source+thread rule.",
+        "artifact": "document:../knowledge/standard/types.md"
       }
     ],
     "subjects": [],
