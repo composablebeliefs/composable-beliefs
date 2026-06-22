@@ -105,4 +105,53 @@ defmodule CB.KnowledgeTest do
     codes = Enum.map(decoded["errors"], & &1["code"])
     assert codes == Enum.sort(codes)
   end
+
+  describe "adapter" do
+    defp sample_beliefs do
+      [
+        %{
+          "id" => "cb:a001",
+          "type" => "primitive",
+          "kind" => "convention",
+          "claim" => "The standard loan period for circulating items is twenty-one days.",
+          "artifact" => "document:policy.md",
+          "deps" => [],
+          "status" => "active",
+          "created" => "2026-01-05",
+          "tags" => ["policy"]
+        },
+        %{
+          "id" => "cb:a002",
+          "type" => "inference",
+          "claim" => "Because the loan period is twenty-one days, holds placed today expire mid-month.",
+          "deps" => ["cb:a001"],
+          "status" => "active",
+          "created" => "2026-01-06",
+          "tags" => []
+        }
+      ]
+    end
+
+    test "emit produces a bundle that validates green", %{root: root} do
+      out = Path.join(root, "okf")
+      assert {:ok, 2} = CB.Knowledge.Emit.bundle(sample_beliefs(), out)
+      assert File.exists?(Path.join(out, "cb-a001.md"))
+      assert File.read!(Path.join(out, "cb-a002.md")) =~ "[cb:a001](cb-a001.md)"
+
+      {errors, warnings} = Validate.run(out)
+      assert errors == []
+      assert warnings == []
+    end
+
+    test "ingest lands every doc as an attributable primitive", %{root: root} do
+      out = Path.join(root, "okf")
+      CB.Knowledge.Emit.bundle(sample_beliefs(), out)
+
+      ingested = CB.Knowledge.Ingest.beliefs(out, "lib")
+      assert length(ingested) == 2
+      assert Enum.all?(ingested, &(&1["type"] == "primitive"))
+      assert Enum.all?(ingested, &String.starts_with?(&1["artifact"], "document:"))
+      assert Enum.all?(ingested, &(&1["deps"] == []))
+    end
+  end
 end
