@@ -7792,5 +7792,57 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-21"
+  },
+  {
+    "id": "cb:a543",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "collections",
+      "tooling"
+    ],
+    "claim": "Stand up a global, cross-project directive graph (in the operator's dotfiles) that compiles its active directives to the global ~/.claude/CLAUDE.md, the way the cb: graph compiles to its repo CLAUDE.md. Cross-project obligations and operator preferences currently have no graph home and are invisible to a cold agent started outside any single repo's context; a dotfiles-resident collection plus a generate step makes them ambient everywhere. Composes with a499 (operator-local default overlay) and a500 (cross-collection desk view): the overlay projects private nodes locally, this graph hosts the genuinely global ones.",
+    "artifact": "session:okf-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "Surfaced answering where non-CB, cross-project obligations live: every existing belief graph is CB-ecosystem (cb: + belief-collections), so a productivity or operational obligation outside any repo's context has nowhere to land and a cold agent never sees it. The /end thread-persistence directive is correctly amieval-scoped; this is the home for the truly global ones. Tag-overlap review: deps a499 (default overlay) and a500 (cross-collection desk) are the observability/collections family this composes on; it adds a global-graph plus global-CLAUDE-compile that neither covers, so no semantic conflict. Verbatim thread: document:../knowledge/meta/2026-06-21-okf-cb-session-source.md.",
+        "artifact": "document:../knowledge/meta/2026-06-21-okf-cb-session-source.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a499",
+      "cb:a500"
+    ],
+    "status": "active",
+    "created": "2026-06-21"
+  },
+  {
+    "id": "cb:a544",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "eval"
+    ],
+    "claim": "Run the dag-vs-prose eval with an OKF/Karpathy agent-maintained wiki as the prose-baseline arm, rather than an ad-hoc prose control. OKF is now a published, standardized, cross-linked, history-bearing prose substrate, so it is a credible external baseline the structured (CB) arm must beat; using it turns the bet-dossier crux (does structured substrate decisively beat strong plain-English?) from a strawman comparison into a defensible one. mix knowledge.emit can generate the structured arm's bundle from the same source graph.",
+    "artifact": "session:okf-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "From the OKF-vs-CB layering analysis: OKF raises the plain-English baseline CB must clear, which sharpens rather than threatens the eval - it supplies a credible prose control the analysis argues for. Public grounding: document:../knowledge/meta/okf-vs-cb-layering.md. No existing eval directive covers the prose-arm choice, so no conflict.",
+        "artifact": "document:../knowledge/meta/okf-vs-cb-layering.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-21"
   }
 ]
