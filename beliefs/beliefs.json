@@ -7620,6 +7620,11 @@
         "date": "2026-06-12",
         "detail": "Three specimens, all the same shape: c049's dep re-points at every link of the render-contract chain (c061 -> c062 in the assert-session fold, c062 -> c063 in the a515 close, c063 -> c065 in the a531 close), each a throwaway .exs around Mutation.apply_batch plus Store.write. The a531 close's script also tripped on Store.write returning {:ok, path} - exactly the API-shape friction a front door absorbs once. Completes the a522/a530 arc: with this door the supersession ceremony needs no scripts at all. Preflight 2026-06-12 under the c064 calibration: 0 contract, 0 schema, 29 neutral; the claim_overlap hits were the grounding family itself (a522/a530/a531/a533), overlap without contradiction, reviewed per c055.",
         "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "mix cb.repoint shipped at commit ac3e199 ('Add mix cb.repoint for dep re-points during supersession'), the task front door this directive specifies; built by a concurrent session. a537 remains active/unmaterialized as of 2026-06-23. Next step is verification against the full spec (atomic drop+add, dry-run default, dangling-target refusal) and materialize-close if met - not re-implementation. Observed during a desk-status review.",
+        "artifact": "document:lib/mix/tasks/cb.repoint.ex"
       }
     ],
     "subjects": [],
