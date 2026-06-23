@@ -8217,5 +8217,36 @@
     ],
     "status": "active",
     "created": "2026-06-23"
+  },
+  {
+    "id": "cb:a553",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "system",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "docs",
+      "provenance"
+    ],
+    "claim": "Resolve the documentation drift cataloged in the 2026-06-23 docs-vs-code audit: refresh the superseded contract ids in reference.md, mental-model.md, and belief-graph.md (c060 to c065, c043 to c066); flag or update the legacy essays that predate the four-type schema (actualization.md, the thesis body, cb-on-the-beam.md's nonexistent bs verbs); and give a front-door home to the undocumented task surfaces (cb.retract, cb.repoint, cb.resolve, and the okf.* tasks).",
+    "artifact": "document:docs/2026-06-23-docs-vs-code-audit.md",
+    "evidence": [
+      {
+        "date": "2026-06-23",
+        "detail": "Surfaced while building the cb-tut annotated wiki (composablebeliefs/cb-tut). A dedicated docs-vs-code audit cross-checked every docs/ essay against lib/cb/belief.ex, the mix tasks, and the live graph via mix bs. It confirmed the executable spine (eval-ledger, run-manifest, codepaths, mental-model, worked-example-eval-verdict, and both CI-gated compiled CLAUDE.mds) is accurate, and isolated the drift to three patterns: superseded-id rot (c060 to c065 in reference and mental-model, c043 to c066 in belief-graph), legacy essays predating the 2026-06-10 four-type schema (actualization.md README-linked and undisclaimed, the thesis body, cb-on-the-beam.md's nonexistent bs verbs), and undocumented surfaces (cb.retract, cb.repoint, cb.resolve, the okf.* tasks, plus a phantom /assert-session skill named in three docs). The full findings render as cb-tut page 19 and research/notes/docs-eval.md in that repo.",
+        "artifact": "document:docs/2026-06-23-docs-vs-code-audit.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Rejected as dep-tie against cb:a417. Reasoning: Reviewed and rejected as a false-positive contract-level escalation. Overlap is claim_overlap on the token 'contract' plus tag-overlap on backlog/lifecycle:discrete. Subject matter is disjoint: a417 governs verify_against_contract in contract-implementing Elixir modules; this directive is a documentation-maintenance task that refreshes superseded contract ids in prose docs. No contradiction. Dep-tie records the review (vacuous as grounding, harmless as constraint), per the a517/c030 precedent. The over-escalation on weak claim-overlap is the calibration gap a519 tracks.",
+        "artifact": "adjudication:human:cb-tut-close-2026-06-23"
+      }
+    ],
+    "deps": [
+      "cb:a417"
+    ],
+    "status": "active",
+    "created": "2026-06-23"
   }
 ]
