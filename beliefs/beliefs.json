@@ -7844,5 +7844,34 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-21"
+  },
+  {
+    "id": "cb:a545",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "design",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "schema",
+      "audit-chain",
+      "open-decision"
+    ],
+    "claim": "Decide whether to make the belief<->commit link structural by adding a commit:/git: artifact scheme to the closed enum (cb:c066), versus keeping it as the current unenforced prose convention. Today a git commit cannot be cited as a typed artifact from a belief at all: c066's schemes are session/user/document/source/https/plan/code, none for commits, so the only link is a literal id-string hand-typed into a commit subject (e.g. 'implements cb:a518'), grep-able but unverified, and the belief->commit direction has no link. This leaves the bottom rung of the audit chain (cb:a442: code->contract->graph->plan->raw conversation) untyped for change-events. ADVANTAGE of going structural: a directive marked done could carry commit:<sha> (or git:<repo>@<sha>), a resolver could dereference it (git show), and CI could enforce the loop both ways (a discrete directive flipping to done must cite a real commit; a commit claiming to implement cb:aNNN must name a live belief). It is the temporal analog of the code: scheme (which anchors a single site in a file; commits are content-addressed, so unlike code:'s line numbers the reference is stable). OPTIONS: (1) full commit:/git: scheme - a c066->c067 enum-registry supersession plus resolver, docs, tests, and the cb.repoint dep-swing; heaviest, but types both directions. (2) git-trailer half-measure - a 'Belief: cb:aNNN' trailer parsed by a hook into a generated commit<->belief index; no schema change, gives structural linkage from the commit side only. (3) invest in the session: pipeline instead (cb:a518/cb:a540) - a commit is a derived artifact of a session, so session resolution may be the higher-leverage bottom-rung work, with commit: a later narrow add. KEY JUDGEMENT: the scheme alone buys nothing; the value is unlocked only by enforcement/resolution, so the decision is really 'do we want CI-enforced done<->commit provenance?' If citation stays advisory, do nothing or just (2). Deferred at the operator's instruction (2026-06-22) pending that call.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Surfaced while discussing how the /end skill's commits 'cite' cb:a518/a520: the citation is purely textual (belief ids as literal substrings in commit subjects and in SKILL.md prose), with no structural backlink and no artifact scheme that could carry one. Operator chose to punt the decision but persist the analysis and options for a future discussion.",
+        "artifact": "document:composable-beliefs/lib/cb/belief/contract/enum.ex"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a442",
+      "cb:c066"
+    ],
+    "status": "active",
+    "created": "2026-06-22"
   }
 ]
