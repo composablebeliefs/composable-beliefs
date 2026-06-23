@@ -48,3 +48,34 @@ credential (OAuth app token, e.g. the default `gh`/Claude auth) lacks the
 file is blocked, and the whole push fails atomically. Either push workflow edits
 with a `workflow`-scoped token, or split them out and hand them off (the okf CI
 gate was parked as `cb:a548` for exactly this reason, 2026-06-22).
+
+## Session lifecycle hooks (the amieval tree)
+
+A session in the amieval tree is bracketed by two harness hooks. Both are the
+structural answer to the cb:a165/cb:a386 pattern - a reminder the agent must
+remember to act on is procedural surfacing; a hook makes it structural. The
+scripts live in dotfiles-claude (`~/.claude/hooks/`) because they are machine-level
+harness config, registered in `~/.claude/settings.json`; the graph records the
+*why* (cb:a543 family for surfacing, cb:a518/a540 for the transcript).
+
+- **SessionStart -> `cb-desk.sh`.** When a session opens with cwd under
+  `/Users/mark/dev/repos/mine/amieval`, it injects the live desk
+  (`mix bs list unlinked tag:lifecycle:discrete`) into context, so a fresh agent
+  sees its obligations without being told to query. Silent and fail-safe outside
+  the tree.
+
+- **SessionEnd -> `cb-finalize-transcript.sh`.** Fixes the transcript tail-gap:
+  `/end`'s in-close copy runs before the session actually ends, so it structurally
+  under-captures the closing turns. At true session end the hook re-copies the
+  **complete** `.jsonl` over the in-`/end` snapshot and commits it. It acts only
+  on a per-session marker that `/end` step 7 drops:
+  `~/.claude/transcript-pending/<session_id>.json` = `{"dest": <abs .jsonl>, "repo": <abs repo>}`.
+  The hook locates the log by `session_id`, copies it to `dest`, commits + pushes
+  in `repo`, and removes the marker. It does **not** fire on crash (the in-`/end`
+  step-7 copy is the committed fallback) and is a no-op on `resume`. Stale markers
+  from crashed sessions linger until swept.
+
+Trigger boundary: SessionEnd is the *user/harness* ending the session (`/clear`,
+logout, CLI exit) - not `/end` completing. `/end` only leaves the marker; the
+session may continue (or `/end` again) before it actually ends, and the hook
+captures everything up to that point.
