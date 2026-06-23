@@ -333,25 +333,28 @@ The framework's own schema is beliefs in exactly the shape you just traced. `cb:
 
 ## The supersession mechanism, run for real
 
-`cb:a397`'s rule - "adding an enum value supersedes the enum contract for that field" - is not hypothetical. It ran in production when the `code:` scheme was added for codepaths:
+`cb:a397`'s rule - "adding an enum value supersedes the enum contract for that field" - is not hypothetical, and it cuts both ways: the framework's artifact-scheme enum has been superseded twice in production, once to add a scheme and once to remove one. `cb:c040 -> cb:c043` added the `code:` scheme for codepaths; `cb:c043 -> cb:c066` dropped the `gmail:` scheme. Neither was an edit - each is a whole-contract supersession carrying its own adjudication record.
 
 ```sh
-mix bs history cb:c043
+mix bs history cb:c066
 ```
 
 ```
-Supersession chain (2 beliefs):
+Supersession chain (3 beliefs):
 
   cb:c040 [superseded] Canonical enum of artifact URI schemes. Each sch.. (2026-05-15)
-  -> cb:c043 Canonical enum of artifact URI schemes. Each sch.. (2026-06-09) <-- current
+  -> cb:c043 [superseded] Canonical enum of artifact URI schemes. Each sch.. (2026-06-09)
+  -> cb:c066 Canonical enum of artifact URI schemes. Each sch.. (2026-06-17) <-- current
 ```
+
+The head of that chain is the only active artifact-scheme enum; the two predecessors are immutable history. Show the current contract - the most recent supersession, which is a *removal*:
 
 ```sh
-mix bs show cb:c043
+mix bs show cb:c066
 ```
 
 ```
-ID:          cb:c043
+ID:          cb:c066
 Type:        directive (contract)
 Kind:        enum-registry
 Domain:      system
@@ -368,18 +371,20 @@ Invariants:
              - Values are unique within the entry.
              - Every value has a corresponding entry in the definitions map.
              - For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values.
-Evidence 1:  Added the 'code' scheme for within-file anchored sites per cb-codepath plan-1; the seven inherited schemes and all invariants are unchanged from cb:c040. Single-scheme supersession consistent with a397's batching discipline: the eval: scheme was deliberately not co-added - it belongs to the separate sdl / eval-provenance mission per the plan-1 decision.
-             artifact: document:plans/cb-codepath/plan-1-schema-groundwork.md
-             date: 2026-06-09
-Evidence 2:  Accepted via human adjudication against cb:c040. Reasoning: cb-codepath plan-1 (user-authorized 2026-06-09) extends the closed artifact-scheme enum with the code: locator. A closed enum changes only by superseding its contract as a whole; the successor carries the full enum (seven inherited schemes plus code) and all invariants verbatim. Only code: is added in this supersession - eval: stays with the separate sdl / eval-provenance mission per the plan-1 batching decision (a397).
-             artifact: adjudication:human:cb-codepath-plan-1-2026-06-09
-             date: 2026-06-09
+Evidence 1:  Drops the gmail: scheme from the closed artifact-scheme enum. gmail: named a specific external product (a connector) inside a core schema enum; per the architectural invariant that CB's core may not name a specific connector, connector identity belongs in a source:/https: URI body, not in a scheme value. No active belief used gmail: (schemes in use: session, document, user, plan, source, https), so removal strands nothing. The seven inherited schemes and all five invariants carry forward verbatim from cb:c043; single-scheme supersession consistent with a397's batching discipline.
+             artifact: session:2026-06-17-artifact-scheme-connector-cleanup
+             date: 2026-06-17
+Evidence 2:  Accepted via human adjudication against cb:c043. Reasoning: Drop the gmail: scheme - it names a specific external product (a connector) inside CB's core artifact-scheme enum, violating the architectural invariant that the core may not name a connector. gmail: is unused by any active belief; the seven other schemes and all invariants carry forward verbatim. Connector identity belongs in a source:/https: URI body.
+             artifact: adjudication:human:2026-06-17-artifact-scheme-connector-cleanup
+             date: 2026-06-17
 Materialized: -
 Support:     artifacts=2 evidence=2 deps=4
-Created:     2026-06-09
+Created:     2026-06-17
 ```
 
-Everything the model promises is visible in this one record: the closed enum changed **only** by superseding the whole contract; the successor carries the seven inherited schemes and all invariants verbatim plus the one addition; its `deps` include the design-rationale primitive that motivated the change (`cb:a467`, which pins the `code:` locator grammar and the codepath design decisions); and the second evidence entry is the **adjudication record itself** - who decided, against what, with what reasoning, written by `mix cb.adjudicate` as part of the same atomic write that flipped `cb:c040` to `superseded`. Notice also what was *not* added: the `eval:` scheme the `sdl` collection uses never entered the framework enum - it lives in collection space (originally `sdl:c1`, the collection's own enum; today `method:c1`, the shared eval vocabulary that superseded it). Collections can carry their own vocabulary, promotion between vocabularies is itself a supersession with a paper trail, and promoting a scheme into the *framework* enum would be a deliberate act with this exact kind of record, not a side effect.
+Everything the model promises is visible in this one record. The closed enum changed **only** by superseding the whole contract: the seven inherited schemes and all five invariants carry forward verbatim from `cb:c043`, with exactly one scheme - `gmail:` - dropped. The reason is recorded, not assumed - `gmail:` named a specific external product (a connector) inside CB's core enum, violating the architectural invariant that the core may not name a connector, and no active belief used it, so removal stranded nothing. The second evidence entry is the **adjudication record itself** - who decided, against what (`cb:c043`), with what reasoning - written by `mix cb.adjudicate` as part of the same atomic write that flipped `cb:c043` to `superseded`. The predecessor step is the symmetric case for an *addition*: `mix bs show cb:c043` carries the cb-codepath plan-1 adjudication that brought the `code:` locator in - seven inherited schemes plus one, the same mechanism in the other direction.
+
+Notice also what is *not* in this enum, across all three generations: the `eval:` scheme the `sdl` collection uses never entered the framework enum - it lives in collection space (originally `sdl:c1`, the collection's own enum; today `method:c1`, the shared eval vocabulary that superseded it). Collections can carry their own vocabulary, promotion between vocabularies is itself a supersession with a paper trail, and adding or removing a scheme in the *framework* enum is a deliberate act with this exact kind of record, not a side effect.
 
 ## What you just traced
 
@@ -391,4 +396,4 @@ Starting from a single verdict you walked, deterministically and with no LLM in 
 - **the raw logs** - `document:logs/run3/case7.json`, the evidence artifact reachable from the `show` view (and inline in the HTML audit tree);
 - **the methodology that judges it** - the `method:` contracts, whose two deliberate violations the verifier names by id (`m-runs`, `m-judge-validation`);
 - **the schema that governs all of it** - `cb:c056` and its primitives, queried with the same commands;
-- **the change mechanism, having actually run** - `cb:c040 -> cb:c043` in the framework graph, `sdl:c1 -> method:c1` cross-namespace, and `sdl:a4 -> sdl:a006 -> sdl:a008` in this collection: closed vocabularies, re-kinded beliefs, and the four-type split itself, changed only by adjudicated supersession with the full paper trail in the graph.
+- **the change mechanism, having actually run** - `cb:c040 -> cb:c043 -> cb:c066` in the framework graph, `sdl:c1 -> method:c1` cross-namespace, and `sdl:a4 -> sdl:a006 -> sdl:a008` in this collection: closed vocabularies, re-kinded beliefs, and the four-type split itself, changed only by adjudicated supersession with the full paper trail in the graph.
