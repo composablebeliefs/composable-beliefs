@@ -7632,6 +7632,16 @@
       "cb:a522",
       "cb:a530"
     ],
+    "materialized": {
+      "date": "2026-06-23",
+      "todos": [
+        {
+          "action": "Ship mix cb.repoint: the sanctioned dep re-point front door (atomic drop-dep + add-dep via apply_batch, dry-run default, refusal on dangling --to)",
+          "id": "t0021",
+          "notes": "Discharged retroactively: shipped at commit ac3e199 by a concurrent session; verified against the full spec from source 2026-06-23. Materialized only to reflect completion on the desk."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-12"
   },

@@ -149,5 +149,13 @@
     "notes": "plan:okf-fold; namespace okfx: per operator; verification per plan section.\n\nDischarged. Fold executed and committed (composable-beliefs 808dfeb, belief-collections d6bd1b5, pushed): standard at composable-beliefs/okf/ as the okfx: collection; couplings rewired; conformance gate reads in-repo okf/conformance; 4 cb: dangling pointers given corrective okf/ evidence. Knowledge repo decommissioned manually by the operator (directory removed; content remains on remote ob6to8/knowledge@76d1145). Post-decommission verification green: mix test 360/0 with knowledge/ absent, no ../knowledge refs in code/config. Out-of-scope follow-ups left live (cb:a543 SessionStart hook + root CLAUDE.md; okfx:a004 graph-compile; mix knowledge.*->okf.* rename).",
     "source": "cb:a546",
     "status": "done"
+  },
+  {
+    "action": "Ship mix cb.repoint: the sanctioned dep re-point front door (atomic drop-dep + add-dep via apply_batch, dry-run default, refusal on dangling --to)",
+    "created": "2026-06-23",
+    "id": "t0021",
+    "notes": "Discharged retroactively: shipped at commit ac3e199 by a concurrent session; verified against the full spec from source 2026-06-23. Materialized only to reflect completion on the desk.\n\nDischarged: mix cb.repoint shipped at ac3e199 and verified to meet a537's full spec (atomic drop+add, dry-run default, dangling refusal) on 2026-06-23.",
+    "source": "cb:a537",
+    "status": "done"
   }
 ]
