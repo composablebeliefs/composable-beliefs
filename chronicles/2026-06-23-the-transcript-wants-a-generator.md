@@ -17,4 +17,4 @@ The doc is current against committed HEAD again. But this is the second refresh 
 
 ## What the next session inherits
 
-`cb:a549` on the desk. The fix is a generator or a verifier, not another manual pass - the next manual refresh is the signal it is overdue.
+`cb:a549` on the desk. The fix is a generator or a verifier, not another manual pass - the next manual refresh is the signal it is overdue. The generator-vs-checker tradeoffs and a leaning (start with the CI checker, promote to a generator only if reproducing the doc's curated/elided blocks proves cheap) are recorded as evidence on the node, so the choice arrives analyzed, not just posed.
