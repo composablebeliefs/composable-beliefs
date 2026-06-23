@@ -191,35 +191,35 @@ defmodule CB.SchemaContractsTest do
     end
   end
 
-  describe "cb:c043 artifact-scheme enum-registry (supersedes cb:c040)" do
-    @expected_schemes ["gmail", "session", "user", "document", "source", "https", "plan", "code"]
+  describe "cb:c066 artifact-scheme enum-registry (supersedes cb:c043)" do
+    @expected_schemes ["session", "user", "document", "source", "https", "plan", "code"]
 
     test "is an active enum-registry contract", %{by_id: by_id} do
-      c043 = fetch(by_id, "cb:c043")
-      assert c043.kind == "enum-registry"
-      assert c043.status == "active"
+      c066 = fetch(by_id, "cb:c066")
+      assert c066.kind == "enum-registry"
+      assert c066.status == "active"
     end
 
-    test "the superseded cb:c040 links forward to cb:c043", %{by_id: by_id} do
-      c040 = fetch(by_id, "cb:c040")
-      assert c040.status == "superseded"
-      assert c040.superseded_by == "cb:c043"
+    test "the superseded cb:c043 links forward to cb:c066", %{by_id: by_id} do
+      c043 = fetch(by_id, "cb:c043")
+      assert c043.status == "superseded"
+      assert c043.superseded_by == "cb:c066"
     end
 
     test "values_for/2 returns the expected scheme vocabulary including code", %{by_id: by_id} do
-      c043 = fetch(by_id, "cb:c043")
-      assert Enum.values_for(c043, "artifact-scheme") == @expected_schemes
-      assert Enum.valid_value?(c043, "artifact-scheme", "code")
-      assert Enum.valid_value?(c043, "artifact-scheme", "session")
+      c066 = fetch(by_id, "cb:c066")
+      assert Enum.values_for(c066, "artifact-scheme") == @expected_schemes
+      assert Enum.valid_value?(c066, "artifact-scheme", "code")
+      assert Enum.valid_value?(c066, "artifact-scheme", "session")
     end
 
     test "every active belief's artifact scheme is a declared value", %{all: all, by_id: by_id} do
-      c043 = fetch(by_id, "cb:c043")
+      c066 = fetch(by_id, "cb:c066")
 
       bad =
         all
         |> Elixir.Enum.filter(&(&1.status == "active" and is_binary(&1.artifact)))
-        |> Elixir.Enum.reject(&Enum.valid_value?(c043, "artifact-scheme", scheme(&1.artifact)))
+        |> Elixir.Enum.reject(&Enum.valid_value?(c066, "artifact-scheme", scheme(&1.artifact)))
         |> Elixir.Enum.map(&{&1.id, &1.artifact})
 
       assert bad == []
