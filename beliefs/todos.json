@@ -141,5 +141,13 @@
     "notes": "Scope per a531 evidence 2 (the a530 close widened it): name the whole surface in one pass. Ceremony precedent: the a515 close (a521 -> a524, c062 -> c063).\n\nDone 2026-06-12: a449 -> a533 (write surface named in one pass), c063 -> c065 (Operations render re-pointed), c049 dep re-pointed to c065, CLAUDE.md regenerated and current. Chronicle: chronicles/2026-06-12-the-house-lists-its-doors.md.",
     "source": "cb:a531",
     "status": "done"
+  },
+  {
+    "action": "Fold the knowledge standard into composable-beliefs/okf/ as the okfx: extension (move tree, rename knowledge: -> okfx: via re-import, rewire couplings, reconcile docs, handle dangling cb: evidence pointers) and decommission the knowledge repo",
+    "created": "2026-06-22",
+    "id": "t0020",
+    "notes": "plan:okf-fold; namespace okfx: per operator; verification per plan section.\n\nDischarged. Fold executed and committed (composable-beliefs 808dfeb, belief-collections d6bd1b5, pushed): standard at composable-beliefs/okf/ as the okfx: collection; couplings rewired; conformance gate reads in-repo okf/conformance; 4 cb: dangling pointers given corrective okf/ evidence. Knowledge repo decommissioned manually by the operator (directory removed; content remains on remote ob6to8/knowledge@76d1145). Post-decommission verification green: mix test 360/0 with knowledge/ absent, no ../knowledge refs in code/config. Out-of-scope follow-ups left live (cb:a543 SessionStart hook + root CLAUDE.md; okfx:a004 graph-compile; mix knowledge.*->okf.* rename).",
+    "source": "cb:a546",
+    "status": "done"
   }
 ]

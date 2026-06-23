@@ -7927,6 +7927,16 @@
     ],
     "subjects": [],
     "deps": [],
+    "materialized": {
+      "date": "2026-06-22",
+      "todos": [
+        {
+          "action": "Fold the knowledge standard into composable-beliefs/okf/ as the okfx: extension (move tree, rename knowledge: -> okfx: via re-import, rewire couplings, reconcile docs, handle dangling cb: evidence pointers) and decommission the knowledge repo",
+          "id": "t0020",
+          "notes": "plan:okf-fold; namespace okfx: per operator; verification per plan section."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-22"
   }
