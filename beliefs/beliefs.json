@@ -7083,7 +7083,8 @@
       "cb:c043"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a550",
     "created": "2026-06-12"
   },
   {
@@ -7112,7 +7113,8 @@
       "cb:a526"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a551",
     "created": "2026-06-12"
   },
   {
@@ -8061,5 +8063,109 @@
     "retracted_on": "2026-06-22",
     "retracted_reason": "Moot: okf/CLAUDE.md is already gated by mix test (generated_claude_md_test.exs covers framework + okf); raised on the false premise it was ungated (an a165 over-flag).",
     "created": "2026-06-22"
+  },
+  {
+    "id": "cb:a549",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "docs",
+      "provenance"
+    ],
+    "claim": "Generate the live-command transcript blocks in the eval worked example (docs/worked-example-eval-verdict.md) from the graph instead of hand-maintaining them. The doc pastes mix bs / mix cb.verify output verbatim, so it drifts whenever the artifact-scheme enum, the method: collection, or the sdl collection changes - this thread refreshed it twice (the verify counts, then the c043->c066 supersession section). Hand-pasted command output whose freshness depends on remembering to regenerate it is the a386 antipattern; a generator, or a doctest-style check that fails CI when a block goes stale, would render it live.",
+    "artifact": "session:2026-06-23-worked-example-transcript-drift",
+    "evidence": [
+      {
+        "date": "2026-06-23",
+        "detail": "Authored in the worked-example transcript-drift thread; the arc (the doc refreshed twice in one thread, c043->c066 being the second pass) and the generate-not-hand-maintain rationale are narrated in the chronicle.",
+        "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md"
+      }
+    ],
+    "deps": [
+      "cb:a386",
+      "cb:a466"
+    ],
+    "status": "active",
+    "created": "2026-06-23"
+  },
+  {
+    "id": "cb:a550",
+    "type": "directive",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "schema",
+      "anchoring",
+      "lifecycle:recurring"
+    ],
+    "claim": "Anchored-position format: a position document carries a **Class:** header field; its stance decomposes into ### Claim: sections, each of which may carry one or more **Anchor:** lines holding code: URIs in the c066 grammar; every anchor is verified resolving with exactly one match at authoring time via the draft-mode resolver; and claim order is the default codepath walk order.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511. Designed across the 2026-06-10/11 anchored-answer thread; the worked instance instantiated the format (five claims, six anchors, all verified one-match) before the format itself was pinned anywhere. The /position skill (a515, discharged 2026-06-11) already mechanizes every element: Class header in step 2, claim decomposition in walk order in step 3, Anchor lines in the c043 grammar in step 4, mandatory mix cb.resolve verification with loose anchors treated as authoring failures in step 5.",
+        "artifact": "code:skills/position/SKILL.md#Decompose into claims"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Reference refresh: the artifact-scheme enum moved cb:c043 -> cb:c066 (gmail: dropped, 2026-06-17), which left this directive's c043 dep dangling and the belief stale under cascade. The code: grammar is unchanged between c043 and c066, so this is a pure forward-reference update: claim text 'c043 grammar' -> 'c066 grammar' and the dep cb:c043 -> cb:c066. No change to the anchored-position format itself.",
+        "artifact": "session:2026-06-23-c066-stale-ref-refresh"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Accepted via human adjudication against cb:a526. Reasoning: Refresh the dangling cb:c043 reference to cb:c066. The c043->c066 supersession (gmail: dropped) left this directive citing a superseded contract; the code: grammar is identical in c066, so only the forward reference changes (claim 'c043 grammar'->'c066 grammar', dep cb:c043->cb:c066). The anchored-position format is unchanged.",
+        "artifact": "adjudication:human:2026-06-23-c066-stale-ref-refresh"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a485",
+      "cb:a488",
+      "cb:c066"
+    ],
+    "status": "active",
+    "created": "2026-06-23"
+  },
+  {
+    "id": "cb:a551",
+    "type": "directive",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "positions",
+      "schema",
+      "anchoring",
+      "terms",
+      "lifecycle:recurring"
+    ],
+    "claim": "A position may carry a terms block: entries of shape {term, definition, anchor?}. A term naming a code construct anchors to its defining site, so the definition is a navigable stop; prose-only definitions remain valid for terms with no code referent.",
+    "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Pinned in execution of a511 from the position's design-rationale appendix (appended 2026-06-11 at user direction after the a511 self-bootstrap audit found the rationale reachable only through an unresolvable session: slug - the a518 gap). The terms block is the one a511 format element not yet mechanized in skills/position/SKILL.md; it stays optional in the format until a worked instance needs it.",
+        "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Dep repoint only: cb:a526 (anchored-position format) was superseded by cb:a550 during the c043->c066 stale-reference refresh, leaving this terms-block directive depping a superseded parent. Repoint dep cb:a526 -> cb:a550; the terms-block format is unchanged.",
+        "artifact": "session:2026-06-23-c066-stale-ref-refresh"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Accepted via human adjudication against cb:a527. Reasoning: Repoint the dep cb:a526 -> cb:a550 after a526 was superseded in the c043->c066 stale-ref refresh. The terms-block format is unchanged; this clears the cascade tail.",
+        "artifact": "adjudication:human:2026-06-23-c066-stale-ref-refresh"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a550"
+    ],
+    "status": "active",
+    "created": "2026-06-23"
   }
 ]
