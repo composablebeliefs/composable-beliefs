@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "path": "index.md",
+      "code": "placeholder_in_frontmatter"
+    }
+  ],
+  "warnings": []
+}

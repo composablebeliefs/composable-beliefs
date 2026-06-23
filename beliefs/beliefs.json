@@ -6428,6 +6428,11 @@
         "date": "2026-06-21",
         "detail": "Landed: /end step 5 now duplicates the real session .jsonl byte-for-byte from ~/.claude/projects/<encoded-project>/ into the subject-appropriate repo as a type:source per the knowledge standard (amieval/knowledge standard/types.md source+thread rule + threads:[] provenance), replacing the faithful-reconstruction bridge. session: artifacts now resolve to the copied file.",
         "artifact": "document:../knowledge/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+        "artifact": "document:okf/standard/types.md"
       }
     ],
     "subjects": [],
@@ -7731,6 +7736,11 @@
         "date": "2026-06-21",
         "detail": "The reconstruction bridge is retired: cb:a518 landed, so /end now duplicates the real .jsonl rather than reconstructing verbatim prose. The 'faithful reconstruction' clause of this directive's claim is superseded in practice by the file copy; format follows the knowledge standard source+thread rule.",
         "artifact": "document:../knowledge/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+        "artifact": "document:okf/standard/types.md"
       }
     ],
     "subjects": [],
@@ -7811,6 +7821,11 @@
         "date": "2026-06-21",
         "detail": "Surfaced answering where non-CB, cross-project obligations live: every existing belief graph is CB-ecosystem (cb: + belief-collections), so a productivity or operational obligation outside any repo's context has nowhere to land and a cold agent never sees it. The /end thread-persistence directive is correctly amieval-scoped; this is the home for the truly global ones. Tag-overlap review: deps a499 (default overlay) and a500 (cross-collection desk) are the observability/collections family this composes on; it adds a global-graph plus global-CLAUDE-compile that neither covers, so no semantic conflict. Verbatim thread: document:../knowledge/meta/2026-06-21-okf-cb-session-source.md.",
         "artifact": "document:../knowledge/meta/2026-06-21-okf-cb-session-source.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+        "artifact": "document:okf/meta/2026-06-21-okf-cb-session-source.md"
       }
     ],
     "subjects": [],
@@ -7838,6 +7853,11 @@
         "date": "2026-06-21",
         "detail": "From the OKF-vs-CB layering analysis: OKF raises the plain-English baseline CB must clear, which sharpens rather than threatens the eval - it supplies a credible prose control the analysis argues for. Public grounding: document:../knowledge/meta/okf-vs-cb-layering.md. No existing eval directive covers the prose-arm choice, so no conflict.",
         "artifact": "document:../knowledge/meta/okf-vs-cb-layering.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+        "artifact": "document:okf/meta/okf-vs-cb-layering.md"
       }
     ],
     "subjects": [],
@@ -7897,6 +7917,11 @@
       {
         "date": "2026-06-22",
         "detail": "Authored at the close of the knowledge-repo audit/Elixir-only-collapse session, after the operator agreed the standalone knowledge repo no longer earns its separateness (tooling already CB-coupled, no distribution intent) and that the surfacing seam is the real cost. Plan persisted to plans/okf-fold/plan.md; this directive is the self-bootstrapping SSOT a fresh agent picks up from the desk. Tag-overlap review: shares backlog/lifecycle:discrete/collections with cb:a535 (split eval collections) and cb:a543 (global directive graph) but addresses a distinct move (knowledge -> okf:), so no conflict.",
+        "artifact": "plan:okf-fold"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Fold executed (okfx: namespace chosen over okf: by the operator - honest-about-extending-OKF). Phases A-E complete: standard tree moved to composable-beliefs/okf/ (flat, mirroring codepath/); knowledge: -> okfx: via fresh re-import (okfx:a001-a005, a004 dep updated, a003-a005 retro-paired to the session jsonl); collections.json key+path rewired to okfx -> okf/beliefs.json; conformance test renamed okf_conformance_test.exs resolving the in-repo okf/conformance; frontmatter.ex docstring + okf docs (CLAUDE/README/ADOPT/CONVERT/conformance README, KNOWLEDGE.md s5 bespoke-not-OKF) reconciled; 4 dangling cb: document:../knowledge pointers (a518,a540,a543,a544) given corrective in-repo okf/ evidence (originals preserved). Verification green: mix test 360/0 incl 13 conformance fixtures, cb.verify.collection okfx + schema clean, knowledge.validate okf/demo+meta exit 0, emit+validate exit 0, README links resolve, no structural knowledge: ids. Phase F (rm knowledge/) DEFERRED by operator - directory left in place, content safe on remote ob6to8/knowledge@76d1145. Out-of-scope follow-ups (SessionStart hook+root CLAUDE.md per cb:a543; okfx:a004 graph-compile okf/CLAUDE.md; mix knowledge.*->okf.* rename) not bundled.",
         "artifact": "plan:okf-fold"
       }
     ],

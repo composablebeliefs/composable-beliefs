@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "path": "other.md",
+      "code": "duplicate_id"
+    }
+  ],
+  "warnings": []
+}

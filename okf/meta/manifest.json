@@ -1,0 +1,83 @@
+{
+  "bundle": "meta",
+  "count": 5,
+  "docs": [
+    {
+      "path": "2026-06-21-okf-cb-design-session.md",
+      "type": "thread",
+      "title": "2026-06-21 — Knowledge methodology designed, built, and integrated with CB",
+      "description": "Use when you need what happened in the session that created this standard and CB's OKF integration layer, without replaying it. Outcome: a conformance-tested OKF standard + a working CB↔OKF bridge.",
+      "tags": [
+        "meta",
+        "thread",
+        "design"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "meta:okf-session-2026-06-21",
+      "artifact": "session:2026-06-21-okf-knowledge-design"
+    },
+    {
+      "path": "2026-06-21-okf-cb-session-source.md",
+      "type": "source",
+      "title": "2026-06-21 OKF/CB session - verbatim transcript",
+      "description": "Use when you need the raw, byte-for-byte record of the session that designed this standard and CB's OKF integration - the immutable Layer-1 source behind the thread summary.",
+      "tags": [
+        "meta",
+        "source",
+        "transcript"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "artifact": "file:meta/sessions/2026-06-21-okf-cb-design.jsonl"
+    },
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Meta — how this methodology was conceived and architected",
+      "description": "Use when you need the origin, rationale, or governing decisions behind this methodology — the foundational record of how the spec came to be shaped this way.",
+      "tags": [
+        "meta",
+        "index",
+        "design-record"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "okf-vs-cb-layering.md",
+      "type": "analysis",
+      "title": "How OKF, Karpathy-wiki, and CB layer",
+      "description": "Use when you need the worked argument for why CB sits cleanly above OKF and what becomes redundant — not just the conclusion.",
+      "tags": [
+        "meta",
+        "analysis",
+        "okf",
+        "cb"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "two-tier-knowledge-architecture.md",
+      "type": "position",
+      "title": "Knowledge is OKF on the floor, CB at the ceiling",
+      "description": "Use when tempted to make everything CB-rigorous, or to drop CB for plain OKF — the settled two-tier decision and what would change it.",
+      "tags": [
+        "meta",
+        "position",
+        "decision",
+        "okf",
+        "cb"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "meta:two-tier",
+      "deps": [
+        "spec:tiers",
+        "spec:knowledge"
+      ],
+      "tier": "cb"
+    }
+  ]
+}

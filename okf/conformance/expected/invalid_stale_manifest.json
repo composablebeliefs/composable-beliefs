@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "path": "manifest.json",
+      "code": "manifest_stale"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "path": "index.md",
+      "code": "description_missing_or_short"
+    }
+  ],
+  "warnings": []
+}

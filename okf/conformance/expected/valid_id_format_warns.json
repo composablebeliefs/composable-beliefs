@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [
+    {
+      "path": "index.md",
+      "code": "id_format_invalid"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "bundle": "valid_cb_ok",
+  "count": 3,
+  "docs": [
+    {
+      "path": "base.md",
+      "type": "concept",
+      "title": "Base",
+      "description": "Use when you need the base belief the derived one depends on.",
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "fix:base",
+      "tier": "cb"
+    },
+    {
+      "path": "derived.md",
+      "type": "concept",
+      "title": "Derived",
+      "description": "Use when you need the derived belief composed from the base.",
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "fix:derived",
+      "deps": [
+        "fix:base"
+      ],
+      "tier": "cb"
+    },
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "CB OK",
+      "description": "Use when orienting to the valid CB-tier fixture bundle.",
+      "status": "active",
+      "timestamp": "2026-06-21"
+    }
+  ]
+}

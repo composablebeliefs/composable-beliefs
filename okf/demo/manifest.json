@@ -1,0 +1,95 @@
+{
+  "bundle": "demo",
+  "count": 7,
+  "docs": [
+    {
+      "path": "finances/2026-q2-budget-source.md",
+      "type": "source",
+      "title": "Q2 2026 budget figures (captured)",
+      "description": "Use when you need the primary recorded numbers behind the cashflow concept — the immutable Q2 2026 capture.",
+      "tags": [
+        "finances",
+        "source",
+        "budget"
+      ],
+      "status": "active",
+      "timestamp": "2026-04-01",
+      "resource": "(household spreadsheet, Q2 2026 tab)"
+    },
+    {
+      "path": "finances/household-cashflow.md",
+      "type": "concept",
+      "title": "Household cashflow",
+      "description": "Use when reasoning about monthly money in/out, recurring obligations, or how many months of runway the reserve covers.",
+      "tags": [
+        "finances",
+        "recurring",
+        "runway"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "finances/index.md",
+      "type": "index",
+      "title": "Finances",
+      "description": "Use when reasoning about household money — cashflow, recurring obligations, runway. Productivity domain on the OKF floor.",
+      "tags": [
+        "finances",
+        "index"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "home/furnace-filter.md",
+      "type": "reference",
+      "title": "Furnace filter",
+      "description": "Use when you need the furnace filter size or replacement schedule. The canonical low-stakes reference fact.",
+      "tags": [
+        "home",
+        "maintenance",
+        "hvac"
+      ],
+      "status": "active",
+      "timestamp": "2026-05-15"
+    },
+    {
+      "path": "home/home-systems.md",
+      "type": "concept",
+      "title": "House systems at a glance",
+      "description": "Use when you need an overview of the house's major systems (HVAC, water, electrical) and their service state.",
+      "tags": [
+        "home",
+        "systems"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "home/index.md",
+      "type": "index",
+      "title": "Home",
+      "description": "Use when reasoning about the house — systems, maintenance schedules, standing facts. Productivity domain on the OKF floor.",
+      "tags": [
+        "home",
+        "index"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    },
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Knowledge Bundle (demo)",
+      "description": "Use when orienting to this demo bundle — the root index over the finances and home domains that demonstrate the Knowledge methodology in practice.",
+      "tags": [
+        "demo",
+        "index",
+        "root"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-21"
+    }
+  ]
+}

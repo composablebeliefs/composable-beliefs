@@ -1,0 +1,24 @@
+{
+  "bundle": "invalid_dup_id",
+  "count": 2,
+  "docs": [
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Dup A",
+      "description": "Use when testing the first of two docs sharing an id.",
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "fix:dup"
+    },
+    {
+      "path": "other.md",
+      "type": "concept",
+      "title": "Dup B",
+      "description": "Use when testing the second of two docs sharing an id.",
+      "status": "active",
+      "timestamp": "2026-06-21",
+      "id": "fix:dup"
+    }
+  ]
+}

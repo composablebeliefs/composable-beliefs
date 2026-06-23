@@ -1,25 +1,22 @@
-defmodule CB.KnowledgeConformanceTest do
+defmodule CB.OkfConformanceTest do
   @moduledoc """
-  The Knowledge format conformance gate.
+  The OKF/Knowledge format conformance gate.
 
-  The `knowledge` standard repo ships the format as behaviour: `conformance/fixtures/`
-  (valid + invalid bundles) and `conformance/expected/<name>.json` (the normative
+  The standard ships the format as behaviour under `okf/conformance/`: `fixtures/`
+  (valid + invalid bundles) and `expected/<name>.json` (the normative
   `{ok, errors, warnings}` object, with findings sorted by `(code, path)`). This test
   is the single implementation's conformance gate — for every fixture, the Elixir
   validator's `to_contract/2` output must equal the recorded expectation.
 
-  The corpus lives in the sibling standard repo; resolve it via `KNOWLEDGE_REPO`,
-  defaulting to `../knowledge`. If it isn't checked out, the gate is skipped so this
-  suite still passes in isolation (CI that needs the gate must provide the corpus).
+  The corpus is an in-repo asset (folded in from the former `knowledge` standard repo),
+  resolved from `okf/conformance` relative to the repo root. If it is somehow absent the
+  gate skips so the suite still passes, but in this repo it is always present.
   """
   use ExUnit.Case, async: true
 
   alias CB.Knowledge.Validate
 
-  @conformance Path.join(
-                 System.get_env("KNOWLEDGE_REPO", Path.expand("../knowledge", File.cwd!())),
-                 "conformance"
-               )
+  @conformance Path.expand("okf/conformance", File.cwd!())
 
   fixtures =
     if File.dir?(Path.join(@conformance, "fixtures")) do
@@ -35,7 +32,7 @@ defmodule CB.KnowledgeConformanceTest do
   if fixtures == [] do
     @tag :skip
     test "conformance corpus is available" do
-      flunk("Knowledge corpus not found at #{@conformance}; set KNOWLEDGE_REPO")
+      flunk("OKF conformance corpus not found at #{@conformance}")
     end
   end
 

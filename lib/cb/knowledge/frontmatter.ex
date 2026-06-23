@@ -3,9 +3,10 @@ defmodule CB.Knowledge.Frontmatter do
   Parse the documented Knowledge/OKF frontmatter subset: scalars, inline `[a, b]`
   lists, `>`/`|` folded blocks, and `- item` block lists.
 
-  This is NOT a full YAML parser. It is a faithful port of the Python reference
-  parser (`tools/build_manifest.py` in the `knowledge` standard repo) so both
-  implementations agree on the same subset. The conformance suite there is the SSOT.
+  This is NOT a full YAML parser. It parses the same subset the original Python
+  reference parser (`tools/build_manifest.py`, since removed in the Elixir-only
+  collapse) handled. The conformance corpus under `okf/conformance` is now the SSOT
+  for that agreement.
 
   Returns a map with string keys, or `%{}` when there is no frontmatter block.
   """

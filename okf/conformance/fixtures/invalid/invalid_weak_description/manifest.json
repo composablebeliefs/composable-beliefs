@@ -1,0 +1,14 @@
+{
+  "bundle": "invalid_weak_description",
+  "count": 1,
+  "docs": [
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Weak Desc",
+      "description": "short",
+      "status": "active",
+      "timestamp": "2026-06-21"
+    }
+  ]
+}

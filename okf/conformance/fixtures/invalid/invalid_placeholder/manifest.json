@@ -1,0 +1,14 @@
+{
+  "bundle": "invalid_placeholder",
+  "count": 1,
+  "docs": [
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "<Name>",
+      "description": "Use when testing an unfilled template placeholder.",
+      "status": "active",
+      "timestamp": "2026-06-21"
+    }
+  ]
+}

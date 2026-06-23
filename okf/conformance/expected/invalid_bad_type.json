@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "path": "index.md",
+      "code": "type_not_in_taxonomy"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,143 @@
+[
+  {
+    "id": "okfx:a001",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "okf",
+      "convert"
+    ],
+    "claim": "Pilot the knowledge standard's CONVERT runbook on a real existing store - SECOND-BRAIN/second-brain (a markdown-canonical assertion graph with [[wikilink]] frontmatter). Run standard/CONVERT.md end to end: inventory, add the frontmatter spine, transform [[wikilink]] refs to path-links + deps ids, decide tier per doc (default OKF floor), generate the manifest, and validate green. The output proves the standard converts a non-trivial store without losing provenance, and exercises the wikilink->path/deps transform CONVERT names but no conformance fixture covers yet.",
+    "artifact": "session:okf-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "Identified as the natural first real-world test of the standard after building it plus the conformance suite. SECOND-BRAIN/second-brain was named in the originating session as the closest existing precedent (markdown-canonical + derived index) and cleanest pilot. Verbatim thread: document:meta/2026-06-21-okf-cb-session-source.md. First belief in the knowledge: graph, no conflict.",
+        "artifact": "document:meta/2026-06-21-okf-cb-session-source.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-21"
+  },
+  {
+    "id": "okfx:a002",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "okf",
+      "provenance"
+    ],
+    "claim": "Apply the threads:[] provenance convention (standard/types.md) across all existing knowledge-repo docs, not only the two meta docs seeded in the originating session. Every doc authored in a session should carry threads:[<origin-id>, ...]; backfill meta:okf-session-2026-06-21 onto the standard/, demo/, and remaining meta/ docs the session produced, and add a `## Provenance` body table where per-touch detail is wanted. Makes the convention actually-applied rather than only-specified.",
+    "artifact": "session:okf-2026-06-21",
+    "evidence": [
+      {
+        "date": "2026-06-21",
+        "detail": "The threads convention was defined in standard/types.md and seeded only on meta/okf-vs-cb-layering.md and meta/two-tier-knowledge-architecture.md; the rest of the repo it produced is unbackfilled. Verbatim thread: document:meta/2026-06-21-okf-cb-session-source.md.",
+        "artifact": "document:meta/2026-06-21-okf-cb-session-source.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-21"
+  },
+  {
+    "id": "okfx:a003",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "okf",
+      "beliefs",
+      "operational"
+    ],
+    "claim": "knowledge/beliefs/ is the methodology's own CB belief graph (beliefs.json + a CB graph manifest), NOT an OKF bundle. Never run the OKF tooling (mix knowledge.manifest / mix knowledge.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Surfaced during the repo audit: validate.py/knowledge.validate on beliefs/ reports manifest_stale, and build_manifest/knowledge.manifest on it produces {count:0, docs:[]}, clobbering the CB descriptor {depends_on, namespace, description}. The footgun was initially hand-written into knowledge/CLAUDE.md; per section 1.1 the operational directive belongs in the graph as SSOT.",
+        "artifact": "document:standard/KNOWLEDGE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:a004",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "okf",
+      "claude-md"
+    ],
+    "claim": "Make knowledge/CLAUDE.md a graph-compiled output-target (an output:claude-md contract with render_sections, rendered by mix cb.generate.claude_md and gated by --check in CI), the way the framework CLAUDE.md compiles from the cb: graph (cb:c061). Today knowledge/CLAUDE.md is hand-written, so operational directives like the beliefs/ guard (knowledge:a003) end up hand-stated in it rather than rendered from the graph - the exact hand-edit/drift risk the cb:a386 + generated-prose doctrine warns against. Author the render_sections beliefs (the beliefs/ guard among them), wire generation, and make the file read-only.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "The user flagged that CLAUDE.md is meant to compile from beliefs (cb:c061 governs the framework file; mix cb.generate.claude_md is generic). knowledge/CLAUDE.md has no output-target contract, so this session's edits to it were hand-written prose - the gap to close.",
+        "artifact": "document:CLAUDE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "okfx:a003"
+    ],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:a005",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "okf",
+      "conformance"
+    ],
+    "claim": "Port the deleted conformance fixture author (conformance/regen.py) to a mix task (e.g. mix knowledge.conformance.regen) in composable-beliefs' OKF layer, so conformance/fixtures + expected/*.json can be regenerated from a single source rather than hand-maintained. regen.py was removed in the 2026-06-22 Elixir-only collapse (it imported the deleted Python modules); fixtures are currently hand-edited, which can drift from intended outcomes.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "The collapse deleted tools/{build_manifest,validate}.py, conformance/run.sh, and conformance/regen.py; the conformance corpus is now asserted by composable-beliefs ExUnit but has no regenerator.",
+        "artifact": "document:conformance/README.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
+  }
+]
