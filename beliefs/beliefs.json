@@ -7994,5 +7994,30 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-22"
+  },
+  {
+    "id": "cb:a548",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "ci",
+      "okf"
+    ],
+    "claim": "Add the okf/CLAUDE.md freshness check to the composable-beliefs CI docs-gate: a `mix cb.generate.claude_md --check --beliefs okf/beliefs.json` line in .github/workflows/composable-beliefs.yml beside the framework --check. Today CI gates only the framework CLAUDE.md, so the okf/ compiled file (okfx:c002, the okfx:a004 discharge) can drift unguarded - the cb:a386 hole the compile was meant to close. Must be pushed by a token with `workflow` scope; the session OAuth lacks it, so the edit could not land. The /end SKILL.md gate (dotfiles cf0e870) already covers the manual /end-time check; this is the CI-automation half.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Surfaced auditing the okf-fold scope expansion: the okfx:a004 compile shipped but its --check was absent from CI and /end. SKILL.md fixed; CI push blocked by missing workflow OAuth scope (remote rejected). Tag-overlap with cb:a546/a547 is the same fold arc; distinct deliverable.",
+        "artifact": "document:okf/beliefs.json"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
   }
 ]
