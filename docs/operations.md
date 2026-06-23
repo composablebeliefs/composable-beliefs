@@ -38,3 +38,13 @@ in buffers; a `:line` suffix on a relative link opens at the line; so does
 `zed://file/<absolute-path>:<line>`; link targets resolve relative to the
 containing file (a log in `tmp/` reaches sibling repos via `../../`). Terminal
 output `path:line` is also clickable and is the fallback surface.
+
+## Pushing CI workflow changes needs GitHub `workflow` scope
+
+A push that touches `.github/workflows/*.yml` is rejected by GitHub when the
+credential (OAuth app token, e.g. the default `gh`/Claude auth) lacks the
+`workflow` scope: `refusing to allow an OAuth App to create or update workflow
+... without 'workflow' scope`. The rest of the commit is fine; only the workflow
+file is blocked, and the whole push fails atomically. Either push workflow edits
+with a `workflow`-scoped token, or split them out and hand them off (the okf CI
+gate was parked as `cb:a548` for exactly this reason, 2026-06-22).
