@@ -64,18 +64,30 @@ harness config, registered in `~/.claude/settings.json`; the graph records the
   sees its obligations without being told to query. Silent and fail-safe outside
   the tree.
 
-- **SessionEnd -> `cb-finalize-transcript.sh`.** Fixes the transcript tail-gap:
-  `/end`'s in-close copy runs before the session actually ends, so it structurally
-  under-captures the closing turns. At true session end the hook re-copies the
-  **complete** `.jsonl` over the in-`/end` snapshot and commits it. It acts only
-  on a per-session marker that `/end` step 7 drops:
+- **SessionEnd + SessionStart -> `cb-finalize-transcript.sh`.** Fixes the
+  transcript tail-gap: `/end`'s in-close copy runs before the session actually
+  ends, so it structurally under-captures the closing turns. The fix rides a
+  per-session marker `/end` step 7 drops:
   `~/.claude/transcript-pending/<session_id>.json` = `{"dest": <abs .jsonl>, "repo": <abs repo>}`.
-  The hook locates the log by `session_id`, copies it to `dest`, commits + pushes
-  in `repo`, and removes the marker. It does **not** fire on crash (the in-`/end`
-  step-7 copy is the committed fallback) and is a no-op on `resume`. Stale markers
-  from crashed sessions linger until swept.
+  The same script runs at both events:
+  - **SessionEnd:** finalize THIS session - re-copy the **complete** `.jsonl`
+    over the in-`/end` snapshot, commit + push in `repo`, remove the marker.
+    No-op on `resume`.
+  - **SessionStart:** RECOVERY - finalize any **orphaned** markers from prior
+    sessions (their logs are complete by then), then skip the current session's
+    own marker. This catches a SessionEnd that never fired - silent failure OR
+    crash (SessionEnd does not fire on crash).
+
+  This makes it **self-verifying**: a marker's *presence* means "not yet
+  finalized", its *absence* is proof the log landed. A thread is never lost - at
+  worst finalized one session late, by the next SessionStart. (A marker whose log
+  is missing is left for a later retry, so truly-dead markers linger until swept
+  manually - `ls ~/.claude/transcript-pending/`.)
 
 Trigger boundary: SessionEnd is the *user/harness* ending the session (`/clear`,
 logout, CLI exit) - not `/end` completing. `/end` only leaves the marker; the
-session may continue (or `/end` again) before it actually ends, and the hook
-captures everything up to that point.
+session may continue (or `/end` again) before it actually ends, and the finalizer
+captures everything up to that point. The reliable backbone is still the
+*in-session* `/end` snapshot (verifiable, committed while you watch); the hook is
+the best-effort extension that closes the tail, with SessionStart recovery as its
+backstop.
