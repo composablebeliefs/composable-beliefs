@@ -24,6 +24,23 @@ Every primitive sourced from a document or artifact carries an `evidence` array.
 
 **Schema note (historical):** an earlier schema used top-level `source`/`quote`; the current schema uses `artifact` + `evidence[]`. If you meet an old belief with `source`/`quote`, read `source` as `artifact` and `quote` as the first evidence entry's `detail`.
 
+## Discharging a directive whose work shipped out-of-band
+
+A desk directive (active, unmaterialized) usually discharges through
+`/materialize` -> work -> `mix cb.todo.close`. But sometimes the work it
+specifies ships *outside* that flow - a sibling session builds the tool, or it
+lands as ordinary dev work - and the directive is left active while the work is
+done. To reconcile the desk with reality: verify the work actually meets the
+directive's spec (read the shipped code, do not trust the commit message), then
+materialize the directive with a single action-item describing the completed
+work (put the discharging commit in its notes), and immediately
+`mix cb.todo.close` that todo with the verification result. The materialized
+field then records the discharge and the directive leaves the desk; the closed
+todo is the honest record of what discharged it. There is no separate
+"mark discharged" verb - materialize-then-close is the path, and the action-item
+text carries the out-of-band provenance (worked example: cb:a537, discharged by
+`mix cb.repoint` at ac3e199).
+
 ## Observing live agent work: the lap log
 
 A working session is observable from inside the editor: the agent appends to a
