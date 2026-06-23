@@ -7565,6 +7565,11 @@
         "date": "2026-06-12",
         "detail": "Retro-pair per cb:a507: stipulating thread verbatim at the paired artifact.",
         "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Scope widened since minting (2026-06-23): the knowledge: collection has since landed in belief-collections, so the split is no longer just method:/eval-provenance to the amieval org - it is a whole collection-to-org topology decision (which of method:, eval-provenance, knowledge:, and the teaching/framework collections go where). Decide the full map at once rather than moving two collections in isolation. Surfaced in a desk-status review; the org-boundary rationale is unchanged.",
+        "artifact": "document:../belief-collections/collections.json"
       }
     ],
     "subjects": [],
