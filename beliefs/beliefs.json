@@ -7864,6 +7864,11 @@
         "date": "2026-06-22",
         "detail": "Surfaced while discussing how the /end skill's commits 'cite' cb:a518/a520: the citation is purely textual (belief ids as literal substrings in commit subjects and in SKILL.md prose), with no structural backlink and no artifact scheme that could carry one. Operator chose to punt the decision but persist the analysis and options for a future discussion.",
         "artifact": "document:composable-beliefs/lib/cb/belief/contract/enum.ex"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Verbatim thread persisted: the byte-for-byte session log, the type:source this session: slug now resolves to.",
+        "artifact": "document:plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       }
     ],
     "subjects": [],
@@ -7871,6 +7876,32 @@
       "cb:a442",
       "cb:c066"
     ],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "cb:a546",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "collections",
+      "repo-organization",
+      "okf"
+    ],
+    "claim": "Fold the knowledge standard (amieval/knowledge) into composable-beliefs as the okf: extension, in a fresh execution session. The tooling already lives here (mix knowledge.*, lib/cb/knowledge/*) and the knowledge: graph is already a CB collection, so knowledge is in fact CB's OKF integration extension whose docs+corpus+graph merely sit in a separate repo; that repo boundary is the seam that kept the thread-persistence policy (cb:a540) from surfacing to a fresh agent. Move the standard into composable-beliefs/okf/ (mirroring the in-repo codepath/ collection), rename the belief namespace knowledge: -> okf: via re-import into a fresh collection (no rename task exists; local parts a001-a005 preserved, a004's internal dep updated), rewire couplings (belief-collections/collections.json key+path, the conformance test to a local okf/conformance, the stale frontmatter.ex docstring), reconcile the moved docs (mix commands run from repo root against okf/<bundle>; reframe 'separate standard repo' framing; add the manifest's bespoke-not-OKF clarification to KNOWLEDGE.md section 5), handle the dangling cb: document:../knowledge/... evidence pointers with a light touch (leave historical or append corrective evidence, never rewrite), then decommission the knowledge repo. Keep the conceptual line as a namespace (cb: vs okf:), not a repo. Detailed steps + verification: plan:okf-fold. Related okf-collection beliefs to fold: knowledge:a003 (the beliefs/-guard, becomes okf:a003), knowledge:a004 (graph-compile okf/CLAUDE.md), knowledge:a005 (port regen to a mix task). Out of scope but recommended alongside: the SessionStart hook + amieval root CLAUDE.md (cb:a543 family) that make surfacing structural rather than procedural.",
+    "artifact": "plan:okf-fold",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Authored at the close of the knowledge-repo audit/Elixir-only-collapse session, after the operator agreed the standalone knowledge repo no longer earns its separateness (tooling already CB-coupled, no distribution intent) and that the surfacing seam is the real cost. Plan persisted to plans/okf-fold/plan.md; this directive is the self-bootstrapping SSOT a fresh agent picks up from the desk. Tag-overlap review: shares backlog/lifecycle:discrete/collections with cb:a535 (split eval collections) and cb:a543 (global directive graph) but addresses a distinct move (knowledge -> okf:), so no conflict.",
+        "artifact": "plan:okf-fold"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
     "status": "active",
     "created": "2026-06-22"
   }
