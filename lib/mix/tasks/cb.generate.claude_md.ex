@@ -12,6 +12,15 @@ defmodule Mix.Tasks.Cb.Generate.ClaudeMd do
       mix cb.generate.claude_md          - generate the file
       mix cb.generate.claude_md --check  - diff against current; no write
 
+  `--beliefs PATH` points the generator at an alternate belief graph for
+  one invocation (the same override the belief shell and the cb.preflight/
+  import write flow take), so a collection that carries its own
+  `output:claude-md` contract compiles its own file. For example,
+  `mix cb.generate.claude_md --beliefs okf/beliefs.json` compiles
+  `okf/CLAUDE.md` from the okfx: graph while the no-arg invocation keeps
+  compiling the framework CLAUDE.md from cb:. The single-active-target rule
+  is enforced per store, so each graph must carry exactly one.
+
   ## Exit codes
 
   0 = generated or check passed, 1 = errors or check failed
@@ -33,8 +42,10 @@ defmodule Mix.Tasks.Cb.Generate.ClaudeMd do
 
   @impl Mix.Task
   def run(args) do
-    {opts, _, _} = OptionParser.parse(args, strict: [check: :boolean])
+    {opts, _, _} = OptionParser.parse(args, strict: [check: :boolean, beliefs: :string])
     check? = opts[:check] || false
+
+    if path = opts[:beliefs], do: Application.put_env(:cb, :beliefs_path, path)
 
     root = CB.repo_root()
 
