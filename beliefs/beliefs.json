@@ -8023,6 +8023,11 @@
         "date": "2026-06-22",
         "detail": "Verbatim thread persisted; session: slug resolves here.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Moot (audit recheck): okf/CLAUDE.md drift is ALREADY gated in CI. test/cb/generated_claude_md_test.exs checks every output:claude-md store - framework (cb:c065) AND okf/ (okfx:c002) - against its on-disk file, and mix test runs in CI (.github/workflows/composable-beliefs.yml:21). The cb.generate.claude_md --check CLI covering only the framework is therefore fine; the test suite is the structural gate. a548 was raised on the false premise that okf was ungated - an a165 over-flag (the third in this audit). No CI change needed; recommend retract. Tooling note: the graph has no retract task and zero retracted precedent.",
+        "artifact": "document:test/cb/generated_claude_md_test.exs"
       }
     ],
     "subjects": [],
