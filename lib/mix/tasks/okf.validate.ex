@@ -1,10 +1,10 @@
-defmodule Mix.Tasks.Knowledge.Validate do
+defmodule Mix.Tasks.Okf.Validate do
   @shortdoc "Validate a Knowledge (OKF) bundle (--json for machine output)"
   @moduledoc """
   #{@shortdoc}
 
-      mix knowledge.validate <bundle-root>          # human output
-      mix knowledge.validate <bundle-root> --json   # stable conformance object
+      mix okf.validate <bundle-root>          # human output
+      mix okf.validate <bundle-root> --json   # stable conformance object
 
   Part of CB's OKF integration layer. Conformant with the `knowledge` standard's
   conformance suite: run it there with
@@ -16,11 +16,11 @@ defmodule Mix.Tasks.Knowledge.Validate do
   @impl Mix.Task
   def run(argv) do
     {opts, rest, _} = OptionParser.parse(argv, switches: [json: :boolean])
-    root = List.first(rest) || Mix.raise("usage: mix knowledge.validate <bundle-root> [--json]")
-    {errors, warnings} = CB.Knowledge.Validate.run(root)
+    root = List.first(rest) || Mix.raise("usage: mix okf.validate <bundle-root> [--json]")
+    {errors, warnings} = CB.Okf.Validate.run(root)
 
     if opts[:json] do
-      IO.puts(CB.Knowledge.Validate.to_contract(errors, warnings))
+      IO.puts(CB.Okf.Validate.to_contract(errors, warnings))
     else
       Enum.each(warnings, fn w -> IO.puts("WARN: #{w.path}: #{w.msg}") end)
       Enum.each(errors, fn e -> IO.puts("FAIL: #{e.path}: #{e.msg}") end)

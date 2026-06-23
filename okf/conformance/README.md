@@ -21,7 +21,7 @@ with `errors` and `warnings` sorted by `(code, path)`.
 **Only the `(severity, code, path)` triples are normative.** Human-readable messages,
 the bundle root path, and ordering beyond the defined sort are NOT part of the contract,
 so an implementation is free to word findings differently. The stable `code` values are
-documented in the `CB.Knowledge.Validate` moduledoc (`composable-beliefs`).
+documented in the `CB.Okf.Validate` moduledoc (`composable-beliefs`).
 
 ## Running
 
@@ -62,7 +62,7 @@ hard-check failure so a divergence points straight at the responsible rule:
 
 Fixtures and their `expected/*.json` are maintained by hand. When adding or changing a
 fixture, author both the bundle (including a fresh `manifest.json`, via
-`mix knowledge.manifest <fixture>`) and its expected result, then run the conformance
+`mix okf.manifest <fixture>`) and its expected result, then run the conformance
 test. Each `expected/*.json` must reflect the fixture's *intended* outcome — review it,
 don't just paste whatever the validator currently prints.
 

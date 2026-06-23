@@ -112,7 +112,7 @@ small file the agent loads first. It is the skills-style summary layer. Contract
 > credits OKF with `index.md` but not the manifest. It is the concrete reason the
 > collection's namespace is `okfx:` (extends OKF) rather than `okf:`.
 
-- Produced by `mix knowledge.manifest <root>` (in the `composable-beliefs` repo); **never hand-edited**.
+- Produced by `mix okf.manifest <root>` (in the `composable-beliefs` repo); **never hand-edited**.
 - One entry per `.md` doc: `path`, `type`, `title`, `description`, `tags`, `status`,
   `timestamp`, and (if present) `id`, `deps`, `tier`.
 - Small by construction — bodies are excluded. An agent reads the whole manifest

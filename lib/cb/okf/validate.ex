@@ -1,4 +1,4 @@
-defmodule CB.Knowledge.Validate do
+defmodule CB.Okf.Validate do
   @moduledoc """
   Validate a Knowledge (OKF) bundle. Faithful port of the Python reference
   (`tools/validate.py`); findings carry stable `code` values so the conformance
@@ -8,7 +8,7 @@ defmodule CB.Knowledge.Validate do
   `to_contract/2` renders the root-independent `{ok, errors, warnings}` JSON object
   that the conformance suite diffs.
   """
-  alias CB.Knowledge.{Frontmatter, Manifest}
+  alias CB.Okf.{Frontmatter, Manifest}
 
   @types ~w(source concept thread plan analysis position decision reference index spec)
   @statuses ~w(active superseded retracted draft)
@@ -174,8 +174,8 @@ defmodule CB.Knowledge.Validate do
     expected = Manifest.render(root)
 
     cond do
-      not File.exists?(man) -> [finding("manifest.json", "manifest_missing", "missing (run mix knowledge.manifest)")]
-      File.read!(man) != expected -> [finding("manifest.json", "manifest_stale", "stale (run mix knowledge.manifest)")]
+      not File.exists?(man) -> [finding("manifest.json", "manifest_missing", "missing (run mix okf.manifest)")]
+      File.read!(man) != expected -> [finding("manifest.json", "manifest_stale", "stale (run mix okf.manifest)")]
       true -> []
     end
   end

@@ -10,15 +10,15 @@ If you are a fresh agent pointed here, route by intent: to **adopt this methodol
 
 ## Tooling
 
-The tooling lives alongside this directory in composable-beliefs (`mix knowledge.*`, `lib/cb/knowledge/*`) as CB's OKF integration layer; run the mix tasks from the repo root against a bundle path under `okf/`. After any change to an OKF bundle, regenerate its manifest, e.g. `mix knowledge.manifest okf/demo` (and `mix knowledge.manifest okf/meta`), then validate with `mix knowledge.validate okf/<bundle>`.
+The tooling lives alongside this directory in composable-beliefs (`mix okf.*`, `lib/cb/okf/*`) as CB's OKF integration layer; run the mix tasks from the repo root against a bundle path under `okf/`. After any change to an OKF bundle, regenerate its manifest, e.g. `mix okf.manifest okf/demo` (and `mix okf.manifest okf/meta`), then validate with `mix okf.validate okf/<bundle>`.
 
 ## The okfx graph is not an OKF bundle
 
-knowledge/beliefs/ is the methodology's own CB belief graph (beliefs.json + a CB graph manifest), NOT an OKF bundle. Never run the OKF tooling (mix knowledge.manifest / mix knowledge.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.
+okf/beliefs.json (with okf/manifest.json) is the methodology's own CB belief graph - the okfx: collection - NOT an OKF bundle. Never run the OKF tooling (mix okf.manifest / mix okf.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.
 
 ## Standard, not an app
 
-This is a standard, not an app: [`conformance/`](conformance/) defines the format as behaviour (fixtures plus normative `expected/*.json`). The single implementation (`mix knowledge.manifest` / `mix knowledge.validate`, plus the `knowledge.emit` / `knowledge.ingest` bridge) is held to that corpus by the repo's ExUnit conformance test (`test/cb/okf_conformance_test.exs`), which must stay green.
+This is a standard, not an app: [`conformance/`](conformance/) defines the format as behaviour (fixtures plus normative `expected/*.json`). The single implementation (`mix okf.manifest` / `mix okf.validate`, plus the `okf.emit` / `okf.ingest` bridge) is held to that corpus by the repo's ExUnit conformance test (`test/cb/okf_conformance_test.exs`), which must stay green.
 
 ## Core rule
 

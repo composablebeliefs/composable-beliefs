@@ -6,11 +6,11 @@ tooling lives in the `composable-beliefs` repo (the OKF integration layer beside
 `okf/` directory); run these from the repo root against the target bundle path:
 
 ```
-mix knowledge.manifest <root>   # (re)generate <root>/manifest.json
-mix knowledge.validate <root>   # exit 0 = pass; prints FAIL: lines + a count
+mix okf.manifest <root>   # (re)generate <root>/manifest.json
+mix okf.validate <root>   # exit 0 = pass; prints FAIL: lines + a count
 ```
 
-`mix knowledge.validate` is the source of truth for "did that step actually work." Treat
+`mix okf.validate` is the source of truth for "did that step actually work." Treat
 a non-zero exit, or any `FAIL:` line, as a stop condition. `WARN:` lines are advisory.
 
 ## 0. Read the spec
@@ -25,9 +25,9 @@ CB tier, (c) what `manifest.json` is for. If you can't, re-read.
 ## 1. Decide the bundle root
 Pick where knowledge lives in the target repo — typically `knowledge/` or `docs/`. This
 is the **bundle root** (`<root>` below). No tooling is copied into the target repo: the
-`mix knowledge.*` tasks in the `composable-beliefs` repo operate on any bundle path.
+`mix okf.*` tasks in the `composable-beliefs` repo operate on any bundle path.
 
-**Gate:** from the `composable-beliefs` repo root, `mix help knowledge.validate` prints usage
+**Gate:** from the `composable-beliefs` repo root, `mix help okf.validate` prints usage
 (confirms the tasks are available).
 
 ## 2. Create the skeleton
@@ -46,7 +46,7 @@ test trips (and then the doc needs an `id`).
 
 **Gate:**
 ```
-mix knowledge.manifest <root> && mix knowledge.validate <root>
+mix okf.manifest <root> && mix okf.validate <root>
 ```
 Must exit 0. Fix every `FAIL:` (missing `type`, weak `description`, leftover placeholder,
 broken link) before continuing.
@@ -64,7 +64,7 @@ Populate domains with real `concept`/`reference`/`source` docs (not just indexes
 new or changed file means a regenerate + validate.
 
 **Gate (the loop):** after any edit, run
-`mix knowledge.manifest <root> && mix knowledge.validate <root>` until it exits 0 with zero `FAIL:`.
+`mix okf.manifest <root> && mix okf.validate <root>` until it exits 0 with zero `FAIL:`.
 
 ## 5. The standing workflow (day-to-day, after adoption)
 - **End of a working session** → write one `type: thread` doc in `meta/`; its
@@ -72,14 +72,14 @@ new or changed file means a regenerate + validate.
 - **New external input** → capture as `type: source` (immutable), then **update the
   relevant `type: concept` docs** — don't let sources pile up unsynthesized.
 - **A settled stance** → `type: position`; consider CB-tier promotion.
-- **After any change** → `mix knowledge.manifest <root> && mix knowledge.validate <root>`, exit 0.
-- **Wire it so it can't drift:** add `mix knowledge.validate <root>` to CI or a pre-commit
-  hook. (`mix knowledge.manifest <root> --check` alone catches only manifest staleness;
-  `mix knowledge.validate` catches that *and* schema/link breakage.)
+- **After any change** → `mix okf.manifest <root> && mix okf.validate <root>`, exit 0.
+- **Wire it so it can't drift:** add `mix okf.validate <root>` to CI or a pre-commit
+  hook. (`mix okf.manifest <root> --check` alone catches only manifest staleness;
+  `mix okf.validate` catches that *and* schema/link breakage.)
 
 ## 6. Done when (acceptance test)
 Adoption is complete only when **all** hold:
-1. `mix knowledge.validate <root>` exits 0 (no `FAIL:`).
+1. `mix okf.validate <root>` exits 0 (no `FAIL:`).
 2. `<root>/manifest.json` exists and lists every doc with a real `description`.
 3. Pick **three** task-shaped questions a future agent might ask this repo. Each must be
    answerable by reading `manifest.json` + at most two docs it points to. If not, the

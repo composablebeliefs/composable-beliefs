@@ -1,7 +1,7 @@
-defmodule CB.KnowledgeTest do
+defmodule CB.OkfTest do
   use ExUnit.Case, async: true
 
-  alias CB.Knowledge.{Frontmatter, Manifest, Validate}
+  alias CB.Okf.{Frontmatter, Manifest, Validate}
 
   setup do
     root = Path.join(System.tmp_dir!(), "kn_#{System.unique_integer([:positive])}")
@@ -134,7 +134,7 @@ defmodule CB.KnowledgeTest do
 
     test "emit produces a bundle that validates green", %{root: root} do
       out = Path.join(root, "okf")
-      assert {:ok, 2} = CB.Knowledge.Emit.bundle(sample_beliefs(), out)
+      assert {:ok, 2} = CB.Okf.Emit.bundle(sample_beliefs(), out)
       assert File.exists?(Path.join(out, "cb-a001.md"))
       assert File.read!(Path.join(out, "cb-a002.md")) =~ "[cb:a001](cb-a001.md)"
 
@@ -145,9 +145,9 @@ defmodule CB.KnowledgeTest do
 
     test "ingest lands every doc as an attributable primitive", %{root: root} do
       out = Path.join(root, "okf")
-      CB.Knowledge.Emit.bundle(sample_beliefs(), out)
+      CB.Okf.Emit.bundle(sample_beliefs(), out)
 
-      ingested = CB.Knowledge.Ingest.beliefs(out, "lib")
+      ingested = CB.Okf.Ingest.beliefs(out, "lib")
       assert length(ingested) == 2
       assert Enum.all?(ingested, &(&1["type"] == "primitive"))
       assert Enum.all?(ingested, &String.starts_with?(&1["artifact"], "document:"))

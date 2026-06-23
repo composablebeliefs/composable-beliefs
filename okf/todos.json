@@ -6,5 +6,13 @@
     "notes": "Discharged: authored okfx:c001 (output:claude-md contract) + render-section beliefs okfx:a006-a009, with okfx:a003 (the beliefs/ guard) as a render_section. Taught mix cb.generate.claude_md a --beliefs PATH override so it compiles okf/CLAUDE.md from the okfx: graph. okf/CLAUDE.md is now generated + read-only (header comment + --check), gated by test/cb/generated_claude_md_test.exs (which also retro-gates the cb: file). All gates green.\n\nokfx:a004 complete. okf/CLAUDE.md compiles from okfx:c001 via mix cb.generate.claude_md --beliefs okf/beliefs.json; --check gated in test/cb/generated_claude_md_test.exs. Verified: mix test (363), verify.collection okfx, verify.schema, both --check paths green.",
     "source": "okfx:a004",
     "status": "done"
+  },
+  {
+    "action": "Correct stale knowledge/... paths in okfx claims left by the fold; supersede okfx:a003's knowledge/beliefs/ path and regenerate okf/CLAUDE.md",
+    "created": "2026-06-22",
+    "id": "t0002",
+    "notes": "rides with the mix knowledge.* -> mix okf.* rename\n\nDischarged via the mix knowledge.* -> mix okf.* rename. okfx:a003 - the sole render_section carrying the stale path, hence the only one compiling into okf/CLAUDE.md - superseded to okfx:a011: knowledge/beliefs/ -> okf/beliefs.json + okf/manifest.json, and tooling names renamed. okfx:c001 -> c002 repointed render_sections; okf/CLAUDE.md regenerated (the stale path no longer compiles in). Audit of remaining active okfx claims: okfx:a004 (a discharged directive, its 'knowledge/CLAUDE.md' now historical since the file is okf/CLAUDE.md and compiles) and okfx:a005 (an illustrative 'e.g. mix okf.conformance.regen' command name) still name old paths/commands but are non-compiled prose; left per immutability and proportionality, and they read correctly once a005 is implemented.",
+    "source": "okfx:a010",
+    "status": "done"
   }
 ]

@@ -17,9 +17,9 @@ Point a fresh agent here and say one of:
 
 This is a **standard, not an application**. The format is defined by the
 [conformance corpus](conformance/) — valid/invalid fixtures plus their normative
-results — and **implemented once**, in Elixir: the `mix knowledge.*` tasks in this
+results — and **implemented once**, in Elixir: the `mix okf.*` tasks in this
 repo's [Composable Beliefs](standard/tiers.md) OKF integration layer
-(`lib/cb/knowledge/*`), which also add `emit`/`ingest` to bridge the CB belief graph.
+(`lib/cb/okf/*`), which also add `emit`/`ingest` to bridge the CB belief graph.
 The corpus is the source of truth for what "valid" means; the implementation is held to
 it by the repo's ExUnit conformance test (`test/cb/okf_conformance_test.exs`).
 
@@ -65,7 +65,7 @@ okf/
 │   └── expected/        ← the normative (severity, code, path) results
 ├── beliefs.json         ← the methodology's own CB operational graph (the `okfx:`
 ├── manifest.json           collection: backlog, conventions). A belief graph, NOT an
-│                            OKF bundle — the `mix knowledge.*` OKF tooling does not apply.
+│                            OKF bundle — the `mix okf.*` OKF tooling does not apply.
 └── demo/               ← a SYNTHETIC example bundle (illustrative sample data only)
     ├── index.md         ← progressive-disclosure root
     ├── manifest.json    ← GENERATED skills-style summary index (do not hand-edit)

@@ -1,4 +1,4 @@
-defmodule CB.Knowledge.Manifest do
+defmodule CB.Okf.Manifest do
   @moduledoc """
   Build and render a Knowledge bundle manifest.
 
@@ -7,7 +7,7 @@ defmodule CB.Knowledge.Manifest do
   and the same pretty JSON as `json.dumps(indent=2, ensure_ascii=False)` (Jason's
   `pretty: true` is byte-identical, verified).
   """
-  alias CB.Knowledge.Frontmatter
+  alias CB.Okf.Frontmatter
 
   @fields ~w(path type title description tags status timestamp id deps tier kind resource artifact)
 

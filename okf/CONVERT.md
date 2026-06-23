@@ -7,11 +7,11 @@ rigor that wasn't there.**
 
 **Each mutating step ends in a gate you run — do not proceed past a failing gate.**
 Self-verification commands (no tooling is copied into the target repo — run the
-`mix knowledge.*` tasks from the `composable-beliefs` repo root against the bundle path):
+`mix okf.*` tasks from the `composable-beliefs` repo root against the bundle path):
 
 ```
-mix knowledge.manifest <root>   # (re)generate <root>/manifest.json
-mix knowledge.validate <root>   # exit 0 = pass; FAIL: lines stop you
+mix okf.manifest <root>   # (re)generate <root>/manifest.json
+mix okf.validate <root>   # exit 0 = pass; FAIL: lines stop you
 ```
 
 ## 0. Read the spec
@@ -49,7 +49,7 @@ For each file: prepend the spine (`type`, `title`, `description`, `tags`, `statu
 body content intact unless a file mixes types — then split it.
 
 **Gate (incremental):** after converting each batch,
-`mix knowledge.manifest <root> && mix knowledge.validate <root>` and clear every `FAIL:`. The validator
+`mix okf.manifest <root> && mix okf.validate <root>` and clear every `FAIL:`. The validator
 catches the conversion's typical misses: missing `type`, vague/short `description`,
 leftover `<placeholder>`, bad `timestamp`, broken cross-link.
 
@@ -59,7 +59,7 @@ leftover `<placeholder>`, bad `timestamp`, broken cross-link.
 - Convert ad-hoc cross-references into markdown links to the new paths. (The validator
   fails on any link whose target file doesn't exist — use it to find the ones you missed.)
 
-**Gate:** `mix knowledge.validate <root>` reports **zero** `broken link` failures.
+**Gate:** `mix okf.validate <root>` reports **zero** `broken link` failures.
 
 ## 4. Decide the tier per document (default: floor)
 Everything lands on the **OKF floor** unless [`standard/tiers.md`](standard/tiers.md)'s boundary
@@ -68,12 +68,12 @@ graph (e.g. `assertions.json`), **keep it as the canonical store and emit an OKF
 projection** (each belief → a typed `concept` doc; `deps` → cross-links + `deps`
 frontmatter). Don't flatten a belief graph into prose and lose the edges.
 
-**Gate:** for every `tier: cb` doc, `mix knowledge.validate` confirms it has an `id` and ids are
+**Gate:** for every `tier: cb` doc, `mix okf.validate` confirms it has an `id` and ids are
 unique (it FAILs otherwise). Cross-bundle `deps` may show as `WARN` — that's expected.
 
 ## 5. Final manifest + acceptance test
 ```
-mix knowledge.manifest <root> && mix knowledge.validate <root>
+mix okf.manifest <root> && mix okf.validate <root>
 ```
 Must exit 0. Then pick **three** task-shaped questions a future agent might ask, and
 confirm each is answerable from `manifest.json` + at most two docs. If not, the
@@ -81,5 +81,5 @@ confirm each is answerable from `manifest.json` + at most two docs. If not, the
 
 ## 6. Report
 Summarize: counts by `type`, what stayed floor vs went CB, anything you could not place
-(flag for the human), the new entry `index.md`, and confirmation that `mix knowledge.validate` exits
+(flag for the human), the new entry `index.md`, and confirmation that `mix okf.validate` exits
 0. Note that the original remains in git history for any unconverted detail.

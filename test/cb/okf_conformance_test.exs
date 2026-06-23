@@ -14,7 +14,7 @@ defmodule CB.OkfConformanceTest do
   """
   use ExUnit.Case, async: true
 
-  alias CB.Knowledge.Validate
+  alias CB.Okf.Validate
 
   @conformance Path.expand("okf/conformance", File.cwd!())
 

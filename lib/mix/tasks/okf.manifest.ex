@@ -1,10 +1,10 @@
-defmodule Mix.Tasks.Knowledge.Manifest do
+defmodule Mix.Tasks.Okf.Manifest do
   @shortdoc "Generate manifest.json for a Knowledge (OKF) bundle"
   @moduledoc """
   #{@shortdoc}
 
-      mix knowledge.manifest <bundle-root>          # write <root>/manifest.json
-      mix knowledge.manifest <bundle-root> --check  # exit 1 if the manifest is stale
+      mix okf.manifest <bundle-root>          # write <root>/manifest.json
+      mix okf.manifest <bundle-root> --check  # exit 1 if the manifest is stale
 
   Part of CB's OKF integration layer. Byte-compatible with the Python reference
   tool in the `knowledge` standard repo.
@@ -14,8 +14,8 @@ defmodule Mix.Tasks.Knowledge.Manifest do
   @impl Mix.Task
   def run(argv) do
     {opts, rest, _} = OptionParser.parse(argv, switches: [check: :boolean])
-    root = List.first(rest) || Mix.raise("usage: mix knowledge.manifest <bundle-root> [--check]")
-    content = CB.Knowledge.Manifest.render(root)
+    root = List.first(rest) || Mix.raise("usage: mix okf.manifest <bundle-root> [--check]")
+    content = CB.Okf.Manifest.render(root)
     out = Path.join(root, "manifest.json")
 
     if opts[:check] do
@@ -24,7 +24,7 @@ defmodule Mix.Tasks.Knowledge.Manifest do
       if current == content do
         IO.puts("ok: #{out} up to date")
       else
-        IO.puts(:stderr, "stale: #{out} (run mix knowledge.manifest #{root})")
+        IO.puts(:stderr, "stale: #{out} (run mix okf.manifest #{root})")
         System.halt(1)
       end
     else

@@ -1,4 +1,4 @@
-defmodule CB.Knowledge.Frontmatter do
+defmodule CB.Okf.Frontmatter do
   @moduledoc """
   Parse the documented Knowledge/OKF frontmatter subset: scalars, inline `[a, b]`
   lists, `>`/`|` folded blocks, and `- item` block lists.

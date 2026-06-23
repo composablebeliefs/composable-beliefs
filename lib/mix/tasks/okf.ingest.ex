@@ -1,9 +1,9 @@
-defmodule Mix.Tasks.Knowledge.Ingest do
+defmodule Mix.Tasks.Okf.Ingest do
   @shortdoc "Ingest an OKF bundle into CB primitive beliefs (lossy up-conversion)"
   @moduledoc """
   #{@shortdoc}
 
-      mix knowledge.ingest <bundle-root> [--ns NS] [--out FILE]
+      mix okf.ingest <bundle-root> [--ns NS] [--out FILE]
 
   Reads a Knowledge/OKF bundle and emits CB belief JSON - one `primitive` per document,
   grounded in `artifact: document:<path>`. Prints to stdout, or writes to FILE.
@@ -13,12 +13,12 @@ defmodule Mix.Tasks.Knowledge.Ingest do
   use Mix.Task
 
   alias CB.Belief
-  alias CB.Knowledge.Ingest
+  alias CB.Okf.Ingest
 
   @impl Mix.Task
   def run(argv) do
     {opts, rest, _} = OptionParser.parse(argv, switches: [ns: :string, out: :string])
-    root = List.first(rest) || Mix.raise("usage: mix knowledge.ingest <bundle-root> [--ns NS] [--out FILE]")
+    root = List.first(rest) || Mix.raise("usage: mix okf.ingest <bundle-root> [--ns NS] [--out FILE]")
     ns = opts[:ns] || "okf"
 
     ordered =

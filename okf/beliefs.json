@@ -75,7 +75,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "okfx:a011",
     "created": "2026-06-22"
   },
   {
@@ -203,7 +204,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "okfx:a012",
     "created": "2026-06-22"
   },
   {
@@ -231,7 +233,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "okfx:a013",
     "created": "2026-06-22"
   },
   {
@@ -342,7 +345,8 @@
       "okfx:a008",
       "okfx:a009"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "okfx:c002",
     "created": "2026-06-22"
   },
   {
@@ -374,6 +378,224 @@
     "deps": [
       "okfx:a003",
       "okfx:c001"
+    ],
+    "materialized": {
+      "date": "2026-06-22",
+      "todos": [
+        {
+          "action": "Correct stale knowledge/... paths in okfx claims left by the fold; supersede okfx:a003's knowledge/beliefs/ path and regenerate okf/CLAUDE.md",
+          "id": "t0002",
+          "notes": "rides with the mix knowledge.* -> mix okf.* rename"
+        }
+      ]
+    },
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:a011",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "okf",
+      "beliefs",
+      "operational"
+    ],
+    "claim": "okf/beliefs.json (with okf/manifest.json) is the methodology's own CB belief graph - the okfx: collection - NOT an OKF bundle. Never run the OKF tooling (mix okf.manifest / mix okf.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Surfaced during the repo audit: validate.py/knowledge.validate on beliefs/ reports manifest_stale, and build_manifest/knowledge.manifest on it produces {count:0, docs:[]}, clobbering the CB descriptor {depends_on, namespace, description}. The footgun was initially hand-written into knowledge/CLAUDE.md; per section 1.1 the operational directive belongs in the graph as SSOT.",
+        "artifact": "document:standard/KNOWLEDGE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Supersedes okfx:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges okfx:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo okfx: collection). Guard meaning unchanged; only command names and the store path updated.",
+        "artifact": "user:mreveley:2026-06-22"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Accepted via human adjudication against okfx:a003. Reasoning: Supersedes okfx:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges okfx:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo okfx: collection). Guard meaning unchanged; only command names and the store path updated.",
+        "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:a012",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "okf",
+      "claude-md"
+    ],
+    "claim": "The tooling lives alongside this directory in composable-beliefs (`mix okf.*`, `lib/cb/okf/*`) as CB's OKF integration layer; run the mix tasks from the repo root against a bundle path under `okf/`. After any change to an OKF bundle, regenerate its manifest, e.g. `mix okf.manifest okf/demo` (and `mix okf.manifest okf/meta`), then validate with `mix okf.validate okf/<bundle>`.",
+    "artifact": "session:2026-06-22-okf-claude-md-compile",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Render-section belief for the okf/ CLAUDE.md Tooling section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Cites mix knowledge.* because the knowledge.* -> okf.* rename has not landed in the live tree as of this authoring; regenerate this section if it does.",
+        "artifact": "document:okf/CLAUDE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Supersedes okfx:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
+        "artifact": "user:mreveley:2026-06-22"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Accepted via human adjudication against okfx:a007. Reasoning: Supersedes okfx:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
+        "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:a013",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "okf",
+      "claude-md"
+    ],
+    "claim": "This is a standard, not an app: [`conformance/`](conformance/) defines the format as behaviour (fixtures plus normative `expected/*.json`). The single implementation (`mix okf.manifest` / `mix okf.validate`, plus the `okf.emit` / `okf.ingest` bridge) is held to that corpus by the repo's ExUnit conformance test (`test/cb/okf_conformance_test.exs`), which must stay green.",
+    "artifact": "session:2026-06-22-okf-claude-md-compile",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Render-section belief for the okf/ CLAUDE.md standard-not-an-app section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Carries the conformance-gate prose verbatim from the hand-written original.",
+        "artifact": "document:okf/CLAUDE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Supersedes okfx:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
+        "artifact": "user:mreveley:2026-06-22"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Accepted via human adjudication against okfx:a008. Reasoning: Supersedes okfx:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
+        "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "okfx:c002",
+    "type": "directive",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:claude-md"
+    ],
+    "claim": "The okf/ CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the okfx: graph by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Authoring happens by creating beliefs (via the cb.preflight/import write flow) and by editing this contract's render_sections; hand-edits to okf/CLAUDE.md are overwritten on the next generation.",
+    "rules": [
+      {
+        "output_path": "okf/CLAUDE.md"
+      },
+      {
+        "header_comment": "<!-- Generated by `mix cb.generate.claude_md --beliefs okf/beliefs.json` from the okfx: DAG. Do not edit; run the task to regenerate. -->\n\n# CLAUDE.md - okf/ (the OKF integration extension)\n\nThis directory is the Knowledge methodology: a portable OKF-based format for knowledge across all my repos and productivity domains, with Composable Beliefs as an opt-in rigor ceiling. It is CB's OKF integration extension, folded into composable-beliefs beside the tooling that implements it (it used to be the standalone `knowledge` repo)."
+      },
+      {
+        "render_sections": [
+          {
+            "beliefs": [
+              "okfx:a006"
+            ],
+            "title": "Orientation"
+          },
+          {
+            "beliefs": [
+              "okfx:a012"
+            ],
+            "title": "Tooling"
+          },
+          {
+            "beliefs": [
+              "okfx:a011"
+            ],
+            "title": "The okfx graph is not an OKF bundle"
+          },
+          {
+            "beliefs": [
+              "okfx:a013"
+            ],
+            "title": "Standard, not an app"
+          },
+          {
+            "beliefs": [
+              "okfx:a009"
+            ],
+            "title": "Core rule"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "okf/CLAUDE.md is read-only - edits are overwritten on next generation",
+      "Every line of output traces to exactly one belief's claim field",
+      "deps equals the union of all beliefs referenced in render_sections",
+      "Section titles are human-readable; tags remain free for cross-cutting audit queries"
+    ],
+    "contract": true,
+    "artifact": "session:2026-06-22-okf-claude-md-compile",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "The okfx: output-target contract that makes okf/CLAUDE.md a graph-compiled, --check-gated output-target, discharging okfx:a004. Mirrors the framework's cb:c065 (output:claude-md) shape; deps equal the union of the render_sections' beliefs (okfx:a003 the beliefs/ guard, plus okfx:a006-a009). Compiled by mix cb.generate.claude_md with the new --beliefs PATH override pointing the store at okf/beliefs.json.",
+        "artifact": "document:okf/CLAUDE.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Single change from okfx:c001: render_sections repointed from okfx:a003/a007/a008 to their successors okfx:a011/a012/a013 (the mix knowledge.* -> mix okf.* tooling rename), with deps updated to match per the deps=union invariant. output_path, header_comment, claim, and invariants carry verbatim.",
+        "artifact": "user:mreveley:2026-06-22"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Accepted via human adjudication against okfx:c001. Reasoning: Repoint render_sections to the renamed successors okfx:a011/a012/a013; deps updated per union invariant.",
+        "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "okfx:a006",
+      "okfx:a012",
+      "okfx:a011",
+      "okfx:a013",
+      "okfx:a009"
     ],
     "status": "active",
     "created": "2026-06-22"

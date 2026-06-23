@@ -1,15 +1,15 @@
-defmodule CB.Knowledge.Emit do
+defmodule CB.Okf.Emit do
   @moduledoc """
   Project a CB belief graph *down* to an OKF bundle (the "CB serializes to OKF"
   direction). Each belief becomes one `tier: cb` OKF document: its claim is the
   description, its `deps` become both frontmatter and body cross-links, supersession
-  carries over. The emitted bundle is designed to pass `mix knowledge.validate`.
+  carries over. The emitted bundle is designed to pass `mix okf.validate`.
 
   This is a lossy projection - nested evidence/subjects are not represented in the
   frontmatter subset; the canonical store remains `beliefs/beliefs.json`. The CB
   structural type is preserved in a `cb_type` field so a CB-aware reader can recover it.
   """
-  alias CB.Knowledge.Manifest
+  alias CB.Okf.Manifest
 
   @type_map %{
     "primitive" => "reference",
@@ -96,7 +96,7 @@ defmodule CB.Knowledge.Emit do
       {"tags", {:list, ["cb", "okf", "index"]}}
     ]
 
-    render(fm, "# CB belief graph (OKF projection)\n\nGenerated from beliefs.json by `mix knowledge.emit`.\n")
+    render(fm, "# CB belief graph (OKF projection)\n\nGenerated from beliefs.json by `mix okf.emit`.\n")
   end
 
   # ---- frontmatter rendering ----

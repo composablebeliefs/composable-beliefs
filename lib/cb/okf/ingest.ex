@@ -1,4 +1,4 @@
-defmodule CB.Knowledge.Ingest do
+defmodule CB.Okf.Ingest do
   @moduledoc """
   Ingest an OKF bundle *up* into CB beliefs. Per the CB<->OKF analysis this direction is
   intentionally lossy: a generic OKF bundle carries no typed deps or evidence, so every
@@ -8,7 +8,7 @@ defmodule CB.Knowledge.Ingest do
 
   Returns CB belief maps (string-keyed) ready to encode or feed to preflight.
   """
-  alias CB.Knowledge.{Frontmatter, Manifest}
+  alias CB.Okf.{Frontmatter, Manifest}
 
   @doc "Ingest the bundle at `root` into a list of primitive belief maps under namespace `ns`."
   def beliefs(root, ns \\ "okf") do
