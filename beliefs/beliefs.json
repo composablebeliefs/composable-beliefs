@@ -6443,6 +6443,11 @@
         "date": "2026-06-22",
         "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:a546); the prior document:../knowledge/ pointer dangles. Corrected target.",
         "artifact": "document:okf/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Closed the verbatim-thread tail gap. /end's step-5 transcript copy ran mid-close, so every persisted thread (and cb:a540's verbatim rule) structurally under-captured its own closing turns - the report, the commit, any post-/end continuation; this session's copy landed ~2% short of the live log. Two-phase fix: /end now defers the byte-copy to step-7-last (latest-possible in-close snapshot) and drops a per-session finalize-marker (~/.claude/transcript-pending/<id>.json); a new SessionEnd hook (cb-finalize-transcript.sh, dotfiles-claude) re-copies the COMPLETE log to the homed destination and commits it at true session end. The in-/end copy is the crash fallback - SessionEnd does not fire on crash. This is the cb:a165 procedural->structural move applied to /end's own persistence: stop having the agent copy its still-being-written log from inside it.",
+        "artifact": "session:2026-06-22-knowledge-audit-collapse"
       }
     ],
     "subjects": [],
