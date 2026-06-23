@@ -7983,6 +7983,11 @@
         "date": "2026-06-22",
         "detail": "Surfaced auditing the executed okf-fold: the move repointed the okfx graph's own claims (okfx:a010/t0002) but left four inbound cb: evidence artifacts dangling at the deleted ../knowledge repo. Repointed to okf/ via corrective appends. Tag-overlap with cb:a546 (the fold) and cb:a518/a507 (artifact resolvability) is topical; this adds the general move-time rule neither states.",
         "artifact": "document:okf/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Correction (same-day audit recheck): the okf-fold had ALREADY repointed all four inbound cb: pointers - cb:a518/a540/a543/a544 each already carried a resolvable document:okf/ entry beside the historical ../knowledge one. The audit mis-flagged them as dangling by testing only for the old path's presence, not the corrective's - the cb:a165 pattern (acting on a stale check instead of current state). The four corrective appends made under commit 3814e80 were therefore redundant duplicates. The RULE stands: it codifies the repoint-on-move practice the fold correctly followed. Treat the audit slip as the cautionary half of the example: verify the corrective is ABSENT before repointing.",
+        "artifact": "session:2026-06-22-knowledge-audit-collapse"
       }
     ],
     "subjects": [],
