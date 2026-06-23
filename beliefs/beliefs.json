@@ -6438,6 +6438,11 @@
         "date": "2026-06-22",
         "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
         "artifact": "document:okf/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:a546); the prior document:../knowledge/ pointer dangles. Corrected target.",
+        "artifact": "document:okf/standard/types.md"
       }
     ],
     "subjects": [],
@@ -7746,6 +7751,11 @@
         "date": "2026-06-22",
         "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
         "artifact": "document:okf/standard/types.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:a546); the prior document:../knowledge/ pointer dangles. Corrected target.",
+        "artifact": "document:okf/standard/types.md"
       }
     ],
     "subjects": [],
@@ -7831,6 +7841,11 @@
         "date": "2026-06-22",
         "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
         "artifact": "document:okf/meta/2026-06-21-okf-cb-session-source.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:a546); the prior document:../knowledge/ pointer dangles. Corrected target.",
+        "artifact": "document:okf/meta/2026-06-21-okf-cb-session-source.md"
       }
     ],
     "subjects": [],
@@ -7862,6 +7877,11 @@
       {
         "date": "2026-06-22",
         "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:a546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+        "artifact": "document:okf/meta/okf-vs-cb-layering.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:a546); the prior document:../knowledge/ pointer dangles. Corrected target.",
         "artifact": "document:okf/meta/okf-vs-cb-layering.md"
       }
     ],
@@ -7942,6 +7962,31 @@
         }
       ]
     },
+    "status": "active",
+    "created": "2026-06-22"
+  },
+  {
+    "id": "cb:a547",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "collections",
+      "repo-organization",
+      "artifact",
+      "provenance"
+    ],
+    "claim": "Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum (cb:c066) has no rebind operation - cb:a545 records the same missing-rebind gap even for commits - so the pointers silently dangle the moment the path moves. A repo move is therefore not done until its inbound artifacts resolve again. Before decommissioning, sweep every dependent graph for the old path; repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written). The okf-fold (cb:a546) is the worked example: deleting amieval/knowledge left four cb: evidence artifacts (cb:a518/a540/a543/a544) pointing at document:../knowledge/..., caught only in the post-fold audit.",
+    "artifact": "session:2026-06-22-knowledge-audit-collapse",
+    "evidence": [
+      {
+        "date": "2026-06-22",
+        "detail": "Surfaced auditing the executed okf-fold: the move repointed the okfx graph's own claims (okfx:a010/t0002) but left four inbound cb: evidence artifacts dangling at the deleted ../knowledge repo. Repointed to okf/ via corrective appends. Tag-overlap with cb:a546 (the fold) and cb:a518/a507 (artifact resolvability) is topical; this adds the general move-time rule neither states.",
+        "artifact": "document:okf/standard/types.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
     "status": "active",
     "created": "2026-06-22"
   }
