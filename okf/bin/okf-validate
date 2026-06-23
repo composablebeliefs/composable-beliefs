@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Conformance adapter: runs CB's Elixir OKF validator with the args the
+# conformance runner passes (<bundle-root> --json). Compiles quietly first so
+# stdout carries only the contract JSON.
+#
+# To test a different implementation, point VALIDATE_CMD at it instead:
+#   VALIDATE_CMD=python3 .../validate.py ./okf/conformance/run.sh
+set -uo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/../.." || exit 1
+mix compile >/dev/null 2>&1 || true
+exec mix okf.validate "$@"

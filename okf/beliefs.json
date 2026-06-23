@@ -144,6 +144,11 @@
         "date": "2026-06-22",
         "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
         "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Partial fix: conformance/run.sh (the suite RUNNER, deleted in the same Elixir-only collapse, not just regen.py) is restored - it now defaults VALIDATE_CMD to bin/okf-validate (mix okf.validate) and the suite passes 13/13 again, so the standard is runnable as a regression gate. Residual under this node: (1) regen.py (the fixture author) still needs porting per the claim; (2) with the Python reference impl dropped, the suite now gates a single implementation - its original cross-implementation-equivalence purpose is dormant until a second impl returns. fixtures + expected/*.json survived the fold intact.",
+        "artifact": "document:conformance/run.sh"
       }
     ],
     "subjects": [],
