@@ -7648,6 +7648,11 @@
         "date": "2026-06-12",
         "detail": "First specimen, 585f9ec: a session minting a535/a536 staged beliefs.json while the a531 ceremony was mid-flight in another session, committing the a533/c065 supersessions and t0019 materialization without the matching regenerated CLAUDE.md - at that commit mix cb.generate.claude_md --check fails. No data lost in either direction; the a531 close's commit repairs main. The hazard is structural: CLAUDE.md's own session-start doctrine says other sessions write these repos concurrently, so selective staging of a shared graph file will recur. Preflight 2026-06-12 under the c064 calibration: 0 contract, 0 schema, 29 neutral; the single claim_overlap was a450 (the verify-tooling line this directive asks to invoke at commit time), supportive in spirit, reviewed per c055.",
         "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Second specimen, 2026-06-23: a session staged beliefs.json carrying its cb:a550/cb:a551 stale-reference fix (the c043->c066 cascade) after running mix bs stale --cascade (clean) and mix cb.verify.schema (green). Before it ran git commit, a concurrent session's commit (8c161cf, minting cb:a549) had already staged the same beliefs.json and swept the a550/a551 writes into its own commit and push - so the agent's own 'git commit' found nothing to commit and a clean tree. The agent verified a550/a551 were present in HEAD and on origin (they were), so nothing was lost this time. Unlike the 585f9ec specimen the swept HEAD was gates-green, but only by timing luck, not because the committing session checked: the sweep mechanism is identical and the torn-HEAD risk a538 names is unmitigated.",
+        "artifact": "session:2026-06-23-okf-thread-end-sweep"
       }
     ],
     "subjects": [],
