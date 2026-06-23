@@ -6453,6 +6453,11 @@
         "date": "2026-06-23",
         "detail": "Reversed the SessionEnd-hook approach recorded in this node's prior evidence. The hook + marker + SessionStart recovery + concurrency guard was too much fragile machinery for ~1-2 closing turns of no decision content, and it produced a concurrency bug plus a destructive test that swept live state (agent-behavior:a108). Removed entirely (dotfiles 952c302). Replaced with: /end copies the transcript as late as possible (step 7, last write before commit) - the verifiable in-session record. Turns after it (the close, or work done after /end) are captured by re-running /end; the operator accepted that trade. The SessionStart desk hook (cb-desk.sh) stays. Lesson: a structural fix is not automatically better - here it added more failure surface than the 1-2-turn gap it closed.",
         "artifact": "session:2026-06-22-knowledge-audit-collapse"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Verbatim thread persisted; this session: slug resolves here.",
+        "artifact": "document:plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       }
     ],
     "subjects": [],
