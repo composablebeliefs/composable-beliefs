@@ -32,7 +32,7 @@ mix cb.import.eval <manifest.json> --collection <path> [--write]  # materialize 
 
 ## Artifact schemes
 
-The framework graph's closed scheme enum (`cb:c043`):
+The framework graph's closed scheme enum (`cb:c066`):
 
 | Scheme | Means | Form |
 | --- | --- | --- |
@@ -43,7 +43,6 @@ The framework graph's closed scheme enum (`cb:c043`):
 | `source:` | a cached source document | `source:<slug>` |
 | `https:` | an external URL | `https:<URL-rest>` |
 | `plan:` | a plan/spec/intent | `plan:<id-or-descriptor>` |
-| `gmail:` | a mail thread | `gmail:<thread-id>` |
 
 Collections may declare their own schemes instead of borrowing these - the `method:` collection declares the eval vocabulary (`eval:` for scorer-run identities, plus four of the above).
 
@@ -64,7 +63,7 @@ The active schema contracts in the framework graph, with what each one actually 
 | `cb:c059` | Directive grounding: an active non-contract directive carries deps or a stipulation artifact (`plan:`/`user:`/`session:`/`document:`); external-source schemes never ground a directive. |
 | `cb:c039` | The closed enum of `kind` values (38 today), each declared inline with its definition. |
 | `cb:c041` | The closed enum of `domain` values: `system`, `design`, `agent`, `ops`, `dev`. |
-| `cb:c043` | The closed enum of artifact-URI schemes (the table above). Superseded `cb:c040` when the `code:` scheme was added. |
+| `cb:c066` | The closed enum of artifact-URI schemes (the table above). Superseded `cb:c043`, dropping the connector-specific `gmail:` scheme (`cb:c043` had superseded `cb:c040` to add `code:`). |
 | `cb:c046` | Contract rules decompose into a closed registry of rule kinds, each with a Datalog fact shape and exactly one Elixir interpreter (superseded `cb:c035` when `output-target` was catalogued). |
 | `cb:c047` | Contracts carry routing tables; modules carry predicate implementations (supersedes `cb:c037`). |
 | `cb:c060` | CLAUDE.md compiles from the beliefs in this contract's `render_sections`; the file is read-only and every output line traces to exactly one belief's claim (supersedes `cb:c048`). |
