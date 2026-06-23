@@ -8172,5 +8172,25 @@
     ],
     "status": "active",
     "created": "2026-06-23"
+  },
+  {
+    "id": "cb:a552",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "session-lifecycle",
+      "transcript"
+    ],
+    "claim": "Settle the transcript destination for non-plan-scale sessions and reconcile the docs to one rule. cb:a540 routes a decision-weight session's verbatim thread to plans/<set>/ when plan-scale, but a low-ceremony thread (e.g. doc maintenance) has no plan set; the /end skill conditions the transcript byte-copy on plan-scale work while docs/operations.md frames the /end snapshot as the standard record captured every close. The two read differently, and a non-plan session's verbatim transcript went uncopied this session until asked for, then was stored ad hoc beside its chronicle (chronicles/<slug>.jsonl, the chronicle serving as the readable summary, mirroring the plans/<set>/sessions/ convention). Codify the non-plan destination and align cb:a540, the /end skill (steps 5 and 7), and docs/operations.md to one rule, so the next session does not guess whether a transcript copy is due or where it lands.",
+    "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md",
+    "deps": [
+      "cb:a540",
+      "cb:a520"
+    ],
+    "status": "active",
+    "created": "2026-06-23"
   }
 ]

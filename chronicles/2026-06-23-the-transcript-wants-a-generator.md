@@ -2,6 +2,7 @@
 
 **Span:** a returning thread - refreshing the eval worked-example doc against a repo that moved underneath it, and minting the obligation that the refresh keeps recurring.
 **Register:** chronicle (cb:a520); receipts in `cb:a549` (the obligation), commits `29a2471` and `9ea6433` (the two refreshes of `docs/worked-example-eval-verdict.md`).
+**Verbatim record:** [`2026-06-23-the-transcript-wants-a-generator.jsonl`](2026-06-23-the-transcript-wants-a-generator.jsonl) - a byte-for-byte copy of the Claude Code session log (session `823e19fc`), the immutable provenance; this chronicle is the readable summary. The session spans more than this chronicle's arc (it carries the earlier eval-provenance and worked-example build); the chronicle narrates its tail. Stored beside the chronicle rather than in a plan set because the thread was not plan-scale - the open question that `cb:a552` exists to settle.
 
 ## Where things stood
 
