@@ -3115,6 +3115,11 @@
         "date": "2026-06-08",
         "detail": "Refines CB-RESTRUCTURE-HANDOFF.md §2.3: the original 'hand-written exception ~nil' was revised this session - the front-door README stays hand-written (distinct audience: a GitHub reader who cannot query the graph), with the discipline narrowed to 'no frozen derived facts' rather than 'no hand-written prose'. Realized by c042 (compiled CLAUDE.md) + the CI freshness gate.",
         "artifact": "session:2026-06-08-cb-restructure-dogfood"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Second conforming instance of the hand-written-prose case: amieval/CLAUDE.md, the tree-root session-start router created 2026-06-22 as the agent-behavior:a165 surfacing fix. It is hand-written by design - it routes to the graph (delegates the session-start ritual to composable-beliefs/CLAUDE.md, names the desk query, points at collections.json as the live collection map) rather than embedding directive or schema content, so the cb:a386 drift risk does not apply. Extends this principle's hand-written audience beyond the front-door README to the agent-facing tree root, holding the no-frozen-graph-derived-lists / point-at-live-source discipline (the repos enumeration was dropped for exactly this reason). Settled at the operator's request, replacing an earlier in-file note that mis-cited cb:a543 (the global ~/.claude cross-project graph) as a compilation blocker.",
+        "artifact": "document:../CLAUDE.md"
       }
     ],
     "subjects": [],
