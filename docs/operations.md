@@ -49,14 +49,15 @@ file is blocked, and the whole push fails atomically. Either push workflow edits
 with a `workflow`-scoped token, or split them out and hand them off (the okf CI
 gate was parked as `cb:a548` for exactly this reason, 2026-06-22).
 
-## Session lifecycle hooks (the amieval tree)
+## Session start hook + transcript capture (the amieval tree)
 
-A session in the amieval tree is bracketed by two harness hooks. Both are the
-structural answer to the cb:a165/cb:a386 pattern - a reminder the agent must
-remember to act on is procedural surfacing; a hook makes it structural. The
-scripts live in dotfiles-claude (`~/.claude/hooks/`) because they are machine-level
-harness config, registered in `~/.claude/settings.json`; the graph records the
-*why* (cb:a543 family for surfacing, cb:a518/a540 for the transcript).
+Session **start** is surfaced by one harness hook; the **transcript** is captured
+by `/end` itself (no end hook - see below). The surfacing hook is the structural
+answer to the cb:a165/cb:a386 pattern - a reminder the agent must remember to act
+on is procedural surfacing; a hook makes it structural. It lives in dotfiles-claude
+(`~/.claude/hooks/`, registered in `~/.claude/settings.json`) as machine-level
+harness config; the graph records the *why* (cb:a543 family for surfacing,
+cb:a518/a540 for the transcript).
 
 - **SessionStart -> `cb-desk.sh`.** When a session opens with cwd under
   `/Users/mark/dev/repos/mine/amieval`, it injects the live desk
@@ -64,34 +65,17 @@ harness config, registered in `~/.claude/settings.json`; the graph records the
   sees its obligations without being told to query. Silent and fail-safe outside
   the tree.
 
-- **SessionEnd + SessionStart -> `cb-finalize-transcript.sh`.** Fixes the
-  transcript tail-gap: `/end`'s in-close copy runs before the session actually
-  ends, so it structurally under-captures the closing turns. The fix rides a
-  per-session marker `/end` step 7 drops:
-  `~/.claude/transcript-pending/<session_id>.json` = `{"dest": <abs .jsonl>, "repo": <abs repo>}`.
-  The same script runs at both events:
-  - **SessionEnd:** finalize THIS session - re-copy the **complete** `.jsonl`
-    over the in-`/end` snapshot, commit + push in `repo`, remove the marker.
-    No-op on `resume`.
-  - **SessionStart:** RECOVERY - finalize **orphaned** markers from prior
-    sessions, skipping the current session's own. Catches a SessionEnd that never
-    fired (silent failure OR crash - SessionEnd does not fire on crash). Guarded
-    for concurrency: only a marker whose log has been **idle > 6h** is recovered.
-    A concurrent live session writes its log every turn (recent mtime), so it is
-    never finalized from another session - without that guard, a new session
-    would prematurely commit a running session's incomplete log and delete its
-    marker. (SessionEnd finalizes its own session unguarded.)
+There is **no SessionEnd hook**. The verbatim transcript is captured by `/end`
+itself: step 5 chooses the destination + retro-pairs, and step 7 (as the last
+write before commit) does the byte-copy and commits it - the latest-possible
+in-session snapshot, verifiable while you watch.
 
-  This makes it **self-verifying**: a marker's *presence* means "not yet
-  finalized", its *absence* is proof the log landed. A thread is never lost - at
-  worst finalized one session late, by the next SessionStart. (A marker whose log
-  is missing is left for a later retry, so truly-dead markers linger until swept
-  manually - `ls ~/.claude/transcript-pending/`.)
-
-Trigger boundary: SessionEnd is the *user/harness* ending the session (`/clear`,
-logout, CLI exit) - not `/end` completing. `/end` only leaves the marker; the
-session may continue (or `/end` again) before it actually ends, and the finalizer
-captures everything up to that point. The reliable backbone is still the
-*in-session* `/end` snapshot (verifiable, committed while you watch); the hook is
-the best-effort extension that closes the tail, with SessionStart recovery as its
-backstop.
+A SessionEnd finalizer was tried (a marker `/end` dropped, a hook re-copying the
+complete log at true session end, SessionStart recovery for crashes) and
+**removed** (cb:a518). It bought ~1-2 closing turns of no decision content at the
+cost of a marker protocol, a concurrency guard, and a silent-failure surface -
+and produced a real concurrency bug plus a destructive test that swept live state
+(agent-behavior:a108). The accepted trade: the `/end` snapshot is the record;
+turns after it (the close, or work done after `/end`) are captured only by
+**running `/end` again**. If you keep working after a close sweep, re-run `/end`
+before you exit.
