@@ -8082,6 +8082,11 @@
         "date": "2026-06-23",
         "detail": "Authored in the worked-example transcript-drift thread; the arc (the doc refreshed twice in one thread, c043->c066 being the second pass) and the generate-not-hand-maintain rationale are narrated in the chronicle.",
         "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Tradeoffs between the two paths the claim names, recorded so the choice need not be re-derived. GENERATOR (a mix task renders the doc's command blocks live from the graph): prevents drift outright since the committed doc is produced rather than hand-edited, but it must reproduce the doc's editorial curation rather than raw command dumps - blocks elide rows (e.g. '15 more schema PASS rows ... elided') and truncate claim columns - and it couples doc generation to the mix tooling plus a sibling belief-collections checkout, because the sdl/method blocks need --beliefs paths resolvable. CHECKER (a CI gate re-runs each fenced block and fails on mismatch): lighter, changes no authoring, makes silent drift impossible because the build goes red - but it only flags, a human still re-pastes, and it must normalize the curated/elided regions before diffing and resolve the cross-repo collections in CI. HYBRID is viable: generate verbatim-dump blocks, normalize-and-check the curated ones. Leaning (not decided): start with the checker - lowest authoring risk, stops drift immediately, the same normalization handles curation - and promote to a generator only if curation reproduction and cross-repo resolution prove cheap. Either path first needs belief-collections present in CI; that cross-repo dependency is the shared prerequisite.",
+        "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md"
       }
     ],
     "deps": [
