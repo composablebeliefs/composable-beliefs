@@ -70,3 +70,39 @@ ids in the okfx collection; `mix cb.generate.claude_md --check` current.
 rewritten (which would have cascaded across all five claims). The structural graph (id, deps) is
 fully on `okfx:`; the prose reference is intentional historical content. Left for `okfx:a004`'s
 own future execution (the graph-compile follow-up) to supersede.
+
+## Postscript: the follow-up arc (same session, through the rename)
+
+This transcript's `.jsonl` continues past the fold execution above into three more beats in the
+same session:
+
+1. **Decommission (`cb:a546` discharged).** The operator removed the `knowledge` repo by hand;
+   verified clean (`mix test` 362/0 with the sibling gone, no `../knowledge` in any code path).
+   `cb:a546` materialized + closed, off the desk.
+
+2. **The surfacing fix + a graph-query lesson.** Built `amieval/CLAUDE.md` - a tree-root router
+   that auto-loads up the directory tree, pointing any cold agent at the graph and the desk (the
+   structural answer to `agent-behavior:a165`, scoped to the tree rather than a global SessionStart
+   hook). An initial in-file note mis-grounded it in `cb:a543` (the global `~/.claude` graph) from
+   memory; preflight surfaced `cb:a466`, which already governs when a CLAUDE.md compiles vs stays
+   hand-written. Resolved: the file is a router (correctly hand-written), its repos list de-frozen
+   to point at `collections.json` per a466, recorded as `cb:a466` evidence. The miss filed as
+   `agent-behavior:a165` specimen 5.
+
+3. **The `mix knowledge.* -> mix okf.*` rename.** Code renamed (tasks, `CB.Okf.*` modules,
+   `lib/cb/okf/`, `okf_test.exs`); hand-written docs updated; methodology nouns left intact. The
+   graph tail: three render-section beliefs (`a003`/`a007`/`a008`) named the old commands and
+   compile into `okf/CLAUDE.md`, so they were superseded through the write flow to
+   `a011`/`a012`/`a013`, the output-target contract `c001 -> c002` repointed, and the file
+   regenerated (0 dead commands). Superseding `a003` also corrected its stale `knowledge/beliefs/`
+   path -> `okf/beliefs.json`, discharging `okfx:a010`. `okfx:a004` (the `okf/CLAUDE.md` compile)
+   was done by a separate agent session and only *evaluated* here, not executed in this transcript.
+
+On the wart above: the rename superseded the guard belief `a003 -> a011` (path + commands fixed),
+but `okfx:a004`'s own discharged-directive claim still reads `knowledge:a003` / `knowledge/CLAUDE.md`
+as historical prose - left per immutability.
+
+## Verification at the rename close
+`mix test` 362/0; both `cb.generate.claude_md --check` paths (cb: + okfx); `cb.verify.collection
+okfx` + schema; `mix okf.validate okf/demo`. Commits: `46586d1` (decommission), `304da5e`
+(amieval CLAUDE.md / cb:a466), `0720a29` (rename), `05f94cc` (this `/end`).
