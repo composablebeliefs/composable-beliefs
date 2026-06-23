@@ -7363,6 +7363,11 @@
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:a507: the session: stipulation above resolves in chronicles/2026-06-12-the-house-lists-its-doors.md.",
         "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Write surface has grown two sanctioned doors not enumerated in this render: mix cb.repoint (dep re-points, cb:a537) and mix cb.retract (status -> retracted with date+reason, built 2026-06-22 when cb:a548, a moot belief, had no front-door close). Fold both in when this render belief is next superseded; until then the 'two further doors' wording undercounts the surface.",
+        "artifact": "document:lib/mix/tasks/cb.retract.ex"
       }
     ],
     "subjects": [],

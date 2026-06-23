@@ -43,9 +43,29 @@ The fold is sound and was executed more cleanly than the first audit pass credit
 real gap was the missing structural hook, now closed. `agent-behavior:a165` carries six
 specimens. The graph and dotfiles are pushed.
 
-## What the next session inherits
+## Postscript: the fourth over-flag, and a new door
 
-`cb:a548` on the desk: add `mix cb.generate.claude_md --check --beliefs okf/beliefs.json` to
-`.github/workflows/composable-beliefs.yml` (needs a `workflow`-scoped push). Otherwise the
-okf-fold arc is closed. The SessionStart hook should now surface this and the rest of the desk
-automatically — the next session is the first test of whether the structural fix holds.
+`cb:a548` turned out to be moot, not deferred. `okf/CLAUDE.md` is already gated -
+`generated_claude_md_test.exs` checks every CLAUDE.md target (framework and okf) and `mix
+test` runs in CI. So the CI line I could not push was never needed, and the task change I
+started building was solving nothing. That was the third over-flag of the same audit, and it
+came minutes after I had written this very chronicle and a blog draft about the pattern.
+Acknowledgment in writing did not buy a single Tuesday of immunity.
+
+Retracting the moot `a548` then surfaced a real gap: the write flow had no front door for
+retraction. The `retract` mutation existed in `CB.Belief.Mutation`, but only `cb.evidence` and
+`cb.repoint` applied mutations, and supersede was reachable only through adjudication. So
+`mix cb.retract` now exists (mirroring `cb.repoint`: a `retract` mutation through `apply_batch`
++ `Store.write`, date and reason per c053, dry-run by default, tested), and `a548` was retracted
+through it. The judgment on the gap was: build it, do not file a directive - a directive is for
+work too large to do inline, and this was 150 lines against an existing pattern. Standalone
+supersede was left alone; routing it through adjudication is arguably intended.
+
+## Where things stand
+
+The okf-fold arc is closed. The genuine deliverables, separated from the noise: the SessionStart
+hook (structural surfacing), the `/end` repoint off the deleted `knowledge` path, the `cb:a547`
+repoint convention, and now `mix cb.retract`. The over-flags - dangling pointers, a004 discharge,
+stale paths, okf gating - were all non-issues the fold had already handled. `cb:a533` carries a
+note that the CLAUDE.md write-surface line now undercounts (repoint and retract are unlisted),
+to fold in on its next supersession. The desk is clean of this session's phantoms.
