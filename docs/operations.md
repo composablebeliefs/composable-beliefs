@@ -73,10 +73,14 @@ harness config, registered in `~/.claude/settings.json`; the graph records the
   - **SessionEnd:** finalize THIS session - re-copy the **complete** `.jsonl`
     over the in-`/end` snapshot, commit + push in `repo`, remove the marker.
     No-op on `resume`.
-  - **SessionStart:** RECOVERY - finalize any **orphaned** markers from prior
-    sessions (their logs are complete by then), then skip the current session's
-    own marker. This catches a SessionEnd that never fired - silent failure OR
-    crash (SessionEnd does not fire on crash).
+  - **SessionStart:** RECOVERY - finalize **orphaned** markers from prior
+    sessions, skipping the current session's own. Catches a SessionEnd that never
+    fired (silent failure OR crash - SessionEnd does not fire on crash). Guarded
+    for concurrency: only a marker whose log has been **idle > 6h** is recovered.
+    A concurrent live session writes its log every turn (recent mtime), so it is
+    never finalized from another session - without that guard, a new session
+    would prematurely commit a running session's incomplete log and delete its
+    marker. (SessionEnd finalizes its own session unguarded.)
 
   This makes it **self-verifying**: a marker's *presence* means "not yet
   finalized", its *absence* is proof the log landed. A thread is never lost - at
