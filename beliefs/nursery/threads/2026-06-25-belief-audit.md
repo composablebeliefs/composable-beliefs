@@ -14,11 +14,11 @@ effort: max
 
 > **Broken out into the nursery (2026-06-25).** Live work moved to per-focus docs under
 > `nursery/`; this thread is kept as the originating record. Produced:
-> [assertions-rename](../nursery/assertions-rename.md),
-> [negative-case-field](../nursery/negative-case-field.md),
-> [atomicity-generalization](../nursery/atomicity-generalization.md),
-> [nursery-architecture](../nursery/nursery-architecture.md), and
-> [citation-discipline](../nursery/citation-discipline.md) (minted `agent-behavior:a411`).
+> [assertions-rename](../assertions-rename.md),
+> [negative-case-field](../negative-case-field.md),
+> [atomicity-generalization](../atomicity-generalization.md),
+> [nursery-architecture](../nursery-architecture.md), and
+> [citation-discipline](../citation-discipline.md) (minted `agent-behavior:a411`).
 
 ## Where we are
 

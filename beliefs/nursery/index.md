@@ -56,3 +56,6 @@ surfaces the desk.
 - [seed-absorption](seed-absorption.md) - active - planted seeds fold into a `seed` prop on the belief.
 - [nursery-architecture](nursery-architecture.md) - contested - this model; conflicts with the OKF transcript-pair rule (path 1 chosen).
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
+
+## Subdomains
+- [threads/](threads/index.md) - living session transcripts: crash-safe, human-readable, and explicitly **not** provenance (the seeds above are). Captured automatically by a `Stop` hook.

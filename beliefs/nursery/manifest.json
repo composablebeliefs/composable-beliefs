@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 7,
+  "count": 9,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -93,6 +93,34 @@
         "schema",
         "nursery",
         "provenance"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "threads/2026-06-25-belief-audit.md",
+      "type": "thread",
+      "title": "2026-06-25 - belief-by-belief audit (starting cb:a098)",
+      "description": "Covers the node-by-node belief audit opened on cb:a098 - its split into a directive plus inference, and the schema questions raised: generalizing atomicity past primitives, a negative-case field, mood living in kind. Use when revisiting a098 or those decisions.",
+      "tags": [
+        "cb",
+        "schema",
+        "belief-audit",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25",
+      "artifact": "session:2026-06-25-belief-audit"
+    },
+    {
+      "path": "threads/index.md",
+      "type": "index",
+      "title": "Threads (session transcripts)",
+      "description": "Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.",
+      "tags": [
+        "threads",
+        "transcript",
+        "index"
       ],
       "status": "active",
       "timestamp": "2026-06-25"
