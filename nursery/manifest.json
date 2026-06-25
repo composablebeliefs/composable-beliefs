@@ -1,0 +1,101 @@
+{
+  "bundle": "nursery",
+  "count": 7,
+  "docs": [
+    {
+      "path": "assertions-rename.md",
+      "type": "concept",
+      "title": "Removing \"assertions\" from cb:a098",
+      "description": "Covers the rename of the dead term \"assertions\" to \"beliefs\" in cb:a098 and the mood fix it forces - the proposed directive D that supersedes a098's first clause.",
+      "tags": [
+        "cb",
+        "schema",
+        "a098",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "atomicity-generalization.md",
+      "type": "concept",
+      "title": "Generalize atomicity (cb:a475) to all four types",
+      "description": "Covers extending the primitive-only atomicity doctrine (cb:a475) to all belief types - one belief, one falsifiable proposition - which is what licenses splitting multi-claim nodes like a098.",
+      "tags": [
+        "cb",
+        "schema",
+        "a475",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "citation-discipline.md",
+      "type": "concept",
+      "title": "Quote sources verbatim alongside citations",
+      "description": "Covers the citation-discipline rule - quote the load-bearing source passage beside the pointer - minted as agent-behavior:a411. This doc is the focus that produced it.",
+      "tags": [
+        "agent-behavior",
+        "provenance",
+        "citation",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Nursery",
+      "description": "Use when orienting to the belief nursery - the floor-tier workspace where focuses (proto-beliefs) are deliberated in place until they mint into the graph or are dropped.",
+      "tags": [
+        "nursery",
+        "index"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "negative-case-field.md",
+      "type": "concept",
+      "title": "A negative-case schema field?",
+      "description": "Covers whether CB should add a negative-case field for the \"X, not Y\" contrast in claims - leaning no, because the negative channel already exists as invariants.",
+      "tags": [
+        "cb",
+        "schema",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "nursery-architecture.md",
+      "type": "concept",
+      "title": "The nursery architecture (focus-as-unit, Layer 1/2 fusion)",
+      "description": "Covers the nursery model itself - focus-as-unit, conversing directly in the artifact, making the raw transcript vestigial - and its conflict with the OKF transcript-pair rule.",
+      "tags": [
+        "okf",
+        "cb",
+        "nursery",
+        "meta"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "seed-absorption.md",
+      "type": "concept",
+      "title": "Seed absorption - planted seeds fold into the belief",
+      "description": "Covers the proposal that on planting, a seed's gestation folds into a `seed` prop on the belief and the doc evacuates the nursery - replacing lingering frozen docs - plus its open granularity and dropped-seed questions.",
+      "tags": [
+        "cb",
+        "schema",
+        "nursery",
+        "provenance"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    }
+  ]
+}
