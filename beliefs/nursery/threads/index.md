@@ -16,8 +16,13 @@ reading** (what you scan without wading through tool calls).
 
 **Transcripts are not provenance.** The nursery seeds are the sole provenance; a belief
 grounds in a seed, never in a transcript. A transcript is a convenience and a safety net,
-nothing the graph depends on. It is captured automatically - a `Stop` hook appends each
-turn - not hand-authored.
+nothing the graph depends on.
+
+Live transcripts are captured automatically by a `Stop` hook
+(`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
+is gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
+Read them there; they are never committed. The curated thread docs below are the hand-kept
+exceptions that do get committed.
 
 ## Contents
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.

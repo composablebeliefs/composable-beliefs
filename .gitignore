@@ -11,3 +11,11 @@ erl_crash.dump
 
 # ExUnit @tag :tmp_dir scratch
 /tmp/
+
+# Auto-captured session transcripts: crash-safety + reading, rewritten every turn,
+# non-provenance (the nursery seeds are). Never committed.
+/beliefs/nursery/threads/.sessions/
+
+# Python bytecode cache (e.g. from the transcript hook)
+__pycache__/
+*.pyc
