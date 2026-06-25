@@ -1,0 +1,33 @@
+{
+  "bundle": "threads",
+  "count": 2,
+  "docs": [
+    {
+      "path": "2026-06-25-belief-audit.md",
+      "type": "thread",
+      "title": "2026-06-25 - belief-by-belief audit (starting cb:a098)",
+      "description": "Covers the node-by-node belief audit opened on cb:a098 - its split into a directive plus inference, and the schema questions raised: generalizing atomicity past primitives, a negative-case field, mood living in kind. Use when revisiting a098 or those decisions.",
+      "tags": [
+        "cb",
+        "schema",
+        "belief-audit",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25",
+      "artifact": "session:2026-06-25-belief-audit"
+    },
+    {
+      "path": "index.md",
+      "type": "index",
+      "title": "Threads",
+      "description": "Use when orienting to the persisted prose threads - working conversations captured as clean readable exchanges, one file per thread.",
+      "tags": [
+        "threads",
+        "index"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    }
+  ]
+}
