@@ -1,0 +1,2204 @@
+{
+  "actualize": {
+    "name": "Actualize",
+    "short": "The far rung of the ladder: feed findings back as self-referential claims a system queries before acting, so it resists the next failure - the single-agent seed of the group-scale failures evals study.",
+    "def": "Actualize is the far rung of the <a href='glossary.html#specify-deduce-actualize'>specify-deduce-actualize</a> ladder: feed findings back as <a href='glossary.html#self-referential-face'>self-referential</a> claims a system queries before acting, so it resists the next failure. The single-agent self-knowledge it enables (reflexive agreement, treating speculation as ground truth) is continuous with the group-scale failures the eval vertical studies (conformity collapse, monoculture) - the same epistemic failure at two scales. It is a vision-horizon capability, presented as where the capability could go, never as shipped.",
+    "see": [
+      "specify-deduce-actualize",
+      "self-referential-face",
+      "self-referential-beliefs",
+      "proving-ground"
+    ]
+  },
+  "adjudication": {
+    "name": "Adjudication",
+    "short": "Applying a captured human decision to a conflict structurally - accept_supersede, reject_dep_tie, or defer - with a race guard and one atomic write.",
+    "def": "Adjudication (CB.Belief.Adjudication, adjudication.ex) applies a captured human decision to a conflict as a single atomic write, re-checking that the conflicting node is still active first (a race guard). The three outcomes are <code>accept_supersede</code> (write the successor and flip the loser to superseded), <code>reject_dep_tie</code> (write the proposal with a dep on the overlapping belief plus a rejection evidence entry), and <code>defer</code> (record a deferral primitive). It is the step that turns a surfaced <a href='glossary.html#preflight'>preflight</a> conflict into a recorded, structural outcome, never a silent overwrite.",
+    "also": "accept_supersede, reject_dep_tie, defer",
+    "see": [
+      "preflight",
+      "import",
+      "consensus-mechanism",
+      "supersession",
+      "conflict-audit"
+    ]
+  },
+  "ampliative": {
+    "name": "Ampliative",
+    "short": "The property of a conclusion that says more than its premises, the move every inference records and no compound is allowed to make.",
+    "def": "A move is ampliative when its conclusion outruns its premises - a generalization or an abduction whose content exceeds what was given (cb:a473, cb:a472). The ampliative move is exactly what an <a href='glossary.html#inference'>inference</a> records and exactly what a <a href='glossary.html#compound'>compound</a> is forbidden from making, since a conjunction can carry no content its parts lack. The worked illustration: two scorers each report one omitted record on one case, and the inference that the model silently drops records from all such bulk writes ever is the ampliative leap no chain of deductive steps can bridge.",
+    "see": [
+      "inference",
+      "licensing",
+      "problem-of-induction",
+      "subject-containment"
+    ]
+  },
+  "anchor": {
+    "name": "Anchor",
+    "short": "A literal substring matched per line (grep -nF semantics) to locate a source line at render time; resolved by CB.Anchor and never stored.",
+    "def": "An anchor is a literal substring that <code>CB.Anchor</code> (anchor.ex) matches per line, with grep -nF semantics, to locate a source line at render time. Resolved line numbers are never stored; they are recomputed each time, so a missing file or anchor yields a warning rather than a crash (a maintenance signal), and multiple matches with no <code>@N</code> selector render the first with a tighten-this-anchor warning. The belief-free resolver is shared by <a href='glossary.html#codepath'>codepaths</a> and by <a href='glossary.html#draft-mode'>draft-mode</a> resolution.",
+    "see": [
+      "code-locator",
+      "code-scheme",
+      "codepath",
+      "draft-mode",
+      "answer-time-anchoring"
+    ]
+  },
+  "anchored-position-format": {
+    "name": "Anchored-Position Format",
+    "short": "The document shape for a position: a Class header, ### Claim: sections with optional **Anchor:** code: lines verified resolving at authoring time, with claim order as the default codepath walk.",
+    "def": "The anchored-position format (cb:a550, cb:a551) is the document shape: a <code>**Class:**</code> header, then <code>### Claim:</code> sections each with optional <code>**Anchor:**</code> lines holding <a href='glossary.html#code-scheme'>code:</a> URIs, verified resolving with exactly one match at authoring time via the <a href='glossary.html#draft-mode'>draft-mode</a> resolver. Claim order is the default <a href='glossary.html#codepath'>codepath</a> walk order, and an optional terms block carries <code>{term, definition, anchor?}</code>. It is what makes a <a href='glossary.html#position'>position</a> directly renderable as a tour.",
+    "see": [
+      "position",
+      "position-vs-codepath",
+      "draft-mode",
+      "code-scheme",
+      "codepath"
+    ]
+  },
+  "answer-time-anchoring": {
+    "name": "Answer-Time Anchoring",
+    "short": "The rule that agent claims about code must carry code: anchors that resolve at read time; an unresolvable anchor is an ungrounded claim to be withdrawn.",
+    "def": "Answer-time anchoring (cb:a488, cb:a485) requires that agent claims about code carry <a href='glossary.html#code-scheme'>code:</a> anchors that resolve at read time, and an unresolvable anchor is an ungrounded claim. It rests on the broader point that prose discussion is productive exactly when every claim terminates in an anchor into the running substrate (cb:a485, cb:a484), and that reading code re-scopes attention to the anchored stops carrying an argument - the editor as an adjudication surface (cb:a486, cb:a487). Its verification gate is <a href='glossary.html#draft-mode'>draft mode</a>.",
+    "also": "NL above the substrate",
+    "see": [
+      "nl-above-substrate",
+      "draft-mode",
+      "code-scheme",
+      "anchor",
+      "three-tier-anchor-verification"
+    ]
+  },
+  "artifact": {
+    "name": "Artifact",
+    "short": "A belief's provenance as a typed URI scheme:id naming the external referent it derives from; the scheme is drawn from the closed enum cb:c066.",
+    "def": "The <code>artifact</code> field carries provenance as a typed URI <code>scheme:id</code> naming the external referent a belief was derived from (cb:a398, cb:a400, cb:c056). Every <a href='glossary.html#primitive'>primitive</a> cites one artifact; the scheme is drawn from the closed <a href='glossary.html#artifact-scheme'>artifact-scheme</a> enum cb:c066 and must match <code>^[a-z][a-z0-9_-]*:.+</code> (verifier.ex:237). It replaced the old quote/source pair, separating the typed referent from the dated <a href='glossary.html#evidence'>evidence</a> that grounds the claim. See <a href='pages/06-provenance.html'>provenance</a>.",
+    "see": [
+      "artifact-scheme",
+      "code-scheme",
+      "evidence",
+      "primitive",
+      "stipulation-artifact"
+    ]
+  },
+  "artifact-scheme": {
+    "name": "Artifact Scheme",
+    "short": "The closed set of artifact URI prefixes (cb:c066): document, code, session, user, source, https, plan; collections may declare their own, like eval.",
+    "def": "The artifact scheme is the lowercase token before the first colon of an <a href='glossary.html#artifact'>artifact</a> URI, drawn from the closed enum cb:c066: <code>document:</code> (a whole repo file), <code>code:</code> (an anchored within-file site), <code>session:</code>, <code>user:</code>, <code>source:</code> (a cached source doc), <code>https:</code>, and <code>plan:</code> (cb:a407). The <code>code:</code> scheme was the c040-to-c043 addition and c066 dropped the connector-specific <code>gmail:</code>. Adding a value supersedes the whole enum contract (cb:a397). Collections may declare their own schemes - the <code>method:</code> collection adds <a href='glossary.html#eval-scheme'>eval:</a>. The subset that can ground a directive is the <a href='glossary.html#stipulation-artifact'>stipulation</a> set.",
+    "see": [
+      "artifact",
+      "code-scheme",
+      "eval-scheme",
+      "stipulation-artifact",
+      "enum-registry"
+    ]
+  },
+  "assertions-gradient": {
+    "name": "Assertions Gradient",
+    "short": "The single gradient of a codepath: contract-grade stops run predicates while non-contract stops narrate only, so the same artifact is both a guided walk and a test suite.",
+    "def": "The assertions gradient is what makes a <a href='glossary.html#codepath'>codepath</a> one artifact with two faces: contract-grade stops run their routed predicates, while non-contract stops produce no rows and narrate only (codepath/assertions.ex:48). That asymmetry is the gradient - assertions off is a guided walk, assertions on is a test suite over real source. It lets a single anchored tour serve both teaching and regression checking.",
+    "see": [
+      "codepath",
+      "dynamic-verifier",
+      "inspection-only-predicates",
+      "contract"
+    ]
+  },
+  "atomic-write": {
+    "name": "Atomic Write",
+    "short": "CB.JSON.write_atomic_raw: the tmp-write-then-rename pattern every writer bottoms out in; on failure it removes the tmp and leaves the original intact.",
+    "def": "<code>CB.JSON.write_atomic_raw/2</code> (json.ex:17) is the tmp-write-then-rename pattern that every writer in the system bottoms out in: it writes a temp file, then renames it over the target, and on failure removes the temp and leaves the original intact. Combined with the <a href='glossary.html#keys-field'>_keys</a> round-trip, it lets the <a href='glossary.html#store-boundary'>store</a> rewrite the whole belief array on every write without corruption or churn. It is the durability guarantee under the single-file graph.",
+    "see": [
+      "store-boundary",
+      "keys-field",
+      "in-memory-model",
+      "pure-graph-over-one-file"
+    ]
+  },
+  "audit-tree": {
+    "name": "Audit Tree",
+    "short": "The published artifact: a self-contained, zero-JavaScript HTML rendering of a verdict's full evidence tree down to the raw logs, with superseded nodes struck through and stale badges.",
+    "def": "The audit tree is the published artifact (<code>mix cb.render.audit</code>, CB.Render.Audit): a self-contained, zero-JavaScript HTML rendering of a <a href='glossary.html#verdict'>verdict</a>'s full evidence tree from the verdict at root down to leaf <a href='glossary.html#observation'>observations</a> and their raw-log pointers, with <a href='glossary.html#supersession'>superseded</a> nodes struck through and stale badges on anything resting on superseded deps. A reader needs a browser, not Elixir. It is byte-stable for a given graph and id, with a sha256 digest in the footer.",
+    "see": [
+      "verdict",
+      "observation",
+      "eval-ledger",
+      "compiled-vs-rendered",
+      "staleness-pivot"
+    ]
+  },
+  "author-against-live-graph": {
+    "name": "Author Against the Live Graph",
+    "short": "Pull the repos, query the desk, and follow artifacts before minting; a memory snapshot rots the moment another concurrent session pushes.",
+    "def": "The discipline is to author against the live graph, never from memory (cb:a504, cb:a508): pull the repos, query the <a href='glossary.html#the-desk'>desk</a>, and follow artifacts before minting a belief, because multiple sessions write concurrently and a memory snapshot rots the moment another thread pushes. It is the operating-procedure consequence of treating <a href='glossary.html#session-memory-cache'>session memory as an ephemeral cache</a>, and the reason the <a href='glossary.html#recency'>recency</a> view exists.",
+    "see": [
+      "the-desk",
+      "session-memory-cache",
+      "recency",
+      "consensus-mechanism",
+      "self-bootstrapping"
+    ]
+  },
+  "axiom-is-a-role": {
+    "name": "Axiom Is a Role",
+    "short": "Entrenchment is earned through fan-in read off the dependents count, never declared as a type; an axiomatic node stays fully revisable.",
+    "def": "CB has no axiom type: being foundational is a role a belief earns through fan-in, read off <code>mix bs dependents</code>, not a flag it declares (cb:a506). The most-depended-on nodes (cb:a467, cb:a470, cb:a485 and a few others) are functionally axiomatic by how much rests on them, yet they remain ordinary revisable beliefs subject to the same write flow. This keeps the graph free of privileged nodes that escape supersession, consistent with the <a href='glossary.html#no-maintenance-hatch'>no maintenance hatch</a> principle.",
+    "see": [
+      "no-maintenance-hatch",
+      "deps",
+      "supersession",
+      "dependency-closure"
+    ]
+  },
+  "belief": {
+    "name": "Belief",
+    "short": "One node of the graph: a single atomic claim with a type, kind, domain, claim text, provenance or deps, subjects, and lifecycle status.",
+    "def": "A belief is the unit node of the DAG: one structured <code>%CB.Belief{}</code> claim about the world carrying a structural <a href='glossary.html#structural-type'>type</a>, a <a href='glossary.html#kind'>kind</a>, a <a href='glossary.html#domain'>domain</a>, a one-line <a href='glossary.html#claim'>claim</a>, provenance or <a href='glossary.html#deps'>deps</a>, <a href='glossary.html#subjects'>subjects</a>, and a <a href='glossary.html#status-lifecycle'>status</a> (cb:a478, lib/cb/belief.ex). Beliefs are immutable: a change means a new node, never an in-place edit. In memory the whole graph is a flat list of these structs with deps as the only edges.",
+    "see": [
+      "structural-type",
+      "claim",
+      "deps",
+      "subjects",
+      "immutability"
+    ]
+  },
+  "belief-shell": {
+    "name": "Belief Shell (bs)",
+    "short": "The deterministic, LLM-free query CLI over the graph: mix bs with subcommands list, show, tree, deps, dependents, stale, recent, path, history, subjects, stats.",
+    "def": "The belief shell (<code>mix bs</code>, Mix.Tasks.Bs, bs.ex) is the deterministic, LLM-free query CLI over the graph. Its read-only subcommands include <code>list</code> (with type, status, tag, kind, domain, subject, <code>stale</code>, <code>contracts</code>, and <code>unlinked</code> filters), <code>show</code>, <code>tree</code>, <code>deps</code>, <code>dependents</code>, <a href='glossary.html#staleness'>stale</a>, <a href='glossary.html#recency'>recent</a>, <code>path</code>, <code>history</code>, <code>subjects</code>, and <code>stats</code>. It is how a session queries the <a href='glossary.html#the-desk'>desk</a> and walks supersession chains. See <a href='pages/09-belief-shell.html'>the belief shell</a>.",
+    "also": "mix bs",
+    "see": [
+      "in-memory-model",
+      "the-desk",
+      "staleness",
+      "recency",
+      "supersession"
+    ]
+  },
+  "beliefs-vs-contracts": {
+    "name": "Beliefs vs Contracts",
+    "short": "Two roles sharing one store: a belief says this is true and can become stale; a contract says this will remain true and gets violated or upheld.",
+    "def": "Beliefs and contracts are two roles sharing one store (cb:a120): a belief says this is true, while a contract says this will remain true. The consequence is different lifecycles - a belief becomes <a href='glossary.html#staleness'>stale</a> and gets superseded, while a <a href='glossary.html#contract'>contract</a> gets violated or upheld. Because both live in the same graph with the same schema, a behavioral invariant can start life as a prompt-enforced directive and be elevated to a code-enforced contract once code crystallizes around it - <a href='glossary.html#inference-contract-prototype'>inferences are prototypes for contracts</a>.",
+    "see": [
+      "contract",
+      "inference-contract-prototype",
+      "staleness",
+      "directive"
+    ]
+  },
+  "build-order-ring": {
+    "name": "Build-Order Ring",
+    "short": "Resourcing language, not architecture: a capability is exercised when a real use pulls it; Ring 0 is now, Ring 1 is demand-pulled now, Rings 2 and 2+ are the vision horizon.",
+    "def": "A ring is build-order, not architecture: a capability is exercised when a real use pulls it, so the rings describe founder-hours, not CB's identity (which is architecturally upstream of all of them). Ring 0 is the receptive ledger and belief composition (now); Ring 1 is contract interpreters and compile-to-tests (demand-pulled now, the <a href='glossary.html#eval-spec-as-contract'>eval-spec-as-contract</a>); Rings 2 and 2+ are deduced remediation and <a href='glossary.html#self-referential-face'>self-reference</a> (the vision horizon). Discipline, not hype: only Ring 1 touches v1.",
+    "see": [
+      "generative-face",
+      "specify-deduce-actualize",
+      "eval-spec-as-contract",
+      "proving-ground",
+      "actualize"
+    ]
+  },
+  "c-prefix": {
+    "name": "c-Prefix / a-Prefix",
+    "short": "The id-grade convention: c-prefixed local ids are reserved for contracts and a-prefixed for everything else, enforced in both directions.",
+    "def": "Local id prefixes encode grade by convention: <code>c###</code> is reserved for <a href='glossary.html#contract'>contract</a>-grade beliefs and <code>a###</code> for everything else (adjudication.ex, verifier.ex:586). The verifier enforces that every <code>c</code>-prefixed local id carries <code>contract: true</code>, and id generation stamps the right prefix on new nodes. The prefix is convention only and never the identity test: contract status is detected structurally via <code>CB.Belief.contract?/1</code> (cb:c054), so a contract is known by its non-empty rules or invariants, not its id.",
+    "also": "a-prefix, c-prefix",
+    "see": [
+      "contract",
+      "namespaced-id",
+      "schema-verifier"
+    ]
+  },
+  "cb-holds-what-how": {
+    "name": "cb: Holds Only What and How",
+    "short": "The framework collection holds schema, mechanism, and positioning; the motivating why - agent failure modes, the paradigm argument - lives in agent-behavior: and paradigm:.",
+    "def": "The <code>cb:</code> collection holds only the framework's what and how - schema, mechanism, positioning - while the motivating why lives elsewhere: agent failure modes in <code>agent-behavior:</code> and the paradigm argument in <code>paradigm:</code> (cb:a464, cb:a492). Because <code>cb:</code> depends only within itself, the framework ships clean and self-contained, without the narrative that motivated it. This is the collection-level expression of keeping the substrate consumer-blind.",
+    "see": [
+      "namespace",
+      "collection",
+      "self-referential-beliefs",
+      "proving-ground"
+    ]
+  },
+  "cb-is-ledger-not-bench": {
+    "name": "CB Is the Ledger, Not the Bench",
+    "short": "Eval execution stays in an external harness; CB ingests output records and never grows toward execution, keeping its deterministic LLM-free read path intact.",
+    "def": "CB is the ledger, not the lab bench (docs/eval-ledger.md, cb:a539): eval execution stays in an external <a href='glossary.html#harness'>harness</a>, and CB ingests the <a href='glossary.html#run-manifest'>run-manifest</a> output records and never grows toward execution. The division of labor is enforced by the tool's shape - <a href='glossary.html#import-eval'>import.eval</a> emits observation primitives only. Refusing to absorb the bench keeps CB's deterministic, LLM-free read path intact, the same boundary as <a href='glossary.html#reasoning-substrate-not-memory'>reasoning substrate, not memory</a>.",
+    "see": [
+      "harness",
+      "run-manifest",
+      "import-eval",
+      "reasoning-substrate-not-memory",
+      "eval-ledger"
+    ]
+  },
+  "centralized-graph": {
+    "name": "Centralized Single-File Graph",
+    "short": "One beliefs.json is preferred over per-entity belief files, so the whole graph is queryable, diffable, and atomically writable as a single artifact.",
+    "def": "A centralized single-file graph is preferred over per-entity belief files (cb:a112): the whole collection lives in one <code>beliefs.json</code>, which keeps it queryable as a unit, diffable in git, and <a href='glossary.html#atomic-write'>atomically</a> writable. The <a href='glossary.html#keys-field'>_keys</a> round-trip is what makes rewriting the whole array on every write practical. It is the storage decision underneath the <a href='glossary.html#store-boundary'>store boundary</a>.",
+    "see": [
+      "store-boundary",
+      "atomic-write",
+      "keys-field",
+      "collection",
+      "pure-graph-over-one-file"
+    ]
+  },
+  "ceremony-proportionate": {
+    "name": "Ceremony Proportionate to Stance",
+    "short": "Persistence ceremony scales with the weight of the stance: a position earns its keep when the reasoning is the artifact; an obvious prescription goes straight in as a directive.",
+    "def": "Persistence ceremony is proportionate to stance (cb:a496): a <a href='glossary.html#position'>position</a> document earns its keep when the reasoning itself is the artifact, while an observation with an obvious prescription skips the document and goes straight in as a <a href='glossary.html#directive'>directive</a>. The justification is practical - if every wart became a three-artifact pipeline, the pipeline would stop being read. It is the same proportionality that governs which sessions persist verbatim.",
+    "see": [
+      "position",
+      "decision-weight-session",
+      "directive",
+      "chronicle"
+    ]
+  },
+  "chronicle": {
+    "name": "Chronicle",
+    "short": "A dated prose narrative for the operator - where things stood and stand, story beats, what the next session inherits - in which narrative carries the load and ids stay subordinate.",
+    "def": "A chronicle (cb:a520) is a dated prose narrative for the operator, living in <code>chronicles/</code>: where things stood and stand, the story beats, and what the next session inherits. The division of labor is that the transcript serves the audit, the graph serves the work, and the chronicle serves the steering. In a chronicle narrative carries the load and ids stay subordinate, the inverse of the receipts register a <a href='glossary.html#transcript'>transcript</a> is.",
+    "see": [
+      "transcript",
+      "decision-weight-session",
+      "session-memory-cache",
+      "lap-log"
+    ]
+  },
+  "claim": {
+    "name": "Claim",
+    "short": "The one-line proposition a belief asserts; the only field that survives into compiled output, so multi-paragraph analyses live as source docs, not claims.",
+    "def": "The <code>claim</code> is the atomic one-liner a belief asserts, and it is the only field that survives into compiled output rendering (output_target.ex:131). Stuffing a multi-paragraph analysis into a claim inverts the relationship - the prose becomes the point and the claim becomes a title - so analyses live as source documents citing belief ids inline (cb:a114). For descriptive beliefs the claim is the generalization the author is responsible for; the gap between it and the <a href='glossary.html#evidence'>evidence</a> is where misinterpretation can be audited.",
+    "see": [
+      "claim-evidence-gap",
+      "evidence",
+      "structural-type",
+      "compiled-document"
+    ]
+  },
+  "claim-evidence-gap": {
+    "name": "Claim / Evidence Gap",
+    "short": "The audited distance between a belief's generalization (the claim) and the factual narrative under it (the evidence), where misinterpretation lives.",
+    "def": "The claim/evidence gap is the deliberate separation between the <a href='glossary.html#claim'>claim</a> (the agent's interpretation, a generalization) and the <a href='glossary.html#evidence'>evidence</a> detail (the factual narrative of what the source actually said) (cb:a118, cb:a124). The gap is where misinterpretation lives, so it is made inspectable: a future session can ask whether the claim actually follows from these words. Keeping the two in distinct fields is what makes provenance auditable rather than asserted.",
+    "see": [
+      "claim",
+      "evidence",
+      "extraction-time-discipline",
+      "field-presence"
+    ]
+  },
+  "code-locator": {
+    "name": "Code Locator",
+    "short": "The parser for code: artifact URIs of the form code:<path>#<anchor>[@N]; the single parser the verifier and renderer share, storing no line numbers.",
+    "def": "The code locator (CB.CodeLocator, code_locator.ex) parses a <a href='glossary.html#code-scheme'>code:</a> artifact: the path runs to the first <code>#</code>, everything after is one opaque literal-substring <a href='glossary.html#anchor'>anchor</a> (which may itself contain <code>#</code>), and an optional trailing <code>@N</code> selects the Nth match (a literal trailing <code>@digits</code> is percent-encoded as <code>%40digits</code>). It stores no line numbers; resolution happens at read time so refactors do not break the path (cb:a467). It is the single parser the verifier and renderer share.",
+    "also": "nth selector",
+    "see": [
+      "code-scheme",
+      "anchor",
+      "codepath",
+      "answer-time-anchoring",
+      "draft-mode"
+    ]
+  },
+  "code-scheme": {
+    "name": "code: Scheme",
+    "short": "The artifact scheme code:<path>#<anchor>[@N] naming an anchored site in a source file; line numbers are never stored, so refactors do not break the reference.",
+    "def": "The <code>code:</code> scheme names an anchored site in a source file: <code>code:&lt;repo-relative-path&gt;#&lt;anchor&gt;[@N]</code> (cb:a467, parsed by <a href='glossary.html#code-locator'>CB.CodeLocator</a>). Everything after the first <code>#</code> is one opaque literal-substring <a href='glossary.html#anchor'>anchor</a>, with an optional <code>@N</code> occurrence selector. Line numbers are never stored; they are resolved at render or run time by fixed-string match, so refactors do not break the path (cb:c066). It is the scheme behind <a href='glossary.html#answer-time-anchoring'>answer-time anchoring</a> and <a href='glossary.html#codepath'>codepaths</a>.",
+    "also": "code locator scheme",
+    "see": [
+      "code-locator",
+      "anchor",
+      "codepath",
+      "answer-time-anchoring",
+      "artifact-scheme"
+    ]
+  },
+  "codepath": {
+    "name": "Codepath",
+    "short": "A code-anchored belief collection that reads as a narrated, branching tour of real source and runs as a test suite over it - one artifact, one gradient.",
+    "def": "A codepath is a code-anchored belief collection that is simultaneously a narrated, branching tour of real source and a runnable test suite over it - same artifact, one gradient: assertions off is a guided walk, assertions on means contract-grade stops execute their routed predicates (cb:a467, CB.Codepath, codepath.ex). Each role has one home: location is the <a href='glossary.html#code-scheme'>code:</a> artifact, narration is the <a href='glossary.html#claim'>claim</a>, derivation is the <a href='glossary.html#deps'>deps</a>, assertion is the <a href='glossary.html#implies'>implies</a> rules, and order is a separate <a href='glossary.html#codepath-render-spec'>render-spec</a>. It extends CB's signature property - traverse from a verdict to the exact raw run - one level deeper, into the code. See <a href='pages/13-codepaths.html'>codepaths</a>.",
+    "see": [
+      "codepath-render-spec",
+      "code-locator",
+      "anchor",
+      "assertions-gradient",
+      "inspection-only-predicates"
+    ]
+  },
+  "codepath-render-spec": {
+    "name": "Codepath Render-Spec",
+    "short": "An output-target contract tagged output:codepath with an entry step and render_steps rows {id, belief, goto?, choices?}; navigation is render metadata, never deps or claims.",
+    "def": "The codepath render-spec (cb:c049) is an <a href='glossary.html#output-target'>output-target</a> contract tagged <code>output:codepath</code>, carrying an <code>entry</code> step id and <code>render_steps</code> rows of shape <code>{id, belief, goto?, choices?}</code> (output_target.ex). Navigation is render metadata that never enters <a href='glossary.html#deps'>deps</a> and never lives in <a href='glossary.html#claim'>claims</a>, so reordering supersedes the render-spec rather than the claims, and the spec's deps equal the union of the rows' belief ids. Traversal is depth-first from <code>entry</code>, visited-guarded so cycles terminate.",
+    "also": "render_steps, entry",
+    "see": [
+      "codepath",
+      "output-target",
+      "dynamic-verifier",
+      "deps"
+    ]
+  },
+  "collection": {
+    "name": "Collection",
+    "short": "A beliefs.json graph in one declared namespace, with a sibling manifest.json carrying its namespace, description, and cross-namespace depends_on.",
+    "def": "A collection is a <code>beliefs.json</code> graph in a declared <a href='glossary.html#namespace'>namespace</a>, with a sibling <code>manifest.json</code> carrying <code>namespace</code>, <code>description</code>, and cross-namespace <a href='glossary.html#depends-on'>depends_on</a> (cb:a463, CB.Collection, collection.ex). Any collection is queryable with <code>mix bs --beliefs PATH</code> or <code>CB_BELIEFS</code>. The live map of every collection is <a href='glossary.html#collections-registry'>collections.json</a>; examples include <code>cb</code>, <code>agent-behavior</code>, <code>method</code>, <code>sdl</code>, and <code>toy</code>. See <a href='pages/15-collections.html'>collections and namespaces</a>.",
+    "see": [
+      "namespace",
+      "depends-on",
+      "dependency-closure",
+      "collections-registry",
+      "lending-library"
+    ]
+  },
+  "collections-registry": {
+    "name": "Collections Registry",
+    "short": "collections.json: the namespace-to-path map against which dependency closures resolve, so mix cb.verify.collection can find every depended-on graph.",
+    "def": "The collections registry is <code>collections.json</code>, mapping each <a href='glossary.html#namespace'>namespace</a> to the relative path of its <code>beliefs.json</code> (CB.Collection.Registry, collection.ex:34). Dependency <a href='glossary.html#dependency-closure'>closures</a> resolve against it, so <code>mix cb.verify.collection</code> can find every depended-on graph. It is the local SSOT for which collections exist and where they live (cb:a464), the live map prose files route to rather than enumerate.",
+    "also": "collections.json",
+    "see": [
+      "collection",
+      "namespace",
+      "dependency-closure",
+      "depends-on",
+      "cross-collection-desk"
+    ]
+  },
+  "compiled-document": {
+    "name": "Compiled Document",
+    "short": "A document like CLAUDE.md compiled from beliefs listed in an output target's render_sections; read-only, every line traces to one claim, and CI-gated against the graph.",
+    "def": "A compiled document is generated from the graph: CLAUDE.md compiles from the beliefs an <a href='glossary.html#output-target'>output target</a> names in <code>render_sections</code> (cb:c060, cb:c065, cb:a466, cb:a482), so it is read-only, every line traces to one belief <a href='glossary.html#claim'>claim</a>, and CI gates the committed file against the graph. Compiled output also carries the source belief ids for traceability (cb:a517). Rendering live and gating in CI is the structural answer to the <a href='glossary.html#digest-antipattern'>digest antipattern</a>.",
+    "also": "CLAUDE.md, render_sections",
+    "see": [
+      "output-target",
+      "compiled-vs-rendered",
+      "digest-antipattern",
+      "claim",
+      "schema-as-contracts"
+    ]
+  },
+  "compiled-vs-rendered": {
+    "name": "Compiled Face vs Rendered Face",
+    "short": "Compiled documents face the agent (CLAUDE.md, rule files); rendered trees and tours face the human (audit trees, codepaths); both derive live from the graph.",
+    "def": "The graph has two output faces: <a href='glossary.html#compiled-document'>compiled documents</a> face the agent (CLAUDE.md, rule files), while rendered trees and tours face the human (the <a href='glossary.html#audit-tree'>audit tree</a>, the <a href='glossary.html#codepath'>codepath</a>). Both derive live from the graph rather than from a hand-maintained copy. It is the same split named at the artifact level by <a href='glossary.html#position-vs-codepath'>position versus codepath</a>.",
+    "see": [
+      "compiled-document",
+      "audit-tree",
+      "codepath",
+      "position-vs-codepath",
+      "digest-antipattern"
+    ]
+  },
+  "composable-beliefs": {
+    "name": "Composable Beliefs",
+    "short": "The paradigm: a DAG of source-grounded, immutable, composable claims that gives agents persistent, inspectable reasoning across session boundaries.",
+    "def": "Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; cb:a478). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the <code>cb:</code> collection and is exercised as a reasoning and audit substrate by consumers such as <a href='pages/20-amieval-integration.html'>amieval</a>. See <a href='glossary.html#belief'>belief</a> and <a href='glossary.html#structural-type'>structural type</a>.",
+    "see": [
+      "belief",
+      "structural-type",
+      "in-memory-model",
+      "reasoning-substrate-not-memory",
+      "composition-over-retrieval"
+    ]
+  },
+  "composition-over-retrieval": {
+    "name": "Composition Over Retrieval",
+    "short": "The DAG's value is concluding what follows from combining facts, surfacing questions no single document contains, rather than finding known context the way RAG does.",
+    "def": "Composition over retrieval (cb:a462, cb:a539) names where the DAG's value lies: concluding what follows from combining facts, and surfacing questions no single document contains, rather than finding known context the way retrieval-augmented generation does. RAG finds known answers; this graph's payoff is the <a href='glossary.html#inference'>inference</a> a single document cannot hold. It is the reason CB stays a <a href='glossary.html#reasoning-substrate-not-memory'>reasoning substrate</a> and refuses to grow into a recall system.",
+    "also": "RAG boundary",
+    "see": [
+      "reasoning-substrate-not-memory",
+      "inference",
+      "compound",
+      "shared-prosthetic"
+    ]
+  },
+  "compound": {
+    "name": "Compound",
+    "short": "Aggregate: a conjunction stating exactly what its two-or-more deps jointly state, with subjects contained in the union of its deps' subjects.",
+    "def": "A compound records the operation aggregate: a conjunction whose claim states exactly what its <a href='glossary.html#deps'>deps</a> (two or more) jointly state, no more (cb:c051, cb:a474, the strict-aggregate doctrine). It is the one deduction the schema stores (cb:a473): A and B, therefore A-and-B is truth-preserving and non-ampliative, and its epistemic work is the selection of what to assemble and the naming of the agreement. <a href='glossary.html#subject-containment'>Subject containment</a> (cb:c058) is its formal shadow: a compound's subject refs must be a subset of the union of its deps' subject refs. The framework's own <code>cb:</code> graph holds no compounds; they are exercised in eval collections as <a href='glossary.html#cross-ruler-agreement'>cross-ruler agreement</a>.",
+    "also": "aggregate",
+    "see": [
+      "primitive",
+      "inference",
+      "strict-aggregate",
+      "subject-containment",
+      "cross-ruler-agreement"
+    ]
+  },
+  "conflict-audit": {
+    "name": "Conflict Audit",
+    "short": "The pass (mix cb.audit.conflicts) that surfaces overlapping-directive pairs and stale overrides as candidates for review; overlap is a candidate, never a verdict.",
+    "def": "The conflict audit (CB.Audit.Conflicts, audit/conflicts.ex) surfaces two things for review: stale overrides (active nodes depping on superseded or retracted nodes) and scope overlaps (pairs of active directives sharing <a href='glossary.html#conflict-scope'>conflict scope</a>). An overlap is a candidate for human judgment, never a verdict - semantic contradiction needs a reviewer (cb:c055). It is exposed as <code>mix cb.audit.conflicts</code> with filters for tag, domain, and a single related node.",
+    "see": [
+      "conflict-scope",
+      "semantic-contact",
+      "staleness",
+      "adjudication"
+    ]
+  },
+  "conflict-scope": {
+    "name": "Conflict Scope",
+    "short": "When two active directives overlap on a shared tag, subject ref, or subject type within one domain; necessary but not sufficient for contradiction.",
+    "def": "Two active <a href='glossary.html#directive'>directives</a> are in conflict scope when they overlap on at least one axis - a shared tag, subject ref, or subject type - within the same <a href='glossary.html#domain'>domain</a> (cb:c055, supersedes cb:c032). Overlap is symmetric, never reflexive, and never cross-domain, and it is necessary but not sufficient for contradiction. Contradictory <a href='glossary.html#inference'>inferences</a> are dissent, out of this audit's scope (consensus-thread work). The pressure behind requiring <a href='glossary.html#adjudication'>adjudication</a> is that contradictions in the governance substrate must be expensive to introduce (cb:a304).",
+    "see": [
+      "conflict-audit",
+      "semantic-contact",
+      "adjudication",
+      "domain",
+      "tags"
+    ]
+  },
+  "consensus-mechanism": {
+    "name": "Consensus Mechanism",
+    "short": "The design root of the write flow: surface conflicts at authoring time, route resolution through adjudication, and produce a recorded outcome, so authoring does not depend on agent memory.",
+    "def": "The consensus mechanism (cb:a387, cb:a304) is the design root behind the write flow: surface conflicts at authoring time, route resolution through <a href='glossary.html#adjudication'>adjudication</a> (human, multi-agent, or tiered by conflict weight), and produce a recorded outcome. Without it the authoring surface would depend on agent memory, which rots as concurrent threads push. Open extensions are consensual primitives (per-source attestations plus a consensus compound, cb:a494) and multi-agent reconciliation (cb:a495). It is why contradictions in the governance substrate are expensive to introduce.",
+    "also": "consensual primitives",
+    "see": [
+      "preflight",
+      "adjudication",
+      "write-flow",
+      "author-against-live-graph",
+      "conflict-scope"
+    ]
+  },
+  "contract": {
+    "name": "Contract",
+    "short": "A directive formalized to machine-checkable grade: it has non-empty rules or invariants; a structural grade of a directive, never a fourth type.",
+    "def": "A contract is a <a href='glossary.html#directive'>directive</a> formalized to machine-checkable grade, carrying <code>contract: true</code> with non-empty <a href='glossary.html#rules-field'>rules</a> or <a href='glossary.html#invariants-field'>invariants</a> (cb:c054, founding def cb:a300). Where an inference states WHAT (the conclusion), a contract states HOW (rules as Given/When/Then) and ALWAYS (invariants). Contract is a structural grade of a directive, never a fourth type, and it is detected structurally via <code>CB.Belief.contract?/1</code>, with the <a href='glossary.html#c-prefix'>c-prefix</a> being convention only (belief.ex:118). See <a href='pages/07-contracts.html'>contracts</a>.",
+    "also": "contract-grade",
+    "see": [
+      "beliefs-vs-contracts",
+      "rule-kind-catalogue",
+      "routing-implementation-boundary",
+      "verification-not-generation",
+      "c-prefix"
+    ]
+  },
+  "contract-interpreter": {
+    "name": "Contract Interpreter",
+    "short": "One generic Elixir module per contract kind (Enum, StateMachine, Table, Implies) that reads a contract's rules as a tiny Datalog relation; the belief is passed in, no ids hardcoded.",
+    "def": "A contract interpreter is one generic Elixir module per contract <a href='glossary.html#kind'>kind</a> that reads a contract's <a href='glossary.html#rules-field'>rules</a> as a tiny Datalog relation: <code>CB.Belief.Contract.Enum</code>, <code>.StateMachine</code>, <code>.Table</code>, and <code>.Implies</code> (lib/cb/belief/contract/*). Each is generic, taking the belief in with no hardcoded ids, which is what lets the same code interpret any collection's contracts. The interpreters embody the implementation half of the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a>.",
+    "see": [
+      "rule-kind-catalogue",
+      "enum-registry",
+      "state-machine",
+      "schema-verifier",
+      "routing-implementation-boundary"
+    ]
+  },
+  "contracts-prose-code-gap": {
+    "name": "Neither Prose nor Code",
+    "short": "Contracts are the intermediate level of formality: a prose rule cannot be mechanically checked, code cannot carry its own rationale, and a contract does both.",
+    "def": "Contracts fill the gap between literal code and plain English (cb:a133, cb:a134, cb:a135, synthesized in cb:a138): a prose rule cannot be mechanically checked, and code cannot carry its own rationale, provenance, and supersession history, while a <a href='glossary.html#contract'>contract</a> does both. Contracts are domain-bound (they survive code rewrites), substrate-independent (one state-machine contract is implemented in both compiled code and agent reasoning, cb:a135), and they generate tests rather than the reverse (cb:a134). This intermediate formality is what makes it safe for the graph to drive tests.",
+    "see": [
+      "contract",
+      "verification-not-generation",
+      "routing-implementation-boundary",
+      "verify-against-contract"
+    ]
+  },
+  "cross-collection-desk": {
+    "name": "Cross-Collection Desk (Future)",
+    "short": "A proposed single query surface for unmaterialized discrete directives across every registered collection, plus a global directive graph in dotfiles.",
+    "def": "The cross-collection desk (cb:a500, cb:a543) is an open extension: one query surface for <a href='glossary.html#unlinked-directive'>unmaterialized discrete directives</a> across all registered collections, rather than per-collection, with a global directive graph living in dotfiles. It generalizes <a href='glossary.html#the-desk'>the desk</a> from a single graph to the whole working tree, so an operator can see every obligation in one place.",
+    "see": [
+      "the-desk",
+      "unlinked-directive",
+      "collection",
+      "collections-registry"
+    ]
+  },
+  "cross-ruler-agreement": {
+    "name": "Cross-Ruler Agreement",
+    "short": "A compound asserting that two independent rulers reached the same outcome on the same case - a claim neither observation makes alone; required under a verdict by method:c4.",
+    "def": "Cross-ruler agreement is the eval <a href='glossary.html#compound'>compound</a>: it asserts that two independent <a href='glossary.html#ruler'>rulers</a> reached the same outcome on the same case, corroboration neither <a href='glossary.html#observation'>observation</a> states alone yet fully contained in what they say together (eval-ledger.md). It is human-authored, and contract method:c4 (m-corroboration) requires every <a href='glossary.html#verdict'>verdict</a> to reach such a compound or carry a <code>single-ruler</code> tag. It is the worked example of the <a href='glossary.html#strict-aggregate'>strict-aggregate doctrine</a> outside the framework's own graph.",
+    "see": [
+      "compound",
+      "ruler",
+      "observation",
+      "verdict",
+      "strict-aggregate"
+    ]
+  },
+  "dag-authorized-migration": {
+    "name": "DAG-Authorized Migration",
+    "short": "Field removal or rename happens only through an adjudicated migration anchored by a compound; it is the single mutation class the schema allows on its own shape.",
+    "def": "Schema evolution - removing or renaming a field - happens only through an adjudicated migration that the graph itself authorizes, anchored by a <a href='glossary.html#compound'>compound</a> recording the decision (cb:a436, cb:a438). This is the one mutation class allowed on the schema's own shape, and it is why the <a href='glossary.html#expunged-fields'>expunged fields</a> are gone by record rather than by silent deletion. It is the schema-evolution instance of the <a href='glossary.html#no-maintenance-hatch'>no maintenance hatch</a> principle: even the shape of a belief changes only through the write flow.",
+    "see": [
+      "no-maintenance-hatch",
+      "expunged-fields",
+      "schema-as-contracts",
+      "adjudication"
+    ]
+  },
+  "dag-vs-prose": {
+    "name": "DAG-vs-Prose Eval",
+    "short": "The study comparing a structured CB graph against a prose baseline on agent reasoning tasks; the OKF/Karpathy wiki is the credible prose arm the structured arm must beat.",
+    "def": "The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an <a href='glossary.html#okfx'>OKF</a>/Karpathy agent-maintained wiki rather than a strawman (cb:a544), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.",
+    "see": [
+      "okfx",
+      "okf",
+      "composition-over-retrieval",
+      "harness",
+      "reasoning-substrate-not-memory"
+    ]
+  },
+  "decision-weight-session": {
+    "name": "Decision-Weight Session",
+    "short": "A session that mints or supersedes grounded beliefs, settles a stance, or adjudicates positions; it persists its thread verbatim, routed by subject.",
+    "def": "A decision-weight session (cb:a540) is one that mints or supersedes beliefs grounded in a <code>user:</code> or <code>session:</code> stipulation, settles a stance, or adjudicates positions. Such a session persists its thread verbatim, routed by subject - direction threads to the private direction repos, plan-scale dev to co-located <code>plans/</code>. Every belief minted is <a href='glossary.html#retro-pairing'>retro-paired</a> with a document pointer. Lighter sessions need no verbatim persistence, by <a href='glossary.html#ceremony-proportionate'>ceremony proportionate to stance</a>.",
+    "see": [
+      "transcript",
+      "chronicle",
+      "retro-pairing",
+      "ceremony-proportionate",
+      "position"
+    ]
+  },
+  "dep-repoint": {
+    "name": "Dep-Repoint Front Door",
+    "short": "mix cb.repoint: a sanctioned, atomic task to swing a dep from a superseded node to its successor (drop plus add).",
+    "def": "The dep-repoint front door (<code>mix cb.repoint</code>, cb:a537, cb:a547) swings a <a href='glossary.html#deps'>dep</a> from a superseded node to its successor as an atomic drop-plus-add (cb.repoint.ex). It is the maintenance move that clears <a href='glossary.html#staleness'>staleness</a> caused by a dep being superseded, and the third of the three sanctioned <a href='glossary.html#write-flow'>front doors</a>. Some of its automation is still an open gap.",
+    "see": [
+      "evidence-append",
+      "todo-close",
+      "staleness",
+      "supersession",
+      "write-flow"
+    ]
+  },
+  "dependency-closure": {
+    "name": "Dependency Closure / Union",
+    "short": "The transitive, cycle-safe set of namespaces a collection needs, loaded as one flat belief list for verification and rendering.",
+    "def": "The dependency closure is the transitive, cycle-safe set of namespaces a collection needs, resolved target-first through the <a href='glossary.html#collections-registry'>registry</a> and loaded as one flat belief list - the union (CB.Collection.closure and load_union, collection.ex:121). Verification and rendering of a non-leaf collection run over that union, so <code>mix cb.verify.collection &lt;ns&gt;</code> checks a collection together with everything it borrows. The union is how a <a href='glossary.html#methodology-contract'>methodology contract</a> in <code>method:</code> can check beliefs in <code>sdl:</code>.",
+    "also": "union",
+    "see": [
+      "collection",
+      "depends-on",
+      "collections-registry",
+      "method-check",
+      "verify-schema"
+    ]
+  },
+  "depends-on": {
+    "name": "depends_on / Borrowing by Role",
+    "short": "A collection declares which namespaces it depends on in its manifest; it borrows their contracts by role, not by id, so the verifier discovers each by what it declares.",
+    "def": "A collection declares its cross-namespace dependencies in <code>manifest.json</code> via <code>depends_on</code> (collection.ex:102). It borrows the depended-on collection's <a href='glossary.html#contract'>contracts</a> by role, not by id - the verifier <a href='glossary.html#discovered-by-role'>discovers</a> an enum by the field it declares and the lifecycle by its tag - so a borrower picks up <code>cb:</code> schema vocabulary without naming specific contract ids. A field for which no contract is borrowed is <a href='glossary.html#skip-not-fail'>skipped, not failed</a>.",
+    "also": "borrow by role",
+    "see": [
+      "collection",
+      "namespace",
+      "discovered-by-role",
+      "dependency-closure",
+      "skip-not-fail"
+    ]
+  },
+  "deprecation": {
+    "name": "Deprecation",
+    "short": "A pause rather than a retirement - not currently useful enough to carry - with the path back open; the reference case is the dropped confidence field.",
+    "def": "Deprecation marks a belief or feature as not currently useful enough to carry, rather than wrong forever, and reinstatement is itself a belief (cb:a390). The reference case is the <a href='glossary.html#no-confidence-scores'>confidence field</a>, deprecated rather than deleted so the path back to a derived confidence stays open if a concrete use-case ever appears. Deprecation contrasts with <a href='glossary.html#retraction'>retraction</a>, which asserts that something is wrong.",
+    "see": [
+      "retraction",
+      "no-confidence-scores",
+      "expunged-fields",
+      "status-lifecycle"
+    ]
+  },
+  "deps": {
+    "name": "Deps",
+    "short": "Belief-to-belief logical derivation: the upstream ids whose claims jointly justify this claim; the DAG's only edges, absent on primitives.",
+    "def": "<code>deps</code> is the belief-to-belief relation of logical derivation - the upstream ids whose claims together justify this claim - and it is the only kind of edge the DAG has (cb:a408, belief.ex:51, graph.ex:41). Deps are required on compounds and inferences, required-or-stipulated on non-contract directives, and absent on primitives. They are distinct from <a href='glossary.html#subjects'>subjects</a>: a belief can be about something without depending on it, and depend on something without being about it. Edges are implicit string pointers resolved on demand by CB.Belief.Graph.",
+    "see": [
+      "subjects",
+      "directive-grounding",
+      "field-presence",
+      "in-memory-model",
+      "dependency-closure"
+    ]
+  },
+  "derivation-table": {
+    "name": "derivation-table",
+    "short": "A contract kind whose rules are arbitrary-column rows, looked up by ANDing conditions; the kind behind the kind-type table.",
+    "def": "<code>derivation-table</code> is a catalogued contract kind (cb:c046): its rules are arbitrary-column maps yielding <code>row(Col1..ColN)</code>, looked up by ANDing conditions, read by <code>CB.Belief.Contract.Table</code> (table.ex). It is the kind behind the <a href='glossary.html#kind-type-table'>kind-type table</a> (cb:c057), which maps each kind to its allowed structural types. Like every interpreter it is generic over the belief passed in, with no hardcoded ids.",
+    "see": [
+      "enum-registry",
+      "state-machine",
+      "implies",
+      "kind-type-table",
+      "contract-interpreter"
+    ]
+  },
+  "digest-antipattern": {
+    "name": "Digest-File Antipattern",
+    "short": "A persisted cache of graph-derived content whose freshness is procedural embeds the very staleness it was meant to solve; the fix is to render live from the graph and gate in CI.",
+    "def": "The digest-file antipattern (cb:a386, the canonical example in mental-model.md) is a persisted cache of graph-derived content whose freshness depends on procedural enforcement - a skill telling agents to regenerate - which embeds the very <a href='glossary.html#staleness'>staleness</a> it was meant to solve, because agents forget and the stale digest is then read as authoritative. The elimination path generalizes: render live from the DAG and gate in CI (cb:a466, cb:a477). The same doctrine governs <a href='glossary.html#compiled-document'>compiled documents</a> and <a href='glossary.html#session-memory-cache'>session memory</a>. See <a href='pages/12-staleness.html'>staleness</a>.",
+    "also": "structural vs procedural freshness",
+    "see": [
+      "staleness",
+      "compiled-document",
+      "session-memory-cache",
+      "recency"
+    ]
+  },
+  "direction-of-fit": {
+    "name": "Direction of Fit",
+    "short": "The operational boundary between the two derived types: inference is mind-fits-world (falsified); directive is world-fits-mind (violated or withdrawn).",
+    "def": "Direction of fit is the boundary between <a href='glossary.html#inference'>inference</a> and <a href='glossary.html#directive'>directive</a> made operational - ask what would count as the belief being wrong (cb:a471, mental-model.md). An inference has mind-fits-world fit: the world disagrees, so the belief is defective and is superseded or retracted. A directive has world-fits-mind fit: the world disobeys, so the violation is flagged and the rule stands, or the house withdraws and supersedes or retires it. The author-facing trichotomy is falsified to inference, violated to directive, withdrawn to directive, and the boundary is enforced because materialization, the conflict audit, and contract grading attach only to directives (cb:a470).",
+    "see": [
+      "inference",
+      "directive",
+      "falsifiability",
+      "retired"
+    ]
+  },
+  "directive": {
+    "name": "Directive",
+    "short": "Prescribe: something that should happen or must hold (rule, guidance, policy, contract); violated or withdrawn, never falsified.",
+    "def": "A directive records the operation prescribe: something that should happen or must hold - a rule, guidance, policy, or <a href='glossary.html#contract'>contract</a> (cb:c051, cb:a471). A directive is the only type that can be materialized, conflict-audited, or graded into a contract; it is grounded in <a href='glossary.html#deps'>deps</a> or a <a href='glossary.html#stipulation-artifact'>stipulation artifact</a> (cb:c059). By <a href='glossary.html#direction-of-fit'>direction of fit</a> a directive is violated (the world disobeys, so flag the violation and keep the rule) or withdrawn (the house stops standing behind it, so supersede or <a href='glossary.html#retired'>retire</a> it), and is never falsified. In eval work <a href='glossary.html#guidance'>guidance</a> is the directive face; it is the structural type that carries work, the <a href='glossary.html#the-desk'>desk</a>.",
+    "also": "prescribe",
+    "see": [
+      "primitive",
+      "compound",
+      "inference",
+      "direction-of-fit",
+      "directive-grounding"
+    ]
+  },
+  "directive-grounding": {
+    "name": "Directive Grounding",
+    "short": "The rule (cb:c059) that an active non-contract directive grounds in deps or a stipulation artifact (plan, user, session, document); external-source schemes never ground a directive.",
+    "def": "Directive grounding (cb:c059, cb:a476) requires that an active non-contract <a href='glossary.html#directive'>directive</a> rest on <a href='glossary.html#deps'>deps</a> or a <a href='glossary.html#stipulation-artifact'>stipulation artifact</a> whose scheme is <code>plan</code>, <code>user</code>, <code>session</code>, or <code>document</code> (verifier.ex:373). External-source schemes like <code>source</code> and <code>https</code> never ground a directive, because a rule the house enforces must trace to an adoption event, not merely to an outside reference. This is the prescriptive counterpart to a primitive's single-<a href='glossary.html#artifact'>artifact</a> grounding.",
+    "see": [
+      "stipulation-artifact",
+      "field-presence",
+      "directive",
+      "deps",
+      "artifact-scheme"
+    ]
+  },
+  "discovered-by-role": {
+    "name": "Discovered by Role",
+    "short": "The verifier finds a collection's contracts by what they declare, not by id: an enum by the field it governs, the lifecycle by its tag, the kind-type table by its columns.",
+    "def": "The verifier discovers a collection's vocabulary by role rather than by hardcoded id: an <a href='glossary.html#enum-registry'>enum</a> contract is found by the field it declares, the status <a href='glossary.html#state-machine'>state machine</a> by its <code>status-lifecycle</code> tag, the <a href='glossary.html#kind-type-table'>kind-type table</a> by its columns (verifier.ex:77). This is what lets a downstream <a href='glossary.html#collection'>collection</a> borrow contracts by role through <a href='glossary.html#depends-on'>depends_on</a>, and what makes the same engine verify the framework's own graph and every borrower's. A field with no governing contract is <a href='glossary.html#skip-not-fail'>skipped, not failed</a>.",
+    "see": [
+      "schema-verifier",
+      "skip-not-fail",
+      "depends-on",
+      "schema-as-contracts",
+      "methodology-contract"
+    ]
+  },
+  "domain": {
+    "name": "Domain",
+    "short": "A belief's topical area, the closed five-value enum cb:c041: system, design, agent, ops, dev.",
+    "def": "<code>domain</code> places a belief in a topical area, the closed enum cb:c041: <code>system</code> (system and process design), <code>design</code>, <code>agent</code> (agent behavior, capability, limitation), <code>ops</code> (operational and business workflows), and <code>dev</code> (agent-system development and infra) (belief.ex:51). Domain matters for <a href='glossary.html#conflict-scope'>conflict scope</a>: two active directives overlap only within the same domain, and distinct non-null domains never overlap (cb:c055).",
+    "see": [
+      "kind",
+      "enum-registry",
+      "conflict-scope",
+      "tags"
+    ]
+  },
+  "draft-mode": {
+    "name": "Draft Mode",
+    "short": "Anchor resolution with no belief collection loaded (mix cb.resolve), validating bare {path, anchor, nth} rows; the verification gate for answer-time anchoring.",
+    "def": "Draft mode (<code>mix cb.resolve</code>, cb:a512) validates and resolves bare <code>{path, anchor, nth}</code> stop rows against a root with no belief collection loaded, so draft answers and anchored positions can use the one tested <a href='glossary.html#anchor'>resolver</a>. It is the verification gate for <a href='glossary.html#answer-time-anchoring'>answer-time anchoring</a>: landing cb:a512 unblocked cb:a488's escalation to contract grade. Exit 1 on any unresolved row makes it usable in CI.",
+    "see": [
+      "anchor",
+      "answer-time-anchoring",
+      "anchored-position-format",
+      "code-locator"
+    ]
+  },
+  "drift-audit": {
+    "name": "Drift Audit",
+    "short": "A first-class maintenance cycle iterating materialized directives, re-checking effects and bumping last_verified or emitting a drift primitive when effects have decayed.",
+    "def": "A drift audit (cb:a384) is the maintenance cycle that iterates non-null <a href='glossary.html#materialized-field'>materialized</a> beliefs, re-checks their effects, and either bumps <code>last_verified</code> or emits a drift primitive. It exists because materialization records a historical execution, not a standing guarantee - effects decay as code drifts. It is the action-history counterpart to <a href='glossary.html#staleness'>staleness</a> detection on the truth axis.",
+    "see": [
+      "materialization",
+      "materialized-field",
+      "status-vs-materialized",
+      "staleness"
+    ]
+  },
+  "dual-kinds": {
+    "name": "Dual Kinds",
+    "short": "The two kinds (definition, schema) that span both moods and may take any of the four structural types, decided per belief by direction of fit.",
+    "def": "Two kinds carry both moods and so map to all four structural types in the <a href='glossary.html#kind-type-table'>kind-type table</a>: <code>definition</code> (vocabulary, not commitment - what a word, type, or field means, cb:a437, cb:a408) and <code>schema</code> (a rule about belief or DAG structure, cb:a300). For a dual-kind belief the structural type is decided per belief by <a href='glossary.html#direction-of-fit'>direction of fit</a>: a definition stated as a description is a primitive, while a schema rule the house enforces is a directive. The other prescriptive kinds, such as <code>policy</code> (an intentional commitment not mechanically enforced, cb:a439) and <code>action-item</code> (a single completable task, cb:a403), are directive only.",
+    "also": "kind:definition, kind:schema",
+    "see": [
+      "kind-type-table",
+      "kind",
+      "direction-of-fit",
+      "kind-policy",
+      "kind-action-item"
+    ]
+  },
+  "dynamic-verifier": {
+    "name": "Dynamic Verifier",
+    "short": "mix cb.verify.codepath: the one place codepath predicates actually run; --record writes pass/fail back to the belief's materialized field.",
+    "def": "The dynamic verifier (<code>mix cb.verify.codepath</code>, CB.Codepath.Assertions, codepath/assertions.ex) is the one place <a href='glossary.html#codepath'>codepath</a> predicates actually execute (cb:c050). For each contract-grade stop it takes the <a href='glossary.html#implies'>implies</a> rules applicable under <code>assertions: on</code> and invokes each predicate, and <code>--record</code> writes the pass/fail result back to the belief's <a href='glossary.html#materialized-field'>materialized</a> field as a recorded test run. It is the dynamic counterpart to the static <a href='glossary.html#method-check'>method check</a> pass.",
+    "see": [
+      "codepath",
+      "assertions-gradient",
+      "routed-predicate",
+      "method-check",
+      "materialization"
+    ]
+  },
+  "enum-registry": {
+    "name": "enum-registry",
+    "short": "A contract kind whose rules declare a closed set of allowed values for a field; the catalogued kind behind the kind, domain, and artifact-scheme enums.",
+    "def": "<code>enum-registry</code> is one of the catalogued contract kinds (cb:c046): its rules declare <code>{field, values}</code>, yielding the fact <code>allowed(Field, Value)</code> read by <code>CB.Belief.Contract.Enum</code> (enum.ex). It is the kind behind the closed <a href='glossary.html#kind'>kind</a> enum (cb:c039), the <a href='glossary.html#domain'>domain</a> enum (cb:c041), and the <a href='glossary.html#artifact-scheme'>artifact-scheme</a> enum (cb:c066). Enum-shaped fields take values only from these dedicated contracts, and adding a value supersedes the whole enum contract (cb:a397), an instance of <a href='glossary.html#immutability'>immutability</a> applied to the schema itself.",
+    "see": [
+      "state-machine",
+      "derivation-table",
+      "implies",
+      "rule-kind-catalogue",
+      "discovered-by-role"
+    ]
+  },
+  "eval-collection": {
+    "name": "Eval Collection",
+    "short": "A namespaced belief collection holding one operation's eval graph, declaring depends_on: [method] to borrow the shared vocabulary and the six methodology contracts.",
+    "def": "An eval collection is a namespaced <a href='glossary.html#collection'>collection</a> holding one operation's eval graph, declaring <code>depends_on: [method]</code> to borrow the shared eval vocabulary and the six <a href='glossary.html#methodology-contract'>methodology contracts</a>. The worked examples are <code>sdl</code> (eval-provenance, deliberately non-compliant for teaching) and <code>toy</code> (the fully compliant counterpart). The base <code>method:</code> collection holds the shared vocabulary every eval collection depends on. See <a href='pages/21-worked-example.html'>the worked example</a>.",
+    "see": [
+      "collection",
+      "depends-on",
+      "methodology-contract",
+      "method-check",
+      "dependency-closure"
+    ]
+  },
+  "eval-ledger": {
+    "name": "Eval Ledger",
+    "short": "The published evidence trail behind an eval finding, rendered as graph structure: every measurement a belief, every methodology rule a contract, every correction a visible supersession.",
+    "def": "The eval evidence ledger is the published trail behind a finding, rendered as graph structure: every measurement is a belief, every methodological rule a <a href='glossary.html#contract'>contract</a>, and every correction a <a href='glossary.html#supersession'>supersession</a> a reader can see (docs/eval-ledger.md). A finding exercises all four structural types - <a href='glossary.html#observation'>observation</a>, <a href='glossary.html#cross-ruler-agreement'>cross-ruler agreement</a>, <a href='glossary.html#verdict'>verdict</a>, <a href='glossary.html#guidance'>guidance</a> - so a reader can traverse from a published verdict back to the exact raw run. It is amieval using CB's <a href='glossary.html#receptive-face'>receptive face</a>. See <a href='pages/20-amieval-integration.html'>grounding eval verdicts</a>.",
+    "see": [
+      "observation",
+      "verdict",
+      "audit-tree",
+      "receptive-face",
+      "cb-is-ledger-not-bench"
+    ]
+  },
+  "eval-scheme": {
+    "name": "eval: Scheme",
+    "short": "A scorer-run identity URI declared by the method: collection (not by cb:), of the form eval:<eval_id>/<run_id>/<ruler>[/<case_id>].",
+    "def": "The <code>eval:</code> scheme is a scorer-run identity URI declared by the <code>method:</code> collection rather than by <code>cb:</code> itself, demonstrating that collections may extend the closed <a href='glossary.html#artifact-scheme'>artifact-scheme</a> enum for their own domain (eval-ledger.md, run-manifest.md). Its shape is <code>eval:&lt;eval_id&gt;/&lt;run_id&gt;/&lt;ruler&gt;</code> for an aggregate <a href='glossary.html#observation'>observation</a> and adds <code>/&lt;case_id&gt;</code> for a per-case one. Contract method:c5 (m-provenance) refuses any observation lacking an <code>eval:</code> URI and a raw-log pointer.",
+    "see": [
+      "artifact-scheme",
+      "observation",
+      "methodology-contract",
+      "import-eval",
+      "identity-hashing"
+    ]
+  },
+  "eval-spec-as-contract": {
+    "name": "Eval-Spec as a Contract",
+    "short": "The hinge of the generative face: a pre-registered eval rubric is a contract (guarantees / requires / violates_if) that compiles to the runnable checks and to the writeup.",
+    "def": "The eval-spec-as-contract is the hinge that fuses the framework and the integration: a pre-registered eval rubric is itself a <a href='glossary.html#contract'>contract</a> (with clauses like guarantees, requires, violates_if) that compiles to the runnable checks and to the writeup. The same compile step is what would later produce a client's guardrails - one mechanism, two products. It is the only generative slice the first eval needs, because a v1 eval wants a pre-registered machine-checkable spec anyway. It is the <a href='glossary.html#specify-deduce-actualize'>specify</a> rung made concrete.",
+    "see": [
+      "generative-face",
+      "specify-deduce-actualize",
+      "contract",
+      "thermometer-thermostat",
+      "methodology-contract"
+    ]
+  },
+  "evidence": {
+    "name": "Evidence",
+    "short": "Dated entries of shape {date, artifact, detail} that ground a claim; appending one is the single sanctioned in-place growth point on an immutable node.",
+    "def": "<code>evidence</code> is a list of dated entries, each <code>{date, artifact, detail}</code>, grounding a belief's <a href='glossary.html#claim'>claim</a> (cb:a118). The <code>detail</code> is the specific narrative of what happened or what the source said, while the claim is the generalization, and the <a href='glossary.html#claim-evidence-gap'>gap between them</a> is where misinterpretation lives and can be audited. Appending an evidence entry is the one sanctioned in-place growth point on an otherwise immutable node (cb:a302, cb:a522), exposed as the <a href='glossary.html#evidence-append'>evidence-append front door</a>. Evidence-entry artifacts are not enum-checked, so they may carry provenance schemes like <code>adjudication:</code>.",
+    "see": [
+      "claim-evidence-gap",
+      "claim",
+      "evidence-append",
+      "structural-support",
+      "immutability"
+    ]
+  },
+  "evidence-append": {
+    "name": "Evidence-Append Front Door",
+    "short": "mix cb.evidence: the one sanctioned in-place growth point on an immutable node, appending a dated evidence entry.",
+    "def": "The evidence-append front door (<code>mix cb.evidence</code>, cb:a522, cb:a531) appends a dated <a href='glossary.html#evidence'>evidence</a> entry to an existing belief - the single sanctioned in-place growth point on an otherwise immutable node. It is one of three narrow front doors named in the compiled CLAUDE.md surface, alongside <a href='glossary.html#todo-close'>todo close</a> and <a href='glossary.html#dep-repoint'>dep re-point</a>. Appending evidence grows the grounding of a claim without changing the claim itself.",
+    "see": [
+      "evidence",
+      "todo-close",
+      "dep-repoint",
+      "immutability",
+      "write-flow"
+    ]
+  },
+  "expunged-fields": {
+    "name": "Expunged Fields",
+    "short": "Three fields that no longer exist - confidence, source, implication - stripped on load so legacy data round-trips clean; meanings carried elsewhere now.",
+    "def": "Three fields were removed from the schema and no longer exist: <code>confidence</code> (a subjective scalar replaced by structural <a href='glossary.html#structural-support'>support</a>), <code>source</code> (renamed to the structured <a href='glossary.html#artifact'>artifact</a>), and <code>implication</code> (deleted, its meaning carried by <a href='glossary.html#claim'>claim</a> plus <a href='glossary.html#deps'>deps</a>) (belief.ex:194). <code>from_map/1</code> strips these from <a href='glossary.html#keys-field'>_keys</a> so legacy data round-trips clean, and the verifier flags any belief still carrying an <code>implication</code> key. Each removal happened through an adjudicated <a href='glossary.html#dag-authorized-migration'>DAG-authorized migration</a>, never a silent edit.",
+    "see": [
+      "no-confidence-scores",
+      "artifact",
+      "inference-naming",
+      "dag-authorized-migration",
+      "keys-field"
+    ]
+  },
+  "extraction-time-discipline": {
+    "name": "Extraction-Time Discipline",
+    "short": "Provenance and beliefs are created when reading sources, not attributed retroactively; a source is raw material from which primitives are extracted.",
+    "def": "Extraction-time discipline (cb:a119, cb:a125, cb:a131) requires that provenance and beliefs be created when reading sources, with retroactive attribution prohibited. A source is raw material from which <a href='glossary.html#primitive'>primitives</a> are extracted (cb:a113, cb:a114), so the graph stores structured beliefs rather than the sources themselves. Field-level <code>_provenance</code> on entities makes the data model auditable, and user-sourced provenance is authoritative (cb:a124, cb:a428, cb:a362).",
+    "also": "field-level provenance",
+    "see": [
+      "sources-are-not-beliefs",
+      "claim-evidence-gap",
+      "primitive-atomicity",
+      "non-derivable-knowledge"
+    ]
+  },
+  "falsifiability": {
+    "name": "Falsifiability",
+    "short": "The price an inference pays for its licence: it can be shown wrong on its own while its deps stay true, triggering supersession.",
+    "def": "Falsifiability is the obligation an <a href='glossary.html#inference'>inference</a> accepts in exchange for its <a href='glossary.html#licensing'>licence</a> to generalize: the world can disagree with it directly, rendering it defective and triggering supersession or retraction, while its deps remain active (cb:a473, cb:a471). The operational test for the inference-versus-directive boundary is to ask what would count as the belief being wrong: if new evidence could show it false, it is an inference. In eval work the <a href='glossary.html#staleness-pivot'>staleness pivot</a> is the falsification mechanism - a re-run on a new model_version falsifies the <a href='glossary.html#verdict'>verdict</a>.",
+    "see": [
+      "inference",
+      "licensing",
+      "direction-of-fit",
+      "staleness-pivot"
+    ]
+  },
+  "field-presence": {
+    "name": "Field Presence by Type",
+    "short": "The contract cb:c052 governing which fields each structural type requires: compounds and inferences need deps, non-contract directives need deps or a stipulation, contracts may stand alone.",
+    "def": "Field presence (cb:c052, supersedes cb:c027) is the contract governing which fields each <a href='glossary.html#structural-type'>structural type</a> requires: compounds and inferences require <a href='glossary.html#deps'>deps</a>; non-contract directives require deps or a <a href='glossary.html#stipulation-artifact'>stipulation artifact</a>; declared contracts may stand alone; and contract fields are directive-only. It is the schema rule that makes the <a href='glossary.html#type-as-function'>type-as-function</a> relationship enforceable, checked in CB.Schema.Verifier check_grounding (verifier.ex:375).",
+    "see": [
+      "directive-grounding",
+      "stipulation-artifact",
+      "structural-type",
+      "type-as-function",
+      "schema-discipline"
+    ]
+  },
+  "fixture-tag": {
+    "name": "Fixture Tag",
+    "short": "The fixture tag (method:a5) auto-applied to anything derived from synthetic or mock data, so test scaffolding can never be dressed up as a real finding.",
+    "def": "The fixture tag (method:a5) is auto-applied to any belief derived from synthetic or mock data, so test scaffolding can never be mistaken for a finding. In the bench, mock-LLM data is force-tagged <code>fixture</code> at the source, and the compliant <code>toy</code> collection carries fixture-tagged guidance. It is a small integrity guard that keeps the <a href='glossary.html#eval-ledger'>ledger</a> honest about what is real.",
+    "see": [
+      "tags",
+      "eval-collection",
+      "verdict-category-firewall",
+      "methodology-contract"
+    ]
+  },
+  "frontmatter": {
+    "name": "Frontmatter",
+    "short": "The YAML-subset header block of an OKF doc, parsed by a hand-written parser that handles scalars, inline lists, and folded blocks (not full YAML).",
+    "def": "Frontmatter is the YAML-subset header block of an OKF doc, parsed by the hand-written <code>CB.Okf.Frontmatter</code> (frontmatter.ex) which handles scalars, inline <code>[a,b]</code> lists, folded blocks, and block lists, and is deliberately not full YAML. It carries an OKF doc's type, status, id, and the <a href='glossary.html#tier-cb'>tier</a> marker. It is the per-document metadata that makes an OKF bundle self-describing to an agent.",
+    "see": [
+      "okf",
+      "tier-cb",
+      "okf-bridge"
+    ]
+  },
+  "generative-face": {
+    "name": "Generative Face",
+    "short": "CB used to run forward: typed claims compose into contracts, and contracts compile to artifacts - runnable tests and natural-language instruction files like CLAUDE.md and skills.",
+    "def": "The generative face is CB used to send knowledge out: typed claims compose into <a href='glossary.html#contract'>contracts</a> (the contract interpreters are core), and contracts compile to artifacts - runnable tests and natural-language instruction files like CLAUDE.md and skills. The key instantiation is that a pre-registered <a href='glossary.html#eval-spec-as-contract'>eval rubric is a contract</a> that compiles to both the runnable checks and the writeup. It is one of the <a href='glossary.html#three-faces'>three faces</a>, the forward-running half, and it is a capability exercised when a real use pulls it.",
+    "see": [
+      "three-faces",
+      "receptive-face",
+      "eval-spec-as-contract",
+      "compiled-document",
+      "build-order-ring"
+    ]
+  },
+  "graph-index-of-obligation": {
+    "name": "Graph as the Index of Obligation",
+    "short": "Work-to-do lives in the graph as grounded, subject-scoped, conflict-audited, staleness-linked directives; plans and docs hold records, never live todos.",
+    "def": "The graph is the index of obligation (cb:a489): work-to-do lives as <a href='glossary.html#directive'>directives</a> - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable - while <code>plans/</code> and <code>docs/</code> hold records, never live todos. The four-type schema gave work its own structural type, so the backlog can live where the reasoning lives. A live todo is an unmaterialized discrete directive, and the open question of whether sessions actually reach for the backlog over plan files is cb:a493. See <a href='pages/11-obligation.html'>obligation in the graph</a>.",
+    "see": [
+      "the-desk",
+      "unlinked-directive",
+      "lifecycle-tag",
+      "plan",
+      "status-vs-materialized"
+    ]
+  },
+  "guidance": {
+    "name": "Guidance",
+    "short": "The prescription (a directive) resting on a verdict; violated or withdrawn, never falsified, and kept a separate node from the finding by design.",
+    "def": "Guidance is the eval <a href='glossary.html#directive'>directive</a>: the prescription resting on a <a href='glossary.html#verdict'>verdict</a>, such as a ban or a routing rule, which is violated or withdrawn but never falsified. It is deliberately a separate node one step up from the finding, so a newer snapshot can falsify the verdict without ambiguity about what happens to the rule - the world falsifies the inference, and the house then decides what to do about its directives. In the worked example, <code>sdl:a009</code> deps on the verdict <code>sdl:a008</code>.",
+    "see": [
+      "directive",
+      "verdict",
+      "direction-of-fit",
+      "staleness-pivot",
+      "eval-ledger"
+    ]
+  },
+  "harness": {
+    "name": "Harness",
+    "short": "The external runner that executes a model over cases (Inspect), living in the bench repo, never in CB; CB is the ledger, not the lab bench.",
+    "def": "The harness is the external runner that executes a model over cases (Inspect, the UK AISI framework), R times per condition, writing native logs (bench/). CB never executes anything: the boundary is CB is the ledger, not the lab bench (docs/eval-ledger.md). The harness touches CB through exactly one contract, the <a href='glossary.html#run-manifest'>run-manifest</a> emitted by a thin adapter, which is why CB never grows toward execution.",
+    "see": [
+      "run-manifest",
+      "ruler",
+      "cb-is-ledger-not-bench",
+      "import-eval",
+      "dag-vs-prose"
+    ]
+  },
+  "identity-hashing": {
+    "name": "Identity Hashing",
+    "short": "Eval belief ids are hashed from the identity tuple, never content, so re-import is a detected no-op and a changed run under the same id is a hard error; a corrected run is a new run_id.",
+    "def": "Eval belief ids are derived by hashing the identity tuple, never the content: <code>&lt;ns&gt;:o-&lt;hash&gt;</code> where the hash is the first 8 hex of a sha256 over a prefixed join of eval_id, run_id, ruler, and optional case_id (Manifest.hash). Dates come from the manifest, never the clock, so the same manifest yields byte-identical beliefs and a re-import is a detected no-op. A changed run under an existing <a href='glossary.html#observation'>observation</a> id is a hard error, because observations are immutable - a corrected run is a new run_id. This is <a href='glossary.html#immutability'>immutability</a> enforced at the import boundary.",
+    "also": "idempotent import",
+    "see": [
+      "import-eval",
+      "observation",
+      "immutability",
+      "run-manifest",
+      "namespaced-id"
+    ]
+  },
+  "immutability": {
+    "name": "Immutability",
+    "short": "Beliefs are never edited in place; the only changes are status transitions and appending evidence, so the history the DAG exists to preserve is never erased.",
+    "def": "Beliefs are never edited in place (cb:a302): a change is a supersession (a new node plus a <code>superseded_by</code> link) or a retraction (a status flip with date and reason), and the lone sanctioned in-place edit is appending an <a href='glossary.html#evidence'>evidence</a> entry. Editing in place would erase the history the DAG exists to preserve; immutability forces supersession chains, which make state drift visible as <a href='glossary.html#staleness'>stale deps</a> rather than something a human must remember to check. The lifecycle is itself a state-machine contract, cb:c053. Two fields stay deliberately mutable because action and linkage history are orthogonal to truth status: <code>materialized</code> and the status-transition linkage. See <a href='pages/03-immutability.html'>immutability and supersession</a>.",
+    "see": [
+      "status-lifecycle",
+      "supersession",
+      "retraction",
+      "no-maintenance-hatch",
+      "evidence"
+    ]
+  },
+  "implies": {
+    "name": "implies",
+    "short": "A contract kind whose rules are {when, requires} routing rows naming a predicate to fire when a condition holds; the routing layer for codepath assertions and method checks.",
+    "def": "<code>implies</code> is a catalogued contract kind (cb:c046): its rules are <code>{when, requires}</code> rows yielding <code>implies(When, Requires)</code>, read by <code>CB.Belief.Contract.Implies</code> (implies.ex), which reports which predicate slugs fire for a given field map. It is the routing layer for both <a href='glossary.html#codepath'>codepath</a> assertions (routing on <code>assertions: on</code>) and <a href='glossary.html#methodology-contract'>methodology checks</a> (routing on <code>verify: collection</code>). The named predicate is implemented in Elixir and resolved through the <a href='glossary.html#predicate-gate'>predicate gate</a>, never stored as code. The contract rule-kind <code>implies</code> sits on the prescriptive side, which is why the descriptive type was renamed away from <a href='glossary.html#inference-naming'>implication</a>.",
+    "see": [
+      "enum-registry",
+      "state-machine",
+      "derivation-table",
+      "routed-predicate",
+      "method-check"
+    ]
+  },
+  "import": {
+    "name": "Import",
+    "short": "The write step that actually applies new beliefs to the graph (mix cb.import / cb.import.eval), via the atomic store write; dry-run by default.",
+    "def": "Import is the write step that applies new beliefs to the graph: <code>mix cb.import</code> for a batch spec and <code>mix cb.import.eval</code> for a run-manifest, both dry-run by default and writing only with <code>--write</code> (cb.import.ex). It bottoms out in the single <a href='glossary.html#store-boundary'>store</a> write path with its <a href='glossary.html#atomic-write'>atomic</a> tmp-then-rename. The eval importer (<a href='glossary.html#import-eval'>import.eval</a>) emits observation primitives only, leaving compounds and verdicts to the human write flow.",
+    "see": [
+      "preflight",
+      "adjudication",
+      "import-eval",
+      "store-boundary",
+      "write-flow"
+    ]
+  },
+  "import-eval": {
+    "name": "import.eval",
+    "short": "mix cb.import.eval: validates a run-manifest, materializes observation primitives only, preflights each, and on --write hands them to the normal import apply path.",
+    "def": "<code>mix cb.import.eval &lt;manifest.json&gt; --collection &lt;path&gt;</code> (Mix.Tasks.Cb.Import.Eval) validates a <a href='glossary.html#run-manifest'>run-manifest</a>, materializes beliefs via <code>CB.Eval.Manifest.to_beliefs/2</code>, preflights each against the collection, and on <code>--write</code> hands them to the normal <a href='glossary.html#import'>import</a> apply path (dry-run by default). It emits <a href='glossary.html#observation'>observation</a> primitives only - cross-ruler compounds and verdicts are authored by a human - so the tool's shape enforces the division of labor. Its <a href='glossary.html#identity-hashing'>identity hashing</a> makes re-import idempotent.",
+    "see": [
+      "run-manifest",
+      "observation",
+      "identity-hashing",
+      "import",
+      "cb-is-ledger-not-bench"
+    ]
+  },
+  "in-memory-model": {
+    "name": "In-Memory Model",
+    "short": "There is no graph object: in memory the graph is a flat list of belief structs whose edges are deps string pointers, indexed and traversed on demand by CB.Belief.Graph.",
+    "def": "There is no graph object in memory; the graph is a flat list of <code>%CB.Belief{}</code> structs whose edges are implicit <a href='glossary.html#deps'>deps</a> string pointers (graph.ex). Traversal builds an index (<code>%{id =&gt; belief}</code>) and walks deps, superseded_by, and subjects by string lookup, computing reverse edges by scanning. It is a DAG by discipline, not by enforcement, which is why every recursive walker carries a visited-set cycle guard. The pure traversal engine <code>CB.Belief.Graph</code> always produces the same output for the same input.",
+    "also": "belief graph, graph index",
+    "see": [
+      "store-boundary",
+      "deps",
+      "belief-shell",
+      "pure-graph-over-one-file",
+      "belief"
+    ]
+  },
+  "inference": {
+    "name": "Inference",
+    "short": "Infer: a conclusion licensed to exceed what its deps jointly state, paying for that licence by being independently falsifiable.",
+    "def": "An inference records the operation infer: an <a href='glossary.html#ampliative'>ampliative</a> conclusion licensed to exceed what its <a href='glossary.html#deps'>deps</a> jointly state, generalizing or abducing beyond its premises (cb:c051, cb:a473, cb:a472). It pays for that licence by being independently <a href='glossary.html#falsifiability'>falsifiable</a>: an inference is built to be superseded by new evidence while its deps stay active, so a clean run on a newer snapshot kills the generalization without touching the observations it rested on. Scope-widening past the deps' subjects is the structural signature of inference, and the verifier interrogates the deps-to-claim relation rather than the author's mental act. In eval work a <a href='glossary.html#verdict'>verdict</a> is the inference face. See <a href='pages/02-inference-licensing.html'>inference and licensing</a>.",
+    "also": "infer",
+    "see": [
+      "ampliative",
+      "licensing",
+      "falsifiability",
+      "direction-of-fit",
+      "verdict"
+    ]
+  },
+  "inference-contract-prototype": {
+    "name": "Inferences as Contract Prototypes",
+    "short": "A behavioral invariant lives as a prompt-enforced directive until code crystallizes around it, at which point it is elevated to a code-enforced contract.",
+    "def": "Inferences and plain directives are prototypes for contracts (cb:a173, cb:a174): a behavioral invariant lives as a directive, prompt-enforced, until code crystallizes around it, at which point it is elevated to a <a href='glossary.html#contract'>contract</a> that is code-enforced via the <a href='glossary.html#verify-against-contract'>verify_against_contract</a> pattern. This is the maturation path from a claim the house merely states to one it mechanically holds, and it is why <a href='glossary.html#beliefs-vs-contracts'>beliefs and contracts</a> share one store.",
+    "see": [
+      "contract",
+      "beliefs-vs-contracts",
+      "verify-against-contract",
+      "inference"
+    ]
+  },
+  "inference-naming": {
+    "name": "Why 'Inference' over 'Implication'",
+    "short": "The v2 rename of the derived type, because a description licensed to exceed its premises cannot honestly be called an implication.",
+    "def": "The v1 schema called the ampliative derived type <code>implication</code>; v2 renamed it to <a href='glossary.html#inference'>inference</a> (decision D1, cb:a473). The argument: an implication licensed to state more than its premises imply is a contradiction in terms, and the contract rule-kind <a href='glossary.html#implies'>implies</a> sits on the prescriptive side, so reusing the word descriptively would put one lexeme on both sides of the is/ought boundary. Mark confirmed the rename for launch, explicitly accepting the immutable-history cost in favour of long-term terminology (cb:a470). The deleted <code>implication</code> field is one of the <a href='glossary.html#expunged-fields'>expunged fields</a>.",
+    "see": [
+      "inference",
+      "implies",
+      "expunged-fields",
+      "type-as-function"
+    ]
+  },
+  "inspection-only-predicates": {
+    "name": "Inspection-Only Predicates",
+    "short": "The discipline (cb:c050) that routed predicates observe and never mutate: names end in ? or _check and resolve only to exported zero-arity booleans.",
+    "def": "Inspection-only is the discipline that <a href='glossary.html#routed-predicate'>routed predicates</a> observe and never mutate (cb:c050): a predicate name must end in <code>?</code> or <code>_check</code> and resolve to an exported zero-arity boolean, and the <a href='glossary.html#predicate-gate'>resolver</a> refuses anything else (predicate_gate.ex:21). This is what makes it safe for a contract in the graph to name a check that runs against live code. The dynamic verifier is the one place these predicates actually execute.",
+    "see": [
+      "predicate-gate",
+      "routed-predicate",
+      "dynamic-verifier",
+      "codepath",
+      "assertions-gradient"
+    ]
+  },
+  "invariants-field": {
+    "name": "Invariants",
+    "short": "A contract's list of always-true statements (the ALWAYS to the rules' Given/When/Then); non-empty rules or invariants is what makes a directive a contract.",
+    "def": "<code>invariants</code> is a contract's list of statements that must always hold - the ALWAYS clause complementing the Given/When/Then of <a href='glossary.html#rules-field'>rules</a> (cb:a300). A directive is <a href='glossary.html#contract'>contract</a>-grade exactly when its rules or invariants are non-empty, the biconditional the verifier enforces (cb:c056, verifier.ex:187). Together rules and invariants make a contract the intermediate level of formality between prose and code.",
+    "also": "invariants",
+    "see": [
+      "rules-field",
+      "contract",
+      "contracts-prose-code-gap",
+      "schema-discipline"
+    ]
+  },
+  "keys-field": {
+    "name": "_keys Shadow Field",
+    "short": "A non-serialized MapSet recording which JSON keys a belief actually carried on disk, so to_map/1 round-trips byte-stably without churning untouched records.",
+    "def": "<code>_keys</code> is a non-serialized bookkeeping field: a <code>MapSet</code> of the JSON keys the source object actually had (belief.ex:73). It lets <code>to_map/1</code> round-trip byte-stably - a field absent on disk stays absent, a field assigned in memory gets emitted - which is what lets the <a href='glossary.html#store-boundary'>store</a> rewrite the whole array on every write without churning untouched records (belief.ex:208). It is the mechanism that makes the single-file graph practical to version in git. The three <a href='glossary.html#expunged-fields'>expunged keys</a> are stripped from <code>_keys</code> on load.",
+    "also": "_keys",
+    "see": [
+      "store-boundary",
+      "expunged-fields",
+      "in-memory-model",
+      "atomic-write"
+    ]
+  },
+  "kind": {
+    "name": "Kind",
+    "short": "A belief's semantic classification, drawn from the closed 38-value enum cb:c039, which binds the allowed structural types via the kind-type table.",
+    "def": "<code>kind</code> is the belief's semantic classification, drawn from the closed 38-value enum registry cb:c039 (belief.ex:51, kinds such as <code>observation</code>, <code>fact</code>, <code>policy</code>, <code>convention</code>, <code>schema</code>, <code>design-principle</code>). The kind binds mood: through the <a href='glossary.html#kind-type-table'>kind-type table</a> (cb:c057) each kind maps to its allowed <a href='glossary.html#structural-type'>structural types</a>, converting the prescriptive/descriptive boundary from prose into a deterministic check. A kind absent from the table is unchecked, since the enum itself is the closure authority (cb:a399, cb:a397). See <a href='pages/05-the-belief.html'>the belief, field by field</a>.",
+    "see": [
+      "kind-type-table",
+      "domain",
+      "enum-registry",
+      "dual-kinds",
+      "kind-policy"
+    ]
+  },
+  "kind-action-item": {
+    "name": "kind: action-item",
+    "short": "A prescriptive kind for a single completable task: a directive with contract:false and empty rules/invariants, distinct from a standing rule.",
+    "def": "<code>kind: action-item</code> marks a single completable task, distinct from a standing <code>kind: rule</code> (cb:a403). The verifier enforces its shape: an action-item must be a <a href='glossary.html#directive'>directive</a> with <code>contract: false</code> and empty rules and invariants (verifier.ex:347). It is the natural <a href='glossary.html#lifecycle-tag'>lifecycle:discrete</a> unit of the backlog, materialized into todos and then closed; a standing rule is <code>lifecycle:recurring</code> and never materializes.",
+    "see": [
+      "kind-policy",
+      "lifecycle-tag",
+      "materialization",
+      "the-desk",
+      "directive"
+    ]
+  },
+  "kind-policy": {
+    "name": "kind: policy",
+    "short": "A prescriptive kind for an intentional commitment, a domain truth true by convention, that is not mechanically enforced today and is mutually exclusive with contract:true.",
+    "def": "<code>kind: policy</code> marks an intentional commitment or domain truth true by convention - something the house decides to hold - that is not mechanically enforced today (cb:a439, cb:a427). A policy is a <a href='glossary.html#directive'>directive</a> with <code>contract: false</code>, mutually exclusive with contract-grade, and it typically carries a name. It contrasts with a <a href='glossary.html#contract'>contract</a>, which is the same prescriptive mood elevated to machine-checkable grade once code crystallizes around it.",
+    "see": [
+      "dual-kinds",
+      "kind-action-item",
+      "directive",
+      "contract",
+      "kind"
+    ]
+  },
+  "kind-type-table": {
+    "name": "Kind-Type Table",
+    "short": "The derivation table cb:c057 binding each kind to its allowed structural types: prescriptive kinds to directive only, descriptive kinds never to directive, dual kinds to all four.",
+    "def": "The kind-type table (cb:c057, a derivation-table contract, design cb:a472) binds each <a href='glossary.html#kind'>kind</a> to the structural types it may take, turning the prescriptive/descriptive boundary into a deterministic check (kind binds mood). The 15 prescriptive kinds (policy, rule, action-item, convention, and so on) map to <a href='glossary.html#directive'>directive</a> only; the 21 descriptive kinds (observation, fact, error-pattern, design-observation) map to primitive, compound, or inference; the two dual kinds map to all four (CB.Belief.Contract.Table, verifier.ex:156). A kind absent from the table is unchecked, since the kind enum is the closure authority. See <a href='pages/05-the-belief.html'>the belief, field by field</a>.",
+    "see": [
+      "kind",
+      "dual-kinds",
+      "structural-type",
+      "derivation-table",
+      "type-as-function"
+    ]
+  },
+  "lap-log": {
+    "name": "Lap Log",
+    "short": "A scratch markdown file the agent appends to station-by-station so the operator can watch a working session live in a split.",
+    "def": "The lap log (cb:a497) is a scratch markdown file the agent appends to station-by-station (<code>tmp/lap-log.md</code>), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable <a href='glossary.html#chronicle'>chronicle</a> and <a href='glossary.html#transcript'>transcript</a>, and it embodies the rule that <a href='glossary.html#session-memory-cache'>session memory is a cache</a>, not a store.",
+    "see": [
+      "chronicle",
+      "transcript",
+      "session-memory-cache",
+      "author-against-live-graph"
+    ]
+  },
+  "lending-library": {
+    "name": "Lending Library (lib:)",
+    "short": "The gentle on-ramp collection in belief-collections (namespace lib), a worked-example surface for learning the schema before building a real graph.",
+    "def": "The lending library (<code>lib:</code>, cb:a459) is the gentle on-ramp collection in belief-collections: a worked-example surface for learning the schema vocabulary before authoring a real graph. It is listed in <a href='glossary.html#collections-registry'>collections.json</a> alongside the framework and eval collections. It is one of several worked-example collections, the others including <code>method:</code>, <code>sdl</code>, and <code>toy</code>.",
+    "see": [
+      "collection",
+      "collections-registry",
+      "namespace",
+      "centralized-graph"
+    ]
+  },
+  "licensing": {
+    "name": "Licensing",
+    "short": "The bargain at the heart of inference: a conclusion is permitted to exceed its deps precisely because it is made independently falsifiable.",
+    "def": "Licensing is the bargain that defines <a href='glossary.html#inference'>inference</a>: a conclusion is permitted to exceed what its deps jointly state, and it pays for that permission by being independently <a href='glossary.html#falsifiability'>falsifiable</a> (cb:a473, cb:a472, narrated in mental-model.md). The price of the licence is the falsification lifecycle - a generalization is built to be superseded by new evidence while its deps stay true. This is why the schema separates the ampliative type from the non-ampliative <a href='glossary.html#compound'>compound</a>: the licence to generalize is granted only against the obligation to be killable.",
+    "see": [
+      "inference",
+      "ampliative",
+      "falsifiability",
+      "problem-of-induction"
+    ]
+  },
+  "lifecycle-tag": {
+    "name": "Lifecycle Tag",
+    "short": "The load-bearing tag distinguishing recurring directives (standing rules that never materialize) from discrete ones (completable work); the backlog query keys on discrete.",
+    "def": "The <code>lifecycle:</code> tag is load-bearing (cb:a491): a <code>recurring</code> directive is a standing rule that never materializes, while a <code>discrete</code> directive is completable work. The backlog query keys on it - <code>mix bs list unlinked tag:lifecycle:discrete</code> is the <a href='glossary.html#the-desk'>desk</a>. An untagged directive degrades the backlog view, which is why the tag is treated as a convention authors must apply. See <a href='pages/11-obligation.html'>obligation in the graph</a>.",
+    "see": [
+      "the-desk",
+      "unlinked-directive",
+      "graph-index-of-obligation",
+      "tags",
+      "kind-action-item"
+    ]
+  },
+  "materialization": {
+    "name": "Materialization",
+    "short": "Turning a directive into concrete action items through a sink and recording the link back on the belief's materialized field; a recorded test run counts too.",
+    "def": "Materialization turns a <a href='glossary.html#directive'>directive</a> into concrete action items: it validates the spec, confirms the belief is a directive not already materialized, runs a <a href='glossary.html#materializer'>sink</a>, and writes the link back onto the belief's <a href='glossary.html#materialized-field'>materialized</a> field (CB.Belief.Materializer, materializer.ex:49). The <code>/materialize</code> skill produces concrete todos; a recorded test run counts as materialization too (<code>mix cb.verify.codepath --record</code>). It is how obligation in the graph becomes traceable execution, with the link carrying provenance back to the belief.",
+    "see": [
+      "materialized-field",
+      "status-vs-materialized",
+      "materializer",
+      "plan",
+      "drift-audit"
+    ]
+  },
+  "materialized-field": {
+    "name": "Materialized",
+    "short": "The {plan, date, last_verified} record linking a directive to the action items it was executed into; a historical fact, mutable because action history is orthogonal to truth.",
+    "def": "<code>materialized</code> records a historical fact: that a <a href='glossary.html#directive'>directive</a> was executed into concrete action items at a given date, as <code>{plan, date, last_verified}</code> plus todo refs (cb:a383, materializer.ex). It does not assert that the effects still hold, since code drifts; <code>last_verified</code> distinguishes historical execution from current verification, which a <a href='glossary.html#drift-audit'>drift audit</a> re-checks. It is one of the two deliberately mutable fields, because action and linkage history are orthogonal to truth status. An active directive with no materialized items is an open obligation - a <a href='glossary.html#unlinked-directive'>live todo</a>.",
+    "also": "materialized",
+    "see": [
+      "materialization",
+      "status-vs-materialized",
+      "drift-audit",
+      "unlinked-directive",
+      "plan"
+    ]
+  },
+  "materializer": {
+    "name": "Materializer / Sink",
+    "short": "CB.Belief.Materializer turns a directive into action items and links them back; the Sink behaviour is the host-plug seam where those items land, default Sink.JSON appending todos.",
+    "def": "<code>CB.Belief.Materializer</code> (materializer.ex) runs the pipeline directive to action items to sink to link, writing the result onto the belief's <a href='glossary.html#materialized-field'>materialized</a> field. The <code>CB.Materializer.Sink</code> behaviour is the host-plug seam - where action items actually land is the host's concern - with the default <code>Sink.JSON</code> appending generic todo records and <code>Sink.Test</code> treating a test run as <a href='glossary.html#materialization'>materialization</a>. This is the code behind obligation becoming traceable work.",
+    "also": "sink",
+    "see": [
+      "materialization",
+      "materialized-field",
+      "todo-close",
+      "the-desk",
+      "dynamic-verifier"
+    ]
+  },
+  "method-check": {
+    "name": "Method Check",
+    "short": "The static pass running an eval collection's routed methodology predicates (implies rules routing on verify: collection) as deterministic graph traversal during cb.verify.collection.",
+    "def": "The method check (CB.Method.Checks, method/checks.ex) is the static pass that discovers active contract-grade <a href='glossary.html#implies'>implies</a> contracts whose rules route on <code>verify: collection</code> and invokes each routed predicate over the <a href='glossary.html#dependency-closure'>union</a>, as pure deterministic graph traversal (eval/predicates.ex). It runs the <a href='glossary.html#methodology-contract'>methodology contracts</a> during <code>mix cb.verify.collection</code>, and a failure names the offending belief ids - the failure message is the work order. It is the static counterpart to the <a href='glossary.html#dynamic-verifier'>dynamic codepath verifier</a>.",
+    "see": [
+      "methodology-contract",
+      "implies",
+      "routed-predicate",
+      "dependency-closure",
+      "dynamic-verifier"
+    ]
+  },
+  "methodology-contract": {
+    "name": "Methodology Contract",
+    "short": "A method: contract whose implies rule routes to a named predicate run during cb.verify.collection; the six are m-corroboration, provenance, subjects, runs, judge-validation, correction.",
+    "def": "A methodology contract is a <code>method:</code> contract-grade belief whose <a href='glossary.html#implies'>implies</a> rule routes to a named predicate in <code>CB.Eval.Predicates</code>, run as a static <a href='glossary.html#method-check'>method check</a> during <code>mix cb.verify.collection</code> (eval-ledger.md). The six are m-corroboration (method:c4), m-provenance (c5), m-subjects (c6), m-runs (c7), m-judge-validation (c8), and m-correction (c9), plus method:c10 binding a verdict to inference. Strip the eval vocabulary and what remains is general agent epistemics: seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate your judges, revise visibly (paradigm:a364).",
+    "see": [
+      "method-check",
+      "implies",
+      "verdict",
+      "cross-ruler-agreement",
+      "six-subject-convention"
+    ]
+  },
+  "mutation": {
+    "name": "Mutation",
+    "short": "A typed, atom-keyed in-memory edit (add-dep, supersede, append-evidence, and others) dispatched purely by CB.Belief.Mutation, with the I/O handled by callers.",
+    "def": "A mutation is a typed, atom-keyed in-memory edit dispatched purely by <code>CB.Belief.Mutation</code> (mutation.ex): the types include <code>add-dep</code>, <code>drop-dep</code>, <code>supersede</code>, <code>retract</code>, <code>new-belief</code>, <code>drop-field</code>, and <code>append-evidence</code>. Each mutation (except context and new-belief) appends a dated <code>session:</code> evidence entry recording the change, and a batch short-circuits on the first error so callers can roll back by discarding the partial result. Mutations are the in-memory edit layer beneath the <a href='glossary.html#write-flow'>write flow</a>; I/O stays with the caller.",
+    "see": [
+      "write-flow",
+      "adjudication",
+      "import",
+      "store-boundary",
+      "evidence"
+    ]
+  },
+  "name-field": {
+    "name": "Name / Who",
+    "short": "Two optional struct fields: name is a human handle for a belief; who is an optional attribution of where the claim came from.",
+    "def": "<code>name</code> is an optional human-readable handle for a belief (used so contracts can be referenced as <code>dag-structural-types</code> rather than by id), and <code>who</code> is an optional attribution string (belief.ex). Both are convenience metadata layered on the <a href='glossary.html#namespaced-id'>namespaced id</a>; <code>CB.Belief.Store.find/1</code> resolves a belief by id or by name. Neither carries provenance, which lives in the <a href='glossary.html#artifact'>artifact</a> and <a href='glossary.html#evidence'>evidence</a> fields.",
+    "also": "name, who",
+    "see": [
+      "namespaced-id",
+      "artifact",
+      "claim"
+    ]
+  },
+  "namespace": {
+    "name": "Namespace",
+    "short": "The prefix of a belief id naming its owning collection; exactly one owning collection per namespace, ids globally unique, and cb: depends only within cb:.",
+    "def": "A namespace is the prefix of a belief <a href='glossary.html#namespaced-id'>id</a> naming the collection it belongs to (cb:a463): ids are <code>namespace:local-id</code>, exactly one owning collection per namespace, globally unique. Deps may cross namespaces, but <code>cb:</code> depends only within <code>cb:</code> while every other collection may depend on <code>cb:</code>, which keeps the framework self-contained and shippable. Bare ids resolve when unambiguous.",
+    "see": [
+      "namespaced-id",
+      "collection",
+      "depends-on",
+      "cb-holds-what-how"
+    ]
+  },
+  "namespaced-id": {
+    "name": "Namespaced ID",
+    "short": "A belief's identity, namespace:local-id (cb:c029); a bare local id resolves to its unique namespaced match across the loaded graph.",
+    "def": "Every belief id is a namespaced string, <code>namespace:local-id</code> such as <code>cb:c029</code> or <code>agent-behavior:a054</code>, globally unique with exactly one owning collection per <a href='glossary.html#namespace'>namespace</a> (cb:a463). The local-id prefix encodes grade: <code>c###</code> for a <a href='glossary.html#contract'>contract</a>, <code>a###</code> for everything else, <code>o-&lt;hash&gt;</code> for an eval <a href='glossary.html#observation'>observation</a>, <code>t####</code> for a todo. A bare id (<code>c029</code>) resolves to its unique namespaced match (CB.Belief.Graph.resolve_id, graph.ex:22), the shared id-resolution primitive nearly every mix task uses.",
+    "also": "id, bare id, local id",
+    "see": [
+      "namespace",
+      "c-prefix",
+      "collection",
+      "identity-hashing"
+    ]
+  },
+  "nl-above-substrate": {
+    "name": "Natural Language Above the Substrate",
+    "short": "Prose discussion is productive exactly when every claim terminates in an anchor into the running code, which is the only artifact whose meaning is enforced by execution.",
+    "def": "The principle behind <a href='glossary.html#answer-time-anchoring'>answer-time anchoring</a>: natural-language discussion above the code is productive exactly when every claim terminates in an <a href='glossary.html#anchor'>anchor</a> into the running substrate (cb:a485). Code is the only artifact whose meaning is enforced by execution, so it is the operational substrate rather than a persisting abstraction layer (cb:a484), and reading it re-scopes to the anchored stops that carry an argument, making the editor an adjudication surface where claims meet what runs (cb:a486, cb:a487).",
+    "also": "code as operational substrate, editor as adjudication surface",
+    "see": [
+      "answer-time-anchoring",
+      "code-scheme",
+      "codepath",
+      "three-tier-anchor-verification"
+    ]
+  },
+  "no-confidence-scores": {
+    "name": "No Confidence Scores",
+    "short": "CB has no confidence field by design, because subjective scalars synthesized without a deterministic basis do no load-bearing work; rank by evidence, not vibes.",
+    "def": "CB has no <code>confidence</code> field by design (cb:a448, restated cb:a481): a subjective scalar synthesized without a deterministic basis does no load-bearing work and hides what it pretends to measure. In its place, <code>CB.Belief.support/1</code> returns deterministic <a href='glossary.html#structural-support'>structural support</a> counts, so a thin single-source claim and a load-bearing well-evidenced one are distinguishable by structure - rank by evidence, not vibes (mental-model.md). The field was <a href='glossary.html#deprecation'>deprecated</a> rather than deleted (cb:a390), leaving the path open to a derived confidence if a concrete use-case ever materializes. See <a href='pages/04-no-confidence.html'>why there are no confidence scores</a>.",
+    "see": [
+      "structural-support",
+      "deprecation",
+      "composition-over-retrieval",
+      "expunged-fields"
+    ]
+  },
+  "no-emdashes": {
+    "name": "No Em-Dashes / No Contrastive Shape",
+    "short": "House prose rules: use hyphens, never em-dashes or en-dashes; and state what things are directly rather than using the X-does-not-Y-it-Z contrastive shape.",
+    "def": "Two house prose rules govern every surface in this tree, including this glossary: use hyphens only, never em-dashes or en-dashes (cb:a455), and state what things are directly rather than reaching for the contrastive X-does-not-Y-it-Z shape (cb:a505). These are <a href='glossary.html#compiled-document'>compiled</a> formatting conventions, enforced because consistent prose is part of what makes the graph's output trustworthy. They are small instances of the broader principle that conventions in the graph are checkable.",
+    "see": [
+      "compiled-document",
+      "schema-discipline"
+    ]
+  },
+  "no-maintenance-hatch": {
+    "name": "No Maintenance Hatch",
+    "short": "Framework canon changes only through its own write flow, even at the foundations, so audit-trail completeness is structural, not behavioral.",
+    "def": "There is no maintenance hatch (cb:a498): the framework's canon changes only through its own write flow, even at the foundations - the status-lifecycle contract was superseded via the lifecycle it defines (c029 to c053), and the type enum was replaced through adjudication by a node typed in the values it introduces (c026 to c051). Because no door bypasses the write flow, audit-trail completeness is structural, not behavioral: the history can be trusted without trusting that everyone behaved. This is the deepest justification for <a href='glossary.html#immutability'>immutability</a> and the reason <a href='glossary.html#axiom-is-a-role'>axiom is a role</a>, never a privileged type.",
+    "see": [
+      "immutability",
+      "status-lifecycle",
+      "axiom-is-a-role",
+      "dag-authorized-migration",
+      "schema-as-contracts"
+    ]
+  },
+  "non-derivable-knowledge": {
+    "name": "Non-Derivable Knowledge Only",
+    "short": "The DAG holds only knowledge that cannot be derived from elsewhere; material documented in code or docs is not duplicated into beliefs.",
+    "def": "The DAG holds only non-derivable knowledge (cb:a427): material already documented in code or docs is not duplicated into beliefs, and deductive consequences are computed on demand rather than stored (cb:a473). This keeps the graph a store of claims that could not be reconstructed otherwise, consistent with <a href='glossary.html#composition-over-retrieval'>composition over retrieval</a>. It is why the framework's own graph contains the schema's what and how but routes the why to other collections.",
+    "see": [
+      "composition-over-retrieval",
+      "sources-are-not-beliefs",
+      "cb-holds-what-how",
+      "strict-aggregate"
+    ]
+  },
+  "observation": {
+    "name": "Observation",
+    "short": "A kind:observation primitive recording one ruler's immutable measurement of a run; emitted mechanically by the importer, never superseded by a new snapshot.",
+    "def": "An observation is a <code>kind: observation</code> <a href='glossary.html#primitive'>primitive</a> recording one <a href='glossary.html#ruler'>ruler</a>'s immutable measurement of a run, emitted mechanically by <a href='glossary.html#import-eval'>import.eval</a> (eval/manifest.ex). The importer emits one aggregate observation per (run, ruler) pair always, plus a per-case observation only for cases a human marks load_bearing, so the judgment stays upstream while the importer stays mechanical. Observations are never superseded by a new snapshot - the model really did behave that way that day - which is why the <a href='glossary.html#staleness-pivot'>staleness pivot</a> lands on the <a href='glossary.html#verdict'>verdict</a> instead. Each carries the <a href='glossary.html#six-subject-convention'>six-subject convention</a> and an <a href='glossary.html#eval-scheme'>eval:</a> URI.",
+    "also": "aggregate vs load-bearing case",
+    "see": [
+      "primitive",
+      "ruler",
+      "verdict",
+      "six-subject-convention",
+      "import-eval"
+    ]
+  },
+  "okf": {
+    "name": "OKF (Open Knowledge Format)",
+    "short": "A portable agent- and human-readable knowledge methodology: plain markdown plus YAML frontmatter in a directory hierarchy, with a generated manifest as the agent's entry index.",
+    "def": "OKF, the Open Knowledge Format, is a portable knowledge methodology: plain markdown plus YAML <a href='glossary.html#frontmatter'>frontmatter</a> organized in a directory hierarchy, with a generated manifest as the agent's entry index. The full standard layers OKF (the floor), Karpathy's LLM-wiki synthesis discipline, and Composable Beliefs (an opt-in ceiling for knowledge that must stay provably true), defined by a conformance corpus and implemented once in Elixir (<code>mix okf.*</code>, lib/cb/okf/*). CB emits down to an OKF bundle and ingests up from one, both lossy. See <a href='pages/16-okf-memory.html'>OKF and the memory boundary</a>.",
+    "see": [
+      "okfx",
+      "tier-cb",
+      "frontmatter",
+      "reasoning-substrate-not-memory",
+      "okf-bridge"
+    ]
+  },
+  "okf-bridge": {
+    "name": "OKF Bridge Modules",
+    "short": "The lib/cb/okf/* modules projecting CB down to an OKF bundle and ingesting OKF up into CB primitives, plus a faithful Elixir port of the OKF conformance validator.",
+    "def": "The OKF bridge is the set of <code>lib/cb/okf/*</code> modules: <code>CB.Okf.Emit</code> projects the CB graph down to an <a href='glossary.html#okf'>OKF</a> bundle (one <a href='glossary.html#tier-cb'>tier: cb</a> doc per belief, lossy), <code>CB.Okf.Ingest</code> ingests a bundle up into CB <a href='glossary.html#primitive'>primitives</a> (typed composition left to /assert), and <code>CB.Okf.Validate</code> is a faithful Elixir port of the Python reference validator whose findings carry stable codes for the cross-impl conformance suite. <code>CB.Okf.Manifest</code> and <code>CB.Okf.Frontmatter</code> round out byte-compatible bundle handling.",
+    "see": [
+      "okf",
+      "okfx",
+      "tier-cb",
+      "frontmatter",
+      "reasoning-substrate-not-memory"
+    ]
+  },
+  "okfx": {
+    "name": "okfx: Collection",
+    "short": "The OKF integration extension folded into composable-beliefs/okf/; the okfx namespace depends on cb and borrows its schema, adding an agent-index manifest and a tier model.",
+    "def": "<code>okfx:</code> is the OKF integration extension, folded into <code>composable-beliefs/okf/</code> (cb:a546), a namespace that depends on <code>cb:</code> and borrows its schema vocabulary. The <code>x</code> signals that it extends OKF - adding an agent-index manifest and a tier model - rather than being OKF-native. Its eval relevance (cb:a544) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.",
+    "see": [
+      "okf",
+      "tier-cb",
+      "dag-vs-prose",
+      "depends-on",
+      "reasoning-substrate-not-memory"
+    ]
+  },
+  "output-target": {
+    "name": "Output Target",
+    "short": "A kind:output-target directive whose rules declare how to compile beliefs into a file - a CLAUDE.md, a rule file, or a codepath - so every output line traces to one claim.",
+    "def": "An output target is a <code>kind: output-target</code> directive whose rules declare how to compile beliefs into a file (CB.OutputTarget, output_target.ex). With <code>render_sections</code> it dereferences each listed belief id to its <a href='glossary.html#claim'>claim</a> and emits markdown - the mechanism behind <a href='glossary.html#compiled-document'>compiled documents</a> like CLAUDE.md - so every output line traces to one belief claim. With <code>render_steps</code> and an <code>entry</code> it is a <a href='glossary.html#codepath-render-spec'>codepath render-spec</a>. The contract enforces that the target's deps equal the union of the referenced belief ids.",
+    "also": "render_sections, render_steps",
+    "see": [
+      "compiled-document",
+      "codepath-render-spec",
+      "codepath",
+      "claim",
+      "implies"
+    ]
+  },
+  "persistence-across-sessions": {
+    "name": "Persistence Across Sessions",
+    "short": "A claim written by one session or subagent is readable by every later one without re-derivation; the durable cross-boundary reasoning the framework exists to provide.",
+    "def": "Persistence across sessions and subagents (cb:a339, cb:a340, cb:a341, cb:a110) is the core promise: a claim written by one session is readable by every later session and subagent without re-derivation. This is what makes the graph a <a href='glossary.html#shared-prosthetic'>shared prosthetic</a> for attention and context, and it is why obligations and records must live in the graph and repos rather than in <a href='glossary.html#session-memory-cache'>session memory</a>.",
+    "see": [
+      "shared-prosthetic",
+      "session-memory-cache",
+      "graph-index-of-obligation",
+      "composable-beliefs"
+    ]
+  },
+  "plan": {
+    "name": "Plan",
+    "short": "What a large directive materializes into: a record of execution and history, retained permanently as a cited source doc, never the live source of obligation.",
+    "def": "A plan is what a large <a href='glossary.html#directive'>directive</a> materializes into (cb:a490): the <a href='glossary.html#materialized-field'>materialized</a> field's plan path links the obligation to its execution record, and <code>plans/</code> are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts (cb:a382, cb:a375). The reference direction inverts: query the graph for what is next, then follow it into <code>plans/</code> for how and history.",
+    "also": "plans",
+    "see": [
+      "materialization",
+      "graph-index-of-obligation",
+      "the-desk",
+      "self-bootstrapping"
+    ]
+  },
+  "position": {
+    "name": "Position",
+    "short": "A document capturing a settled stance whose verbatim wording matters, with its typed claims then extracted into the graph; the epistemic artifact behind a codepath.",
+    "def": "A position document captures a settled stance whose verbatim wording matters, and its claims are then extracted into the graph through the <code>/position</code> skill (cb:a492, cb:a528). It names the epistemic artifact (the stance plus its claims), while a <a href='glossary.html#codepath'>codepath</a> names the render face resolved from the position's anchors - a position with anchors has a codepath. Framework-policy positions live in the framework repo's <code>positions/</code>, because a distributable framework must resolve every artifact its own graph cites (cb:a492). See <a href='pages/14-positions-chronicles.html'>positions and chronicles</a>.",
+    "see": [
+      "position-vs-codepath",
+      "anchored-position-format",
+      "ceremony-proportionate",
+      "codepath",
+      "decision-weight-session"
+    ]
+  },
+  "position-vs-codepath": {
+    "name": "Position vs Codepath",
+    "short": "Two names for two faces of one thing: position names the epistemic artifact (stance plus claims), codepath names the render face (the navigable tour from its anchors).",
+    "def": "Position and codepath name two faces of one thing (cb:a528): a <a href='glossary.html#position'>position</a> names the epistemic artifact - the settled stance and its typed claims - while a <a href='glossary.html#codepath'>codepath</a> names the render face, the navigable tour resolved from the position's anchors. The slogan is that a position with anchors has a codepath. This mirrors the broader <a href='glossary.html#compiled-vs-rendered'>compiled-versus-rendered</a> split between what faces the agent and what faces the human.",
+    "see": [
+      "position",
+      "codepath",
+      "anchored-position-format",
+      "compiled-vs-rendered"
+    ]
+  },
+  "predicate-gate": {
+    "name": "Predicate Gate",
+    "short": "The shared resolve gate (CB.PredicateGate) between a predicate name stored in the DAG and executable code: it enforces the inspection-only name and the expected arity.",
+    "def": "The predicate gate (CB.PredicateGate, predicate_gate.ex:31) is the shared resolve point between a predicate name stored in the graph and the executable code it refers to. It enforces two checks per cb:c050: the name matches the <a href='glossary.html#inspection-only-predicates'>inspection-only</a> pattern, and it resolves to an exported function of the expected arity. Anything else is refused, because an executable string in the graph has nothing to grab onto - the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a> at the predicate level. The two predicate worlds (codepath arity-0 and collection arity-2) share only this gate.",
+    "see": [
+      "inspection-only-predicates",
+      "routed-predicate",
+      "routing-implementation-boundary",
+      "dynamic-verifier",
+      "method-check"
+    ]
+  },
+  "preflight": {
+    "name": "Preflight",
+    "short": "The read-only authoring-time check (mix cb.preflight) that classifies a proposed belief's overlaps with the live graph into conflicting, schema, supportive, and neutral buckets.",
+    "def": "Preflight (CB.Belief.Conflict, conflict.ex) is the read-only authoring-time check that compares a proposed belief against the live graph and buckets matches: contract-level conflicts (which block the write, exit 2), schema conflicts, supportive matches (dep candidates), and neutral matches. It matches on three axes - subject overlap, tag overlap, and claim token overlap above a threshold - and classifies a match as conflicting only with <a href='glossary.html#semantic-contact'>semantic contact</a> (cb:c064). It is the mechanism that surfaces conflicts at authoring time, the heart of the <a href='glossary.html#consensus-mechanism'>consensus mechanism</a>.",
+    "also": "preflight buckets",
+    "see": [
+      "semantic-contact",
+      "preflight-escalation",
+      "adjudication",
+      "consensus-mechanism",
+      "write-flow"
+    ]
+  },
+  "preflight-escalation": {
+    "name": "Preflight Escalation Rule",
+    "short": "The contract cb:c064 that a match escalates to a conflict bucket only with semantic contact, not bare tag overlap, enforcing at preflight what conflict scope states as doctrine.",
+    "def": "The preflight escalation rule (cb:c064, cb:a519) governs when a match escalates: only with <a href='glossary.html#semantic-contact'>semantic contact</a> (a shared subject ref or claim overlap) does a match move into a conflict bucket, never on bare tag overlap alone. It is the contract that makes <a href='glossary.html#preflight'>preflight</a> enforce, at write time, the doctrine that <a href='glossary.html#conflict-scope'>conflict scope</a> states - that overlap is necessary but not sufficient for contradiction. Contract-grade matches always carry a contract-level priority regardless.",
+    "see": [
+      "semantic-contact",
+      "preflight",
+      "conflict-scope",
+      "contract"
+    ]
+  },
+  "primitive": {
+    "name": "Primitive",
+    "short": "Attest: one atomic statement of what a single source said, grounded in an artifact plus evidence, carrying no deps.",
+    "def": "A primitive records the operation attest: one atomic statement of what a single source said, grounded in an <a href='glossary.html#artifact'>artifact</a> and dated <a href='glossary.html#evidence'>evidence</a>, with no <a href='glossary.html#deps'>deps</a> (cb:c051, cb:a303). Atomicity here is about provenance, not logic (cb:a475, cb:a298): what makes a claim primitive is that it derives from one source rather than from other beliefs, so a primitive conjoining separable assertions is a mis-authored <a href='glossary.html#compound'>compound</a> that should be split at authoring time. A primitive is an immutable record, only superseded if the source itself is re-read differently. In eval work, an <a href='glossary.html#observation'>observation</a> is the primitive face.",
+    "also": "attest",
+    "see": [
+      "compound",
+      "inference",
+      "directive",
+      "primitive-atomicity",
+      "artifact"
+    ]
+  },
+  "primitive-atomicity": {
+    "name": "Primitive Atomicity",
+    "short": "The doctrine that what makes a claim primitive is deriving from one source, not being logically simple; a conjoined primitive is a mis-authored compound.",
+    "def": "Primitive atomicity (cb:a475, cb:a298) is the doctrine that atomicity is about provenance, not logic: a claim is a <a href='glossary.html#primitive'>primitive</a> because it derives from one source rather than from other beliefs. A primitive that conjoins separable assertions is therefore a mis-authored <a href='glossary.html#compound'>compound</a> and should be split at authoring time, with the conjunction expressed as a compound depending on the split primitives. This keeps the single-source attestation honest and lets the graph distinguish what one source said from what several sources jointly support.",
+    "see": [
+      "primitive",
+      "compound",
+      "sources-are-not-beliefs",
+      "extraction-time-discipline"
+    ]
+  },
+  "problem-of-induction": {
+    "name": "Problem of Induction",
+    "short": "The unbridgeable gap from finitely many observations to a universal claim, which is exactly the gap an inference is licensed to cross.",
+    "def": "The problem of induction is that no finite set of observations deductively entails a universal generalization about all cases. CB makes this gap a structural feature: the premises of an <a href='glossary.html#inference'>inference</a> are about particular cases (case 7 of run 3), while its conclusion is about every such case ever, and no chain of deductive steps bridges that distance (cb:a473). The schema does not pretend to close the gap; it licenses the leap and then makes the resulting claim <a href='glossary.html#falsifiability'>falsifiable</a>, so a single counter-run can retire the generalization.",
+    "see": [
+      "inference",
+      "ampliative",
+      "licensing",
+      "falsifiability"
+    ]
+  },
+  "proving-ground": {
+    "name": "Proving Ground",
+    "short": "Scoping the public wedge to evals does not shelve CB's grand capability set; the wedge exercises it - single-agent self-knowledge is continuous with the group-scale failures evals study.",
+    "def": "The proving-ground claim resolves the worry that scoping the public wedge to evals abandons CB's broader ambition: narrowing to evals does not shelve the grand capability set, the wedge exercises it. CB's single-agent self-knowledge capability is the individual-scale form of the group-scale failures the eval vertical studies (conformity collapse, monoculture), and the two are continuous - the same epistemic failure at two scales. The eval vertical is therefore the proving domain for the full vision, not a retreat from it.",
+    "see": [
+      "three-faces",
+      "actualize",
+      "self-referential-face",
+      "build-order-ring",
+      "cb-holds-what-how"
+    ]
+  },
+  "pure-graph-over-one-file": {
+    "name": "Pure Graph Over One File",
+    "short": "The whole framework is deterministic graph code over one JSON file: no database, no server, no LLM call in lib/, so the same modules drive mix tasks and a long-lived LiveView.",
+    "def": "The framework is pure deterministic graph code over one JSON file (composable-beliefs/lib): there is no database, no server, and no LLM call anywhere in <code>lib/</code>. Every public function returns <code>{:ok, _}</code> or <code>{:error, _}</code> and nothing raises across module boundaries except a deliberate halt in mix tasks, so the same modules drive both mix tasks and a long-lived LiveView. This determinism is what gives CB its LLM-free read path. See <a href='pages/17-architecture.html'>the architecture</a>.",
+    "see": [
+      "in-memory-model",
+      "store-boundary",
+      "reasoning-substrate-not-memory",
+      "belief-shell",
+      "centralized-graph"
+    ]
+  },
+  "reasoning-substrate-not-memory": {
+    "name": "Reasoning Substrate, Not Memory",
+    "short": "CB is a reasoning and audit substrate that layers over any memory or recall system; building retrieval in would forfeit the deterministic, LLM-free read path the framework exists to provide.",
+    "def": "CB is a reasoning and audit substrate, not a memory system (cb:a539): it layers over any memory or recall system rather than becoming one, and building retrieval into CB would forfeit the deterministic, LLM-free read path the framework exists to provide. <a href='glossary.html#okf'>OKF</a> is the prose and knowledge layer; CB is the verifiable-claims layer. This is the boundary that keeps the framework's value in <a href='glossary.html#composition-over-retrieval'>composition</a> rather than recall. See <a href='pages/16-okf-memory.html'>OKF and the memory boundary</a>.",
+    "see": [
+      "composition-over-retrieval",
+      "okf",
+      "shared-prosthetic",
+      "no-confidence-scores",
+      "session-memory-cache"
+    ]
+  },
+  "recency": {
+    "name": "Recency",
+    "short": "A pure event view of what changed in a window - new nodes, supersessions, evidence appends, materializations, retractions - so concurrent activity is observable.",
+    "def": "The recency view (cb:a501, shipped as <code>mix bs recent</code>, CB.Belief.Graph.recent, graph.ex:272) reports what changed in a window: new nodes, supersessions, <a href='glossary.html#evidence'>evidence</a> appends (strictly after creation), materializations, and retractions. The window test is a lexical ISO-date compare on the <code>created</code> and entry dates, so no git history is needed. It exists so that concurrent multi-session activity is observable without reading the commit log, supporting the discipline to <a href='glossary.html#author-against-live-graph'>author against the live graph</a>.",
+    "see": [
+      "staleness",
+      "author-against-live-graph",
+      "belief-shell",
+      "session-memory-cache"
+    ]
+  },
+  "receptive-face": {
+    "name": "Receptive Face",
+    "short": "CB used to record, supersede, and audit findings - typed primitives, provenance, an audit tree from a verdict down to the raw run; this is the ledger, the receptive half of the substrate.",
+    "def": "The receptive face is CB used to take knowledge in: record findings as typed <a href='glossary.html#primitive'>primitives</a>, <a href='glossary.html#supersession'>supersede</a> them as evidence changes, and audit a <a href='glossary.html#verdict'>verdict</a> down to the raw run via the <a href='glossary.html#audit-tree'>audit tree</a>. This is exactly the <a href='glossary.html#eval-ledger'>eval ledger</a> the tutorial teaches, and it is genuinely valuable as the audit and tamper-evidence reading. It is one of the <a href='glossary.html#three-faces'>three faces</a>, the receptive half of the substrate.",
+    "see": [
+      "three-faces",
+      "generative-face",
+      "eval-ledger",
+      "audit-tree",
+      "thermometer-thermostat"
+    ]
+  },
+  "retired": {
+    "name": "Retired",
+    "short": "The directive-only lifecycle exit: a withdrawn rule no longer in force; descriptive claims are superseded or retracted, never retired.",
+    "def": "Retired is the directive-only terminal status: a rule the house has stopped standing behind and that is no longer in force (cb:c053, verifier.ex:500). Descriptive claims (primitives, compounds, inferences) are <a href='glossary.html#supersession'>superseded</a> or <a href='glossary.html#retraction'>retracted</a> rather than retired, because they were never in force to begin with (cb:a471). The verifier enforces that only <a href='glossary.html#directive'>directives</a> carry this status, which is one of the structural ways the is/ought boundary shows up in the lifecycle.",
+    "see": [
+      "status-lifecycle",
+      "directive",
+      "direction-of-fit",
+      "deprecation"
+    ]
+  },
+  "retraction": {
+    "name": "Retraction",
+    "short": "Withdrawing a belief as wrong, recording retracted_on and retracted_reason; distinct from supersession, which replaces with a successor.",
+    "def": "Retraction withdraws a belief as wrong or moot, flipping its status to <code>retracted</code> and recording <code>retracted_on</code> and <code>retracted_reason</code> (cb:c053, cb.retract.ex, mutation.ex:137). It differs from <a href='glossary.html#supersession'>supersession</a>, which names a successor; a retracted node simply should not stand. A belief that deps on a retracted node becomes detectably <a href='glossary.html#staleness'>stale</a>. Eval corrections are dated supersessions rather than bare retractions, enforced by contract method:c9.",
+    "also": "retracted, retracted_on, retracted_reason",
+    "see": [
+      "status-lifecycle",
+      "supersession",
+      "deprecation",
+      "staleness"
+    ]
+  },
+  "retro-pairing": {
+    "name": "Retro-Pairing",
+    "short": "Pairing a session: stipulation with a document: pointer so a fresh agent can reach the grounding of a minted belief cold.",
+    "def": "Retro-pairing (cb:a507, cb:a540) pairs a <code>session:</code> <a href='glossary.html#stipulation-artifact'>stipulation</a> with a <code>document:</code> pointer, so a belief grounded in an ephemeral session can still be reached cold by a later agent. It is the concrete practice that makes a directive <a href='glossary.html#self-bootstrapping'>self-bootstrapping</a>, and it is one half of why <a href='glossary.html#session-artifacts-resolvable'>session artifacts</a> need to dereference.",
+    "see": [
+      "self-bootstrapping",
+      "stipulation-artifact",
+      "session-artifacts-resolvable",
+      "decision-weight-session"
+    ]
+  },
+  "routed-predicate": {
+    "name": "Routed Predicate",
+    "short": "A predicate referenced by name in a contract's implies rules but implemented in Elixir, resolved through the gate; the graph routes, code implements.",
+    "def": "A routed predicate is named in a contract's <a href='glossary.html#implies'>implies</a> rules but implemented in Elixir, resolved through the <a href='glossary.html#predicate-gate'>predicate gate</a> (codepath/predicates.ex, eval/predicates.ex). It is the running embodiment of the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a> (cb:c047): the graph expresses which predicate fires on which condition, and the module carries the body. Codepath predicates are zero-arity and app-reading; methodology predicates are arity-2 and graph-reading.",
+    "see": [
+      "implies",
+      "predicate-gate",
+      "routing-implementation-boundary",
+      "method-check",
+      "dynamic-verifier"
+    ]
+  },
+  "routing-implementation-boundary": {
+    "name": "Routing / Implementation Boundary",
+    "short": "The keystone rule (cb:c047): contracts carry routing tables saying which predicate fires when; modules carry the predicate implementations; the graph never stores executable code.",
+    "def": "The routing/implementation boundary (cb:c047) is the keystone: contracts carry routing tables expressing which predicates fire on which conditions, while modules carry the predicate implementations, and the graph never stores executable code. This is what makes it safe for the graph to drive tests, since an executable string in the DAG would have nothing to grab onto (predicate_gate.ex). The same boundary appears in the <a href='glossary.html#state-machine'>state-machine</a> that routes status edges without evaluating their requirements, and in every <a href='glossary.html#routed-predicate'>routed predicate</a>. See <a href='pages/07-contracts.html'>contracts</a>.",
+    "see": [
+      "rule-kind-catalogue",
+      "routed-predicate",
+      "predicate-gate",
+      "verification-not-generation",
+      "contract"
+    ]
+  },
+  "rule-kind-catalogue": {
+    "name": "Rule-Kind Catalogue",
+    "short": "The closed registry of contract rule kinds (cb:c046) - state-machine, enum-registry, derivation-table, implies, output-target - each a Datalog fact shape plus one Elixir interpreter.",
+    "def": "Contract rules decompose into a closed catalogue of rule kinds (cb:c046): each kind has a Datalog-shaped declarative fact and exactly one Elixir interpreter. The five are <a href='glossary.html#state-machine'>state-machine</a> (edge/3), <a href='glossary.html#enum-registry'>enum-registry</a> (allowed/2), <a href='glossary.html#derivation-table'>derivation-table</a> (row/N), <a href='glossary.html#implies'>implies</a> (implies/2), and <a href='glossary.html#output-target'>output-target</a> (field/2). Datalog supplies the fact shape only; evaluation lives in each kind's ordinary interpreter - the graph routes, code implements (CB.Belief.Contract.*). The catalogue is itself a contract, an instance of the graph describing itself.",
+    "see": [
+      "state-machine",
+      "enum-registry",
+      "derivation-table",
+      "implies",
+      "routing-implementation-boundary"
+    ]
+  },
+  "ruler": {
+    "name": "Ruler",
+    "short": "CB's word for a scorer or judge - a deterministic differ or an LLM judge alike - that turns one model output into an outcome; a subject of type ruler.",
+    "def": "A ruler is CB's word for a scorer or judge, a deterministic field-differ or an LLM judge alike, that turns one model output into an outcome (eval-ledger.md). It appears as a <a href='glossary.html#subjects'>subject</a> of type <code>ruler</code> on every <a href='glossary.html#observation'>observation</a>, and an LLM-judge ruler requires a human-agreement validation record (contract method:c8). Two independent rulers reaching the same outcome is the basis of a <a href='glossary.html#cross-ruler-agreement'>cross-ruler agreement</a> compound.",
+    "see": [
+      "observation",
+      "cross-ruler-agreement",
+      "six-subject-convention",
+      "methodology-contract",
+      "harness"
+    ]
+  },
+  "rules-field": {
+    "name": "Rules",
+    "short": "A contract's list of routing/relation rows - a tiny Datalog relation - read by exactly one interpreter module per kind; empty on non-contracts.",
+    "def": "<code>rules</code> is a contract's list of routing or relation rows, a tiny Datalog relation whose shape depends on the contract's <a href='glossary.html#kind'>kind</a> and is read by exactly one interpreter module (CB.Belief.Contract.*). A directive is contract-grade iff its <code>rules</code> or <a href='glossary.html#invariants-field'>invariants</a> are non-empty (the contract biconditional, cb:c056). The rules express which predicate fires on which condition; they never store executable code, the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a> (cb:c047). See the <a href='glossary.html#rule-kind-catalogue'>rule-kind catalogue</a>.",
+    "also": "rules",
+    "see": [
+      "invariants-field",
+      "contract",
+      "rule-kind-catalogue",
+      "routing-implementation-boundary",
+      "implies"
+    ]
+  },
+  "run-manifest": {
+    "name": "Run-Manifest",
+    "short": "The neutral version-1 JSON record of one harness execution; the single contract between bench and ledger, and the only door into the graph.",
+    "def": "The run-manifest (docs/run-manifest.md, CB.Eval.Manifest) is the neutral version-1 JSON record of one harness execution: <code>eval_id</code>, <code>date</code>, <code>model</code>, <code>model_version</code>, harness identity, and a list of runs whose scorers (<a href='glossary.html#ruler'>rulers</a>) carry outcome counts and optional load-bearing cases. It is the single contract between the <a href='glossary.html#harness'>harness</a> and the ledger - CB never learns any harness's native log format - and the only door into the graph. A thin per-harness adapter writes it; <a href='glossary.html#import-eval'>import.eval</a> reads it.",
+    "see": [
+      "harness",
+      "import-eval",
+      "observation",
+      "identity-hashing",
+      "eval-scheme"
+    ]
+  },
+  "schema-as-contracts": {
+    "name": "Schema as Contracts",
+    "short": "The schema is expressed as contracts inside the graph; mix cb.verify.schema checks the CB.Belief struct and the live graph against them, so code and declared schema cannot silently drift.",
+    "def": "The schema describes itself: its rules are expressed as <a href='glossary.html#contract'>contracts</a> inside the graph (cb:c051 through cb:c059, cb:c066), and <code>mix cb.verify.schema</code> checks both the <code>CB.Belief</code> struct and the live graph against them (cb:a482). The graph is therefore simultaneously the example and the specification, and the framework's own graph is verified by the same code path as every borrower's. This is the dogfooding that makes the <a href='glossary.html#no-maintenance-hatch'>no maintenance hatch</a> principle real at the level of the schema. See <a href='pages/08-self-describing.html'>the graph describes itself</a>.",
+    "see": [
+      "verify-schema",
+      "schema-verifier",
+      "discovered-by-role",
+      "no-maintenance-hatch",
+      "schema-discipline"
+    ]
+  },
+  "schema-discipline": {
+    "name": "Schema Discipline",
+    "short": "The umbrella contract cb:c056 binding provenance via artifact, the contract biconditional, the ban on the implication field, enum binding, and kind-type binding.",
+    "def": "Schema discipline (cb:c056, supersedes cb:c038) is the umbrella contract binding several rules into one: provenance flows through the <a href='glossary.html#artifact'>artifact</a> field; <code>contract: true</code> is biconditional with non-empty rules or invariants; no belief carries the deleted <a href='glossary.html#expunged-fields'>implication</a> field; enum-shaped fields bind to their <a href='glossary.html#enum-registry'>enum contracts</a>; and <a href='glossary.html#kind'>kind</a> binds structural type via the <a href='glossary.html#kind-type-table'>kind-type table</a> (cb:a481). It is one of the contracts the schema uses to describe and check itself.",
+    "see": [
+      "contract",
+      "field-presence",
+      "schema-as-contracts",
+      "expunged-fields",
+      "enum-registry"
+    ]
+  },
+  "schema-verifier": {
+    "name": "Schema Verifier",
+    "short": "CB.Schema.Verifier: the pure engine that checks a collection against the contracts it carries, discovering enums and lifecycle by role with no hardcoded ids.",
+    "def": "<code>CB.Schema.Verifier</code> (verifier.ex) is the pure engine behind <a href='glossary.html#verify-schema'>verify.schema</a>: it runs around twenty checks, splitting framework-universal structure (checked against the <code>CB.Belief</code> canon) from collection-specific vocabulary <a href='glossary.html#discovered-by-role'>discovered by role</a>. The load-bearing checks include the type enum, the contract biconditional, the discovered enums, the <a href='glossary.html#kind-type-table'>kind-type table</a>, <a href='glossary.html#subject-containment'>subject containment</a>, and grounding. It is the dogfooding engine that lets the schema check itself.",
+    "see": [
+      "verify-schema",
+      "schema-as-contracts",
+      "discovered-by-role",
+      "skip-not-fail",
+      "contract-interpreter"
+    ]
+  },
+  "self-bootstrapping": {
+    "name": "Self-Bootstrapping Directive",
+    "short": "A backlog directive reachable cold through its deps and resolvable document/plan artifacts, so a fresh session can pick it up without a handoff.",
+    "def": "A self-bootstrapping directive (cb:a507) is a backlog node reachable cold: a fresh session can reconstruct what to do from its <a href='glossary.html#deps'>deps</a> and its resolvable <code>document:</code> or <code>plan:</code> artifacts, with no handoff prose. This is what makes the <a href='glossary.html#the-desk'>desk</a> usable across sessions, and it is enforced in practice by <a href='glossary.html#retro-pairing'>retro-pairing</a> every minted belief with a document pointer.",
+    "see": [
+      "the-desk",
+      "retro-pairing",
+      "plan",
+      "author-against-live-graph",
+      "session-artifacts-resolvable"
+    ]
+  },
+  "self-referential-beliefs": {
+    "name": "Self-Referential Beliefs",
+    "short": "Beliefs whose subject is the agent itself - its patterns and failure modes - written with the normal schema and a subject of type agent.",
+    "def": "A self-referential belief takes the agent itself as its subject - its own patterns, errors, and failure modes - using the ordinary schema with a <a href='glossary.html#subjects'>subject</a> of type <code>agent</code> (cb:a115, thesis). This is the schema-level capability that the capstone's <a href='glossary.html#self-referential-face'>self-referential face</a> puts to work: a system gaining a queryable model of its own failure modes that it can consult before acting. The failure-mode collection <code>agent-behavior:</code> is built largely from such beliefs.",
+    "see": [
+      "self-referential-face",
+      "subjects",
+      "actualize",
+      "cb-holds-what-how"
+    ]
+  },
+  "self-referential-face": {
+    "name": "Self-Referential Face",
+    "short": "CB used to give a system a queryable model of its own failure modes - claims whose subject is an agent itself, that it can consult before acting so it resists the next failure.",
+    "def": "The self-referential face is CB used to take an agent itself as subject: claims about a system's own failure modes, giving it a queryable model of how it tends to fail that it can consult before acting (docs/actualization.md). It is the schema capability of <a href='glossary.html#self-referential-beliefs'>self-referential beliefs</a> put to work as the third of the <a href='glossary.html#three-faces'>three faces</a>. It is the single-agent form of the group-scale failures the eval vertical studies, the <a href='glossary.html#actualize'>actualize</a> rung of the ladder.",
+    "see": [
+      "three-faces",
+      "self-referential-beliefs",
+      "specify-deduce-actualize",
+      "proving-ground"
+    ]
+  },
+  "semantic-contact": {
+    "name": "Semantic Contact",
+    "short": "The escalation trigger that promotes a preflight match to a conflict: a shared subject ref or claim overlap; bare tag overlap is family resemblance, not contact.",
+    "def": "Semantic contact is the escalation trigger in <a href='glossary.html#preflight'>preflight</a>: a match becomes a conflict only when it has a shared subject ref or claim overlap, because bare tag overlap is family resemblance rather than contact (conflict.ex:230, cb:c064). It enforces at write time what <a href='glossary.html#conflict-scope'>conflict scope</a> states as doctrine - overlap is necessary but not sufficient for contradiction. This is what keeps the conflict bucket from filling with merely tag-adjacent neighbours.",
+    "see": [
+      "preflight",
+      "preflight-escalation",
+      "conflict-scope",
+      "tags"
+    ]
+  },
+  "session-artifacts-resolvable": {
+    "name": "Session Artifacts Resolvable (Future)",
+    "short": "An open gap: session: slugs dereference to nothing today; the proposed fix is a registry mapping each slug to the uuid-keyed jsonl transcript on disk.",
+    "def": "Session artifacts must become resolvable (cb:a518): today a <code>session:</code> slug dereferences to nothing, so the proposed fix is a registry mapping each slug to the uuid-keyed jsonl <a href='glossary.html#transcript'>transcript</a> on disk. Until it lands, <a href='glossary.html#retro-pairing'>retro-pairing</a> a session stipulation with a <code>document:</code> pointer is the workaround that keeps a grounded belief reachable cold.",
+    "see": [
+      "transcript",
+      "retro-pairing",
+      "stipulation-artifact",
+      "self-bootstrapping"
+    ]
+  },
+  "session-memory-cache": {
+    "name": "Session Memory as Ephemeral Cache",
+    "short": "Project and work state are banned from agent memory; the graph owns obligations, repos own records, and the bootstrap compiles from the graph - the digest doctrine applied to the agent's own notebook.",
+    "def": "Session memory is an ephemeral cache, never a store (cb:a509): project and work state are banned from it, because the graph owns obligations, repos own records, and the bootstrap compiles from the graph. It is the <a href='glossary.html#digest-antipattern'>digest-file antipattern</a> doctrine applied to the agent's own notebook - a remembered snapshot rots the moment another concurrent session pushes, which is why the discipline is to <a href='glossary.html#author-against-live-graph'>author against the live graph</a>. Load-bearing items are promoted through the write flow, then pruned.",
+    "see": [
+      "digest-antipattern",
+      "author-against-live-graph",
+      "recency",
+      "lap-log",
+      "reasoning-substrate-not-memory"
+    ]
+  },
+  "shared-prosthetic": {
+    "name": "Shared Prosthetic",
+    "short": "The graph compensates for both human attention-bounds and agent context-loss with one queryable structure, serving person and agent at once.",
+    "def": "CB is a shared prosthetic (cb:a460): one queryable structure that compensates for both human attention-bounds and agent context-loss at the same time. The human cannot hold a large reasoning graph in working memory and the agent cannot carry it across context windows, so both lean on the same DAG. It is why the graph serves <a href='glossary.html#persistence-across-sessions'>persistence across sessions</a> and why obligation and records live in it rather than in any one participant's memory.",
+    "see": [
+      "persistence-across-sessions",
+      "reasoning-substrate-not-memory",
+      "composition-over-retrieval",
+      "composable-beliefs"
+    ]
+  },
+  "six-subject-convention": {
+    "name": "Six-Subject Convention",
+    "short": "The subject set every observation must carry - eval, run, case, model, model_version, ruler - so every provenance dimension of a measurement is queryable.",
+    "def": "The six-subject convention (contract method:c6) is the <a href='glossary.html#subjects'>subject</a> set every <a href='glossary.html#observation'>observation</a> must carry: <code>eval</code>, <code>run</code>, <code>case</code>, <code>model</code>, <code>model_version</code>, and <code>ruler</code> (eval/predicates.ex). Because an eval result's natural provenance fields all land on the existing CB schema as subjects, tags, the artifact URI, and the evidence entry, every provenance dimension is queryable with zero new fields or query code. The <code>model_version</code> subject is also the <a href='glossary.html#staleness-pivot'>staleness pivot</a>.",
+    "see": [
+      "subjects",
+      "observation",
+      "methodology-contract",
+      "staleness-pivot",
+      "ruler"
+    ]
+  },
+  "skip-not-fail": {
+    "name": "Skip, Not Fail",
+    "short": "A collection that declares no contract for a field has that check skipped rather than failed, so borrowers are checked only against the vocabulary they actually carry.",
+    "def": "When a collection declares no governing contract for a field, the verifier skips that check rather than failing it (verifier.ex). A collection is therefore checked only against the vocabulary it actually carries or borrows, which is what makes <a href='glossary.html#discovered-by-role'>discovery by role</a> safe across collections of different completeness. The result vocabulary is the three-way <code>:ok | :fail | :skip</code>, and a skip is a neutral outcome.",
+    "see": [
+      "discovered-by-role",
+      "verify-schema",
+      "schema-verifier",
+      "collection"
+    ]
+  },
+  "sources-are-not-beliefs": {
+    "name": "Sources Are Not Beliefs",
+    "short": "A source is raw material from which primitives are extracted; the graph stores structured beliefs, not the documents they came from.",
+    "def": "A source is raw material, not a belief (cb:a113, cb:a114): the graph stores structured <a href='glossary.html#primitive'>primitives</a> extracted from a source, while the source itself lives as a referenced <a href='glossary.html#artifact'>artifact</a>. This is why a multi-paragraph analysis is a source document citing belief ids inline rather than a belief with a giant <a href='glossary.html#claim'>claim</a>. The extraction happens at read time, never retroactively.",
+    "see": [
+      "extraction-time-discipline",
+      "primitive",
+      "artifact",
+      "claim",
+      "non-derivable-knowledge"
+    ]
+  },
+  "specify-deduce-actualize": {
+    "name": "Specify, Deduce, Actualize",
+    "short": "The three-step ladder beyond the ledger: specify the eval as a contract, deduce remediation from the belief network, then actualize by feeding findings back as self-referential claims a system queries.",
+    "def": "The ladder beyond the ledger has three rungs, each a capability pulled when a use demands it: <strong>specify</strong> the eval as a <a href='glossary.html#eval-spec-as-contract'>contract</a> (a DSL that compiles to checks), <strong>deduce</strong> remediation from the belief network (the improvement flywheel), and <a href='glossary.html#actualize'>actualize</a> by feeding findings back as <a href='glossary.html#self-referential-face'>self-referential</a> claims a system queries before acting, so it resists the next failure. Specify is near-term (Ring 1); deduce and actualize are the vision horizon. It is the <a href='glossary.html#generative-face'>generative face</a> expressed as a sequence.",
+    "see": [
+      "actualize",
+      "generative-face",
+      "eval-spec-as-contract",
+      "build-order-ring",
+      "three-faces"
+    ]
+  },
+  "staleness": {
+    "name": "Staleness",
+    "short": "An active non-primitive belief that deps on a superseded or retracted node; detectable by query, never something a human must remember to check.",
+    "def": "Staleness is detectable, not remembered: an active non-primitive belief whose dep was superseded or retracted shows in <code>mix bs stale</code> (CB.Belief.Graph.stale, graph.ex:202), with <code>--cascade</code> propagating transitively. This is the payoff of <a href='glossary.html#immutability'>immutability</a> - state drift surfaces as a structural fact rather than a thing to audit by memory. In eval work, the <a href='glossary.html#staleness-pivot'>staleness pivot</a> on model_version is what lets a new snapshot flag the downstream directives for review. See <a href='pages/12-staleness.html'>staleness and recency</a>.",
+    "also": "stale",
+    "see": [
+      "supersession",
+      "immutability",
+      "recency",
+      "staleness-pivot",
+      "digest-antipattern"
+    ]
+  },
+  "staleness-pivot": {
+    "name": "Staleness Pivot",
+    "short": "The convention (method:a2) that verdicts are scoped to a model_version, so a new snapshot supersedes the verdict (not the observations) and --cascade flags the dependent directives.",
+    "def": "The staleness pivot (method:a2) is the convention that a <a href='glossary.html#verdict'>verdict</a> is scoped to a <code>model_version</code> subject, so when a re-run on a new snapshot changes the answer, the verdict is <a href='glossary.html#supersession'>superseded</a> while the immutable <a href='glossary.html#observation'>observations</a> stay true. Then <code>mix bs stale --cascade</code> flags the downstream <a href='glossary.html#guidance'>guidance</a> directives for review. It is the move a flat spreadsheet cannot make honestly, and it is <a href='glossary.html#staleness'>staleness</a> detection applied to evals.",
+    "see": [
+      "verdict",
+      "staleness",
+      "supersession",
+      "observation",
+      "guidance"
+    ]
+  },
+  "state-machine": {
+    "name": "state-machine",
+    "short": "A contract kind whose rules declare allowed status edges {from, to, requires}; the routing table behind the status lifecycle, which routes but does not evaluate requirements.",
+    "def": "<code>state-machine</code> is a catalogued contract kind (cb:c046): its rules declare <code>{from, to, requires}</code>, yielding <code>edge(From, To, Requires)</code> read by <code>CB.Belief.Contract.StateMachine</code> (state_machine.ex). It governs the <a href='glossary.html#status-lifecycle'>status lifecycle</a> (cb:c053) and the four-type contract cb:c051. It answers which edges exist and what each requires; it deliberately does not evaluate the requirement slugs, keeping the DSL tabular - the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a> in miniature.",
+    "see": [
+      "enum-registry",
+      "derivation-table",
+      "implies",
+      "status-lifecycle",
+      "routing-implementation-boundary"
+    ]
+  },
+  "status-lifecycle": {
+    "name": "Status Lifecycle",
+    "short": "The state machine active -> superseded | retracted | retired; every non-active state is terminal, with required linkage, and retired is directive-only.",
+    "def": "The <code>status</code> field is a closed enum governed by the state-machine contract cb:c053 (dag-status-lifecycle): every belief begins <code>active</code> and may transition to <a href='glossary.html#supersession'>superseded</a> (requires <code>superseded_by</code>), <a href='glossary.html#retraction'>retracted</a> (requires <code>retracted_on</code> and <code>retracted_reason</code>), or <a href='glossary.html#retired'>retired</a> (directive-only). All non-active states are terminal and immutable except for appending evidence (belief.ex:49, CB.Belief.Contract.StateMachine). The contract was itself superseded through the very lifecycle it defines (c029 to c053), an instance of the <a href='glossary.html#no-maintenance-hatch'>no maintenance hatch</a> principle.",
+    "also": "status",
+    "see": [
+      "immutability",
+      "supersession",
+      "retraction",
+      "retired",
+      "staleness"
+    ]
+  },
+  "status-vs-materialized": {
+    "name": "Status vs Materialized",
+    "short": "Two orthogonal axes: status asks whether the claim is still true; materialized asks whether the action was executed. Active and unmaterialized is still-actionable work.",
+    "def": "<a href='glossary.html#status-lifecycle'>Status</a> and <a href='glossary.html#materialized-field'>materialized</a> are orthogonal (cb:a380): status asks whether the claim is still true, while materialized asks whether the action was executed. The combinations are meaningful - active and unmaterialized is still-actionable work, while active and materialized is discharged at a time yet still true as a principle. Separating the two is what lets the backlog live in the graph: a <a href='glossary.html#unlinked-directive'>live todo</a> is an active directive not yet materialized.",
+    "see": [
+      "materialization",
+      "materialized-field",
+      "unlinked-directive",
+      "the-desk",
+      "graph-index-of-obligation"
+    ]
+  },
+  "stipulation-artifact": {
+    "name": "Stipulation Artifact",
+    "short": "The record of an adoption event that grounds a convention without manufacturing fake deps; the closed scheme subset plan, user, session, document.",
+    "def": "A stipulation artifact is the record of an adoption event - where a prescription was decided - letting a convention be grounded without manufacturing fake <a href='glossary.html#deps'>deps</a> (cb:a476, cb:c059). The closed subset of <a href='glossary.html#artifact-scheme'>schemes</a> that can stipulate is <code>plan</code>, <code>user</code>, <code>session</code>, and <code>document</code> (the <code>@stipulation_schemes</code>, verifier.ex:373). It is how a <code>user:</code> or <code>session:</code> decision legitimately grounds a <a href='glossary.html#directive'>directive</a> that derives from no other belief.",
+    "see": [
+      "directive-grounding",
+      "artifact-scheme",
+      "field-presence",
+      "retro-pairing"
+    ]
+  },
+  "store-boundary": {
+    "name": "Store Boundary",
+    "short": "CB.Belief.Store is the one sanctioned disk boundary for the graph: read/0 returns structs, write/2 maps every struct back through to_map and the atomic writer.",
+    "def": "<code>CB.Belief.Store</code> (store.ex) is the only sanctioned disk boundary for the graph: <code>read/0</code> returns a list of structs (a missing file yields an empty list), and <code>write/2</code> maps every struct through <code>to_map/1</code>, encodes pretty JSON, and calls the <a href='glossary.html#atomic-write'>atomic writer</a>. The path comes from <code>CB.Config.beliefs_path/0</code>, so a <code>--beliefs PATH</code> flag just retargets it for one run, which is how alternate <a href='glossary.html#collection'>collections</a> are queried without touching the main graph. One read path, one write path.",
+    "see": [
+      "atomic-write",
+      "in-memory-model",
+      "keys-field",
+      "collection",
+      "mutation"
+    ]
+  },
+  "strict-aggregate": {
+    "name": "Strict-Aggregate Doctrine",
+    "short": "The rule that a compound's claim states exactly the conjunction of its deps and nothing more; any interpretation or generalization is inference content, trimmed out.",
+    "def": "The strict-aggregate doctrine (cb:a474) holds that a <a href='glossary.html#compound'>compound</a>'s claim states exactly the conjunction of what its deps say, with any interpretation or generalization trimmed out as <a href='glossary.html#inference'>inference</a> content. The compound is the one truth-preserving entailment the schema stores (conjunction introduction, cb:a473); all other deductive consequences are infinite and free, so query tools compute them on demand rather than storing them. The compound's real work is selection and naming - asserting that two independent rulers agree is a claim neither dep makes alone yet is fully contained in what they say together.",
+    "see": [
+      "compound",
+      "subject-containment",
+      "inference",
+      "cross-ruler-agreement"
+    ]
+  },
+  "structural-support": {
+    "name": "Structural Support",
+    "short": "The deterministic counts - artifacts, evidence entries, deps - returned by CB.Belief.support/1 in place of a subjective confidence number.",
+    "def": "Structural support is the deterministic substitute for a confidence score: <code>CB.Belief.support/1</code> (belief.ex:150) returns <code>%{artifact_count, evidence_count, dep_count}</code>, shown on the <code>Support:</code> line of every record. Because the counts are read off structure, a thin claim and a load-bearing one are distinguishable by query rather than by a declared number (cb:a448). This is the concrete mechanism behind <a href='glossary.html#no-confidence-scores'>no confidence scores</a>: trust comes from cited evidence and dependency structure, with no subjective scoring anywhere in the system.",
+    "also": "support",
+    "see": [
+      "no-confidence-scores",
+      "evidence",
+      "deps",
+      "artifact"
+    ]
+  },
+  "structural-type": {
+    "name": "Structural Type",
+    "short": "The closed four-valued enum (primitive, compound, inference, directive), one per epistemic operation, that determines which other fields are meaningful.",
+    "def": "<code>type</code> is a closed enum of exactly four values, one per epistemic operation: <a href='glossary.html#primitive'>primitive</a> (attest), <a href='glossary.html#compound'>compound</a> (aggregate), <a href='glossary.html#inference'>inference</a> (infer), and <a href='glossary.html#directive'>directive</a> (prescribe). The type a belief carries determines which other fields are meaningful and which checks apply, governed by the state-machine contract cb:c051 (design rationale cb:a470, cb:a298), which supersedes the older three-type cb:c026. The type string is authoritative in code; the verifier enforces per-type rules and the shell colours each type (lib/cb/belief.ex, CB.Schema.Verifier). See <a href='pages/01-four-types.html'>the four types</a>.",
+    "also": "the four types, type",
+    "see": [
+      "primitive",
+      "compound",
+      "inference",
+      "directive",
+      "type-as-function"
+    ]
+  },
+  "subject-containment": {
+    "name": "Subject Containment",
+    "short": "The invariant that an active compound's subject refs must be a subset of the union of its deps' subject refs; widening past it signals inference.",
+    "def": "Subject containment (cb:c058, checked at CB.Schema.Verifier check_subject_containment, verifier.ex:448) is the formal shadow of the compound's non-ampliativity: an active <a href='glossary.html#compound'>compound</a>'s <a href='glossary.html#subjects'>subject</a> refs must be a subset of the union of its deps' subject refs, because a conjunction cannot be about anything its parts are not about. Scope-widening past that union is the structural signature of <a href='glossary.html#inference'>inference</a>, so the same check that validates compounds also tells the two derived types apart. Empty subjects pass vacuously. See <a href='pages/02-inference-licensing.html'>inference licensing</a>.",
+    "see": [
+      "compound",
+      "inference",
+      "subjects",
+      "ampliative",
+      "strict-aggregate"
+    ]
+  },
+  "subjects": {
+    "name": "Subjects",
+    "short": "Belief-to-entity topical reference: {ref, type} pairs naming what a belief is about; drives subject containment and conflict scope.",
+    "def": "<code>subjects</code> is the belief-to-entity relation of topical reference - what a belief is about - as <code>{ref, type}</code> pairs over files, modules, models, eval runs, and sometimes other beliefs (cb:a408, graph.ex:333). It is distinct from <a href='glossary.html#deps'>deps</a> (logical derivation): a primitive like cb:a386 is about the digest file yet depends on nothing. Subjects drive <a href='glossary.html#subject-containment'>subject containment</a> for compounds and one axis of <a href='glossary.html#conflict-scope'>conflict scope</a> for directives. Eval observations carry the <a href='glossary.html#six-subject-convention'>six-subject convention</a>.",
+    "see": [
+      "deps",
+      "subject-containment",
+      "conflict-scope",
+      "six-subject-convention",
+      "self-referential-beliefs"
+    ]
+  },
+  "supersession": {
+    "name": "Supersession",
+    "short": "Replacing a belief with a better one: the old node flips to superseded with superseded_by pointing forward to its named successor.",
+    "def": "Supersession is the immutable replacement of a belief: a new successor node is written and the old node flips to <code>superseded</code> with <code>superseded_by</code> pointing forward to it (cb:c053, cb:a302, adjudication.ex:160). The forward-linked chain is walked with <code>mix bs history</code> (CB.Belief.Graph.history, graph.ex:157), so every generation of a claim stays reachable. Supersession is how a re-run changes an eval <a href='glossary.html#verdict'>verdict</a> without rewriting the <a href='glossary.html#observation'>observations</a> beneath it: the old verdict renders struck through with a link to its successor.",
+    "also": "superseded, superseded_by",
+    "see": [
+      "status-lifecycle",
+      "retraction",
+      "staleness",
+      "verdict",
+      "immutability"
+    ]
+  },
+  "tags": {
+    "name": "Tags",
+    "short": "Flat cross-cutting labels on a belief; an axis of conflict overlap and the carrier of the load-bearing lifecycle and output-routing tags.",
+    "def": "<code>tags</code> are flat cross-cutting labels (belief.ex), used as one axis of <a href='glossary.html#conflict-scope'>conflict overlap</a> and as the carrier of several load-bearing conventions: the <a href='glossary.html#lifecycle-tag'>lifecycle tag</a> (<code>lifecycle:discrete</code> or <code>lifecycle:recurring</code>) that distinguishes completable work from standing rules, the <code>output:codepath</code> and <code>output:claude-md</code> tags that route <a href='glossary.html#output-target'>output targets</a>, and the <a href='glossary.html#fixture-tag'>fixture</a> tag that quarantines synthetic data. Bare tag overlap alone is family resemblance, never <a href='glossary.html#semantic-contact'>semantic contact</a> (cb:c064).",
+    "see": [
+      "lifecycle-tag",
+      "conflict-scope",
+      "semantic-contact",
+      "fixture-tag",
+      "output-target"
+    ]
+  },
+  "the-desk": {
+    "name": "The Desk",
+    "short": "The live obligation surface: the query mix bs list unlinked tag:lifecycle:discrete, returning unmaterialized discrete directives - the backlog a session pulls from.",
+    "def": "The desk is the live obligation surface: the query <code>mix bs list unlinked tag:lifecycle:discrete</code>, returning every <a href='glossary.html#unlinked-directive'>unlinked</a> directive tagged <a href='glossary.html#lifecycle-tag'>lifecycle:discrete</a> (cb:a491, cb:a508). A session resumes by querying the desk rather than reading a handoff (cb:a508), and a desk directive must be <a href='glossary.html#self-bootstrapping'>self-bootstrapping</a>. The cross-collection desk view (cb:a500) and a global directive graph in dotfiles (cb:a543) are open extensions.",
+    "see": [
+      "unlinked-directive",
+      "lifecycle-tag",
+      "self-bootstrapping",
+      "author-against-live-graph",
+      "cross-collection-desk"
+    ]
+  },
+  "thermometer-thermostat": {
+    "name": "Thermometer and Thermostat",
+    "short": "A capability duality: the receptive face reads and measures (the thermometer), while the generative face diagnoses and generates control (the thermostat); one contract mechanism underlies both.",
+    "def": "Thermometer and thermostat names the capability duality between the two outward faces: the <a href='glossary.html#receptive-face'>receptive</a> face reads and measures (the thermometer - record, measure, publish), while the <a href='glossary.html#generative-face'>generative</a> face diagnoses and generates control (the thermostat - deduce remediation and compile guardrails). The shared spine is the <a href='glossary.html#contract'>contract</a>: the same DSL contract compiles to a public eval's checks and to a private set of guardrails. The metaphor is a capability distinction (read versus generate); the business and monetization layer it can carry is held private.",
+    "see": [
+      "receptive-face",
+      "generative-face",
+      "eval-spec-as-contract",
+      "verdict-category-firewall"
+    ]
+  },
+  "three-faces": {
+    "name": "The Three Faces",
+    "short": "CB has three faces a consumer can put to work: receptive (record and audit), generative (compose contracts that compile to tests and instruction files), and self-referential (claims about an agent's own failure modes).",
+    "def": "The capstone framing is that CB has three faces a consumer can put to work: the <a href='glossary.html#receptive-face'>receptive face</a> (record, supersede, audit - the ledger), the <a href='glossary.html#generative-face'>generative face</a> (typed claims compose into contracts that compile to tests and natural-language instruction files), and the <a href='glossary.html#self-referential-face'>self-referential face</a> (claims whose subject is an agent's own failure modes). The substrate has faces, and the consumer is the one that puts those faces to work. Beyond the ledger means moving from using only the receptive face to using the generative and self-referential ones as well. See <a href='pages/22-beyond-the-ledger.html'>beyond the ledger</a>.",
+    "see": [
+      "receptive-face",
+      "generative-face",
+      "self-referential-face",
+      "specify-deduce-actualize",
+      "proving-ground"
+    ]
+  },
+  "three-tier-anchor-verification": {
+    "name": "Three-Tier Anchor Verification",
+    "short": "The gradient of anchor checks - provenance integrity, grounding currency, behavioral validity - each a necessary condition only: failure flags for review, success alone never re-validates.",
+    "def": "Anchor verification comes in three tiers (cb:a529): provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists), and behavioral validity (predicates - it still behaves as claimed, contract grade). Each tier is a necessary condition only: a failed anchor flags a belief for review, while a passing anchor alone never re-validates the claim. This is the verification spine under <a href='glossary.html#staleness'>staleness</a>, <a href='glossary.html#answer-time-anchoring'>answer-time anchoring</a>, and the <a href='glossary.html#dynamic-verifier'>dynamic verifier</a>.",
+    "see": [
+      "answer-time-anchoring",
+      "staleness",
+      "dynamic-verifier",
+      "anchor",
+      "nl-above-substrate"
+    ]
+  },
+  "tier-cb": {
+    "name": "tier: cb",
+    "short": "The frontmatter marker on an OKF doc projected from a CB belief, carrying the belief id and cb_type so the bundle can round-trip back into the graph.",
+    "def": "<code>tier: cb</code> is the <a href='glossary.html#frontmatter'>frontmatter</a> marker on an OKF doc projected from a CB belief, carrying the belief <code>id</code> and <code>cb_type</code> for round-tripping (okf/emit.ex:64, okf/validate.ex:139). The OKF type map projects each CB type to an OKF type (primitive to reference, compound to concept, inference to analysis, directive to position) while preserving the CB type in <code>cb_type</code>. A <code>tier: cb</code> doc requires an id, enforced by the validator.",
+    "see": [
+      "okf",
+      "okfx",
+      "frontmatter",
+      "okf-bridge"
+    ]
+  },
+  "todo-close": {
+    "name": "Todo-Close Front Door",
+    "short": "mix cb.todo.close: flips a materialized work item from open to done with discharge notes.",
+    "def": "The todo-close front door (<code>mix cb.todo.close</code>, cb:a530) flips a <a href='glossary.html#materialization'>materialized</a> work item from open to done with discharge notes (CB.Todos.close, todos.ex:61). It is one of the three sanctioned <a href='glossary.html#write-flow'>front doors</a>. Note cb:a523: materialization notes currently get dropped by the JSON sink, an open gap.",
+    "see": [
+      "materialization",
+      "evidence-append",
+      "dep-repoint",
+      "the-desk",
+      "materializer"
+    ]
+  },
+  "transcript": {
+    "name": "Transcript",
+    "short": "The condensed record of a thread, co-located with its plan set; it serves the audit, while the graph serves the work and the chronicle serves the steering.",
+    "def": "A transcript (cb:a520, cb:a540) is the condensed record of a substantive thread, co-located with its plan set, that serves the audit. Every substantive thread persists twice at close - as a transcript and as a <a href='glossary.html#chronicle'>chronicle</a> - so the audit trail and the operator narrative are both kept. A <a href='glossary.html#decision-weight-session'>decision-weight session</a> persists its thread verbatim, routed by subject.",
+    "see": [
+      "chronicle",
+      "decision-weight-session",
+      "session-artifacts-resolvable",
+      "session-memory-cache"
+    ]
+  },
+  "type-as-function": {
+    "name": "Type as a Function",
+    "short": "The v2 insight that a belief's structural type is a near-function of its kind-mood, its grounding (artifact vs deps), and its subject scope relative to its deps.",
+    "def": "In the v2 schema the structural type is close to a deterministic function of three inputs: the mood the <a href='glossary.html#kind'>kind</a> implies, the grounding (an <a href='glossary.html#artifact'>artifact</a> for a single source versus <a href='glossary.html#deps'>deps</a> for derived claims), and the subject <a href='glossary.html#subject-containment'>scope</a> relative to the deps (cb:a472). This is why the <a href='glossary.html#kind-type-table'>kind-type table</a>, the grounding check, and subject containment together can largely decide a belief's type from its other fields, and why the verifier interrogates structure rather than the author's intent.",
+    "see": [
+      "structural-type",
+      "kind-type-table",
+      "subject-containment",
+      "directive-grounding",
+      "field-presence"
+    ]
+  },
+  "unlinked-directive": {
+    "name": "Unlinked Directive",
+    "short": "A directive with no materialized items - an open obligation, the structural form of a live todo - and the filter that defines the backlog view.",
+    "def": "An unlinked directive is one with no <a href='glossary.html#materialization'>materialized</a> items: an open obligation, which is the structural form of a live todo (cb:a489). <code>unlinked</code> is a list filter (filter.ex), and combined with the <a href='glossary.html#lifecycle-tag'>lifecycle:discrete</a> tag it defines the <a href='glossary.html#the-desk'>desk</a>. The backlog has its own structural type because a todo is just a <a href='glossary.html#directive'>directive</a> not yet materialized.",
+    "see": [
+      "the-desk",
+      "lifecycle-tag",
+      "materialization",
+      "status-vs-materialized",
+      "graph-index-of-obligation"
+    ]
+  },
+  "verdict": {
+    "name": "Verdict",
+    "short": "The falsifiable eval finding (an inference, kind:verdict) scoped to a model_version; derived never attested or prescribed, and the staleness pivot when a re-run changes the answer.",
+    "def": "A verdict is the falsifiable eval finding: an <a href='glossary.html#inference'>inference</a> with <code>kind: verdict</code>, scoped to a <code>model_version</code> subject (eval-ledger.md). It is derived, never merely attested or prescribed - contract method:c10 requires a verdict to be an inference - and it must be <a href='glossary.html#cross-ruler-agreement'>corroborated</a> and cite at least three distinct runs (method:c4, method:c7). It is the <a href='glossary.html#staleness-pivot'>staleness pivot</a>: a re-run on a new snapshot <a href='glossary.html#supersession'>supersedes</a> the verdict while the observations beneath it stay true. The worked example is <code>sdl:a008</code>.",
+    "see": [
+      "inference",
+      "guidance",
+      "staleness-pivot",
+      "cross-ruler-agreement",
+      "methodology-contract"
+    ]
+  },
+  "verdict-category-firewall": {
+    "name": "Verdict-Category Firewall",
+    "short": "The neutrality rule (method:a6) that amieval publishes no verdict in any category where an owner-held product is sold; the self-eval venue rule (method:a7) bars judging the ledger itself.",
+    "def": "The verdict-category firewall (method:a6) is the neutrality rule: the eval practice publishes no <a href='glossary.html#verdict'>verdict</a> in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule (method:a7) keeps the ledger framework itself from being the system under test in amieval's own published evals. Both are public, citable beliefs, and they are what keep public verdicts <a href='glossary.html#receptive-face'>receptive-only</a> while generative remediation stays private.",
+    "also": "self-eval venue",
+    "see": [
+      "verdict",
+      "receptive-face",
+      "thermometer-thermostat",
+      "fixture-tag"
+    ]
+  },
+  "verification-not-generation": {
+    "name": "Verification, Not Generation",
+    "short": "Contracts are never compiled into code; the relationship is verification, so drift surfaces as a failing test rather than a regenerated module.",
+    "def": "Contracts are never compiled into code (cb:a465): spec-to-code generation is nondeterministic and unmaintainable, so the contract-to-code relationship is verification rather than generation - drift surfaces as a failing test, not a regenerated module (the <a href='glossary.html#verify-against-contract'>verify_against_contract</a> pattern, cb:a417, cb:a425). This keeps a <a href='glossary.html#contract'>contract</a> the durable artifact and the code its checked implementation, and it is why the graph can drive tests safely across the <a href='glossary.html#routing-implementation-boundary'>routing/implementation boundary</a>.",
+    "see": [
+      "contract",
+      "verify-against-contract",
+      "routing-implementation-boundary",
+      "contracts-prose-code-gap"
+    ]
+  },
+  "verify-against-contract": {
+    "name": "verify_against_contract",
+    "short": "The pattern where a module implementing contract-governed behavior self-checks against the contract in the graph, so divergence shows up as a failing test.",
+    "def": "<code>verify_against_contract/0</code> is the pattern by which a module implementing contract-governed behavior self-checks against the <a href='glossary.html#contract'>contract</a> that governs it (cb:a417, cb:a425, cb:a416). When the code and the in-graph contract diverge, the divergence shows up as a failing test rather than silently. It is the concrete realization of <a href='glossary.html#verification-not-generation'>verification, not generation</a>, and it is exercised by <code>mix cb.verify.schema</code>, which checks the <code>CB.Belief</code> struct against the schema contracts in the graph.",
+    "see": [
+      "verification-not-generation",
+      "contract",
+      "verify-schema",
+      "schema-as-contracts"
+    ]
+  },
+  "verify-schema": {
+    "name": "verify.schema",
+    "short": "The task that verifies a collection against the contracts it carries, keeping the CB.Belief struct and the in-graph schema contracts in sync.",
+    "def": "<code>mix cb.verify.schema</code> runs <code>CB.Schema.Verifier.check/1</code> over a collection, returning a list of <code>{name, :ok | :fail | :skip, detail}</code> results (verifier.ex:44). It checks framework-universal structure against the <code>CB.Belief</code> canon and collection-specific vocabulary <a href='glossary.html#discovered-by-role'>discovered by role</a>, keeping struct and in-graph <a href='glossary.html#schema-as-contracts'>schema contracts</a> from drifting apart. The companion <code>test/cb/schema_contracts_test.exs</code> asserts the same in the other direction.",
+    "see": [
+      "schema-verifier",
+      "schema-as-contracts",
+      "discovered-by-role",
+      "skip-not-fail"
+    ]
+  },
+  "write-flow": {
+    "name": "Write Flow",
+    "short": "The sanctioned authoring surface - preflight, then adjudicate, then import - dry-run by default; the graph file is never hand-edited.",
+    "def": "The write flow is the only sanctioned way to author beliefs: <a href='glossary.html#preflight'>preflight</a> a proposal against the live graph, <a href='glossary.html#adjudication'>adjudicate</a> any conflicts as a captured decision, then <a href='glossary.html#import'>import</a> the result (cb:a533, cb:a387, cb:a381). Every write task is dry-run by default and applies only with <code>--write</code>. The graph file is never hand-edited, because hand-editing would bypass the conflict surfacing and the immutable audit trail that the <a href='glossary.html#no-maintenance-hatch'>no maintenance hatch</a> principle depends on. Three narrow <a href='glossary.html#evidence-append'>front doors</a> handle in-place growth, todo closing, and dep re-pointing. See <a href='pages/10-write-flow.html'>the write flow</a>.",
+    "also": "front doors",
+    "see": [
+      "preflight",
+      "adjudication",
+      "import",
+      "consensus-mechanism",
+      "mutation"
+    ]
+  }
+}
