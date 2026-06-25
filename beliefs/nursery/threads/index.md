@@ -9,10 +9,11 @@ timestamp: 2026-06-25
 
 # Threads - session transcripts
 
-Living, turn-by-turn transcripts of sessions: the prose exchange between human and agent,
-tool calls and reasoning scratch stripped. They exist for two reasons only - **crash
-safety** (persisted every turn, so a crash never loses the discussion) and **human
-reading** (what you scan without wading through tool calls).
+Living, turn-by-turn transcripts of sessions: each turn's user message and the response
+the agent shared at the end of it - the interstitial "let me check X" narration, the
+reasoning, and the tool calls are all stripped, leaving only what was actually said. They
+exist for two reasons only - **crash safety** (rewritten every turn, so a crash never
+loses the discussion) and **human reading** (what you scan without wading through tools).
 
 **Transcripts are not provenance.** The nursery seeds are the sole provenance; a belief
 grounds in a seed, never in a transcript. A transcript is a convenience and a safety net,

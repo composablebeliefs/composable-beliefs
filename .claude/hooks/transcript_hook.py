@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Stop hook: regenerate a non-provenance prose transcript of the session into
-the nursery threads/ subdomain.
+the nursery threads/.sessions/ subdir.
 
-Reads the Stop-hook JSON on stdin, walks the session jsonl named by
-`transcript_path`, and writes a clean Human/Assistant transcript with tool
-calls, tool results, reasoning, and system noise stripped. Idempotent: it
-regenerates the whole doc each turn (no append markers, naturally crash-safe).
+Reads the Stop-hook JSON on stdin, walks the session jsonl, and writes a clean
+Human/Assistant transcript. For each turn it keeps ONLY the response the agent
+actually shared - the text after the turn's last tool call - dropping the
+interstitial "let me check X" narration that precedes each tool batch, along
+with all reasoning, tool calls, tool results, and system noise. Turns with no
+tool calls (plain conversation) keep all their text. Idempotent: regenerates
+the whole doc each turn (no append markers, naturally crash-safe).
 
 This artifact is NOT provenance - the nursery seeds are. It exists for crash
 safety and human reading. Never let the graph depend on it.
@@ -14,24 +17,10 @@ import json
 import os
 import sys
 
-# Auto-transcripts live in a dot-dir so the OKF manifest (Path.wildcard, match_dot
-# false) skips them and they can be gitignored - regenerated every turn, never
-# committed, never part of the validated bundle. On disk for crash safety + reading.
 THREADS_DIR = (
     "/Users/mark/dev/repos/mine/amieval/composable-beliefs"
     "/beliefs/nursery/threads/.sessions"
 )
-
-
-def assistant_text(content):
-    if not isinstance(content, list):
-        return ""
-    parts = [
-        b.get("text", "")
-        for b in content
-        if isinstance(b, dict) and b.get("type") == "text"
-    ]
-    return "\n".join(p for p in parts if p).strip()
 
 
 def main():
@@ -48,15 +37,9 @@ def main():
     if not tpath or not os.path.exists(tpath):
         return 0
 
-    sections = []
-    cur, buf = None, []
+    # Flatten the jsonl into ordered events: ("user", text) | ("text", text) | ("tool", None)
+    events = []
     first_ts = None
-
-    def flush():
-        text = "\n\n".join(buf).strip()
-        if cur and text:
-            sections.append((cur, text))
-
     try:
         fh = open(tpath, encoding="utf-8")
     except Exception:
@@ -71,39 +54,60 @@ def main():
             except Exception:
                 continue
             typ = o.get("type")
-            if typ not in ("user", "assistant"):
-                continue
-            if o.get("isSidechain") or o.get("isMeta"):
+            if typ not in ("user", "assistant") or o.get("isSidechain") or o.get("isMeta"):
                 continue
             first_ts = first_ts or o.get("timestamp")
             content = (o.get("message") or {}).get("content")
-
             if typ == "user":
                 if not isinstance(content, str):
                     continue  # tool_result turns are lists - drop them
                 text = content.strip()
-                # drop system reminders, slash-command wrappers, caveats (all <-tagged)
                 if not text or text.startswith("<"):
-                    continue
-                speaker = "Human"
-            else:
-                text = assistant_text(content)
-                if not text:
-                    continue  # tool-only / thinking-only turn
-                speaker = "Assistant"
+                    continue  # system reminders, slash-command wrappers, caveats
+                events.append(("user", text))
+            elif isinstance(content, list):
+                for b in content:
+                    if not isinstance(b, dict):
+                        continue
+                    if b.get("type") == "text" and (b.get("text") or "").strip():
+                        events.append(("text", b["text"]))
+                    elif b.get("type") == "tool_use":
+                        events.append(("tool", None))
+                    # thinking blocks are dropped
 
-            if speaker != cur:
-                flush()
-                cur, buf = speaker, []
-            buf.append(text)
-    flush()
+    # Segment into turns; per turn keep only the response text after the last tool.
+    sections = []
+
+    def flush(user_text, seg):
+        if user_text is not None:
+            sections.append(("User", user_text))
+        last_tool = -1
+        for i, (kind, _) in enumerate(seg):
+            if kind == "tool":
+                last_tool = i
+        kept = [t for i, (kind, t) in enumerate(seg) if kind == "text" and i > last_tool]
+        text = "\n\n".join(t.strip() for t in kept if t and t.strip()).strip()
+        if text:
+            sections.append(("Assistant", text))
+
+    cur_user, seg = None, []
+    for kind, t in events:
+        if kind == "user":
+            if cur_user is not None or seg:
+                flush(cur_user, seg)
+            cur_user, seg = t, []
+        else:
+            seg.append((kind, t))
+    if cur_user is not None or seg:
+        flush(cur_user, seg)
 
     date = (first_ts or "")[:10]
     out = [
         f"# Session transcript - {sid}",
         "",
         "> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) -"
-        " the nursery seeds are the provenance. Tool calls and reasoning stripped.  ",
+        " the nursery seeds are the provenance. Only the response shared at the end of"
+        " each turn is kept; narration, reasoning, and tool calls are stripped.  ",
         f"> Session `{sid}`" + (f" | {date}" if date else ""),
         "",
     ]
