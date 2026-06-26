@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 10,
+  "count": 11,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -79,6 +79,20 @@
         "cb",
         "nursery",
         "meta"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-25"
+    },
+    {
+      "path": "per-belief-files.md",
+      "type": "concept",
+      "title": "Per-belief file storage (split beliefs.json into one file per node)",
+      "description": "Covers the decision to store the graph as one JSON file per belief (a beliefs/cb/a512.json layout) instead of a single array - distinct from the per-entity grouping cb:a112 rejected - the worktree prototype that proved the read path, and the six-step implementation plan that mints from here.",
+      "tags": [
+        "cb",
+        "storage",
+        "schema",
+        "nursery"
       ],
       "status": "active",
       "timestamp": "2026-06-25"

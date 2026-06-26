@@ -8248,5 +8248,176 @@
     ],
     "status": "active",
     "created": "2026-06-23"
+  },
+  {
+    "id": "cb:a554",
+    "type": "primitive",
+    "kind": "design-observation",
+    "domain": "system",
+    "tags": [
+      "per-belief-files",
+      "storage"
+    ],
+    "claim": "Per-belief atomic files (one JSON file per node at beliefs/<ns>/<local>.json) are preferred over both the single-file array and per-entity grouping. The cross-entity-composition concern recorded against per-entity files (cb:a112) does not apply to per-node files: every belief is addressed uniformly and composition stays via deps. Per-node files eliminate the _keys whole-array churn-suppression workaround, align with the anti-digest principle (cb:a386), and prepare the store for a database backend. Constraint: multi-node writes (e.g. supersession) lose single-file write-atomicity and become N file writes, acceptable at local/single-writer scale or via an all-or-nothing write helper. cb:a112's supersession is deferred to cb:a560 so the active graph does not claim per-file storage before the code implements it.",
+    "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239",
+    "evidence": [
+      {
+        "date": "2026-06-25",
+        "detail": "Deliberated as the nursery focus beliefs/nursery/per-belief-files.md and planted from there. Worktree prototype (branch proto/per-belief-files) split beliefs.json into 213 beliefs/cb/<local>.json files and made CB.Belief.Store.read directory-aware; the loaded graph proved byte-identical to the single-file load (8251-line canonical serialization, diff clean), and mix bs plus mix cb.verify.schema (20 passed, 0 failed) ran unchanged. Store is the near-sole I/O chokepoint; only Store.read/write touch the layout.",
+        "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the belief graph",
+        "type": "storage"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a555",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Centralize belief-graph I/O through CB.Belief.Store: route the three readers that bypass it - CB.Codepath.Predicates (predicates.ex), CB.Belief.EditPairs (edit_pairs.ex), and the CB.Belief.Adjudication race-guard re-read (adjudication.ex) - through Store.read, so Store becomes the sole place that knows the on-disk layout. Precondition for per-belief storage (cb:a554).",
+    "subjects": [
+      {
+        "ref": "CB.Belief.Store",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a556",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Make CB.Belief.Store.read directory-aware: when the configured graph path resolves to a per-belief directory, glob and parse <ns>/<local>.json sorted by id; keep the single-file array as fallback for unsplit collections. The prototype proved the loaded graph byte-identical to the single-file load.",
+    "subjects": [
+      {
+        "ref": "CB.Belief.Store",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554",
+      "cb:a555"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a557",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Make CB.Belief.Store.write persist the belief list as one file per node (write changed, delete removed) instead of rewriting a single array, and choose the multi-node write atomicity strategy: per-file tmp+rename, temp-dir swap, or accept non-transactional multi-file writes at local/single-writer scale (the constraint recorded in cb:a554).",
+    "subjects": [
+      {
+        "ref": "CB.Belief.Store",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554",
+      "cb:a556"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a558",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Provide a one-time migration mix task that splits beliefs/beliefs.json into beliefs/<ns>/<local>.json (canonical per-node to_map serialization) and removes the single-file array.",
+    "subjects": [
+      {
+        "ref": "CB.Belief.Store",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554",
+      "cb:a557"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a559",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Simplify the _keys mechanism in CB.Belief: drop the whole-array churn-suppression rationale (moot once writes are per-file), retaining only absent-vs-null round-trip fidelity if still needed.",
+    "subjects": [
+      {
+        "ref": "CB.Belief",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554",
+      "cb:a557"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
+  },
+  {
+    "id": "cb:a560",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "lifecycle:discrete",
+      "per-belief-files"
+    ],
+    "claim": "Update CB self-description for per-belief storage: regenerate CLAUDE.md, revise docs and schema prose that call the graph one JSON file, and supersede cb:a112 with cb:a554 now that per-belief storage is the implemented reality.",
+    "subjects": [
+      {
+        "ref": "CB.Config",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a554",
+      "cb:a558"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-25"
   }
 ]
