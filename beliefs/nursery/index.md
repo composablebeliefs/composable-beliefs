@@ -4,7 +4,7 @@ title: Nursery
 description: Use when orienting to the belief nursery - the floor-tier workspace where focuses (proto-beliefs) are deliberated in place until they mint into the graph or are dropped.
 tags: [nursery, index]
 status: active
-timestamp: 2026-06-25
+timestamp: 2026-06-26
 ---
 
 # Nursery
@@ -30,14 +30,19 @@ stays a valid enum value, normally `active`):
 - **contested** - actively in conflict with an existing belief or standard (a reopening
   or challenge), not yet resolved.
 - **planted** - actualized into a belief. The seed's gestation folds into a `seed` prop
-  on the belief and the doc evacuates the nursery (mechanism under decision in
-  [seed-absorption](seed-absorption.md)); carries `minted: <belief-id>`.
-- **composted** - deliberated, no belief warranted (fizzled); terminal. A seed that
-  reached an explicit *decided-against* plants the negative instead.
-- **grafted** - merged into another seed; carries a forward pointer to it.
+  on the belief and the doc evacuates the nursery; carries `minted: <belief-id>`.
+- **composted** - deliberated, no belief warranted (fizzled); the doc evacuates. A seed
+  that reached an explicit *decided-against* plants the negative first, then evacuates.
+- **grafted** - lost a contest or merged into another seed: it folds into the survivor as
+  a dated "rejected: X because Y" block and evacuates - no lingering superseded doc, no
+  pointer-stub.
 
 Verbs: **seed** (start) -> **plant** (into the graph - the wild) | **compost** (drop) |
 **graft** (merge).
+
+**No tombstones.** Every terminal seed folds into its successor (plant -> belief, contest
+-> winner) or evacuates as a fizzle; the nursery only ever holds live work. The fold
+mechanism and its persist-raw safety condition are [seed-absorption](seed-absorption.md).
 
 ## Discipline (what keeps this from becoming a shadow graph)
 
@@ -49,14 +54,23 @@ authority, so it cannot drift against the graph - it can only feed it. Active an
 contested focuses are the ones to keep visible, the way `mix bs list tag:lifecycle:discrete`
 surfaces the desk.
 
+Competing seeds resolve by **explicit contested-links** (the hard resolution); **recency is
+only a soft hint** for which is the live lean - this bundle treats `timestamp:` as
+last-edited, provisionally ([seed-recency](seed-recency.md)). Recency makes staleness
+visible; it never silently decides.
+
 ## Focuses
 - [assertions-rename](assertions-rename.md) - active - removing the dead term "assertions" from cb:a098.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
-- [seed-absorption](seed-absorption.md) - active - planted seeds fold into a `seed` prop on the belief.
-- [nursery-architecture](nursery-architecture.md) - contested - this model; conflicts with the OKF transcript-pair rule (path 1 chosen).
+- [seed-absorption](seed-absorption.md) - active - every terminal seed folds into its successor and evacuates (plant -> belief, contest -> winner).
+- [seed-recency](seed-recency.md) - active - dating seeds and excerpts to rank competing positions; recency soft, contested-links hard.
+- [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
+- [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
+- [per-belief-files](per-belief-files.md) - planted - one JSON file per node; minted cb:a554 + the a555-a560 plan.
+- [nursery-architecture](nursery-architecture.md) - contested - this model; its "Layer 1 vestigial" lean is decided-against, queued to fold into transcript-format.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
-- [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; reverses the .sessions gitignore call.
+- [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.
 
 ## Subdomains
 - [threads/](threads/index.md) - living session transcripts: crash-safe, human-readable, and explicitly **not** provenance (the seeds above are). Captured automatically by a `Stop` hook.

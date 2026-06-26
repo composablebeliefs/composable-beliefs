@@ -6,7 +6,7 @@ tags: [nursery, transcript, format, provenance, spike]
 status: active
 timestamp: 2026-06-26
 maturity: contested
-threads: [2026-06-25-belief-audit]
+threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
 ---
 
 # How transcripts and seeds persist exchanges
@@ -46,6 +46,10 @@ host jsonl ──(hook copies in, every turn, crash-safe)──► repo raw json
 - **Seeds carry per-topic excerpts.** Each seed includes the selected turn-by-turn
   exchanges that support its summaries, so a fresh agent can run a spike from the seed
   alone (this doc is the first instance).
+- **Render must not lag a turn. (2026-06-26.)** The hook has to capture the response that
+  triggered it, not stop one turn behind - the recurring `cb:a518` transcript tail-gap.
+  This is a correctness fix to the hook mechanism, not a separate focus; it lands with the
+  pipeline below.
 
 ## Open: repo weight (settle first in the spike)
 Committing every session's jsonl grows `.git` by that size **permanently** - git never
@@ -61,6 +65,12 @@ weight. Real options to bound it:
 - **External archive** + commit a pointer.
 Decision: LFS for raw, render committed inline, and the delete-from-working-tree cleanup on
 top (clean tree, blobs in LFS).
+
+**Now load-bearing downstream.** Fold-and-evacuate ([seed-absorption](seed-absorption.md))
+deletes a losing seed and keeps only a folded summary in the winner - safe *only* if the
+loser's raw reasoning persists here. Render-only / gitignore-raw would force keeping
+pointer-stubs instead. So the persist-raw lean is no longer local to transcripts; resolve
+the two together.
 
 ## Seeds vs directives (architecture)
 Seeds are veering toward plan/brief docs - and that **composes** with the directive-as-todo
@@ -78,7 +88,8 @@ tracker + floor brief), not a new plan type.
 1. **Decide repo-weight** (LFS vs gitignore-raw vs external; lean LFS).
 2. **Hook:** copy the host jsonl into the repo each turn (raw, crash-safe); keep the
    responses-only render; **preserve an existing frontmatter block** on rewrite so `/end`
-   metadata survives the every-turn regeneration.
+   metadata survives the every-turn regeneration; **fix the one-turn lag** so the render
+   includes the triggering response (the `cb:a518` tail-gap).
 3. **/end step:** synthesize the metadata (description, outcome digest, produced-links) onto
    the render; commit the final artifacts; optionally delete the working-tree copies.
 4. **Conform** belief-audit.md and the `.sessions/` docs to the one shape (belief-audit.md
@@ -124,6 +135,10 @@ that directive/directives trace back to these seed docs as provenance?"
 **Claude:** The latter - directives stay the desk-tracked todo; seeds are the briefs they
 cite (the graph already grounds directives in `document:`/`plan:` artifacts). Two-tier, not
 competing.
+
+**User (2026-06-26, hook lag):** "how to make the the thread doc update after each response
+via the hook, to avoid the thread always being one response behind." (Folded in as the
+hook-lag fix above; the `cb:a518` tail-gap, recurring.)
 
 ## Related
 - [nursery-architecture](nursery-architecture.md) - this reverses its "Layer 1 vestigial" lean.

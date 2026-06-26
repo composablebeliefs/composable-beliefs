@@ -4,9 +4,9 @@ title: The nursery architecture (focus-as-unit, Layer 1/2 fusion)
 description: Covers the nursery model itself - focus-as-unit, conversing directly in the artifact, making the raw transcript vestigial - and its conflict with the OKF transcript-pair rule.
 tags: [okf, cb, nursery, meta]
 status: active
-timestamp: 2026-06-25
+timestamp: 2026-06-26
 maturity: contested
-threads: [2026-06-25-belief-audit]
+threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
 ---
 
 # The nursery architecture
@@ -38,7 +38,7 @@ That format rule is "owned by this standard," and its operational half is a CB d
 executed by `/end`. The nursery's "make Layer 1 unnecessary" thesis contests both.
 
 Resolution paths:
-1. **Chosen (2026-06-25).** Supersede the types.md transcript-pair rule and retire the
+1. **Chosen 2026-06-25; reversed 2026-06-26 (see Next).** Supersede the types.md transcript-pair rule and retire the
    `/end` capture directive - Layer 1 becomes the incidental host session log,
    unauthored. Safe because `agent-behavior:a411` (verbatim into evidence) plus the
    `seed` prop ([seed-absorption](seed-absorption.md)) fold everything of value into the
@@ -46,9 +46,15 @@ Resolution paths:
 2. ~~Keep the pair, demote the nursery to a Layer-2 convenience.~~ Rejected - it
    entrenches an untested rule the stronger concept supersedes.
 
-## Next
-Execute path 1: supersede types.md §"Thread & session persistence" and retire the `/end`
-transcript-pair directive in the graph.
+## Next - reversed (2026-06-26)
+Path 1's premise (make Layer 1 vestigial) is **decided-against.** Auditability requires
+persisting the raw, not dropping it (see [transcript-format](transcript-format.md), the
+current live reference). So the types.md transcript-pair rule is *not* superseded - the
+nursery converges toward it. Under fold-and-evacuate ([seed-absorption](seed-absorption.md)),
+this doc's superseded Layer-1 lean folds into transcript-format as a dated "rejected" block
+and this doc evacuates - queued, pending transcript-format's persist-raw resolution.
+(Grounding: the 2026-06-26 fold and persist-raw exchanges excerpted in
+[seed-absorption](seed-absorption.md) and [transcript-format](transcript-format.md).)
 
 ## Related
 - [seed-absorption](seed-absorption.md) - the mechanism that makes path 1 safe.

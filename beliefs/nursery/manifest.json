@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 11,
+  "count": 14,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -54,7 +54,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-06-25"
+      "timestamp": "2026-06-26"
     },
     {
       "path": "negative-case-field.md",
@@ -81,7 +81,7 @@
         "meta"
       ],
       "status": "active",
-      "timestamp": "2026-06-25"
+      "timestamp": "2026-06-26"
     },
     {
       "path": "per-belief-files.md",
@@ -100,8 +100,8 @@
     {
       "path": "seed-absorption.md",
       "type": "concept",
-      "title": "Seed absorption - planted seeds fold into the belief",
-      "description": "Covers the proposal that on planting, a seed's gestation folds into a `seed` prop on the belief and the doc evacuates the nursery - replacing lingering frozen docs - plus its open granularity and dropped-seed questions.",
+      "title": "Seed absorption - terminal seeds fold into their successor and evacuate",
+      "description": "Covers the principle that every terminal seed folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning seed as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.",
       "tags": [
         "cb",
         "schema",
@@ -109,7 +109,49 @@
         "provenance"
       ],
       "status": "active",
-      "timestamp": "2026-06-25"
+      "timestamp": "2026-06-26"
+    },
+    {
+      "path": "seed-recency.md",
+      "type": "concept",
+      "title": "Recency and dating for adjudicating competing seeds",
+      "description": "Covers datestamping seed docs (last-edited) and their thread excerpts so an agent can rank competing seed positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.",
+      "tags": [
+        "nursery",
+        "provenance",
+        "recency",
+        "schema"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-26"
+    },
+    {
+      "path": "statement-provenance.md",
+      "type": "concept",
+      "title": "Associate each thread statement with the artifact it feeds",
+      "description": "Covers linking each user/agent statement in a thread to the seed or belief it is synthesized into - the back-edge of transcript-format's seeds-carry-excerpts (seed to exchange), making transcript-to-graph traceability bidirectional at statement granularity.",
+      "tags": [
+        "nursery",
+        "provenance",
+        "threads",
+        "linkage"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-26"
+    },
+    {
+      "path": "thread-repo-binding.md",
+      "type": "concept",
+      "title": "Bind each thread to the repo it relates to (thread init)",
+      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session, since the transcript hook currently hardcodes a single threads dir.",
+      "tags": [
+        "nursery",
+        "threads",
+        "workflow",
+        "multi-repo"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-26"
     },
     {
       "path": "threads/2026-06-25-belief-audit.md",

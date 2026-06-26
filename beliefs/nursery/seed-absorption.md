@@ -1,12 +1,12 @@
 ---
 type: concept
-title: Seed absorption - planted seeds fold into the belief
-description: Covers the proposal that on planting, a seed's gestation folds into a `seed` prop on the belief and the doc evacuates the nursery - replacing lingering frozen docs - plus its open granularity and dropped-seed questions.
+title: Seed absorption - terminal seeds fold into their successor and evacuate
+description: Covers the principle that every terminal seed folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning seed as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.
 tags: [cb, schema, nursery, provenance]
 status: active
-timestamp: 2026-06-25
+timestamp: 2026-06-26
 maturity: active
-threads: [2026-06-25-belief-audit]
+threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
 ---
 
 # Seed absorption
@@ -15,6 +15,38 @@ threads: [2026-06-25-belief-audit]
 When a seed plants, instead of leaving a frozen doc in the nursery, fold the seed's body
 (the deliberation that produced the belief) into a new **`seed` prop on the belief
 itself**. The doc then evacuates the nursery.
+
+## Generalization (2026-06-26): every terminal seed folds and evacuates
+Fold-and-evacuate is not special to planting - it is how *every* terminal seed should leave
+the nursery, so the floor only ever holds live work and never a tombstone:
+
+- **Plant (a seed wins on its merits -> a belief):** the body folds into a `seed` prop on
+  the belief; the doc evacuates. (The arm detailed below.)
+- **Contest (seed B beats seed A, or A grafts into B):** A folds into B as a dated
+  "rejected: X because Y" block - load-bearing sentences only, per the `agent-behavior:a411`
+  citation rule - and A evacuates. No lingering superseded doc, no pointer-stub.
+- **Fizzle:** nothing worth folding; the doc just evacuates (a *decided-against* fizzle still
+  plants its negative first, per the dropped-seed note below).
+
+**Already house style one tier up.** `cb:a112`'s evidence reads "Considered and rejected:
+per-entity belief files. The centralized graph was preserved because cross-entity
+composition is the primary value..." - the rejected alternative folded into the survivor as
+a dated block. The contest arm is that pattern, applied at the floor.
+
+**Tier split - the boundary is the mint gate.**
+- *Floor (nursery): fold-and-evacuate.* Curation; the primary record is the raw thread.
+- *Graph (post-mint): supersede-and-keep.* Immutability; the audit tree needs the
+  struck-through predecessor (`README.md`). Never fold-delete a belief.
+
+They do not conflict because they have different systems-of-record.
+
+**Safety condition (load-bearing).** Fold-and-delete at the floor is safe *only if* the
+loser's raw reasoning survives elsewhere - which is what persist-raw
+([transcript-format](transcript-format.md)) plus per-statement linkage
+([statement-provenance](statement-provenance.md)) guarantee. If transcript-format settles on
+render-only, keep a pointer-stub instead of deleting. So this pressures transcript-format
+toward persisting raw; resolve them together. (No belief grounds in a *losing* seed, so
+folding it orphans nothing.)
 
 ## Why it beats a lingering frozen doc
 - **Evacuation.** Planted seeds leave the nursery entirely, so it only ever holds live
@@ -43,6 +75,19 @@ itself**. The doc then evacuates the nursery.
 Decide granularity; then add `seed` to the belief schema (a `cb:` contract change) and
 wire planting to fold-and-evacuate.
 
+## Thread excerpts (2026-06-26)
+**User:** "instead of 'supersedes' and persisting the superseeded doc, instead the
+superseeded doc should immediately be folded into the blessed doc as historical evidence."
+
+**Claude (resolution):** Yes at the floor, and it is house style - `cb:a112` already folds
+its rejected alternative into its evidence. Tier split: floor folds-and-evacuates (primary
+record is the raw thread), graph supersedes-and-keeps (immutability). Safe only if raw
+persists, so it pressures transcript-format toward persist-raw; the three proposals compose.
+
 ## Related
+- [transcript-format](transcript-format.md) - persist-raw is the safety condition for the
+  contest arm.
+- [statement-provenance](statement-provenance.md) - per-statement linkage keeps a folded
+  loser's reasoning reachable.
 - [nursery-architecture](nursery-architecture.md) - this is what makes Layer 1 droppable.
 - [citation-discipline](citation-discipline.md) - first planted seed awaiting absorption.
