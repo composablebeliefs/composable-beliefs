@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 9,
+  "count": 10,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -124,6 +124,20 @@
       ],
       "status": "active",
       "timestamp": "2026-06-25"
+    },
+    {
+      "path": "transcript-format.md",
+      "type": "concept",
+      "title": "How transcripts and seeds persist exchanges",
+      "description": "Covers whether the full session transcript is a committed artifact, generating its metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and the action item that seeds carry per-topic excerpted exchanges.",
+      "tags": [
+        "nursery",
+        "transcript",
+        "format",
+        "provenance"
+      ],
+      "status": "active",
+      "timestamp": "2026-06-26"
     }
   ]
 }
