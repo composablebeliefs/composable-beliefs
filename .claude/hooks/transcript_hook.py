@@ -22,6 +22,11 @@ THREADS_DIR = (
     "/beliefs/nursery/threads/.sessions"
 )
 
+# A text block shorter than this that precedes a tool call is treated as "let me
+# check X" narration and dropped. Longer pre-tool blocks are substantive answers
+# and are kept (e.g. an analysis given before the commits that act on it).
+NARRATION_MAX_CHARS = 300
+
 
 def main():
     try:
@@ -75,18 +80,24 @@ def main():
                         events.append(("tool", None))
                     # thinking blocks are dropped
 
-    # Segment into turns; per turn keep only the response text after the last tool.
+    # Segment into turns. Drop only SHORT text that precedes a tool call - the
+    # "let me check X" narration. Keep substantive blocks (long) wherever they fall,
+    # and any block not followed by a tool (the turn's closing response).
     sections = []
 
     def flush(user_text, seg):
         if user_text is not None:
             sections.append(("User", user_text))
-        last_tool = -1
-        for i, (kind, _) in enumerate(seg):
-            if kind == "tool":
-                last_tool = i
-        kept = [t for i, (kind, t) in enumerate(seg) if kind == "text" and i > last_tool]
-        text = "\n\n".join(t.strip() for t in kept if t and t.strip()).strip()
+        tool_idxs = [i for i, (kind, _) in enumerate(seg) if kind == "tool"]
+        kept = []
+        for i, (kind, t) in enumerate(seg):
+            if kind != "text":
+                continue
+            followed_by_tool = any(ti > i for ti in tool_idxs)
+            if followed_by_tool and len((t or "").strip()) < NARRATION_MAX_CHARS:
+                continue  # short pre-tool narration
+            kept.append(t)
+        text = "\n\n".join(x.strip() for x in kept if x and x.strip()).strip()
         if text:
             sections.append(("Assistant", text))
 
@@ -106,8 +117,8 @@ def main():
         f"# Session transcript - {sid}",
         "",
         "> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) -"
-        " the nursery seeds are the provenance. Only the response shared at the end of"
-        " each turn is kept; narration, reasoning, and tool calls are stripped.  ",
+        " the nursery seeds are the provenance. Substantive responses are kept; short"
+        " pre-tool narration, reasoning, and tool calls are stripped.  ",
         f"> Session `{sid}`" + (f" | {date}" if date else ""),
         "",
     ]
