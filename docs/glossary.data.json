@@ -536,9 +536,9 @@
   "dag-vs-prose": {
     "name": "DAG-vs-Prose Eval",
     "short": "The study comparing a structured CB graph against a prose baseline on agent reasoning tasks; the OKF/Karpathy wiki is the credible prose arm the structured arm must beat.",
-    "def": "The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an <a href='glossary.html#okfx'>OKF</a>/Karpathy agent-maintained wiki rather than a strawman (cb:a544), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.",
+    "def": "The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an <a href='glossary.html#cb-okf'>OKF</a>/Karpathy agent-maintained wiki rather than a strawman (cb:a544), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.",
     "see": [
-      "okfx",
+      "cb-okf",
       "okf",
       "composition-over-retrieval",
       "harness",
@@ -1367,7 +1367,7 @@
     "short": "A portable agent- and human-readable knowledge methodology: plain markdown plus YAML frontmatter in a directory hierarchy, with a generated manifest as the agent's entry index.",
     "def": "OKF, the Open Knowledge Format, is a portable knowledge methodology: plain markdown plus YAML <a href='glossary.html#frontmatter'>frontmatter</a> organized in a directory hierarchy, with a generated manifest as the agent's entry index. The full standard layers OKF (the floor), Karpathy's LLM-wiki synthesis discipline, and Composable Beliefs (an opt-in ceiling for knowledge that must stay provably true), defined by a conformance corpus and implemented once in Elixir (<code>mix okf.*</code>, lib/cb/okf/*). CB emits down to an OKF bundle and ingests up from one, both lossy. See <a href='pages/16-okf-memory.html'>OKF and the memory boundary</a>.",
     "see": [
-      "okfx",
+      "cb-okf",
       "tier-cb",
       "frontmatter",
       "reasoning-substrate-not-memory",
@@ -1380,16 +1380,16 @@
     "def": "The OKF bridge is the set of <code>lib/cb/okf/*</code> modules: <code>CB.Okf.Emit</code> projects the CB graph down to an <a href='glossary.html#okf'>OKF</a> bundle (one <a href='glossary.html#tier-cb'>tier: cb</a> doc per belief, lossy), <code>CB.Okf.Ingest</code> ingests a bundle up into CB <a href='glossary.html#primitive'>primitives</a> (typed composition left to /assert), and <code>CB.Okf.Validate</code> is a faithful Elixir port of the Python reference validator whose findings carry stable codes for the cross-impl conformance suite. <code>CB.Okf.Manifest</code> and <code>CB.Okf.Frontmatter</code> round out byte-compatible bundle handling.",
     "see": [
       "okf",
-      "okfx",
+      "cb-okf",
       "tier-cb",
       "frontmatter",
       "reasoning-substrate-not-memory"
     ]
   },
-  "okfx": {
-    "name": "okfx: Collection",
-    "short": "The OKF integration extension folded into composable-beliefs/okf/; the okfx namespace depends on cb and borrows its schema, adding an agent-index manifest and a tier model.",
-    "def": "<code>okfx:</code> is the OKF integration extension, folded into <code>composable-beliefs/okf/</code> (cb:a546), a namespace that depends on <code>cb:</code> and borrows its schema vocabulary. The <code>x</code> signals that it extends OKF - adding an agent-index manifest and a tier model - rather than being OKF-native. Its eval relevance (cb:a544) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.",
+  "cb-okf": {
+    "name": "cb-okf: Collection",
+    "short": "The OKF integration extension folded into composable-beliefs/okf/; the cb-okf namespace depends on cb and borrows its schema, adding an agent-index manifest and a tier model.",
+    "def": "<code>cb-okf:</code> is CB's OKF integration extension, folded into <code>composable-beliefs/okf/</code> (cb:a546), a namespace that depends on <code>cb:</code> and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance (cb:a544) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.",
     "see": [
       "okf",
       "tier-cb",
@@ -2079,7 +2079,7 @@
     "def": "<code>tier: cb</code> is the <a href='glossary.html#frontmatter'>frontmatter</a> marker on an OKF doc projected from a CB belief, carrying the belief <code>id</code> and <code>cb_type</code> for round-tripping (okf/emit.ex:64, okf/validate.ex:139). The OKF type map projects each CB type to an OKF type (primitive to reference, compound to concept, inference to analysis, directive to position) while preserving the CB type in <code>cb_type</code>. A <code>tier: cb</code> doc requires an id, enforced by the validator.",
     "see": [
       "okf",
-      "okfx",
+      "cb-okf",
       "frontmatter",
       "okf-bridge"
     ]

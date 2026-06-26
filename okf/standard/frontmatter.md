@@ -33,7 +33,7 @@ are legal). They light up only for CB-aware tooling.
 
 | Field | Type | Notes |
 |---|---|---|
-| `id` | scalar `namespace:local` | Stable identity, decoupled from path (survives renames). Required if other docs depend on this one. Shape: `^[a-z][a-z0-9]*:[a-z0-9-]+$` (e.g. `cb:a131`, `fin:cashflow`) — a CB-dialect addition, **not** OKF-native, soft-checked (`id_format_invalid` warns, never fails). The namespace is a grouping convention, not a registry and not the `type`. See KNOWLEDGE.md §6. |
+| `id` | scalar `namespace:local` | Stable identity, decoupled from path (survives renames). Required if other docs depend on this one. Shape: `^[a-z][a-z0-9-]*:[a-z0-9-]+$` (e.g. `cb:a131`, `fin:cashflow`, `cb-okf:a004`) — a CB-dialect addition, **not** OKF-native, soft-checked (`id_format_invalid` warns, never fails). The namespace may contain hyphens, matching the artifact-scheme rule. The namespace is a grouping convention, not a registry and not the `type`. See KNOWLEDGE.md §6. |
 | `deps` | inline list of ids | Typed dependencies — the load-bearing edges. A `concept` lists the sources/concepts it is synthesized from. |
 | `tier` | scalar | `okf` (default) \| `cb`. Marks a doc as governed by CB discipline (immutability, supersession). |
 | `kind` | scalar | CB sub-classification (e.g. `directive`, `observation`, `verdict`). Closed enum per the host CB graph. |

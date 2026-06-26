@@ -1,6 +1,6 @@
 [
   {
-    "id": "okfx:a001",
+    "id": "cb-okf:a001",
     "type": "directive",
     "kind": "action-item",
     "domain": "dev",
@@ -25,7 +25,7 @@
     "created": "2026-06-21"
   },
   {
-    "id": "okfx:a002",
+    "id": "cb-okf:a002",
     "type": "directive",
     "kind": "action-item",
     "domain": "dev",
@@ -50,7 +50,7 @@
     "created": "2026-06-21"
   },
   {
-    "id": "okfx:a003",
+    "id": "cb-okf:a003",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -69,18 +69,18 @@
       },
       {
         "date": "2026-06-22",
-        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace cb-okf:).",
         "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       }
     ],
     "subjects": [],
     "deps": [],
     "status": "superseded",
-    "superseded_by": "okfx:a011",
+    "superseded_by": "cb-okf:a011",
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a004",
+    "id": "cb-okf:a004",
     "type": "directive",
     "kind": "action-item",
     "domain": "dev",
@@ -100,13 +100,13 @@
       },
       {
         "date": "2026-06-22",
-        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace cb-okf:).",
         "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       }
     ],
     "subjects": [],
     "deps": [
-      "okfx:a003"
+      "cb-okf:a003"
     ],
     "materialized": {
       "date": "2026-06-22",
@@ -114,7 +114,7 @@
         {
           "action": "Make okf/CLAUDE.md a graph-compiled, --check-gated output-target",
           "id": "t0001",
-          "notes": "Discharged: authored okfx:c001 (output:claude-md contract) + render-section beliefs okfx:a006-a009, with okfx:a003 (the beliefs/ guard) as a render_section. Taught mix cb.generate.claude_md a --beliefs PATH override so it compiles okf/CLAUDE.md from the okfx: graph. okf/CLAUDE.md is now generated + read-only (header comment + --check), gated by test/cb/generated_claude_md_test.exs (which also retro-gates the cb: file). All gates green."
+          "notes": "Discharged: authored cb-okf:c001 (output:claude-md contract) + render-section beliefs cb-okf:a006-a009, with cb-okf:a003 (the beliefs/ guard) as a render_section. Taught mix cb.generate.claude_md a --beliefs PATH override so it compiles okf/CLAUDE.md from the cb-okf: graph. okf/CLAUDE.md is now generated + read-only (header comment + --check), gated by test/cb/generated_claude_md_test.exs (which also retro-gates the cb: file). All gates green."
         }
       ]
     },
@@ -122,7 +122,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a005",
+    "id": "cb-okf:a005",
     "type": "directive",
     "kind": "action-item",
     "domain": "dev",
@@ -142,7 +142,7 @@
       },
       {
         "date": "2026-06-22",
-        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace cb-okf:).",
         "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       },
       {
@@ -157,7 +157,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a006",
+    "id": "cb-okf:a006",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -170,12 +170,12 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md Orientation section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Carries the fresh-agent routing prose verbatim from the hand-written original.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md Orientation section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Carries the fresh-agent routing prose verbatim from the hand-written original.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
@@ -185,7 +185,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a007",
+    "id": "cb-okf:a007",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -198,23 +198,23 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md Tooling section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Cites mix knowledge.* because the knowledge.* -> okf.* rename has not landed in the live tree as of this authoring; regenerate this section if it does.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md Tooling section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Cites mix knowledge.* because the knowledge.* -> okf.* rename has not landed in the live tree as of this authoring; regenerate this section if it does.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
     "subjects": [],
     "deps": [],
     "status": "superseded",
-    "superseded_by": "okfx:a012",
+    "superseded_by": "cb-okf:a012",
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a008",
+    "id": "cb-okf:a008",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -227,23 +227,23 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md standard-not-an-app section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Carries the conformance-gate prose verbatim from the hand-written original.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md standard-not-an-app section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Carries the conformance-gate prose verbatim from the hand-written original.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
     "subjects": [],
     "deps": [],
     "status": "superseded",
-    "superseded_by": "okfx:a013",
+    "superseded_by": "cb-okf:a013",
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a009",
+    "id": "cb-okf:a009",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -256,12 +256,12 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md core-rule section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Carries the floor/ceiling default prose verbatim from the hand-written original.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md core-rule section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Carries the floor/ceiling default prose verbatim from the hand-written original.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
@@ -271,7 +271,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:c001",
+    "id": "cb-okf:c001",
     "type": "directive",
     "kind": "output-target",
     "domain": "system",
@@ -279,43 +279,43 @@
       "dag-schema",
       "output:claude-md"
     ],
-    "claim": "The okf/ CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the okfx: graph by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Authoring happens by creating beliefs (via the cb.preflight/import write flow) and by editing this contract's render_sections; hand-edits to okf/CLAUDE.md are overwritten on the next generation.",
+    "claim": "The okf/ CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb-okf: graph by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Authoring happens by creating beliefs (via the cb.preflight/import write flow) and by editing this contract's render_sections; hand-edits to okf/CLAUDE.md are overwritten on the next generation.",
     "rules": [
       {
         "output_path": "okf/CLAUDE.md"
       },
       {
-        "header_comment": "<!-- Generated by `mix cb.generate.claude_md --beliefs okf/beliefs.json` from the okfx: DAG. Do not edit; run the task to regenerate. -->\n\n# CLAUDE.md - okf/ (the OKF integration extension)\n\nThis directory is the Knowledge methodology: a portable OKF-based format for knowledge across all my repos and productivity domains, with Composable Beliefs as an opt-in rigor ceiling. It is CB's OKF integration extension, folded into composable-beliefs beside the tooling that implements it (it used to be the standalone `knowledge` repo)."
+        "header_comment": "<!-- Generated by `mix cb.generate.claude_md --beliefs okf/beliefs.json` from the cb-okf: DAG. Do not edit; run the task to regenerate. -->\n\n# CLAUDE.md - okf/ (the OKF integration extension)\n\nThis directory is the Knowledge methodology: a portable OKF-based format for knowledge across all my repos and productivity domains, with Composable Beliefs as an opt-in rigor ceiling. It is CB's OKF integration extension, folded into composable-beliefs beside the tooling that implements it (it used to be the standalone `knowledge` repo)."
       },
       {
         "render_sections": [
           {
             "beliefs": [
-              "okfx:a006"
+              "cb-okf:a006"
             ],
             "title": "Orientation"
           },
           {
             "beliefs": [
-              "okfx:a007"
+              "cb-okf:a007"
             ],
             "title": "Tooling"
           },
           {
             "beliefs": [
-              "okfx:a003"
+              "cb-okf:a003"
             ],
-            "title": "The okfx graph is not an OKF bundle"
+            "title": "The cb-okf graph is not an OKF bundle"
           },
           {
             "beliefs": [
-              "okfx:a008"
+              "cb-okf:a008"
             ],
             "title": "Standard, not an app"
           },
           {
             "beliefs": [
-              "okfx:a009"
+              "cb-okf:a009"
             ],
             "title": "Core rule"
           }
@@ -333,29 +333,29 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "The okfx: output-target contract that makes okf/CLAUDE.md a graph-compiled, --check-gated output-target, discharging okfx:a004. Mirrors the framework's cb:c065 (output:claude-md) shape; deps equal the union of the render_sections' beliefs (okfx:a003 the beliefs/ guard, plus okfx:a006-a009). Compiled by mix cb.generate.claude_md with the new --beliefs PATH override pointing the store at okf/beliefs.json.",
+        "detail": "The cb-okf: output-target contract that makes okf/CLAUDE.md a graph-compiled, --check-gated output-target, discharging cb-okf:a004. Mirrors the framework's cb:c065 (output:claude-md) shape; deps equal the union of the render_sections' beliefs (cb-okf:a003 the beliefs/ guard, plus cb-okf:a006-a009). Compiled by mix cb.generate.claude_md with the new --beliefs PATH override pointing the store at okf/beliefs.json.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
     "subjects": [],
     "deps": [
-      "okfx:a003",
-      "okfx:a006",
-      "okfx:a007",
-      "okfx:a008",
-      "okfx:a009"
+      "cb-okf:a003",
+      "cb-okf:a006",
+      "cb-okf:a007",
+      "cb-okf:a008",
+      "cb-okf:a009"
     ],
     "status": "superseded",
-    "superseded_by": "okfx:c002",
+    "superseded_by": "cb-okf:c002",
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a010",
+    "id": "cb-okf:a010",
     "type": "directive",
     "kind": "action-item",
     "domain": "dev",
@@ -365,30 +365,30 @@
       "okf",
       "claude-md"
     ],
-    "claim": "Audit okfx belief claims for stale `knowledge/...` repository paths left by the knowledge -> okf/ fold and supersede them through the write flow. Concretely: okfx:a003's claim still says `knowledge/beliefs/` (the old standalone-repo layout) where the live store is `okf/beliefs.json` alongside `okf/manifest.json`; because a003 is now a render_section of the okfx:c001 output-target, that stale path compiles verbatim into okf/CLAUDE.md. Fix is a supersession of a003 (path corrected; leave the `mix knowledge.*` tooling names until the sibling knowledge.* -> okf.* rename lands) followed by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Split out of okfx:a004 deliberately to keep that task to the compile machinery and out of belief-prose path migration, the same boundary that kept the tooling rename separate.",
+    "claim": "Audit cb-okf belief claims for stale `knowledge/...` repository paths left by the knowledge -> okf/ fold and supersede them through the write flow. Concretely: cb-okf:a003's claim still says `knowledge/beliefs/` (the old standalone-repo layout) where the live store is `okf/beliefs.json` alongside `okf/manifest.json`; because a003 is now a render_section of the cb-okf:c001 output-target, that stale path compiles verbatim into okf/CLAUDE.md. Fix is a supersession of a003 (path corrected; leave the `mix knowledge.*` tooling names until the sibling knowledge.* -> okf.* rename lands) followed by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Split out of cb-okf:a004 deliberately to keep that task to the compile machinery and out of belief-prose path migration, the same boundary that kept the tooling rename separate.",
     "artifact": "session:2026-06-22-okf-claude-md-compile",
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Surfaced while discharging okfx:a004: making okf/CLAUDE.md compile from okfx:a003 (the beliefs/ guard) rendered a003's claim verbatim into the file, exposing its stale `knowledge/beliefs/` path. okfx:a004 was scoped to the output-target machinery, not belief-prose migration, so the path fix is deferred here.",
+        "detail": "Surfaced while discharging cb-okf:a004: making okf/CLAUDE.md compile from cb-okf:a003 (the beliefs/ guard) rendered a003's claim verbatim into the file, exposing its stale `knowledge/beliefs/` path. cb-okf:a004 was scoped to the output-target machinery, not belief-prose migration, so the path fix is deferred here.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       }
     ],
     "subjects": [],
     "deps": [
-      "okfx:a003",
-      "okfx:c001"
+      "cb-okf:a003",
+      "cb-okf:c001"
     ],
     "materialized": {
       "date": "2026-06-22",
       "todos": [
         {
-          "action": "Correct stale knowledge/... paths in okfx claims left by the fold; supersede okfx:a003's knowledge/beliefs/ path and regenerate okf/CLAUDE.md",
+          "action": "Correct stale knowledge/... paths in cb-okf claims left by the fold; supersede cb-okf:a003's knowledge/beliefs/ path and regenerate okf/CLAUDE.md",
           "id": "t0002",
           "notes": "rides with the mix knowledge.* -> mix okf.* rename"
         }
@@ -398,7 +398,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a011",
+    "id": "cb-okf:a011",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -407,7 +407,7 @@
       "beliefs",
       "operational"
     ],
-    "claim": "okf/beliefs.json (with okf/manifest.json) is the methodology's own CB belief graph - the okfx: collection - NOT an OKF bundle. Never run the OKF tooling (mix okf.manifest / mix okf.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.",
+    "claim": "okf/beliefs.json (with okf/manifest.json) is the methodology's own CB belief graph - the cb-okf: collection - NOT an OKF bundle. Never run the OKF tooling (mix okf.manifest / mix okf.validate) against it: the validator reports it stale because it has zero .md docs, and the manifest generator would overwrite its CB graph descriptor with an empty OKF manifest. It is read and written only through the CB graph tooling (mix bs, the cb.preflight/import write flow). Per standard/KNOWLEDGE.md section 1.1 (the standard owns format rules; the consumer owns operational directives), this guard is consumer-owned and lives here in the graph, not duplicated as prose in CLAUDE.md.",
     "artifact": "session:2026-06-22-knowledge-audit-collapse",
     "evidence": [
       {
@@ -417,17 +417,17 @@
       },
       {
         "date": "2026-06-22",
-        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace okfx:).",
+        "detail": "Session transcript persisted into composable-beliefs at plans/okf-fold/sessions/ during the okf-fold; retro-pairs the session: artifact to its concrete source. Deferred from the design session because this repo-relative path only resolved once the collection moved in-repo (knowledge -> okf/, namespace cb-okf:).",
         "artifact": "document:../plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
       },
       {
         "date": "2026-06-22",
-        "detail": "Supersedes okfx:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges okfx:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo okfx: collection). Guard meaning unchanged; only command names and the store path updated.",
+        "detail": "Supersedes cb-okf:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges cb-okf:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo cb-okf: collection). Guard meaning unchanged; only command names and the store path updated.",
         "artifact": "user:mreveley:2026-06-22"
       },
       {
         "date": "2026-06-22",
-        "detail": "Accepted via human adjudication against okfx:a003. Reasoning: Supersedes okfx:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges okfx:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo okfx: collection). Guard meaning unchanged; only command names and the store path updated.",
+        "detail": "Accepted via human adjudication against cb-okf:a003. Reasoning: Supersedes cb-okf:a003 for the mix knowledge.* -> mix okf.* tooling rename, and concurrently discharges cb-okf:a010 by correcting the stale path: knowledge/beliefs/ (old standalone-repo layout) -> okf/beliefs.json + okf/manifest.json (the in-repo cb-okf: collection). Guard meaning unchanged; only command names and the store path updated.",
         "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
       }
     ],
@@ -437,7 +437,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a012",
+    "id": "cb-okf:a012",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -450,22 +450,22 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md Tooling section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Cites mix knowledge.* because the knowledge.* -> okf.* rename has not landed in the live tree as of this authoring; regenerate this section if it does.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md Tooling section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Cites mix knowledge.* because the knowledge.* -> okf.* rename has not landed in the live tree as of this authoring; regenerate this section if it does.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       },
       {
         "date": "2026-06-22",
-        "detail": "Supersedes okfx:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
+        "detail": "Supersedes cb-okf:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
         "artifact": "user:mreveley:2026-06-22"
       },
       {
         "date": "2026-06-22",
-        "detail": "Accepted via human adjudication against okfx:a007. Reasoning: Supersedes okfx:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
+        "detail": "Accepted via human adjudication against cb-okf:a007. Reasoning: Supersedes cb-okf:a007 for the mix knowledge.* -> mix okf.* tooling rename and the lib/cb/knowledge/ -> lib/cb/okf/ module move. Claim meaning unchanged; only command/module identifiers updated.",
         "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
       }
     ],
@@ -475,7 +475,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:a013",
+    "id": "cb-okf:a013",
     "type": "directive",
     "kind": "convention",
     "domain": "dev",
@@ -488,22 +488,22 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "Render-section belief for the okf/ CLAUDE.md standard-not-an-app section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (okfx:a004). Carries the conformance-gate prose verbatim from the hand-written original.",
+        "detail": "Render-section belief for the okf/ CLAUDE.md standard-not-an-app section, decomposed from the former hand-written file when okf/CLAUDE.md became a graph-compiled output-target (cb-okf:a004). Carries the conformance-gate prose verbatim from the hand-written original.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       },
       {
         "date": "2026-06-22",
-        "detail": "Supersedes okfx:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
+        "detail": "Supersedes cb-okf:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
         "artifact": "user:mreveley:2026-06-22"
       },
       {
         "date": "2026-06-22",
-        "detail": "Accepted via human adjudication against okfx:a008. Reasoning: Supersedes okfx:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
+        "detail": "Accepted via human adjudication against cb-okf:a008. Reasoning: Supersedes cb-okf:a008 for the mix knowledge.* -> mix okf.* tooling rename (including the knowledge.emit/knowledge.ingest -> okf.emit/okf.ingest bridge). Claim meaning unchanged; only command names updated.",
         "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
       }
     ],
@@ -513,7 +513,7 @@
     "created": "2026-06-22"
   },
   {
-    "id": "okfx:c002",
+    "id": "cb-okf:c002",
     "type": "directive",
     "kind": "output-target",
     "domain": "system",
@@ -521,43 +521,43 @@
       "dag-schema",
       "output:claude-md"
     ],
-    "claim": "The okf/ CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the okfx: graph by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Authoring happens by creating beliefs (via the cb.preflight/import write flow) and by editing this contract's render_sections; hand-edits to okf/CLAUDE.md are overwritten on the next generation.",
+    "claim": "The okf/ CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb-okf: graph by `mix cb.generate.claude_md --beliefs okf/beliefs.json`. Authoring happens by creating beliefs (via the cb.preflight/import write flow) and by editing this contract's render_sections; hand-edits to okf/CLAUDE.md are overwritten on the next generation.",
     "rules": [
       {
         "output_path": "okf/CLAUDE.md"
       },
       {
-        "header_comment": "<!-- Generated by `mix cb.generate.claude_md --beliefs okf/beliefs.json` from the okfx: DAG. Do not edit; run the task to regenerate. -->\n\n# CLAUDE.md - okf/ (the OKF integration extension)\n\nThis directory is the Knowledge methodology: a portable OKF-based format for knowledge across all my repos and productivity domains, with Composable Beliefs as an opt-in rigor ceiling. It is CB's OKF integration extension, folded into composable-beliefs beside the tooling that implements it (it used to be the standalone `knowledge` repo)."
+        "header_comment": "<!-- Generated by `mix cb.generate.claude_md --beliefs okf/beliefs.json` from the cb-okf: DAG. Do not edit; run the task to regenerate. -->\n\n# CLAUDE.md - okf/ (the OKF integration extension)\n\nThis directory is the cb-okf methodology: a portable OKF-based format for knowledge across all my repos and productivity domains, with Composable Beliefs as an opt-in rigor ceiling. It is CB's OKF integration extension, folded into composable-beliefs beside the tooling that implements it (it used to be the standalone `knowledge` repo)."
       },
       {
         "render_sections": [
           {
             "beliefs": [
-              "okfx:a006"
+              "cb-okf:a006"
             ],
             "title": "Orientation"
           },
           {
             "beliefs": [
-              "okfx:a012"
+              "cb-okf:a012"
             ],
             "title": "Tooling"
           },
           {
             "beliefs": [
-              "okfx:a011"
+              "cb-okf:a011"
             ],
-            "title": "The okfx graph is not an OKF bundle"
+            "title": "The cb-okf graph is not an OKF bundle"
           },
           {
             "beliefs": [
-              "okfx:a013"
+              "cb-okf:a013"
             ],
             "title": "Standard, not an app"
           },
           {
             "beliefs": [
-              "okfx:a009"
+              "cb-okf:a009"
             ],
             "title": "Core rule"
           }
@@ -575,32 +575,32 @@
     "evidence": [
       {
         "date": "2026-06-22",
-        "detail": "The okfx: output-target contract that makes okf/CLAUDE.md a graph-compiled, --check-gated output-target, discharging okfx:a004. Mirrors the framework's cb:c065 (output:claude-md) shape; deps equal the union of the render_sections' beliefs (okfx:a003 the beliefs/ guard, plus okfx:a006-a009). Compiled by mix cb.generate.claude_md with the new --beliefs PATH override pointing the store at okf/beliefs.json.",
+        "detail": "The cb-okf: output-target contract that makes okf/CLAUDE.md a graph-compiled, --check-gated output-target, discharging cb-okf:a004. Mirrors the framework's cb:c065 (output:claude-md) shape; deps equal the union of the render_sections' beliefs (cb-okf:a003 the beliefs/ guard, plus cb-okf:a006-a009). Compiled by mix cb.generate.claude_md with the new --beliefs PATH override pointing the store at okf/beliefs.json.",
         "artifact": "document:okf/CLAUDE.md"
       },
       {
         "date": "2026-06-22",
-        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the okfx:a004 /end sweep.",
+        "detail": "cb:a507 retro-pair: the session:2026-06-22-okf-claude-md-compile stipulation grounding this belief resolves to the verbatim session thread persisted here during the cb-okf:a004 /end sweep.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-okf-claude-md-compile.jsonl"
       },
       {
         "date": "2026-06-22",
-        "detail": "Single change from okfx:c001: render_sections repointed from okfx:a003/a007/a008 to their successors okfx:a011/a012/a013 (the mix knowledge.* -> mix okf.* tooling rename), with deps updated to match per the deps=union invariant. output_path, header_comment, claim, and invariants carry verbatim.",
+        "detail": "Single change from cb-okf:c001: render_sections repointed from cb-okf:a003/a007/a008 to their successors cb-okf:a011/a012/a013 (the mix knowledge.* -> mix okf.* tooling rename), with deps updated to match per the deps=union invariant. output_path, header_comment, claim, and invariants carry verbatim.",
         "artifact": "user:mreveley:2026-06-22"
       },
       {
         "date": "2026-06-22",
-        "detail": "Accepted via human adjudication against okfx:c001. Reasoning: Repoint render_sections to the renamed successors okfx:a011/a012/a013; deps updated per union invariant.",
+        "detail": "Accepted via human adjudication against cb-okf:c001. Reasoning: Repoint render_sections to the renamed successors cb-okf:a011/a012/a013; deps updated per union invariant.",
         "artifact": "adjudication:human:2026-06-22-okf-tooling-rename"
       }
     ],
     "subjects": [],
     "deps": [
-      "okfx:a006",
-      "okfx:a012",
-      "okfx:a011",
-      "okfx:a013",
-      "okfx:a009"
+      "cb-okf:a006",
+      "cb-okf:a012",
+      "cb-okf:a011",
+      "cb-okf:a013",
+      "cb-okf:a009"
     ],
     "status": "active",
     "created": "2026-06-22"

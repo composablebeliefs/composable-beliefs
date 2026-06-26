@@ -17,7 +17,7 @@ defmodule Mix.Tasks.Cb.Generate.ClaudeMd do
   import write flow take), so a collection that carries its own
   `output:claude-md` contract compiles its own file. For example,
   `mix cb.generate.claude_md --beliefs okf/beliefs.json` compiles
-  `okf/CLAUDE.md` from the okfx: graph while the no-arg invocation keeps
+  `okf/CLAUDE.md` from the cb-okf: graph while the no-arg invocation keeps
   compiling the framework CLAUDE.md from cb:. The single-active-target rule
   is enforced per store, so each graph must carry exactly one.
 

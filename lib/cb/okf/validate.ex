@@ -16,8 +16,9 @@ defmodule CB.Okf.Validate do
   @placeholder ~r/<[A-Za-z][^>\n]*>/
   @link ~r/\[[^\]]*\]\((?!https?:|#|mailto:)([^)#]+\.md)(?:#[^)]*)?\)/
   # Soft convention: ids are namespace:local (lowercase). A CB-dialect addition, not
-  # OKF-native; warned, not failed.
-  @id_format ~r/^[a-z][a-z0-9]*:[a-z0-9-]+$/
+  # OKF-native; warned, not failed. The namespace may contain hyphens (e.g. cb-okf),
+  # matching the artifact-scheme rule.
+  @id_format ~r/^[a-z][a-z0-9-]*:[a-z0-9-]+$/
 
   def run(root) do
     root = Path.expand(root)

@@ -1,5 +1,5 @@
 {
   "depends_on": ["cb"],
-  "description": "Operational graph for the OKF integration extension folded into composable-beliefs (okf/): backlog directives, conventions, and obligations for adopting, converting, and maintaining knowledge bundles built with the standard. The methodology content lives as OKF docs alongside this graph (okf/standard/, okf/meta/, okf/demo/) and the tooling that implements it (mix okf.*, lib/cb/okf/*); this graph carries the work. The okfx: namespace borrows cb: schema vocabulary (kind/domain/artifact-scheme enums) and sits downstream of cb: (depends_on: cb). okfx: rather than okf: signals the standard extends OKF - it adds the agent-index manifest and the tier model - rather than being OKF-native.",
-  "namespace": "okfx"
+  "description": "Operational graph for cb-okf, CB's OKF integration extension folded into composable-beliefs (okf/): backlog directives, conventions, and obligations for adopting, converting, and maintaining knowledge bundles built with the standard. The methodology content lives as OKF docs alongside this graph (okf/standard/, okf/meta/, okf/demo/) and the tooling that implements it (mix okf.*, lib/cb/okf/*); this graph carries the work. The cb-okf: namespace borrows cb: schema vocabulary (kind/domain/artifact-scheme enums) and sits downstream of cb: (depends_on: cb). The name cb-okf marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - the agent-index manifest and the two-tier model - rather than being OKF-native.",
+  "namespace": "cb-okf"
 }

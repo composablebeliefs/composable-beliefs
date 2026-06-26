@@ -144,6 +144,12 @@ CB is the ledger, not the lab bench (docs/eval-ledger.md, [cb:a539](#cba539)): e
 
 **See also:** [Harness](#harness), [Run-Manifest](#run-manifest), [import.eval](#importeval), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Eval Ledger](#eval-ledger)
 
+## cb-okf: Collection
+
+`cb-okf:` is CB's OKF integration extension, folded into `composable-beliefs/okf/` ([cb:a546](#cba546)), a namespace that depends on `cb:` and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance ([cb:a544](#cba544)) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.
+
+**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [tier: cb](#tier-cb), [DAG-vs-Prose Eval](#dag-vs-prose-eval), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
+
 ## cb: Holds Only What and How
 
 The `cb:` collection holds only the framework's what and how - schema, mechanism, positioning - while the motivating why lives elsewhere: agent failure modes in `agent-behavior:` and the paradigm argument in `paradigm:` ([cb:a464](#cba464), [cb:a492](#cba492)). Because `cb:` depends only within itself, the framework ships clean and self-contained, without the narrative that motivated it. This is the collection-level expression of keeping the substrate consumer-blind.
@@ -314,9 +320,9 @@ Schema evolution - removing or renaming a field - happens only through an adjudi
 
 ## DAG-vs-Prose Eval
 
-The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an [OKF](#okfx-collection)/Karpathy agent-maintained wiki rather than a strawman ([cb:a544](#cba544)), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.
+The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an [OKF](#cb-okf-collection)/Karpathy agent-maintained wiki rather than a strawman ([cb:a544](#cba544)), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.
 
-**See also:** [okfx: Collection](#okfx-collection), [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [Composition Over Retrieval](#composition-over-retrieval), [Harness](#harness), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
+**See also:** [cb-okf: Collection](#cb-okf-collection), [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [Composition Over Retrieval](#composition-over-retrieval), [Harness](#harness), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
 
 ## Decision-Weight Session
 
@@ -762,19 +768,13 @@ An observation is a `kind: observation` [primitive](#primitive) recording one [r
 
 OKF, the Open Knowledge Format, is a portable knowledge methodology: plain markdown plus YAML [frontmatter](#frontmatter) organized in a directory hierarchy, with a generated manifest as the agent's entry index. The full standard layers OKF (the floor), Karpathy's LLM-wiki synthesis discipline, and Composable Beliefs (an opt-in ceiling for knowledge that must stay provably true), defined by a conformance corpus and implemented once in Elixir (`mix okf.*`, lib/cb/okf/*). CB emits down to an OKF bundle and ingests up from one, both lossy. See OKF and the memory boundary.
 
-**See also:** [okfx: Collection](#okfx-collection), [tier: cb](#tier-cb), [Frontmatter](#frontmatter), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [OKF Bridge Modules](#okf-bridge-modules)
+**See also:** [cb-okf: Collection](#cb-okf-collection), [tier: cb](#tier-cb), [Frontmatter](#frontmatter), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [OKF Bridge Modules](#okf-bridge-modules)
 
 ## OKF Bridge Modules
 
 The OKF bridge is the set of `lib/cb/okf/*` modules: `CB.Okf.Emit` projects the CB graph down to an [OKF](#okf-open-knowledge-format) bundle (one [tier: cb](#tier-cb) doc per belief, lossy), `CB.Okf.Ingest` ingests a bundle up into CB [primitives](#primitive) (typed composition left to /assert), and `CB.Okf.Validate` is a faithful Elixir port of the Python reference validator whose findings carry stable codes for the cross-impl conformance suite. `CB.Okf.Manifest` and `CB.Okf.Frontmatter` round out byte-compatible bundle handling.
 
-**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [okfx: Collection](#okfx-collection), [tier: cb](#tier-cb), [Frontmatter](#frontmatter), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
-
-## okfx: Collection
-
-`okfx:` is the OKF integration extension, folded into `composable-beliefs/okf/` ([cb:a546](#cba546)), a namespace that depends on `cb:` and borrows its schema vocabulary. The `x` signals that it extends OKF - adding an agent-index manifest and a tier model - rather than being OKF-native. Its eval relevance ([cb:a544](#cba544)) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.
-
-**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [tier: cb](#tier-cb), [DAG-vs-Prose Eval](#dag-vs-prose-eval), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
+**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [cb-okf: Collection](#cb-okf-collection), [tier: cb](#tier-cb), [Frontmatter](#frontmatter), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
 
 ## Output Target
 
@@ -1144,7 +1144,7 @@ Anchor verification comes in three tiers ([cb:a529](#cba529)): provenance integr
 
 `tier: cb` is the [frontmatter](#frontmatter) marker on an OKF doc projected from a CB belief, carrying the belief `id` and `cb_type` for round-tripping (okf/emit.ex:64, okf/validate.ex:139). The OKF type map projects each CB type to an OKF type (primitive to reference, compound to concept, inference to analysis, directive to position) while preserving the CB type in `cb_type`. A `tier: cb` doc requires an id, enforced by the validator.
 
-**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [okfx: Collection](#okfx-collection), [Frontmatter](#frontmatter), [OKF Bridge Modules](#okf-bridge-modules)
+**See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [cb-okf: Collection](#cb-okf-collection), [Frontmatter](#frontmatter), [OKF Bridge Modules](#okf-bridge-modules)
 
 ## Todo-Close Front Door
 

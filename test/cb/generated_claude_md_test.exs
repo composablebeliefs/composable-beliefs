@@ -8,7 +8,7 @@ defmodule CB.GeneratedClaudeMdTest do
   equivalent of `mix cb.generate.claude_md [--beliefs PATH] --check`: for
   every store that carries an `output:claude-md` contract, the on-disk file
   must equal what the contract compiles right now. It guards the framework
-  CLAUDE.md (cb:c065) and okf/CLAUDE.md (okfx:c001) against the hand-edit/
+  CLAUDE.md (cb:c065) and okf/CLAUDE.md (cb-okf:c001) against the hand-edit/
   drift the output-target doctrine forbids.
 
   Selection mirrors `CB.OutputTarget.find_targets/1` but reads each store

@@ -1,4 +1,4 @@
-# ADOPT — bootstrapping a repo onto the Knowledge methodology
+# ADOPT — bootstrapping a repo onto the cb-okf methodology
 
 You are an agent told: *"adopt this methodology for this repo."* Work through the steps.
 **Each mutating step ends in a gate you run — do not proceed past a failing gate.** The

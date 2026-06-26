@@ -1,6 +1,6 @@
 ---
 type: spec
-title: The Knowledge Methodology
+title: The cb-okf Methodology
 description: The canonical spec — three layers, the frontmatter spine, the manifest index, and the OKF/CB two-tier rule. Read this first when adopting or converting.
 tags: [spec, okf, cb, methodology]
 status: active
@@ -8,7 +8,7 @@ timestamp: 2026-06-21
 id: spec:knowledge
 ---
 
-# The Knowledge Methodology
+# The cb-okf Methodology
 
 ## 1. Lineage (what this is built from)
 
@@ -109,8 +109,9 @@ small file the agent loads first. It is the skills-style summary layer. Contract
 > **This is this standard's addition, not OKF-native.** OKF's entry mechanism is
 > `index.md` (human progressive disclosure); the generated `manifest.json` agent-index is
 > a bespoke extension this methodology layers on top — which is why the lineage table (§1)
-> credits OKF with `index.md` but not the manifest. It is the concrete reason the
-> collection's namespace is `okfx:` (extends OKF) rather than `okf:`.
+> credits OKF with `index.md` but not the manifest. It is one of the CB-side additions
+> that make the operational graph's namespace `cb-okf:` (CB's dialect of OKF) rather than
+> bare `okf:`.
 
 - Produced by `mix okf.manifest <root>` (in the `composable-beliefs` repo); **never hand-edited**.
 - One entry per `.md` doc: `path`, `type`, `title`, `description`, `tags`, `status`,

@@ -1,4 +1,4 @@
-# okf — the Knowledge methodology
+# okf — the cb-okf methodology
 
 A portable, agent- and human-readable knowledge methodology for use across all my
 repos and domains (software projects **and** productivity domains — finances, home,
@@ -63,7 +63,7 @@ okf/
 ├── conformance/         ← the format defined as behaviour (the spec corpus)
 │   ├── fixtures/        ← valid + invalid bundles, one isolated failure each
 │   └── expected/        ← the normative (severity, code, path) results
-├── beliefs.json         ← the methodology's own CB operational graph (the `okfx:`
+├── beliefs.json         ← the methodology's own CB operational graph (the `cb-okf:`
 ├── manifest.json           collection: backlog, conventions). A belief graph, NOT an
 │                            OKF bundle — the `mix okf.*` OKF tooling does not apply.
 └── demo/               ← a SYNTHETIC example bundle (illustrative sample data only)
@@ -79,12 +79,12 @@ newcomer; it carries no authoritative content.
 
 This extension has two sides. The **OKF side** (`standard/`, `meta/`, `demo/`) is markdown
 bundles read through a generated `manifest.json`. The **CB side** (`okf/beliefs.json`, the
-`okfx:` collection) is a typed belief graph carrying the methodology's own operational
+`cb-okf:` collection) is a typed belief graph carrying the methodology's own operational
 obligations and conventions — the consumer-owned counterpart to the format rules the
 standard owns (see [`standard/KNOWLEDGE.md`](standard/KNOWLEDGE.md) §1.1). They relate as
 substrate↔overlay: OKF docs are the artifacts; CB beliefs reference them by
 `artifact:`. The OKF tooling validates the OKF side only — never point it at the
-`okfx:` graph (`okf/beliefs.json`).
+`cb-okf:` graph (`okf/beliefs.json`).
 
 ## The reading order
 
