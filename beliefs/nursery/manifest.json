@@ -129,12 +129,13 @@
       "path": "transcript-format.md",
       "type": "concept",
       "title": "How transcripts and seeds persist exchanges",
-      "description": "Covers whether the full session transcript is a committed artifact, generating its metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and the action item that seeds carry per-topic excerpted exchanges.",
+      "description": "Spike brief for the transcript/seed persistence pipeline - whether to commit the raw jsonl, generating metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and seeds carrying per-topic excerpts. Self-contained; start the implementation thread here.",
       "tags": [
         "nursery",
         "transcript",
         "format",
-        "provenance"
+        "provenance",
+        "spike"
       ],
       "status": "active",
       "timestamp": "2026-06-26"
