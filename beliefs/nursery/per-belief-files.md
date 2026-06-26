@@ -40,7 +40,12 @@ predecessor status) is one atomic tmp+rename; per-file it is N independent write
 local/single-writer scale (a crash mid-batch is recoverable via re-run or `git restore`), or wrap
 in an all-or-nothing write helper (per-file tmp+rename, or temp-dir + directory swap).
 
-## Prototype evidence (worktree `proto/per-belief-files`)
+## Prototype evidence (validation spike, since discarded)
+A throwaway worktree spike (not a resumable branch - it was removed after validating) split
+`beliefs.json` into 213 `beliefs/cb/<local>.json` files and made `CB.Belief.Store.read`
+directory-aware. The findings below are the durable record; the implementer re-applies the
+~25-line read-path change (`cb:a556`) from scratch.
+
 - Split `beliefs.json` into 213 `beliefs/cb/<local>.json` files (canonical `to_map` per node).
 - Made `CB.Belief.Store.read` directory-aware (glob + parse, sorted by id).
 - The loaded graph was **byte-identical** to the single-file load (8251-line canonical
