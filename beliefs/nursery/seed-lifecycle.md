@@ -6,7 +6,7 @@ tags: [cb, nursery, lifecycle, plans, meta]
 status: active
 timestamp: 2026-07-01
 maturity: contested
-threads: []
+threads: [2026-07-01-seed-lifecycle]
 ---
 
 # Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)
