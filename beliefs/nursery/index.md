@@ -4,7 +4,7 @@ title: Nursery
 description: Use when orienting to the belief nursery - the floor-tier workspace where focuses (proto-beliefs) are deliberated in place until they mint into the graph or are dropped.
 tags: [nursery, index]
 status: active
-timestamp: 2026-06-26
+timestamp: 2026-07-01
 ---
 
 # Nursery
@@ -65,7 +65,8 @@ visible; it never silently decides.
 - [contract-predicate-demotion](contract-predicate-demotion.md) - active - drop the redundant contract boolean (derive it) and collapse the c059 carve-out it exposes.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
-- [seed-absorption](seed-absorption.md) - active - every terminal seed folds into its successor and evacuates (plant -> belief, contest -> winner).
+- [seed-absorption](seed-absorption.md) - contested - every terminal seed folds into its successor and evacuates (plant -> belief, contest -> winner); challenged by seed-lifecycle.
+- [seed-lifecycle](seed-lifecycle.md) - contested - terminal seeds should graduate (historicize + archive), not evacuate-by-deletion; persisted seed and plan collapse into one durable-brief concept.
 - [seed-recency](seed-recency.md) - active - dating seeds and excerpts to rank competing positions; recency soft, contested-links hard.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
 - [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
