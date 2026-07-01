@@ -35,7 +35,7 @@ defmodule CB.Render.AuditTest do
       },
       %{
         "id" => "g:c1",
-        "type" => "compound",
+        "type" => "aggregation",
         "kind" => "observation",
         "tags" => ["cross-ruler-agreement"],
         "claim" => "Two rulers agree.",
@@ -45,7 +45,7 @@ defmodule CB.Render.AuditTest do
       },
       %{
         "id" => "g:p1",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "observation",
         "tags" => ["outcome:fail"],
         "claim" => "Ruler det scored case c1 fail.",
@@ -67,7 +67,7 @@ defmodule CB.Render.AuditTest do
       },
       %{
         "id" => "g:p2",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "observation",
         "claim" => "Ruler judge scored case c1 fail.",
         "artifact" => "eval:e/r1/c1/judge",
@@ -78,7 +78,7 @@ defmodule CB.Render.AuditTest do
       },
       %{
         "id" => "g:p3",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "observation",
         "tags" => ["correction"],
         "claim" => "Corrected: ruler judge scored case c1 pass.",
@@ -90,7 +90,7 @@ defmodule CB.Render.AuditTest do
       },
       %{
         "id" => "x:doc1",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "convention",
         "claim" => "A borrowed convention in another namespace.",
         "deps" => [],
@@ -157,14 +157,14 @@ defmodule CB.Render.AuditTest do
         [
           %{
             "id" => "g:a",
-            "type" => "compound",
+            "type" => "aggregation",
             "claim" => "a",
             "deps" => ["g:b"],
             "status" => "active"
           },
           %{
             "id" => "g:b",
-            "type" => "compound",
+            "type" => "aggregation",
             "claim" => "b",
             "deps" => ["g:a"],
             "status" => "active"

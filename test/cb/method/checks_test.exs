@@ -12,7 +12,7 @@ defmodule CB.Method.ChecksTest do
 
     belief(%{
       "id" => id,
-      "type" => "directive",
+      "type" => "prescription",
       "kind" => "implies",
       "name" => "m-#{requires}",
       "contract" => true,
@@ -37,7 +37,7 @@ defmodule CB.Method.ChecksTest do
       enum =
         belief(%{
           "id" => "m:c2",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "enum-registry",
           "contract" => true,
           "rules" => [%{"field" => "kind", "values" => ["observation"]}],
@@ -51,7 +51,7 @@ defmodule CB.Method.ChecksTest do
       codepath =
         belief(%{
           "id" => "m:c3",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "implies",
           "contract" => true,
           "rules" => [%{"when" => %{"assertions" => "on"}, "requires" => "always_pass?"}],
@@ -65,7 +65,7 @@ defmodule CB.Method.ChecksTest do
       superseded =
         belief(%{
           "id" => "m:c4",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "implies",
           "contract" => true,
           "rules" => [%{"when" => %{"verify" => "collection"}, "requires" => "always_pass?"}],
@@ -74,7 +74,7 @@ defmodule CB.Method.ChecksTest do
           "superseded_by" => "m:c5"
         })
 
-      plain = belief(%{"id" => "m:a1", "type" => "primitive", "kind" => "observation"})
+      plain = belief(%{"id" => "m:a1", "type" => "attestation", "kind" => "observation"})
 
       assert Checks.contracts([superseded, plain]) == []
     end
@@ -117,7 +117,7 @@ defmodule CB.Method.ChecksTest do
     end
 
     test "a union with no routed contracts yields no rows" do
-      assert Checks.run([belief(%{"id" => "t:a1", "type" => "primitive"})]) == []
+      assert Checks.run([belief(%{"id" => "t:a1", "type" => "attestation"})]) == []
     end
   end
 

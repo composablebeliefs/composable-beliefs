@@ -9,9 +9,20 @@ defmodule CB.Belief.Filter do
     {filters, opts} =
       Enum.reduce(positional, {[], []}, fn arg, {filters, opts} ->
         cond do
-          # Structural type filter
-          arg in ~w(primitive compound inference directive) ->
-            {[(&(&1.type == arg)) | filters], opts}
+          # Structural type filter (current vocabulary)
+          arg in CB.Belief.types() ->
+            {[type_filter(arg) | filters], opts}
+
+          # Legacy type filter - accepted for the compat epoch, with a nudge
+          is_map_key(CB.Belief.legacy_type_map(), arg) ->
+            renamed = CB.Belief.normalize_type(arg)
+
+            IO.puts(
+              :stderr,
+              "warning: type filter '#{arg}' was renamed to '#{renamed}'; the old name still works this epoch"
+            )
+
+            {[type_filter(renamed) | filters], opts}
 
           # Status filter
           arg in ~w(active superseded retracted retired) ->
@@ -27,7 +38,10 @@ defmodule CB.Belief.Filter do
             {[(&CB.Belief.contract?/1) | filters], opts}
 
           arg == "unlinked" ->
-            {[(&(&1.type == "directive" and &1.materialized == nil)) | filters], opts}
+            {[
+               (&(CB.Belief.normalize_type(&1.type) == "prescription" and &1.materialized == nil))
+               | filters
+             ], opts}
 
           # Tag filter: --tag <tag> or tag:<tag>
           String.starts_with?(arg, "tag:") ->
@@ -82,12 +96,15 @@ defmodule CB.Belief.Filter do
   end
 
   def sort(beliefs) do
-    type_order = %{"primitive" => 0, "compound" => 1, "inference" => 2, "directive" => 3}
+    type_order = %{"attestation" => 0, "aggregation" => 1, "inference" => 2, "prescription" => 3}
 
     Enum.sort_by(beliefs, fn a ->
-      {Map.get(type_order, a.type, 3), a.id}
+      {Map.get(type_order, CB.Belief.normalize_type(a.type), 3), a.id}
     end)
   end
+
+  # Match a structural type against beliefs in either vocabulary.
+  defp type_filter(type), do: &(CB.Belief.normalize_type(&1.type) == type)
 
   defp extract_flags(args) do
     extract_flags(args, [], [])

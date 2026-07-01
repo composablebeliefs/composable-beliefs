@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Cb.Verify.Schema do
 
   Thin IO wrapper over `CB.Schema.Verifier` - see that module for the check
   semantics. In brief: framework-universal structure (types, the
-  `contract: true` biconditional, the `c`-prefix convention, artifact format,
+  definitional contract check, the `c`-prefix convention, artifact format,
   status linkage) is checked against `CB.Belief`'s canon; collection-specific
   vocabulary (the `kind`, `domain`, and `artifact-scheme` enums and the status
   lifecycle) is *discovered* from the collection's own contracts by role. A

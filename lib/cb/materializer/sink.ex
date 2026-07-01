@@ -1,17 +1,17 @@
 defmodule CB.Materializer.Sink do
   @moduledoc """
-  Behaviour for the destination a directive's action items are written to.
+  Behaviour for the destination a prescription's action items are written to.
 
-  Materialization turns a `type: "directive"` belief into a set of
+  Materialization turns a `type: "prescription"` belief into a set of
   concrete action items and persists them somewhere. *Where* is the
   host application's concern, not the framework's - a project tracker
   might create todos on issue objects, a CI system might open tickets, a
   notebook might append rows to a table. The framework only owns the
-  generic `directive -> action items -> sink -> link belief.materialized`
+  generic `prescription -> action items -> sink -> link belief.materialized`
   flow; the sink is the seam where the host plugs in.
 
-  A sink receives the directive belief plus the derived action items and
-  is responsible for persisting them. It returns one ref per persisted
+  A sink receives the prescription belief plus the derived action items
+  and is responsible for persisting them. It returns one ref per persisted
   item; those refs are recorded back onto the belief's `materialized`
   field by `CB.Belief.Materializer` so the link from belief to its
   materialized artifacts is inspectable.
@@ -23,7 +23,7 @@ defmodule CB.Materializer.Sink do
 
   `persist/3` takes:
 
-  - `directive` - the `CB.Belief` being materialized (its `id` is the
+  - `prescription` - the `CB.Belief` being materialized (its `id` is the
     provenance link recorded on each created item)
   - `action_items` - a list of string-keyed maps, each with at least an
     `"action"` key (free text describing what to do)
@@ -43,6 +43,10 @@ defmodule CB.Materializer.Sink do
   @typedoc "A reference to one persisted item, returned by the sink."
   @type ref :: %{required(String.t()) => term()}
 
-  @callback persist(directive :: Belief.t(), action_items :: [action_item()], opts :: keyword()) ::
+  @callback persist(
+              prescription :: Belief.t(),
+              action_items :: [action_item()],
+              opts :: keyword()
+            ) ::
               {:ok, [ref()]} | {:error, term()}
 end

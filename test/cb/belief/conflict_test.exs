@@ -6,7 +6,7 @@ defmodule CB.Belief.ConflictTest do
 
   @unrelated %Belief{
     id: "a100",
-    type: "primitive",
+    type: "attestation",
     kind: "rule",
     domain: "ops",
     tags: ["loan-policy"],
@@ -22,7 +22,7 @@ defmodule CB.Belief.ConflictTest do
 
   @shared_subject %Belief{
     id: "a200",
-    type: "primitive",
+    type: "attestation",
     kind: "observation",
     domain: "ops",
     tags: ["overdue"],
@@ -38,7 +38,7 @@ defmodule CB.Belief.ConflictTest do
 
   @shared_tag %Belief{
     id: "a300",
-    type: "primitive",
+    type: "attestation",
     kind: "note",
     domain: "ops",
     tags: ["fines"],
@@ -72,7 +72,7 @@ defmodule CB.Belief.ConflictTest do
 
   @schema_primitive %Belief{
     id: "a373",
-    type: "primitive",
+    type: "attestation",
     kind: "schema",
     domain: "system",
     tags: ["dag-schema", "lifecycle"],
@@ -93,7 +93,7 @@ defmodule CB.Belief.ConflictTest do
   # contract-level escalation.
   defp fifth_status_proposal do
     %Belief{
-      type: "primitive",
+      type: "attestation",
       kind: "schema",
       domain: "system",
       tags: ["dag-schema", "lifecycle"],
@@ -111,7 +111,7 @@ defmodule CB.Belief.ConflictTest do
   describe "preflight/2 classification" do
     test "no matches returns empty lists" do
       proposed = %Belief{
-        type: "primitive",
+        type: "attestation",
         kind: "rule",
         domain: "facilities",
         tags: ["hours"],
@@ -129,7 +129,7 @@ defmodule CB.Belief.ConflictTest do
 
     test "subject-only match classifies as supportive" do
       proposed = %Belief{
-        type: "primitive",
+        type: "attestation",
         kind: "note",
         domain: "circulation",
         tags: ["renewal"],
@@ -152,7 +152,7 @@ defmodule CB.Belief.ConflictTest do
 
     test "tag-only match classifies as neutral" do
       proposed = %Belief{
-        type: "primitive",
+        type: "attestation",
         kind: "note",
         domain: "finance",
         tags: ["fines"],
@@ -188,7 +188,7 @@ defmodule CB.Belief.ConflictTest do
 
     test "bare tag overlap with a contract is neutral but keeps the grade marker" do
       proposed = %Belief{
-        type: "directive",
+        type: "prescription",
         kind: "action-item",
         domain: "dev",
         tags: ["dag-schema", "backlog"],
@@ -214,7 +214,7 @@ defmodule CB.Belief.ConflictTest do
       active_schema_primitive = %Belief{@schema_primitive | status: "active"}
 
       proposed = %Belief{
-        type: "directive",
+        type: "prescription",
         kind: "action-item",
         domain: "dev",
         tags: ["dag-schema", "backlog"],
@@ -243,7 +243,7 @@ defmodule CB.Belief.ConflictTest do
       }
 
       proposed = %Belief{
-        type: "primitive",
+        type: "attestation",
         kind: "note",
         domain: "circulation",
         tags: ["renewal"],
@@ -278,7 +278,7 @@ defmodule CB.Belief.ConflictTest do
       existing = [@status_contract, @shared_subject, @shared_tag, @unrelated]
 
       proposal = %Belief{
-        type: "primitive",
+        type: "attestation",
         kind: "note",
         domain: "ops",
         tags: ["dag-schema", "fines"],

@@ -32,10 +32,12 @@ defmodule Mix.Tasks.Bs do
 
   ## Filters (for list)
 
-      primitive|compound|inference|directive    Filter by structural type
+      attestation|aggregation|inference|prescription
+                                        Filter by structural type (legacy
+                                        names still accepted this epoch)
       active|superseded|retracted|all   Filter by status (default: active)
-      contracts                         Contract-grade directives only
-      unlinked                          Directives with no materialized items
+      contracts                         Contract-grade prescriptions only
+      unlinked                          Prescriptions with no materialized items
       tag:<tag> / --tag <tag>           Filter by tag
       kind:<kind>                       Filter by semantic kind
       domain:<domain>                   Filter by domain
@@ -159,7 +161,7 @@ defmodule Mix.Tasks.Bs do
       resolved = Graph.resolve_deps(belief, idx)
 
       if resolved == [] do
-        IO.puts("#{id} has no dependencies (primitive).")
+        IO.puts("#{id} has no dependencies (attestation).")
       else
         Formatter.table(resolved, length(beliefs)) |> Enum.each(&IO.puts/1)
       end
@@ -414,7 +416,7 @@ defmodule Mix.Tasks.Bs do
     IO.puts("")
 
     IO.puts("Stale: #{s.stale_count}")
-    IO.puts("Unlinked directives: #{s.unlinked_directives}")
+    IO.puts("Unlinked prescriptions: #{s.unlinked_prescriptions}")
     IO.puts("")
 
     if s.artifact_schemes != %{} do
@@ -467,10 +469,12 @@ defmodule Mix.Tasks.Bs do
       stats                Graph-level statistics
 
     FILTERS (for list)
-      primitive|compound|inference|directive   Filter by structural type
+      attestation|aggregation|inference|prescription
+                                       Filter by structural type (legacy
+                                       names still accepted this epoch)
       active|superseded|retracted|all  Filter by status (default: active)
-      contracts                        Contract-grade directives only
-      unlinked                         Directives with no materialized items
+      contracts                        Contract-grade prescriptions only
+      unlinked                         Prescriptions with no materialized items
       tag:<tag> / kind:<kind> / domain:<domain> / subject_type:<type>
 
     FLAGS

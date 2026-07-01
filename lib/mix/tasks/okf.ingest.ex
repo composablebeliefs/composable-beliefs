@@ -1,14 +1,14 @@
 defmodule Mix.Tasks.Okf.Ingest do
-  @shortdoc "Ingest an OKF bundle into CB primitive beliefs (lossy up-conversion)"
+  @shortdoc "Ingest an OKF bundle into CB attestation beliefs (lossy up-conversion)"
   @moduledoc """
   #{@shortdoc}
 
       mix okf.ingest <bundle-root> [--ns NS] [--out FILE]
 
-  Reads a Knowledge/OKF bundle and emits CB belief JSON - one `primitive` per document,
+  Reads a Knowledge/OKF bundle and emits CB belief JSON - one `attestation` per document,
   grounded in `artifact: document:<path>`. Prints to stdout, or writes to FILE.
   Typed composition is NOT reconstructed (use /assert for that); this only lands the
-  documents as attributable primitives.
+  documents as attributable attestations.
   """
   use Mix.Task
 
@@ -34,7 +34,7 @@ defmodule Mix.Tasks.Okf.Ingest do
 
       path ->
         File.write!(path, content)
-        IO.puts("wrote #{length(ordered)} primitives to #{path}")
+        IO.puts("wrote #{length(ordered)} attestations to #{path}")
     end
   end
 end

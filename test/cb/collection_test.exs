@@ -32,7 +32,7 @@ defmodule CB.CollectionTest do
     Path.join(dir, "collections.json")
   end
 
-  defp belief(id), do: %{"id" => id, "type" => "primitive", "status" => "active"}
+  defp belief(id), do: %{"id" => id, "type" => "attestation", "status" => "active"}
 
   describe "registry/1" do
     @tag :tmp_dir

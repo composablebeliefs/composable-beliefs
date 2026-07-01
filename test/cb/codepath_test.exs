@@ -29,7 +29,7 @@ defmodule CB.CodepathTest do
   defp claim_belief(id, anchor, claim) do
     b(
       id: id,
-      type: "primitive",
+      type: "attestation",
       kind: "fact",
       claim: claim,
       artifact: "code:lib/pipe.ex##{anchor}"

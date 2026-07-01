@@ -8,9 +8,9 @@ defmodule CB.Belief.Conflict do
   output feeds an adjudication path - this module performs no writes and
   has no side effects.
 
-  Authoring-time preflight examines all active beliefs so that primitives
-  and compounds can also surface potential contradictions before the
-  write lands.
+  Authoring-time preflight examines all active beliefs so that
+  attestations and aggregations can also surface potential contradictions
+  before the write lands.
 
   ## Match axes
 
@@ -54,7 +54,7 @@ defmodule CB.Belief.Conflict do
 
   ## Example
 
-      iex> proposed = %CB.Belief{type: "primitive", domain: "system",
+      iex> proposed = %CB.Belief{type: "attestation", domain: "system",
       ...>   tags: ["dag-schema"], claim: "A fifth status value..."}
       iex> CB.Belief.Conflict.preflight(proposed)
       %{supportive: [...], neutral: [...], conflicting: [%{id: "c029", ...}]}

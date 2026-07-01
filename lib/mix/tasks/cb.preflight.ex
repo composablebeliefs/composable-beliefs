@@ -32,7 +32,7 @@ defmodule Mix.Tasks.Cb.Preflight do
   match.
 
       {
-        "type": "primitive",
+        "type": "attestation",
         "kind": "schema",
         "domain": "system",
         "tags": ["dag-schema", "lifecycle"],

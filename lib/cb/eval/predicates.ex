@@ -103,7 +103,7 @@ defmodule CB.Eval.Predicates do
 
   @doc """
   m-corroboration: every active `kind:verdict` inference depends,
-  directly or transitively, on at least one active compound tagged
+  directly or transitively, on at least one active aggregation tagged
   `cross-ruler-agreement`, or carries the tag `single-ruler` explicitly.
   """
   def verdicts_corroborated?(beliefs, _params) do
@@ -112,24 +112,24 @@ defmodule CB.Eval.Predicates do
     violations =
       for v <- verdicts(beliefs),
           "single-ruler" not in (v.tags || []),
-          not Enum.any?(closure(v, index), &agreement_compound?/1) do
+          not Enum.any?(closure(v, index), &agreement_aggregation?/1) do
         v.id
       end
 
     pass_or_detail(
       violations,
-      "verdicts with neither a cross-ruler-agreement compound in their dep closure nor the single-ruler tag"
+      "verdicts with neither a cross-ruler-agreement aggregation in their dep closure nor the single-ruler tag"
     )
   end
 
   @doc """
-  m-provenance: every active `kind:observation` primitive carries an
+  m-provenance: every active `kind:observation` attestation carries an
   `eval:` artifact and at least one evidence entry whose artifact is a
   raw-log pointer (`document:` or `https:`).
   """
   def observations_cite_runlogs?(beliefs, _params) do
     violations =
-      for o <- observation_primitives(beliefs),
+      for o <- observation_attestations(beliefs),
           scheme(o.artifact) != "eval" or not cites_runlog?(o) do
         o.id
       end
@@ -141,14 +141,14 @@ defmodule CB.Eval.Predicates do
   end
 
   @doc """
-  m-subjects: every active `kind:observation` primitive carries the
+  m-subjects: every active `kind:observation` attestation carries the
   six-subject convention (`eval`, `run`, `case`, `model`,
   `model_version`, `ruler`); an observation tagged `aggregate` may omit
   `case`.
   """
   def observation_subjects_complete?(beliefs, _params) do
     violations =
-      for o <- observation_primitives(beliefs),
+      for o <- observation_attestations(beliefs),
           missing = missing_subjects(o),
           missing != [] do
         "#{o.id} (missing: #{Enum.join(missing, ", ")})"
@@ -257,15 +257,23 @@ defmodule CB.Eval.Predicates do
   defp active?(b), do: b.status == "active"
 
   defp verdicts(beliefs) do
-    Enum.filter(beliefs, &(active?(&1) and &1.type == "inference" and &1.kind == "verdict"))
+    Enum.filter(
+      beliefs,
+      &(active?(&1) and Belief.normalize_type(&1.type) == "inference" and &1.kind == "verdict")
+    )
   end
 
-  defp observation_primitives(beliefs) do
-    Enum.filter(beliefs, &(active?(&1) and &1.type == "primitive" and &1.kind == "observation"))
+  defp observation_attestations(beliefs) do
+    Enum.filter(
+      beliefs,
+      &(active?(&1) and Belief.normalize_type(&1.type) == "attestation" and
+          &1.kind == "observation")
+    )
   end
 
-  defp agreement_compound?(b) do
-    active?(b) and b.type == "compound" and "cross-ruler-agreement" in (b.tags || [])
+  defp agreement_aggregation?(b) do
+    active?(b) and Belief.normalize_type(b.type) == "aggregation" and
+      "cross-ruler-agreement" in (b.tags || [])
   end
 
   # Transitive dep closure of a belief (excluding itself), cycle-safe.

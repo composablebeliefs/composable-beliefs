@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 14,
+  "count": 17,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -43,6 +43,21 @@
       ],
       "status": "active",
       "timestamp": "2026-06-25"
+    },
+    {
+      "path": "contract-predicate-demotion.md",
+      "type": "concept",
+      "title": "Demote the contract boolean to a derived predicate",
+      "description": "Covers dropping the stored `contract` field - redundant with rules/invariants by c056's biconditional, zero-drift across 39 nodes, a a386-style stored derivation - so contract-grade-ness is computed on read; and collapsing the c059 \"contracts may stand alone\" carve-out that the demotion exposes as arbitrary, so every prescription grounds in deps or a stipulation artifact.",
+      "tags": [
+        "cb",
+        "schema",
+        "contract",
+        "grounding",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01"
     },
     {
       "path": "index.md",
@@ -140,6 +155,20 @@
       "timestamp": "2026-06-26"
     },
     {
+      "path": "structural-type-rename.md",
+      "type": "concept",
+      "title": "Rename the four structural types to nominalized epistemic acts",
+      "description": "Covers renaming the type enum from primitive/compound/inference/directive to attestation/aggregation/inference/prescription - nominalizations of c051's four verbs (attest/aggregate/infer/prescribe) - fixing the mixed shape-word/act-word register, why compound and inference cannot collapse, why prescription is preferred over actualization, and the layered vocabulary migration.",
+      "tags": [
+        "cb",
+        "schema",
+        "structural-types",
+        "nursery"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01"
+    },
+    {
       "path": "thread-repo-binding.md",
       "type": "concept",
       "title": "Bind each thread to the repo it relates to (thread init)",
@@ -167,6 +196,22 @@
       "status": "active",
       "timestamp": "2026-06-25",
       "artifact": "session:2026-06-25-belief-audit"
+    },
+    {
+      "path": "threads/2026-07-01-structural-type-vocabulary.md",
+      "type": "thread",
+      "title": "2026-07-01 - structural-type vocabulary (rename + contract demotion)",
+      "description": "Covers the design conversation that questioned the contract boolean and the primitive/compound/directive names, arriving at a four-type rename to nominalized epistemic acts, a demotion of the contract field to a derived predicate, the c059 carve-out that demotion exposes, and the decision to persist the work as nursery seeds rather than a separate plan. Use when revisiting the structural-type vocabulary or the seed-vs-plan question.",
+      "tags": [
+        "cb",
+        "schema",
+        "structural-types",
+        "nursery",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01",
+      "artifact": "session:2026-07-01-structural-type-vocabulary"
     },
     {
       "path": "threads/index.md",

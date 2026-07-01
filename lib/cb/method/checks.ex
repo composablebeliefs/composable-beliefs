@@ -4,7 +4,7 @@ defmodule CB.Method.Checks do
   contracts as a static verification step.
 
   Discovery is role-based, like everything else in the verifier: from
-  the loaded union, the pass selects active contract-grade directives
+  the loaded union, the pass selects active contract-grade prescriptions
   of the catalogued `implies` kind whose rules route on
   `{"when": {"verify": "collection"}, "requires": "<predicate>"}` - by
   rule shape, not by namespace or id, so any collection may declare such

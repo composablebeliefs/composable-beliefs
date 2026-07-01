@@ -2,7 +2,7 @@ defmodule CB.Belief.EditPairs do
   @moduledoc """
   Query and format edit-pair beliefs for composition subagent prompts.
 
-  Edit-pairs are primitive beliefs with `kind: "edit-pair"` that record
+  Edit-pairs are attestation beliefs with `kind: "edit-pair"` that record
   agent-proposed text alongside user-edited sent text. Their derived
   implications capture communication patterns.
 
@@ -31,7 +31,7 @@ defmodule CB.Belief.EditPairs do
 
       implications =
         all
-        |> Enum.filter(&(&1["type"] == "directive"))
+        |> Enum.filter(&(CB.Belief.normalize_type(&1["type"]) == "prescription"))
         |> Enum.filter(&(&1["status"] == "active"))
         |> Enum.filter(fn a ->
           deps = a["deps"] || []

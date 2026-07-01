@@ -5,10 +5,10 @@ defmodule CB.Belief.Formatter do
   Terminal output for beliefs - table, detail, tree (DAG visualization).
 
   Renders the CURRENT belief schema (structural `type`, `artifact`,
-  `contract`, structural `support` counts). The tree view renders a
-  belief's dependency graph using box-drawing characters, recursively
-  walking deps to show the full reasoning chain from directives and
-  inferences down to primitives.
+  derived contract-grade marker, structural `support` counts). The tree
+  view renders a belief's dependency graph using box-drawing characters,
+  recursively walking deps to show the full reasoning chain from
+  prescriptions and inferences down to attestations.
   """
 
   alias CB.Belief
@@ -22,11 +22,15 @@ defmodule CB.Belief.Formatter do
   defp color(:red), do: "\e[31m"
   defp color(:green), do: "\e[32m"
 
-  defp type_color("primitive"), do: color(:cyan)
-  defp type_color("compound"), do: color(:yellow)
-  defp type_color("inference"), do: color(:magenta)
-  defp type_color("directive"), do: color(:green)
-  defp type_color(_), do: color(:reset)
+  defp type_color(type) do
+    case Belief.normalize_type(type) do
+      "attestation" -> color(:cyan)
+      "aggregation" -> color(:yellow)
+      "inference" -> color(:magenta)
+      "prescription" -> color(:green)
+      _ -> color(:reset)
+    end
+  end
 
   defp status_indicator(%{status: "active"}), do: ""
 
@@ -103,7 +107,7 @@ defmodule CB.Belief.Formatter do
     lines = lines ++ subjects_lines(b.subjects)
 
     lines =
-      if b.type == "primitive" do
+      if Belief.normalize_type(b.type) == "attestation" do
         lines ++ ["Artifact:    #{b.artifact || "-"}"]
       else
         dep_str = Enum.join(b.deps || [], ", ")
@@ -114,7 +118,7 @@ defmodule CB.Belief.Formatter do
     lines = lines ++ evidence_lines(b.evidence)
 
     lines =
-      if b.type == "directive" do
+      if Belief.normalize_type(b.type) == "prescription" do
         mat =
           case b.materialized do
             nil -> "-"
@@ -228,7 +232,7 @@ defmodule CB.Belief.Formatter do
 
     extra =
       cond do
-        b.type == "primitive" and b.artifact ->
+        Belief.normalize_type(b.type) == "attestation" and b.artifact ->
           art_line = "#{meta_prefix}  #{color(:dim)}artifact: #{b.artifact}#{rst}"
 
           evidence_lines =
@@ -248,7 +252,7 @@ defmodule CB.Belief.Formatter do
 
           [art_line] ++ evidence_lines
 
-        b.type == "directive" and b.materialized ->
+        Belief.normalize_type(b.type) == "prescription" and b.materialized ->
           mat = b.materialized
           count = length(mat["todos"] || [])
           ["#{meta_prefix}  #{color(:dim)}materialized: #{mat["date"]} (#{count} item(s))#{rst}"]

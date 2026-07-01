@@ -13,7 +13,7 @@ defmodule CB.Belief.GraphTest do
     [
       %Belief{
         id: "a001",
-        type: "primitive",
+        type: "attestation",
         kind: "rule",
         claim: "fact one",
         status: "active",
@@ -21,7 +21,7 @@ defmodule CB.Belief.GraphTest do
       },
       %Belief{
         id: "a002",
-        type: "primitive",
+        type: "attestation",
         kind: "rule",
         claim: "fact two",
         status: "active",
@@ -29,7 +29,7 @@ defmodule CB.Belief.GraphTest do
       },
       %Belief{
         id: "a010",
-        type: "compound",
+        type: "aggregation",
         kind: "observation",
         claim: "combined",
         status: "active",
@@ -37,7 +37,7 @@ defmodule CB.Belief.GraphTest do
       },
       %Belief{
         id: "a020",
-        type: "directive",
+        type: "prescription",
         kind: "rule",
         claim: "action",
         status: "active",
@@ -51,7 +51,7 @@ defmodule CB.Belief.GraphTest do
       beliefs = [
         %Belief{
           id: "cb:c029",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "x",
           status: "active",
@@ -66,7 +66,7 @@ defmodule CB.Belief.GraphTest do
       beliefs = [
         %Belief{
           id: "cb:c029",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "x",
           status: "active",
@@ -81,7 +81,7 @@ defmodule CB.Belief.GraphTest do
       beliefs = [
         %Belief{
           id: "cb:c029",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "x",
           status: "active",
@@ -96,7 +96,7 @@ defmodule CB.Belief.GraphTest do
       beliefs = [
         %Belief{
           id: "cb:c029",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "x",
           status: "active",
@@ -104,7 +104,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "ops:c029",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "y",
           status: "active",
@@ -163,7 +163,7 @@ defmodule CB.Belief.GraphTest do
           [
             %Belief{
               id: "a003",
-              type: "primitive",
+              type: "attestation",
               kind: "rule",
               claim: "newer fact",
               status: "active",
@@ -171,7 +171,7 @@ defmodule CB.Belief.GraphTest do
             },
             %Belief{
               id: "a001",
-              type: "primitive",
+              type: "attestation",
               kind: "rule",
               claim: "old fact",
               status: "superseded",
@@ -195,7 +195,7 @@ defmodule CB.Belief.GraphTest do
       d = [
         %Belief{
           id: "p1",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "p",
           status: "superseded",
@@ -204,7 +204,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "p2",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "p2",
           status: "active",
@@ -212,7 +212,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "co",
-          type: "compound",
+          type: "aggregation",
           kind: "observation",
           claim: "co",
           status: "active",
@@ -220,7 +220,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "im",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "im",
           status: "active",
@@ -256,8 +256,8 @@ defmodule CB.Belief.GraphTest do
 
     test "no path between unconnected nodes" do
       d = [
-        %Belief{id: "x", type: "primitive", kind: "rule", claim: "x", status: "active", deps: []},
-        %Belief{id: "y", type: "primitive", kind: "rule", claim: "y", status: "active", deps: []}
+        %Belief{id: "x", type: "attestation", kind: "rule", claim: "x", status: "active", deps: []},
+        %Belief{id: "y", type: "attestation", kind: "rule", claim: "y", status: "active", deps: []}
       ]
 
       idx = Graph.index(d)
@@ -270,7 +270,7 @@ defmodule CB.Belief.GraphTest do
       d = [
         %Belief{
           id: "v1",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "v1",
           status: "superseded",
@@ -280,7 +280,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "v2",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "v2",
           status: "superseded",
@@ -290,7 +290,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "v3",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "v3",
           status: "active",
@@ -316,7 +316,7 @@ defmodule CB.Belief.GraphTest do
       d = [
         %Belief{
           id: "a1",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "c",
           status: "active",
@@ -325,7 +325,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "a2",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "c",
           status: "active",
@@ -345,9 +345,9 @@ defmodule CB.Belief.GraphTest do
     test "stats reports type and status frequencies" do
       s = Graph.stats(dag())
       assert s.total == 4
-      assert s.by_type == %{"primitive" => 2, "compound" => 1, "directive" => 1}
+      assert s.by_type == %{"attestation" => 2, "aggregation" => 1, "prescription" => 1}
       assert s.stale_count == 0
-      assert s.unlinked_directives == 1
+      assert s.unlinked_prescriptions == 1
     end
   end
 
@@ -363,7 +363,7 @@ defmodule CB.Belief.GraphTest do
       [
         %Belief{
           id: "r001",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "old node, new evidence",
           status: "active",
@@ -376,7 +376,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "r002",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "boundary node",
           status: "superseded",
@@ -386,7 +386,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "r003",
-          type: "directive",
+          type: "prescription",
           kind: "rule",
           claim: "successor",
           status: "active",
@@ -395,7 +395,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "r004",
-          type: "directive",
+          type: "prescription",
           kind: "action-item",
           claim: "materialized in window",
           status: "active",
@@ -405,7 +405,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "r005",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "retracted in window",
           status: "retracted",
@@ -415,7 +415,7 @@ defmodule CB.Belief.GraphTest do
         },
         %Belief{
           id: "r006",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "entirely before the window",
           status: "active",
@@ -444,7 +444,7 @@ defmodule CB.Belief.GraphTest do
       dangling = [
         %Belief{
           id: "r010",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "x",
           status: "superseded",
@@ -468,7 +468,7 @@ defmodule CB.Belief.GraphTest do
       same_day = [
         %Belief{
           id: "r020",
-          type: "primitive",
+          type: "attestation",
           kind: "rule",
           claim: "x",
           status: "active",
