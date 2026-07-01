@@ -59,3 +59,5 @@ and this doc evacuates - queued, pending transcript-format's persist-raw resolut
 ## Related
 - [seed-absorption](seed-absorption.md) - the mechanism that makes path 1 safe.
 - [citation-discipline](citation-discipline.md) - the rule (a411) that lets Layer 1 drop.
+- [seed-lifecycle](seed-lifecycle.md) - contests this model's evacuation half (terminal
+  seeds should graduate, not delete) while building on its focus-as-unit half.

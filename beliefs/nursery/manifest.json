@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 14,
+  "count": 15,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -54,7 +54,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-06-26"
+      "timestamp": "2026-07-01"
     },
     {
       "path": "negative-case-field.md",
@@ -109,7 +109,22 @@
         "provenance"
       ],
       "status": "active",
-      "timestamp": "2026-06-26"
+      "timestamp": "2026-07-01"
+    },
+    {
+      "path": "seed-lifecycle.md",
+      "type": "concept",
+      "title": "Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)",
+      "description": "Covers whether terminal seeds persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted seeds and plans collapse into one durable-brief concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.",
+      "tags": [
+        "cb",
+        "nursery",
+        "lifecycle",
+        "plans",
+        "meta"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01"
     },
     {
       "path": "seed-recency.md",
