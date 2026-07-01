@@ -86,7 +86,7 @@ defmodule CB.Eval.ManifestTest do
 
       assert length(beliefs) == 20
       assert Enum.count(beliefs, &("aggregate" in &1["tags"])) == 8
-      assert Enum.all?(beliefs, &(&1["type"] == "primitive" and &1["kind"] == "observation"))
+      assert Enum.all?(beliefs, &(&1["type"] == "attestation" and &1["kind"] == "observation"))
       assert Enum.all?(beliefs, &("fixture" in &1["tags"]))
     end
 
@@ -168,7 +168,7 @@ defmodule CB.Eval.ManifestTest do
     end
 
     test "unrelated existing beliefs do not interfere" do
-      other = Belief.from_map(%{"id" => "fx:a1", "type" => "primitive", "status" => "active"})
+      other = Belief.from_map(%{"id" => "fx:a1", "type" => "attestation", "status" => "active"})
       generated = Manifest.to_beliefs(fixture(), "fx")
       assert %{noop: [], conflicts: []} = Manifest.plan(generated, [other])
     end

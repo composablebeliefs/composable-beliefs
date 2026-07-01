@@ -27,25 +27,47 @@ defmodule CB.Belief do
   The `confidence`, `source`, and `implication` fields were expunged from
   earlier revisions of the schema: confidence as a subjective metric doing
   no load-bearing work, `source` renamed to the structured `:artifact`
-  field, and `:implication` deleted in favor of a structural `:contract`
-  boolean marking contract-grade beliefs. Use `CB.Belief.support/1`
+  field, and `:implication` deleted because meaning is carried by `claim`
+  plus `deps`. The stored `contract` boolean followed the same path: a
+  field provably equal to `rules != [] or invariants != []` carries no
+  independent information, so contract-grade-ness is computed on read by
+  `contract?/1` (unmigrated data may still carry the key; it round-trips
+  untouched but is no longer trusted). Use `CB.Belief.support/1`
   for structural-support metrics derived from the belief's own graph
   position.
 
   ## Struct summary
 
-  Four structural types, one per epistemic operation, are the only values
-  of the `type` field: `primitive` (attest - what a single source said),
-  `compound` (aggregate - states exactly what its deps jointly state),
-  `inference` (infer - a descriptive conclusion licensed to exceed its
-  deps), and `directive` (prescribe - something that should happen or must
-  hold). Contract-grade directives carry `contract: true` and non-empty
-  `rules` and/or `invariants`; detect them via `CB.Belief.contract?/1`.
+  Four structural types, the nominalizations of the four epistemic
+  operations, are the only values of the `type` field: `attestation`
+  (what a single source said), `aggregation` (states exactly what its
+  deps jointly state), `inference` (a descriptive conclusion licensed to
+  exceed its deps), and `prescription` (something that should happen or
+  must hold). Contract-grade is not a type or a stored field but a
+  derived predicate: a prescription with non-empty `rules` and/or
+  `invariants` is contract-grade; detect it via `CB.Belief.contract?/1`.
   `kind`, `domain`, and the artifact's scheme are enum-validated. `tags`
   is a flat list of strings for cross-cutting concerns.
+
+  ## Legacy type vocabulary
+
+  The types were renamed from `primitive`/`compound`/`inference`/
+  `directive` as a vocabulary migration (same identity, new label - the
+  `source` -> `artifact` precedent). During the compat epoch the old
+  strings remain readable: `from_map/1` normalizes them via
+  `normalize_type/1`, and `to_map/1` round-trips stored data unchanged,
+  so a graph still carrying the old vocabulary is never rewritten by a
+  read-modify-write cycle.
   """
 
-  @types ~w(primitive compound inference directive)
+  @types ~w(attestation aggregation inference prescription)
+
+  # Compat epoch: the pre-rename vocabulary, normalized on read.
+  @legacy_type_map %{
+    "primitive" => "attestation",
+    "compound" => "aggregation",
+    "directive" => "prescription"
+  }
   @statuses ~w(active superseded retracted retired)
 
   @fields [
@@ -70,7 +92,8 @@ defmodule CB.Belief do
     :retracted_on,
     :retracted_reason,
     :created,
-    :_keys
+    :_keys,
+    :_raw_type
   ]
 
   @ordered_keys ~w(id type kind domain tags name who claim rules invariants contract artifact evidence subjects deps materialized status superseded_by retracted_on retracted_reason created)
@@ -105,21 +128,41 @@ defmodule CB.Belief do
           retracted_on: String.t() | nil,
           retracted_reason: String.t() | nil,
           created: String.t() | nil,
-          _keys: MapSet.t() | nil
+          _keys: MapSet.t() | nil,
+          _raw_type: String.t() | nil
         }
 
   @doc """
   Check if a belief is contract-grade.
 
-  Reads the structural `:contract` field. The biconditional with non-empty
-  `rules`/`invariants` is enforced by `mix cb.verify.schema`; this predicate
-  trusts the field.
+  Derived, not stored: a belief is contract-grade iff its `rules` or
+  `invariants` are non-empty. The stored `contract` field that older
+  data still carries is ignored here (it round-trips through
+  serialization untouched); `mix cb.verify.schema` checks that any
+  stored field agrees with this definition.
   """
-  def contract?(%__MODULE__{contract: true}), do: true
+  def contract?(%__MODULE__{rules: rules, invariants: invariants}) do
+    (is_list(rules) and rules != []) or (is_list(invariants) and invariants != [])
+  end
+
   def contract?(_), do: false
 
   @doc "Valid structural types."
   def types, do: @types
+
+  @doc """
+  Normalize a structural-type string to the current vocabulary.
+
+  Maps the legacy names (`primitive`, `compound`, `directive`) to their
+  renamed forms (`attestation`, `aggregation`, `prescription`); current
+  names and anything unrecognized pass through unchanged. Comparison
+  sites normalize before matching so both vocabularies stay valid for
+  the compat epoch.
+  """
+  def normalize_type(type), do: Map.get(@legacy_type_map, type, type)
+
+  @doc "Legacy structural-type names still accepted on read (old -> new)."
+  def legacy_type_map, do: @legacy_type_map
 
   @doc "Valid status values."
   def statuses, do: @statuses
@@ -165,11 +208,18 @@ defmodule CB.Belief do
     }
   end
 
-  @doc "Convert a JSON map (string keys) to a Belief struct."
+  @doc """
+  Convert a JSON map (string keys) to a Belief struct.
+
+  The structural type is normalized to the current vocabulary on read
+  (`normalize_type/1`); the stored string is kept in `_raw_type` so
+  `to_map/1` writes back exactly what the source carried.
+  """
   def from_map(map) when is_map(map) do
     %__MODULE__{
       id: map["id"],
-      type: map["type"],
+      type: normalize_type(map["type"]),
+      _raw_type: map["type"],
       kind: map["kind"],
       domain: map["domain"],
       tags: map["tags"] || [],
@@ -194,6 +244,7 @@ defmodule CB.Belief do
         |> MapSet.delete("confidence")
         |> MapSet.delete("source")
         |> MapSet.delete("implication")
+        |> MapSet.delete("contract")
     }
   end
 
@@ -204,6 +255,10 @@ defmodule CB.Belief do
   in-memory value is set - so a field assigned after `from_map/1` (e.g.
   `materialized` on a record authored without the key) is never silently
   dropped, while absent keys still round-trip without null/[] churn.
+
+  `type` writes back the string the source carried (`_raw_type`), so a
+  graph still holding the legacy vocabulary is not rewritten by a
+  read-modify-write cycle during the compat epoch.
   """
   def to_map(%__MODULE__{} = a) do
     present_keys = a._keys || MapSet.new(@ordered_keys)
@@ -211,7 +266,7 @@ defmodule CB.Belief do
     pairs =
       Enum.flat_map(@ordered_keys, fn key ->
         atom = String.to_existing_atom(key)
-        value = Map.get(a, atom)
+        value = if key == "type", do: a._raw_type || a.type, else: Map.get(a, atom)
 
         if MapSet.member?(present_keys, key) or (value != nil and value != []) do
           [{key, order_nested(key, value)}]

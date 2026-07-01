@@ -8,7 +8,7 @@ defmodule CB.Audit.Conflicts do
   - **Stale overrides** - active nodes whose deps include superseded or
     retracted nodes. Delegates to `CB.Belief.Graph.stale/1`.
 
-  - **Scope overlaps** - pairs of active directives that share scope
+  - **Scope overlaps** - pairs of active prescriptions that share scope
     (domain + tags + subjects). Overlap does not imply contradiction;
     it means the nodes are close enough that a contradiction would be
     meaningful. The agent interprets whether a pair actually contradicts,
@@ -24,7 +24,7 @@ defmodule CB.Audit.Conflicts do
 
   ## Scope rules
 
-  Two active directives share scope iff:
+  Two active prescriptions share scope iff:
 
   1. They are in the same domain (or both have no domain), AND
   2. At least one of:
@@ -48,33 +48,38 @@ defmodule CB.Audit.Conflicts do
   - `:tag` - only consider nodes with this tag
   - `:domain` - only consider nodes in this domain
   - `:id` - only consider nodes that share scope with this node ID
-  - `:contracts_only` - limit to contract-grade directives
+  - `:contracts_only` - limit to contract-grade prescriptions
 
   Returns a map with `:stale_overrides`, `:scope_overlaps`, and summary counts.
   """
   def scan(opts \\ []) do
     with {:ok, all} <- BeliefStore.read() do
-      directives =
+      prescriptions =
         all
-        |> Enum.filter(&(&1.type == "directive" and &1.status == "active"))
+        |> Enum.filter(
+          &(Belief.normalize_type(&1.type) == "prescription" and &1.status == "active")
+        )
         |> maybe_filter(opts)
 
       %{
         stale_overrides: stale_overrides(all),
-        scope_overlaps: scope_overlaps(directives),
-        total_directives: length(directives),
+        scope_overlaps: scope_overlaps(prescriptions),
+        total_prescriptions: length(prescriptions),
         total_nodes: length(all)
       }
     end
   end
 
-  @doc "Find all active directives that share scope with a given node."
+  @doc "Find all active prescriptions that share scope with a given node."
   def related(node_id, opts \\ []) do
     with {:ok, all} <- BeliefStore.read(),
          {:ok, target} <- find_node(all, node_id) do
       others =
         all
-        |> Enum.filter(&(&1.type == "directive" and &1.status == "active" and &1.id != node_id))
+        |> Enum.filter(
+          &(Belief.normalize_type(&1.type) == "prescription" and &1.status == "active" and
+              &1.id != node_id)
+        )
         |> maybe_filter(opts)
 
       overlaps =

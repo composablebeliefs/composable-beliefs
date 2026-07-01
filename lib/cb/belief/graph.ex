@@ -212,7 +212,7 @@ defmodule CB.Belief.Graph do
     direct_stale =
       beliefs
       |> Enum.filter(fn a ->
-        a.type != "primitive" and a.status == "active" and
+        CB.Belief.normalize_type(a.type) != "attestation" and a.status == "active" and
           Enum.any?(a.deps || [], &MapSet.member?(superseded_ids, &1))
       end)
       |> Enum.map(fn a ->
@@ -234,7 +234,7 @@ defmodule CB.Belief.Graph do
     next =
       beliefs
       |> Enum.filter(fn a ->
-        a.type != "primitive" and a.status == "active" and
+        CB.Belief.normalize_type(a.type) != "attestation" and a.status == "active" and
           not MapSet.member?(found_ids, a.id) and
           Enum.any?(a.deps || [], &MapSet.member?(found_ids, &1))
       end)
@@ -346,18 +346,22 @@ defmodule CB.Belief.Graph do
   def stats(beliefs) do
     active = Enum.filter(beliefs, &(&1.status == "active"))
 
-    by_type = Enum.frequencies_by(beliefs, & &1.type)
+    by_type = Enum.frequencies_by(beliefs, &CB.Belief.normalize_type(&1.type))
     by_status = Enum.frequencies_by(beliefs, & &1.status)
 
     stale_count = length(stale(beliefs))
 
     unlinked =
       active
-      |> Enum.count(&(&1.type == "directive" and &1.materialized == nil))
+      |> Enum.count(
+        &(CB.Belief.normalize_type(&1.type) == "prescription" and &1.materialized == nil)
+      )
 
     artifact_schemes =
       beliefs
-      |> Enum.filter(&(&1.type == "primitive" and &1.artifact != nil))
+      |> Enum.filter(
+        &(CB.Belief.normalize_type(&1.type) == "attestation" and &1.artifact != nil)
+      )
       |> Enum.map(fn a ->
         case String.split(a.artifact, ":", parts: 2) do
           [scheme, _] -> scheme
@@ -368,7 +372,7 @@ defmodule CB.Belief.Graph do
 
     dep_depths =
       active
-      |> Enum.filter(&(&1.type != "primitive"))
+      |> Enum.filter(&(CB.Belief.normalize_type(&1.type) != "attestation"))
       |> Enum.map(&max_depth(&1.id, index(beliefs), MapSet.new()))
       |> Enum.sort()
 
@@ -386,7 +390,7 @@ defmodule CB.Belief.Graph do
       by_type: by_type,
       by_status: by_status,
       stale_count: stale_count,
-      unlinked_directives: unlinked,
+      unlinked_prescriptions: unlinked,
       artifact_schemes: artifact_schemes,
       dep_depths: dep_depths,
       most_depended: dep_counts

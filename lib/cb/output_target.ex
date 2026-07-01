@@ -2,7 +2,7 @@ defmodule CB.OutputTarget do
   @moduledoc """
   Shared logic for compiling output-target contracts into markdown files.
 
-  An output-target contract is a `type: "directive"` node with
+  An output-target contract is a `type: "prescription"` node with
   `kind: "output-target"` that declares:
   - `output_path` (in rules): where to write the file
   - `header_comment` (in rules, optional): top-of-file comment

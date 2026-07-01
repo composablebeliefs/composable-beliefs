@@ -23,7 +23,7 @@ defmodule Mix.Tasks.Cb.Import do
     "new_beliefs": [
       {
         "id": "cb:a305",
-        "type": "primitive",
+        "type": "attestation",
         "kind": "convention",
         "domain": "dev",
         "tags": ["docs"],

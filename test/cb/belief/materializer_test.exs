@@ -38,7 +38,7 @@ defmodule CB.Belief.MaterializerTest do
     nodes = [
       %{
         "id" => "a020",
-        "type" => "directive",
+        "type" => "prescription",
         "kind" => "rule",
         "domain" => "ops",
         "tags" => ["hold-queue"],
@@ -50,7 +50,7 @@ defmodule CB.Belief.MaterializerTest do
       },
       %{
         "id" => "a001",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "rule",
         "domain" => "ops",
         "claim" => "Loan period is 21 days",
@@ -88,7 +88,7 @@ defmodule CB.Belief.MaterializerTest do
     assert {:ok, %{belief_id: "a020", entries: entries}} =
              Materializer.materialize(spec, sink: EchoSink)
 
-    # Sink received the directive belief + action items.
+    # Sink received the prescription belief + action items.
     assert_received {:echo, "a020", [%{"action" => "Notify next member in queue"} | _], _opts}
 
     assert entries == [
@@ -149,10 +149,10 @@ defmodule CB.Belief.MaterializerTest do
     assert %{"todos" => [%{"notes" => "a020: holds expire after 7 days"} | _]} = node.materialized
   end
 
-  test "refuses to materialize a non-directive" do
+  test "refuses to materialize a non-prescription" do
     spec = %{"belief_id" => "a001", "action_items" => [%{"action" => "x"}]}
 
-    assert {:error, {:not_directive, "primitive"}} =
+    assert {:error, {:not_prescription, "attestation"}} =
              Materializer.materialize(spec, sink: EchoSink)
   end
 
@@ -199,7 +199,7 @@ defmodule CB.Belief.MaterializerTest do
       nodes = [
         %{
           "id" => "cb:a020",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "rule",
           "domain" => "ops",
           "claim" => "When a hold expires the item returns to available",
@@ -209,7 +209,7 @@ defmodule CB.Belief.MaterializerTest do
         },
         %{
           "id" => "lib:a021",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "rule",
           "domain" => "ops",
           "claim" => "Duplicated local id in a second namespace",
@@ -219,7 +219,7 @@ defmodule CB.Belief.MaterializerTest do
         },
         %{
           "id" => "cb:a021",
-          "type" => "directive",
+          "type" => "prescription",
           "kind" => "rule",
           "domain" => "ops",
           "claim" => "Duplicated local id in the first namespace",
@@ -256,7 +256,7 @@ defmodule CB.Belief.MaterializerTest do
 
   # Sanity: the Belief alias is used so the module compiles cleanly even
   # if future edits reference it directly.
-  test "directive belief shape" do
-    assert %Belief{type: "directive"} = Belief.from_map(%{"id" => "x", "type" => "directive"})
+  test "prescription belief shape" do
+    assert %Belief{type: "prescription"} = Belief.from_map(%{"id" => "x", "type" => "prescription"})
   end
 end

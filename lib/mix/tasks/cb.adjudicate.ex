@@ -124,7 +124,7 @@ defmodule Mix.Tasks.Cb.Adjudicate do
   def render(%{outcome: "defer"} = s) do
     """
     Adjudication applied: defer
-      deferral primitive: #{s.new_id}
+      deferral attestation: #{s.new_id}
       conflicting: #{s.conflicting_id} (untouched)
       path: #{s.path}\
     """
