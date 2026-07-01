@@ -147,6 +147,31 @@ checked, so enforcement is prospective. Discharged a563 through its own gate: t0
 closed with `--commit` citing the implementing sha (the first commit key in the todo
 collection), evidence appended with the `commit:` artifact.
 
+## Postscript 3: session close (merge, PR, and this document)
+
+**User:** Pull main.
+
+**Claude:** Merged `origin/main` a second time - PR #3 landed the hand-captured
+seed-lifecycle thread (the graduate-vs-evacuate deliberation). One conflict: both
+sessions had appended an entry to the threads index Contents list; resolved by keeping
+both. All gates green after the merge (`023b143`).
+
+**User:** Create pr.
+
+**Claude:** Opened PR #4 (composablebeliefs/composable-beliefs#4) carrying the whole
+epoch from this session: the graph migration and contract demotion, the follow-up
+prescriptions and this thread archive, the `commit:` scheme with two-way enforcement,
+and the todo-close gate - nine commits on top of main.
+
+**User:** Is this thread itself persisted in the nursery threads?
+
+**Claude:** Yes - this document, indexed in the threads Contents, extended by
+postscript as the session kept going. With the standing caveats: a transcript is not
+provenance (the graph's evidence entries, seed execution records, `commit:` citations,
+and `Belief:` trailers are), and no `Stop` hook runs in these web sessions, so this is
+hand-captured against the still-contested transcript format. This postscript closes the
+session; if further work lands here, it extends the record once more.
+
 ## Related
 
 - [structural-type-rename](../structural-type-rename.md) - the brief this session
