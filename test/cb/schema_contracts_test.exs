@@ -54,7 +54,7 @@ defmodule CB.SchemaContractsTest do
       c053 = fetch(by_id, "cb:c053")
       assert c053.kind == "state-machine"
       assert c053.status == "active"
-      assert c053.contract == true
+      assert Belief.contract?(c053)
     end
 
     test "StateMachine-derived state set equals CB.Belief.statuses/0", %{by_id: by_id} do

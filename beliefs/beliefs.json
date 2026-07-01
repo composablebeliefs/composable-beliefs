@@ -1,7 +1,7 @@
 [
   {
     "id": "cb:a098",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [],
     "claim": "Assertions express extractable behavioral patterns as beliefs, not individual occurrences. Incidents that evidence the pattern belong in the evidence array, not as the claim itself.",
@@ -25,7 +25,7 @@
   },
   {
     "id": "cb:a110",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Compound assertions survive session boundaries - an implication created in March is still there in April, still linked to its deps, still flaggable if a dep changes. Without the DAG, every session re-reads raw data and reconstructs some fraction of the reasoning, losing compound insights that depend on having the right facts adjacent at the right time.",
@@ -44,7 +44,7 @@
   },
   {
     "id": "cb:a112",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "A centralized graph in a single file is preferred over per-entity belief files because cross-entity composition is the primary value. A primitive about one entity composes with a primitive about another to produce an implication - splitting by entity would fragment the graph. Subject-based queries provide per-entity views without separate files.",
@@ -63,7 +63,7 @@
   },
   {
     "id": "cb:a113",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Sources are not beliefs. A source document is raw material from which primitives are extracted. The graph stores structured beliefs; sources store evidence. The relationship is bidirectional - sources feed primitives upstream (a document becomes a primitive), and syntheses reference beliefs downstream (an analysis cites belief IDs). Both directions can be active on the same document.",
@@ -82,7 +82,7 @@
   },
   {
     "id": "cb:a114",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Multi-paragraph analyses should not be belief kinds. The schema is built around atomic, composable beliefs - the claim field is a one-liner. Stuffing prose into a belief inverts the relationship: the prose becomes the point and the claim becomes a title. Analyses live as source documents referencing belief IDs inline.",
@@ -101,7 +101,7 @@
   },
   {
     "id": "cb:a115",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Self-referential beliefs use the existing schema with subject type 'agent' - no special case needed. They capture agent operational patterns, failure modes, and collaboration dynamics using the same primitive/compound/implication structure as domain beliefs. Human-observed data (corrections, failure observations) produces the highest-quality self-referential primitives.",
@@ -120,7 +120,7 @@
   },
   {
     "id": "cb:a117",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "A traversal-path belief presents a path through graph nodes rather than synthesizing deps into a single belief. The routing IS the argument - like a modular synthesizer patch. The conclusion is separable from the routing, enabling independent evaluation.",
@@ -139,7 +139,7 @@
   },
   {
     "id": "cb:a118",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [],
     "claim": "Every primitive sourced from a document or email carries an evidence array with source details including dates and specific descriptions of what was observed. The claim is the agent's interpretation; the evidence carries the factual basis. The gap between claim and evidence is where misinterpretation lives and can be audited.",
@@ -158,7 +158,7 @@
   },
   {
     "id": "cb:a119",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [],
     "claim": "Beliefs are created at extraction time - when the agent is actively reading a source or reasoning about entities - not backfilled retroactively. The exception is an explicit invocation to formalize prior reasoning from a conversation.",
@@ -177,7 +177,7 @@
   },
   {
     "id": "cb:a120",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [],
     "claim": "Beliefs and contracts are two roles sharing one store. Ordinary beliefs become stale and get superseded. Contracts are behavioral invariants that get violated or upheld, not superseded. A belief says 'this is true'; a contract says 'this will remain true.'",
@@ -196,7 +196,7 @@
   },
   {
     "id": "cb:a124",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Field-level provenance (_provenance block on entities) maps source documents to the specific fields they substantiate. This makes the data model 100% auditable - if the agent tells you something, you can check the source. Errors become real-time hallucinations, not deep data mistakes.",
@@ -215,7 +215,7 @@
   },
   {
     "id": "cb:a125",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [],
     "claim": "Provenance _source attribution must only be assigned at extraction time - when the agent is actively reading the source document and pulling data from it. Retroactive attribution ('this data probably came from that document') is unreliable and prohibited. Unsourced data gets 'manual' and must be re-extracted from a candidate source to be upgraded.",
@@ -248,7 +248,7 @@
   },
   {
     "id": "cb:a133",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Contracts fill the abstraction gap between literal code and plain English for supervising agentic coding. The system had implicit contracts scattered across three representations: structs (shape without behavioral invariants), skills (workflow without guarantees to callers), and the agent-instruction file (policy without mechanical verification). Contracts make these guarantees explicit, machine-readable, and verifiable.",
@@ -267,7 +267,7 @@
   },
   {
     "id": "cb:a134",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Contracts are bound to domain, not implementation - they survive code rewrites. A domain expert can author them without understanding code; a coding agent can implement against them without understanding business context. Contracts generate tests, not the other way around: if you rewrote a module from scratch, every test breaks but the contract stays the same.",
@@ -286,7 +286,7 @@
   },
   {
     "id": "cb:a135",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "tags": [],
     "claim": "Contracts govern behavior across fundamentally different substrates. A single state-machine contract was independently implemented in compiled code and in agent reasoning, producing identical results without either knowing about the other. The contract served as intermediary: a domain expert authors it, an architect verifies against it, implementations derive from it.",
@@ -352,7 +352,7 @@
   },
   {
     "id": "cb:a174",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "composable-belief",
     "tags": [],
     "name": "implication-contract-enforcement-boundary",
@@ -382,7 +382,7 @@
   },
   {
     "id": "cb:a298",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -410,7 +410,7 @@
   },
   {
     "id": "cb:a300",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -438,7 +438,7 @@
   },
   {
     "id": "cb:a302",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -466,7 +466,7 @@
   },
   {
     "id": "cb:a303",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -494,7 +494,7 @@
   },
   {
     "id": "cb:c026",
-    "type": "directive",
+    "type": "prescription",
     "kind": "state-machine",
     "domain": "system",
     "tags": [
@@ -535,7 +535,6 @@
       "Only implications can carry rules or invariants",
       "Structural type determines valid operations (only implications are materialized)"
     ],
-    "contract": true,
     "subjects": [],
     "deps": [
       "cb:a298",
@@ -547,7 +546,7 @@
   },
   {
     "id": "cb:c027",
-    "type": "directive",
+    "type": "prescription",
     "kind": "domain-rule",
     "domain": "system",
     "tags": [
@@ -601,7 +600,6 @@
       "Compounds cannot have empty deps",
       "Non-contract implications cannot have empty deps"
     ],
-    "contract": true,
     "subjects": [],
     "deps": [
       "cb:a298"
@@ -612,7 +610,7 @@
   },
   {
     "id": "cb:c029",
-    "type": "directive",
+    "type": "prescription",
     "kind": "state-machine",
     "domain": "system",
     "tags": [
@@ -652,7 +650,6 @@
       "retired status is exclusive to contract-grade implications",
       "terminal states (superseded, retracted, retired) have no outgoing transitions and are immutable except for appending to evidence"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-07",
@@ -670,7 +667,7 @@
   },
   {
     "id": "cb:c030",
-    "type": "directive",
+    "type": "prescription",
     "kind": "domain-rule",
     "domain": "system",
     "tags": [
@@ -678,10 +675,10 @@
       "provenance"
     ],
     "name": "source-type-taxonomy",
-    "claim": "Primitive source identifiers follow a structured taxonomy split into authorship sources (record who/when formalized a claim; valid on any type) and artifact sources (cite a specific document; primitive-only)",
+    "claim": "Attestation source identifiers follow a structured taxonomy split into authorship sources (record who/when formalized a claim; valid on any type) and artifact sources (cite a specific document; attestation-only)",
     "rules": [
       {
-        "given": "A primitive is being written",
+        "given": "An attestation is being written",
         "scenario": "Valid source prefixes",
         "then": "The source must match one of: artifact prefixes (gmail:, source:, analysis:, transcript:, paper:, https://, a repository file path); authorship prefixes (user:, manual:, session:); or authorship sentinels (policy, legacy)",
         "when": "The source field is validated"
@@ -693,20 +690,19 @@
         "when": "The source field is populated"
       },
       {
-        "given": "A node has type compound or implication",
-        "scenario": "Artifact sources are primitive-only",
-        "then": "The source must not use artifact prefixes (gmail:, source:, analysis:, transcript:, paper:, URLs, file paths) - non-primitives reference specific documents via deps, not via source",
+        "given": "A node has type aggregation or implication",
+        "scenario": "Artifact sources are attestation-only",
+        "then": "The source must not use artifact prefixes (gmail:, source:, analysis:, transcript:, paper:, URLs, file paths) - non-attestations reference specific documents via deps, not via source",
         "when": "The source field is checked"
       }
     ],
     "invariants": [
-      "Every active primitive has a non-null source",
+      "Every active attestation has a non-null source",
       "Source prefix determines the expected downstream resource shape",
       "Authorship sources (policy, legacy, user:, manual:, session:) are valid on any type",
-      "Artifact sources (gmail:, source:, paper:, URLs, file paths) are primitive-only",
-      "Non-primitives cite external documents through deps, never through source directly"
+      "Artifact sources (gmail:, source:, paper:, URLs, file paths) are attestation-only",
+      "Non-attestations cite external documents through deps, never through source directly"
     ],
-    "contract": true,
     "subjects": [],
     "deps": [
       "cb:a303"
@@ -716,7 +712,7 @@
   },
   {
     "id": "cb:c031",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-rule",
     "domain": "system",
     "tags": [
@@ -750,7 +746,6 @@
       "Contract-grade implications may use retired status (per c029)",
       "c-prefix is a convention, not a structural guarantee - always check rules/invariants, not the ID"
     ],
-    "contract": true,
     "subjects": [],
     "deps": [
       "cb:a300"
@@ -761,7 +756,7 @@
   },
   {
     "id": "cb:a304",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "system",
     "tags": [
@@ -785,7 +780,7 @@
   },
   {
     "id": "cb:c032",
-    "type": "directive",
+    "type": "prescription",
     "kind": "audit-rule",
     "domain": "system",
     "tags": [
@@ -839,7 +834,6 @@
       "Overlap is a necessary but not sufficient condition for contradiction",
       "The audit surfaces candidates; resolution requires reviewer judgment"
     ],
-    "contract": true,
     "subjects": [],
     "deps": [
       "cb:a300",
@@ -852,7 +846,7 @@
   },
   {
     "id": "cb:c035",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-table",
     "domain": "system",
     "tags": [
@@ -921,7 +915,6 @@
       "Each kind has exactly one interpreter module",
       "The catalogue is closed: new kinds require updating this contract"
     ],
-    "contract": true,
     "subjects": [
       {
         "ref": "assertions/",
@@ -935,7 +928,7 @@
   },
   {
     "id": "cb:a339",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-property",
     "domain": "system",
     "tags": [
@@ -959,7 +952,7 @@
   },
   {
     "id": "cb:a340",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-property",
     "domain": "system",
     "tags": [
@@ -989,7 +982,7 @@
   },
   {
     "id": "cb:a341",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-property",
     "domain": "system",
     "tags": [
@@ -1013,7 +1006,7 @@
   },
   {
     "id": "cb:a362",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "observation",
     "domain": "system",
     "tags": [
@@ -1039,7 +1032,7 @@
   },
   {
     "id": "cb:a364",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -1065,7 +1058,7 @@
   },
   {
     "id": "cb:a374",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1100,7 +1093,7 @@
   },
   {
     "id": "cb:a375",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -1124,7 +1117,7 @@
   },
   {
     "id": "cb:a380",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1153,7 +1146,7 @@
   },
   {
     "id": "cb:a381",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "agent",
     "tags": [
@@ -1183,7 +1176,7 @@
   },
   {
     "id": "cb:a382",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -1207,7 +1200,7 @@
   },
   {
     "id": "cb:a383",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1231,7 +1224,7 @@
   },
   {
     "id": "cb:a384",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -1259,7 +1252,7 @@
   },
   {
     "id": "cb:a386",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "observation",
     "domain": "system",
     "tags": [
@@ -1288,7 +1281,7 @@
   },
   {
     "id": "cb:a387",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "system",
     "tags": [
@@ -1322,7 +1315,7 @@
   },
   {
     "id": "cb:c037",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -1358,7 +1351,6 @@
       "Predicate bodies are implemented in Elixir (or equivalent module-resident code)",
       "No DAG-stored code execution - the DAG is source for what fires when, not how"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-04-21",
@@ -1378,7 +1370,7 @@
   },
   {
     "id": "cb:a390",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1402,7 +1394,7 @@
   },
   {
     "id": "cb:a397",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1435,7 +1427,7 @@
   },
   {
     "id": "cb:a398",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -1463,7 +1455,7 @@
   },
   {
     "id": "cb:a399",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1491,7 +1483,7 @@
   },
   {
     "id": "cb:a400",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -1519,7 +1511,7 @@
   },
   {
     "id": "cb:a401",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1555,7 +1547,7 @@
   },
   {
     "id": "cb:a402",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -1584,7 +1576,7 @@
   },
   {
     "id": "cb:a403",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -1612,7 +1604,7 @@
   },
   {
     "id": "cb:a404",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -1640,7 +1632,7 @@
   },
   {
     "id": "cb:a405",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -1669,7 +1661,7 @@
   },
   {
     "id": "cb:a406",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -1703,7 +1695,7 @@
   },
   {
     "id": "cb:a407",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "fact",
     "domain": "system",
     "tags": [
@@ -1724,7 +1716,7 @@
   },
   {
     "id": "cb:a408",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -1752,7 +1744,7 @@
   },
   {
     "id": "cb:a409",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "architectural-synthesis",
     "domain": "system",
     "tags": [
@@ -1781,7 +1773,7 @@
   },
   {
     "id": "cb:c038",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -1810,7 +1802,6 @@
       "For all beliefs b: b does not have an `implication` field.",
       "For all beliefs b with b.kind == 'action-item': b.type == 'implication' AND b.contract != true AND (b.rules // []) is empty AND (b.invariants // []) is empty."
     ],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "subjects": [
       {
@@ -1840,7 +1831,7 @@
   },
   {
     "id": "cb:c039",
-    "type": "directive",
+    "type": "prescription",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -1941,7 +1932,6 @@
       "Every value has a corresponding entry in the definitions map.",
       "For all active beliefs b where b.kind is not null: b.kind is in values."
     ],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "evidence": [
       {
@@ -1964,7 +1954,7 @@
   },
   {
     "id": "cb:c040",
-    "type": "directive",
+    "type": "prescription",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -2003,7 +1993,6 @@
       "Every value has a corresponding entry in the definitions map.",
       "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
     ],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "evidence": [
       {
@@ -2029,7 +2018,7 @@
   },
   {
     "id": "cb:c041",
-    "type": "directive",
+    "type": "prescription",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -2064,7 +2053,6 @@
       "Every value has a corresponding entry in the definitions map.",
       "For all active beliefs b where b.domain is not null: b.domain is in values."
     ],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "evidence": [
       {
@@ -2087,7 +2075,7 @@
   },
   {
     "id": "cb:a416",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [],
@@ -2096,7 +2084,6 @@
       "Any behavioral invariant a domain expert cares about must be expressed as a contract-grade belief in the DAG (type:implication, rules or invariants non-empty, contract:true). It must not be left scattered across the agent-instruction file rules, struct definitions, or skill prose."
     ],
     "invariants": [],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "deps": [
       "cb:a138",
@@ -2107,7 +2094,7 @@
   },
   {
     "id": "cb:a417",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [],
@@ -2116,7 +2103,6 @@
       "Any module whose behavior is governed by a DAG contract must implement verify_against_contract/0. The function reads the contract from the DAG and checks that the module's runtime behavior matches, surfacing drift between contract and code."
     ],
     "invariants": [],
-    "contract": true,
     "artifact": "session:2026-05-15-dag-schema-discipline",
     "deps": [
       "cb:a138",
@@ -2128,7 +2114,7 @@
   },
   {
     "id": "cb:a424",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2157,7 +2143,7 @@
   },
   {
     "id": "cb:a425",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2186,7 +2172,7 @@
   },
   {
     "id": "cb:a427",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2215,7 +2201,7 @@
   },
   {
     "id": "cb:a428",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2245,7 +2231,7 @@
   },
   {
     "id": "cb:a436",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2274,7 +2260,7 @@
   },
   {
     "id": "cb:a437",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "tags": [
       "dag-schema",
@@ -2297,7 +2283,7 @@
   },
   {
     "id": "cb:a438",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "tags": [
       "dag-schema",
@@ -2323,7 +2309,7 @@
   },
   {
     "id": "cb:a439",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -2341,7 +2327,7 @@
   },
   {
     "id": "cb:a440",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "dev",
     "tags": [
@@ -2365,7 +2351,7 @@
   },
   {
     "id": "cb:a441",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "dev",
     "tags": [
@@ -2393,7 +2379,7 @@
   },
   {
     "id": "cb:a442",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "domain": "design",
     "tags": [
@@ -2417,7 +2403,7 @@
   },
   {
     "id": "cb:a376",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "observation",
     "domain": "system",
     "tags": [
@@ -2440,7 +2426,7 @@
   },
   {
     "id": "cb:a443",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2463,7 +2449,7 @@
   },
   {
     "id": "cb:a444",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2486,7 +2472,7 @@
   },
   {
     "id": "cb:a445",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -2510,7 +2496,7 @@
   },
   {
     "id": "cb:a446",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -2534,7 +2520,7 @@
   },
   {
     "id": "cb:a447",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -2558,7 +2544,7 @@
   },
   {
     "id": "cb:a448",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -2581,7 +2567,7 @@
   },
   {
     "id": "cb:a449",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2605,7 +2591,7 @@
   },
   {
     "id": "cb:a450",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2628,7 +2614,7 @@
   },
   {
     "id": "cb:a451",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -2652,7 +2638,7 @@
   },
   {
     "id": "cb:a452",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -2676,7 +2662,7 @@
   },
   {
     "id": "cb:a453",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2700,7 +2686,7 @@
   },
   {
     "id": "cb:a454",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -2723,7 +2709,7 @@
   },
   {
     "id": "cb:a455",
-    "type": "directive",
+    "type": "prescription",
     "kind": "formatting-rule",
     "domain": "dev",
     "tags": [
@@ -2746,7 +2732,7 @@
   },
   {
     "id": "cb:a456",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "dev",
     "tags": [
@@ -2769,7 +2755,7 @@
   },
   {
     "id": "cb:a457",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "system",
     "tags": [
@@ -2792,7 +2778,7 @@
   },
   {
     "id": "cb:a458",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "observation",
     "domain": "system",
     "tags": [
@@ -2815,7 +2801,7 @@
   },
   {
     "id": "cb:c042",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -2912,7 +2898,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "artifact": "session:2026-06-07-cb-claude-md-generation",
     "subjects": [],
     "deps": [
@@ -2939,7 +2924,7 @@
   },
   {
     "id": "cb:a459",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -2961,7 +2946,7 @@
   },
   {
     "id": "cb:a460",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -2984,7 +2969,7 @@
   },
   {
     "id": "cb:a461",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "design",
     "tags": [
@@ -3007,7 +2992,7 @@
   },
   {
     "id": "cb:a462",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -3030,7 +3015,7 @@
   },
   {
     "id": "cb:a463",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "system",
     "tags": [
@@ -3053,7 +3038,7 @@
   },
   {
     "id": "cb:a464",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "system",
     "tags": [
@@ -3076,7 +3061,7 @@
   },
   {
     "id": "cb:a465",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -3100,7 +3085,7 @@
   },
   {
     "id": "cb:a466",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -3129,7 +3114,7 @@
   },
   {
     "id": "cb:a467",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-rationale",
     "domain": "system",
     "tags": [
@@ -3156,7 +3141,7 @@
   },
   {
     "id": "cb:c043",
-    "type": "directive",
+    "type": "prescription",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -3197,7 +3182,6 @@
       "Every value has a corresponding entry in the definitions map.",
       "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
     ],
-    "contract": true,
     "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
     "evidence": [
       {
@@ -3229,7 +3213,7 @@
   },
   {
     "id": "cb:c044",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -3248,7 +3232,6 @@
       "deps equals the union of belief ids referenced by render_steps.",
       "A codepath render-spec is drafted outside the graph and imported once settled; a post-import reorder supersedes the output-target belief itself, never the claim beliefs it references."
     ],
-    "contract": true,
     "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
     "evidence": [
       {
@@ -3277,7 +3260,7 @@
   },
   {
     "id": "cb:c045",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -3294,7 +3277,6 @@
       "eval invokes a named, repo-resident predicate - never an executable string stored in the DAG (per c037).",
       "Resolution failures and raises report as predicate failures; an assertion run never crashes the suite."
     ],
-    "contract": true,
     "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md",
     "evidence": [
       {
@@ -3323,7 +3305,7 @@
   },
   {
     "id": "cb:a468",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -3357,7 +3339,7 @@
   },
   {
     "id": "cb:a469",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -3391,7 +3373,7 @@
   },
   {
     "id": "cb:c046",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-table",
     "domain": "system",
     "tags": [
@@ -3470,7 +3452,6 @@
       "Each kind has exactly one interpreter module",
       "The catalogue is closed: new kinds require updating this contract"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-09",
@@ -3495,7 +3476,7 @@
   },
   {
     "id": "cb:c047",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -3531,7 +3512,6 @@
       "Predicate bodies are implemented in Elixir (or equivalent module-resident code)",
       "No DAG-stored code execution - the DAG is source for what fires when, not how"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-04-21",
@@ -3560,7 +3540,7 @@
   },
   {
     "id": "cb:c048",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -3657,7 +3637,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "artifact": "session:2026-06-07-cb-claude-md-generation",
     "evidence": [
       {
@@ -3696,7 +3675,7 @@
   },
   {
     "id": "cb:c049",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -3715,7 +3694,6 @@
       "deps equals the union of belief ids referenced by render_steps.",
       "A codepath render-spec is drafted outside the graph and imported once settled; a post-import reorder supersedes the output-target belief itself, never the claim beliefs it references."
     ],
-    "contract": true,
     "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
     "evidence": [
       {
@@ -3783,7 +3761,7 @@
   },
   {
     "id": "cb:c050",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -3800,7 +3778,6 @@
       "eval invokes a named, repo-resident predicate - never an executable string stored in the DAG (per c037).",
       "Resolution failures and raises report as predicate failures; an assertion run never crashes the suite."
     ],
-    "contract": true,
     "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md",
     "evidence": [
       {
@@ -3838,7 +3815,7 @@
   },
   {
     "id": "cb:a470",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-rationale",
     "domain": "system",
     "tags": [
@@ -3865,7 +3842,7 @@
   },
   {
     "id": "cb:a471",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "design",
     "tags": [
@@ -3893,7 +3870,7 @@
   },
   {
     "id": "cb:a472",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-rationale",
     "domain": "system",
     "tags": [
@@ -3920,7 +3897,7 @@
   },
   {
     "id": "cb:a473",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-rationale",
     "domain": "design",
     "tags": [
@@ -3948,7 +3925,7 @@
   },
   {
     "id": "cb:a474",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -3976,7 +3953,7 @@
   },
   {
     "id": "cb:a475",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -4004,7 +3981,7 @@
   },
   {
     "id": "cb:a476",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-rationale",
     "domain": "system",
     "tags": [
@@ -4032,7 +4009,7 @@
   },
   {
     "id": "cb:c051",
-    "type": "directive",
+    "type": "prescription",
     "kind": "state-machine",
     "domain": "system",
     "tags": [
@@ -4040,40 +4017,39 @@
       "type-system"
     ],
     "name": "dag-structural-types",
-    "claim": "DAG node type field accepts exactly four values - primitive, compound, inference, directive - one per epistemic operation (attest, aggregate, infer, prescribe) - and determines which other fields are meaningful",
+    "claim": "DAG node type field accepts exactly four values - attestation, aggregation, inference, prescription - one per epistemic operation (attest, aggregate, infer, prescribe) - and determines which other fields are meaningful",
     "rules": [
       {
         "given": "A node is being written to the DAG",
         "scenario": "Structural type validation",
-        "then": "The type must be one of: primitive, compound, inference, directive",
+        "then": "The type must be one of: attestation, aggregation, inference, prescription",
         "when": "The type field is validated"
       },
       {
-        "given": "A node has type: primitive",
-        "scenario": "Primitive carries an artifact",
+        "given": "A node has type: attestation",
+        "scenario": "Attestation carries an artifact",
         "then": "The node must have a non-null artifact field",
         "when": "The node is validated"
       },
       {
-        "given": "A node has type: compound or type: inference",
-        "scenario": "Compound and inference carry deps",
+        "given": "A node has type: aggregation or type: inference",
+        "scenario": "Aggregation and inference carry deps",
         "then": "The node must have a non-empty deps array",
         "when": "The node is validated"
       },
       {
         "given": "A node has rules or invariants populated",
-        "scenario": "Only directives carry contracts",
-        "then": "The node must have type: directive (descriptive types cannot carry contracts)",
+        "scenario": "Only prescriptions carry contracts",
+        "then": "The node must have type: prescription (descriptive types cannot carry contracts)",
         "when": "The node is validated"
       }
     ],
     "invariants": [
       "Every active node has exactly one type",
-      "type is a closed enum: primitive | compound | inference | directive",
-      "Only directives can carry rules or invariants",
-      "Structural type determines valid operations (only directives are materialized)"
+      "type is a closed enum: attestation | aggregation | inference | prescription",
+      "Only prescriptions can carry rules or invariants",
+      "Structural type determines valid operations (only prescriptions are materialized)"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4084,6 +4060,11 @@
         "date": "2026-06-12",
         "detail": "Retro-pair per the a507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
         "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "Vocabulary migration (label only, identity and claims unchanged - the source->artifact precedent, not a supersession): the four type values renamed primitive->attestation, compound->aggregation, inference (unchanged), directive->prescription, the nominalizations of the four epistemic verbs this contract names. All 220 nodes and the active schema-contract family rewritten in one pass; the code shim accepts both vocabularies for the compat epoch.",
+        "artifact": "document:beliefs/nursery/structural-type-rename.md"
       }
     ],
     "subjects": [],
@@ -4096,7 +4077,7 @@
   },
   {
     "id": "cb:c052",
-    "type": "directive",
+    "type": "prescription",
     "kind": "domain-rule",
     "domain": "system",
     "tags": [
@@ -4104,7 +4085,7 @@
       "field-presence"
     ],
     "name": "dag-field-presence",
-    "claim": "Field presence on a DAG node is determined by structural type; compounds and inferences require deps, non-contract directives require deps or a stipulation artifact, declared contracts may be standalone, and contract fields are directive-only",
+    "claim": "Field presence on a DAG node is determined by structural type; aggregations and inferences require deps, non-contract prescriptions require deps or a stipulation artifact, declared contracts may be standalone, and contract fields are prescription-only",
     "rules": [
       {
         "given": "A node of any type",
@@ -4113,15 +4094,15 @@
         "when": "Shared fields are accessed"
       },
       {
-        "given": "A node has type: primitive",
-        "scenario": "Primitive-specific fields",
+        "given": "A node has type: attestation",
+        "scenario": "Attestation-specific fields",
         "then": "artifact (required) and evidence (dated, append-only) are valid; deps, materialized, rules, invariants are not meaningful",
         "when": "Type-specific fields are considered"
       },
       {
-        "given": "A node has type: compound",
-        "scenario": "Compound requires deps",
-        "then": "The node must have a non-empty deps array - a compound by definition composes multiple deps",
+        "given": "A node has type: aggregation",
+        "scenario": "Aggregation requires deps",
+        "then": "The node must have a non-empty deps array - an aggregation by definition composes multiple deps",
         "when": "The node is validated"
       },
       {
@@ -4131,28 +4112,27 @@
         "when": "The node is validated"
       },
       {
-        "given": "A node has type: directive and does not carry rules or invariants",
-        "scenario": "Non-contract directive grounds in deps or stipulation",
+        "given": "A node has type: prescription and does not carry rules or invariants",
+        "scenario": "Non-contract prescription grounds in deps or stipulation",
         "then": "The node must have non-empty deps or a stipulation artifact (plan:/user:/session:/document:) - adoption is grounded in beliefs or in the record of the adoption event",
         "when": "The node is validated"
       },
       {
-        "given": "A node has type: directive and carries non-empty rules or invariants",
+        "given": "A node has type: prescription and carries non-empty rules or invariants",
         "scenario": "Declared contract may omit deps",
         "then": "The node may have empty deps - contracts can be declared (formalize policy standalone) or derived; both forms are valid",
         "when": "The node is validated"
       }
     ],
     "invariants": [
-      "Compounds cannot have empty deps",
+      "Aggregations cannot have empty deps",
       "Inferences cannot have empty deps",
-      "Active non-contract directives carry deps or a stipulation artifact",
-      "Contract fields (contract, rules, invariants) are directive-only",
+      "Active non-contract prescriptions carry deps or a stipulation artifact",
+      "Contract fields (rules, invariants) are prescription-only",
       "Fields are emitted in a stable schema-defined order",
       "Fields absent in the source JSON are not emitted on round-trip (presence tracked via _keys)",
       "tags defaults to empty list when absent from source"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4175,7 +4155,7 @@
   },
   {
     "id": "cb:c053",
-    "type": "directive",
+    "type": "prescription",
     "kind": "state-machine",
     "domain": "system",
     "tags": [
@@ -4183,7 +4163,7 @@
       "status-lifecycle"
     ],
     "name": "dag-status-lifecycle",
-    "claim": "DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields; retired is the directive-only exit - a withdrawn rule, never a falsified claim",
+    "claim": "DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields; retired is the prescription-only exit - a withdrawn rule, never a falsified claim",
     "rules": [
       {
         "from": "active",
@@ -4210,10 +4190,9 @@
       "status is a closed enum: active | superseded | retracted | retired",
       "superseded_by is non-null iff status is superseded",
       "retracted_on and retracted_reason are non-null iff status is retracted",
-      "retired status is exclusive to directives - descriptive claims are superseded or retracted, never retired; an inference is falsified, a directive is violated or withdrawn",
+      "retired status is exclusive to prescriptions - descriptive claims are superseded or retracted, never retired; an inference is falsified, a prescription is violated or withdrawn",
       "terminal states (superseded, retracted, retired) have no outgoing transitions and are immutable except for appending to evidence"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4236,7 +4215,7 @@
   },
   {
     "id": "cb:c054",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-rule",
     "domain": "system",
     "tags": [
@@ -4244,7 +4223,7 @@
       "contracts"
     ],
     "name": "contract-identity",
-    "claim": "A node is contract-grade iff its type is directive and its rules or invariants array is non-empty - contract is the machine-checkable grade of a directive, not a type. The c-prefix ID convention is a naming reflection of this structural property, not the definition of contract identity. Code that operates on contracts must detect them via Belief.contract?/1 and never by ID prefix matching.",
+    "claim": "A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. The c-prefix ID convention is a naming reflection of this structural property, not the definition of contract identity. Code that operates on contracts must detect them via Belief.contract?/1 and never by ID prefix matching.",
     "rules": [
       {
         "given": "An arbitrary DAG node",
@@ -4253,24 +4232,23 @@
         "when": "Belief.contract?/1 is called"
       },
       {
-        "given": "A new contract-grade directive is being assigned an ID",
+        "given": "A new contract-grade prescription is being assigned an ID",
         "scenario": "c-prefix convention",
         "then": "The ID should use the c-prefix convention (c001, c002, ...) to flag the contract nature to human readers",
         "when": "An ID is generated"
       },
       {
-        "given": "A primitive, compound, or inference is being edited to add rules",
+        "given": "An attestation, aggregation, or inference is being edited to add rules",
         "scenario": "Contract structure cannot be retrofitted to descriptive types",
-        "then": "The write is rejected - contract grade exists only on directives; mint a directive that deps on the descriptive node instead",
+        "then": "The write is rejected - contract grade exists only on prescriptions; mint a prescription that deps on the descriptive node instead",
         "when": "The mutation is validated"
       }
     ],
     "invariants": [
       "Belief.contract?/1 is the canonical check for contract identity",
-      "Contract-grade directives may use retired status (per the status lifecycle)",
+      "Contract-grade prescriptions may use retired status (per the status lifecycle)",
       "c-prefix is a convention, not a structural guarantee - always check rules/invariants, not the ID"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4293,7 +4271,7 @@
   },
   {
     "id": "cb:c055",
-    "type": "directive",
+    "type": "prescription",
     "kind": "audit-rule",
     "domain": "system",
     "tags": [
@@ -4301,16 +4279,16 @@
       "conflicts"
     ],
     "name": "conflict-scope-definition",
-    "claim": "Two active directives share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful. Contradictory prescriptions are actionable conflicts; contradictory inferences are dissent and live outside this audit's scope.",
+    "claim": "Two active prescriptions share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful. Contradictory prescriptions are actionable conflicts; contradictory inferences are dissent and live outside this audit's scope.",
     "rules": [
       {
-        "given": "Two active directives",
+        "given": "Two active prescriptions",
         "scenario": "Domain gate",
         "then": "They overlap only if they are in the same domain or both have no domain; distinct non-nil domains never overlap",
         "when": "Overlap is evaluated"
       },
       {
-        "given": "Two active directives in the same domain",
+        "given": "Two active prescriptions in the same domain",
         "scenario": "Overlap axes",
         "then": "They overlap if they share a tag, share a subject ref, share a subject type, or both carry empty tags and subjects (domain-global)",
         "when": "Overlap is evaluated"
@@ -4329,7 +4307,6 @@
       "Overlap is a necessary but not sufficient condition for contradiction",
       "The audit surfaces candidates; resolution requires reviewer judgment"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4352,36 +4329,36 @@
   },
   {
     "id": "cb:c056",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
       "dag-schema",
       "schema-discipline"
     ],
-    "claim": "Schema discipline: belief provenance is carried by an artifact field; contract-grade directives carry contract:true with non-empty rules/invariants; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from c039/c041/c043 respectively; kind binds allowed structural types via the kind-type derivation table.",
+    "claim": "Schema discipline: belief provenance is carried by an artifact field; contract-grade is derived, not stored - a prescription with non-empty rules/invariants is contract-grade (Belief.contract?/1) and no contract field is carried; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from c039/c041/c043 respectively; kind binds allowed structural types via the kind-type derivation table.",
     "rules": [
       "The artifact field is the canonical provenance carrier on beliefs. Its value is null or a string matching scheme:id where scheme is declared by c043.",
       "The kind field's value is null or one of the values declared by c039.",
       "The domain field's value is null or one of the values declared by c041.",
-      "The contract field is a boolean. It is allowed only on type: directive.",
-      "contract: true is required iff rules or invariants are non-empty (bidirectional).",
+      "The contract field is absent on all beliefs; contract-grade is computed from rules/invariants on read (Belief.contract?/1), never stored.",
+      "A belief is contract-grade iff rules or invariants are non-empty - the definition of the predicate, formerly enforced as a stored-field biconditional.",
       "The implication field is absent on all beliefs.",
-      "Beliefs with kind: action-item have type: directive, contract: false, and empty rules/invariants.",
-      "The four structural types are distinct and are not merged: a compound states exactly what its deps jointly state, an inference may exceed them, a directive prescribes.",
+      "Beliefs with kind: action-item have type: prescription and empty rules/invariants.",
+      "The four structural types are distinct and are not merged: an aggregation states exactly what its deps jointly state, an inference may exceed them, a prescription prescribes.",
       "Artifacts (external documents, threads, files) are not promoted to belief nodes; they are referenced via the artifact field only."
     ],
     "invariants": [
-      "For all beliefs b: b.contract == true implies b.type == 'directive'.",
-      "For all beliefs b: ((b.rules // []) ++ (b.invariants // [])) non-empty iff b.contract == true.",
+      "For all beliefs b: contract?(b) implies b.type == 'prescription'.",
+      "For all beliefs b: contract?(b) iff ((b.rules // []) ++ (b.invariants // [])) non-empty.",
       "For all beliefs b: b.artifact == null OR b.artifact matches /^[a-z][a-z0-9_-]*:.+/.",
       "For all beliefs b: b.kind == null OR b.kind is in c039.enum.",
       "For all beliefs b: b.artifact == null OR scheme(b.artifact) is in c043.enum.",
       "For all beliefs b: b.domain == null OR b.domain is in c041.enum.",
       "For all beliefs b: b does not have an `implication` field.",
-      "For all beliefs b with b.kind == 'action-item': b.type == 'directive' AND b.contract != true AND (b.rules // []) is empty AND (b.invariants // []) is empty."
+      "For all beliefs b: b does not have a `contract` field.",
+      "For all beliefs b with b.kind == 'action-item': b.type == 'prescription' AND (b.rules // []) is empty AND (b.invariants // []) is empty."
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -4392,6 +4369,11 @@
         "date": "2026-06-12",
         "detail": "Retro-pair per the a507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
         "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "The stored contract boolean was demoted to a derived predicate: contract-grade is computed as rules/invariants non-empty (Belief.contract?/1) and the contract field was stripped from the 39 nodes carrying it (zero drift measured against the former biconditional). This contract's rules/invariants now state the biconditional as the definition of the predicate.",
+        "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
       }
     ],
     "subjects": [],
@@ -4413,7 +4395,7 @@
   },
   {
     "id": "cb:c057",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-table",
     "domain": "system",
     "tags": [
@@ -4421,291 +4403,290 @@
       "kind-type"
     ],
     "name": "kind-type-table",
-    "claim": "Kind binds mood: each belief kind maps to the structural types it may inhabit, converting the prescriptive/descriptive boundary from prose to a deterministic check. Prescriptive kinds bind to directive only; descriptive kinds may never be directives; dual kinds (definition, schema) carry both moods and the choice is per belief by direction of fit.",
+    "claim": "Kind binds mood: each belief kind maps to the structural types it may inhabit, converting the prescriptive/descriptive boundary from prose to a deterministic check. Prescriptive kinds bind to prescription only; descriptive kinds may never be prescriptions; dual kinds (definition, schema) carry both moods and the choice is per belief by direction of fit.",
     "rules": [
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "policy"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "rule"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "action-item"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "convention"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "formatting-rule"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "domain-rule"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "domain-enum"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "governance"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "design-principle"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "derivation-rule"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "audit-rule"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "enum-registry"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "state-machine"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "derivation-table"
       },
       {
         "allowed_types": [
-          "directive"
+          "prescription"
         ],
         "kind": "output-target"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "observation"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "fact"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "error"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "error-pattern"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "reasoning-error"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "meta-observation"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "design-observation"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "design-property"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "design-gap"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "design-rationale"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "analogical-claim"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "structural-parallel"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "architectural-synthesis"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "feedback-loop"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "outcome-claim"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "training-distribution"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "training-incentive"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "agent-architecture"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "composable-belief"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "human-factor"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference"
         ],
         "kind": "edit-pair"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference",
-          "directive"
+          "prescription"
         ],
         "kind": "definition"
       },
       {
         "allowed_types": [
-          "primitive",
-          "compound",
+          "attestation",
+          "aggregation",
           "inference",
-          "directive"
+          "prescription"
         ],
         "kind": "schema"
       }
     ],
     "invariants": [
       "For all active beliefs b with kind k present in this table: b.type is in row(k).allowed_types",
-      "Prescriptive kinds never appear on descriptive types; descriptive kinds never appear on directives",
+      "Prescriptive kinds never appear on descriptive types; descriptive kinds never appear on prescriptions",
       "A kind absent from the table is unchecked, not failed - the kind enum is the closure authority"
     ],
-    "contract": true,
     "artifact": "plan:cb-schema-v2",
     "evidence": [
       {
@@ -4723,7 +4704,7 @@
   },
   {
     "id": "cb:c058",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-rule",
     "domain": "system",
     "tags": [
@@ -4731,33 +4712,32 @@
       "subject-containment"
     ],
     "name": "subject-containment",
-    "claim": "A conjunction cannot be about something its parts are not about: an active compound's subject refs must be a subset of the union of its deps' subject refs. Scope widening is the structural signature of inference - a claim whose subjects escape its deps is an inference or carries commentary to trim, never a compound. Empty subjects pass vacuously; the check earns its discriminating power only where subjects are populated.",
+    "claim": "A conjunction cannot be about something its parts are not about: an active aggregation's subject refs must be a subset of the union of its deps' subject refs. Scope widening is the structural signature of inference - a claim whose subjects escape its deps is an inference or carries commentary to trim, never an aggregation. Empty subjects pass vacuously; the check earns its discriminating power only where subjects are populated.",
     "rules": [
       {
-        "given": "An active compound with non-empty subjects",
-        "scenario": "Containment on active compounds",
+        "given": "An active aggregation with non-empty subjects",
+        "scenario": "Containment on active aggregations",
         "then": "Every subject ref appears in the union of its deps' subject refs",
         "when": "The collection is verified"
       },
       {
-        "given": "A compound whose subjects escape the dep union",
+        "given": "An aggregation whose subjects escape the dep union",
         "scenario": "Escape is re-homed",
         "then": "The node is re-typed as an inference, or its claim is trimmed to the conjunction and the widened content minted as an inference depping on it",
         "when": "Triage resolves it"
       },
       {
-        "given": "A compound with a dep outside the loaded belief set",
+        "given": "An aggregation with a dep outside the loaded belief set",
         "scenario": "Unresolvable deps skip",
-        "then": "The compound is skipped, not failed - the union cannot be computed without the dep's subjects",
+        "then": "The aggregation is skipped, not failed - the union cannot be computed without the dep's subjects",
         "when": "The collection is verified standalone"
       }
     ],
     "invariants": [
-      "For all active compounds c with subjects: subject_refs(c) is a subset of the union of subject_refs over deps(c)",
-      "A compound with empty subjects passes vacuously",
+      "For all active aggregations c with subjects: subject_refs(c) is a subset of the union of subject_refs over deps(c)",
+      "An aggregation with empty subjects passes vacuously",
       "Containment is checked on refs; subject types classify and do not partition scope"
     ],
-    "contract": true,
     "artifact": "plan:cb-schema-v2",
     "evidence": [
       {
@@ -4776,41 +4756,40 @@
   },
   {
     "id": "cb:c059",
-    "type": "directive",
+    "type": "prescription",
     "kind": "derivation-rule",
     "domain": "system",
     "tags": [
       "dag-schema",
       "grounding"
     ],
-    "name": "directive-grounding",
-    "claim": "A prescription is adopted: an active non-contract directive grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. Contract-grade directives may be declared standalone from policy. External-source schemes never ground a directive.",
+    "name": "prescription-grounding",
+    "claim": "A prescription is adopted: an active non-contract prescription grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. Contract-grade prescriptions may be declared standalone from policy. External-source schemes never ground a prescription.",
     "rules": [
       {
-        "given": "An active non-contract directive with non-empty deps",
+        "given": "An active non-contract prescription with non-empty deps",
         "scenario": "Grounded in beliefs",
-        "then": "The directive is grounded - it rests on the beliefs it cites",
+        "then": "The prescription is grounded - it rests on the beliefs it cites",
         "when": "The node is validated"
       },
       {
-        "given": "An active non-contract directive with empty deps",
+        "given": "An active non-contract prescription with empty deps",
         "scenario": "Grounded in stipulation",
         "then": "The artifact must carry a stipulation scheme (plan:, user:, session:, document:) recording where the prescription was adopted",
         "when": "The node is validated"
       },
       {
-        "given": "A contract-grade directive",
+        "given": "A contract-grade prescription",
         "scenario": "Contracts may stand alone",
         "then": "Both deps and stipulation artifact may be absent - contracts can be declared from policy",
         "when": "The node is validated"
       }
     ],
     "invariants": [
-      "For all active non-contract directives d: deps(d) non-empty OR scheme(d.artifact) in {plan, user, session, document}",
+      "For all active non-contract prescriptions d: deps(d) non-empty OR scheme(d.artifact) in {plan, user, session, document}",
       "Stipulation schemes are a closed set: plan | user | session | document",
-      "External-source schemes (source, https, gmail) never ground a directive"
+      "External-source schemes (source, https, gmail) never ground a prescription"
     ],
-    "contract": true,
     "artifact": "plan:cb-schema-v2",
     "evidence": [
       {
@@ -4828,14 +4807,14 @@
   },
   {
     "id": "cb:a477",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
       "claude-md",
       "active-implications"
     ],
-    "claim": "Active behavioral directives are not cached to a digest file; load them live from the graph by querying active directives (`mix bs list directive`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.",
+    "claim": "Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.",
     "artifact": "session:2026-06-10-cb-schema-v2-landing",
     "evidence": [
       {
@@ -4858,14 +4837,14 @@
   },
   {
     "id": "cb:a478",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
       "claude-md",
       "architecture"
     ],
-    "claim": "The mechanism is a directed acyclic graph of beliefs with four structural types: primitive (what a single source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and directive (what should happen or must hold - a prescription the house stands behind).",
+    "claim": "The mechanism is a directed acyclic graph of beliefs with four structural types: attestation (what a single source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen or must hold - what the house stands behind).",
     "artifact": "session:2026-06-10-cb-schema-v2-landing",
     "evidence": [
       {
@@ -4888,7 +4867,7 @@
   },
   {
     "id": "cb:a479",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "design",
     "tags": [
@@ -4919,7 +4898,7 @@
   },
   {
     "id": "cb:a480",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -4950,14 +4929,14 @@
   },
   {
     "id": "cb:a481",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "schema",
     "domain": "system",
     "tags": [
       "claude-md",
       "schema"
     ],
-    "claim": "Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; primitives ground their claim with an `artifact` URI and dated `evidence`; non-contract directives ground in deps or a stipulation artifact; and `contract: true` is biconditional with non-empty `rules`/`invariants` (per c056).",
+    "claim": "Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; non-contract prescriptions ground in deps or a stipulation artifact; and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per c056).",
     "artifact": "session:2026-06-10-cb-schema-v2-landing",
     "evidence": [
       {
@@ -4978,14 +4957,14 @@
   },
   {
     "id": "cb:a482",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
       "claude-md",
       "schema"
     ],
-    "claim": "The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c051 (the four structural types), c053 (status lifecycle and immutability), c056 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), c057 (the kind-type table), c058 (subject containment), c059 (directive grounding), and c055 (conflict scope). Read one with `mix bs show cb:c051`.",
+    "claim": "The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c051 (the four structural types), c053 (status lifecycle and immutability), c056 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), c057 (the kind-type table), c058 (subject containment), c059 (prescription grounding), and c055 (conflict scope). Read one with `mix bs show cb:c051`.",
     "artifact": "session:2026-06-10-cb-schema-v2-landing",
     "evidence": [
       {
@@ -5008,7 +4987,7 @@
   },
   {
     "id": "cb:c060",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -5106,7 +5085,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-10",
@@ -5144,7 +5122,7 @@
   },
   {
     "id": "cb:a483",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "observation",
     "domain": "system",
     "tags": [
@@ -5275,7 +5253,7 @@
   },
   {
     "id": "cb:a488",
-    "type": "directive",
+    "type": "prescription",
     "kind": "policy",
     "domain": "agent",
     "tags": [
@@ -5307,7 +5285,7 @@
   },
   {
     "id": "cb:a489",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5334,7 +5312,7 @@
   },
   {
     "id": "cb:a490",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5361,7 +5339,7 @@
   },
   {
     "id": "cb:a491",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5388,7 +5366,7 @@
   },
   {
     "id": "cb:a492",
-    "type": "directive",
+    "type": "prescription",
     "kind": "rule",
     "domain": "system",
     "tags": [
@@ -5443,7 +5421,7 @@
   },
   {
     "id": "cb:a494",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "design",
     "tags": [
@@ -5473,7 +5451,7 @@
   },
   {
     "id": "cb:a495",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "design",
     "tags": [
@@ -5503,7 +5481,7 @@
   },
   {
     "id": "cb:a496",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5534,7 +5512,7 @@
   },
   {
     "id": "cb:a497",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -5567,7 +5545,7 @@
   },
   {
     "id": "cb:a498",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-property",
     "domain": "system",
     "tags": [
@@ -5591,7 +5569,7 @@
   },
   {
     "id": "cb:a499",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -5621,7 +5599,7 @@
   },
   {
     "id": "cb:a500",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -5651,7 +5629,7 @@
   },
   {
     "id": "cb:a501",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -5694,7 +5672,7 @@
   },
   {
     "id": "cb:a502",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -5724,7 +5702,7 @@
   },
   {
     "id": "cb:a503",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -5754,7 +5732,7 @@
   },
   {
     "id": "cb:a504",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5780,7 +5758,7 @@
   },
   {
     "id": "cb:a505",
-    "type": "directive",
+    "type": "prescription",
     "kind": "formatting-rule",
     "domain": "system",
     "tags": [
@@ -5809,7 +5787,7 @@
   },
   {
     "id": "cb:a506",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "definition",
     "domain": "design",
     "tags": [
@@ -5837,7 +5815,7 @@
   },
   {
     "id": "cb:a507",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -5864,14 +5842,14 @@
   },
   {
     "id": "cb:a508",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
       "claude-md",
       "session-start"
     ],
-    "claim": "A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each directive's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.",
+    "claim": "A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each prescription's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.",
     "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
     "evidence": [
       {
@@ -5890,7 +5868,7 @@
   },
   {
     "id": "cb:c061",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -5993,7 +5971,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-11",
@@ -6032,7 +6009,7 @@
   },
   {
     "id": "cb:a509",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -6064,7 +6041,7 @@
   },
   {
     "id": "cb:a510",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -6094,7 +6071,7 @@
   },
   {
     "id": "cb:a511",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6140,7 +6117,7 @@
   },
   {
     "id": "cb:a512",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6190,7 +6167,7 @@
   },
   {
     "id": "cb:a513",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6233,7 +6210,7 @@
   },
   {
     "id": "cb:a514",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6276,7 +6253,7 @@
   },
   {
     "id": "cb:a515",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "agent",
     "tags": [
@@ -6320,7 +6297,7 @@
   },
   {
     "id": "cb:a516",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -6362,7 +6339,7 @@
   },
   {
     "id": "cb:a517",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6402,7 +6379,7 @@
   },
   {
     "id": "cb:a518",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -6470,7 +6447,7 @@
   },
   {
     "id": "cb:a519",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -6527,7 +6504,7 @@
   },
   {
     "id": "cb:a520",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -6554,7 +6531,7 @@
   },
   {
     "id": "cb:a521",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -6590,7 +6567,7 @@
   },
   {
     "id": "cb:c062",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -6693,7 +6670,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-11",
@@ -6737,7 +6713,7 @@
   },
   {
     "id": "cb:a522",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -6792,7 +6768,7 @@
   },
   {
     "id": "cb:a523",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -6842,14 +6818,14 @@
   },
   {
     "id": "cb:a524",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
       "claude-md",
       "skills"
     ],
-    "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns directives into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+    "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns prescriptions into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
     "artifact": "session:2026-06-11-position-skill-authoring",
     "evidence": [
       {
@@ -6877,7 +6853,7 @@
   },
   {
     "id": "cb:c063",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -6980,7 +6956,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "artifact": "session:2026-06-11-position-skill-authoring",
     "evidence": [
       {
@@ -7025,7 +7000,7 @@
   },
   {
     "id": "cb:a525",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -7058,7 +7033,7 @@
   },
   {
     "id": "cb:a526",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -7089,7 +7064,7 @@
   },
   {
     "id": "cb:a527",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -7119,7 +7094,7 @@
   },
   {
     "id": "cb:a528",
-    "type": "directive",
+    "type": "prescription",
     "kind": "definition",
     "domain": "system",
     "tags": [
@@ -7172,7 +7147,7 @@
   },
   {
     "id": "cb:a530",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7219,7 +7194,7 @@
   },
   {
     "id": "cb:a531",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7266,7 +7241,7 @@
   },
   {
     "id": "cb:c064",
-    "type": "directive",
+    "type": "prescription",
     "kind": "audit-rule",
     "domain": "system",
     "tags": [
@@ -7296,7 +7271,6 @@
       "A contract-grade match with semantic contact always carries priority contract_level",
       "Downgraded matches remain visible in preflight output with their grade annotated - the calibration re-buckets noise, never suppresses it"
     ],
-    "contract": true,
     "evidence": [
       {
         "date": "2026-06-12",
@@ -7315,7 +7289,7 @@
   },
   {
     "id": "cb:a532",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7355,7 +7329,7 @@
   },
   {
     "id": "cb:a533",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -7397,7 +7371,7 @@
   },
   {
     "id": "cb:c065",
-    "type": "directive",
+    "type": "prescription",
     "kind": "output-target",
     "domain": "system",
     "tags": [
@@ -7425,7 +7399,7 @@
             "beliefs": [
               "cb:a477"
             ],
-            "title": "Active directives"
+            "title": "Active prescriptions"
           },
           {
             "beliefs": [
@@ -7500,7 +7474,6 @@
       "deps equals the union of all beliefs referenced in render_sections",
       "Section titles are human-readable; tags remain free for cross-cutting audit queries"
     ],
-    "contract": true,
     "artifact": "session:2026-06-12-claude-md-write-surface",
     "evidence": [
       {
@@ -7544,7 +7517,7 @@
   },
   {
     "id": "cb:a535",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7579,7 +7552,7 @@
   },
   {
     "id": "cb:a536",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7609,7 +7582,7 @@
   },
   {
     "id": "cb:a537",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7652,7 +7625,7 @@
   },
   {
     "id": "cb:a538",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7681,7 +7654,7 @@
   },
   {
     "id": "cb:a539",
-    "type": "directive",
+    "type": "prescription",
     "kind": "design-principle",
     "domain": "system",
     "tags": [
@@ -7703,7 +7676,7 @@
   },
   {
     "id": "cb:c066",
-    "type": "directive",
+    "type": "prescription",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -7742,7 +7715,6 @@
       "Every value has a corresponding entry in the definitions map.",
       "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
     ],
-    "contract": true,
     "artifact": "session:2026-06-17-artifact-scheme-connector-cleanup",
     "evidence": [
       {
@@ -7773,7 +7745,7 @@
   },
   {
     "id": "cb:a540",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "system",
     "tags": [
@@ -7815,7 +7787,7 @@
   },
   {
     "id": "cb:a541",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7843,7 +7815,7 @@
   },
   {
     "id": "cb:a542",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7867,7 +7839,7 @@
   },
   {
     "id": "cb:a543",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7905,7 +7877,7 @@
   },
   {
     "id": "cb:a544",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -7939,7 +7911,7 @@
   },
   {
     "id": "cb:a545",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "design",
     "tags": [
@@ -7973,7 +7945,7 @@
   },
   {
     "id": "cb:a546",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8014,7 +7986,7 @@
   },
   {
     "id": "cb:a547",
-    "type": "directive",
+    "type": "prescription",
     "kind": "convention",
     "domain": "dev",
     "tags": [
@@ -8049,7 +8021,7 @@
   },
   {
     "id": "cb:a548",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8091,7 +8063,7 @@
   },
   {
     "id": "cb:a549",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8123,7 +8095,7 @@
   },
   {
     "id": "cb:a550",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -8162,7 +8134,7 @@
   },
   {
     "id": "cb:a551",
-    "type": "directive",
+    "type": "prescription",
     "kind": "schema",
     "domain": "system",
     "tags": [
@@ -8200,7 +8172,7 @@
   },
   {
     "id": "cb:a552",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8220,7 +8192,7 @@
   },
   {
     "id": "cb:a553",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "system",
     "tags": [
@@ -8251,7 +8223,7 @@
   },
   {
     "id": "cb:a554",
-    "type": "primitive",
+    "type": "attestation",
     "kind": "design-observation",
     "domain": "system",
     "tags": [
@@ -8279,7 +8251,7 @@
   },
   {
     "id": "cb:a555",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8302,7 +8274,7 @@
   },
   {
     "id": "cb:a556",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8326,7 +8298,7 @@
   },
   {
     "id": "cb:a557",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8350,7 +8322,7 @@
   },
   {
     "id": "cb:a558",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8374,7 +8346,7 @@
   },
   {
     "id": "cb:a559",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
@@ -8398,7 +8370,7 @@
   },
   {
     "id": "cb:a560",
-    "type": "directive",
+    "type": "prescription",
     "kind": "action-item",
     "domain": "dev",
     "tags": [
