@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Cb.RetractTest do
   defp belief(id, status) do
     Belief.from_map(%{
       "id" => id,
-      "type" => "directive",
+      "type" => "prescription",
       "kind" => "action-item",
       "claim" => "stub #{id}",
       "status" => status

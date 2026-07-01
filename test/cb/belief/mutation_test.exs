@@ -8,7 +8,7 @@ defmodule CB.Belief.MutationTest do
     [
       %Belief{
         id: "a001",
-        type: "primitive",
+        type: "attestation",
         kind: "rule",
         domain: "ops",
         claim: "Loan period is 21 days",
@@ -84,7 +84,7 @@ defmodule CB.Belief.MutationTest do
       type: "new-belief",
       id: "m1",
       belief_id: "a050",
-      after: %{"id" => "a050", "type" => "primitive", "kind" => "rule", "claim" => "new fact"}
+      after: %{"id" => "a050", "type" => "attestation", "kind" => "rule", "claim" => "new fact"}
     }
 
     assert {:ok, updated} = Mutation.apply_one(m, beliefs(), @opts)
@@ -98,7 +98,7 @@ defmodule CB.Belief.MutationTest do
       type: "new-belief",
       id: "m1",
       belief_id: "a001",
-      after: %{"id" => "a001", "type" => "primitive"}
+      after: %{"id" => "a001", "type" => "attestation"}
     }
 
     assert {:error, {:belief_id_conflict, "a001"}} = Mutation.apply_one(m, beliefs(), @opts)

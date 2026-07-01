@@ -27,7 +27,7 @@ defmodule CB.Codepath.AssertionsTest do
 
     b(
       id: id,
-      type: if(rules == [], do: "primitive", else: "implication"),
+      type: if(rules == [], do: "attestation", else: "implication"),
       kind: if(rules == [], do: "fact", else: "rule"),
       contract: rules != [],
       rules: rules,
@@ -127,7 +127,7 @@ defmodule CB.Codepath.AssertionsTest do
         Jason.encode!([
           %{
             "id" => "t:a001",
-            "type" => "primitive",
+            "type" => "attestation",
             "kind" => "fact",
             "claim" => "x",
             "status" => "active"

@@ -17,7 +17,7 @@ defmodule CB.Eval.PredicatesTest do
       Map.merge(
         %{
           "id" => id,
-          "type" => "primitive",
+          "type" => "attestation",
           "kind" => "observation",
           "tags" => ["aggregate"],
           "artifact" => "eval:e1/#{run}/#{ruler}",
@@ -44,7 +44,7 @@ defmodule CB.Eval.PredicatesTest do
   defp agreement(id, deps) do
     belief(%{
       "id" => id,
-      "type" => "compound",
+      "type" => "aggregation",
       "kind" => "observation",
       "tags" => ["cross-ruler-agreement"],
       "deps" => deps
@@ -71,7 +71,7 @@ defmodule CB.Eval.PredicatesTest do
     validation =
       belief(%{
         "id" => "t:val",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "protocol",
         "tags" => ["judge-validation"],
         "subjects" => [
@@ -166,7 +166,7 @@ defmodule CB.Eval.PredicatesTest do
         observation("t:o", "r1", "det"),
         belief(%{
           "id" => "t:agree",
-          "type" => "compound",
+          "type" => "aggregation",
           "kind" => "observation",
           "tags" => ["cross-ruler-agreement"],
           "deps" => ["t:o"],
@@ -210,7 +210,7 @@ defmodule CB.Eval.PredicatesTest do
           "status" => "superseded",
           "superseded_by" => "t:o2"
         }),
-        belief(%{"id" => "t:c", "type" => "primitive", "kind" => "convention"})
+        belief(%{"id" => "t:c", "type" => "attestation", "kind" => "convention"})
       ]
 
       assert Predicates.observations_cite_runlogs?(beliefs, %{}) == true
@@ -296,7 +296,7 @@ defmodule CB.Eval.PredicatesTest do
         observation("t:o", "r1", "llm-judge-basic"),
         belief(%{
           "id" => "t:val",
-          "type" => "primitive",
+          "type" => "attestation",
           "kind" => "protocol",
           "tags" => ["judge-validation"],
           "subjects" => [
@@ -353,7 +353,7 @@ defmodule CB.Eval.PredicatesTest do
       beliefs = [
         belief(%{
           "id" => "t:r",
-          "type" => "primitive",
+          "type" => "attestation",
           "kind" => "observation",
           "status" => "retracted",
           "retracted_on" => "2026-06-09",
@@ -370,7 +370,7 @@ defmodule CB.Eval.PredicatesTest do
       beliefs = [
         belief(%{
           "id" => "t:r",
-          "type" => "primitive",
+          "type" => "attestation",
           "kind" => "observation",
           "tags" => ["withdrawn"],
           "status" => "retracted",

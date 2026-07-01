@@ -8,14 +8,20 @@ defmodule CB.Okf.Emit do
   This is a lossy projection - nested evidence/subjects are not represented in the
   frontmatter subset; the canonical store remains `beliefs/beliefs.json`. The CB
   structural type is preserved in a `cb_type` field so a CB-aware reader can recover it.
+
+  OKF's published type vocabulary (`okf/standard/types.md`) is its own and does not
+  follow CB renames: this module is a translation map at the boundary. CB types are
+  normalized to the current vocabulary (legacy names accepted) before translation,
+  and `cb_type` records the normalized CB name.
   """
   alias CB.Okf.Manifest
 
+  # cb structural type (current vocabulary) -> OKF published type.
   @type_map %{
-    "primitive" => "reference",
-    "compound" => "concept",
+    "attestation" => "reference",
+    "aggregation" => "concept",
     "inference" => "analysis",
-    "directive" => "position"
+    "prescription" => "position"
   }
   @status_map %{
     "active" => "active",
@@ -51,17 +57,18 @@ defmodule CB.Okf.Emit do
 
   defp doc(b, ids) do
     deps = b["deps"] || []
+    cb_type = CB.Belief.normalize_type(b["type"])
 
     fm =
       [
-        {"type", Map.get(@type_map, b["type"], "concept")},
+        {"type", Map.get(@type_map, cb_type, "concept")},
         {"title", "Belief #{b["id"]}"},
         {"description", {:fold, hook(b["claim"])}},
         {"status", Map.get(@status_map, b["status"] || "active", "active")},
         {"timestamp", b["created"]},
         {"tier", "cb"},
         {"id", b["id"]},
-        {"cb_type", b["type"]}
+        {"cb_type", cb_type}
       ]
       |> opt("kind", b["kind"])
       |> opt("domain", b["domain"])

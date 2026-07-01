@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Cb.RepointTest do
   defp belief(id, deps) do
     Belief.from_map(%{
       "id" => id,
-      "type" => "directive",
+      "type" => "prescription",
       "kind" => "action-item",
       "claim" => "stub #{id}",
       "deps" => deps,

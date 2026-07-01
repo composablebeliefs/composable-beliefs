@@ -18,7 +18,7 @@ defmodule CB.Belief.Adjudication do
     on the conflicting belief is the author's job and happens before
     this function runs; this unit does not rewrite claims.
   - `defer` - no proposed belief is written. Instead, a deferral
-    primitive is authored with `tag:adjudication:deferred`, `deps` on
+    attestation is authored with `tag:adjudication:deferred`, `deps` on
     the conflicting belief, and the proposed content folded into its
     claim / evidence.
 
@@ -213,7 +213,7 @@ defmodule CB.Belief.Adjudication do
 
   defp apply_outcome(%{outcome: "defer"} = r, conflicting, existing, today) do
     new_id = next_a_id(existing) |> inherit_namespace(conflicting.id)
-    deferral = build_deferral_primitive(new_id, r, today)
+    deferral = build_deferral_attestation(new_id, r, today)
 
     summary = %{
       new_id: new_id,
@@ -242,7 +242,7 @@ defmodule CB.Belief.Adjudication do
     |> Belief.from_map()
   end
 
-  defp build_deferral_primitive(new_id, record, today) do
+  defp build_deferral_attestation(new_id, record, today) do
     proposed = record.proposed
     conflicting_id = record.conflicting_id
     reasoning = record.reasoning
@@ -269,7 +269,7 @@ defmodule CB.Belief.Adjudication do
     # which is sufficient.
     Belief.from_map(%{
       "id" => new_id,
-      "type" => "primitive",
+      "type" => "attestation",
       "kind" => "observation",
       "domain" => proposed.domain,
       "tags" => tags,

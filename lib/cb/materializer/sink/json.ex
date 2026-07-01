@@ -7,7 +7,7 @@ defmodule CB.Materializer.Sink.JSON do
       {
         "id": "t0007",
         "action": "<free text from the action item>",
-        "notes": "<traceability back to the directive's reasoning>",
+        "notes": "<traceability back to the prescription's reasoning>",
         "source": "<belief id that produced it>",
         "created": "2026-06-03",
         "status": "open"

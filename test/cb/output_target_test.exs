@@ -7,7 +7,7 @@ defmodule CB.OutputTargetTest do
   defp b(fields), do: struct(Belief, Map.merge(%{status: "active", deps: []}, Map.new(fields)))
 
   defp claim_belief(id, anchor \\ "def from_map(") do
-    b(id: id, type: "primitive", kind: "fact", artifact: "code:lib/cb/belief.ex##{anchor}")
+    b(id: id, type: "attestation", kind: "fact", artifact: "code:lib/cb/belief.ex##{anchor}")
   end
 
   defp codepath_target(overrides \\ []) do
@@ -107,7 +107,7 @@ defmodule CB.OutputTargetTest do
 
     test "referenced beliefs must exist and carry a valid code: artifact" do
       document_anchored =
-        b(id: "x:a002", type: "primitive", kind: "fact", artifact: "document:lib/cb/belief.ex")
+        b(id: "x:a002", type: "attestation", kind: "fact", artifact: "document:lib/cb/belief.ex")
 
       assert {:error, errors} =
                OutputTarget.validate_codepath(codepath_target(), [

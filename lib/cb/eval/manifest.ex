@@ -9,7 +9,7 @@ defmodule CB.Eval.Manifest do
   dates come from the manifest's own `date` - never from the clock.
 
   The importer stays mechanical: aggregates and load-bearing case
-  primitives only. No compounds, no verdicts - the judgment layer is a
+  attestations only. No aggregations, no verdicts - the judgment layer is a
   human authoring through the normal write flow.
 
   Everything here is pure; `Mix.Tasks.Cb.Import.Eval` owns IO.
@@ -145,7 +145,7 @@ defmodule CB.Eval.Manifest do
 
     %{
       "id" => "#{ns}:o-#{hash([m["eval_id"], run["run_id"], ruler])}",
-      "type" => "primitive",
+      "type" => "attestation",
       "kind" => "observation",
       "domain" => "eval",
       "tags" => Enum.uniq(["aggregate"] ++ outcome_tags(counts) ++ (m["tags"] || [])),
@@ -175,7 +175,7 @@ defmodule CB.Eval.Manifest do
     for c <- scorer["load_bearing_cases"] || [] do
       %{
         "id" => "#{ns}:o-#{hash([m["eval_id"], run["run_id"], ruler, c["case_id"]])}",
-        "type" => "primitive",
+        "type" => "attestation",
         "kind" => "observation",
         "domain" => "eval",
         "tags" => Enum.uniq(["outcome:#{c["outcome"]}"] ++ (m["tags"] || [])),

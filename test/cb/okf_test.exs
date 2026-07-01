@@ -111,7 +111,7 @@ defmodule CB.OkfTest do
       [
         %{
           "id" => "cb:a001",
-          "type" => "primitive",
+          "type" => "attestation",
           "kind" => "convention",
           "claim" => "The standard loan period for circulating items is twenty-one days.",
           "artifact" => "document:policy.md",
@@ -149,7 +149,7 @@ defmodule CB.OkfTest do
 
       ingested = CB.Okf.Ingest.beliefs(out, "lib")
       assert length(ingested) == 2
-      assert Enum.all?(ingested, &(&1["type"] == "primitive"))
+      assert Enum.all?(ingested, &(&1["type"] == "attestation"))
       assert Enum.all?(ingested, &String.starts_with?(&1["artifact"], "document:"))
       assert Enum.all?(ingested, &(&1["deps"] == []))
     end

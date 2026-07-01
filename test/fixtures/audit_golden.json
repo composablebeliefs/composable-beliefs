@@ -7,7 +7,7 @@
       "x"
     ],
     "belief_count": 6,
-    "digest": "sha256:c364a11f715e50109bb159c8c49dc15db1175186fb215c95ebf01926ebc25a0f",
+    "digest": "sha256:e3639ad039de780316829a67b92c5177fbdcce301acd3d87beffc6cb7e496348",
     "renderer": "cb.render.audit/1",
     "date": "2026-06-10"
   },
@@ -47,7 +47,7 @@
       {
         "id": "g:c1",
         "role": "belief",
-        "type": "compound",
+        "type": "aggregation",
         "kind": "observation",
         "contract": false,
         "name": null,
@@ -69,7 +69,7 @@
           {
             "id": "g:p1",
             "role": "belief",
-            "type": "primitive",
+            "type": "attestation",
             "kind": "observation",
             "contract": false,
             "name": null,
@@ -105,7 +105,7 @@
           {
             "id": "g:p2",
             "role": "belief",
-            "type": "primitive",
+            "type": "attestation",
             "kind": "observation",
             "contract": false,
             "name": null,
@@ -126,7 +126,7 @@
       {
         "id": "x:doc1",
         "role": "link",
-        "type": "primitive",
+        "type": "attestation",
         "kind": "convention",
         "contract": false,
         "name": null,

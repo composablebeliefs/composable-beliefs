@@ -5,9 +5,9 @@ defmodule Mix.Tasks.Cb.Import.Eval do
   The run-manifest (`docs/run-manifest.md`) is the contract between the
   lab bench and the ledger: a harness adapter emits it, this task
   materializes it - deterministically - through the existing import
-  path. The importer is mechanical and emits **primitives only**: one
+  path. The importer is mechanical and emits **attestations only**: one
   aggregate observation per `(run, ruler)` pair, one six-subject
-  primitive per load-bearing case. Cross-ruler agreement compounds and
+  attestation per load-bearing case. Cross-ruler agreement aggregations and
   verdicts are authored by a human through the normal write flow.
 
   ## Usage

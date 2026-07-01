@@ -2,28 +2,31 @@ defmodule CB.Okf.Ingest do
   @moduledoc """
   Ingest an OKF bundle *up* into CB beliefs. Per the CB<->OKF analysis this direction is
   intentionally lossy: a generic OKF bundle carries no typed deps or evidence, so every
-  document becomes a `primitive` belief grounded in `artifact: document:<path>`. Typed
+  document becomes an `attestation` belief grounded in `artifact: document:<path>`. Typed
   composition is not reconstructed - that is the discipline CB adds on top, by hand or
   via `/assert`, not something the up-conversion can invent.
+
+  OKF's own type vocabulary (frontmatter `type:`) is untouched here - the boundary
+  translates; only the CB-side type name follows the CB vocabulary.
 
   Returns CB belief maps (string-keyed) ready to encode or feed to preflight.
   """
   alias CB.Okf.{Frontmatter, Manifest}
 
-  @doc "Ingest the bundle at `root` into a list of primitive belief maps under namespace `ns`."
+  @doc "Ingest the bundle at `root` into a list of attestation belief maps under namespace `ns`."
   def beliefs(root, ns \\ "okf") do
     root = Path.expand(root)
 
     Manifest.doc_paths(root)
     |> Enum.map(fn {_full, rel} -> {rel, Frontmatter.parse(File.read!(Path.join(root, rel)))} end)
     |> Enum.reject(fn {_rel, fm} -> fm == %{} or fm["type"] == "index" end)
-    |> Enum.map(fn {rel, fm} -> primitive(ns, rel, fm) end)
+    |> Enum.map(fn {rel, fm} -> attestation(ns, rel, fm) end)
   end
 
-  defp primitive(ns, rel, fm) do
+  defp attestation(ns, rel, fm) do
     %{
       "id" => fm["id"] || ns <> ":" <> slug(rel),
-      "type" => "primitive",
+      "type" => "attestation",
       "tags" => fm["tags"] || [],
       "claim" => fm["description"] || fm["title"] || "",
       "artifact" => "document:" <> rel,

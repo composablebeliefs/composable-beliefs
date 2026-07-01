@@ -4,12 +4,15 @@ defmodule CB.Schema.Verifier do
 
   The verifier is collection-agnostic. Two kinds of rule are checked:
 
-  - **Framework-universal structure** - the four structural types, the
-    `contract: true` biconditional, the `c`-prefix convention, the
-    grounding rule (deps, or a stipulation artifact for directives),
+  - **Framework-universal structure** - the four structural types (the
+    legacy vocabulary is normalized and stays valid for the compat
+    epoch), the definitional contract check (contract-grade iff
+    rules/invariants non-empty, tolerating the stored `contract` field
+    unmigrated data still carries), the `c`-prefix convention, the
+    grounding rule (deps, or a stipulation artifact for prescriptions),
     dep resolution (every dep of an active belief resolves in-collection,
     with cross-namespace deps deferred to `mix cb.verify.collection`),
-    subject containment on compounds, artifact format, status linkage.
+    subject containment on aggregations, artifact format, status linkage.
     These hold for any well-formed collection and are checked against
     `CB.Belief`'s own canon, not against ids.
   - **Collection-specific vocabulary** - the closed enums for `kind`,
@@ -45,8 +48,8 @@ defmodule CB.Schema.Verifier do
     [
       check_schema_roles(beliefs),
       check_type_enum(beliefs),
-      check_contract_requires_directive(beliefs),
-      check_contract_biconditional(beliefs),
+      check_contract_requires_prescription(beliefs),
+      check_contract_definition(beliefs),
       check_kind_enum(beliefs),
       check_kind_type_table(beliefs),
       check_domain_enum(beliefs),
@@ -59,7 +62,7 @@ defmodule CB.Schema.Verifier do
       check_grounding(beliefs),
       check_dep_resolution(beliefs),
       check_subject_containment(beliefs),
-      check_retired_is_directive(beliefs),
+      check_retired_is_prescription(beliefs),
       check_status_enum(beliefs),
       check_superseded_linkage(beliefs),
       check_retracted_linkage(beliefs),
@@ -70,7 +73,7 @@ defmodule CB.Schema.Verifier do
   # --- role discovery (no hardcoded ids) ---
 
   defp active_contracts(beliefs) do
-    Enum.filter(beliefs, &(&1.status == "active" and &1.contract == true))
+    Enum.filter(beliefs, &(&1.status == "active" and Belief.contract?(&1)))
   end
 
   # The active enum-registry contract that declares `field`, or nil.
@@ -112,10 +115,14 @@ defmodule CB.Schema.Verifier do
 
   defp check_type_enum(beliefs) do
     valid = Belief.types()
-    bad = beliefs |> Enum.reject(&(&1.type in valid)) |> Enum.map(& &1.id)
+
+    bad =
+      beliefs
+      |> Enum.reject(&(Belief.normalize_type(&1.type) in valid))
+      |> Enum.map(& &1.id)
 
     if bad == [] do
-      {"type enum", :ok, "all nodes have type in #{inspect(valid)}"}
+      {"type enum", :ok, "all nodes have type in #{inspect(valid)} (legacy names accepted)"}
     else
       {"type enum", :fail, "nodes with invalid type: #{inspect(bad)}"}
     end
@@ -123,18 +130,18 @@ defmodule CB.Schema.Verifier do
 
   # --- contract structural rules (framework-universal) ---
 
-  defp check_contract_requires_directive(beliefs) do
+  defp check_contract_requires_prescription(beliefs) do
     violations =
       beliefs
-      |> Enum.filter(&(&1.contract == true))
-      |> Enum.reject(&(&1.type == "directive"))
+      |> Enum.filter(&Belief.contract?/1)
+      |> Enum.reject(&(Belief.normalize_type(&1.type) == "prescription"))
       |> Enum.map(& &1.id)
 
     if violations == [] do
-      {"contract requires directive", :ok, "all contract-grade beliefs are directives"}
+      {"contract requires prescription", :ok, "all contract-grade beliefs are prescriptions"}
     else
-      {"contract requires directive", :fail,
-       "contract: true on non-directive: #{inspect(violations)}"}
+      {"contract requires prescription", :fail,
+       "rules/invariants on non-prescription: #{inspect(violations)}"}
     end
   end
 
@@ -169,8 +176,17 @@ defmodule CB.Schema.Verifier do
                 []
 
               rows ->
-                allowed = Enum.flat_map(rows, &(&1["allowed_types"] || []))
-                if b.type in allowed, do: [], else: [{b.id, b.kind, b.type}]
+                # The table's rows may declare either vocabulary; normalize
+                # both sides so an old-vocab table still governs new-vocab
+                # nodes (and vice versa) during the compat epoch.
+                allowed =
+                  rows
+                  |> Enum.flat_map(&(&1["allowed_types"] || []))
+                  |> Enum.map(&Belief.normalize_type/1)
+
+                if Belief.normalize_type(b.type) in allowed,
+                  do: [],
+                  else: [{b.id, b.kind, b.type}]
             end
           end)
 
@@ -184,22 +200,24 @@ defmodule CB.Schema.Verifier do
     end
   end
 
-  defp check_contract_biconditional(beliefs) do
-    # contract: true iff (rules non-empty OR invariants non-empty)
+  defp check_contract_definition(beliefs) do
+    # Contract-grade is definitional: contract?/1 computes rules/invariants
+    # non-empty. Unmigrated data may still carry a stored `contract` field;
+    # that is tolerated, but a stored field that disagrees with the
+    # definition is drift and fails.
     violations =
       beliefs
       |> Enum.filter(fn a ->
-        has_payload =
-          (is_list(a.rules) and a.rules != []) or (is_list(a.invariants) and a.invariants != [])
-
-        has_payload != (a.contract == true)
+        not is_nil(a.contract) and (a.contract == true) != Belief.contract?(a)
       end)
       |> Enum.map(& &1.id)
 
     if violations == [] do
-      {"contract biconditional", :ok, "contract: true iff rules/invariants non-empty"}
+      {"contract definition", :ok,
+       "contract-grade iff rules/invariants non-empty; stored contract fields (if any) agree"}
     else
-      {"contract biconditional", :fail, "contract/payload mismatch: #{inspect(violations)}"}
+      {"contract definition", :fail,
+       "stored contract field disagrees with rules/invariants: #{inspect(violations)}"}
     end
   end
 
@@ -349,15 +367,14 @@ defmodule CB.Schema.Verifier do
       beliefs
       |> Enum.filter(&(&1.kind == "action-item"))
       |> Enum.filter(fn a ->
-        a.type != "directive" or a.contract == true or
-          (is_list(a.rules) and a.rules != []) or
-          (is_list(a.invariants) and a.invariants != [])
+        Belief.normalize_type(a.type) != "prescription" or a.contract == true or
+          Belief.contract?(a)
       end)
       |> Enum.map(& &1.id)
 
     if violations == [] do
       {"action-item shape", :ok,
-       "all action-items are non-contract directives with empty rules/invariants"}
+       "all action-items are non-contract prescriptions with empty rules/invariants"}
     else
       {"action-item shape", :fail, "action-items violating shape: #{inspect(violations)}"}
     end
@@ -365,27 +382,27 @@ defmodule CB.Schema.Verifier do
 
   # --- grounding rule ---
 
-  # Artifact schemes that count as stipulation events for directive
+  # Artifact schemes that count as stipulation events for prescription
   # grounding: a prescription is adopted, and adoption grounds either in
   # beliefs (deps) or in a stipulation (a plan, a user decision, a session,
   # or a house document - a policy file is where its rules were fixed).
-  # External-source schemes (source:, https:) never ground a directive.
+  # External-source schemes (source:, https:) never ground a prescription.
   @stipulation_schemes ~w(plan user session document)
 
   defp check_grounding(beliefs) do
-    # Compounds and inferences must have deps. Directives must have deps
-    # or a stipulation artifact, UNLESS they are contract-grade - contracts
-    # may be declared from policy without composing.
+    # Aggregations and inferences must have deps. Prescriptions must have
+    # deps or a stipulation artifact, UNLESS they are contract-grade -
+    # contracts may be declared from policy without composing (c059).
     violations =
       beliefs
       |> Enum.filter(&(&1.status == "active"))
       |> Enum.filter(fn a ->
         has_deps = is_list(a.deps) and a.deps != []
 
-        case a.type do
-          "compound" -> not has_deps
+        case Belief.normalize_type(a.type) do
+          "aggregation" -> not has_deps
           "inference" -> not has_deps
-          "directive" -> a.contract != true and not (has_deps or stipulation_artifact?(a))
+          "prescription" -> not Belief.contract?(a) and not (has_deps or stipulation_artifact?(a))
           _ -> false
         end
       end)
@@ -393,7 +410,7 @@ defmodule CB.Schema.Verifier do
 
     if violations == [] do
       {"grounding", :ok,
-       "compounds and inferences have deps; non-contract directives have deps or a stipulation artifact"}
+       "aggregations and inferences have deps; non-contract prescriptions have deps or a stipulation artifact"}
     else
       {"grounding", :fail, "ungrounded nodes: #{inspect(violations)}"}
     end
@@ -443,19 +460,19 @@ defmodule CB.Schema.Verifier do
 
   defp namespace_of(_), do: nil
 
-  # --- subject containment (compound = conjunction) ---
+  # --- subject containment (aggregation = conjunction) ---
 
   defp check_subject_containment(beliefs) do
     # A conjunction cannot be about something its parts are not about: an
-    # active compound's subject refs must be a subset of the union of its
-    # deps' subject refs. Empty subjects pass vacuously; a compound with an
-    # unresolvable dep (cross-namespace, not in this list) is skipped, since
-    # its union cannot be computed here.
+    # active aggregation's subject refs must be a subset of the union of its
+    # deps' subject refs. Empty subjects pass vacuously; an aggregation with
+    # an unresolvable dep (cross-namespace, not in this list) is skipped,
+    # since its union cannot be computed here.
     by_id = Map.new(beliefs, &{&1.id, &1})
 
     {checked, skipped, violations} =
       beliefs
-      |> Enum.filter(&(&1.status == "active" and &1.type == "compound"))
+      |> Enum.filter(&(&1.status == "active" and Belief.normalize_type(&1.type) == "aggregation"))
       |> Enum.reduce({0, 0, []}, fn c, {checked, skipped, violations} ->
         refs = subject_refs(c)
         deps = c.deps || []
@@ -482,10 +499,10 @@ defmodule CB.Schema.Verifier do
 
     if violations == [] do
       {"subject containment", :ok,
-       "compound subjects contained in dep subject union (#{checked} checked, #{skipped} skipped on unresolvable deps)"}
+       "aggregation subjects contained in dep subject union (#{checked} checked, #{skipped} skipped on unresolvable deps)"}
     else
       {"subject containment", :fail,
-       "compound subjects escape their deps: #{inspect(Enum.reverse(violations))}"}
+       "aggregation subjects escape their deps: #{inspect(Enum.reverse(violations))}"}
     end
   end
 
@@ -495,21 +512,22 @@ defmodule CB.Schema.Verifier do
 
   defp subject_refs(_), do: []
 
-  # --- retired is a directive state ---
+  # --- retired is a prescription state ---
 
-  defp check_retired_is_directive(beliefs) do
-    # A directive is withdrawn, never falsified: superseded by a successor
-    # rule, or retired. Descriptive types have no "in force" to leave.
+  defp check_retired_is_prescription(beliefs) do
+    # A prescription is withdrawn, never falsified: superseded by a
+    # successor rule, or retired. Descriptive types have no "in force"
+    # to leave.
     violations =
       beliefs
       |> Enum.filter(&(&1.status == "retired"))
-      |> Enum.reject(&(&1.type == "directive"))
+      |> Enum.reject(&(Belief.normalize_type(&1.type) == "prescription"))
       |> Enum.map(& &1.id)
 
     if violations == [] do
-      {"retired is directive", :ok, "retired status appears only on directives"}
+      {"retired is prescription", :ok, "retired status appears only on prescriptions"}
     else
-      {"retired is directive", :fail, "retired non-directives: #{inspect(violations)}"}
+      {"retired is prescription", :fail, "retired non-prescriptions: #{inspect(violations)}"}
     end
   end
 
@@ -589,14 +607,14 @@ defmodule CB.Schema.Verifier do
     mismatches =
       beliefs
       |> Enum.filter(&String.starts_with?(local_id(&1.id), "c"))
-      |> Enum.reject(&(&1.contract == true))
+      |> Enum.reject(&Belief.contract?/1)
       |> Enum.map(& &1.id)
 
     if mismatches == [] do
-      {"c-prefix is contract-grade", :ok, "all c-prefix IDs carry contract: true"}
+      {"c-prefix is contract-grade", :ok, "all c-prefix IDs are contract-grade"}
     else
       {"c-prefix is contract-grade", :fail,
-       "c-prefix IDs without contract: true: #{inspect(mismatches)}"}
+       "c-prefix IDs that are not contract-grade: #{inspect(mismatches)}"}
     end
   end
 

@@ -1,12 +1,12 @@
 defmodule CB.Belief.Materializer do
   @moduledoc """
-  Materialize a belief directive into action items via a pluggable sink.
+  Materialize a belief prescription into action items via a pluggable sink.
 
   The flow is host-agnostic:
 
-      directive belief -> action items -> sink -> link belief.materialized
+      prescription belief -> action items -> sink -> link belief.materialized
 
-  A directive says *what needs to happen*. Materialization turns that
+  A prescription says *what needs to happen*. Materialization turns that
   into concrete action items and hands them to a `CB.Materializer.Sink`,
   which persists them wherever the host wants (a todo file, a ticket
   tracker, a table). The sink returns one ref per persisted item, and
@@ -27,10 +27,10 @@ defmodule CB.Belief.Materializer do
   @default_sink Sink.JSON
 
   @doc """
-  Materialize a belief directive into action items.
+  Materialize a belief prescription into action items.
 
   `spec` is a string-keyed map with:
-  - `"belief_id"` - the directive node ID to materialize; bare (`a519`)
+  - `"belief_id"` - the prescription node ID to materialize; bare (`a519`)
     or namespaced (`cb:a519`), a bare id resolving when exactly one
     belief matches
   - `"action_items"` (or legacy `"todos"`) - a list of action-item maps,
@@ -74,9 +74,13 @@ defmodule CB.Belief.Materializer do
     end
   end
 
-  defp validate_node(%{type: "directive", materialized: nil}), do: :ok
-  defp validate_node(%{type: type}) when type != "directive", do: {:error, {:not_directive, type}}
-  defp validate_node(%{materialized: m}) when m != nil, do: {:error, :already_materialized}
+  defp validate_node(%{type: type, materialized: m} = _node) do
+    cond do
+      CB.Belief.normalize_type(type) != "prescription" -> {:error, {:not_prescription, type}}
+      m != nil -> {:error, :already_materialized}
+      true -> :ok
+    end
+  end
 
   defp run_sink(sink, node, action_items, sink_opts) do
     case sink.persist(node, action_items, sink_opts) do
