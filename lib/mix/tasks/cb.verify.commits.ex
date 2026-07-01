@@ -14,6 +14,10 @@ defmodule Mix.Tasks.Cb.Verify.Commits do
   - **commit -> belief:** every `Belief:` trailer in the repository's
     commit history names a node present in the graph. The convention is
     one id per trailer line: `Belief: cb:a545`.
+  - **done -> commit:** every todo record carrying a `commit` key (the
+    cb:a563 gate's marker) dereferences to a real commit. Pre-gate
+    records and explicitly `uncommitted` discharges carry no key and
+    are not checked.
 
   Requires full history: run on a shallow CI clone with
   `fetch-depth: 0`, or the belief->commit direction reports false
@@ -23,11 +27,13 @@ defmodule Mix.Tasks.Cb.Verify.Commits do
 
       mix cb.verify.commits
       mix cb.verify.commits --beliefs PATH   # verify an alternate collection
+      mix cb.verify.commits --todos PATH     # verify an alternate todo file
       mix cb.verify.commits --repo PATH      # resolve against another checkout
 
   ## Exit codes
 
-  0 = both directions clean, 1 = unresolved citations or dead trailers
+  0 = all directions clean, 1 = unresolved citations, dead trailers,
+  or unresolved todo commits
   """
   @shortdoc "Verify commit: artifacts resolve and Belief: trailers name live beliefs"
 
@@ -38,19 +44,33 @@ defmodule Mix.Tasks.Cb.Verify.Commits do
 
   @impl Mix.Task
   def run(args) do
-    {opts, _, _} = OptionParser.parse(args, strict: [beliefs: :string, repo: :string])
+    {opts, _, _} =
+      OptionParser.parse(args, strict: [beliefs: :string, todos: :string, repo: :string])
 
     if opts[:beliefs], do: System.put_env("CB_BELIEFS", opts[:beliefs])
     repo = opts[:repo] || "."
+    resolver = &CommitLocator.resolve(&1, repo)
 
     case BeliefStore.read() do
       {:ok, beliefs} ->
-        unresolved = Commits.unresolved(beliefs, &CommitLocator.resolve(&1, repo))
+        unresolved = Commits.unresolved(beliefs, resolver)
         dead = Commits.dead_trailer_refs(trailer_refs(repo), beliefs)
-        report(beliefs, unresolved, dead)
+        todo_unresolved = Commits.unresolved_todo_commits(todo_records(opts[:todos]), resolver)
+        report(beliefs, unresolved, dead, todo_unresolved)
 
       {:error, reason} ->
         IO.puts(:stderr, "cannot read belief graph: #{inspect(reason)}")
+        exit({:shutdown, 1})
+    end
+  end
+
+  defp todo_records(path) do
+    case CB.Todos.read(path || CB.Config.todos_path()) do
+      {:ok, records} ->
+        records
+
+      {:error, reason} ->
+        IO.puts(:stderr, "cannot read todo collection: #{inspect(reason)}")
         exit({:shutdown, 1})
     end
   end
@@ -69,7 +89,7 @@ defmodule Mix.Tasks.Cb.Verify.Commits do
     end
   end
 
-  defp report(beliefs, unresolved, dead) do
+  defp report(beliefs, unresolved, dead, todo_unresolved) do
     cited = length(Commits.citations(beliefs))
 
     if unresolved == [] do
@@ -89,6 +109,16 @@ defmodule Mix.Tasks.Cb.Verify.Commits do
       for {sha, id} <- dead, do: IO.puts("        #{String.slice(sha, 0, 10)} Belief: #{id}")
     end
 
-    if unresolved != [] or dead != [], do: exit({:shutdown, 1})
+    if todo_unresolved == [] do
+      IO.puts("  PASS  done -> commit: all recorded todo discharge commits resolve")
+    else
+      IO.puts("  FAIL  done -> commit: unresolved todo discharge commits:")
+
+      for {id, sha, reason} <- todo_unresolved do
+        IO.puts("        #{id} commit:#{sha} - #{reason}")
+      end
+    end
+
+    if unresolved != [] or dead != [] or todo_unresolved != [], do: exit({:shutdown, 1})
   end
 end

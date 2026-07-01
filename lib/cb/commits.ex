@@ -95,4 +95,35 @@ defmodule CB.Commits do
     ids = MapSet.new(beliefs, & &1.id)
     Enum.reject(refs, fn {_sha, id} -> MapSet.member?(ids, id) end)
   end
+
+  @doc """
+  Todo records whose recorded discharge commit (the `"commit"` key the
+  cb:a563 gate writes) fails to parse or to dereference. Records
+  without the key - pre-gate history, or explicitly `uncommitted` -
+  are not checked.
+  """
+  @spec unresolved_todo_commits([map()], (CommitLocator.t() -> :ok | {:error, atom()})) ::
+          [{String.t(), String.t(), atom()}]
+  def unresolved_todo_commits(records, resolver) do
+    for r <- records,
+        sha = r["commit"],
+        is_binary(sha),
+        reason = check_sha(sha, resolver),
+        reason != nil do
+      {r["id"], sha, reason}
+    end
+  end
+
+  defp check_sha(sha, resolver) do
+    case CommitLocator.parse("commit:" <> sha) do
+      {:error, reason} ->
+        reason
+
+      {:ok, locator} ->
+        case resolver.(locator) do
+          :ok -> nil
+          {:error, reason} -> reason
+        end
+    end
+  end
 end

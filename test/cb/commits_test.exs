@@ -60,6 +60,26 @@ defmodule CB.CommitsTest do
            ]
   end
 
+  test "unresolved_todo_commits/2 checks only records carrying a commit key" do
+    records = [
+      %{"id" => "t0001", "status" => "done", "commit" => @sha_a},
+      %{"id" => "t0002", "status" => "done", "commit" => "deadbeef"},
+      %{"id" => "t0003", "status" => "done", "uncommitted" => true},
+      %{"id" => "t0004", "status" => "done"},
+      %{"id" => "t0005", "status" => "done", "commit" => @sha_b}
+    ]
+
+    resolver = fn
+      %{sha: @sha_a} -> :ok
+      _ -> {:error, :not_found}
+    end
+
+    assert CB.Commits.unresolved_todo_commits(records, resolver) == [
+             {"t0002", "deadbeef", :invalid_sha},
+             {"t0005", @sha_b, :not_found}
+           ]
+  end
+
   test "dead_trailer_refs/2 flags only refs naming absent beliefs" do
     refs = [{@sha_a, "cb:a545"}, {@sha_b, "cb:a999"}]
     beliefs = [b(id: "cb:a545")]
