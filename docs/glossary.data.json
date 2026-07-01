@@ -1977,6 +1977,20 @@
       "type-as-function"
     ]
   },
+  "structural-type-rename": {
+    "name": "Structural-Type Rename (Schema v3)",
+    "short": "The 2026-07-01 vocabulary migration: primitive -> attestation, compound -> aggregation, inference (unchanged), directive -> prescription; the stored contract boolean became the derived predicate contract?.",
+    "def": "The schema-v3 vocabulary migration renamed the four <a href='glossary.html#structural-type'>structural types</a> to nominalizations of the four epistemic verbs cb:c051 names: <a href='glossary.html#primitive'>primitive</a> became <em>attestation</em> (attest), <a href='glossary.html#compound'>compound</a> became <em>aggregation</em> (aggregate), <a href='glossary.html#inference'>inference</a> kept its name (infer), and <a href='glossary.html#directive'>directive</a> became <em>prescription</em> (prescribe). A label migration, not a supersession - identity and claims unchanged, the source -> artifact precedent - recorded as evidence on cb:c051. In the same epoch the stored <a href='glossary.html#contract'>contract</a> boolean was demoted to a derived predicate: contract-grade is computed as non-empty rules/invariants (Belief.contract?/1, cb:c056), and no contract field is stored. Documents dated before the migration (chronicles, plans, analyses, and this glossary's pre-rename entries) keep the old vocabulary; read primitive as attestation, compound as aggregation, directive as prescription. Code accepts both vocabularies for the compat epoch (CB.Belief.normalize_type/1).",
+    "also": "attestation, aggregation, prescription, schema v3",
+    "see": [
+      "structural-type",
+      "primitive",
+      "compound",
+      "inference",
+      "directive",
+      "contract"
+    ]
+  },
   "subject-containment": {
     "name": "Subject Containment",
     "short": "The invariant that an active compound's subject refs must be a subset of the union of its deps' subject refs; widening past it signals inference.",

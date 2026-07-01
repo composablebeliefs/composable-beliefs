@@ -10,17 +10,17 @@ Read this file for orientation; the guided tour lives with the teaching material
 
 Query the graph with the belief shell, deterministic pure traversal with no LLM: `mix bs list [filters]`, `mix bs show <id>`, `mix bs tree <id>`, `mix bs stale`, `mix bs stats`. Run `mix bs help` for the full command set; ids may be bare (`c029`) or namespaced (`cb:c029`).
 
-## Active directives
+## Active prescriptions
 
-Active behavioral directives are not cached to a digest file; load them live from the graph by querying active directives (`mix bs list directive`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
+Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
 
 ## Session start
 
-A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each directive's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.
+A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each prescription's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.
 
 ## Architecture
 
-The mechanism is a directed acyclic graph of beliefs with four structural types: primitive (what a single source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and directive (what should happen or must hold - a prescription the house stands behind).
+The mechanism is a directed acyclic graph of beliefs with four structural types: attestation (what a single source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen or must hold - what the house stands behind).
 
 Immutability makes change traceable: a belief is never edited in place; a changed belief is superseded by a new one and linked forward. Composition makes the whole greater than its parts - an inference concludes what none of its inputs states alone, and pays for that licence by being falsifiable on its own, independent of its deps.
 
@@ -34,13 +34,13 @@ Verify with the graph's own tooling: `mix cb.verify.schema` checks a collection 
 
 ## Schema
 
-The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c051 (the four structural types), c053 (status lifecycle and immutability), c056 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), c057 (the kind-type table), c058 (subject containment), c059 (directive grounding), and c055 (conflict scope). Read one with `mix bs show cb:c051`.
+The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c051 (the four structural types), c053 (status lifecycle and immutability), c056 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), c057 (the kind-type table), c058 (subject containment), c059 (prescription grounding), and c055 (conflict scope). Read one with `mix bs show cb:c051`.
 
-Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; primitives ground their claim with an `artifact` URI and dated `evidence`; non-contract directives ground in deps or a stipulation artifact; and `contract: true` is biconditional with non-empty `rules`/`invariants` (per c056).
+Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; non-contract prescriptions ground in deps or a stipulation artifact; and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per c056).
 
 ## Skills
 
-Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns directives into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).
+Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assertions` queries and traverses the graph; `/materialize` turns prescriptions into concrete tasks; `/position` captures a settled stance as an anchored position document in the host repo's positions/ - ceremony-gated, anchors verified at authoring time, extraction left to `/assert`; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).
 
 ## Collections
 

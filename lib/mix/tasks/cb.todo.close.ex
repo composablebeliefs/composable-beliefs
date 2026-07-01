@@ -10,14 +10,23 @@ defmodule Mix.Tasks.Cb.Todo.Close do
 
   ## Usage
 
-      mix cb.todo.close <todo-id> --notes "..."            # Dry run
-      mix cb.todo.close <todo-id> --notes "..." --write
+      mix cb.todo.close <todo-id> --notes "..." --commit <sha>      # Dry run
+      mix cb.todo.close <todo-id> --notes "..." --commit <sha> --write
+      mix cb.todo.close <todo-id> --notes "..." --no-commit --write
 
   ## Options
 
   - `--notes` (required) - the discharge notes; a record that already
     carries materialization-time notes keeps them, with the discharge
     notes appended as a new paragraph
+  - `--commit <sha>` - the implementing commit, full 40-hex id; parsed
+    by `CB.CommitLocator`, dereferenced against the repository, and
+    recorded as a `commit` key on the record
+  - `--no-commit` - explicitly record that nothing in the repository
+    implements this discharge (`uncommitted: true` on the record); put
+    the reason in the notes
+  - `--repo PATH` - resolve `--commit` against another checkout
+    (defaults to the current directory)
   - `--todos PATH` - operate on an alternate todo file (defaults to
     `CB.Config.todos_path/0`)
   - `--write` - apply; without it the flip is printed but not written
@@ -25,8 +34,12 @@ defmodule Mix.Tasks.Cb.Todo.Close do
   ## Validation
 
   Exits non-zero before writing if the todo id is unknown, the record
-  is not open (the flip is strictly open -> done), or the notes are
-  missing or empty.
+  is not open (the flip is strictly open -> done), the notes are
+  missing or empty, or the commit gate is unmet: exactly one of
+  `--commit`/`--no-commit` is required (cb:a563 - silent omission is
+  not a state), and a cited sha must parse and resolve to a real
+  commit. Historical done records are untouched; the gate is
+  prospective, enforced at this door.
   """
   @shortdoc "Flip a materialized todo item from open to done"
 
@@ -41,7 +54,10 @@ defmodule Mix.Tasks.Cb.Todo.Close do
         strict: [
           notes: :string,
           todos: :string,
-          write: :boolean
+          write: :boolean,
+          commit: :string,
+          no_commit: :boolean,
+          repo: :string
         ]
       )
 
@@ -60,17 +76,20 @@ defmodule Mix.Tasks.Cb.Todo.Close do
           System.halt(1)
       end
 
-    case validate_notes(opts[:notes]) do
-      {:ok, notes} -> close(id, notes, opts[:todos], opts[:write] || false)
+    with {:ok, notes} <- validate_notes(opts[:notes]),
+         {:ok, discharge} <-
+           validate_discharge(opts[:commit], opts[:no_commit] || false, opts[:repo] || ".") do
+      close(id, notes, discharge, opts[:todos], opts[:write] || false)
+    else
       {:error, message} -> halt(message)
     end
   end
 
-  defp close(id, notes, path, write?) do
+  defp close(id, notes, discharge, path, write?) do
     path = path || CB.Config.todos_path()
 
     with {:ok, records} <- Todos.read(path),
-         {:ok, updated, closed} <- Todos.close(records, id, notes) do
+         {:ok, updated, closed} <- Todos.close(records, id, notes, discharge) do
       report(closed)
 
       if write? do
@@ -102,6 +121,13 @@ defmodule Mix.Tasks.Cb.Todo.Close do
     IO.puts("\n#{closed["id"]} (source: #{closed["source"] || "-"})")
     IO.puts("  #{truncate(closed["action"], 76)}")
     IO.puts("\nStatus: open -> done")
+
+    case closed do
+      %{"commit" => sha} -> IO.puts("Commit: #{sha}")
+      %{"uncommitted" => true} -> IO.puts("Commit: none (explicitly uncommitted)")
+      _ -> :ok
+    end
+
     IO.puts("Notes:  #{closed["notes"]}")
   end
 
@@ -125,8 +151,39 @@ defmodule Mix.Tasks.Cb.Todo.Close do
     end
   end
 
+  @doc """
+  Validate the commit gate (cb:a563): exactly one of `--commit`/
+  `--no-commit`, with a cited sha parsed by `CB.CommitLocator` and
+  dereferenced against `repo`.
+  """
+  @spec validate_discharge(String.t() | nil, boolean(), Path.t()) ::
+          {:ok, {:commit, String.t()} | :no_commit} | {:error, String.t()}
+  def validate_discharge(nil, false, _repo) do
+    {:error,
+     "a close must cite its implementing commit (--commit <40-hex-sha>) or explicitly record that none exists (--no-commit, reason in --notes)"}
+  end
+
+  def validate_discharge(sha, true, _repo) when is_binary(sha) do
+    {:error, "--commit and --no-commit are mutually exclusive"}
+  end
+
+  def validate_discharge(nil, true, _repo), do: {:ok, :no_commit}
+
+  def validate_discharge(sha, false, repo) do
+    case CB.CommitLocator.parse("commit:" <> sha) do
+      {:ok, locator} ->
+        case CB.CommitLocator.resolve(locator, repo) do
+          :ok -> {:ok, {:commit, sha}}
+          {:error, :not_found} -> {:error, "commit #{sha} not found in #{Path.expand(repo)}"}
+        end
+
+      {:error, :invalid_sha} ->
+        {:error, "--commit must be a full 40-hex-char sha (got: #{sha})"}
+    end
+  end
+
   defp usage do
-    "Usage: mix cb.todo.close <todo-id> --notes \"...\" [--todos PATH] [--write]"
+    "Usage: mix cb.todo.close <todo-id> --notes \"...\" (--commit <sha> | --no-commit) [--repo PATH] [--todos PATH] [--write]"
   end
 
   @spec halt(String.t()) :: no_return()

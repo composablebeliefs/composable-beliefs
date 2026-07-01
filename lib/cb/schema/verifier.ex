@@ -56,6 +56,7 @@ defmodule CB.Schema.Verifier do
       check_artifact_format(beliefs),
       check_artifact_scheme_enum(beliefs),
       check_code_artifact_format(beliefs),
+      check_commit_artifact_format(beliefs),
       check_codepath_targets(beliefs),
       check_no_implication_field(beliefs),
       check_action_item_shape(beliefs),
@@ -314,6 +315,36 @@ defmodule CB.Schema.Verifier do
       {"code: locator format", :ok, "all code: artifacts parse as code:<path>#<anchor>[@N]"}
     else
       {"code: locator format", :fail, "unparseable code: artifacts: #{inspect(violations)}"}
+    end
+  end
+
+  # --- commit: locator format (framework-universal) ---
+
+  defp check_commit_artifact_format(beliefs) do
+    # Whether `commit` is an allowed scheme is the enum check's job; this
+    # check pins the locator grammar (full 40-hex sha) on every commit:
+    # URI via the shared parser. Evidence artifacts are covered too -
+    # discharge citations mostly live there - unlike the enum check,
+    # which governs only the belief's own artifact. Existence in the
+    # repository is impure and enforced by `mix cb.verify.commits`.
+    violations =
+      beliefs
+      |> Enum.flat_map(fn b ->
+        own = if is_binary(b.artifact), do: [b.artifact], else: []
+        from_evidence = for e <- b.evidence || [], is_binary(e["artifact"]), do: e["artifact"]
+
+        for uri <- own ++ from_evidence,
+            String.starts_with?(uri, "commit:"),
+            {:error, reason} <- [CB.CommitLocator.parse(uri)] do
+          {b.id, uri, reason}
+        end
+      end)
+
+    if violations == [] do
+      {"commit: locator format", :ok,
+       "all commit: artifacts (own and evidence) parse as commit:<40-hex-sha>"}
+    else
+      {"commit: locator format", :fail, "unparseable commit: artifacts: #{inspect(violations)}"}
     end
   end
 

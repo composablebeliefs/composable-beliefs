@@ -90,6 +90,36 @@ defmodule CB.Schema.VerifierTest do
     assert status_of(Verifier.check(beliefs), "code: locator format") == :ok
   end
 
+  test "commit: format check covers own artifacts and evidence artifacts" do
+    sha = String.duplicate("d", 40)
+
+    ok = [
+      b(id: "x:a001", type: "attestation", artifact: "commit:" <> sha),
+      b(
+        id: "x:a002",
+        type: "attestation",
+        artifact: "document:x.md",
+        evidence: [%{"date" => "2026-07-01", "artifact" => "commit:" <> sha}]
+      )
+    ]
+
+    assert status_of(Verifier.check(ok), "commit: locator format") == :ok
+
+    bad_own = [b(id: "x:a003", type: "attestation", artifact: "commit:abc123")]
+    assert status_of(Verifier.check(bad_own), "commit: locator format") == :fail
+
+    bad_evidence = [
+      b(
+        id: "x:a004",
+        type: "attestation",
+        artifact: "document:x.md",
+        evidence: [%{"date" => "2026-07-01", "artifact" => "commit:ABC"}]
+      )
+    ]
+
+    assert status_of(Verifier.check(bad_evidence), "commit: locator format") == :fail
+  end
+
   test "codepath targets are skipped when none are present" do
     beliefs = [b(id: "x:a001", type: "attestation", kind: "fact")]
     assert status_of(Verifier.check(beliefs), "codepath output-targets") == :skip

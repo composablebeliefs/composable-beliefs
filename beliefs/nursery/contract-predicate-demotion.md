@@ -6,7 +6,7 @@ tags: [cb, schema, contract, grounding, nursery]
 status: active
 timestamp: 2026-07-01
 maturity: active
-threads: [2026-07-01-structural-type-vocabulary]
+threads: [2026-07-01-structural-type-vocabulary, 2026-07-01-schema-v3-execution]
 ---
 
 # Demote the contract boolean to a derived predicate
@@ -65,6 +65,25 @@ field. Then resolve the c059 carve-out the demotion exposes.
 
 Coupling: this rides with [structural-type-rename](structural-type-rename.md) (same epoch,
 same verify pass), but is separable/revertible - the rename does not depend on the demotion.
+
+## Execution record (2026-07-01)
+
+The demotion shipped the same day, in the session captured as
+[2026-07-01-schema-v3-execution](threads/2026-07-01-schema-v3-execution.md):
+
+- **Spike steps 1-2 (predicate + verifier):** commit `be4ee65` (PR #1, merge
+  `1e7eafb`). `contract?/1` computes from rules/invariants; the verifier's
+  biconditional became a definitional check tolerating the stored field during the
+  compat window.
+- **Steps 3-4 (contract + data, user-authorized):** commit `c4940b9`. `contract: true`
+  stripped from all 39 carriers (zero drift confirmed at execution, matching the
+  measurement above); c056 restates the biconditional as the definition of
+  `contract?`, adds a no-stored-contract-field invariant, and carries the migration
+  as dated evidence citing this seed.
+- **NOT executed: the c059 carve-out collapse.** The migration kept c059's semantics
+  (renamed `prescription-grounding`, exemption intact). The option-a lean - every
+  prescription grounds, foundational contracts cite a charter, ~39 stipulation
+  artifacts added - remains this seed's open decision; option b stays the fallback.
 
 ## Thread excerpts (what grounds the decisions)
 **User (opening):** "the need to have the contract prop be set to true as well as have the
