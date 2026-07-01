@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # cb.verify.commits dereferences commit: artifacts and reads
+          # Belief: trailers across history; a shallow clone breaks both.
+          fetch-depth: 0
       - uses: erlef/setup-beam@v1
         with:
           otp-version: '26'
@@ -21,6 +25,8 @@ jobs:
         run: mix test
       - name: "Verify cb: schema"
         run: mix cb.verify.schema
+      - name: "Verify belief<->commit provenance loop"
+        run: mix cb.verify.commits
       - name: Docs freshness gate (generated files match the graph)
         run: |
           mix cb.generate.claude_md --check

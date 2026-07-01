@@ -191,35 +191,40 @@ defmodule CB.SchemaContractsTest do
     end
   end
 
-  describe "cb:c066 artifact-scheme enum-registry (supersedes cb:c043)" do
-    @expected_schemes ["session", "user", "document", "source", "https", "plan", "code"]
+  describe "cb:c067 artifact-scheme enum-registry (supersedes cb:c066)" do
+    @expected_schemes ["session", "user", "document", "source", "https", "plan", "code", "commit"]
 
     test "is an active enum-registry contract", %{by_id: by_id} do
-      c066 = fetch(by_id, "cb:c066")
-      assert c066.kind == "enum-registry"
-      assert c066.status == "active"
+      c067 = fetch(by_id, "cb:c067")
+      assert c067.kind == "enum-registry"
+      assert c067.status == "active"
     end
 
-    test "the superseded cb:c043 links forward to cb:c066", %{by_id: by_id} do
+    test "the supersession chain c043 -> c066 -> c067 links forward", %{by_id: by_id} do
       c043 = fetch(by_id, "cb:c043")
       assert c043.status == "superseded"
       assert c043.superseded_by == "cb:c066"
+
+      c066 = fetch(by_id, "cb:c066")
+      assert c066.status == "superseded"
+      assert c066.superseded_by == "cb:c067"
     end
 
-    test "values_for/2 returns the expected scheme vocabulary including code", %{by_id: by_id} do
-      c066 = fetch(by_id, "cb:c066")
-      assert Enum.values_for(c066, "artifact-scheme") == @expected_schemes
-      assert Enum.valid_value?(c066, "artifact-scheme", "code")
-      assert Enum.valid_value?(c066, "artifact-scheme", "session")
+    test "values_for/2 returns the expected scheme vocabulary including commit", %{by_id: by_id} do
+      c067 = fetch(by_id, "cb:c067")
+      assert Enum.values_for(c067, "artifact-scheme") == @expected_schemes
+      assert Enum.valid_value?(c067, "artifact-scheme", "code")
+      assert Enum.valid_value?(c067, "artifact-scheme", "commit")
+      assert Enum.valid_value?(c067, "artifact-scheme", "session")
     end
 
     test "every active belief's artifact scheme is a declared value", %{all: all, by_id: by_id} do
-      c066 = fetch(by_id, "cb:c066")
+      c067 = fetch(by_id, "cb:c067")
 
       bad =
         all
         |> Elixir.Enum.filter(&(&1.status == "active" and is_binary(&1.artifact)))
-        |> Elixir.Enum.reject(&Enum.valid_value?(c066, "artifact-scheme", scheme(&1.artifact)))
+        |> Elixir.Enum.reject(&Enum.valid_value?(c067, "artifact-scheme", scheme(&1.artifact)))
         |> Elixir.Enum.map(&{&1.id, &1.artifact})
 
       assert bad == []

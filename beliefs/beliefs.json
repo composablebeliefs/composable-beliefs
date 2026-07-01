@@ -7740,7 +7740,8 @@
       "cb:a407",
       "cb:a467"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:c067",
     "created": "2026-06-17"
   },
   {
@@ -7933,12 +7934,22 @@
         "date": "2026-06-22",
         "detail": "Verbatim thread persisted: the byte-for-byte session log, the type:source this session: slug now resolves to.",
         "artifact": "document:plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "deps − cb:c066 via dag-proposal 2026-07-01-schema-v3-execution",
+        "artifact": "session:2026-07-01-schema-v3-execution"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "deps + cb:c067 via dag-proposal 2026-07-01-schema-v3-execution",
+        "artifact": "session:2026-07-01-schema-v3-execution"
       }
     ],
     "subjects": [],
     "deps": [
       "cb:a442",
-      "cb:c066"
+      "cb:c067"
     ],
     "status": "active",
     "created": "2026-06-22"
@@ -8121,13 +8132,23 @@
         "date": "2026-06-23",
         "detail": "Accepted via human adjudication against cb:a526. Reasoning: Refresh the dangling cb:c043 reference to cb:c066. The c043->c066 supersession (gmail: dropped) left this directive citing a superseded contract; the code: grammar is identical in c066, so only the forward reference changes (claim 'c043 grammar'->'c066 grammar', dep cb:c043->cb:c066). The anchored-position format is unchanged.",
         "artifact": "adjudication:human:2026-06-23-c066-stale-ref-refresh"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "deps − cb:c066 via dag-proposal 2026-07-01-schema-v3-execution",
+        "artifact": "session:2026-07-01-schema-v3-execution"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "deps + cb:c067 via dag-proposal 2026-07-01-schema-v3-execution",
+        "artifact": "session:2026-07-01-schema-v3-execution"
       }
     ],
     "subjects": [],
     "deps": [
       "cb:a485",
       "cb:a488",
-      "cb:c066"
+      "cb:c067"
     ],
     "status": "active",
     "created": "2026-06-23"
@@ -8436,6 +8457,77 @@
       "cb:c051",
       "cb:c056",
       "cb:a559"
+    ],
+    "status": "active",
+    "created": "2026-07-01"
+  },
+  {
+    "id": "cb:c067",
+    "type": "prescription",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "artifact-scheme"
+    ],
+    "claim": "Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
+    "rules": [
+      {
+        "definitions": {
+          "code": "An anchored site within a repository file. Form: code:<repo-relative-path>#<anchor>. Everything after the first '#' is one opaque literal substring anchor (the fixed-string grep target); an optional trailing '@<N>' selects the Nth match, and a literal trailing '@<digits>' is percent-encoded as '%40<digits>'. Line numbers are never stored - they resolve at render/run time. document: remains the whole-file reference.",
+          "commit": "A git commit in a repository, cited as the change-event that implements or discharges a belief. Form: commit:<sha> where <sha> is the full 40-hex-char commit id (content-addressed, so the reference never drifts - the temporal analog of code:'s spatial anchor). Resolved via git (mix cb.verify.commits) in the host repository.",
+          "document": "A repository file reference. Form: document:<repo-relative-path>. Files under ops/, dates/, lib/, etc.",
+          "https": "An external URL. Form: https:<URL-rest>. Web pages, papers, external resources.",
+          "plan": "A plan/spec/intent reference. Form: plan:<id-or-descriptor>.",
+          "session": "A working session reference. Form: session:<date-or-descriptor>. Resolved via session transcript (persistence pipeline pending).",
+          "source": "A cached source document reference. Form: source:<slug>. Documents stored under ops/sources/ or similar.",
+          "user": "A direct user statement. Form: user:<name>:<date>. Internal authorship provenance."
+        },
+        "field": "artifact-scheme",
+        "values": [
+          "session",
+          "user",
+          "document",
+          "source",
+          "https",
+          "plan",
+          "code",
+          "commit"
+        ]
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'artifact-scheme'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+    ],
+    "artifact": "session:2026-07-01-schema-v3-execution",
+    "evidence": [
+      {
+        "date": "2026-07-01",
+        "detail": "Adds the commit: scheme, resolving cb:a545 as option 1 (operator decision 2026-07-01): the belief<->commit link becomes structural rather than prose convention. A prescription's discharge can cite the implementing commit as a typed artifact, CB.CommitLocator parses it, and mix cb.verify.commits dereferences every cited sha and checks Belief: commit trailers name live beliefs - CI-enforced both ways. The seven inherited schemes and all five invariants carry forward verbatim from cb:c066.",
+        "artifact": "session:2026-07-01-schema-v3-execution"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "Accepted via human adjudication against cb:c066. Reasoning: Single-scheme extension of the closed artifact-scheme enum, resolving cb:a545 as option 1 by operator decision (2026-07-01): add commit:<sha> so the belief<->commit link is structural and CI-enforceable, not a prose convention. The commit scheme names a git primitive, not a connector or product, so the c066 architectural invariant (core names no connector) is respected. All seven inherited schemes, definitions, and the five invariants carry forward verbatim; single-scheme supersession consistent with a397's batching discipline, the same shape as the c043->c066 move. Sibling contract-level matches in preflight (c039, c041, c050, c059) are topical overlap on dag-schema tags/subjects, not contradictions - this proposal touches only the artifact-scheme enum.",
+        "artifact": "adjudication:human:2026-07-01-schema-v3-execution"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "a mix task",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a397",
+      "cb:a398",
+      "cb:a407",
+      "cb:a467"
     ],
     "status": "active",
     "created": "2026-07-01"
