@@ -7944,6 +7944,11 @@
         "date": "2026-07-01",
         "detail": "deps + cb:c067 via dag-proposal 2026-07-01-schema-v3-execution",
         "artifact": "session:2026-07-01-schema-v3-execution"
+      },
+      {
+        "date": "2026-07-01",
+        "detail": "Decision made (operator, 2026-07-01): option 1, the full structural scheme with CI enforcement, over the trailer half-measure and the session-pipeline deferral. Implemented same-day: cb:c067 supersedes cb:c066 with the commit scheme; CB.CommitLocator parses commit:<40-hex-sha>; mix cb.verify.commits enforces belief->commit (every cited sha dereferences) and commit->belief (every Belief: trailer names a live node) in CI. This evidence entry's artifact is the implementing commit, cited through the scheme it introduced.",
+        "artifact": "commit:83ff6872db1e2007033b0ba6f4bef859c4bc6de9"
       }
     ],
     "subjects": [],
@@ -7951,6 +7956,16 @@
       "cb:a442",
       "cb:c067"
     ],
+    "materialized": {
+      "date": "2026-07-01",
+      "todos": [
+        {
+          "action": "Add the commit: artifact scheme (c066->c067 supersession), CB.CommitLocator, the verifier format check, and mix cb.verify.commits with CI enforcement of the loop both ways",
+          "id": "t0022",
+          "notes": "a545 option 1: the scheme alone buys nothing - the value is the enforcement, so the resolver and the CI gate ship together with the enum change."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-22"
   },

@@ -157,5 +157,13 @@
     "notes": "Discharged retroactively: shipped at commit ac3e199 by a concurrent session; verified against the full spec from source 2026-06-23. Materialized only to reflect completion on the desk.\n\nDischarged: mix cb.repoint shipped at ac3e199 and verified to meet a537's full spec (atomic drop+add, dry-run default, dangling refusal) on 2026-06-23.",
     "source": "cb:a537",
     "status": "done"
+  },
+  {
+    "action": "Add the commit: artifact scheme (c066->c067 supersession), CB.CommitLocator, the verifier format check, and mix cb.verify.commits with CI enforcement of the loop both ways",
+    "created": "2026-07-01",
+    "id": "t0022",
+    "notes": "a545 option 1: the scheme alone buys nothing - the value is the enforcement, so the resolver and the CI gate ship together with the enum change.\n\nShipped in commit:83ff6872db1e2007033b0ba6f4bef859c4bc6de9 (branch claude/schema-v3-code): cb:c067 supersedes cb:c066 adding the commit scheme; CB.CommitLocator + verifier format check + mix cb.verify.commits wired into CI with fetch-depth: 0. The implementing commit carries the first Belief: trailer, so both directions of the loop are exercised by their own introduction.",
+    "source": "cb:a545",
+    "status": "done"
   }
 ]

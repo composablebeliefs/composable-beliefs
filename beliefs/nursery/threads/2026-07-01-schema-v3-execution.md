@@ -96,6 +96,40 @@ this thread, and stamped both seeds with execution records pointing at the commi
 The trace now runs both directions: commit message -> seeds -> threads, and
 prescription -> seed artifact + c051/c056 deps -> evidence -> seeds -> threads.
 
+## Postscript: a545 resolved as option 1 (same session)
+
+**User:** Would we be in a good place to implement a545?
+
+**Claude:** Better placed than at deferral, but a545 is gated on the operator call it
+was deferred for - CI-enforced done<->commit provenance, or advisory? Three shifts in
+its favor: the schema-v3 trace is a fresh motivating case (prose-only links flagged at
+close), the enum-supersession machinery is proven (c043->c066 precedent, role-discovery
+verifier, cb.repoint shipped), and evidence artifacts turn out to be unchecked against
+the scheme enum, so option 2 is even cheaper than a545 estimates. Recommended option 1
+if the enforcement answer is yes.
+
+**User:** Asked for a plainspoken breakdown of options 1 and 2.
+
+**Claude:** Option 1: teach the graph about git, with enforcement - scheme in the enum
+(c066->c067), resolver, verifier check, CI failing on dead links; one session of work,
+permanent friction, real guarantee. Option 2: teach git about the graph, on the honor
+system - a Belief: trailer convention plus a generated index; nearly free, no
+guarantee. They stack rather than exclude.
+
+**User:** Option 1. (Then, mid-execution: pull main first.)
+
+**Claude:** Merged origin/main (PR #2 landed the contested seed-lifecycle seed -
+graduate-don't-evacuate - no conflicts). Executed option 1, commit
+`83ff6872db1e2007033b0ba6f4bef859c4bc6de9`: cb:c067 supersedes cb:c066 through
+preflight -> accept_supersede adjudication, adding `commit:<sha>` (full 40-hex only);
+both c066 dependents (a545, a550) repointed via cb.repoint; CB.CommitLocator,
+a pure verifier format check covering own and evidence artifacts, and
+`mix cb.verify.commits` enforcing both directions, wired into CI with
+`fetch-depth: 0`. The loop was exercised by its own introduction: the implementing
+commit carries the first `Belief: cb:a545` trailer, and a545's discharge evidence
+cites `commit:83ff6872...` as a typed artifact - materialized (t0022), todo closed,
+evidence appended, all through the front doors.
+
 ## Related
 
 - [structural-type-rename](../structural-type-rename.md) - the brief this session
