@@ -130,6 +130,23 @@ commit carries the first `Belief: cb:a545` trailer, and a545's discharge evidenc
 cites `commit:83ff6872...` as a typed artifact - materialized (t0022), todo closed,
 evidence appended, all through the front doors.
 
+## Postscript 2: the done->commit gate (cb:a563, same session)
+
+**User:** Proceed with building that, commit first.
+
+**Claude:** Minted the obligation ahead of its implementation - cb:a563 authored through
+preflight/import and committed alone (`c7ccbdf`), so the implementing commit's trailer
+names an already-live node. Then built it (`2282829bc14f33e182187d0d45065d85bcc3252c`):
+`CB.Todos.close/4` takes an explicit discharge marker; `mix cb.todo.close` requires
+exactly one of `--commit <full-40-hex-sha>` (parsed by CB.CommitLocator, dereferenced
+against the repository, recorded as a `commit` key on the record) or `--no-commit`
+(recorded as `uncommitted: true`, reason in the notes) - silent omission is no longer a
+representable state at the door. `mix cb.verify.commits` gained the third direction:
+every recorded todo commit must dereference; pre-gate history carries no key and is not
+checked, so enforcement is prospective. Discharged a563 through its own gate: t0023
+closed with `--commit` citing the implementing sha (the first commit key in the todo
+collection), evidence appended with the `commit:` artifact.
+
 ## Related
 
 - [structural-type-rename](../structural-type-rename.md) - the brief this session

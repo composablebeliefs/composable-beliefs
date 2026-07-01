@@ -8560,7 +8560,13 @@
     ],
     "claim": "Prospective commit-citation gate on the todo front door: mix cb.todo.close requires every new close to either cite its implementing commit (--commit <full-40-hex-sha>, validated by CB.CommitLocator and resolved against the repository, recorded as a commit key on the todo record) or explicitly record that no commit implements the discharge (--no-commit, marked uncommitted: true, with the reason carried in the notes). Silent omission stops being possible at the door; historical done records are untouched. mix cb.verify.commits extends to dereference every recorded todo commit, so the done->commit rung of the a545 loop is CI-enforced going forward without failing the pre-gate history.",
     "artifact": "session:2026-07-01-schema-v3-execution",
-    "evidence": [],
+    "evidence": [
+      {
+        "date": "2026-07-01",
+        "detail": "Implemented and discharged same-day through the gate itself: t0023 closed with --commit citing the implementing sha, recorded as the first commit key in the todo collection. All three verify.commits directions pass.",
+        "artifact": "commit:2282829bc14f33e182187d0d45065d85bcc3252c"
+      }
+    ],
     "subjects": [
       {
         "ref": "CB.Todos",
@@ -8571,6 +8577,16 @@
       "cb:a545",
       "cb:c067"
     ],
+    "materialized": {
+      "date": "2026-07-01",
+      "todos": [
+        {
+          "action": "Gate mix cb.todo.close on explicit commit citation (--commit validated+recorded, or --no-commit marked uncommitted) and extend mix cb.verify.commits to dereference recorded todo commits",
+          "id": "t0023",
+          "notes": "a563: the done->commit rung, enforced prospectively at the front door so history is untouched."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-07-01"
   }
