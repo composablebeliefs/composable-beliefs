@@ -4,7 +4,7 @@ title: Threads (session transcripts)
 description: Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.
 tags: [threads, transcript, index]
 status: active
-timestamp: 2026-06-25
+timestamp: 2026-07-01
 ---
 
 # Threads - session transcripts
@@ -29,3 +29,4 @@ exceptions that do get committed.
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.
 - [2026-07-01 - structural-type vocabulary (rename + contract demotion)](2026-07-01-structural-type-vocabulary.md) - hand-captured; seeded the structural-type-rename and contract-predicate-demotion focuses.
 - [2026-07-01 - schema-v3 execution (rename + demotion shipped)](2026-07-01-schema-v3-execution.md) - hand-captured; the execution session for those seeds: code shim (PR #1, `be4ee65`), graph migration (`c4940b9`), follow-ups minted as cb:a561/cb:a562.
+- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured; seeded the seed-lifecycle focus and contested seed-absorption.

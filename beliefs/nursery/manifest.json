@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 18,
+  "count": 19,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -229,6 +229,21 @@
       "artifact": "session:2026-07-01-structural-type-vocabulary"
     },
     {
+      "path": "threads/2026-07-01-seed-lifecycle.md",
+      "type": "thread",
+      "title": "2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)",
+      "description": "Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; plus the branch mechanics (merge, post-PR reset) and the thread-persistence exchange that led to hand-capturing this transcript. Use when revisiting the seed-lifecycle decision or the commit-the-threads question.",
+      "tags": [
+        "cb",
+        "nursery",
+        "lifecycle",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01",
+      "artifact": "session:2026-07-01-seed-lifecycle"
+    },
+    {
       "path": "threads/index.md",
       "type": "index",
       "title": "Threads (session transcripts)",
@@ -239,7 +254,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-06-25"
+      "timestamp": "2026-07-01"
     },
     {
       "path": "transcript-format.md",
