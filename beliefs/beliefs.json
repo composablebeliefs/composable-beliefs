@@ -8546,5 +8546,32 @@
     ],
     "status": "active",
     "created": "2026-07-01"
+  },
+  {
+    "id": "cb:a563",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "write-flow",
+      "provenance"
+    ],
+    "claim": "Prospective commit-citation gate on the todo front door: mix cb.todo.close requires every new close to either cite its implementing commit (--commit <full-40-hex-sha>, validated by CB.CommitLocator and resolved against the repository, recorded as a commit key on the todo record) or explicitly record that no commit implements the discharge (--no-commit, marked uncommitted: true, with the reason carried in the notes). Silent omission stops being possible at the door; historical done records are untouched. mix cb.verify.commits extends to dereference every recorded todo commit, so the done->commit rung of the a545 loop is CI-enforced going forward without failing the pre-gate history.",
+    "artifact": "session:2026-07-01-schema-v3-execution",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "CB.Todos",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a545",
+      "cb:c067"
+    ],
+    "status": "active",
+    "created": "2026-07-01"
   }
 ]
