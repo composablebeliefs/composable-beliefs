@@ -36,8 +36,8 @@ here; this table holds only dispatch state ([routing-ledger](../routing-ledger.m
 | Atomic commits (the GSD get-shit-done comparison) | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 GSD block) | - |
 | Artifact naming: proto-belief; focus/seed/brief/plan retired | closed | [proto-belief-rename](../proto-belief-rename.md) | - |
 | Split-test doctrine (one proto-belief document per separable matter) | closed | [proto-belief-rename](../proto-belief-rename.md); minted verbatim in cb:a569 | - |
-| Seed-lifecycle contest resolution (graduation wins) | open | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 resolution block) | Q7: archive shelf location, now carrying the invisibility requirement; graduation prescription mints after Q7 |
-| plans/ shelf closure and archive invisibility | paused | [seed-lifecycle](../seed-lifecycle.md) (Q7) + plans/README.md | Physical archive move and live-plan triage gated on Q7 + the cb:a571 verifier |
+| Seed-lifecycle contest resolution (graduation wins) | closed | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 resolution block) | Q7 spun out 2026-07-02 to a dedicated directory-structure thread (operator to open, post-merge); graduation prescription mints there |
+| plans/ shelf closure and archive invisibility | paused | [seed-lifecycle](../seed-lifecycle.md) (Q7) + plans/README.md | Follows the directory-structure thread's Q7 settlement + the cb:a571 verifier |
 | Mint-before-acting rule (deferred work mints first) | closed | [mint-manifest](../mint-manifest.md) (dated note queued via cb:a570 sweep) | - |
 | artifact vs evidence[].artifact two-axis rationale | closed | cb:a398 evidence (2026-07-02 append) | - |
 | Round-trip reference (this cycle as the exemplar) | open | - (this cycle itself) | User review of the executed round trip |
