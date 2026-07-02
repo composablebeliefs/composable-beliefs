@@ -8726,5 +8726,38 @@
     ],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a568",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "nursery",
+      "provenance",
+      "git",
+      "workflow",
+      "lifecycle:recurring"
+    ],
+    "claim": "Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact - one thread captured or updated, one focus brief opened, updated, or graduated, one focus's manifest rows minted. A commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time: the belief atomicity doctrine transposed from nodes to commits. Atomic means one event, not one file - a brief together with the index and manifest updates it forces is one event. Typed trailers (Thread:, Focus:, Belief:) therefore map one-to-one onto commits, so a trailer grep returns exactly one artifact's history.",
+    "artifact": "document:beliefs/nursery/commit-provenance-floor.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Adopted by operator decision in the 2026-07-02 authoring-pipeline session after comparing against the GSD (get-shit-done) framework's task-atomic commit policy (gsd-build/get-shit-done: every completed task its own commit, message tracing to the planning document). The comparison validated the existing one-commit-per-lifecycle-event lean and sharpened it: the first round trip supplied two motivating counterexamples, d7e40cb bundling four Focus: events and ae0e63f bundling two focuses' mints. GSD's task-to-commit linkage is prose-in-message; CB keeps its typed, CI-enforced trailers and imports only the atomicity discipline - GSD's ROADMAP/SUMMARY apparatus is explicitly not imported (the SUMMARY-file shape is the cb:a386 cached-digest antipattern). The landing sequence of this belief is the first compliant instance: thread update (c2b342c), brief update (the cited commit), and this mint as three per-focus commits. Preflight 2026-07-02: clean - 0 contract, 0 schema, 24 neutral; the a538 concurrent-sweep action-item reviewed as complementary (atomic commits narrow the sweep surface but do not discharge it).",
+        "artifact": "commit:33308eced479eda089747e0cd09d713ac8e5d3cb"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the authoring lifecycle",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:a475"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
