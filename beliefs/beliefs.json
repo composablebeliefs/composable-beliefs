@@ -1441,6 +1441,11 @@
         "date": "2026-05-17",
         "detail": "kind:policy → kind:definition via dag-proposal m21",
         "artifact": "session:2026-05-17-policy-categorization"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Operator review 2026-07-02 (authoring-pipeline session): the artifact field and evidence[].artifact are a two-axis design, not redundancy. The top-level artifact is the belief's grounding - the distinguished referent contracts check (c051 requires it on attestations; c059 reads it as a prescription's stipulation record). evidence[].artifact is per-event provenance - each dated entry cites what documents that event, accreting through the cb.evidence front door. They coincide only in the degenerate birth case; cb:a545 is the divergence specimen (artifact still the enum source doc, five evidence entries citing two documents, two sessions, and a commit). Collapsing them would either lose the distinguished grounding slot or cap evidence at one artifact. Same two-axis shape as status vs materialized (a379). Recorded here because the rationale was previously unpersisted - it existed only in conversation.",
+        "artifact": "session:2026-07-02-authoring-pipeline"
       }
     ],
     "subjects": [
