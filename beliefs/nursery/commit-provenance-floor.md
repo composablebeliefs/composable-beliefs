@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Commit provenance at the floor tier (threads, ledgers, briefs)
-description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.
+description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).
 tags: [nursery, provenance, git, audit-chain, workflow]
 status: active
 timestamp: 2026-07-02
@@ -69,9 +69,9 @@ kind of lifecycle event they are or which floor artifact they concern.
    history does; squash-merging rewrites branch commits and would kill every `commit:`
    back-pointer and trailer written on a branch. De facto policy already complies (PR #1
    preserved `be4ee65` through merge; cb:a545's evidence cites its implementing sha
-   through the scheme it introduced), but it is nowhere stated as policy. Lean: record
-   merge-without-squash as an explicit repo policy, since the audit chain now depends
-   on it.
+   through the scheme it introduced). Resolved 2026-07-02: stated as policy in cb:b573
+   (merge-commit only; squash and rebase merging prohibited and disabled in repository
+   settings), minted during PR #10 review.
 
 ## First instance
 
@@ -92,9 +92,6 @@ in letter, adopted immediately.**
   to the planning document - the same shape as lean 1, independently motivated by
   reviewability and task-granular rollback. The atom differs by
   tier: an execution task in the general form; a lifecycle transition at the floor.
-- **Where CB was already ahead.** The common form of task-to-commit linkage is prose in the message;
-  CB's is typed (`Belief:` trailers, `commit:` URIs) and CI-enforced both directions by
-  `mix cb.verify.commits`. Nothing to import there.
 - **What the review caught.** The first round trip violated its own lean twice:
   `d7e40cb` bundled four `Focus:` events (three briefs opened plus a concurrence
   append), and `ae0e63f` bundled two focuses' mints. Under the sharpened lean both are
@@ -128,8 +125,9 @@ pointer into a CI failure instead of a silent orphan.
   graduation/rename story (repoint + cb:b571) landed first. Distinct from the
   document-rung verifier above: that checks graph-side citations; this checks
   commit-side trailers.
-- **Squash policy.** Confirm merge-without-squash as stated policy (and where it is
-  recorded - a belief, or repo settings plus a belief). Awaiting the user's call.
+- **Squash policy - resolved 2026-07-02.** Recorded in both places: repository
+  settings (squash and rebase merging disabled) and the graph (cb:b573, merge-commit
+  only), per the operator's call during PR #10 review.
 - **Checkpoint cadence.** Whether in-progress thread checkpoint commits carry the
   `Thread:` trailer too (making every ledger update addressable) or only the capture and
   `/end` commits do. Lean: every commit that touches the thread doc carries its trailer -
@@ -141,10 +139,11 @@ pointer into a CI failure instead of a silent orphan.
 |---|---|---|---|---|
 | prescription | Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact; a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time (cb:a475 transposed); atomic means one event, not one file. | cb:a475 | document:beliefs/nursery/commit-provenance-floor.md | cb:b568 |
 | prescription (action-item) | Build the document-rung verifier: dereference every document: URI cited by beliefs (artifact and evidence) to an existing repo file, as verify.commits does for commit:; graduation repoints citations before moving files. | cb:a547 | document:beliefs/nursery/commit-provenance-floor.md | cb:b571 |
+| prescription | Merge-commit only: squash and rebase merging prohibited and disabled in repository settings; both rewrite merged SHAs, severing commit: citations and Belief: trailers on fresh clones. | cb:b563, cb:b566, cb:b568 | user:mark:2026-07-02 | cb:b573 |
 
 Remaining candidates, gated on the open questions above: a prescription adopting the
-trailer convention (Thread:/Proto-Belief:/Belief:) and the squash policy as one coherent
-policy batch; a possible action-item row for the floor-trailer verify extension.
+trailer convention (Thread:/Proto-Belief:/Belief:); a possible action-item row for the
+floor-trailer verify extension. The squash policy minted separately as cb:b573.
 
 ## Thread excerpts (what grounds the leans)
 

@@ -32,7 +32,7 @@ here; this table holds only dispatch state ([routing-ledger](../routing-ledger.m
 | Parallel thread-summary document | closed | [routing-ledger](../routing-ledger.md) | - |
 | Focus/plan overlap and the seed/plan collapse | closed | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 block) | - |
 | Pipeline layer count (thread / ledger / brief / graph) | closed | [routing-ledger](../routing-ledger.md), [mint-manifest](../mint-manifest.md) | - |
-| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary settled (`Proto-Belief:`); document-rung verifier minted cb:a571; floor-trailer enforcement, squash policy, and checkpoint cadence still open |
+| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary settled (`Proto-Belief:`); document-rung verifier minted cb:a571; squash policy resolved as cb:b573 (merge-commit only, 2026-07-02); floor-trailer enforcement and checkpoint cadence still open |
 | Atomic commits | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 atomic-commits block) | - |
 | Artifact naming: proto-belief; focus/seed/brief/plan retired | closed | [proto-belief-rename](../proto-belief-rename.md) | - |
 | Split-test doctrine (one proto-belief document per separable matter) | closed | [proto-belief-rename](../proto-belief-rename.md); minted verbatim in cb:a569 | - |
