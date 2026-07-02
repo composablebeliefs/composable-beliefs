@@ -1,6 +1,6 @@
 {
  "bundle": "nursery",
- "count": 26,
+ "count": 27,
  "docs": [
   {
    "path": "assertions-rename.md",
@@ -371,6 +371,19 @@
     "cb",
     "schema",
     "id-protocol"
+   ]
+  },
+  {
+   "path": "prescription-self-tracking.md",
+   "type": "concept",
+   "title": "Prescriptions self-track discharge; todos, materialization, and the desk term retire",
+   "description": "Covers folding the todo layer into prescriptions - self-tracked discharge through a generalized close door (the b563 gate at the node), decomposition as child prescriptions, todos.json and the materialized field retiring as a two-store sync invariant, the prescription-as-immutable-pointer / companion-proto-belief-document architecture (a plan in proto-belief's clothing, cb:b569 read back), and the desk term retiring for the literal query.",
+   "tags": [
+    "nursery",
+    "cb",
+    "schema",
+    "workflow",
+    "todos"
    ]
   }
  ]

@@ -91,6 +91,7 @@ makes staleness visible; it never silently decides.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
 - [proto-belief-rename](proto-belief-rename.md) - active - the vocabulary settlement: the artifact is the proto-belief document, focus/seed/brief/plan retired with no informal registers, the split-test unit doctrine, the Proto-Belief: trailer. Minted cb:b569; residual sweep is cb:b570.
 - [cb-id-b-migration](cb-id-b-migration.md) - planted - retire the a/c id prefixes for opaque b-serials: letter-swap with serials preserved, content-derived legacy alias, last-alpha-rename closure. Executed 2026-07-02 (PR #10); minted cb:b566/cb:b573; follow-up obligations cb:b574-b576. Re-homed from the closed plans/ shelf.
+- [prescription-self-tracking](prescription-self-tracking.md) - active - fold the todo layer into prescriptions: self-tracked discharge (b563 gate at the node), decomposition as child prescriptions, todos.json/materialized retire, mutable implementation plans as companion proto-belief documents, the desk term retires. Unminted; rows staged.
 - [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.
 
 ## Subdomains
