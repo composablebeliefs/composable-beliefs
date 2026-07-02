@@ -49,12 +49,15 @@ kind of lifecycle event they are or which floor artifact they concern.
    checkpoint commits of in-progress threads remain compatible; the convention requires
    that each *transition* be an identifiable - and sole - occupant of its commit. (See
    the GSD block below for the comparison that sharpened the original softer lean.)
-2. **Floor trailers as analogs of `Belief:`.** `Thread: <thread-slug>` on thread-capture
-   commits, `Focus: <focus-slug>` on brief commits, alongside the existing
-   `Belief: cb:aNNN` on mint commits (one id per trailer line, matching the c067
-   convention). Auditing becomes `git log --grep`, and a later `mix cb.verify.commits`
-   extension can check floor trailers name real docs the way it checks `Belief:` names
-   live nodes.
+2. **Floor trailers as analogs of `Belief:` - vocabulary settled 2026-07-02.**
+   `Thread: <thread-slug>` on thread commits, `Proto-Belief: <doc-slug>` on proto-belief
+   document commits (replacing the retired `Focus:` per cb:a569; the four historical
+   `Focus:` commits stay untouched), alongside `Belief: cb:aNNN` on mint commits (one id
+   per trailer line, matching the c067 convention). The chain `Thread:` ->
+   `Proto-Belief:` -> `Belief:` narrates the pipeline itself. The generic-`Artifact:`
+   alternative is rejected: the named trailers mirror the pipeline's artifact kinds and
+   stay grep-legible. Auditing is `git log --grep`; enforcement is the open question
+   below.
 3. **Back-pointers only; git is the only index.** An artifact cites the SHA of a
    *predecessor* commit (a minted belief's evidence cites the commit that landed its
    brief; a brief may cite the commit that captured its thread) - never its own, since a
@@ -105,15 +108,26 @@ in letter, adopted immediately.**
   first compliant instance: thread update, brief update, and mint as three per-focus
   commits.
 
+## The document rung (agreed 2026-07-02; build is cb:a571)
+
+The `document:` scheme is the one rung of the audit chain with no verifier: `commit:`
+URIs are dereferenced by `mix cb.verify.commits`, but nothing checks that `document:`
+paths cited by beliefs (top-level `artifact` and `evidence[].artifact`) resolve to real
+files - exactly the cb:a547 orphaning hazard, and the rung every proto-belief
+back-pointer rides on. Operator agreed to introduce the verifier; deferred work, so it
+minted first (cb:a571) per the mint-before-acting rule. Composes with graduation: the
+repoint pass moves citations when a document graduates, and the verifier turns a missed
+pointer into a CI failure instead of a silent orphan.
+
 ## Open questions (deliberation continues here)
 
-- **Trailer vocabulary.** Are `Thread:`/`Focus:` the right two, or is one `Artifact:`
-  trailer carrying a repo path more general? Lean: the two named trailers - they mirror
-  the floor's two artifact kinds and stay grep-legible.
-- **Enforcement.** Extend `mix cb.verify.commits` to dereference floor trailers
-  (thread/focus slug -> existing doc, allowing for graduated/renamed docs), or leave
-  floor trailers advisory? Per a545's own judgment, an unenforced convention buys little;
-  but the floor is mutable, so dereferencing needs a rename story first.
+- **Enforcement of floor trailers.** Extend `mix cb.verify.commits` to dereference
+  `Thread:`/`Proto-Belief:` trailers (slug -> existing doc, allowing for graduated
+  docs), or leave floor trailers advisory? Per a545's own judgment, an unenforced
+  convention buys little; but the floor is mutable, so dereferencing needs the
+  graduation/rename story (repoint + cb:a571) landed first. Distinct from the
+  document-rung verifier above: that checks graph-side citations; this checks
+  commit-side trailers.
 - **Squash policy.** Confirm merge-without-squash as stated policy (and where it is
   recorded - a belief, or repo settings plus a belief). Awaiting the user's call.
 - **Checkpoint cadence.** Whether in-progress thread checkpoint commits carry the
@@ -126,10 +140,11 @@ in letter, adopted immediately.**
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
 | prescription | Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact; a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time (cb:a475 transposed); atomic means one event, not one file. | cb:a475 | document:beliefs/nursery/commit-provenance-floor.md | cb:a568 |
+| prescription (action-item) | Build the document-rung verifier: dereference every document: URI cited by beliefs (artifact and evidence) to an existing repo file, as verify.commits does for commit:; graduation repoints citations before moving files. | cb:a547 | document:beliefs/nursery/commit-provenance-floor.md | cb:a571 |
 
 Remaining candidates, gated on the open questions above: a prescription adopting the
-floor-trailer convention and the squash policy; a possible action-item row for the
-verify.commits floor extension.
+trailer convention (Thread:/Proto-Belief:/Belief:) and the squash policy as one coherent
+policy batch; a possible action-item row for the floor-trailer verify extension.
 
 ## Thread excerpts (what grounds the leans)
 
