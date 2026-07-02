@@ -8662,5 +8662,69 @@
     "deps": [],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a566",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "threads",
+      "provenance",
+      "lifecycle:recurring"
+    ],
+    "claim": "Every persisted thread carries a routing ledger: a table with one row per topic the thread touches, holding the strand state (open, paused, closed), the dispatch pointer (the focus doc the strand's content routed to, or unrouted), and the dangling question when one is pending. Synthesized content always lands in focus docs, never in the ledger; the ledger carries only pointers and states, so it cannot become a digest of the thread or a shadow copy of the seeds. A multi-topic thread is resumed by reading its ledger, not by replaying the conversation or trusting memory.",
+    "artifact": "document:beliefs/nursery/routing-ledger.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Deliberated as the nursery focus beliefs/nursery/routing-ledger.md and planted from its manifest row while the focus stays live for the /decompose skill build and the hook-preservation mechanics. First instance carried at the top of beliefs/nursery/threads/2026-07-02-authoring-pipeline.md, dispatching the seven strands of the session that designed it - including a paused unrouted strand (backfilling existing threads) that demonstrates exactly the state the ledger exists to hold. The originating thread-summary proposal was reshaped into a router after the cb:a386 digest objection: content restated in a parallel doc goes stale procedurally and shadows the focus docs, while pointers and states cannot. Preflight 2026-07-02: clean - no contract-level or schema conflicts, 20 neutral tag-overlap matches. The cited commit landed the brief batch; its parent captured the thread.",
+        "artifact": "commit:d7e40cb53359ad194210f0ebedeb4dcc403bbf87"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "nursery threads",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:a386"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a567",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "authoring",
+      "structural-types",
+      "lifecycle:recurring"
+    ],
+    "claim": "A focus brief approaching the mint gate carries a mint manifest: a section enumerating the candidate beliefs the focus will plant, one typed row each (structural type, draft claim, deps, grounding artifact), with rows recording their belief id as they plant so a focus can mint some rows and remain live. Type commitment happens late, on manifest rows inside the brief, never early as typed nursery documents: typing documents by eventual DAG type fragments the focus, forces classification at minimum information, and grows a shadow graph. Action items in a brief are prescription rows in its manifest, minted to the desk when firm; no mutable document competes with the graph as todo tracker.",
+    "artifact": "document:beliefs/nursery/mint-manifest.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Deliberated as the nursery focus beliefs/nursery/mint-manifest.md - the surviving weak form of the typed-nursery-documents proposal, which was rejected on four grounds (type is an output of deliberation, not an input; one focus mints several beliefs of several types, so typed docs fragment the focus; typed proto-beliefs want typed proto-relations and grow a shadow graph; attestations and aggregations are mechanical at mint time) - and planted from the brief's own manifest row, self-demonstrating. Preflight 2026-07-02 surfaced contract-level claim-overlap with cb:c052 and cb:c059 plus schema-level overlap with cb:a398 and cb:a399; adjudicated by the operator as topical overlap, not contradiction, per the a475/c067 review precedent: this prescription governs nursery brief structure (a markdown section), not DAG node field presence (c052) nor grounding rules (c059) - each prescription minted from a manifest row satisfies c059 individually, and this belief itself grounds document: in its brief. The cited commit landed the brief batch.",
+        "artifact": "commit:d7e40cb53359ad194210f0ebedeb4dcc403bbf87"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the nursery",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:a475"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
