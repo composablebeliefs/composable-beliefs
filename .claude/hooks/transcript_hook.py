@@ -10,7 +10,14 @@ with all reasoning, tool calls, tool results, and system noise. Turns with no
 tool calls (plain conversation) keep all their text. Idempotent: regenerates
 the whole doc each turn (no append markers, naturally crash-safe). The raw
 jsonl is copied in beside the render each turn (the persist-raw lane; its
-commit is gated on transcript-format's repo-weight/LFS decision).
+commit is gated on transcript-format's repo-weight/LFS decision and it stays
+gitignored).
+
+The render is tracked (transcript-format's un-gitignore-the-render-lane) and
+git-staged after each rewrite, so it rides along with whatever commit the
+session makes next - in a remote session, any push persists the
+current-through-last-turn render even if /end never runs. /end still
+supersedes it with the finalized thread doc.
 
 The output dir is derived from $CLAUDE_PROJECT_DIR (set by the harness for
 hooks), falling back to this script's own location (<repo>/.claude/hooks/), so
@@ -24,6 +31,7 @@ safety and human reading. Never let the graph depend on it.
 import json
 import os
 import shutil
+import subprocess
 import sys
 
 
@@ -155,12 +163,24 @@ def main():
     except Exception:
         return 0
 
+    # Stage the render (never the jsonl) so it rides along with the session's
+    # next commit - the ride-along persistence lane. Best-effort: a missing
+    # git or a non-repo dir must never break capture.
+    try:
+        subprocess.run(
+            ["git", "-C", project_dir(), "add", "--", render_path],
+            capture_output=True, timeout=10,
+        )
+    except Exception:
+        pass
+
     if first_capture:
         rel = os.path.relpath(render_path, project_dir())
         print(json.dumps({
             "systemMessage": (
-                f"Transcript capture live: {rel} (+ raw jsonl beside it, both"
-                " uncommitted). Run /end before finishing to persist the thread."
+                f"Transcript capture live: {rel} (staged - rides along with the"
+                " session's commits). Run /end before finishing to finalize the"
+                " thread. The raw jsonl beside it stays uncommitted."
             )
         }))
     return 0

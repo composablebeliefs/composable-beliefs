@@ -1,6 +1,6 @@
 Finalize and persist the session's thread: synthesize metadata onto the live render, conform it to the thread shape, register it in the nursery, and commit it with the session's work.
 
-The Stop hook (`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`) rewrites a responses-only render plus a raw jsonl copy into `beliefs/nursery/threads/.sessions/` every turn, in local and remote sessions alike. That working area is gitignored - in a remote session it dies with the container - so persistence happens here: `/end` turns the live render into a committed thread doc.
+The Stop hook (`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`) rewrites a responses-only render plus a raw jsonl copy into `beliefs/nursery/threads/.sessions/` every turn, in local and remote sessions alike, and stages the render so it rides along with the session's commits - a crash-safe draft lane that persists even if this skill never runs. `/end` is the finalization on top: it turns the live render into a curated, registered thread doc.
 
 **Threads are not provenance.** The nursery seeds are; a belief grounds in a seed, never in a transcript (`beliefs/nursery/threads/index.md`). A thread exists for crash safety and human reading.
 

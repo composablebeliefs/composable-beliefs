@@ -22,13 +22,15 @@ nothing the graph depends on.
 Live transcripts are captured automatically by a `Stop` hook
 (`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`
 and pathed via `$CLAUDE_PROJECT_DIR`, so it runs in local and remote sessions alike) into
-`.sessions/<date>-<session>.md`, with a raw jsonl copy beside it - a dot-dir that is
-gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
-`.sessions/` is the working area, not the persistence: `/end` finalizes the live render
-(metadata, digest, registration) into a committed thread doc below. The raw jsonl stays
-working-area only until transcript-format's repo-weight/LFS decision lands. In a remote
-session the working area dies with the container, so `/end` before finishing is the only
-persistence there - the hook reminds on first capture.
+`.sessions/<date>-<session>.md`, with a raw jsonl copy beside it - a dot-dir skipped by
+this bundle's manifest because its contents are unfinalized drafts, rewritten every turn.
+The renders are tracked and the hook stages the current one after each rewrite, so it
+rides along with whatever commit the session makes next - any push persists the
+through-last-turn render, even if the session ends abruptly (the ride-along lane;
+transcript-format's "un-gitignore the render lane"). `/end` remains the finalization
+step: metadata, digest, and registration into a curated thread doc below. Only the raw
+jsonl stays gitignored and uncommitted, until transcript-format's repo-weight/LFS
+decision lands. The hook reminds on first capture.
 
 ## Contents
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.
