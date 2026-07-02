@@ -4,7 +4,7 @@ title: Threads (session transcripts)
 description: Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.
 tags: [threads, transcript, index]
 status: active
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 ---
 
 # Threads - session transcripts
@@ -20,13 +20,20 @@ grounds in a seed, never in a transcript. A transcript is a convenience and a sa
 nothing the graph depends on.
 
 Live transcripts are captured automatically by a `Stop` hook
-(`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
-is gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
-Read them there; they are never committed. The curated thread docs below are the hand-kept
-exceptions that do get committed.
+(`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`
+and pathed via `$CLAUDE_PROJECT_DIR`, so it runs in local and remote sessions alike) into
+`.sessions/<date>-<session>.md`, with a raw jsonl copy beside it - a dot-dir skipped by
+this bundle's manifest because its contents are unfinalized drafts, rewritten every turn.
+The renders are tracked and the hook stages the current one after each rewrite, so it
+rides along with whatever commit the session makes next - any push persists the
+through-last-turn render, even if the session ends abruptly (the ride-along lane;
+transcript-format's "un-gitignore the render lane"). `/end` remains the finalization
+step: metadata, digest, and registration into a curated thread doc below. Only the raw
+jsonl stays gitignored and uncommitted, until transcript-format's repo-weight/LFS
+decision lands. The hook reminds on first capture.
 
 ## Contents
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.
 - [2026-07-01 - structural-type vocabulary (rename + contract demotion)](2026-07-01-structural-type-vocabulary.md) - hand-captured; seeded the structural-type-rename and contract-predicate-demotion focuses.
 - [2026-07-01 - schema-v3 execution (rename + demotion shipped)](2026-07-01-schema-v3-execution.md) - hand-captured; the execution session for those seeds: code shim (PR #1, `be4ee65`), graph migration (`c4940b9`), follow-ups minted as cb:a561/cb:a562.
-- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured; seeded the seed-lifecycle focus and contested seed-absorption.
+- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured, finalized by the first /end run; seeded the seed-lifecycle focus, contested seed-absorption, and shipped the remote-capture machinery (PR #8).

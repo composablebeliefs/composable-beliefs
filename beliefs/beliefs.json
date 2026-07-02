@@ -8662,5 +8662,40 @@
     "deps": [],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a566",
+    "type": "attestation",
+    "kind": "design-property",
+    "domain": "system",
+    "tags": [
+      "okf",
+      "manifest",
+      "threads",
+      "transcript",
+      "dot-dir"
+    ],
+    "claim": "OKF bundle doc discovery (CB.Okf.Manifest.doc_paths/1, shared with the validator) enumerates markdown docs via Elixir's Path.wildcard, whose default match_dot: false skips dot-directories - so the beliefs/nursery/threads/.sessions/ draft area is structurally invisible to manifest build and validation. The leading dot in .sessions is load-bearing: it is what keeps the frontmatter-less, per-turn-rewritten session drafts out of the validated bundle. Passing match_dot: true to that wildcard, or renaming the directory without the dot, would silently pull the drafts into discovery and break manifest validation.",
+    "artifact": "code:lib/cb/okf/manifest.ex#Path.wildcard(Path.join(root, \"**/*.md\"))",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Surfaced while deliberating whether .sessions should be de-dotted after its renders became committed (the ride-along lane made the 'gitignored working area' reading of the dot stale). Inspection of doc_paths/1 showed discovery uses bare Path.wildcard with no match_dot option, so Elixir's default (dot-dirs unmatched) is the only mechanism excluding .sessions/ drafts from the bundle; a graph and docs sweep found zero occurrences of match_dot, meaning the exclusion was entirely implicit in one line of code. The dot was retained and its rationale re-read: not 'gitignored' but 'outside the validated bundle'.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-01-seed-lifecycle.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "lib/cb/okf/manifest.ex",
+        "type": "artifact"
+      },
+      {
+        "ref": "beliefs/nursery/threads/.sessions/",
+        "type": "artifact"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
