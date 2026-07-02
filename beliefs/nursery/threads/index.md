@@ -34,4 +34,4 @@ persistence there - the hook reminds on first capture.
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.
 - [2026-07-01 - structural-type vocabulary (rename + contract demotion)](2026-07-01-structural-type-vocabulary.md) - hand-captured; seeded the structural-type-rename and contract-predicate-demotion focuses.
 - [2026-07-01 - schema-v3 execution (rename + demotion shipped)](2026-07-01-schema-v3-execution.md) - hand-captured; the execution session for those seeds: code shim (PR #1, `be4ee65`), graph migration (`c4940b9`), follow-ups minted as cb:a561/cb:a562.
-- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured; seeded the seed-lifecycle focus and contested seed-absorption.
+- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured, finalized by the first /end run; seeded the seed-lifecycle focus, contested seed-absorption, and shipped the remote-capture machinery (PR #8).

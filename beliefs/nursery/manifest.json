@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 19,
+  "count": 20,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -229,10 +229,26 @@
       "artifact": "session:2026-07-01-structural-type-vocabulary"
     },
     {
+      "path": "threads/2026-07-01-schema-v3-execution.md",
+      "type": "thread",
+      "title": "2026-07-01 - schema-v3 execution (rename + demotion shipped)",
+      "description": "Covers the execution session for the structural-type vocabulary migration - the code-only compat-shim phase (PR #1), the authorized beliefs/ migration (220 type rewrites, contract field stripped, contract family rewritten, evidence recorded on c051/c056), the scope calls made in flight (history untouched, c059 carve-out kept, glossary render deferred), and the two follow-up prescriptions minted at close (cb:a561, cb:a562). Use when tracing the migration commits back to their seeds and decisions.",
+      "tags": [
+        "cb",
+        "schema",
+        "structural-types",
+        "nursery",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01",
+      "artifact": "session:2026-07-01-schema-v3-execution"
+    },
+    {
       "path": "threads/2026-07-01-seed-lifecycle.md",
       "type": "thread",
       "title": "2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)",
-      "description": "Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; plus the branch mechanics (merge, post-PR reset) and the thread-persistence exchange that led to hand-capturing this transcript. Use when revisiting the seed-lifecycle decision or the commit-the-threads question.",
+      "description": "Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; then the thread-persistence arc it opened - diagnosing why the Stop hook could not run remotely and implementing the fix (env-agnostic hook, committed registration, raw jsonl copy, the /end skill). Use when revisiting the seed-lifecycle decision, the commit-the-threads question, or the remote-capture machinery.",
       "tags": [
         "cb",
         "nursery",
@@ -240,7 +256,7 @@
         "thread"
       ],
       "status": "active",
-      "timestamp": "2026-07-01",
+      "timestamp": "2026-07-02",
       "artifact": "session:2026-07-01-seed-lifecycle"
     },
     {
