@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 24,
+  "count": 25,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -78,7 +78,7 @@
       "path": "index.md",
       "type": "index",
       "title": "Nursery",
-      "description": "Use when orienting to the belief nursery - the floor-tier workspace where focuses (proto-beliefs) are deliberated in place until they mint into the graph or are dropped.",
+      "description": "Use when orienting to the belief nursery - the floor-tier workspace where proto-belief documents are deliberated in place until they plant into the graph or compost.",
       "tags": [
         "nursery",
         "index"
@@ -141,6 +141,20 @@
       ],
       "status": "active",
       "timestamp": "2026-06-25"
+    },
+    {
+      "path": "proto-belief-rename.md",
+      "type": "concept",
+      "title": "Proto-belief - naming the nursery artifact, retiring focus/seed/brief/plan",
+      "description": "Covers the vocabulary settlement naming the nursery artifact the proto-belief document - the gloss becomes the name per the rename test - retiring focus, seed (for documents; threads keep it informally), brief, and plan, with no informal genre registers surviving (mood is carried only by the structural type system, and a plan is a proto-belief whose rows are prescriptions); the split-test doctrine replacing focus-as-unit; the Proto-Belief: commit trailer; and the migration spike over live surfaces. Minted cb:a569 (doctrine) and cb:a570 (residual sweep).",
+      "tags": [
+        "nursery",
+        "vocabulary",
+        "meta",
+        "structural-types"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02"
     },
     {
       "path": "routing-ledger.md",
