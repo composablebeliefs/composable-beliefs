@@ -8662,5 +8662,49 @@
     "deps": [],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b566",
+    "type": "prescription",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "schema-discipline",
+      "id-protocol"
+    ],
+    "name": "id-b-serial-protocol",
+    "claim": "Belief ids are opaque b-prefixed serials: the prefix carries no type, grade, or vocabulary semantics, and identity encodes nothing derivable from the node - the a/c prefixes this replaces encoded a retired type name and a derived grade, and rotted when the vocabulary moved. The 2026-07-02 migration letter-swapped the cb: graph's legacy a/c ids to b-serials, serials preserved, collision-free because the a and c serial ranges were disjoint (a098-a565, c026-c067); every pre-migration reference therefore resolves by the same swap, applied as a resolution fallback that exact matches always beat. This was the last alpha-rename: it was sound only because b-space was virgin and no external consumer held references, conditions the migration itself ended.",
+    "rules": [
+      "New belief ids are minted from the single b-series: bare local id b<serial>, zero-padded to three digits below 1000, the serial continuing past the maximum across a-, b-, and c-prefixed ids so serials stay unique within the letter-swap alias space.",
+      "The id prefix does no load-bearing work: no code path detects type, contract-grade, or any other node property by id prefix - the b056 prohibition, extended from contract-grade to every property.",
+      "Legacy ids resolve through the letter-swap alias ([ac]<serial> -> b<serial>) strictly as a fallback after exact match fails, so collections still carrying real a/c ids are never re-pointed by the alias.",
+      "Historical artifacts keep their legacy spellings: artifact-URI slugs, proposal names, commit messages, and archived documents (chronicles/, positions/, plans/, nursery/) are not renamed; the alias keeps them resolvable.",
+      "Graph-wide id renames are closed: identity outlives vocabulary, and no future migration may re-spell existing ids."
+    ],
+    "invariants": [
+      "For all beliefs in the cb: graph: the local id matches b<digits>.",
+      "For all pairs of cb: ids: serial numbers are unique regardless of historical prefix letter, so the letter-swap alias never has two candidate targets."
+    ],
+    "artifact": "commit:a5607fb191a4beb8558f0e03e33ad99ce527c26b",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Migration executed per plans/cb-id-b-migration/design.md: all 226 cb: ids letter-swapped in beliefs.json/todos.json plus the living docs, with the legacy alias, single-series minting, and the deletion of the c-prefix contract heuristics landed in code first (407 tests, schema verify 20/20, commit provenance green on both sides of the sweep). codepath:/cb-okf:/belief-collections stay on legacy ids pending per-collection plans - their a/c serials collide, so the pure letter-swap does not extend to them.",
+        "artifact": "commit:a5607fb191a4beb8558f0e03e33ad99ce527c26b"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Rejected as dep-tie against cb:b398. Reasoning: No contradiction: b398 defines the artifact field as a typed URI naming an external referent; the id protocol's slug-preservation rule leans on exactly that - artifact URIs are proper names of external things, so the id migration never respells them. Tie the definitional attestation in as a dep rather than rewording the claim to duck a token overlap.",
+        "artifact": "adjudication:human:2026-07-02-id-b-migration"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b056",
+      "cb:b398"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
