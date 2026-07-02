@@ -154,7 +154,7 @@ whichever shelf it sits on.
    jobs, not competitors.
 
 ## Open design space
-- **Where is the archive shelf?** Lean: outside `nursery/` proper so the live-work
+- **Where is the archive shelf?** (Q7, desk-tracked as cb:b577.) Lean: outside `nursery/` proper so the live-work
   invariant reads literally (a `beliefs/archive/` sibling, or graduating graph-subject
   briefs alongside the existing `plans/` shelves). Alternative: `nursery/archive/`
   excluded from desk views. Undecided.
@@ -223,7 +223,7 @@ Sharpened at resolution:
   archived documents out of the working hierarchy - "redundant architecture that points
   back to a previous time and can create confusion in new agents" - which rules out
   archive-in-place and shapes the shelf options (see Open design space).
-- **The graduation prescription mints after Q7** names the shelf, so the policy carries
+- **The graduation prescription mints after Q7** (cb:b577) names the shelf, so the policy carries
   no hole.
 
 ## Related

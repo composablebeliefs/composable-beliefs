@@ -1,6 +1,23 @@
+---
+type: concept
+title: Migrate cb: ids to opaque b-serials
+description: Covers retiring the a/c id prefixes for the single opaque b prefix - the letter-swap migration (serials preserved, disjointness-proven), the content-derived legacy alias, single-series minting, the merge-commit-only condition, and the last-alpha-rename closure. Executed 2026-07-02 (PR #10). Minted cb:b566 (the id protocol), cb:b573 (merge-commit only), cb:b574-b576 (the follow-up obligations).
+tags: [nursery, cb, schema, id-protocol]
+status: active
+timestamp: 2026-07-02
+maturity: planted
+minted: cb:b566
+threads: []
+---
+
 # cb-id-b-migration: opaque b-serial ids for the cb: graph
 
-Status: executing (2026-07-02)
+Status: executed (2026-07-02, PR #10 merged as eb8cb76). Authored the same day as
+plans/cb-id-b-migration/design.md on the cb-schema-v3 precedent, concurrent with
+cb:b569 closing the plans/ shelf; re-homed here as a proto-belief document - the
+closure's own definition fits it exactly (a plan is a proto-belief document whose
+mint-manifest rows are predominantly prescriptions). Import and adjudication records
+live in [cb-id-b-migration/](cb-id-b-migration/).
 
 ## Motive
 
@@ -97,6 +114,16 @@ than restarting at b001 (which the alias would conflate with a001/c001).
 
 ## Follow-ups
 
-- belief-collections sweep (same rule; verify per-collection serial
-  disjointness first).
-- codepath:/cb-okf: renumbering plan.
+Minted as desk obligations 2026-07-02: the belief-collections sweep (cb:b574),
+the codepath:/cb-okf: renumbering plans (cb:b575), and the true glossary
+regeneration (cb:b576).
+
+## Mint manifest
+
+| Type | Draft claim | Deps | Grounding | Minted |
+|---|---|---|---|---|
+| prescription | Ids are opaque b-serials; the prefix carries no semantics; legacy [ac] ids resolve by the letter-swap alias, exact matches first; no future alpha-rename. | cb:b056, cb:b398 | commit:a5607fb191a4beb8558f0e03e33ad99ce527c26b | cb:b566 |
+| prescription | Merge-commit only: squash and rebase merging prohibited and disabled in settings; both rewrite merged SHAs, severing commit: citations and Belief: trailers on fresh clones. | cb:b563, cb:b566, cb:b568 | user:mark:2026-07-02 | cb:b573 |
+| prescription (action-item) | Sweep belief-collections to b-serials: per-collection disjointness check, letter-swap where disjoint, renumber where not; verify each namespace against the migrated graph. | cb:b566 | document:beliefs/nursery/cb-id-b-migration.md | cb:b574 |
+| prescription (action-item) | Renumbering plans for codepath:/cb-okf: - colliding a/c serials, no alias for renumbered ids, single-pass reference sweep. | cb:b566 | document:beliefs/nursery/cb-id-b-migration.md | cb:b575 |
+| prescription (action-item) | Regenerate docs/glossary.md properly once the belief-collections registry is available, restoring the generated-not-edited invariant. | cb:b566 | document:beliefs/nursery/cb-id-b-migration.md | cb:b576 |
