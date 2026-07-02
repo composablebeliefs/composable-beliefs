@@ -50,7 +50,7 @@ Verbs: **seed** (start) -> **plant** (into the graph - the wild) | **compost** (
 
 **Terminal documents graduate; they are never deleted** (contest resolved 2026-07-02,
 [seed-lifecycle](seed-lifecycle.md)): historicize (date-stamp, record the terminal
-maturity and forward links) and move to the archive shelf (location = Q7, open), with a
+maturity and forward links) and move to the archive shelf (location = Q7, desk-tracked as cb:b577), with a
 `cb.repoint` pass so `document:` citations follow. The document is mandatory provenance -
 every belief traces back through it to the thread - so deleting it breaks the chain. A
 true fizzle that accreted nothing and that nothing cites may still just be deleted: a
@@ -79,7 +79,7 @@ makes staleness visible; it never silently decides.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
 - [seed-absorption](seed-absorption.md) - grafted - lost the 2026-07-02 contest to seed-lifecycle; its fold mechanism survives as the graduation step. Historicized in place pending the Q7 archive shelf.
-- [seed-lifecycle](seed-lifecycle.md) - active - contest resolved 2026-07-02: terminal proto-belief documents graduate (historicize + archive + repoint), never evacuate-by-deletion; the graduation prescription mints once Q7 names the archive shelf (invisibility requirement attached).
+- [seed-lifecycle](seed-lifecycle.md) - active - contest resolved 2026-07-02: terminal proto-belief documents graduate (historicize + archive + repoint), never evacuate-by-deletion; the graduation prescription mints once Q7 (cb:b577) names the archive shelf (invisibility requirement attached).
 - [seed-recency](seed-recency.md) - active - dating seeds and excerpts to rank competing positions; recency soft, contested-links hard.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
 - [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
