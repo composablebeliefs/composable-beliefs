@@ -18,7 +18,8 @@ artifact: session:2026-07-02-authoring-pipeline
 > first thread dispatched by one. Produced: [routing-ledger](../routing-ledger.md),
 > [mint-manifest](../mint-manifest.md),
 > [commit-provenance-floor](../commit-provenance-floor.md), the 2026-07-02 concurrence
-> block on [seed-lifecycle](../seed-lifecycle.md), and beliefs cb:a566 / cb:a567.
+> block on [seed-lifecycle](../seed-lifecycle.md), and beliefs cb:a566 / cb:a567 /
+> cb:a568.
 
 ## Routing
 
@@ -31,7 +32,8 @@ here; this table holds only dispatch state ([routing-ledger](../routing-ledger.m
 | Parallel thread-summary document | closed | [routing-ledger](../routing-ledger.md) | - |
 | Focus/plan overlap and the seed/plan collapse | closed | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 block) | - |
 | Pipeline layer count (thread / ledger / brief / graph) | closed | [routing-ledger](../routing-ledger.md), [mint-manifest](../mint-manifest.md) | - |
-| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Squash policy and trailer vocabulary await the user's reply; deliberation continues in the focus doc |
+| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary, enforcement, squash policy, and checkpoint cadence presented to the user 2026-07-02, awaiting answers |
+| Atomic commits (the GSD get-shit-done comparison) | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 GSD block) | - |
 | Round-trip reference (this cycle as the exemplar) | open | - (this cycle itself) | User review of the executed round trip |
 | Backfill: conform existing threads, focuses, and plans to the new standard | paused | unrouted | User intends to work backwards through the existing collection once the reference round trip is accepted |
 
@@ -113,6 +115,36 @@ this thread with its ledger, authored the three focus briefs and the seed-lifecy
 block, ran preflight, minted cb:a566 (routing ledger) and cb:a567 (mint manifest) through
 `mix cb.import`, ran the verify gates, and committed one lifecycle event per commit with
 `Thread:` / `Focus:` / `Belief:` trailers, pushed for review.
+
+**User (follow-up):** While reviewing the executed round trip, asked whether to adopt a
+policy of atomic commits as seen in the GSD (get-shit-done) framework.
+
+**Claude:** Researched GSD (gsd-build/get-shit-done): phases -> plans -> tasks, every
+completed task its own atomic commit. Assessed: yes in spirit, and mostly already
+adopted - the atom differs (GSD: execution task; CB floor: lifecycle transition), and on
+traceability CB is ahead (typed `Belief:` trailers CI-enforced both directions by
+verify.commits, versus GSD's prose-in-message linkage). But GSD's discipline catches a
+real defect in the round trip just executed: the brief-batch commit `d7e40cb` bundled
+four `Focus:` events, and the mint commit `ae0e63f` bundled two focuses' mints - under
+strict atomicity, mis-authored bundles. Framed the fix as cb:a475's atomicity doctrine
+transposed to commits (atomic means one event, not one file). Recommended against
+importing GSD's ROADMAP/SUMMARY document apparatus (the SUMMARY-file shape is the
+cb:a386 digest antipattern). Offered to route the exchange into commit-provenance-floor.
+
+**User:** Authorized the routing; adopted split-commits-per-focus effective immediately;
+directed that atomic commits be clearly presented as policy in the DAG, moving through
+the intermediary document steps as necessary; and asked for all outstanding questions
+with supportive background.
+
+**Claude:** Routed the exchange as the 2026-07-02 GSD block on
+[commit-provenance-floor](../commit-provenance-floor.md), sharpened its lean 1 to the
+atomicity form, added the manifest row, and minted cb:a568 (kind `policy`, grounded
+`document:` in the brief, dep cb:a475) through preflight and the write flow - the
+landing sequence itself split per focus (thread update, brief update, mint as three
+commits), the first compliant instance of the policy it records. Presented the
+outstanding decisions: trailer vocabulary, verify.commits floor extension, squash
+policy, checkpoint cadence, the seed-lifecycle contest resolution and archive shelf,
+transcript-format's repo-weight call, and the backfill green-light.
 
 ## Related
 - [routing-ledger](../routing-ledger.md) - the ledger this thread carries the first
