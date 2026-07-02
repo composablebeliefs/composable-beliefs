@@ -8819,5 +8819,37 @@
     ],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a571",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "provenance",
+      "audit-chain"
+    ],
+    "claim": "Build the document-rung verifier: dereference every document: URI cited in the graph (a belief's artifact field and each evidence entry's artifact) to an existing file in the repository, the way mix cb.verify.commits dereferences commit: URIs - closing the one unverified rung of the audit chain that every proto-belief back-pointer rides on. Graduation composes: cb.repoint swings citations before a document moves shelves, and the verifier turns a missed pointer into a CI failure rather than a silent orphan (the cb:a547 hazard made structural).",
+    "artifact": "document:beliefs/nursery/commit-provenance-floor.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Agreed by the operator in the 2026-07-02 authoring-pipeline session, prompted by the seed-prop retirement: with artifact and evidence[].artifact carrying every belief-to-document back-pointer, the document: rung became load-bearing for the whole thread-to-graph chain while remaining the only rung with no verifier. Deferred code work, so it mints before it is acted on. Preflight 2026-07-02: four contract-level subject-overlaps (c039, c041, c050, c067 - the shared 'a mix task' subject, the same sibling pattern cb:c067's own adjudication dismissed) and two schema-level (a401, a409 - audit-chain adjacency); operator-adjudicated as topical overlap, not contradiction. The cited commit landed the agreeing document.",
+        "artifact": "commit:db46ce75d62c2115990dbc133dc579bd6e8e2875"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "a mix task",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:a547"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
