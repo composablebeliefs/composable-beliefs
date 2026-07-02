@@ -8589,5 +8589,25 @@
     },
     "status": "active",
     "created": "2026-07-01"
+  },
+  {
+    "id": "cb:a564",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "docs",
+      "schema-v3"
+    ],
+    "claim": "Migrate the remaining living docs to the schema-v3 structural-type vocabulary (attestation/aggregation/inference/prescription; derived contract-grade). Still carrying the old type names: docs/eval-ledger.md, docs/worked-example-eval-verdict.md, docs/run-manifest.md, docs/operations.md, docs/composable-beliefs-thesis.md, docs/cb-on-the-beam.md, docs/actualization.md. Sequence the eval-facing three (worked-example, run-manifest, eval-ledger) with the belief-collections sibling migration - they describe collections whose data may still carry the old vocabulary, so migrating their prose ahead of the data would desync doc from graph. The narrative four (operations, thesis, cb-on-the-beam, actualization) have no such coupling and can be done in any session. The historical record (chronicles/, plans/, dated analyses, nursery threads) stays untouched per the structural-type-rename seed's docs step. Context: the 2026-07-02 session migrated README.md, docs/mental-model.md, docs/reference.md, and docs/belief-graph.md; this prescription covers the remainder.",
+    "artifact": "user:mark:2026-07-02",
+    "evidence": [],
+    "subjects": [],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
