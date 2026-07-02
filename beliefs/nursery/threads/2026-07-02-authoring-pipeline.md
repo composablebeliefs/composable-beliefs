@@ -32,8 +32,14 @@ here; this table holds only dispatch state ([routing-ledger](../routing-ledger.m
 | Parallel thread-summary document | closed | [routing-ledger](../routing-ledger.md) | - |
 | Focus/plan overlap and the seed/plan collapse | closed | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 block) | - |
 | Pipeline layer count (thread / ledger / brief / graph) | closed | [routing-ledger](../routing-ledger.md), [mint-manifest](../mint-manifest.md) | - |
-| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary, enforcement, squash policy, and checkpoint cadence presented to the user 2026-07-02, awaiting answers |
+| Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary settled (`Proto-Belief:`); document-rung verifier minted cb:a571; floor-trailer enforcement, squash policy, and checkpoint cadence still open |
 | Atomic commits (the GSD get-shit-done comparison) | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 GSD block) | - |
+| Artifact naming: proto-belief; focus/seed/brief/plan retired | closed | [proto-belief-rename](../proto-belief-rename.md) | - |
+| Split-test doctrine (one proto-belief document per separable matter) | closed | [proto-belief-rename](../proto-belief-rename.md); minted verbatim in cb:a569 | - |
+| Seed-lifecycle contest resolution (graduation wins) | open | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 resolution block) | Q7: archive shelf location, now carrying the invisibility requirement; graduation prescription mints after Q7 |
+| plans/ shelf closure and archive invisibility | paused | [seed-lifecycle](../seed-lifecycle.md) (Q7) + plans/README.md | Physical archive move and live-plan triage gated on Q7 + the cb:a571 verifier |
+| Mint-before-acting rule (deferred work mints first) | closed | [mint-manifest](../mint-manifest.md) (dated note queued via cb:a570 sweep) | - |
+| artifact vs evidence[].artifact two-axis rationale | closed | cb:a398 evidence (2026-07-02 append) | - |
 | Round-trip reference (this cycle as the exemplar) | open | - (this cycle itself) | User review of the executed round trip |
 | Backfill: conform existing threads, focuses, and plans to the new standard | paused | unrouted | User intends to work backwards through the existing collection once the reference round trip is accepted |
 
@@ -145,6 +151,53 @@ commits), the first compliant instance of the policy it records. Presented the
 outstanding decisions: trailer vocabulary, verify.commits floor extension, squash
 policy, checkpoint cadence, the seed-lifecycle contest resolution and archive shelf,
 transcript-format's repo-weight call, and the backfill green-light.
+
+**User (naming round, several turns):** Proposed **proto-belief** as the artifact name -
+most intuitive to a newcomer, most descriptive. Argued "seed" truly belongs to the
+thread (the seed bed of ideas, informally - threads are not renamed) and that the
+misassigned metaphor caused the definitional strain; "focus" is forced, the doc's
+subject needs no formal name. Rejected Claude's "plan is slightly stretched as a
+proto-belief" wrinkle: everything the framework stands behind is a belief, prescriptions
+included, so a plan is a proto-belief whose rows are prescriptions - and keeping
+"brief"/"plan" as informal registers would re-encode the descriptive/prescriptive
+distinction outside the type system, a code smell. Asked where retired "directive"
+vocabulary still lives. Pressed on "question" as unit noun (what happens when there is
+no question?). Asked what links a belief back to its authoring document if the seed
+prop dies, whether artifact and evidence[].artifact are redundant, whether plans/ is
+deprecated, how mint-before-acting works at a fundamental level, and whether the
+artifact-field distinction is persisted anywhere.
+
+**Claude:** Conceded plan-is-a-proto-belief in full and retired all informal registers
+(mood lives only in the type system). Audited "directive": sanctioned survivals (compat
+shim pending cb:a562, glossary mapping, historical record, structural-type-rename
+itself), one fresh miss in mint-manifest.md, live-register residue in transcript-format
+and five other nursery docs, and a missed docs surface (docs/operations.md,
+composable-beliefs-thesis.md's "assertions"). Withdrew "question" after the no-question
+cases (citation-discipline, execution-phase docs, observation capture) and proposed the
+split-test doctrine with the mint manifest as boundary oracle. Answered the back-link
+question: the `artifact` field and `evidence[].artifact` carry the typed `document:`
+back-pointer already (a566-a568 the proof), so the seed prop dies with no schema
+change; flagged the document: rung as the one unverified link and graduation-moves as a
+repoint hazard. Distinguished artifact (grounding, contract-checked) from
+evidence[].artifact (per-event provenance, append-only) - same at birth, divergent over
+life (a545 the specimen).
+
+**User (batched settlement, submitted in segments under the new pause/proceed
+protocol):** Agreed to document-rung verification; agreed graduation includes a repoint
+step; locked the split-test doctrine verbatim for the proto-belief doc and eventual DAG
+node; agreed to close plans/ and convert active plans, adding the requirement that
+archived plans be invisible in the working hierarchy (redundant old architecture
+confuses new agents); asked for a one-abstraction-down explanation of mint-before-acting;
+asked whether the artifact distinction is persisted. Said proceed.
+
+**Claude (this execution):** Authored [proto-belief-rename](../proto-belief-rename.md)
+(the settlement + migration spike), resolved the seed-lifecycle contest for graduation
+(seed-absorption grafted in place pending the Q7 shelf), settled the trailer vocabulary
+as `Thread:` / `Proto-Belief:` / `Belief:`, closed plans/ to new documents, minted
+cb:a569 (naming + split-test doctrine), cb:a570 (residual vocabulary sweep, deferred so
+it mints first), cb:a571 (document-rung verifier build), appended the two-axis rationale
+to cb:a398's evidence through the front door, and committed one artifact-event per
+commit under the new trailer key.
 
 ## Related
 - [routing-ledger](../routing-ledger.md) - the ledger this thread carries the first
