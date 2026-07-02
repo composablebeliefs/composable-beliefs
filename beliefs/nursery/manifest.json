@@ -187,7 +187,7 @@
       "path": "thread-repo-binding.md",
       "type": "concept",
       "title": "Bind each thread to the repo it relates to (thread init)",
-      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session, since the transcript hook currently hardcodes a single threads dir.",
+      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this focus to the concerns-vs-ran-in routing question.",
       "tags": [
         "nursery",
         "threads",
@@ -195,7 +195,7 @@
         "multi-repo"
       ],
       "status": "active",
-      "timestamp": "2026-06-26"
+      "timestamp": "2026-07-02"
     },
     {
       "path": "threads/2026-06-25-belief-audit.md",
@@ -254,7 +254,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-07-01"
+      "timestamp": "2026-07-02"
     },
     {
       "path": "transcript-format.md",

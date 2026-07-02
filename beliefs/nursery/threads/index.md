@@ -4,7 +4,7 @@ title: Threads (session transcripts)
 description: Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.
 tags: [threads, transcript, index]
 status: active
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 ---
 
 # Threads - session transcripts
@@ -20,10 +20,15 @@ grounds in a seed, never in a transcript. A transcript is a convenience and a sa
 nothing the graph depends on.
 
 Live transcripts are captured automatically by a `Stop` hook
-(`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
-is gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
-Read them there; they are never committed. The curated thread docs below are the hand-kept
-exceptions that do get committed.
+(`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`
+and pathed via `$CLAUDE_PROJECT_DIR`, so it runs in local and remote sessions alike) into
+`.sessions/<date>-<session>.md`, with a raw jsonl copy beside it - a dot-dir that is
+gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
+`.sessions/` is the working area, not the persistence: `/end` finalizes the live render
+(metadata, digest, registration) into a committed thread doc below. The raw jsonl stays
+working-area only until transcript-format's repo-weight/LFS decision lands. In a remote
+session the working area dies with the container, so `/end` before finishing is the only
+persistence there - the hook reminds on first capture.
 
 ## Contents
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.

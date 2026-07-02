@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Stop hook: regenerate a non-provenance prose transcript of the session into
-the nursery threads/.sessions/ subdir.
+the nursery threads/.sessions/ subdir, alongside a raw jsonl copy.
 
 Reads the Stop-hook JSON on stdin, walks the session jsonl, and writes a clean
 Human/Assistant transcript. For each turn it keeps ONLY the response the agent
@@ -8,18 +8,37 @@ actually shared - the text after the turn's last tool call - dropping the
 interstitial "let me check X" narration that precedes each tool batch, along
 with all reasoning, tool calls, tool results, and system noise. Turns with no
 tool calls (plain conversation) keep all their text. Idempotent: regenerates
-the whole doc each turn (no append markers, naturally crash-safe).
+the whole doc each turn (no append markers, naturally crash-safe). The raw
+jsonl is copied in beside the render each turn (the persist-raw lane; its
+commit is gated on transcript-format's repo-weight/LFS decision).
+
+The output dir is derived from $CLAUDE_PROJECT_DIR (set by the harness for
+hooks), falling back to this script's own location (<repo>/.claude/hooks/), so
+the same hook runs in local and remote sessions. Registered in the committed
+.claude/settings.json. On the first capture of a session it emits a
+systemMessage pointing at the live render and the /end step that persists it.
 
 This artifact is NOT provenance - the nursery seeds are. It exists for crash
 safety and human reading. Never let the graph depend on it.
 """
 import json
 import os
+import shutil
 import sys
 
-THREADS_DIR = (
-    "/Users/mark/dev/repos/mine/amieval/composable-beliefs"
-    "/beliefs/nursery/threads/.sessions"
+
+def project_dir():
+    d = os.environ.get("CLAUDE_PROJECT_DIR")
+    if d and os.path.isdir(d):
+        return d
+    # <repo>/.claude/hooks/transcript_hook.py -> <repo>
+    return os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
+
+
+THREADS_DIR = os.path.join(
+    project_dir(), "beliefs", "nursery", "threads", ".sessions"
 )
 
 # A text block shorter than this that precedes a tool call is treated as "let me
@@ -125,13 +144,25 @@ def main():
     for speaker, text in sections:
         out += [f"## {speaker}", "", text, ""]
 
-    fname = f"{date}-{sid[:8]}.md" if date else f"{sid[:8]}.md"
+    stem = f"{date}-{sid[:8]}" if date else sid[:8]
+    render_path = os.path.join(THREADS_DIR, f"{stem}.md")
+    first_capture = not os.path.exists(render_path)
     try:
         os.makedirs(THREADS_DIR, exist_ok=True)
-        with open(os.path.join(THREADS_DIR, fname), "w", encoding="utf-8") as f:
+        with open(render_path, "w", encoding="utf-8") as f:
             f.write("\n".join(out))
+        shutil.copyfile(tpath, os.path.join(THREADS_DIR, f"{stem}.jsonl"))
     except Exception:
         return 0
+
+    if first_capture:
+        rel = os.path.relpath(render_path, project_dir())
+        print(json.dumps({
+            "systemMessage": (
+                f"Transcript capture live: {rel} (+ raw jsonl beside it, both"
+                " uncommitted). Run /end before finishing to persist the thread."
+            )
+        }))
     return 0
 
 
