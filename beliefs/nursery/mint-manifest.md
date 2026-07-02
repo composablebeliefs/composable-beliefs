@@ -32,7 +32,7 @@ Four grounds, each drawn from doctrine already in force:
    least information; the nursery's value is deferring expensive commitments to the gate.
 2. **It fragments the focus.** One focus routinely mints several beliefs of several types
    (structural-type-rename minted contract rewrites plus prescriptions cb:a561/a562; the
-   a098 audit minted a directive plus an inference). Typed docs shatter one argument
+   a098 audit minted a prescription plus an inference). Typed docs shatter one argument
    across three or four files - the same mistake [seed-lifecycle](seed-lifecycle.md)
    rejected on the phase axis, transposed to the type axis, against focus-as-unit.
 3. **It builds the shadow graph.** The nursery validates format, never relations. Typed
