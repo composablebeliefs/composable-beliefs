@@ -114,6 +114,89 @@ defmodule CB.Belief.GraphTest do
 
       assert Graph.resolve_id(beliefs, "c029") == {:error, {:ambiguous, ["cb:c029", "ops:c029"]}}
     end
+
+    test "a legacy id resolves through the letter-swap alias in a migrated graph" do
+      beliefs = [
+        %Belief{
+          id: "cb:b029",
+          type: "prescription",
+          kind: "rule",
+          claim: "x",
+          status: "active",
+          deps: []
+        }
+      ]
+
+      assert Graph.resolve_id(beliefs, "cb:c029") == {:ok, "cb:b029"}
+      assert Graph.resolve_id(beliefs, "cb:a029") == {:ok, "cb:b029"}
+      assert Graph.resolve_id(beliefs, "c029") == {:ok, "cb:b029"}
+    end
+
+    test "an exact legacy match wins before the alias fires" do
+      # An unmigrated graph really contains cb:c029; the alias must not
+      # re-point it at some cb:b029.
+      beliefs = [
+        %Belief{
+          id: "cb:c029",
+          type: "prescription",
+          kind: "rule",
+          claim: "the real node",
+          status: "active",
+          deps: []
+        },
+        %Belief{
+          id: "cb:b029",
+          type: "attestation",
+          kind: "observation",
+          claim: "an unrelated node",
+          status: "active",
+          deps: []
+        }
+      ]
+
+      assert Graph.resolve_id(beliefs, "cb:c029") == {:ok, "cb:c029"}
+    end
+  end
+
+  describe "lookup" do
+    test "falls back to the legacy alias only when the exact id is absent" do
+      migrated = %Belief{id: "cb:b386", type: "inference", claim: "x", status: "active", deps: []}
+      index = Graph.index([migrated])
+
+      assert Graph.lookup(index, "cb:b386") == migrated
+      assert Graph.lookup(index, "cb:a386") == migrated
+      assert Graph.lookup(index, "cb:c386") == migrated
+      assert Graph.lookup(index, "cb:a999") == nil
+    end
+
+    test "resolve_deps/2 resolves pre-migration dep lists against a migrated graph" do
+      dep = %Belief{id: "cb:b386", type: "attestation", claim: "ground", status: "active", deps: []}
+
+      legacy_citer = %Belief{
+        id: "lib:overdue-notice",
+        type: "inference",
+        claim: "cites cb by its old id",
+        status: "active",
+        deps: ["cb:a386"]
+      }
+
+      index = Graph.index([dep, legacy_citer])
+      assert Graph.resolve_deps(legacy_citer, index) == [dep]
+    end
+
+    test "dependents/2 finds citers whose dep lists use the legacy id" do
+      dep = %Belief{id: "cb:b386", type: "attestation", claim: "ground", status: "active", deps: []}
+
+      legacy_citer = %Belief{
+        id: "lib:overdue-notice",
+        type: "inference",
+        claim: "cites cb by its old id",
+        status: "active",
+        deps: ["cb:a386"]
+      }
+
+      assert Graph.dependents("cb:b386", [dep, legacy_citer]) == [legacy_citer]
+    end
   end
 
   describe "deps / resolve_deps" do

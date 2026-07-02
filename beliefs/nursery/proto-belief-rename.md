@@ -1,12 +1,12 @@
 ---
 type: concept
 title: Proto-belief - naming the nursery artifact, retiring focus/seed/brief/plan
-description: Covers the vocabulary settlement naming the nursery artifact the proto-belief document - the gloss becomes the name per the rename test - retiring focus, seed (for documents; threads keep it informally), brief, and plan, with no informal genre registers surviving (mood is carried only by the structural type system, and a plan is a proto-belief whose rows are prescriptions); the split-test doctrine replacing focus-as-unit; the Proto-Belief: commit trailer; and the migration spike over live surfaces. Minted cb:a569 (doctrine) and cb:a570 (residual sweep).
+description: Covers the vocabulary settlement naming the nursery artifact the proto-belief document - the gloss becomes the name per the rename test - retiring focus, seed (for documents; threads keep it informally), brief, and plan, with no informal genre registers surviving (mood is carried only by the structural type system, and a plan is a proto-belief whose rows are prescriptions); the split-test doctrine replacing focus-as-unit; the Proto-Belief: commit trailer; and the migration spike over live surfaces. Minted cb:b569 (doctrine) and cb:b570 (residual sweep).
 tags: [nursery, vocabulary, meta, structural-types]
 status: active
 timestamp: 2026-07-02
 maturity: active
-minted: cb:a569
+minted: cb:b569
 threads: [2026-07-02-authoring-pipeline]
 ---
 
@@ -43,7 +43,7 @@ Threads are not renamed - they just *are* the seed bed, informally. "Seed" leave
 document vocabulary; the nursery name and the lifecycle verbs (plant, compost, graft)
 stay - they describe transitions of anything gestating and rename to no benefit. The
 proposed `seed` prop on belief nodes dies entirely: `artifact` and `evidence[].artifact`
-already carry the typed `document:` back-pointer (cb:a566-a568 the proof), so no schema
+already carry the typed `document:` back-pointer (cb:b572-b568 the proof), so no schema
 change and no field named for the retired metaphor.
 
 **No unit noun; the doctrine is a split test.** "Focus" named the document's subject,
@@ -57,20 +57,20 @@ the mint manifest as the boundary oracle:
 > each other's reasoning share a document. Split and merge are cheap before the gate;
 > the boundary only turns costly at mint.
 
-(Locked verbatim by the operator; carried verbatim in cb:a569's claim.)
+(Locked verbatim by the operator; carried verbatim in cb:b569's claim.)
 
 **The commit trailer is `Proto-Belief: <slug>`,** replacing `Focus:`. The trailer chain
 now narrates the pipeline itself: `Thread:` -> `Proto-Belief:` -> `Belief:`. The four
 historical `Focus:` commits stay untouched, as the type-enum migration left old
 vocabulary in superseded nodes.
 
-## Migration spike (executed items marked; the rest is cb:a570)
+## Migration spike (executed items marked; the rest is cb:b570)
 
 1. **Done this round:** this document authored under its own name; the index rewritten
    (heading, doctrine paragraph, maturity-lifecycle prose); trailer key switched
    effective immediately; mint-manifest.md's fresh "directive" miss corrected;
    plans/README.md closes the shelf to new documents.
-2. **cb:a570 (residual sweep, minted so the desk tracks it):** live nursery documents
+2. **cb:b570 (residual sweep, minted so the desk tracks it):** live nursery documents
    still speaking the retired registers - transcript-format's "Seeds vs directives"
    architecture section (the concept survives as plain "prescription"), seed-lifecycle
    and seed-absorption body prose, per-belief-files, contract-predicate-demotion,
@@ -94,8 +94,8 @@ vocabulary in superseded nodes.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | The nursery artifact is the proto-belief document; focus, seed (for documents), brief, and plan are retired with no informal registers surviving - mood is carried only by the structural type system; one proto-belief document per separable matter (split test verbatim); the commit trailer is Proto-Belief:. | cb:a475 | document:beliefs/nursery/proto-belief-rename.md | cb:a569 |
-| prescription (action-item) | Execute the residual vocabulary sweep (spike item 2) across live nursery documents and the missed docs surfaces; historical record untouched. | cb:a569 | document:beliefs/nursery/proto-belief-rename.md | cb:a570 |
+| prescription | The nursery artifact is the proto-belief document; focus, seed (for documents), brief, and plan are retired with no informal registers surviving - mood is carried only by the structural type system; one proto-belief document per separable matter (split test verbatim); the commit trailer is Proto-Belief:. | cb:a475 | document:beliefs/nursery/proto-belief-rename.md | cb:b569 |
+| prescription (action-item) | Execute the residual vocabulary sweep (spike item 2) across live nursery documents and the missed docs surfaces; historical record untouched. | cb:b569 | document:beliefs/nursery/proto-belief-rename.md | cb:b570 |
 
 ## Thread excerpts (what grounds the settlement)
 

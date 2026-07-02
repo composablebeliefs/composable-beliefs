@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Commit provenance at the floor tier (threads, ledgers, briefs)
-description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted vs the GSD comparison and minted cb:a568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.
+description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).
 tags: [nursery, provenance, git, audit-chain, workflow]
 status: active
 timestamp: 2026-07-02
@@ -38,7 +38,7 @@ kind of lifecycle event they are or which floor artifact they concern.
 
 ## Design leans
 
-1. **Atomic lifecycle commits (adopted 2026-07-02; minted cb:a568).** The auditable unit
+1. **Atomic lifecycle commits (adopted 2026-07-02; minted cb:b568).** The auditable unit
    is the lifecycle transition - and exactly one per commit: one thread captured or
    updated, one focus brief opened/updated/graduated, one focus's manifest rows minted.
    A commit conjoining separable lifecycle events is a mis-authored bundle, split at
@@ -48,10 +48,10 @@ kind of lifecycle event they are or which floor artifact they concern.
    commits, so a trailer grep returns exactly that artifact's history. Periodic
    checkpoint commits of in-progress threads remain compatible; the convention requires
    that each *transition* be an identifiable - and sole - occupant of its commit. (See
-   the GSD block below for the comparison that sharpened the original softer lean.)
+   the atomic-commits block below for the exchange that sharpened the original softer lean.)
 2. **Floor trailers as analogs of `Belief:` - vocabulary settled 2026-07-02.**
    `Thread: <thread-slug>` on thread commits, `Proto-Belief: <doc-slug>` on proto-belief
-   document commits (replacing the retired `Focus:` per cb:a569; the four historical
+   document commits (replacing the retired `Focus:` per cb:b569; the four historical
    `Focus:` commits stay untouched), alongside `Belief: cb:aNNN` on mint commits (one id
    per trailer line, matching the c067 convention). The chain `Thread:` ->
    `Proto-Belief:` -> `Belief:` narrates the pipeline itself. The generic-`Artifact:`
@@ -69,53 +69,50 @@ kind of lifecycle event they are or which floor artifact they concern.
    history does; squash-merging rewrites branch commits and would kill every `commit:`
    back-pointer and trailer written on a branch. De facto policy already complies (PR #1
    preserved `be4ee65` through merge; cb:a545's evidence cites its implementing sha
-   through the scheme it introduced), but it is nowhere stated as policy. Lean: record
-   merge-without-squash as an explicit repo policy, since the audit chain now depends
-   on it.
+   through the scheme it introduced). Resolved 2026-07-02: stated as policy in cb:b573
+   (merge-commit only; squash and rebase merging prohibited and disabled in repository
+   settings), minted during PR #10 review.
 
 ## First instance
 
 The 2026-07-02 authoring-pipeline cycle runs the convention end to end: the thread
 capture, the brief batch, and the mint are separate commits carrying `Thread:`, `Focus:`,
-and `Belief:` trailers respectively, and cb:a566/cb:a567's evidence entries cite the
+and `Belief:` trailers respectively, and cb:b572/cb:b567's evidence entries cite the
 brief-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
 `git log --grep='^Focus:'`.
 
-## Atomic commits - the GSD comparison (2026-07-02)
+## Atomic commits (2026-07-02)
 
-Prompted by the operator: should the house adopt an atomic-commit policy as in the GSD
-(get-shit-done) framework (gsd-build/get-shit-done - phases -> plans -> tasks, every
-completed task its own atomic commit, ~59K stars)? Resolution: **yes in spirit, sharper
+Prompted by the operator: should the house adopt an atomic-commit policy (every
+completed unit of work its own commit, the message tracing to its planning
+document)? Resolution: **yes in spirit, sharper
 in letter, adopted immediately.**
 
-- **What GSD validates.** One semantic unit per commit, with the commit message tracing
-  to the planning document - the same shape as lean 1, arrived at independently by a
-  system optimizing for reviewability and task-granular rollback. The atom differs by
-  tier: GSD's is an execution task; the floor's is a lifecycle transition.
-- **Where CB was already ahead.** GSD's task-to-commit linkage is prose in the message;
-  CB's is typed (`Belief:` trailers, `commit:` URIs) and CI-enforced both directions by
-  `mix cb.verify.commits`. Nothing to import there.
-- **What the comparison caught.** The first round trip violated its own lean twice:
+- **What the policy validates.** One semantic unit per commit, with the commit message tracing
+  to the planning document - the same shape as lean 1, independently motivated by
+  reviewability and task-granular rollback. The atom differs by
+  tier: an execution task in the general form; a lifecycle transition at the floor.
+- **What the review caught.** The first round trip violated its own lean twice:
   `d7e40cb` bundled four `Focus:` events (three briefs opened plus a concurrence
   append), and `ae0e63f` bundled two focuses' mints. Under the sharpened lean both are
-  mis-authored bundles - the motivating counterexamples recorded on cb:a568.
-- **What is explicitly not imported.** GSD's ROADMAP/SUMMARY document apparatus: CB's
+  mis-authored bundles - the motivating counterexamples recorded on cb:b568.
+- **What is explicitly not adopted.** A ROADMAP/SUMMARY document apparatus: CB's
   graph and briefs already hold that state, and a per-phase SUMMARY file is the
   cb:a386 cached-digest shape verbatim.
 - **Operator decision.** Split commits per focus effective immediately; present the
   discipline as explicit policy in the DAG via this brief (the intermediary document
-  step) - minted as cb:a568, kind `policy`. The landing sequence of a568 itself is the
+  step) - minted as cb:b568, kind `policy`. The landing sequence of b568 itself is the
   first compliant instance: thread update, brief update, and mint as three per-focus
   commits.
 
-## The document rung (agreed 2026-07-02; build is cb:a571)
+## The document rung (agreed 2026-07-02; build is cb:b571)
 
 The `document:` scheme is the one rung of the audit chain with no verifier: `commit:`
 URIs are dereferenced by `mix cb.verify.commits`, but nothing checks that `document:`
 paths cited by beliefs (top-level `artifact` and `evidence[].artifact`) resolve to real
 files - exactly the cb:a547 orphaning hazard, and the rung every proto-belief
 back-pointer rides on. Operator agreed to introduce the verifier; deferred work, so it
-minted first (cb:a571) per the mint-before-acting rule. Composes with graduation: the
+minted first (cb:b571) per the mint-before-acting rule. Composes with graduation: the
 repoint pass moves citations when a document graduates, and the verifier turns a missed
 pointer into a CI failure instead of a silent orphan.
 
@@ -125,11 +122,12 @@ pointer into a CI failure instead of a silent orphan.
   `Thread:`/`Proto-Belief:` trailers (slug -> existing doc, allowing for graduated
   docs), or leave floor trailers advisory? Per a545's own judgment, an unenforced
   convention buys little; but the floor is mutable, so dereferencing needs the
-  graduation/rename story (repoint + cb:a571) landed first. Distinct from the
+  graduation/rename story (repoint + cb:b571) landed first. Distinct from the
   document-rung verifier above: that checks graph-side citations; this checks
   commit-side trailers.
-- **Squash policy.** Confirm merge-without-squash as stated policy (and where it is
-  recorded - a belief, or repo settings plus a belief). Awaiting the user's call.
+- **Squash policy - resolved 2026-07-02.** Recorded in both places: repository
+  settings (squash and rebase merging disabled) and the graph (cb:b573, merge-commit
+  only), per the operator's call during PR #10 review.
 - **Checkpoint cadence.** Whether in-progress thread checkpoint commits carry the
   `Thread:` trailer too (making every ledger update addressable) or only the capture and
   `/end` commits do. Lean: every commit that touches the thread doc carries its trailer -
@@ -139,12 +137,13 @@ pointer into a CI failure instead of a silent orphan.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact; a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time (cb:a475 transposed); atomic means one event, not one file. | cb:a475 | document:beliefs/nursery/commit-provenance-floor.md | cb:a568 |
-| prescription (action-item) | Build the document-rung verifier: dereference every document: URI cited by beliefs (artifact and evidence) to an existing repo file, as verify.commits does for commit:; graduation repoints citations before moving files. | cb:a547 | document:beliefs/nursery/commit-provenance-floor.md | cb:a571 |
+| prescription | Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact; a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time (cb:a475 transposed); atomic means one event, not one file. | cb:a475 | document:beliefs/nursery/commit-provenance-floor.md | cb:b568 |
+| prescription (action-item) | Build the document-rung verifier: dereference every document: URI cited by beliefs (artifact and evidence) to an existing repo file, as verify.commits does for commit:; graduation repoints citations before moving files. | cb:a547 | document:beliefs/nursery/commit-provenance-floor.md | cb:b571 |
+| prescription | Merge-commit only: squash and rebase merging prohibited and disabled in repository settings; both rewrite merged SHAs, severing commit: citations and Belief: trailers on fresh clones. | cb:b563, cb:b566, cb:b568 | user:mark:2026-07-02 | cb:b573 |
 
 Remaining candidates, gated on the open questions above: a prescription adopting the
-trailer convention (Thread:/Proto-Belief:/Belief:) and the squash policy as one coherent
-policy batch; a possible action-item row for the floor-trailer verify extension.
+trailer convention (Thread:/Proto-Belief:/Belief:); a possible action-item row for the
+floor-trailer verify extension. The squash policy minted separately as cb:b573.
 
 ## Thread excerpts (what grounds the leans)
 

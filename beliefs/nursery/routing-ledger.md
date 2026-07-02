@@ -1,12 +1,12 @@
 ---
 type: concept
 title: The routing ledger - per-thread dispatch for non-linear conversations
-description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in focus docs; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:a566; open on hook mechanics and the skill build.
+description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in focus docs; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572; open on hook mechanics and the skill build.
 tags: [nursery, threads, provenance, workflow]
 status: active
 timestamp: 2026-07-02
 maturity: active
-minted: cb:a566
+minted: cb:b572
 threads: [2026-07-02-authoring-pipeline]
 ---
 
@@ -62,13 +62,13 @@ For hook-captured threads, a `/decompose` skill (or an extension of the transcri
 `/end` half) maintains the rows at the same moment content is routed into focus docs -
 routing and ledger update are one motion, not a regeneration step that can be forgotten.
 For hand-captured threads the ledger is hand-kept, as here. The skill build is open work;
-the practice does not wait for it (cb:a566 prescribes the ledger, not the automation).
+the practice does not wait for it (cb:b572 prescribes the ledger, not the automation).
 
 ## Mint manifest
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | Every persisted thread carries a routing ledger: one row per topic, holding strand state, dispatch pointer, and dangling question; content lands in focus docs, never in the ledger. | cb:a386 | document:beliefs/nursery/routing-ledger.md | cb:a566 |
+| prescription | Every persisted thread carries a routing ledger: one row per topic, holding strand state, dispatch pointer, and dangling question; content lands in focus docs, never in the ledger. | cb:a386 | document:beliefs/nursery/routing-ledger.md | cb:b572 |
 
 Open rows (not yet candidates): the `/decompose` skill build and the hook-preservation
 mechanics may mint an action-item prescription once the design firms up.

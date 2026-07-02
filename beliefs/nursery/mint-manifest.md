@@ -1,12 +1,12 @@
 ---
 type: concept
 title: The mint manifest - typed decomposition inside the brief, not typed documents
-description: Covers the mint manifest - a late-stage section in a maturing focus brief enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in briefs are prescription rows, resolving the focus/plan drift in composition with seed-lifecycle's collapse. Minted cb:a567.
+description: Covers the mint manifest - a late-stage section in a maturing focus brief enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in briefs are prescription rows, resolving the focus/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.
 tags: [nursery, cb, schema, workflow, structural-types]
 status: active
 timestamp: 2026-07-02
 maturity: active
-minted: cb:a567
+minted: cb:b567
 threads: [2026-07-02-authoring-pipeline]
 ---
 
@@ -84,7 +84,7 @@ late, on rows, never on documents.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | A focus brief approaching the mint gate carries a mint manifest of typed candidate-belief rows; type commitment happens late, on rows inside the brief, never early as typed nursery documents; action items are prescription rows. | cb:a475 | document:beliefs/nursery/mint-manifest.md | cb:a567 |
+| prescription | A focus brief approaching the mint gate carries a mint manifest of typed candidate-belief rows; type commitment happens late, on rows inside the brief, never early as typed nursery documents; action items are prescription rows. | cb:a475 | document:beliefs/nursery/mint-manifest.md | cb:b567 |
 
 ## Thread excerpts (what grounds the decision)
 

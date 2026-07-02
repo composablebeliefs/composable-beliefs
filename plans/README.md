@@ -1,7 +1,7 @@
 # plans/ - closed shelf (2026-07-02)
 
 This shelf is closed to new documents. "Plan" is retired as an artifact category
-(cb:a569): a plan is a proto-belief document whose mint-manifest rows are predominantly
+(cb:b569): a plan is a proto-belief document whose mint-manifest rows are predominantly
 prescriptions, and new work of that shape lives in `beliefs/nursery/` until it plants
 and graduates.
 

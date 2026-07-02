@@ -14,7 +14,7 @@ documents**, deliberated in place until they **plant** into the graph or compost
 the cheap, mutable space *before* the expensive, immutable commit of authoring a belief -
 so over-decompose freely here.
 
-The unit doctrine (cb:a569, locked verbatim): **One proto-belief document per separable
+The unit doctrine (cb:b569, locked verbatim): **One proto-belief document per separable
 matter.** Separable means the strands' eventual mint-manifest rows stand on independent
 argument; strands whose rows need each other's reasoning share a document. Split and
 merge are cheap before the gate; the boundary only turns costly at mint. The matter, not
@@ -22,7 +22,7 @@ the session, is the unit: a conversation touches several proto-beliefs and updat
 whichever documents it concerns; each persists and accretes across conversations
 (cb:a475's atomicity one level up).
 
-Naming (cb:a569, [proto-belief-rename](proto-belief-rename.md)): focus, seed (for
+Naming (cb:b569, [proto-belief-rename](proto-belief-rename.md)): focus, seed (for
 documents), brief, and plan are retired, with no informal registers - mood is carried
 only by the structural type system. Threads keep "seed" informally: they are the seed
 bed ideas germinate in.
@@ -84,12 +84,12 @@ makes staleness visible; it never silently decides.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
 - [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
 - [per-belief-files](per-belief-files.md) - planted - one JSON file per node; minted cb:a554 + the a555-a560 plan.
-- [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:a566; the /decompose skill build stays open.
-- [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing brief, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:a567.
-- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events. Atomic lifecycle commits minted cb:a568; trailer vocabulary settled (Thread:/Proto-Belief:/Belief:); document-rung verifier minted cb:a571; floor-trailer enforcement, squash policy, and cadence open.
+- [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:b572; the /decompose skill build stays open.
+- [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing brief, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:b567.
+- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events. Atomic lifecycle commits minted cb:b568; trailer vocabulary settled (Thread:/Proto-Belief:/Belief:); document-rung verifier minted cb:b571; floor-trailer enforcement, squash policy, and cadence open.
 - [nursery-architecture](nursery-architecture.md) - contested - this model; its "Layer 1 vestigial" lean is decided-against, queued to fold into transcript-format.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
-- [proto-belief-rename](proto-belief-rename.md) - active - the vocabulary settlement: the artifact is the proto-belief document, focus/seed/brief/plan retired with no informal registers, the split-test unit doctrine, the Proto-Belief: trailer. Minted cb:a569; residual sweep is cb:a570.
+- [proto-belief-rename](proto-belief-rename.md) - active - the vocabulary settlement: the artifact is the proto-belief document, focus/seed/brief/plan retired with no informal registers, the split-test unit doctrine, the Proto-Belief: trailer. Minted cb:b569; residual sweep is cb:b570.
 - [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.
 
 ## Subdomains

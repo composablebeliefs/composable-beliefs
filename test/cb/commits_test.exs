@@ -86,4 +86,13 @@ defmodule CB.CommitsTest do
 
     assert Commits.dead_trailer_refs(refs, beliefs) == [{@sha_b, "cb:a999"}]
   end
+
+  test "dead_trailer_refs/2 resolves pre-migration refs through the legacy alias" do
+    # Commit history is immutable: a trailer citing cb:a545 must keep
+    # naming the node now stored as cb:b545.
+    refs = [{@sha_a, "cb:a545"}, {@sha_b, "cb:c999"}]
+    beliefs = [b(id: "cb:b545")]
+
+    assert Commits.dead_trailer_refs(refs, beliefs) == [{@sha_b, "cb:c999"}]
+  end
 end

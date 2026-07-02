@@ -66,6 +66,6 @@ The schema payoff is worth naming: the entire eval ledger - observations, agreem
 Next: [chapter 8, beyond the ledger](8-beyond-the-ledger.md) - the capstone: the ledger as one face of three.
 
 > **Grounding.**
-> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:a539` (ledger, not lab bench - the scope boundary).
+> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:b539` (ledger, not lab bench - the scope boundary).
 > - In the code: `lib/cb/eval/manifest.ex` (parsing and deterministic emission), `lib/cb/eval/predicates.ex` and `lib/cb/method/checks.ex` (the methodology pass), `lib/cb/render/audit.ex` (the audit tree), the `mix cb.import.eval` and `mix cb.render.audit` tasks.
 > - In the docs: [the run-manifest spec](../run-manifest.md), [the worked example](../worked-example-eval-verdict.md).

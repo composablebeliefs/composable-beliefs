@@ -11,14 +11,14 @@ defmodule CB.SchemaContractsTest do
 
   Covered:
 
-  - cb:c053 (state-machine): the StateMachine-derived state set equals
+  - cb:b053 (state-machine): the StateMachine-derived state set equals
     `CB.Belief.statuses()`, and each edge's `requires` matches the expected
     linkage slugs.
-  - cb:c039 / cb:c043 / cb:c041 (enum-registry): `Enum.values_for/2` returns the
+  - cb:b039 / cb:b043 / cb:b041 (enum-registry): `Enum.values_for/2` returns the
     expected vocabularies, and every active belief's kind / artifact-scheme /
     domain in the graph is a declared value (`valid_value?/3`). There is no
     `CB.Belief` code list for kind / domain / scheme - the contract is the SSOT.
-    (cb:c043 superseded cb:c040 when the `code` scheme was added; the linkage
+    (cb:b043 superseded cb:b040 when the `code` scheme was added; the linkage
     is pinned here too.)
   """
   use ExUnit.Case, async: true
@@ -49,19 +49,19 @@ defmodule CB.SchemaContractsTest do
     end
   end
 
-  describe "cb:c053 status lifecycle (state-machine)" do
+  describe "cb:b053 status lifecycle (state-machine)" do
     test "is an active state-machine contract", %{by_id: by_id} do
-      c053 = fetch(by_id, "cb:c053")
-      assert c053.kind == "state-machine"
-      assert c053.status == "active"
-      assert Belief.contract?(c053)
+      b053 = fetch(by_id, "cb:b053")
+      assert b053.kind == "state-machine"
+      assert b053.status == "active"
+      assert Belief.contract?(b053)
     end
 
     test "StateMachine-derived state set equals CB.Belief.statuses/0", %{by_id: by_id} do
-      c053 = fetch(by_id, "cb:c053")
+      b053 = fetch(by_id, "cb:b053")
 
       derived =
-        c053
+        b053
         |> StateMachine.edges()
         |> Elixir.Enum.flat_map(fn e -> [e.from, e.to] end)
         |> Elixir.Enum.uniq()
@@ -71,30 +71,30 @@ defmodule CB.SchemaContractsTest do
     end
 
     test "requires/2 returns the expected linkage slugs for each edge", %{by_id: by_id} do
-      c053 = fetch(by_id, "cb:c053")
+      b053 = fetch(by_id, "cb:b053")
 
-      assert StateMachine.requires(c053, {"active", "superseded"}) == {:ok, ["superseded_by"]}
+      assert StateMachine.requires(b053, {"active", "superseded"}) == {:ok, ["superseded_by"]}
 
-      assert StateMachine.requires(c053, {"active", "retracted"}) ==
+      assert StateMachine.requires(b053, {"active", "retracted"}) ==
                {:ok, ["retracted_on", "retracted_reason"]}
 
-      assert StateMachine.requires(c053, {"active", "retired"}) == {:ok, []}
+      assert StateMachine.requires(b053, {"active", "retired"}) == {:ok, []}
     end
 
     test "all transitions originate from the active state", %{by_id: by_id} do
-      c053 = fetch(by_id, "cb:c053")
+      b053 = fetch(by_id, "cb:b053")
 
       froms =
-        c053 |> StateMachine.edges() |> Elixir.Enum.map(& &1.from) |> Elixir.Enum.uniq()
+        b053 |> StateMachine.edges() |> Elixir.Enum.map(& &1.from) |> Elixir.Enum.uniq()
 
       assert froms == ["active"]
     end
 
     test "terminal states have no outgoing transitions", %{by_id: by_id} do
-      c053 = fetch(by_id, "cb:c053")
+      b053 = fetch(by_id, "cb:b053")
 
       for terminal <- ~w(superseded retracted retired) do
-        assert StateMachine.transitions_from(c053, terminal) == [],
+        assert StateMachine.transitions_from(b053, terminal) == [],
                "expected #{terminal} to be terminal"
       end
     end
@@ -103,10 +103,10 @@ defmodule CB.SchemaContractsTest do
       all: all,
       by_id: by_id
     } do
-      c053 = fetch(by_id, "cb:c053")
+      b053 = fetch(by_id, "cb:b053")
 
       admitted =
-        c053
+        b053
         |> StateMachine.edges()
         |> Elixir.Enum.flat_map(fn e -> [e.from, e.to] end)
         |> MapSet.new()
@@ -120,7 +120,7 @@ defmodule CB.SchemaContractsTest do
     end
   end
 
-  describe "cb:c039 kind enum-registry" do
+  describe "cb:b039 kind enum-registry" do
     @expected_kinds [
       "policy",
       "rule",
@@ -163,95 +163,95 @@ defmodule CB.SchemaContractsTest do
     ]
 
     test "is an active enum-registry contract", %{by_id: by_id} do
-      c039 = fetch(by_id, "cb:c039")
-      assert c039.kind == "enum-registry"
-      assert c039.status == "active"
+      b039 = fetch(by_id, "cb:b039")
+      assert b039.kind == "enum-registry"
+      assert b039.status == "active"
     end
 
     test "values_for/2 returns the expected kind vocabulary", %{by_id: by_id} do
-      c039 = fetch(by_id, "cb:c039")
-      assert Enum.values_for(c039, "kind") == @expected_kinds
+      b039 = fetch(by_id, "cb:b039")
+      assert Enum.values_for(b039, "kind") == @expected_kinds
     end
 
     test "the self-referential enum-registry value is declared", %{by_id: by_id} do
-      c039 = fetch(by_id, "cb:c039")
-      assert Enum.valid_value?(c039, "kind", "enum-registry")
+      b039 = fetch(by_id, "cb:b039")
+      assert Enum.valid_value?(b039, "kind", "enum-registry")
     end
 
     test "every active belief's kind is a declared value", %{all: all, by_id: by_id} do
-      c039 = fetch(by_id, "cb:c039")
+      b039 = fetch(by_id, "cb:b039")
 
       bad =
         all
         |> Elixir.Enum.filter(&(&1.status == "active" and not is_nil(&1.kind)))
-        |> Elixir.Enum.reject(&Enum.valid_value?(c039, "kind", &1.kind))
+        |> Elixir.Enum.reject(&Enum.valid_value?(b039, "kind", &1.kind))
         |> Elixir.Enum.map(&{&1.id, &1.kind})
 
       assert bad == []
     end
   end
 
-  describe "cb:c067 artifact-scheme enum-registry (supersedes cb:c066)" do
+  describe "cb:b067 artifact-scheme enum-registry (supersedes cb:b066)" do
     @expected_schemes ["session", "user", "document", "source", "https", "plan", "code", "commit"]
 
     test "is an active enum-registry contract", %{by_id: by_id} do
-      c067 = fetch(by_id, "cb:c067")
-      assert c067.kind == "enum-registry"
-      assert c067.status == "active"
+      b067 = fetch(by_id, "cb:b067")
+      assert b067.kind == "enum-registry"
+      assert b067.status == "active"
     end
 
-    test "the supersession chain c043 -> c066 -> c067 links forward", %{by_id: by_id} do
-      c043 = fetch(by_id, "cb:c043")
-      assert c043.status == "superseded"
-      assert c043.superseded_by == "cb:c066"
+    test "the supersession chain b043 -> b066 -> b067 links forward", %{by_id: by_id} do
+      b043 = fetch(by_id, "cb:b043")
+      assert b043.status == "superseded"
+      assert b043.superseded_by == "cb:b066"
 
-      c066 = fetch(by_id, "cb:c066")
-      assert c066.status == "superseded"
-      assert c066.superseded_by == "cb:c067"
+      b066 = fetch(by_id, "cb:b066")
+      assert b066.status == "superseded"
+      assert b066.superseded_by == "cb:b067"
     end
 
     test "values_for/2 returns the expected scheme vocabulary including commit", %{by_id: by_id} do
-      c067 = fetch(by_id, "cb:c067")
-      assert Enum.values_for(c067, "artifact-scheme") == @expected_schemes
-      assert Enum.valid_value?(c067, "artifact-scheme", "code")
-      assert Enum.valid_value?(c067, "artifact-scheme", "commit")
-      assert Enum.valid_value?(c067, "artifact-scheme", "session")
+      b067 = fetch(by_id, "cb:b067")
+      assert Enum.values_for(b067, "artifact-scheme") == @expected_schemes
+      assert Enum.valid_value?(b067, "artifact-scheme", "code")
+      assert Enum.valid_value?(b067, "artifact-scheme", "commit")
+      assert Enum.valid_value?(b067, "artifact-scheme", "session")
     end
 
     test "every active belief's artifact scheme is a declared value", %{all: all, by_id: by_id} do
-      c067 = fetch(by_id, "cb:c067")
+      b067 = fetch(by_id, "cb:b067")
 
       bad =
         all
         |> Elixir.Enum.filter(&(&1.status == "active" and is_binary(&1.artifact)))
-        |> Elixir.Enum.reject(&Enum.valid_value?(c067, "artifact-scheme", scheme(&1.artifact)))
+        |> Elixir.Enum.reject(&Enum.valid_value?(b067, "artifact-scheme", scheme(&1.artifact)))
         |> Elixir.Enum.map(&{&1.id, &1.artifact})
 
       assert bad == []
     end
   end
 
-  describe "cb:c041 domain enum-registry" do
+  describe "cb:b041 domain enum-registry" do
     @expected_domains ["system", "design", "agent", "ops", "dev"]
 
     test "is an active enum-registry contract", %{by_id: by_id} do
-      c041 = fetch(by_id, "cb:c041")
-      assert c041.kind == "enum-registry"
-      assert c041.status == "active"
+      b041 = fetch(by_id, "cb:b041")
+      assert b041.kind == "enum-registry"
+      assert b041.status == "active"
     end
 
     test "values_for/2 returns the expected domain vocabulary", %{by_id: by_id} do
-      c041 = fetch(by_id, "cb:c041")
-      assert Enum.values_for(c041, "domain") == @expected_domains
+      b041 = fetch(by_id, "cb:b041")
+      assert Enum.values_for(b041, "domain") == @expected_domains
     end
 
     test "every active belief's domain is a declared value", %{all: all, by_id: by_id} do
-      c041 = fetch(by_id, "cb:c041")
+      b041 = fetch(by_id, "cb:b041")
 
       bad =
         all
         |> Elixir.Enum.filter(&(&1.status == "active" and not is_nil(&1.domain)))
-        |> Elixir.Enum.reject(&Enum.valid_value?(c041, "domain", &1.domain))
+        |> Elixir.Enum.reject(&Enum.valid_value?(b041, "domain", &1.domain))
         |> Elixir.Enum.map(&{&1.id, &1.domain})
 
       assert bad == []

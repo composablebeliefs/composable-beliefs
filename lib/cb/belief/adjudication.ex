@@ -212,7 +212,7 @@ defmodule CB.Belief.Adjudication do
   end
 
   defp apply_outcome(%{outcome: "defer"} = r, conflicting, existing, today) do
-    new_id = next_a_id(existing) |> inherit_namespace(conflicting.id)
+    new_id = next_b_id(existing) |> inherit_namespace(conflicting.id)
     deferral = build_deferral_attestation(new_id, r, today)
 
     summary = %{
@@ -294,33 +294,27 @@ defmodule CB.Belief.Adjudication do
 
   # --- id generation ---
 
-  # Dispatch to a- or c-prefix based on whether the proposed belief is
-  # contract-grade (has non-empty rules or invariants). c-prefix is
-  # reserved for contracts; everything else is a-prefix.
-  defp next_id(existing, %Belief{} = proposed) do
-    if Belief.contract?(proposed) do
-      next_c_id(existing)
-    else
-      next_a_id(existing)
-    end
-  end
+  # Every new id comes from the single opaque b-series: the prefix
+  # carries no semantics (contract-grade is derived from
+  # rules/invariants, never encoded in the id - cb:b056).
+  defp next_id(existing, %Belief{}), do: next_b_id(existing)
 
-  defp next_a_id(existing), do: next_prefixed_id(existing, "a")
-  defp next_c_id(existing), do: next_prefixed_id(existing, "c")
-
-  # Local-number generator. Ids may be namespaced (`cb:a381`) or bare
-  # (`a381`); the prefix + serial number live on the LOCAL id, so the scan
+  # Local-number generator. Ids may be namespaced (`cb:b381`) or bare
+  # (`b381`); the prefix + serial number live on the LOCAL id, so the scan
   # strips the namespace before reading the serial. Local serials are
   # globally unique across the whole graph, so the max is taken over all
-  # ids regardless of namespace.
+  # ids regardless of namespace - INCLUDING legacy a/c serials, so
+  # minting into an unmigrated graph continues its sequence instead of
+  # restarting at b001 (which the letter-swap alias would conflate with
+  # a001/c001).
   #
   # NOTE (Stage 1 restructure): the returned id is a BARE local id
-  # (`a###` / `c###`). Which namespace a newly authored belief belongs to is
+  # (`b###`). Which namespace a newly authored belief belongs to is
   # a collection-assignment decision this generator does not invent - but an
   # adjudication outcome always has one belief whose namespace IS known (the
   # conflicting belief), so `inherit_namespace/2` carries it onto the new id.
-  defp next_prefixed_id(existing, prefix) do
-    pattern = ~r/^#{prefix}(\d+)$/
+  defp next_b_id(existing) do
+    pattern = ~r/^[abc](\d+)$/
 
     max =
       existing
@@ -329,7 +323,7 @@ defmodule CB.Belief.Adjudication do
       |> Enum.reject(&is_nil/1)
       |> Enum.max(fn -> 0 end)
 
-    format_id(prefix, max + 1)
+    format_id("b", max + 1)
   end
 
   # An adjudication's new belief lives in the same collection as the

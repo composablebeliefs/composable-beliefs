@@ -8,11 +8,11 @@ A framework for giving AI agents persistent, source-grounded, inspectable reason
 
 Read this file for orientation; the guided tour lives with the teaching material in belief-collections (`../belief-collections/quickstart.md`), alongside the `lib:` on-ramp. Build with `mix deps.get && mix compile`.
 
-Query the graph with the belief shell, deterministic pure traversal with no LLM: `mix bs list [filters]`, `mix bs show <id>`, `mix bs tree <id>`, `mix bs stale`, `mix bs stats`. Run `mix bs help` for the full command set; ids may be bare (`c029`) or namespaced (`cb:c029`).
+Query the graph with the belief shell, deterministic pure traversal with no LLM: `mix bs list [filters]`, `mix bs show <id>`, `mix bs tree <id>`, `mix bs stale`, `mix bs stats`. Run `mix bs help` for the full command set; ids may be bare (`b029`) or namespaced (`cb:b029`).
 
 ## Active prescriptions
 
-Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per cb:a386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
+Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per cb:b386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
 
 ## Session start
 
@@ -34,9 +34,9 @@ Verify with the graph's own tooling: `mix cb.verify.schema` checks a collection 
 
 ## Schema
 
-The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: c051 (the four structural types), c053 (status lifecycle and immutability), c056 (schema discipline), c039/c043/c041 (the closed kind/artifact-scheme/domain enums), c057 (the kind-type table), c058 (subject containment), c059 (prescription grounding), and c055 (conflict scope). Read one with `mix bs show cb:c051`.
+The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: b051 (the four structural types), b053 (status lifecycle and immutability), b056 (schema discipline), b039/b043/b041 (the closed kind/artifact-scheme/domain enums), b057 (the kind-type table), b058 (subject containment), b059 (prescription grounding), and b055 (conflict scope). Read one with `mix bs show cb:b051`.
 
-Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; every active prescription grounds in deps or a stipulation artifact (per c059); and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per c056).
+Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; every active prescription grounds in deps or a stipulation artifact (per b059); and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per b056).
 
 ## Skills
 

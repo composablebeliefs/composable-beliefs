@@ -214,9 +214,9 @@ nothing cites may still be deleted - a judgment, never a lifecycle rule.
 Sharpened at resolution:
 - **Graduation includes a `cb.repoint` pass.** Moving a document to the archive shelf
   breaks every `document:` citation into it (the cb:a547 hazard); the graduation
-  procedure swings citations to the new path, and the document-rung verifier (cb:a571)
+  procedure swings citations to the new path, and the document-rung verifier (cb:b571)
   makes a missed pointer a CI failure, not a silent orphan.
-- **The `seed` prop is dead entirely** (with the seed vocabulary itself - cb:a569):
+- **The `seed` prop is dead entirely** (with the seed vocabulary itself - cb:b569):
   `artifact` and `evidence[].artifact` already carry the typed back-pointer; no schema
   change.
 - **Q7 (the archive shelf) gains the invisibility requirement:** the operator requires

@@ -4,7 +4,7 @@ The command surface and the repo layout, at a glance. The narrative treatment of
 
 ## The command surface
 
-**Read** - the belief shell (`mix bs`, run `mix bs help` for the full set): deterministic, read-only, pure traversal. Every command takes `--beliefs PATH` (or the `CB_BELIEFS` env var) to target another collection; ids may be bare (`c051`) or namespaced (`cb:c051`).
+**Read** - the belief shell (`mix bs`, run `mix bs help` for the full set): deterministic, read-only, pure traversal. Every command takes `--beliefs PATH` (or the `CB_BELIEFS` env var) to target another collection; ids may be bare (`b051`) or namespaced (`cb:b051`).
 
 ```sh
 mix bs list [filters]     # list beliefs (type, status, contracts, unlinked, stale,
@@ -47,7 +47,7 @@ mix cb.retract <id> --reason <text>                     # retract with date and 
 
 **Render and generate**: `mix cb.generate.claude_md [--check]`, `mix cb.generate.rules`, `mix cb.generate.glossary [--check]`, `mix cb.render.codepath [--json]`, `mix cb.render.audit <id> [--check]`.
 
-**Audit**: `mix cb.audit.conflicts` (the `cb:c055` conflict-scope audit).
+**Audit**: `mix cb.audit.conflicts` (the `cb:b055` conflict-scope audit).
 
 **OKF interop** ([guide chapter 5](guide/5-collections.md#the-cb-okf-knowledge-extension)): `mix okf.emit`, `mix okf.ingest`, `mix okf.manifest [--check]`, `mix okf.validate`.
 
@@ -67,9 +67,9 @@ mix cb.retract <id> --reason <text>                     # retract with date and 
 ```sh
 mix deps.get
 mix bs stats              # graph overview
-mix bs show cb:c056       # one contract in full (schema discipline)
-mix bs tree cb:c056       # a contract and its dependency context
-mix bs history cb:c067    # a supersession chain (the artifact-scheme enum)
+mix bs show cb:b056       # one contract in full (schema discipline)
+mix bs tree cb:b056       # a contract and its dependency context
+mix bs history cb:b067    # a supersession chain (the artifact-scheme enum)
 mix cb.verify.schema      # check the struct against the in-graph schema contracts
 mix cb.verify.collection codepath          # a collection + its declared deps
 CB_BELIEFS=codepath/beliefs.json mix cb.render.codepath belief-pipeline   # tour the pipeline
