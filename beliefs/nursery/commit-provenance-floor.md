@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Commit provenance at the floor tier (threads, ledgers, briefs)
-description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted vs an external-framework comparison and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.
+description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.
 tags: [nursery, provenance, git, audit-chain, workflow]
 status: active
 timestamp: 2026-07-02
@@ -48,7 +48,7 @@ kind of lifecycle event they are or which floor artifact they concern.
    commits, so a trailer grep returns exactly that artifact's history. Periodic
    checkpoint commits of in-progress threads remain compatible; the convention requires
    that each *transition* be an identifiable - and sole - occupant of its commit. (See
-   the comparison block below for the exchange that sharpened the original softer lean.)
+   the atomic-commits block below for the exchange that sharpened the original softer lean.)
 2. **Floor trailers as analogs of `Belief:` - vocabulary settled 2026-07-02.**
    `Thread: <thread-slug>` on thread commits, `Proto-Belief: <doc-slug>` on proto-belief
    document commits (replacing the retired `Focus:` per cb:b569; the four historical
@@ -81,25 +81,25 @@ and `Belief:` trailers respectively, and cb:b572/cb:b567's evidence entries cite
 brief-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
 `git log --grep='^Focus:'`.
 
-## Atomic commits - the external-framework comparison (2026-07-02)
+## Atomic commits (2026-07-02)
 
-Prompted by the operator: should the house adopt an atomic-commit policy as in an external
-task-execution framework (phases -> plans -> tasks, every
-completed task its own atomic commit)? Resolution: **yes in spirit, sharper
+Prompted by the operator: should the house adopt an atomic-commit policy (every
+completed unit of work its own commit, the message tracing to its planning
+document)? Resolution: **yes in spirit, sharper
 in letter, adopted immediately.**
 
-- **What the framework validates.** One semantic unit per commit, with the commit message tracing
-  to the planning document - the same shape as lean 1, arrived at independently by a
-  system optimizing for reviewability and task-granular rollback. The atom differs by
-  tier: the framework's is an execution task; the floor's is a lifecycle transition.
-- **Where CB was already ahead.** The framework's task-to-commit linkage is prose in the message;
+- **What the policy validates.** One semantic unit per commit, with the commit message tracing
+  to the planning document - the same shape as lean 1, independently motivated by
+  reviewability and task-granular rollback. The atom differs by
+  tier: an execution task in the general form; a lifecycle transition at the floor.
+- **Where CB was already ahead.** The common form of task-to-commit linkage is prose in the message;
   CB's is typed (`Belief:` trailers, `commit:` URIs) and CI-enforced both directions by
   `mix cb.verify.commits`. Nothing to import there.
-- **What the comparison caught.** The first round trip violated its own lean twice:
+- **What the review caught.** The first round trip violated its own lean twice:
   `d7e40cb` bundled four `Focus:` events (three briefs opened plus a concurrence
   append), and `ae0e63f` bundled two focuses' mints. Under the sharpened lean both are
   mis-authored bundles - the motivating counterexamples recorded on cb:b568.
-- **What is explicitly not imported.** The framework's ROADMAP/SUMMARY document apparatus: CB's
+- **What is explicitly not adopted.** A ROADMAP/SUMMARY document apparatus: CB's
   graph and briefs already hold that state, and a per-phase SUMMARY file is the
   cb:a386 cached-digest shape verbatim.
 - **Operator decision.** Split commits per focus effective immediately; present the
