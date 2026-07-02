@@ -1,6 +1,6 @@
 Traverse and query the composable beliefs DAG from `beliefs/beliefs.json`. Read-only.
 
-See `docs/belief-graph.md` for the canonical system reference.
+See `docs/guide/README.md` for the canonical system reference.
 
 ## Input
 

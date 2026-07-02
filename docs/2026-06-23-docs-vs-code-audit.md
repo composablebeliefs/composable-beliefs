@@ -49,3 +49,15 @@ A superseded-id doc-lint; a "predates the four-type schema" banner on the legacy
 (or a refresh); document `cb.retract` / `cb.repoint` / `cb.resolve` and the `okf.*`
 tasks in `reference.md`; and either move the lead compound example to one drawn from an
 eval collection or note that `cb:` carries none.
+
+## Postscript (2026-07-02)
+
+The docs consolidation that produced `docs/guide/` addressed the drift above:
+the guide replaces `mental-model.md`, `reference.md`, `belief-graph.md`,
+`codepaths.md`, `eval-ledger.md`, and `other-applications.md` (now pointer
+stubs or v3-refreshed reference), is written in the schema-v3 vocabulary
+(attestation/aggregation/inference/prescription), documents `cb.retract` /
+`cb.repoint` / `cb.resolve` / `cb.verify.commits` / `bs recent` and the
+`okf.*` tasks, drops the nonexistent `/assert-session` reference, and carries
+the zero-aggregations caveat. The legacy essays (`actualization.md`,
+`cb-on-the-beam.md`) now open with predates-the-schema banners.

@@ -246,7 +246,7 @@ The graph has two output faces: [compiled documents](#compiled-document) face th
 
 ## Composable Beliefs
 
-Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; [cb:a478](#cba478)). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the `cb:` collection and is exercised as a reasoning and audit substrate by consumers such as amieval. See [belief](#belief) and [structural type](#structural-type).
+Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; [cb:a478](#cba478)). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the `cb:` collection and is exercised as a reasoning and audit substrate by host applications, the first being the eval evidence ledger. See [belief](#belief) and [structural type](#structural-type).
 
 **See also:** [Belief](#belief), [Structural Type](#structural-type), [In-Memory Model](#in-memory-model), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Composition Over Retrieval](#composition-over-retrieval)
 
@@ -450,7 +450,7 @@ An eval collection is a namespaced [collection](#collection) holding one operati
 
 ## Eval Ledger
 
-The eval evidence ledger is the published trail behind a finding, rendered as graph structure: every measurement is a belief, every methodological rule a [contract](#contract), and every correction a [supersession](#supersession) a reader can see (docs/eval-ledger.md). A finding exercises all four structural types - [observation](#observation), [cross-ruler agreement](#cross-ruler-agreement), [verdict](#verdict), [guidance](#guidance) - so a reader can traverse from a published verdict back to the exact raw run. It is amieval using CB's [receptive face](#receptive-face). See grounding eval verdicts.
+The eval evidence ledger is the published trail behind a finding, rendered as graph structure: every measurement is a belief, every methodological rule a [contract](#contract), and every correction a [supersession](#supersession) a reader can see (docs/eval-ledger.md). A finding exercises all four structural types - [observation](#observation), [cross-ruler agreement](#cross-ruler-agreement), [verdict](#verdict), [guidance](#guidance) - so a reader can traverse from a published verdict back to the exact raw run. It is a host using CB's [receptive face](#receptive-face). See grounding eval verdicts.
 
 **See also:** [Observation](#observation), [Verdict](#verdict), [Audit Tree](#audit-tree), [Receptive Face](#receptive-face), [CB Is the Ledger, Not the Bench](#cb-is-the-ledger-not-the-bench)
 
@@ -1180,7 +1180,7 @@ A verdict is the falsifiable eval finding: an [inference](#inference) with `kind
 
 *Also: self-eval venue*
 
-The verdict-category firewall ([method:a6](#methoda6)) is the neutrality rule: the eval practice publishes no [verdict](#verdict) in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule ([method:a7](#methoda7)) keeps the ledger framework itself from being the system under test in amieval's own published evals. Both are public, citable beliefs, and they are what keep public verdicts [receptive-only](#receptive-face) while generative remediation stays private.
+The verdict-category firewall ([method:a6](#methoda6)) is the neutrality rule: the eval practice publishes no [verdict](#verdict) in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule ([method:a7](#methoda7)) keeps the ledger framework itself from being the system under test in the practice's own published evals. Both are public, citable beliefs, and they are what keep public verdicts [receptive-only](#receptive-face) while generative remediation stays private.
 
 **See also:** [Verdict](#verdict), [Receptive Face](#receptive-face), [Thermometer and Thermostat](#thermometer-and-thermostat), [Fixture Tag](#fixture-tag)
 
