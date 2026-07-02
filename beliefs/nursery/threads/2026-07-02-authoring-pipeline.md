@@ -33,7 +33,7 @@ here; this table holds only dispatch state ([routing-ledger](../routing-ledger.m
 | Focus/plan overlap and the seed/plan collapse | closed | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 block) | - |
 | Pipeline layer count (thread / ledger / brief / graph) | closed | [routing-ledger](../routing-ledger.md), [mint-manifest](../mint-manifest.md) | - |
 | Commit provenance for floor-tier lifecycle events | open | [commit-provenance-floor](../commit-provenance-floor.md) | Trailer vocabulary settled (`Proto-Belief:`); document-rung verifier minted cb:a571; floor-trailer enforcement, squash policy, and checkpoint cadence still open |
-| Atomic commits (the GSD get-shit-done comparison) | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 GSD block) | - |
+| Atomic commits (the external-framework comparison) | closed | [commit-provenance-floor](../commit-provenance-floor.md) (2026-07-02 comparison block) | - |
 | Artifact naming: proto-belief; focus/seed/brief/plan retired | closed | [proto-belief-rename](../proto-belief-rename.md) | - |
 | Split-test doctrine (one proto-belief document per separable matter) | closed | [proto-belief-rename](../proto-belief-rename.md); minted verbatim in cb:a569 | - |
 | Seed-lifecycle contest resolution (graduation wins) | open | [seed-lifecycle](../seed-lifecycle.md) (2026-07-02 resolution block) | Q7: archive shelf location, now carrying the invisibility requirement; graduation prescription mints after Q7 |
@@ -123,18 +123,18 @@ block, ran preflight, minted cb:a566 (routing ledger) and cb:a567 (mint manifest
 `Thread:` / `Focus:` / `Belief:` trailers, pushed for review.
 
 **User (follow-up):** While reviewing the executed round trip, asked whether to adopt a
-policy of atomic commits as seen in the GSD (get-shit-done) framework.
+policy of atomic commits as seen in an external task-execution framework.
 
-**Claude:** Researched GSD (gsd-build/get-shit-done): phases -> plans -> tasks, every
+**Claude:** Researched the framework: phases -> plans -> tasks, every
 completed task its own atomic commit. Assessed: yes in spirit, and mostly already
-adopted - the atom differs (GSD: execution task; CB floor: lifecycle transition), and on
+adopted - the atom differs (its atom: execution task; CB floor: lifecycle transition), and on
 traceability CB is ahead (typed `Belief:` trailers CI-enforced both directions by
-verify.commits, versus GSD's prose-in-message linkage). But GSD's discipline catches a
+verify.commits, versus its prose-in-message linkage). But that discipline catches a
 real defect in the round trip just executed: the brief-batch commit `d7e40cb` bundled
 four `Focus:` events, and the mint commit `ae0e63f` bundled two focuses' mints - under
 strict atomicity, mis-authored bundles. Framed the fix as cb:a475's atomicity doctrine
 transposed to commits (atomic means one event, not one file). Recommended against
-importing GSD's ROADMAP/SUMMARY document apparatus (the SUMMARY-file shape is the
+importing its ROADMAP/SUMMARY document apparatus (the SUMMARY-file shape is the
 cb:a386 digest antipattern). Offered to route the exchange into commit-provenance-floor.
 
 **User:** Authorized the routing; adopted split-commits-per-focus effective immediately;
@@ -142,7 +142,7 @@ directed that atomic commits be clearly presented as policy in the DAG, moving t
 the intermediary document steps as necessary; and asked for all outstanding questions
 with supportive background.
 
-**Claude:** Routed the exchange as the 2026-07-02 GSD block on
+**Claude:** Routed the exchange as the 2026-07-02 comparison block on
 [commit-provenance-floor](../commit-provenance-floor.md), sharpened its lean 1 to the
 atomicity form, added the manifest row, and minted cb:a568 (kind `policy`, grounded
 `document:` in the brief, dep cb:a475) through preflight and the write flow - the
