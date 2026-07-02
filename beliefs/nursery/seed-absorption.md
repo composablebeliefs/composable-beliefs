@@ -4,17 +4,21 @@ title: Seed absorption - terminal seeds fold into their successor and evacuate
 description: Covers the principle that every terminal seed folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning seed as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.
 tags: [cb, schema, nursery, provenance]
 status: active
-timestamp: 2026-07-01
-maturity: contested
+timestamp: 2026-07-02
+maturity: grafted
+grafted-into: seed-lifecycle
 threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
 ---
 
 # Seed absorption
 
-> **Contested (2026-07-01)** by [seed-lifecycle](seed-lifecycle.md): terminal seeds should
-> **graduate** (historicize + archive) rather than evacuate-by-deletion; the fold survives
-> as the graduation step, with the `seed` prop shrinking to digest + pointer. The
-> persist-raw safety condition below is what the challenge dissolves.
+> **Grafted (2026-07-02)** into [seed-lifecycle](seed-lifecycle.md): the contest resolved
+> for graduation - terminal proto-belief documents historicize and archive, never
+> evacuate-by-deletion, because the document is mandatory provenance in the
+> thread-to-graph chain. This document's fold mechanism survives as the graduation step;
+> its evacuation half is rejected (see seed-lifecycle's resolution block for the
+> grounds). Historicized in place, awaiting the Q7 archive shelf for its own physical
+> graduation - the first document to take the lifecycle it lost the argument about.
 
 ## The focus
 When a seed plants, instead of leaving a frozen doc in the nursery, fold the seed's body

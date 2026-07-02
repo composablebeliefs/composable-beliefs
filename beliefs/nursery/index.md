@@ -35,13 +35,15 @@ which stays a valid enum value, normally `active`):
 - **active** - live deliberation, not yet actualized.
 - **contested** - actively in conflict with an existing belief or standard (a reopening
   or challenge), not yet resolved.
-- **planted** - actualized into a belief. The seed's gestation folds into a `seed` prop
-  on the belief and the doc evacuates the nursery; carries `minted: <belief-id>`.
-- **composted** - deliberated, no belief warranted (fizzled); the doc evacuates. A seed
-  that reached an explicit *decided-against* plants the negative first, then evacuates.
-- **grafted** - lost a contest or merged into another seed: it folds into the survivor as
-  a dated "rejected: X because Y" block and evacuates - no lingering superseded doc, no
-  pointer-stub.
+- **planted** - actualized into one or more beliefs (its mint-manifest rows carry the
+  ids; frontmatter carries `minted:`). Graduates to the archive shelf; the beliefs'
+  `document:` citations follow via repoint.
+- **composted** - deliberated, no belief warranted (fizzled). A true fizzle that nothing
+  cites may be deleted (a judgment, not a rule); a *decided-against* plants the negative
+  first, then graduates.
+- **grafted** - lost a contest or merged into another proto-belief: a dated "rejected: X
+  because Y" block folds into the survivor, and the loser graduates carrying its
+  grafted-into link - historicized, never deleted.
 
 Verbs: **seed** (start) -> **plant** (into the graph - the wild) | **compost** (drop) |
 **graft** (merge).
