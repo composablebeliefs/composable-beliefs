@@ -19,7 +19,7 @@ ceremony is proportionate to stance:
 - **Position document** only when the verbatim reasoning is the artifact - a
   stance whose exact wording matters and whose claims will then be extracted.
 - **Observation with an obvious prescription** skips the document: route to
-  `/assert` as a directive, the gap carried as rationale prose or a small
+  `/assert` as a prescription, the gap carried as rationale prose or a small
   design-gap node underneath.
 - **Spec is not stance.** Format and schema decisions land as schema/contract
   beliefs via `/assert`, not as positions (cb:a511 is the precedent - the
@@ -55,7 +55,7 @@ mission land in the owning collection's repo. Filename:
 3. **Decompose into claims.** Each `### Claim: <one-sentence claim>` section
    carries `**DAG status:** pending` and `**Intended:** <type, kind>` - decide
    the mood by direction of fit as `/assert` does (falsified by the world:
-   inference; violated or withdrawn: directive). Order the claims as the
+   inference; violated or withdrawn: prescription). Order the claims as the
    argument runs: claim order is the default codepath walk order (cb:a511).
 4. **Anchor claims about code.** Each such claim carries one or more
    `**Anchor:** code:<path>#<anchor>` lines in the c043 grammar. An anchored

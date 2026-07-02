@@ -56,6 +56,7 @@ defmodule CB.Schema.Verifier do
       check_artifact_format(beliefs),
       check_artifact_scheme_enum(beliefs),
       check_code_artifact_format(beliefs),
+      check_commit_artifact_format(beliefs),
       check_codepath_targets(beliefs),
       check_no_implication_field(beliefs),
       check_action_item_shape(beliefs),
@@ -317,6 +318,36 @@ defmodule CB.Schema.Verifier do
     end
   end
 
+  # --- commit: locator format (framework-universal) ---
+
+  defp check_commit_artifact_format(beliefs) do
+    # Whether `commit` is an allowed scheme is the enum check's job; this
+    # check pins the locator grammar (full 40-hex sha) on every commit:
+    # URI via the shared parser. Evidence artifacts are covered too -
+    # discharge citations mostly live there - unlike the enum check,
+    # which governs only the belief's own artifact. Existence in the
+    # repository is impure and enforced by `mix cb.verify.commits`.
+    violations =
+      beliefs
+      |> Enum.flat_map(fn b ->
+        own = if is_binary(b.artifact), do: [b.artifact], else: []
+        from_evidence = for e <- b.evidence || [], is_binary(e["artifact"]), do: e["artifact"]
+
+        for uri <- own ++ from_evidence,
+            String.starts_with?(uri, "commit:"),
+            {:error, reason} <- [CB.CommitLocator.parse(uri)] do
+          {b.id, uri, reason}
+        end
+      end)
+
+    if violations == [] do
+      {"commit: locator format", :ok,
+       "all commit: artifacts (own and evidence) parse as commit:<40-hex-sha>"}
+    else
+      {"commit: locator format", :fail, "unparseable commit: artifacts: #{inspect(violations)}"}
+    end
+  end
+
   # --- codepath output-targets (discovered by kind + tag) ---
 
   defp check_codepath_targets(beliefs) do
@@ -390,9 +421,10 @@ defmodule CB.Schema.Verifier do
   @stipulation_schemes ~w(plan user session document)
 
   defp check_grounding(beliefs) do
-    # Aggregations and inferences must have deps. Prescriptions must have
-    # deps or a stipulation artifact, UNLESS they are contract-grade -
-    # contracts may be declared from policy without composing (c059).
+    # Aggregations and inferences must have deps. Every prescription must
+    # have deps or a stipulation artifact - contract-grade included; the
+    # record of adoption is provenance, independent of internal structure
+    # (c059, carve-out collapsed 2026-07-02).
     violations =
       beliefs
       |> Enum.filter(&(&1.status == "active"))
@@ -402,7 +434,7 @@ defmodule CB.Schema.Verifier do
         case Belief.normalize_type(a.type) do
           "aggregation" -> not has_deps
           "inference" -> not has_deps
-          "prescription" -> not Belief.contract?(a) and not (has_deps or stipulation_artifact?(a))
+          "prescription" -> not (has_deps or stipulation_artifact?(a))
           _ -> false
         end
       end)
@@ -410,7 +442,7 @@ defmodule CB.Schema.Verifier do
 
     if violations == [] do
       {"grounding", :ok,
-       "aggregations and inferences have deps; non-contract prescriptions have deps or a stipulation artifact"}
+       "aggregations and inferences have deps; prescriptions have deps or a stipulation artifact"}
     else
       {"grounding", :fail, "ungrounded nodes: #{inspect(violations)}"}
     end

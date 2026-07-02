@@ -6,7 +6,7 @@ tags: [cb, schema, structural-types, nursery]
 status: active
 timestamp: 2026-07-01
 maturity: active
-threads: [2026-07-01-structural-type-vocabulary]
+threads: [2026-07-01-structural-type-vocabulary, 2026-07-01-schema-v3-execution]
 ---
 
 # Rename the four structural types to nominalized epistemic acts
@@ -79,6 +79,26 @@ compound**. Enum source of truth: `belief.ex:48`. 17 code files hard-code the st
 Gates: `mix cb.verify.schema`, `mix cb.verify.collection cb`, cross-repo collection verify,
 `mix cb.generate.claude_md --check`, `mix test`. Ship as a schema-epoch bump so collections
 can declare which vocabulary they carry during the compat window.
+
+## Execution record (2026-07-01)
+
+Executed the same day, in the session captured as
+[2026-07-01-schema-v3-execution](threads/2026-07-01-schema-v3-execution.md):
+
+- **Spike steps 1-3 (enum, code, OKF boundary):** commit `be4ee65`, merged to main as
+  PR #1 (`1e7eafb`). Both vocabularies valid for the compat epoch; `to_map` writes back
+  the stored type string so reads never rewrite an unmigrated graph.
+- **Steps 4-5 (contracts + data, user-authorized):** commit `c4940b9`. 211 type values
+  rewritten, `contract: true` stripped from 39 nodes, the active contract family
+  (c030, c051-c059) rewritten; the migration recorded as dated evidence on cb:c051
+  citing this seed. Historical record untouched: superseded nodes and attestations
+  quoting prior schemas (a470 etc.) keep the old vocabulary, as this seed's docs step
+  requires.
+- **Step 6 (docs), partial:** CLAUDE.md regenerated from the updated claims; skills/
+  moved to the new vocabulary; the glossary got its old->new mapping entry in
+  `glossary.data.json`, with the render deferred to `cb:a561` (needs the
+  belief-collections sibling). Shim retirement - the close of the compat window this
+  seed specs - is `cb:a562`.
 
 ## Thread excerpts (what grounds the decisions)
 **User (opening):** "could we collapse primitive and compound beliefs into the same belief

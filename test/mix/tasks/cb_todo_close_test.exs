@@ -37,6 +37,39 @@ defmodule Mix.Tasks.Cb.Todo.CloseTest do
     end
   end
 
+  describe "validate_discharge/3 (the cb:a563 commit gate)" do
+    test "omitting both markers is refused - silent omission is not a state" do
+      assert {:error, message} = Task.validate_discharge(nil, false, ".")
+      assert message =~ "--commit"
+      assert message =~ "--no-commit"
+    end
+
+    test "citing both markers is refused" do
+      assert {:error, message} = Task.validate_discharge(String.duplicate("a", 40), true, ".")
+      assert message =~ "mutually exclusive"
+    end
+
+    test "--no-commit passes through as the explicit marker" do
+      assert {:ok, :no_commit} = Task.validate_discharge(nil, true, ".")
+    end
+
+    test "an abbreviated sha is refused before touching git" do
+      assert {:error, message} = Task.validate_discharge("83b5692", false, ".")
+      assert message =~ "full 40-hex"
+    end
+
+    test "a well-formed sha must dereference in the repository" do
+      {head, 0} = System.cmd("git", ["rev-parse", "HEAD"])
+      head = String.trim(head)
+
+      assert {:ok, {:commit, ^head}} = Task.validate_discharge(head, false, ".")
+
+      fabricated = String.duplicate("0", 40)
+      assert {:error, message} = Task.validate_discharge(fabricated, false, ".")
+      assert message =~ "not found"
+    end
+  end
+
   describe "run/1" do
     test "dry run reports the flip without writing" do
       path = fixture()
@@ -45,7 +78,7 @@ defmodule Mix.Tasks.Cb.Todo.CloseTest do
         capture_io(:stderr, fn ->
           stdout =
             capture_io(fn ->
-              Task.run(["t0001", "--notes", "Discharged.", "--todos", path])
+              Task.run(["t0001", "--notes", "Discharged.", "--no-commit", "--todos", path])
             end)
 
           assert stdout =~ "t0001"
@@ -64,13 +97,30 @@ defmodule Mix.Tasks.Cb.Todo.CloseTest do
 
       capture_io(fn ->
         capture_io(:stderr, fn ->
-          Task.run(["t0001", "--notes", "Discharged.", "--todos", path, "--write"])
+          Task.run(["t0001", "--notes", "Discharged.", "--no-commit", "--todos", path, "--write"])
         end)
       end)
 
       [record] = Jason.decode!(File.read!(path))
       assert record["status"] == "done"
       assert record["notes"] == "Discharged."
+      assert record["uncommitted"] == true
+    end
+
+    test "--write with --commit records the implementing sha on the record" do
+      path = fixture()
+      {head, 0} = System.cmd("git", ["rev-parse", "HEAD"])
+      head = String.trim(head)
+
+      capture_io(fn ->
+        capture_io(:stderr, fn ->
+          Task.run(["t0001", "--notes", "Shipped.", "--commit", head, "--todos", path, "--write"])
+        end)
+      end)
+
+      [record] = Jason.decode!(File.read!(path))
+      assert record["status"] == "done"
+      assert record["commit"] == head
     end
   end
 end

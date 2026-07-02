@@ -48,8 +48,19 @@ defmodule CB.Todos do
   end
 
   @doc """
-  Flip an open record to done, recording discharge notes. Pure - takes
-  and returns the record list; persisting is the caller's `write/2`.
+  Flip an open record to done, recording discharge notes and the
+  discharge's commit provenance. Pure - takes and returns the record
+  list; persisting is the caller's `write/2`.
+
+  `discharge` is the cb:a563 gate made explicit:
+
+  - `{:commit, sha}` - the implementing commit; recorded as a `"commit"`
+    key on the record. Validation (format and existence) is the
+    caller's job (`mix cb.todo.close` runs `CB.CommitLocator`).
+  - `:no_commit` - nothing in the repository implements this discharge;
+    recorded as `"uncommitted": true` so a post-gate record always
+    carries exactly one of the two markers. The reason belongs in the
+    notes.
 
   A record that already carries notes (materialization-time
   traceability) keeps them; the discharge notes are appended as a new
@@ -58,7 +69,7 @@ defmodule CB.Todos do
   Returns `{:ok, updated_records, closed_record}`,
   `{:error, {:not_found, id}}`, or `{:error, {:not_open, id, status}}`.
   """
-  def close(records, id, notes) do
+  def close(records, id, notes, discharge) do
     case Enum.find(records, &(&1["id"] == id)) do
       nil ->
         {:error, {:not_found, id}}
@@ -68,6 +79,7 @@ defmodule CB.Todos do
           record
           |> Map.put("status", "done")
           |> put_notes(notes)
+          |> put_discharge(discharge)
 
         updated = Enum.map(records, fn r -> if r["id"] == id, do: closed, else: r end)
         {:ok, updated, closed}
@@ -76,6 +88,9 @@ defmodule CB.Todos do
         {:error, {:not_open, id, status}}
     end
   end
+
+  defp put_discharge(record, {:commit, sha}), do: Map.put(record, "commit", sha)
+  defp put_discharge(record, :no_commit), do: Map.put(record, "uncommitted", true)
 
   defp put_notes(record, notes) do
     case record["notes"] do

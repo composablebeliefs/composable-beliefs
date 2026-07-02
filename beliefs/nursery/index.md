@@ -61,8 +61,8 @@ visible; it never silently decides.
 
 ## Focuses
 - [assertions-rename](assertions-rename.md) - active - removing the dead term "assertions" from cb:a098.
-- [structural-type-rename](structural-type-rename.md) - active - rename the four types to nominalized epistemic acts (attestation/aggregation/inference/prescription).
-- [contract-predicate-demotion](contract-predicate-demotion.md) - active - drop the redundant contract boolean (derive it) and collapse the c059 carve-out it exposes.
+- [structural-type-rename](structural-type-rename.md) - active - rename the four types to nominalized epistemic acts (attestation/aggregation/inference/prescription). Executed 2026-07-01 (PR #1 `be4ee65`, graph `c4940b9`); open residue tracked as cb:a561/cb:a562.
+- [contract-predicate-demotion](contract-predicate-demotion.md) - active - drop the redundant contract boolean (derive it) and collapse the c059 carve-out it exposes. Demotion executed 2026-07-01 (`be4ee65`/`c4940b9`); the c059 carve-out decision remains open.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
 - [seed-absorption](seed-absorption.md) - contested - every terminal seed folds into its successor and evacuates (plant -> belief, contest -> winner); challenged by seed-lifecycle.

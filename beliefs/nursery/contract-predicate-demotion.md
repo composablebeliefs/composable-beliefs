@@ -6,7 +6,7 @@ tags: [cb, schema, contract, grounding, nursery]
 status: active
 timestamp: 2026-07-01
 maturity: active
-threads: [2026-07-01-structural-type-vocabulary]
+threads: [2026-07-01-structural-type-vocabulary, 2026-07-01-schema-v3-execution]
 ---
 
 # Demote the contract boolean to a derived predicate
@@ -65,6 +65,49 @@ field. Then resolve the c059 carve-out the demotion exposes.
 
 Coupling: this rides with [structural-type-rename](structural-type-rename.md) (same epoch,
 same verify pass), but is separable/revertible - the rename does not depend on the demotion.
+
+## Execution record (2026-07-01)
+
+The demotion shipped the same day, in the session captured as
+[2026-07-01-schema-v3-execution](threads/2026-07-01-schema-v3-execution.md):
+
+- **Spike steps 1-2 (predicate + verifier):** commit `be4ee65` (PR #1, merge
+  `1e7eafb`). `contract?/1` computes from rules/invariants; the verifier's
+  biconditional became a definitional check tolerating the stored field during the
+  compat window.
+- **Steps 3-4 (contract + data, user-authorized):** commit `c4940b9`. `contract: true`
+  stripped from all 39 carriers (zero drift confirmed at execution, matching the
+  measurement above); c056 restates the biconditional as the definition of
+  `contract?`, adds a no-stored-contract-field invariant, and carries the migration
+  as dated evidence citing this seed.
+- **NOT executed: the c059 carve-out collapse.** The migration kept c059's semantics
+  (renamed `prescription-grounding`, exemption intact). The option-a lean - every
+  prescription grounds, foundational contracts cite a charter, ~39 stipulation
+  artifacts added - remains this seed's open decision; option b stays the fallback.
+  (Resolved 2026-07-02 - see the execution record below.)
+
+## Execution record (2026-07-02): the carve-out collapse
+
+Option a, user-confirmed. The deferred decision closed cheaper than estimated: the ~39
+figure was the count of `contract: true` carriers including superseded nodes, but the
+grounding invariant scopes to active nodes, and 20 of the 21 active contracts already
+grounded in deps or a stipulation artifact. The migration therefore touched:
+
+- **c059:** the "Contracts may stand alone" rule and the non-contract qualifier removed;
+  every active prescription grounds in deps or a stipulation artifact. External-source
+  schemes still never ground.
+- **c052:** the field-presence twin collapsed in step - the "Declared contract may omit
+  deps" rule dropped, the invariant widened to all active prescriptions.
+- **cb:c046:** the one genuinely standalone contract gained its adoption record -
+  `document:plans/cb-codepath/plan-3-assertions-runtime.md`, the plan-3 batch that minted
+  it as c035's successor, promoted from its own 2026-06-09 evidence entry.
+- **verifier:** `check_grounding` drops the `contract?/1` exemption; grounding now checks
+  every active prescription.
+- **cb:a481 -> cb:a565:** the CLAUDE.md schema-rules sentence superseded via adjudication
+  (the sanctioned door), c065's Schema render re-pointed, CLAUDE.md regenerated.
+
+Option b (the `foundational:` marker) is retired, not deferred: with one node to ground,
+the exemption had nothing left to exempt.
 
 ## Thread excerpts (what grounds the decisions)
 **User (opening):** "the need to have the contract prop be set to true as well as have the

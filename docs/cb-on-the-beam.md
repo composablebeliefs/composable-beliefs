@@ -3,6 +3,8 @@
 **Status:** active
 **Date:** 2026-03-14
 
+> **Legacy note.** A forward-looking service sketch from before the repo split and the schema epoch: `assertions.json` is now `beliefs/beliefs.json`, and the `bs compose` / `bs relate` verbs it imagines were never built (see `mix bs help` for the real surface). The runtime rationale stands; read the specifics as vision, not documentation.
+
 ## Why the BEAM
 
 The BEAM (Erlang VM) isn't just a good runtime for hosting a belief graph service - it's the runtime that makes composable beliefs viable at scale. The primitives align:

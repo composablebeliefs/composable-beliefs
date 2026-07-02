@@ -1,5 +1,7 @@
 # Actualization via Assertion DAG
 
+> **Legacy-vocabulary note.** This essay predates the assertion-to-belief rename and the four-type schema: it reads "assertion" where the framework now says "belief", and its examples show pre-schema fields (including the removed `confidence`). The argument stands; the vocabulary is of its day. For the current schema, see [the guide](guide/README.md); for where this essay fits now, see [chapter 8](guide/8-beyond-the-ledger.md).
+
 ## Purpose
 
 This document describes a system for agent actualization - giving AI agents the structural capacity for genuine perspective, self-awareness, and considered decision-making - using the assertion DAG as the underlying infrastructure.

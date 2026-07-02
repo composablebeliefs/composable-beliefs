@@ -35,7 +35,7 @@ The boundary, held on purpose: **CB is the ledger, not the lab bench.** Running 
 
 ## The mechanism
 
-At its core CB is a schema. The graph has four structural types, one per epistemic operation: primitive (what a source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and directive (what should happen). Structural support replaces confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure, not a declared number - subjective scores synthesized without a deterministic basis do no load-bearing work. The format is plain JSON; what ships in this repo is the schema plus the machinery that turns its promises into guarantees - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path, and CI gates every push on the test suite and the graph verifiers.
+At its core CB is a schema. The graph has four structural types, one per epistemic operation: attestation (what a source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen). Structural support replaces confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure, not a declared number - subjective scores synthesized without a deterministic basis do no load-bearing work. The format is plain JSON; what ships in this repo is the schema plus the machinery that turns its promises into guarantees - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path, and CI gates every push on the test suite and the graph verifiers.
 
 ## Sixty seconds
 
@@ -46,10 +46,10 @@ mix bs tree cb:c047
 
 ```
 cb:c047 [contract] Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
-├── cb:a300 [primitive] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
-├── cb:c054 [contract] A node is contract-grade iff its type is directive and its rules or invariants array is non-empty - contract is the machine-checkable grade of a directive, not a type. ...
-│   ├── cb:a300 [primitive] ...
-│   └── cb:a470 [primitive] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
+├── cb:a300 [attestation] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
+├── cb:c054 [contract] A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. ...
+│   ├── cb:a300 [attestation] ...
+│   └── cb:a470 [attestation] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
 └── cb:c046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
 ```
 
@@ -57,7 +57,7 @@ That is the whole idea on one screen. A design rule of this framework (`cb:c047`
 
 ## Beyond the ledger
 
-The ledger is one instance of a general mechanism. The same schema, query surface, and change discipline also run durable agent reasoning (rules as beliefs with provenance, staleness cascades, a compiled `CLAUDE.md`) and codepaths (code-anchored tours that double as test suites) - see **[Other applications](docs/other-applications.md)**.
+The ledger is one instance of a general mechanism. The same schema, query surface, and change discipline also run durable agent reasoning (rules as beliefs with provenance, staleness cascades, a compiled `CLAUDE.md`) and codepaths (code-anchored tours that double as test suites) - see the guide's [capstone chapter](docs/guide/8-beyond-the-ledger.md).
 
 If you are evaluating adoption: you adopt a JSON file format for your graph, a small Elixir library and its mix tasks to query and verify it, and (optionally) agent skills for a Claude-Code-style harness. Three things stay deliberately outside CB's scope, left to other tools: vector memory, model calls, and eval execution.
 
@@ -73,7 +73,7 @@ If you are evaluating adoption: you adopt a JSON file format for your graph, a s
 
 **What needs proving next, in order.**
 
-1. **The first real finding.** The machinery is waiting on the human parts: choosing the eval, judging load-bearing cases, authoring the compounds and verdict, standing behind the result. Leading candidates are judge biases the human-subjects literature predicts but the LLM-judge literature has not yet measured - anchoring on numeric score scales, halo effects across rubric criteria - which are cheap, well-specified, and would make the ledger's first finding a contribution to the methodology it enforces.
+1. **The first real finding.** The machinery is waiting on the human parts: choosing the eval, judging load-bearing cases, authoring the aggregations and verdict, standing behind the result. Leading candidates are judge biases the human-subjects literature predicts but the LLM-judge literature has not yet measured - anchoring on numeric score scales, halo effects across rubric criteria - which are cheap, well-specified, and would make the ledger's first finding a contribution to the methodology it enforces.
 2. **Structure vs. awareness, measured.** A controlled comparison of agents with no self-knowledge (C0), the same knowledge as flat instructions (C1), and the same knowledge as composable beliefs (C2). The self-correction blind spot results supply the prior: awareness alone should not help; structure should. If C2 does not outperform C1, the thesis needs revision - that is the falsification condition, and it is stated here on purpose.
 3. **Decision-time querying.** Beliefs are currently authored and compiled into context at session start; no hook yet queries the graph contextually at decision time. Until that exists, the graph is high-value developer-facing structure, not yet an operational runtime substrate.
 
@@ -86,34 +86,26 @@ mix deps.get && mix compile
 mix bs stats              # graph overview
 mix bs show cb:c056       # one contract in full (schema discipline)
 mix bs tree cb:c056       # a contract and its dependency context
-mix bs history cb:c043    # a supersession chain (the artifact-scheme enum)
+mix bs history cb:c067    # a supersession chain (the artifact-scheme enum)
 mix cb.verify.schema      # check the struct against the in-graph schema contracts
 ```
 
-The full command surface and a longer tour are in the [reference](docs/reference.md). For the guided version, see `../belief-collections/quickstart.md` in the sibling repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
+The full command surface is in the [reference](docs/reference.md). For the guided version, see `../belief-collections/quickstart.md` in the sibling repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
 
 ## Documentation
 
-The ledger:
+**[The guide](docs/guide/README.md)** is the canonical narrative reference - nine chapters reading the framework end to end: orientation, the epistemic core, the schema, operating the graph, code anchors and positions, collections and memory, the architecture, the eval ledger, and the capstone. Every load-bearing claim in it names the belief id or source file it rests on.
 
-- **[The eval evidence ledger](docs/eval-ledger.md)** - findings as evidence chains, methodology as self-enforcing contracts, the run-manifest seam, and the audit tree.
-- **[Worked example](docs/worked-example-eval-verdict.md)** - tracing an eval verdict to its evidence, end to end, with real command output: from a published finding down to the raw logs, the methodology checks that judge it, and the supersession machinery run for real.
+Reference material beside it:
+
+- **[Reference](docs/reference.md)** - the full command surface and the repo layout, at a glance.
+- **[Glossary](docs/glossary.md)** - every technical term, generated from `docs/glossary.data.json`.
 - **[The run-manifest spec](docs/run-manifest.md)** - the neutral JSON contract between the lab bench and the ledger, version 1.
+- **[Worked example](docs/worked-example-eval-verdict.md)** - tracing an eval verdict to its evidence, end to end, with real command output.
 
-The mechanism:
+Essays and records:
 
-- **[The mental model](docs/mental-model.md)** - what a belief looks like, the four structural types, provenance, subjects versus deps, immutability and supersession, contracts, collections and borrowing, and what the graph compiles to.
-- **[Reference](docs/reference.md)** - the command surface, artifact schemes, the schema contract family, and the repo layout.
-- **[Design reference index](docs/belief-graph.md)** - points at the authoritative schema contracts in the graph rather than restating them, plus query patterns and storage layout.
-
-Other applications:
-
-- **[Other applications](docs/other-applications.md)** - the same mechanism as durable agent reasoning and as code-anchored tours.
-- **[Codepaths](docs/codepaths.md)** - beliefs anchored to code: the `code:` locator, the render-spec, the narrate/assert gradient, and the shipped tour of CB's own pipeline.
 - **[Actualization](docs/actualization.md)** - self-referential beliefs as an agent's structural self-knowledge.
-
-Background and records:
-
 - **[The thesis](docs/composable-beliefs-thesis.md)** - the paradigm argument: why belief structure, the ML parallel, the eval that would falsify it.
 - **[CB on the BEAM](docs/cb-on-the-beam.md)** - the runtime rationale.
 - **[Operational learnings](docs/operations.md)** - how to run an extraction session in practice.
