@@ -393,7 +393,7 @@
   "composable-beliefs": {
     "name": "Composable Beliefs",
     "short": "The paradigm: a DAG of source-grounded, immutable, composable claims that gives agents persistent, inspectable reasoning across session boundaries.",
-    "def": "Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; cb:a478). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the <code>cb:</code> collection and is exercised as a reasoning and audit substrate by consumers such as <a href='pages/20-amieval-integration.html'>amieval</a>. See <a href='glossary.html#belief'>belief</a> and <a href='glossary.html#structural-type'>structural type</a>.",
+    "def": "Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; cb:a478). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the <code>cb:</code> collection and is exercised as a reasoning and audit substrate by host applications, the first being the <a href='pages/20-amieval-integration.html'>eval evidence ledger</a>. See <a href='glossary.html#belief'>belief</a> and <a href='glossary.html#structural-type'>structural type</a>.",
     "see": [
       "belief",
       "structural-type",
@@ -775,7 +775,7 @@
   "eval-ledger": {
     "name": "Eval Ledger",
     "short": "The published evidence trail behind an eval finding, rendered as graph structure: every measurement a belief, every methodology rule a contract, every correction a visible supersession.",
-    "def": "The eval evidence ledger is the published trail behind a finding, rendered as graph structure: every measurement is a belief, every methodological rule a <a href='glossary.html#contract'>contract</a>, and every correction a <a href='glossary.html#supersession'>supersession</a> a reader can see (docs/eval-ledger.md). A finding exercises all four structural types - <a href='glossary.html#observation'>observation</a>, <a href='glossary.html#cross-ruler-agreement'>cross-ruler agreement</a>, <a href='glossary.html#verdict'>verdict</a>, <a href='glossary.html#guidance'>guidance</a> - so a reader can traverse from a published verdict back to the exact raw run. It is amieval using CB's <a href='glossary.html#receptive-face'>receptive face</a>. See <a href='pages/20-amieval-integration.html'>grounding eval verdicts</a>.",
+    "def": "The eval evidence ledger is the published trail behind a finding, rendered as graph structure: every measurement is a belief, every methodological rule a <a href='glossary.html#contract'>contract</a>, and every correction a <a href='glossary.html#supersession'>supersession</a> a reader can see (docs/eval-ledger.md). A finding exercises all four structural types - <a href='glossary.html#observation'>observation</a>, <a href='glossary.html#cross-ruler-agreement'>cross-ruler agreement</a>, <a href='glossary.html#verdict'>verdict</a>, <a href='glossary.html#guidance'>guidance</a> - so a reader can traverse from a published verdict back to the exact raw run. It is a host using CB's <a href='glossary.html#receptive-face'>receptive face</a>. See <a href='pages/20-amieval-integration.html'>grounding eval verdicts</a>.",
     "see": [
       "observation",
       "verdict",
@@ -2159,8 +2159,8 @@
   },
   "verdict-category-firewall": {
     "name": "Verdict-Category Firewall",
-    "short": "The neutrality rule (method:a6) that amieval publishes no verdict in any category where an owner-held product is sold; the self-eval venue rule (method:a7) bars judging the ledger itself.",
-    "def": "The verdict-category firewall (method:a6) is the neutrality rule: the eval practice publishes no <a href='glossary.html#verdict'>verdict</a> in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule (method:a7) keeps the ledger framework itself from being the system under test in amieval's own published evals. Both are public, citable beliefs, and they are what keep public verdicts <a href='glossary.html#receptive-face'>receptive-only</a> while generative remediation stays private.",
+    "short": "The neutrality rule (method:a6) that the eval practice publishes no verdict in any category where an owner-held product is sold; the self-eval venue rule (method:a7) bars judging the ledger itself.",
+    "def": "The verdict-category firewall (method:a6) is the neutrality rule: the eval practice publishes no <a href='glossary.html#verdict'>verdict</a> in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule (method:a7) keeps the ledger framework itself from being the system under test in the practice's own published evals. Both are public, citable beliefs, and they are what keep public verdicts <a href='glossary.html#receptive-face'>receptive-only</a> while generative remediation stays private.",
     "also": "self-eval venue",
     "see": [
       "verdict",

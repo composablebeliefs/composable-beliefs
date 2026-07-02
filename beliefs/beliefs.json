@@ -8264,6 +8264,16 @@
     "deps": [
       "cb:a417"
     ],
+    "materialized": {
+      "date": "2026-07-02",
+      "todos": [
+        {
+          "action": "Consolidate docs/ into the chaptered guide (docs/guide/, nine chapters) resolving the 2026-06-23 audit drift: schema-v3 vocabulary throughout, superseded contract ids refreshed (c065/c067 current), legacy essays bannered (actualization.md, cb-on-the-beam.md), and the undocumented surfaces given front-door homes (cb.retract, cb.repoint, cb.resolve, cb.verify.commits, bs recent, okf.*) in docs/reference.md and guide chapter 3",
+          "id": "t0024",
+          "notes": "Shipped out-of-band as the docs-consolidation commit; mental-model/belief-graph/codepaths/eval-ledger/other-applications reduced to resolvable pointer stubs, reference.md rewritten v3-current, README re-pointed at the guide. Discharging commit: 6c25f1bf4d2c2acd5474db992d8903c6292c3881"
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-06-23"
   },
@@ -8455,6 +8465,16 @@
     "evidence": [],
     "subjects": [],
     "deps": [],
+    "materialized": {
+      "date": "2026-07-02",
+      "todos": [
+        {
+          "action": "Regenerate docs/glossary.md and the cb-tut glossary data from glossary.data.json with the full ../belief-collections registry present, preserving the method:/paradigm: cross-collection references and the referenced-beliefs appendix",
+          "id": "t0025",
+          "notes": "Registry reconstructed from the public belief-collections repo at main; mix cb.generate.glossary --check passes post-write (187 terms, 151 referenced beliefs; method:/paradigm: refs intact). Discharging commit: ce1f8ffa3f1cf1686302f66f69f53ebd2ba2be62"
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-07-01"
   },

@@ -1,6 +1,6 @@
 Add beliefs to the DAG after examining a source artifact, entity, or reasoning direction.
 
-See `docs/belief-graph.md` for the canonical system reference.
+See `docs/guide/README.md` for the canonical system reference.
 
 **Confidence field removed.** The subjective `confidence` scalar was expunged as agentic theater. Do not add `confidence` fields to new beliefs. Structural support (artifact count, evidence count, dep count) is derived on demand via the support helper; if you need signal about a belief's grounding, cite specific evidence and artifacts rather than a score.
 

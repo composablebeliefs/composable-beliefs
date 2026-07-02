@@ -57,7 +57,7 @@ That is the whole idea on one screen. A design rule of this framework (`cb:c047`
 
 ## Beyond the ledger
 
-The ledger is one instance of a general mechanism. The same schema, query surface, and change discipline also run durable agent reasoning (rules as beliefs with provenance, staleness cascades, a compiled `CLAUDE.md`) and codepaths (code-anchored tours that double as test suites) - see **[Other applications](docs/other-applications.md)**.
+The ledger is one instance of a general mechanism. The same schema, query surface, and change discipline also run durable agent reasoning (rules as beliefs with provenance, staleness cascades, a compiled `CLAUDE.md`) and codepaths (code-anchored tours that double as test suites) - see the guide's [capstone chapter](docs/guide/8-beyond-the-ledger.md).
 
 If you are evaluating adoption: you adopt a JSON file format for your graph, a small Elixir library and its mix tasks to query and verify it, and (optionally) agent skills for a Claude-Code-style harness. Three things stay deliberately outside CB's scope, left to other tools: vector memory, model calls, and eval execution.
 
@@ -86,34 +86,26 @@ mix deps.get && mix compile
 mix bs stats              # graph overview
 mix bs show cb:c056       # one contract in full (schema discipline)
 mix bs tree cb:c056       # a contract and its dependency context
-mix bs history cb:c043    # a supersession chain (the artifact-scheme enum)
+mix bs history cb:c067    # a supersession chain (the artifact-scheme enum)
 mix cb.verify.schema      # check the struct against the in-graph schema contracts
 ```
 
-The full command surface and a longer tour are in the [reference](docs/reference.md). For the guided version, see `../belief-collections/quickstart.md` in the sibling repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
+The full command surface is in the [reference](docs/reference.md). For the guided version, see `../belief-collections/quickstart.md` in the sibling repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
 
 ## Documentation
 
-The ledger:
+**[The guide](docs/guide/README.md)** is the canonical narrative reference - nine chapters reading the framework end to end: orientation, the epistemic core, the schema, operating the graph, code anchors and positions, collections and memory, the architecture, the eval ledger, and the capstone. Every load-bearing claim in it names the belief id or source file it rests on.
 
-- **[The eval evidence ledger](docs/eval-ledger.md)** - findings as evidence chains, methodology as self-enforcing contracts, the run-manifest seam, and the audit tree.
-- **[Worked example](docs/worked-example-eval-verdict.md)** - tracing an eval verdict to its evidence, end to end, with real command output: from a published finding down to the raw logs, the methodology checks that judge it, and the supersession machinery run for real.
+Reference material beside it:
+
+- **[Reference](docs/reference.md)** - the full command surface and the repo layout, at a glance.
+- **[Glossary](docs/glossary.md)** - every technical term, generated from `docs/glossary.data.json`.
 - **[The run-manifest spec](docs/run-manifest.md)** - the neutral JSON contract between the lab bench and the ledger, version 1.
+- **[Worked example](docs/worked-example-eval-verdict.md)** - tracing an eval verdict to its evidence, end to end, with real command output.
 
-The mechanism:
+Essays and records:
 
-- **[The mental model](docs/mental-model.md)** - what a belief looks like, the four structural types, provenance, subjects versus deps, immutability and supersession, contracts, collections and borrowing, and what the graph compiles to.
-- **[Reference](docs/reference.md)** - the command surface, artifact schemes, the schema contract family, and the repo layout.
-- **[Design reference index](docs/belief-graph.md)** - points at the authoritative schema contracts in the graph rather than restating them, plus query patterns and storage layout.
-
-Other applications:
-
-- **[Other applications](docs/other-applications.md)** - the same mechanism as durable agent reasoning and as code-anchored tours.
-- **[Codepaths](docs/codepaths.md)** - beliefs anchored to code: the `code:` locator, the render-spec, the narrate/assert gradient, and the shipped tour of CB's own pipeline.
 - **[Actualization](docs/actualization.md)** - self-referential beliefs as an agent's structural self-knowledge.
-
-Background and records:
-
 - **[The thesis](docs/composable-beliefs-thesis.md)** - the paradigm argument: why belief structure, the ML parallel, the eval that would falsify it.
 - **[CB on the BEAM](docs/cb-on-the-beam.md)** - the runtime rationale.
 - **[Operational learnings](docs/operations.md)** - how to run an extraction session in practice.

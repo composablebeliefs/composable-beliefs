@@ -1,6 +1,6 @@
 # Belief Graph - Operational Learnings
 
-Companion to `belief-graph.md`. The durable *principles* now live in the graph as beliefs (`mix bs list domain:design tag:operations`); this doc keeps the **workflow** - how to run an extraction session in practice.
+Companion to [the guide](guide/README.md). The durable *principles* now live in the graph as beliefs (`mix bs list domain:design tag:operations`); this doc keeps the **workflow** - how to run an extraction session in practice.
 
 > The shared-prosthetic framing (`cb:a460`), composition-over-retrieval (`cb:a462`), scope-decisions-as-beliefs (`cb:a461`), and the centralized-graph rationale (`cb:a112`) are beliefs now, not prose here - read them with `mix bs show`.
 
@@ -66,7 +66,7 @@ file is blocked, and the whole push fails atomically. Either push workflow edits
 with a `workflow`-scoped token, or split them out and hand them off (the okf CI
 gate was parked as `cb:a548` for exactly this reason, 2026-06-22).
 
-## Session start hook + transcript capture (the amieval tree)
+## Session start hook + transcript capture (the host workspace)
 
 Session **start** is surfaced by one harness hook; the **transcript** is captured
 by `/end` itself (no end hook - see below). The surfacing hook is the structural
@@ -77,7 +77,7 @@ harness config; the graph records the *why* (cb:a543 family for surfacing,
 cb:a518/a540 for the transcript).
 
 - **SessionStart -> `cb-desk.sh`.** When a session opens with cwd under
-  `/Users/mark/dev/repos/mine/amieval`, it injects the live desk
+  the host workspace root, it injects the live desk
   (`mix bs list unlinked tag:lifecycle:discrete`) into context, so a fresh agent
   sees its obligations without being told to query. Silent and fail-safe outside
   the tree.

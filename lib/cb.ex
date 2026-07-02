@@ -7,7 +7,7 @@ defmodule CB do
   coupling: the only runtime dependency is Jason, and all storage routes
   through `CB.Config`.
 
-  See `docs/belief-graph.md` for the design reference; the guided tour lives
+  See `docs/guide/README.md` for the design reference; the guided tour lives
   with the teaching material in belief-collections (`../belief-collections/quickstart.md`).
   """
 
