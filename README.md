@@ -35,7 +35,7 @@ The boundary, held on purpose: **CB is the ledger, not the lab bench.** Running 
 
 ## The mechanism
 
-At its core CB is a schema. The graph has four structural types, one per epistemic operation: primitive (what a source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and directive (what should happen). Structural support replaces confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure, not a declared number - subjective scores synthesized without a deterministic basis do no load-bearing work. The format is plain JSON; what ships in this repo is the schema plus the machinery that turns its promises into guarantees - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path, and CI gates every push on the test suite and the graph verifiers.
+At its core CB is a schema. The graph has four structural types, one per epistemic operation: attestation (what a source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen). Structural support replaces confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure, not a declared number - subjective scores synthesized without a deterministic basis do no load-bearing work. The format is plain JSON; what ships in this repo is the schema plus the machinery that turns its promises into guarantees - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path, and CI gates every push on the test suite and the graph verifiers.
 
 ## Sixty seconds
 
@@ -46,10 +46,10 @@ mix bs tree cb:c047
 
 ```
 cb:c047 [contract] Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
-├── cb:a300 [primitive] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
-├── cb:c054 [contract] A node is contract-grade iff its type is directive and its rules or invariants array is non-empty - contract is the machine-checkable grade of a directive, not a type. ...
-│   ├── cb:a300 [primitive] ...
-│   └── cb:a470 [primitive] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
+├── cb:a300 [attestation] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
+├── cb:c054 [contract] A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. ...
+│   ├── cb:a300 [attestation] ...
+│   └── cb:a470 [attestation] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
 └── cb:c046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
 ```
 
@@ -73,7 +73,7 @@ If you are evaluating adoption: you adopt a JSON file format for your graph, a s
 
 **What needs proving next, in order.**
 
-1. **The first real finding.** The machinery is waiting on the human parts: choosing the eval, judging load-bearing cases, authoring the compounds and verdict, standing behind the result. Leading candidates are judge biases the human-subjects literature predicts but the LLM-judge literature has not yet measured - anchoring on numeric score scales, halo effects across rubric criteria - which are cheap, well-specified, and would make the ledger's first finding a contribution to the methodology it enforces.
+1. **The first real finding.** The machinery is waiting on the human parts: choosing the eval, judging load-bearing cases, authoring the aggregations and verdict, standing behind the result. Leading candidates are judge biases the human-subjects literature predicts but the LLM-judge literature has not yet measured - anchoring on numeric score scales, halo effects across rubric criteria - which are cheap, well-specified, and would make the ledger's first finding a contribution to the methodology it enforces.
 2. **Structure vs. awareness, measured.** A controlled comparison of agents with no self-knowledge (C0), the same knowledge as flat instructions (C1), and the same knowledge as composable beliefs (C2). The self-correction blind spot results supply the prior: awareness alone should not help; structure should. If C2 does not outperform C1, the thesis needs revision - that is the falsification condition, and it is stated here on purpose.
 3. **Decision-time querying.** Beliefs are currently authored and compiled into context at session start; no hook yet queries the graph contextually at decision time. Until that exists, the graph is high-value developer-facing structure, not yet an operational runtime substrate.
 
