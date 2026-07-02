@@ -288,6 +288,20 @@ defmodule CB.BeliefTest do
     assert Belief.normalize_type("bogus") == "bogus"
   end
 
+  test "legacy_id_alias/1 letter-swaps legacy local ids and rejects everything else" do
+    assert Belief.legacy_id_alias("cb:a386") == "cb:b386"
+    assert Belief.legacy_id_alias("cb:c051") == "cb:b051"
+    assert Belief.legacy_id_alias("a386") == "b386"
+    assert Belief.legacy_id_alias("c051") == "b051"
+    # b is not legacy-shaped: the alias of an alias terminates
+    assert Belief.legacy_id_alias("cb:b386") == nil
+    assert Belief.legacy_id_alias("b386") == nil
+    # non-serial locals and non-id strings pass nothing through
+    assert Belief.legacy_id_alias("lib:overdue-notice") == nil
+    assert Belief.legacy_id_alias("cb:t0001") == nil
+    assert Belief.legacy_id_alias(nil) == nil
+  end
+
   test "from_map/1 normalizes a legacy type on read" do
     assert Belief.from_map(@legacy_attestation_map).type == "attestation"
     assert Belief.from_map(@legacy_contract_map).type == "prescription"

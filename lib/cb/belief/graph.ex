@@ -14,10 +14,15 @@ defmodule CB.Belief.Graph do
   Resolve a possibly-bare id to its canonical id.
 
   An id that matches a belief exactly resolves to itself. A bare local id
-  (`c029`) resolves to the single namespaced belief whose local part
-  matches (`cb:c029`). Returns `{:error, :not_found}` when nothing matches,
+  (`b029`) resolves to the single namespaced belief whose local part
+  matches (`cb:b029`). Returns `{:error, :not_found}` when nothing matches,
   or `{:error, {:ambiguous, ids}}` when a bare id matches more than one
   namespace.
+
+  Legacy ids resolve through the letter-swap alias
+  (`CB.Belief.legacy_id_alias/1`) as a last resort: `cb:c029` finds
+  `cb:b029` in a migrated graph, while a graph that really contains
+  `cb:c029` matches exactly and the alias never fires.
   """
   def resolve_id(beliefs, id) do
     ids = Enum.map(beliefs, & &1.id)
@@ -27,15 +32,50 @@ defmodule CB.Belief.Graph do
     else
       case Enum.filter(ids, &(local_id(&1) == id)) do
         [canonical] -> {:ok, canonical}
-        [] -> {:error, :not_found}
+        [] -> resolve_legacy_alias(beliefs, id)
         many -> {:error, {:ambiguous, Enum.sort(many)}}
       end
     end
   end
 
+  # Legacy ids can't be minted anymore (`b` isn't legacy-shaped), so the
+  # swapped retry terminates after one hop.
+  defp resolve_legacy_alias(beliefs, id) do
+    case CB.Belief.legacy_id_alias(id) do
+      nil -> {:error, :not_found}
+      swapped -> resolve_id(beliefs, swapped)
+    end
+  end
+
+  @doc """
+  Fetch a belief from the index by id, falling back to the legacy
+  letter-swap alias when the exact id is absent - so dep lists written
+  before the b-serial id migration still resolve against a migrated
+  graph. An exact match always wins.
+  """
+  def lookup(index, id) do
+    case Map.get(index, id) do
+      nil ->
+        case CB.Belief.legacy_id_alias(id) do
+          nil -> nil
+          swapped -> Map.get(index, swapped)
+        end
+
+      belief ->
+        belief
+    end
+  end
+
   # Local part of an id: everything after the namespace prefix
-  # (`cb:c029` -> `c029`). A bare id is its own local part.
+  # (`cb:b029` -> `b029`). A bare id is its own local part.
   defp local_id(id), do: id |> String.split(":") |> List.last()
+
+  # Dep-list membership through the legacy alias: a dep written as
+  # `cb:a386` before the id migration still counts as an edge to
+  # `cb:b386`.
+  defp dep_member?(deps, id) do
+    id in deps or Enum.any?(deps, &(CB.Belief.legacy_id_alias(&1) == id))
+  end
 
   @doc "Direct dependencies of a belief."
   def deps(%{deps: deps}, _index) when is_list(deps), do: deps
@@ -45,7 +85,7 @@ defmodule CB.Belief.Graph do
   def resolve_deps(belief, index) do
     belief
     |> deps(index)
-    |> Enum.map(&Map.get(index, &1))
+    |> Enum.map(&lookup(index, &1))
     |> Enum.reject(&is_nil/1)
   end
 
@@ -56,7 +96,7 @@ defmodule CB.Belief.Graph do
   def dependents(id, beliefs, opts \\ []) do
     direct =
       Enum.filter(beliefs, fn a ->
-        is_list(a.deps) and id in a.deps
+        is_list(a.deps) and dep_member?(a.deps, id)
       end)
 
     if Keyword.get(opts, :deep, false) do
@@ -73,7 +113,8 @@ defmodule CB.Belief.Graph do
 
     direct =
       Enum.filter(beliefs, fn a ->
-        is_list(a.deps) and Enum.any?(a.deps, &(&1 in ids)) and
+        is_list(a.deps) and
+          Enum.any?(a.deps, fn d -> d in ids or CB.Belief.legacy_id_alias(d) in ids end) and
           a.id not in visited
       end)
 
@@ -165,7 +206,7 @@ defmodule CB.Belief.Graph do
     if MapSet.member?(visited, id) do
       []
     else
-      case Map.get(index, id) do
+      case lookup(index, id) do
         nil ->
           []
 
@@ -175,7 +216,7 @@ defmodule CB.Belief.Graph do
               []
 
             next_id ->
-              case Map.get(index, next_id) do
+              case lookup(index, next_id) do
                 nil -> []
                 next -> [next | walk_successors(next_id, index, MapSet.put(visited, id))]
               end

@@ -66,8 +66,7 @@ defmodule CB.Schema.Verifier do
       check_retired_is_prescription(beliefs),
       check_status_enum(beliefs),
       check_superseded_linkage(beliefs),
-      check_retracted_linkage(beliefs),
-      check_c_prefix_is_contract(beliefs)
+      check_retracted_linkage(beliefs)
     ]
   end
 
@@ -631,25 +630,6 @@ defmodule CB.Schema.Verifier do
     end
   end
 
-  # --- c-prefix identity (framework-universal) ---
-
-  defp check_c_prefix_is_contract(beliefs) do
-    # The prefix lives on the local id, so test the segment after the
-    # namespace (`cb:c038` -> `c038`) rather than the raw id.
-    mismatches =
-      beliefs
-      |> Enum.filter(&String.starts_with?(local_id(&1.id), "c"))
-      |> Enum.reject(&Belief.contract?/1)
-      |> Enum.map(& &1.id)
-
-    if mismatches == [] do
-      {"c-prefix is contract-grade", :ok, "all c-prefix IDs are contract-grade"}
-    else
-      {"c-prefix is contract-grade", :fail,
-       "c-prefix IDs that are not contract-grade: #{inspect(mismatches)}"}
-    end
-  end
-
   # --- helpers ---
 
   defp scheme(uri) when is_binary(uri) do
@@ -659,6 +639,4 @@ defmodule CB.Schema.Verifier do
     end
   end
 
-  defp local_id(id) when is_binary(id), do: id |> String.split(":") |> List.last()
-  defp local_id(id), do: id
 end

@@ -47,20 +47,20 @@ defmodule CB.Belief.AdjudicationTest do
     )
   end
 
-  test "accept_supersede assigns the successor a c-id in the conflicting belief's namespace",
+  test "accept_supersede assigns the successor the next b-id in the conflicting belief's namespace",
        %{tmp_dir: dir} do
     path = seed(Path.join(dir, "beliefs.json"), [existing_contract()])
 
     assert {:ok, summary} = Adjudication.apply(record(), beliefs_path: path, today: "2026-06-09")
-    assert summary.new_id == "cb:c041"
+    assert summary.new_id == "cb:b041"
 
     {:ok, content} = File.read(path)
     {:ok, beliefs} = Jason.decode(content)
     old = Enum.find(beliefs, &(&1["id"] == "cb:c040"))
-    new = Enum.find(beliefs, &(&1["id"] == "cb:c041"))
+    new = Enum.find(beliefs, &(&1["id"] == "cb:b041"))
 
     assert old["status"] == "superseded"
-    assert old["superseded_by"] == "cb:c041"
+    assert old["superseded_by"] == "cb:b041"
     assert new["status"] == "active"
   end
 
@@ -75,7 +75,7 @@ defmodule CB.Belief.AdjudicationTest do
                today: "2026-06-09"
              )
 
-    assert summary.new_id == "c041"
+    assert summary.new_id == "b041"
   end
 
   test "defer writes a namespaced deferral primitive", %{tmp_dir: dir} do
@@ -87,7 +87,7 @@ defmodule CB.Belief.AdjudicationTest do
                today: "2026-06-09"
              )
 
-    assert summary.new_id == "cb:a001"
+    assert summary.new_id == "cb:b041"
   end
 
   test "refuses when the conflicting belief is already terminal", %{tmp_dir: dir} do

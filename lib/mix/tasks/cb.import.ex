@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Cb.Import do
   {
     "new_beliefs": [
       {
-        "id": "cb:a305",
+        "id": "cb:b305",
         "type": "attestation",
         "kind": "convention",
         "domain": "dev",
@@ -50,7 +50,7 @@ defmodule Mix.Tasks.Cb.Import do
   ## Validation
 
   Exits non-zero before writing if:
-  - New belief IDs lack the graph's namespace prefix (bare `a305` in a
+  - New belief IDs lack the graph's namespace prefix (bare `b305` in a
     `cb:`-namespaced graph) - bare ids land silently inconsistent: every
     namespaced lookup and intra-batch dep dangles
   - New belief IDs collide with existing nodes
@@ -126,7 +126,7 @@ defmodule Mix.Tasks.Cb.Import do
   Ids in `new_beliefs` that lack the graph's namespace prefix.
 
   Returns `{namespace, offending_ids}`. The graph's namespace is the single
-  prefix every existing id shares (`cb:a001` -> `"cb"`); a graph with no
+  prefix every existing id shares (`cb:b001` -> `"cb"`); a graph with no
   nodes, or with mixed or bare ids, declares no namespace and the result is
   `{nil, []}` - nothing to be consistent with. Pure - the halting wrapper
   around it is `run/1`'s concern.
@@ -174,7 +174,7 @@ defmodule Mix.Tasks.Cb.Import do
         IO.puts(
           :stderr,
           "Error: new-belief ids missing the graph's #{ns}: namespace prefix: #{inspect(bad)}\n" <>
-            "Write spec ids namespaced (#{ns}:a305, not a305) - bare ids land " <>
+            "Write spec ids namespaced (#{ns}:b305, not b305) - bare ids land " <>
             "inconsistent and namespaced lookups and deps dangle."
         )
 

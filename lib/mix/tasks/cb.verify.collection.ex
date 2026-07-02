@@ -120,9 +120,18 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
 
   # Every dep referenced anywhere in the union must resolve to a loaded node.
   # A dangling dep means a dependency collection is missing from depends_on.
+  # Deps written before the b-serial id migration resolve through the
+  # legacy letter-swap alias, so an unmigrated collection depending on
+  # `cb:a386` still verifies against the migrated cb: graph.
   defp check_dep_resolvability(union) do
     ids = MapSet.new(union, & &1.id)
-    dangling = for b <- union, dep <- b.deps || [], not MapSet.member?(ids, dep), do: {b.id, dep}
+
+    resolves? = fn dep ->
+      MapSet.member?(ids, dep) or
+        MapSet.member?(ids, CB.Belief.legacy_id_alias(dep) || dep)
+    end
+
+    dangling = for b <- union, dep <- b.deps || [], not resolves?.(dep), do: {b.id, dep}
 
     if dangling == [] do
       {"cross-namespace deps resolve", :ok, "every dep resolves to a loaded node"}
