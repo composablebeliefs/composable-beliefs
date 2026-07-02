@@ -73,7 +73,7 @@ visible; it never silently decides.
 - [per-belief-files](per-belief-files.md) - planted - one JSON file per node; minted cb:a554 + the a555-a560 plan.
 - [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:a566; the /decompose skill build stays open.
 - [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing brief, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:a567.
-- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events via Thread:/Focus: trailers; squash policy and enforcement open.
+- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events via Thread:/Focus: trailers. Atomic lifecycle commits adopted 2026-07-02 and minted cb:a568 (one transition per commit, split per focus); trailer vocabulary, enforcement, squash policy, and cadence open.
 - [nursery-architecture](nursery-architecture.md) - contested - this model; its "Layer 1 vestigial" lean is decided-against, queued to fold into transcript-format.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
 - [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.

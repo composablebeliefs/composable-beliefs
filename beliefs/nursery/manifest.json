@@ -48,7 +48,7 @@
       "path": "commit-provenance-floor.md",
       "type": "concept",
       "title": "Commit provenance at the floor tier (threads, ledgers, briefs)",
-      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - one commit per lifecycle event, Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and squash policy await resolution.",
+      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted vs the GSD comparison and minted cb:a568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.",
       "tags": [
         "nursery",
         "provenance",

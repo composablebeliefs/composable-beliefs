@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Commit provenance at the floor tier (threads, ledgers, briefs)
-description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - one commit per lifecycle event, Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and squash policy await resolution.
+description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted vs the GSD comparison and minted cb:a568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, squash policy, and checkpoint cadence await resolution.
 tags: [nursery, provenance, git, audit-chain, workflow]
 status: active
 timestamp: 2026-07-02
@@ -38,10 +38,17 @@ kind of lifecycle event they are or which floor artifact they concern.
 
 ## Design leans
 
-1. **One commit per lifecycle event.** The auditable unit is the lifecycle transition
-   (thread captured, brief opened/updated, belief minted), not the keystroke or the
-   session. Periodic checkpoint commits of in-progress threads remain compatible; the
-   convention only requires that each *transition* be an identifiable commit.
+1. **Atomic lifecycle commits (adopted 2026-07-02; minted cb:a568).** The auditable unit
+   is the lifecycle transition - and exactly one per commit: one thread captured or
+   updated, one focus brief opened/updated/graduated, one focus's manifest rows minted.
+   A commit conjoining separable lifecycle events is a mis-authored bundle, split at
+   commit time - cb:a475's atomicity doctrine transposed from beliefs to commits. Atomic
+   means one *event*, not one file: a brief together with the index and manifest updates
+   it forces is one event. The payoff is that typed trailers map one-to-one onto
+   commits, so a trailer grep returns exactly that artifact's history. Periodic
+   checkpoint commits of in-progress threads remain compatible; the convention requires
+   that each *transition* be an identifiable - and sole - occupant of its commit. (See
+   the GSD block below for the comparison that sharpened the original softer lean.)
 2. **Floor trailers as analogs of `Belief:`.** `Thread: <thread-slug>` on thread-capture
    commits, `Focus: <focus-slug>` on brief commits, alongside the existing
    `Belief: cb:aNNN` on mint commits (one id per trailer line, matching the c067
@@ -71,6 +78,33 @@ and `Belief:` trailers respectively, and cb:a566/cb:a567's evidence entries cite
 brief-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
 `git log --grep='^Focus:'`.
 
+## Atomic commits - the GSD comparison (2026-07-02)
+
+Prompted by the operator: should the house adopt an atomic-commit policy as in the GSD
+(get-shit-done) framework (gsd-build/get-shit-done - phases -> plans -> tasks, every
+completed task its own atomic commit, ~59K stars)? Resolution: **yes in spirit, sharper
+in letter, adopted immediately.**
+
+- **What GSD validates.** One semantic unit per commit, with the commit message tracing
+  to the planning document - the same shape as lean 1, arrived at independently by a
+  system optimizing for reviewability and task-granular rollback. The atom differs by
+  tier: GSD's is an execution task; the floor's is a lifecycle transition.
+- **Where CB was already ahead.** GSD's task-to-commit linkage is prose in the message;
+  CB's is typed (`Belief:` trailers, `commit:` URIs) and CI-enforced both directions by
+  `mix cb.verify.commits`. Nothing to import there.
+- **What the comparison caught.** The first round trip violated its own lean twice:
+  `d7e40cb` bundled four `Focus:` events (three briefs opened plus a concurrence
+  append), and `ae0e63f` bundled two focuses' mints. Under the sharpened lean both are
+  mis-authored bundles - the motivating counterexamples recorded on cb:a568.
+- **What is explicitly not imported.** GSD's ROADMAP/SUMMARY document apparatus: CB's
+  graph and briefs already hold that state, and a per-phase SUMMARY file is the
+  cb:a386 cached-digest shape verbatim.
+- **Operator decision.** Split commits per focus effective immediately; present the
+  discipline as explicit policy in the DAG via this brief (the intermediary document
+  step) - minted as cb:a568, kind `policy`. The landing sequence of a568 itself is the
+  first compliant instance: thread update, brief update, and mint as three per-focus
+  commits.
+
 ## Open questions (deliberation continues here)
 
 - **Trailer vocabulary.** Are `Thread:`/`Focus:` the right two, or is one `Artifact:`
@@ -89,9 +123,13 @@ brief-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
 
 ## Mint manifest
 
-No rows yet. Candidate once the open questions above resolve: a prescription adopting the
-floor-trailer convention and the squash policy, grounded `document:` in this brief; a
-possible action-item row for the verify.commits extension.
+| Type | Draft claim | Deps | Grounding | Minted |
+|---|---|---|---|---|
+| prescription | Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact; a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time (cb:a475 transposed); atomic means one event, not one file. | cb:a475 | document:beliefs/nursery/commit-provenance-floor.md | cb:a568 |
+
+Remaining candidates, gated on the open questions above: a prescription adopting the
+floor-trailer convention and the squash policy; a possible action-item row for the
+verify.commits floor extension.
 
 ## Thread excerpts (what grounds the leans)
 
