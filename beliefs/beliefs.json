@@ -1441,6 +1441,11 @@
         "date": "2026-05-17",
         "detail": "kind:policy → kind:definition via dag-proposal m21",
         "artifact": "session:2026-05-17-policy-categorization"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Operator review 2026-07-02 (authoring-pipeline session): the artifact field and evidence[].artifact are a two-axis design, not redundancy. The top-level artifact is the belief's grounding - the distinguished referent contracts check (b051 requires it on attestations; b059 reads it as a prescription's stipulation record). evidence[].artifact is per-event provenance - each dated entry cites what documents that event, accreting through the cb.evidence front door. They coincide only in the degenerate birth case; cb:b545 is the divergence specimen (artifact still the enum source doc, five evidence entries citing two documents, two sessions, and a commit). Collapsing them would either lose the distinguished grounding slot or cap evidence at one artifact. Same two-axis shape as status vs materialized (a379). Recorded here because the rationale was previously unpersisted - it existed only in conversation.",
+        "artifact": "session:2026-07-02-authoring-pipeline"
       }
     ],
     "subjects": [
@@ -8703,6 +8708,195 @@
     "deps": [
       "cb:b056",
       "cb:b398"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b567",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "authoring",
+      "structural-types",
+      "lifecycle:recurring"
+    ],
+    "claim": "A focus brief approaching the mint gate carries a mint manifest: a section enumerating the candidate beliefs the focus will plant, one typed row each (structural type, draft claim, deps, grounding artifact), with rows recording their belief id as they plant so a focus can mint some rows and remain live. Type commitment happens late, on manifest rows inside the brief, never early as typed nursery documents: typing documents by eventual DAG type fragments the focus, forces classification at minimum information, and grows a shadow graph. Action items in a brief are prescription rows in its manifest, minted to the desk when firm; no mutable document competes with the graph as todo tracker.",
+    "artifact": "document:beliefs/nursery/mint-manifest.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Deliberated as the nursery focus beliefs/nursery/mint-manifest.md - the surviving weak form of the typed-nursery-documents proposal, which was rejected on four grounds (type is an output of deliberation, not an input; one focus mints several beliefs of several types, so typed docs fragment the focus; typed proto-beliefs want typed proto-relations and grow a shadow graph; attestations and aggregations are mechanical at mint time) - and planted from the brief's own manifest row, self-demonstrating. Preflight 2026-07-02 surfaced contract-level claim-overlap with cb:b052 and cb:b059 plus schema-level overlap with cb:b398 and cb:b399; adjudicated by the operator as topical overlap, not contradiction, per the b475/b067 review precedent: this prescription governs nursery brief structure (a markdown section), not DAG node field presence (b052) nor grounding rules (b059) - each prescription minted from a manifest row satisfies b059 individually, and this belief itself grounds document: in its brief. The cited commit landed the brief batch.",
+        "artifact": "commit:d7e40cb53359ad194210f0ebedeb4dcc403bbf87"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the nursery",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b475"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b568",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "nursery",
+      "provenance",
+      "git",
+      "workflow",
+      "lifecycle:recurring"
+    ],
+    "claim": "Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact - one thread captured or updated, one focus brief opened, updated, or graduated, one focus's manifest rows minted. A commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time: the belief atomicity doctrine transposed from nodes to commits. Atomic means one event, not one file - a brief together with the index and manifest updates it forces is one event. Typed trailers (Thread:, Focus:, Belief:) therefore map one-to-one onto commits, so a trailer grep returns exactly one artifact's history.",
+    "artifact": "document:beliefs/nursery/commit-provenance-floor.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Adopted by operator decision in the 2026-07-02 authoring-pipeline session after comparing against the GSD (get-shit-done) framework's task-atomic commit policy (gsd-build/get-shit-done: every completed task its own commit, message tracing to the planning document). The comparison validated the existing one-commit-per-lifecycle-event lean and sharpened it: the first round trip supplied two motivating counterexamples, d7e40cb bundling four Focus: events and ae0e63f bundling two focuses' mints. GSD's task-to-commit linkage is prose-in-message; CB keeps its typed, CI-enforced trailers and imports only the atomicity discipline - GSD's ROADMAP/SUMMARY apparatus is explicitly not imported (the SUMMARY-file shape is the cb:b386 cached-digest antipattern). The landing sequence of this belief is the first compliant instance: thread update (c2b342c), brief update (the cited commit), and this mint as three per-focus commits. Preflight 2026-07-02: clean - 0 contract, 0 schema, 24 neutral; the b538 concurrent-sweep action-item reviewed as complementary (atomic commits narrow the sweep surface but do not discharge it).",
+        "artifact": "commit:33308eced479eda089747e0cd09d713ac8e5d3cb"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the authoring lifecycle",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b475"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b569",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "vocabulary",
+      "authoring",
+      "lifecycle:recurring"
+    ],
+    "claim": "The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.",
+    "artifact": "document:beliefs/nursery/proto-belief-rename.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Settled by the operator in the 2026-07-02 authoring-pipeline session: proto-belief is the name most likely to make intuitive sense to someone new to the framework - and it was already the index's own gloss for 'focus', so the rename test (structural-type-rename: when renaming lets you delete the explaining sentence, the name was underpowered) applied directly. The no-registers rule is the operator's argument conceded in full: everything the house stands behind is a belief, prescriptions included, so plan/brief as genre words would re-encode mood outside the type system - the typed-nursery-documents smell in softer form. 'Question' as unit noun was considered and withdrawn (fails practice-formalization, execution-phase, and observation documents); the split test with the mint manifest as boundary oracle replaced it, locked verbatim by the operator. Preflight 2026-07-02: one contract-level claim-overlap (cb:b052), operator-adjudicated as topical overlap per the b475/b067 precedent - this convention governs nursery vocabulary, not DAG node field presence; supportive match cb:b567 tied in as a dep (the split test runs on the manifest it prescribes). The cited commit landed the proto-belief-rename document and the index rewrite.",
+        "artifact": "commit:caf76c1b968801ea1cd8ef5774e4c03f99b08308"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the nursery",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b475",
+      "cb:b567"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b570",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "nursery",
+      "vocabulary"
+    ],
+    "claim": "Execute the residual vocabulary sweep of the proto-belief rename epoch (spike item 2 of beliefs/nursery/proto-belief-rename.md): rewrite the retired registers (focus, seed-for-documents, brief, plan-as-category, directive, assertions) out of the live surfaces - transcript-format's seeds-vs-directives section, the remaining live nursery documents, the three 2026-07-02 documents' own prose, docs/operations.md's directive section, docs/composable-beliefs-thesis.md's graph-of-assertions line, and the glossary old-to-new entries. The historical record (chronicles, threads, plans/ shelves, superseded nodes, quoted pre-rename claims) and the sanctioned survivals (belief.ex compat shim pending cb:b562; structural-type-rename itself) are untouched.",
+    "artifact": "document:beliefs/nursery/proto-belief-rename.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Scoped by the 2026-07-02 register audit: sanctioned survivals distinguished from live-register residue (transcript-format the largest surface; docs/operations.md a missed docs surface still speaking present-tense directive; the thesis doc still says graph of assertions). Deferred work, so it mints before it is acted on, per the rule that deferred work registers on the desk first so a cold session can self-bootstrap (b504/b507); the in-session items (mint-manifest's fresh miss, the index rewrite) were executed same-session from the document instead. Preflight 2026-07-02: clean - 0 contract, 0 schema, 52 neutral. The cited commit landed the scoping document.",
+        "artifact": "commit:caf76c1b968801ea1cd8ef5774e4c03f99b08308"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b569"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b571",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "provenance",
+      "audit-chain"
+    ],
+    "claim": "Build the document-rung verifier: dereference every document: URI cited in the graph (a belief's artifact field and each evidence entry's artifact) to an existing file in the repository, the way mix cb.verify.commits dereferences commit: URIs - closing the one unverified rung of the audit chain that every proto-belief back-pointer rides on. Graduation composes: cb.repoint swings citations before a document moves shelves, and the verifier turns a missed pointer into a CI failure rather than a silent orphan (the cb:b547 hazard made structural).",
+    "artifact": "document:beliefs/nursery/commit-provenance-floor.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Agreed by the operator in the 2026-07-02 authoring-pipeline session, prompted by the seed-prop retirement: with artifact and evidence[].artifact carrying every belief-to-document back-pointer, the document: rung became load-bearing for the whole thread-to-graph chain while remaining the only rung with no verifier. Deferred code work, so it mints before it is acted on. Preflight 2026-07-02: four contract-level subject-overlaps (b039, b041, b050, b067 - the shared 'a mix task' subject, the same sibling pattern cb:b067's own adjudication dismissed) and two schema-level (b401, b409 - audit-chain adjacency); operator-adjudicated as topical overlap, not contradiction. The cited commit landed the agreeing document.",
+        "artifact": "commit:db46ce75d62c2115990dbc133dc579bd6e8e2875"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "a mix task",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:b547"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b572",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "threads",
+      "provenance",
+      "lifecycle:recurring"
+    ],
+    "claim": "Every persisted thread carries a routing ledger: a table with one row per topic the thread touches, holding the strand state (open, paused, closed), the dispatch pointer (the focus doc the strand's content routed to, or unrouted), and the dangling question when one is pending. Synthesized content always lands in focus docs, never in the ledger; the ledger carries only pointers and states, so it cannot become a digest of the thread or a shadow copy of the seeds. A multi-topic thread is resumed by reading its ledger, not by replaying the conversation or trusting memory.",
+    "artifact": "document:beliefs/nursery/routing-ledger.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Deliberated as the nursery focus beliefs/nursery/routing-ledger.md and planted from its manifest row while the focus stays live for the /decompose skill build and the hook-preservation mechanics. First instance carried at the top of beliefs/nursery/threads/2026-07-02-authoring-pipeline.md, dispatching the seven strands of the session that designed it - including a paused unrouted strand (backfilling existing threads) that demonstrates exactly the state the ledger exists to hold. The originating thread-summary proposal was reshaped into a router after the cb:b386 digest objection: content restated in a parallel doc goes stale procedurally and shadows the focus docs, while pointers and states cannot. Preflight 2026-07-02: clean - no contract-level or schema conflicts, 20 neutral tag-overlap matches. The cited commit landed the brief batch; its parent captured the thread.",
+        "artifact": "commit:d7e40cb53359ad194210f0ebedeb4dcc403bbf87"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "nursery threads",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b386"
     ],
     "status": "active",
     "created": "2026-07-02"
