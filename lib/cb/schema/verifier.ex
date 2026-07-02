@@ -421,9 +421,10 @@ defmodule CB.Schema.Verifier do
   @stipulation_schemes ~w(plan user session document)
 
   defp check_grounding(beliefs) do
-    # Aggregations and inferences must have deps. Prescriptions must have
-    # deps or a stipulation artifact, UNLESS they are contract-grade -
-    # contracts may be declared from policy without composing (c059).
+    # Aggregations and inferences must have deps. Every prescription must
+    # have deps or a stipulation artifact - contract-grade included; the
+    # record of adoption is provenance, independent of internal structure
+    # (c059, carve-out collapsed 2026-07-02).
     violations =
       beliefs
       |> Enum.filter(&(&1.status == "active"))
@@ -433,7 +434,7 @@ defmodule CB.Schema.Verifier do
         case Belief.normalize_type(a.type) do
           "aggregation" -> not has_deps
           "inference" -> not has_deps
-          "prescription" -> not Belief.contract?(a) and not (has_deps or stipulation_artifact?(a))
+          "prescription" -> not (has_deps or stipulation_artifact?(a))
           _ -> false
         end
       end)
@@ -441,7 +442,7 @@ defmodule CB.Schema.Verifier do
 
     if violations == [] do
       {"grounding", :ok,
-       "aggregations and inferences have deps; non-contract prescriptions have deps or a stipulation artifact"}
+       "aggregations and inferences have deps; prescriptions have deps or a stipulation artifact"}
     else
       {"grounding", :fail, "ungrounded nodes: #{inspect(violations)}"}
     end
