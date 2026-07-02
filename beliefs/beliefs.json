@@ -8759,5 +8759,65 @@
     ],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a569",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "vocabulary",
+      "authoring",
+      "lifecycle:recurring"
+    ],
+    "claim": "The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.",
+    "artifact": "document:beliefs/nursery/proto-belief-rename.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Settled by the operator in the 2026-07-02 authoring-pipeline session: proto-belief is the name most likely to make intuitive sense to someone new to the framework - and it was already the index's own gloss for 'focus', so the rename test (structural-type-rename: when renaming lets you delete the explaining sentence, the name was underpowered) applied directly. The no-registers rule is the operator's argument conceded in full: everything the house stands behind is a belief, prescriptions included, so plan/brief as genre words would re-encode mood outside the type system - the typed-nursery-documents smell in softer form. 'Question' as unit noun was considered and withdrawn (fails practice-formalization, execution-phase, and observation documents); the split test with the mint manifest as boundary oracle replaced it, locked verbatim by the operator. Preflight 2026-07-02: one contract-level claim-overlap (cb:c052), operator-adjudicated as topical overlap per the a475/c067 precedent - this convention governs nursery vocabulary, not DAG node field presence; supportive match cb:a567 tied in as a dep (the split test runs on the manifest it prescribes). The cited commit landed the proto-belief-rename document and the index rewrite.",
+        "artifact": "commit:caf76c1b968801ea1cd8ef5774e4c03f99b08308"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the nursery",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:a475",
+      "cb:a567"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a570",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "nursery",
+      "vocabulary"
+    ],
+    "claim": "Execute the residual vocabulary sweep of the proto-belief rename epoch (spike item 2 of beliefs/nursery/proto-belief-rename.md): rewrite the retired registers (focus, seed-for-documents, brief, plan-as-category, directive, assertions) out of the live surfaces - transcript-format's seeds-vs-directives section, the remaining live nursery documents, the three 2026-07-02 documents' own prose, docs/operations.md's directive section, docs/composable-beliefs-thesis.md's graph-of-assertions line, and the glossary old-to-new entries. The historical record (chronicles, threads, plans/ shelves, superseded nodes, quoted pre-rename claims) and the sanctioned survivals (belief.ex compat shim pending cb:a562; structural-type-rename itself) are untouched.",
+    "artifact": "document:beliefs/nursery/proto-belief-rename.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Scoped by the 2026-07-02 register audit: sanctioned survivals distinguished from live-register residue (transcript-format the largest surface; docs/operations.md a missed docs surface still speaking present-tense directive; the thesis doc still says graph of assertions). Deferred work, so it mints before it is acted on, per the rule that deferred work registers on the desk first so a cold session can self-bootstrap (a504/a507); the in-session items (mint-manifest's fresh miss, the index rewrite) were executed same-session from the document instead. Preflight 2026-07-02: clean - 0 contract, 0 schema, 52 neutral. The cited commit landed the scoping document.",
+        "artifact": "commit:caf76c1b968801ea1cd8ef5774e4c03f99b08308"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:a569"
+    ],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]
