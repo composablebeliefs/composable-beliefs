@@ -4,9 +4,9 @@ title: Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)
 description: Covers whether terminal seeds persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted seeds and plans collapse into one durable-brief concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.
 tags: [cb, nursery, lifecycle, plans, meta]
 status: active
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 maturity: contested
-threads: [2026-07-01-seed-lifecycle]
+threads: [2026-07-01-seed-lifecycle, 2026-07-02-authoring-pipeline]
 ---
 
 # Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)
@@ -178,6 +178,24 @@ and **concurs**, adding the sharpenings above: the fold survives as the graduati
 the `seed` prop shrinks to digest-plus-pointer (dissolving the granularity question);
 compost may still delete; the `plan:`/`document:` schemes are untouched; and the
 persist-raw/statement-provenance gate on floor deletion is dissolved rather than awaited.
+
+## Concurrence, and a rejected alternative that strengthens the collapse (2026-07-02)
+
+The authoring-pipeline session ([thread](threads/2026-07-02-authoring-pipeline.md))
+approached from an independent direction - how briefs formalize toward the graph - and
+concurred with scenario C. It also deliberated and rejected an alternative this focus had
+not considered: **typed nursery documents** (one mutable doc kind per structural type,
+with action items filed as prescription-seed docs). Rejected because it would multiply
+artifact kinds exactly where this focus collapses them, fragment one focus's brief along
+the type axis (the same mistake as the phase split above, on a new axis), and force type
+commitment at minimum information - see [mint-manifest](mint-manifest.md) for the full
+grounds and the adopted weak form. The typing pressure lands as structure *within* the
+brief (typed manifest rows), never as document taxonomy, which sharpens this focus's
+conclusion: the brief is one artifact in every phase; live-desk state is **status, not
+kind** - and now, type is **rows, not documents**. The action-item drift recorded above
+(briefs carrying plan sections in an undefined register) resolves compositionally:
+action items are prescription rows in the brief's mint manifest, minted to the desk when
+firm.
 
 ## Related
 - [seed-absorption](seed-absorption.md) - the fold-and-evacuate principle this contests;

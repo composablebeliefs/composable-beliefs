@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 19,
+  "count": 24,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -45,6 +45,21 @@
       "timestamp": "2026-06-25"
     },
     {
+      "path": "commit-provenance-floor.md",
+      "type": "concept",
+      "title": "Commit provenance at the floor tier (threads, ledgers, briefs)",
+      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - one commit per lifecycle event, Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and squash policy await resolution.",
+      "tags": [
+        "nursery",
+        "provenance",
+        "git",
+        "audit-chain",
+        "workflow"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02"
+    },
+    {
       "path": "contract-predicate-demotion.md",
       "type": "concept",
       "title": "Demote the contract boolean to a derived predicate",
@@ -69,7 +84,22 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-07-01"
+      "timestamp": "2026-07-02"
+    },
+    {
+      "path": "mint-manifest.md",
+      "type": "concept",
+      "title": "The mint manifest - typed decomposition inside the brief, not typed documents",
+      "description": "Covers the mint manifest - a late-stage section in a maturing focus brief enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in briefs are prescription rows, resolving the focus/plan drift in composition with seed-lifecycle's collapse. Minted cb:a567.",
+      "tags": [
+        "nursery",
+        "cb",
+        "schema",
+        "workflow",
+        "structural-types"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02"
     },
     {
       "path": "negative-case-field.md",
@@ -113,6 +143,20 @@
       "timestamp": "2026-06-25"
     },
     {
+      "path": "routing-ledger.md",
+      "type": "concept",
+      "title": "The routing ledger - per-thread dispatch for non-linear conversations",
+      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in focus docs; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:a566; open on hook mechanics and the skill build.",
+      "tags": [
+        "nursery",
+        "threads",
+        "provenance",
+        "workflow"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02"
+    },
+    {
       "path": "seed-absorption.md",
       "type": "concept",
       "title": "Seed absorption - terminal seeds fold into their successor and evacuate",
@@ -139,7 +183,7 @@
         "meta"
       ],
       "status": "active",
-      "timestamp": "2026-07-01"
+      "timestamp": "2026-07-02"
     },
     {
       "path": "seed-recency.md",
@@ -213,10 +257,10 @@
       "artifact": "session:2026-06-25-belief-audit"
     },
     {
-      "path": "threads/2026-07-01-structural-type-vocabulary.md",
+      "path": "threads/2026-07-01-schema-v3-execution.md",
       "type": "thread",
-      "title": "2026-07-01 - structural-type vocabulary (rename + contract demotion)",
-      "description": "Covers the design conversation that questioned the contract boolean and the primitive/compound/directive names, arriving at a four-type rename to nominalized epistemic acts, a demotion of the contract field to a derived predicate, the c059 carve-out that demotion exposes, and the decision to persist the work as nursery seeds rather than a separate plan. Use when revisiting the structural-type vocabulary or the seed-vs-plan question.",
+      "title": "2026-07-01 - schema-v3 execution (rename + demotion shipped)",
+      "description": "Covers the execution session for the structural-type vocabulary migration - the code-only compat-shim phase (PR #1), the authorized beliefs/ migration (220 type rewrites, contract field stripped, contract family rewritten, evidence recorded on c051/c056), the scope calls made in flight (history untouched, c059 carve-out kept, glossary render deferred), and the two follow-up prescriptions minted at close (cb:a561, cb:a562). Use when tracing the migration commits back to their seeds and decisions.",
       "tags": [
         "cb",
         "schema",
@@ -226,7 +270,7 @@
       ],
       "status": "active",
       "timestamp": "2026-07-01",
-      "artifact": "session:2026-07-01-structural-type-vocabulary"
+      "artifact": "session:2026-07-01-schema-v3-execution"
     },
     {
       "path": "threads/2026-07-01-seed-lifecycle.md",
@@ -244,6 +288,38 @@
       "artifact": "session:2026-07-01-seed-lifecycle"
     },
     {
+      "path": "threads/2026-07-01-structural-type-vocabulary.md",
+      "type": "thread",
+      "title": "2026-07-01 - structural-type vocabulary (rename + contract demotion)",
+      "description": "Covers the design conversation that questioned the contract boolean and the primitive/compound/directive names, arriving at a four-type rename to nominalized epistemic acts, a demotion of the contract field to a derived predicate, the c059 carve-out that demotion exposes, and the decision to persist the work as nursery seeds rather than a separate plan. Use when revisiting the structural-type vocabulary or the seed-vs-plan question.",
+      "tags": [
+        "cb",
+        "schema",
+        "structural-types",
+        "nursery",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-01",
+      "artifact": "session:2026-07-01-structural-type-vocabulary"
+    },
+    {
+      "path": "threads/2026-07-02-authoring-pipeline.md",
+      "type": "thread",
+      "title": "2026-07-02 - authoring pipeline (thread-to-graph round trip)",
+      "description": "Covers the session that designed the thread-to-graph authoring pipeline - the routing ledger, the mint manifest (typed decomposition inside the brief, rejecting typed nursery documents), concurrence with seed-lifecycle's collapse, and extending commit provenance to the floor tier - executed same-session as the first full round trip from thread capture to minted beliefs. Use when orienting to the authoring pipeline or auditing the round-trip reference.",
+      "tags": [
+        "cb",
+        "nursery",
+        "pipeline",
+        "provenance",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02",
+      "artifact": "session:2026-07-02-authoring-pipeline"
+    },
+    {
       "path": "threads/index.md",
       "type": "index",
       "title": "Threads (session transcripts)",
@@ -254,7 +330,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-07-01"
+      "timestamp": "2026-07-02"
     },
     {
       "path": "transcript-format.md",

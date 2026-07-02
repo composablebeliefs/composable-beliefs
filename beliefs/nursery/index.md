@@ -4,7 +4,7 @@ title: Nursery
 description: Use when orienting to the belief nursery - the floor-tier workspace where focuses (proto-beliefs) are deliberated in place until they mint into the graph or are dropped.
 tags: [nursery, index]
 status: active
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 ---
 
 # Nursery
@@ -71,6 +71,9 @@ visible; it never silently decides.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
 - [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
 - [per-belief-files](per-belief-files.md) - planted - one JSON file per node; minted cb:a554 + the a555-a560 plan.
+- [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:a566; the /decompose skill build stays open.
+- [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing brief, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:a567.
+- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events via Thread:/Focus: trailers; squash policy and enforcement open.
 - [nursery-architecture](nursery-architecture.md) - contested - this model; its "Layer 1 vestigial" lean is decided-against, queued to fold into transcript-format.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
 - [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.
