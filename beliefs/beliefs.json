@@ -3452,6 +3452,7 @@
       "Each kind has exactly one interpreter module",
       "The catalogue is closed: new kinds require updating this contract"
     ],
+    "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md",
     "evidence": [
       {
         "date": "2026-06-09",
@@ -3462,6 +3463,11 @@
         "date": "2026-06-09",
         "detail": "Accepted via human adjudication against cb:c035. Reasoning: c035's own invariant says new rule kinds require updating this contract; output-target contracts (c042, codepath render-specs) have carried non-empty rules outside the catalogue since 2026-06-07. The catalogue is closed by supersession, exactly as it prescribes.",
         "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Grounding added under the c059 carve-out collapse: the catalogue was the last active contract standing alone. Its adoption record - the plan-3 batch that minted it as c035's successor - is promoted from the 2026-06-09 evidence entry to the node's stipulation artifact.",
+        "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
       }
     ],
     "subjects": [
@@ -4085,7 +4091,7 @@
       "field-presence"
     ],
     "name": "dag-field-presence",
-    "claim": "Field presence on a DAG node is determined by structural type; aggregations and inferences require deps, non-contract prescriptions require deps or a stipulation artifact, declared contracts may be standalone, and contract fields are prescription-only",
+    "claim": "Field presence on a DAG node is determined by structural type; aggregations and inferences require deps, prescriptions require deps or a stipulation artifact, and contract fields are prescription-only",
     "rules": [
       {
         "given": "A node of any type",
@@ -4112,22 +4118,16 @@
         "when": "The node is validated"
       },
       {
-        "given": "A node has type: prescription and does not carry rules or invariants",
-        "scenario": "Non-contract prescription grounds in deps or stipulation",
+        "given": "A node has type: prescription",
+        "scenario": "Prescription grounds in deps or stipulation",
         "then": "The node must have non-empty deps or a stipulation artifact (plan:/user:/session:/document:) - adoption is grounded in beliefs or in the record of the adoption event",
-        "when": "The node is validated"
-      },
-      {
-        "given": "A node has type: prescription and carries non-empty rules or invariants",
-        "scenario": "Declared contract may omit deps",
-        "then": "The node may have empty deps - contracts can be declared (formalize policy standalone) or derived; both forms are valid",
         "when": "The node is validated"
       }
     ],
     "invariants": [
       "Aggregations cannot have empty deps",
       "Inferences cannot have empty deps",
-      "Active non-contract prescriptions carry deps or a stipulation artifact",
+      "Active prescriptions carry deps or a stipulation artifact",
       "Contract fields (rules, invariants) are prescription-only",
       "Fields are emitted in a stable schema-defined order",
       "Fields absent in the source JSON are not emitted on round-trip (presence tracked via _keys)",
@@ -4143,6 +4143,11 @@
         "date": "2026-06-12",
         "detail": "Retro-pair per the a507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
         "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Standalone-contract carve-out collapsed in step with c059 (option a of the contract-predicate-demotion seed): the 'declared contract may omit deps' rule is dropped and the grounding requirement now covers every active prescription regardless of contract grade.",
+        "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
       }
     ],
     "subjects": [],
@@ -4764,29 +4769,23 @@
       "grounding"
     ],
     "name": "prescription-grounding",
-    "claim": "A prescription is adopted: an active non-contract prescription grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. Contract-grade prescriptions may be declared standalone from policy. External-source schemes never ground a prescription.",
+    "claim": "A prescription is adopted: every active prescription grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. External-source schemes never ground a prescription.",
     "rules": [
       {
-        "given": "An active non-contract prescription with non-empty deps",
+        "given": "An active prescription with non-empty deps",
         "scenario": "Grounded in beliefs",
         "then": "The prescription is grounded - it rests on the beliefs it cites",
         "when": "The node is validated"
       },
       {
-        "given": "An active non-contract prescription with empty deps",
+        "given": "An active prescription with empty deps",
         "scenario": "Grounded in stipulation",
         "then": "The artifact must carry a stipulation scheme (plan:, user:, session:, document:) recording where the prescription was adopted",
-        "when": "The node is validated"
-      },
-      {
-        "given": "A contract-grade prescription",
-        "scenario": "Contracts may stand alone",
-        "then": "Both deps and stipulation artifact may be absent - contracts can be declared from policy",
         "when": "The node is validated"
       }
     ],
     "invariants": [
-      "For all active non-contract prescriptions d: deps(d) non-empty OR scheme(d.artifact) in {plan, user, session, document}",
+      "For all active prescriptions d: deps(d) non-empty OR scheme(d.artifact) in {plan, user, session, document}",
       "Stipulation schemes are a closed set: plan | user | session | document",
       "External-source schemes (source, https, gmail) never ground a prescription"
     ],
@@ -4796,6 +4795,11 @@
         "date": "2026-06-10",
         "detail": "D4 confirmed, with the execution amendment admitting document: - the design's own worked re-homes (method:a1-a5, the lib: rules) are document-grounded stipulations. Legitimizes conventions as directives without manufacturing fake deps.",
         "artifact": "document:plans/cb-schema-v2/design.md"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Standalone-contract carve-out collapsed by user decision (option a of the contract-predicate-demotion seed): with contract-grade demoted to a derived predicate, 'may stand alone if it carries rules' conflated internal structure with provenance. Every active prescription now grounds in deps or a stipulation artifact. Measured at execution: 20 of 21 active contracts already complied; cb:c046 gained its adoption record.",
+        "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
       }
     ],
     "subjects": [],
@@ -4952,7 +4956,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:a565",
     "created": "2026-06-10"
   },
   {
@@ -7425,7 +7430,7 @@
           {
             "beliefs": [
               "cb:a482",
-              "cb:a481"
+              "cb:a565"
             ],
             "title": "Schema"
           },
@@ -7490,6 +7495,11 @@
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:a507: the session: stipulation above resolves in chronicles/2026-06-12-the-house-lists-its-doors.md.",
         "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+      },
+      {
+        "date": "2026-07-02",
+        "detail": "Schema-section render re-pointed from the superseded cb:a481 to its successor cb:a565 (schema-rules sentence updated for the c059 grounding collapse). Pure dep maintenance - render structure unchanged.",
+        "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
       }
     ],
     "subjects": [],
@@ -7506,11 +7516,11 @@
       "cb:a477",
       "cb:a478",
       "cb:a479",
-      "cb:a481",
       "cb:a482",
       "cb:a508",
       "cb:a524",
-      "cb:a533"
+      "cb:a533",
+      "cb:a565"
     ],
     "status": "active",
     "created": "2026-06-12"
@@ -8609,5 +8619,48 @@
     },
     "status": "active",
     "created": "2026-07-01"
+  },
+  {
+    "id": "cb:a564",
+    "type": "prescription",
+    "kind": "action-item",
+    "domain": "dev",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "docs",
+      "schema-v3"
+    ],
+    "claim": "Migrate the remaining living docs to the schema-v3 structural-type vocabulary (attestation/aggregation/inference/prescription; derived contract-grade). Still carrying the old type names: docs/eval-ledger.md, docs/worked-example-eval-verdict.md, docs/run-manifest.md, docs/operations.md, docs/composable-beliefs-thesis.md, docs/cb-on-the-beam.md, docs/actualization.md. Sequence the eval-facing three (worked-example, run-manifest, eval-ledger) with the belief-collections sibling migration - they describe collections whose data may still carry the old vocabulary, so migrating their prose ahead of the data would desync doc from graph. The narrative four (operations, thesis, cb-on-the-beam, actualization) have no such coupling and can be done in any session. The historical record (chronicles/, plans/, dated analyses, nursery threads) stays untouched per the structural-type-rename seed's docs step. Context: the 2026-07-02 session migrated README.md, docs/mental-model.md, docs/reference.md, and docs/belief-graph.md; this prescription covers the remainder.",
+    "artifact": "user:mark:2026-07-02",
+    "evidence": [],
+    "subjects": [],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-02"
+  },
+  {
+    "id": "cb:a565",
+    "type": "attestation",
+    "kind": "schema",
+    "domain": "system",
+    "tags": [
+      "claude-md",
+      "schema"
+    ],
+    "claim": "Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; every active prescription grounds in deps or a stipulation artifact (per c059); and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per c056).",
+    "artifact": "document:beliefs/nursery/contract-predicate-demotion.md",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Accepted via human adjudication against cb:a481. Reasoning: c059 carve-out collapse (option a of the contract-predicate-demotion seed, user-confirmed): the schema-rules sentence's grounding clause widens from non-contract prescriptions to every active prescription. The contract-level claim overlaps (c052, c056, c059) are the contracts this sentence describes - c052 and c059 are collapsed in the same migration pass, c056 is referenced unchanged.",
+        "artifact": "adjudication:human:2026-07-02-contract-grounding-decision"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-07-02"
   }
 ]

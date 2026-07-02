@@ -83,7 +83,7 @@ Composable Beliefs rests on a single promise: a claim with no named source does 
 | `plan:` | a plan or spec | `plan:<id-or-descriptor>` |
 | `commit:` | a git commit implementing a discharge | `commit:<full-40-hex-sha>` |
 
-Four schemes form the **stipulation subset**. A non-contract prescription that encodes an adopted convention has no upstream beliefs to ground in, so `cb:c059` lets it ground in a stipulation artifact instead: one of `plan:`, `user:`, `session:`, or `document:` - all records of a decision someone made. An external `source:` or `https:` reference never grounds a prescription, because a web page you merely read cannot adopt a convention on your behalf. A rule rests on an act of adoption, not on a citation.
+Four schemes form the **stipulation subset**. A prescription that encodes an adopted convention has no upstream beliefs to ground in, so `cb:c059` lets it ground in a stipulation artifact instead: one of `plan:`, `user:`, `session:`, or `document:` - all records of a decision someone made. An external `source:` or `https:` reference never grounds a prescription, because a web page you merely read cannot adopt a convention on your behalf. A rule rests on an act of adoption, not on a citation.
 
 The `commit:` scheme is the newest, and it closes a provenance loop in the other direction: a prescription's discharge can cite the implementing commit as a typed artifact, `mix cb.verify.commits` dereferences every cited sha, and commits carry `Belief:` trailers naming the beliefs they implement - the belief-to-code link enforced both ways in CI ([chapter 3](3-operations.md#the-write-flow) covers the gate on the todo front door).
 
@@ -95,7 +95,7 @@ Evidence is also the single exception to immutability - the append-only front do
 
 **`deps` versus `subjects` - derivation versus aboutness.** A belief carries two distinct relations, and confusing them is the mistake that quietly breaks the model (`cb:a408`):
 
-- **`deps`** is belief-to-belief *logical derivation*: the deps' claims together justify this claim. Required on aggregations and inferences, required-or-stipulated on non-contract prescriptions, absent on attestations. These are the edges of the DAG.
+- **`deps`** is belief-to-belief *logical derivation*: the deps' claims together justify this claim. Required on aggregations and inferences, required-or-stipulated on prescriptions, absent on attestations. These are the edges of the DAG.
 - **`subjects`** is belief-to-entity *topical reference*: what the belief is about. Each subject is a `{ref, type}` pair naming a file, a module, a model, an eval run, sometimes another belief.
 
 The two are independent: a belief can be about something without depending on it, and depend on something without being about it. `cb:a386` is *about* the digest file (its one subject) yet *depends on* nothing (it is an attestation - a leaf). The confusion breaks the model because the verifier reasons over deps as logical support and over subjects as scope: smuggle a topical reference into `deps` and you assert a derivation that does not exist, corrupting the staleness walk and the grounding check; drop a real derivation into `subjects` and the belief looks ungrounded. The test that re-derives the rule: is this claim *justified by* the other thing's claim (dep), or merely *about* it (subject)?
@@ -157,7 +157,7 @@ There is no separate schema file in some validation language sitting outside the
 | Contract | Name | What it governs |
 | --- | --- | --- |
 | `cb:c051` | dag-structural-types | the four types, one per epistemic operation; type determines which fields are meaningful |
-| `cb:c052` | dag-field-presence | field presence by type: aggregations/inferences require deps; non-contract prescriptions require deps or a stipulation artifact; contracts may stand alone |
+| `cb:c052` | dag-field-presence | field presence by type: aggregations/inferences require deps; prescriptions require deps or a stipulation artifact; contract fields are prescription-only |
 | `cb:c053` | dag-status-lifecycle | the status state machine; all non-active states terminal with required linkage |
 | `cb:c054` | contract-identity | contract-grade iff prescription with non-empty rules/invariants; detect structurally, never by id |
 | `cb:c055` | conflict-scope-definition | two active prescriptions conflict-scope on a shared tag, subject ref, or subject type within one domain |
