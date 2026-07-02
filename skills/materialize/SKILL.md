@@ -4,7 +4,7 @@ A prescription identifies work that needs doing. Materializing it means turning 
 
 ## Input
 
-`$ARGUMENTS` is a belief ID, bare (`a820`) or namespaced (`cb:a820`) - a bare id resolves when exactly one belief matches, the same resolution `mix bs` and `mix cb.evidence` carry. It must resolve to a `prescription` node (you do not materialize a theory: inferences and aggregations describe, prescriptions prescribe).
+`$ARGUMENTS` is a belief ID, bare (`b820`) or namespaced (`cb:b820`) - a bare id resolves when exactly one belief matches, the same resolution `mix bs` and `mix cb.evidence` carry. It must resolve to a `prescription` node (you do not materialize a theory: inferences and aggregations describe, prescriptions prescribe).
 
 ## Steps
 
@@ -22,7 +22,7 @@ A prescription identifies work that needs doing. Materializing it means turning 
 
 4. **Present the materialization plan** to the user for confirmation:
    ```
-   ## Materialize: a820
+   ## Materialize: b820
 
    Claim: When a hold expires, return item to available and notify next member in queue
 
@@ -32,14 +32,14 @@ A prescription identifies work that needs doing. Materializing it means turning 
 
    This will:
    - Append 2 items via the configured sink (default: todos JSON)
-   - Set a820.materialized to record the link
+   - Set b820.materialized to record the link
    ```
 
 5. **After user confirmation**, write a temp `.exs` file and run via `mix run`:
 
    ```elixir
    spec = %{
-     "belief_id" => "a820",
+     "belief_id" => "b820",
      "action_items" => [
        %{"action" => "Implement hold-expiry state transition handler",
          "notes" => "hold expires after 7 days; item returns to available and next member in queue is notified"}
@@ -65,7 +65,7 @@ The spec map passed to `CB.Belief.Materializer.materialize/1`:
 
 ```elixir
 %{
-  "belief_id" => "a820",
+  "belief_id" => "b820",
   "action_items" => [
     %{
       "action" => "Implement hold-expiry state transition handler",

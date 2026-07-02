@@ -14,7 +14,7 @@ One framing discipline before the table, because it keeps the claims honest: the
 | **Generative** - specify, deduce, actualize | knowledge flows out: typed claims compose into contracts that compile to artifacts - runnable checks and instruction files | a pre-registered eval rubric authored as a contract that compiles to the runnable checks *and* to the writeup |
 | **Self-referential** - take the agent as subject | a claim's subject is a system's own failure modes | a system with a queryable model of how it tends to fail, consulted before acting |
 
-Both new faces rest on schema you have already seen: contracts are rules-and-invariants beliefs ([chapter 2](2-schema.md#contracts-prescriptions-with-teeth)), and a claim whose subject is the agent is just an ordinary belief with a subject of type `agent` (`cb:a115`).
+Both new faces rest on schema you have already seen: contracts are rules-and-invariants beliefs ([chapter 2](2-schema.md#contracts-prescriptions-with-teeth)), and a claim whose subject is the agent is just an ordinary belief with a subject of type `agent` (`cb:b115`).
 
 ## The hinge: an eval-spec is a contract
 
@@ -64,5 +64,5 @@ You opened this guide to understand a way of grounding claims, and you spent the
 From here the substrate is yours to operate. Return to the [orientation](0-orientation.md) to re-read the thesis with the whole picture in view, or start querying: `mix bs stats`.
 
 > **Grounding.**
-> - In the graph: `cb:a115` (a belief can take the agent itself as subject - the schema basis of the self-referential face), `cb:c046`/`cb:c047` (contracts as data and the routing boundary - the generative machinery), `cb:c049`/`cb:c050` (the codepath render-spec and inspection-only predicates - explain-and-verify in one artifact), and the `method:` contracts (the eval-spec-as-contract already instantiated).
+> - In the graph: `cb:b115` (a belief can take the agent itself as subject - the schema basis of the self-referential face), `cb:b046`/`cb:b047` (contracts as data and the routing boundary - the generative machinery), `cb:b049`/`cb:b050` (the codepath render-spec and inspection-only predicates - explain-and-verify in one artifact), and the `method:` contracts (the eval-spec-as-contract already instantiated).
 > - In the docs: [actualization.md](../actualization.md) (the self-referential face in full), [the thesis](../composable-beliefs-thesis.md) (the paradigm argument and its falsification condition).

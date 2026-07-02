@@ -3,95 +3,95 @@
     "action": "Implement mix bs recent [--since DATE | --days N]: deterministic window scan over the loaded graph, events grouped by class (new nodes, supersessions, evidence appends, materializations, retractions); honors --beliefs PATH",
     "created": "2026-06-11",
     "id": "t0001",
-    "source": "cb:a501",
+    "source": "cb:b501",
     "status": "done"
   },
   {
     "action": "Cover and document bs recent: tests for the window scan and each event class, plus the mix bs help entry",
     "created": "2026-06-11",
     "id": "t0002",
-    "source": "cb:a501",
+    "source": "cb:b501",
     "status": "done"
   },
   {
     "action": "Make mix cb.import reject new-belief ids lacking the graph's namespace prefix (the single prefix all existing ids share; empty, bare, or mixed graphs pass vacuously) before any write",
     "created": "2026-06-11",
     "id": "t0003",
-    "source": "cb:a513",
+    "source": "cb:b513",
     "status": "done"
   },
   {
     "action": "Correct the cb.import moduledoc's bare-id examples (a305 -> cb:a305, a044 -> cb:a044) and document the namespace gate under Validation",
     "created": "2026-06-11",
     "id": "t0004",
-    "source": "cb:a513",
+    "source": "cb:b513",
     "status": "done"
   },
   {
     "action": "Add a dep-resolution check to mix cb.verify.schema: every dep of every active belief resolves in-collection; deps in namespaces the collection's ids never use defer to verify.collection's union check; bare deps are never cross-namespace",
     "created": "2026-06-11",
     "id": "t0005",
-    "source": "cb:a514",
+    "source": "cb:b514",
     "status": "done"
   },
   {
     "action": "Cover dep resolution: resolving dep, dangling local dep, bare-dep incident replay, cross-namespace deferral, and non-active exemption",
     "created": "2026-06-11",
     "id": "t0006",
-    "source": "cb:a514",
+    "source": "cb:b514",
     "status": "done"
   },
   {
     "action": "Extract the belief-free anchor-resolution core (per-line literal matching, first-match tighten warning, out-of-range nth) from CB.Codepath into CB.Anchor, with CB.Codepath delegating",
     "created": "2026-06-11",
     "id": "t0007",
-    "source": "cb:a512",
+    "source": "cb:b512",
     "status": "done"
   },
   {
-    "action": "Add mix cb.resolve --file: validate and resolve a JSON array of anchor rows (path/anchor/nth objects or code: URI strings per the c043 grammar) against --root with no belief collection loaded; exit 0 only when every row resolves",
+    "action": "Add mix cb.resolve --file: validate and resolve a JSON array of anchor rows (path/anchor/nth objects or code: URI strings per the b043 grammar) against --root with no belief collection loaded; exit 0 only when every row resolves",
     "created": "2026-06-11",
     "id": "t0008",
-    "source": "cb:a512",
+    "source": "cb:b512",
     "status": "done"
   },
   {
     "action": "Cover the resolver core and the task: CB.Anchor resolution-rule tests plus cb.resolve row parsing (mixed object/URI files, per-index error reporting) and text rendering",
     "created": "2026-06-11",
     "id": "t0009",
-    "source": "cb:a512",
+    "source": "cb:b512",
     "status": "done"
   },
   {
     "action": "Persist a non-empty notes key on both the JSON sink's todo record and the materialized link-back ref (blank or absent notes stay omitted); cover record, ref, and link-back in tests",
     "created": "2026-06-11",
     "id": "t0010",
-    "notes": "a523: persistence chosen over dropping the mandate - the notes are real traceability; this materialization is itself the live demonstration that they now land",
-    "source": "cb:a523",
+    "notes": "b523: persistence chosen over dropping the mandate - the notes are real traceability; this materialization is itself the live demonstration that they now land",
+    "source": "cb:b523",
     "status": "done"
   },
   {
     "action": "Align the /materialize skill's sink description with the persisted-notes contract (record shape and the action-item key table)",
     "created": "2026-06-11",
     "id": "t0011",
-    "notes": "a523: the silent divergence between skill contract and sink behavior is the part that must not survive",
-    "source": "cb:a523",
+    "notes": "b523: the silent divergence between skill contract and sink behavior is the part that must not survive",
+    "source": "cb:b523",
     "status": "done"
   },
   {
-    "action": "Author skills/position/SKILL.md - settle-time capture: a496 ceremony gate first, a492 homing, a511 format with claims in codepath walk order, anchors verified via mix cb.resolve (a512), a503 belief-ref rendering after extraction, extraction left to /assert - and register it via the .claude/skills symlink",
+    "action": "Author skills/position/SKILL.md - settle-time capture: b496 ceremony gate first, b492 homing, b511 format with claims in codepath walk order, anchors verified via mix cb.resolve (b512), b503 belief-ref rendering after extraction, extraction left to /assert - and register it via the .claude/skills symlink",
     "created": "2026-06-11",
     "id": "t0012",
-    "notes": "Discharged in the authoring session itself. Dogfooding the resolver gate on the worked position caught real drift: both lib/cb/codepath.ex anchors (resolve_anchor, the anchor-not-found constructor) had moved to lib/cb/anchor.ex in the a512 extraction; re-pointed and verified green.",
-    "source": "cb:a515",
+    "notes": "Discharged in the authoring session itself. Dogfooding the resolver gate on the worked position caught real drift: both lib/cb/codepath.ex anchors (resolve_anchor, the anchor-not-found constructor) had moved to lib/cb/anchor.ex in the b512 extraction; re-pointed and verified green.",
+    "source": "cb:b515",
     "status": "done"
   },
   {
-    "action": "Pin the anchored-position format as schema beliefs: format core a526 (Class header, Anchor lines in c043 grammar verified one-match at authoring time, claim order = codepath walk order), terms block a527, position/codepath naming a528, three-tier verification gradient a529",
+    "action": "Pin the anchored-position format as schema beliefs: format core b526 (Class header, Anchor lines in b043 grammar verified one-match at authoring time, claim order = codepath walk order), terms block b527, position/codepath naming b528, three-tier verification gradient b529",
     "created": "2026-06-12",
     "id": "t0013",
-    "notes": "Discharged in the executing session itself. All seven worked-instance anchors plus the appendix anchors re-verified green via mix cb.resolve before authoring; the dag-schema mis-tag caught at preflight (52 tag-overlap matches collapsed to zero under the positions/schema/anchoring family); the a473 flag on a528 user-adjudicated proceed-unchanged.",
-    "source": "cb:a511",
+    "notes": "Discharged in the executing session itself. All seven worked-instance anchors plus the appendix anchors re-verified green via mix cb.resolve before authoring; the dag-schema mis-tag caught at preflight (52 tag-overlap matches collapsed to zero under the positions/schema/anchoring family); the b473 flag on b528 user-adjudicated proceed-unchanged.",
+    "source": "cb:b511",
     "status": "done"
   },
   {
@@ -99,71 +99,71 @@
     "created": "2026-06-12",
     "id": "t0014",
     "notes": "Discharged in the executing session itself. End-to-end verified on a temp graph copy: an append containing non-ascii produced a diff of exactly the five new entry lines, byte-identical elsewhere, no unicode escapes - the ensure_ascii encoder-drift failure mode from evidence 3 closed by construction. This materialization's own discharge evidence was appended via mix cb.evidence, the front door's first production run.",
-    "source": "cb:a522",
+    "source": "cb:b522",
     "status": "done"
   },
   {
     "action": "Recalibrate preflight bucketing in CB.Belief.Conflict: contract-grade or dag-schema-tagged matches classify as conflicting only with semantic contact (claim_overlap or subject_overlap among the match reasons); bare tag_overlap downgrades to neutral with the candidate's grade still annotated in the rendered output. Update moduledocs and tests.",
     "created": "2026-06-12",
     "id": "t0015",
-    "notes": "Discharged in the executing session itself. CB.Belief.Conflict.classify/2 now gates both conflict buckets on semantic_contact?/1 (subject_overlap or claim_overlap); bare tag_overlap re-buckets to neutral with the grade annotated by the cb.preflight renderer. The multiple-overlap fixture moved c029 from conflicting to neutral - the calibration in action; 311 tests passing.",
-    "source": "cb:a519",
+    "notes": "Discharged in the executing session itself. CB.Belief.Conflict.classify/2 now gates both conflict buckets on semantic_contact?/1 (subject_overlap or claim_overlap); bare tag_overlap re-buckets to neutral with the grade annotated by the cb.preflight renderer. The multiple-overlap fixture moved b029 from conflicting to neutral - the calibration in action; 311 tests passing.",
+    "source": "cb:b519",
     "status": "done"
   },
   {
-    "action": "Encode the escalation criteria as a contract-grade audit-rule node through the write flow (preflight, adjudicate, import), deps cb:c055 and cb:a519. No c055 supersession: its overlap-is-necessary-but-not-sufficient invariant is what the calibration enforces at preflight time.",
+    "action": "Encode the escalation criteria as a contract-grade audit-rule node through the write flow (preflight, adjudicate, import), deps cb:b055 and cb:b519. No b055 supersession: its overlap-is-necessary-but-not-sufficient invariant is what the calibration enforces at preflight time.",
     "created": "2026-06-12",
     "id": "t0016",
-    "notes": "Discharged in the executing session itself. Encoded as cb:c064 (preflight-escalation-criteria), deps c055 + a519, three scenario rules and four invariants. Its own preflight was the calibrated bucketing's first live run: 0 contract, 0 schema, 3 neutral, c055 surfacing as annotated neutral where the old code would have raised the wall. Schema verify 20/20 after import.",
-    "source": "cb:a519",
+    "notes": "Discharged in the executing session itself. Encoded as cb:b064 (preflight-escalation-criteria), deps b055 + b519, three scenario rules and four invariants. Its own preflight was the calibrated bucketing's first live run: 0 contract, 0 schema, 3 neutral, b055 surfacing as annotated neutral where the old code would have raised the wall. Schema verify 20/20 after import.",
+    "source": "cb:b519",
     "status": "done"
   },
   {
     "action": "Provide the todo-flip front door: CB.Todos store owning the collection's read/atomic write/close (strict open -> done, materialization notes kept with discharge notes appended as a new paragraph), the mix cb.todo.close task fronting it (dry-run default, --notes required, --todos override, refusals on unknown ids and non-open status), and the materializer's JSON sink rerouted through the same store so the append path and the flip path share one serialization",
     "created": "2026-06-12",
     "id": "t0017",
-    "notes": "a530: ten specimens of hand-rolled flips counted across the closes; the flip of this very item is the front door's first production run\n\nDischarged in the executing session itself. CB.Todos owns the collection's serialization end to end - the sink delegates its read and write, so append and flip cannot drift apart. Smoke-verified on a temp copy of the live collection: refusal on the already-done t0016, two flips with non-ascii notes landing unescaped, every untouched record byte-identical. This flip is the front door's first production run - the eleventh hand-rolled specimen never happened.",
-    "source": "cb:a530",
+    "notes": "b530: ten specimens of hand-rolled flips counted across the closes; the flip of this very item is the front door's first production run\n\nDischarged in the executing session itself. CB.Todos owns the collection's serialization end to end - the sink delegates its read and write, so append and flip cannot drift apart. Smoke-verified on a temp copy of the live collection: refusal on the already-done t0016, two flips with non-ascii notes landing unescaped, every untouched record byte-identical. This flip is the front door's first production run - the eleventh hand-rolled specimen never happened.",
+    "source": "cb:b530",
     "status": "done"
   },
   {
     "action": "Route CB.Belief.Materializer.find_node through Graph.resolve_id so materialize/1 accepts bare or namespaced ids (bare resolving when exactly one belief matches, ambiguity surfacing as {:ambiguous_id, ids}), link and return the canonical id, and state the contract in the /materialize skill doc",
     "created": "2026-06-12",
     "id": "t0018",
-    "notes": "a532: the skill's own example shape (bare id) failed on first try in the a519 discharge; this materialization passes bare ids as its own live demonstration\n\nDischarged in the executing session itself. find_node routes through Graph.resolve_id: a bare id resolves when exactly one belief matches, ambiguity surfaces as {:ambiguous_id, ids}, and the canonical id is what gets linked and returned. This item's own materialization passed the bare id a532 per the skill's example shape - first-try success on the documented path. 326 tests passing including the ambiguity case.",
-    "source": "cb:a532",
+    "notes": "b532: the skill's own example shape (bare id) failed on first try in the b519 discharge; this materialization passes bare ids as its own live demonstration\n\nDischarged in the executing session itself. find_node routes through Graph.resolve_id: a bare id resolves when exactly one belief matches, ambiguity surfaces as {:ambiguous_id, ids}, and the canonical id is what gets linked and returned. This item's own materialization passed the bare id b532 per the skill's example shape - first-try success on the documented path. 326 tests passing including the ambiguity case.",
+    "source": "cb:b532",
     "status": "done"
   },
   {
-    "action": "Supersede a449 with a successor naming the full sanctioned write surface (preflight/adjudicate/import, mix cb.evidence, mix cb.todo.close), re-point the c063 render contract's Operations section and deps, and regenerate CLAUDE.md",
+    "action": "Supersede b449 with a successor naming the full sanctioned write surface (preflight/adjudicate/import, mix cb.evidence, mix cb.todo.close), re-point the b063 render contract's Operations section and deps, and regenerate CLAUDE.md",
     "created": "2026-06-12",
     "id": "t0019",
-    "notes": "Scope per a531 evidence 2 (the a530 close widened it): name the whole surface in one pass. Ceremony precedent: the a515 close (a521 -> a524, c062 -> c063).\n\nDone 2026-06-12: a449 -> a533 (write surface named in one pass), c063 -> c065 (Operations render re-pointed), c049 dep re-pointed to c065, CLAUDE.md regenerated and current. Chronicle: chronicles/2026-06-12-the-house-lists-its-doors.md.",
-    "source": "cb:a531",
+    "notes": "Scope per b531 evidence 2 (the b530 close widened it): name the whole surface in one pass. Ceremony precedent: the b515 close (b521 -> b524, b062 -> b063).\n\nDone 2026-06-12: b449 -> b533 (write surface named in one pass), b063 -> b065 (Operations render re-pointed), b049 dep re-pointed to b065, CLAUDE.md regenerated and current. Chronicle: chronicles/2026-06-12-the-house-lists-its-doors.md.",
+    "source": "cb:b531",
     "status": "done"
   },
   {
     "action": "Fold the knowledge standard into composable-beliefs/okf/ as the okfx: extension (move tree, rename knowledge: -> okfx: via re-import, rewire couplings, reconcile docs, handle dangling cb: evidence pointers) and decommission the knowledge repo",
     "created": "2026-06-22",
     "id": "t0020",
-    "notes": "plan:okf-fold; namespace okfx: per operator; verification per plan section.\n\nDischarged. Fold executed and committed (composable-beliefs 808dfeb, belief-collections d6bd1b5, pushed): standard at composable-beliefs/okf/ as the okfx: collection; couplings rewired; conformance gate reads in-repo okf/conformance; 4 cb: dangling pointers given corrective okf/ evidence. Knowledge repo decommissioned manually by the operator (directory removed; content remains on remote ob6to8/knowledge@76d1145). Post-decommission verification green: mix test 360/0 with knowledge/ absent, no ../knowledge refs in code/config. Out-of-scope follow-ups left live (cb:a543 SessionStart hook + root CLAUDE.md; okfx:a004 graph-compile; mix knowledge.*->okf.* rename).",
-    "source": "cb:a546",
+    "notes": "plan:okf-fold; namespace okfx: per operator; verification per plan section.\n\nDischarged. Fold executed and committed (composable-beliefs 808dfeb, belief-collections d6bd1b5, pushed): standard at composable-beliefs/okf/ as the okfx: collection; couplings rewired; conformance gate reads in-repo okf/conformance; 4 cb: dangling pointers given corrective okf/ evidence. Knowledge repo decommissioned manually by the operator (directory removed; content remains on remote ob6to8/knowledge@76d1145). Post-decommission verification green: mix test 360/0 with knowledge/ absent, no ../knowledge refs in code/config. Out-of-scope follow-ups left live (cb:b543 SessionStart hook + root CLAUDE.md; okfx:a004 graph-compile; mix knowledge.*->okf.* rename).",
+    "source": "cb:b546",
     "status": "done"
   },
   {
     "action": "Ship mix cb.repoint: the sanctioned dep re-point front door (atomic drop-dep + add-dep via apply_batch, dry-run default, refusal on dangling --to)",
     "created": "2026-06-23",
     "id": "t0021",
-    "notes": "Discharged retroactively: shipped at commit ac3e199 by a concurrent session; verified against the full spec from source 2026-06-23. Materialized only to reflect completion on the desk.\n\nDischarged: mix cb.repoint shipped at ac3e199 and verified to meet a537's full spec (atomic drop+add, dry-run default, dangling refusal) on 2026-06-23.",
-    "source": "cb:a537",
+    "notes": "Discharged retroactively: shipped at commit ac3e199 by a concurrent session; verified against the full spec from source 2026-06-23. Materialized only to reflect completion on the desk.\n\nDischarged: mix cb.repoint shipped at ac3e199 and verified to meet b537's full spec (atomic drop+add, dry-run default, dangling refusal) on 2026-06-23.",
+    "source": "cb:b537",
     "status": "done"
   },
   {
-    "action": "Add the commit: artifact scheme (c066->c067 supersession), CB.CommitLocator, the verifier format check, and mix cb.verify.commits with CI enforcement of the loop both ways",
+    "action": "Add the commit: artifact scheme (b066->b067 supersession), CB.CommitLocator, the verifier format check, and mix cb.verify.commits with CI enforcement of the loop both ways",
     "created": "2026-07-01",
     "id": "t0022",
-    "notes": "a545 option 1: the scheme alone buys nothing - the value is the enforcement, so the resolver and the CI gate ship together with the enum change.\n\nShipped in commit:83ff6872db1e2007033b0ba6f4bef859c4bc6de9 (branch claude/schema-v3-code): cb:c067 supersedes cb:c066 adding the commit scheme; CB.CommitLocator + verifier format check + mix cb.verify.commits wired into CI with fetch-depth: 0. The implementing commit carries the first Belief: trailer, so both directions of the loop are exercised by their own introduction.",
-    "source": "cb:a545",
+    "notes": "b545 option 1: the scheme alone buys nothing - the value is the enforcement, so the resolver and the CI gate ship together with the enum change.\n\nShipped in commit:83ff6872db1e2007033b0ba6f4bef859c4bc6de9 (branch claude/schema-v3-code): cb:b067 supersedes cb:b066 adding the commit scheme; CB.CommitLocator + verifier format check + mix cb.verify.commits wired into CI with fetch-depth: 0. The implementing commit carries the first Belief: trailer, so both directions of the loop are exercised by their own introduction.",
+    "source": "cb:b545",
     "status": "done"
   },
   {
@@ -171,17 +171,17 @@
     "commit": "2282829bc14f33e182187d0d45065d85bcc3252c",
     "created": "2026-07-01",
     "id": "t0023",
-    "notes": "a563: the done->commit rung, enforced prospectively at the front door so history is untouched.\n\nShipped in the cited commit: CB.Todos.close/4 discharge markers, the cb.todo.close gate matrix, and the done->commit direction in mix cb.verify.commits. This close is the gate's first use - it cites its own implementing commit through the mechanism that commit introduced.",
-    "source": "cb:a563",
+    "notes": "b563: the done->commit rung, enforced prospectively at the front door so history is untouched.\n\nShipped in the cited commit: CB.Todos.close/4 discharge markers, the cb.todo.close gate matrix, and the done->commit direction in mix cb.verify.commits. This close is the gate's first use - it cites its own implementing commit through the mechanism that commit introduced.",
+    "source": "cb:b563",
     "status": "done"
   },
   {
-    "action": "Consolidate docs/ into the chaptered guide (docs/guide/, nine chapters) resolving the 2026-06-23 audit drift: schema-v3 vocabulary throughout, superseded contract ids refreshed (c065/c067 current), legacy essays bannered (actualization.md, cb-on-the-beam.md), and the undocumented surfaces given front-door homes (cb.retract, cb.repoint, cb.resolve, cb.verify.commits, bs recent, okf.*) in docs/reference.md and guide chapter 3",
+    "action": "Consolidate docs/ into the chaptered guide (docs/guide/, nine chapters) resolving the 2026-06-23 audit drift: schema-v3 vocabulary throughout, superseded contract ids refreshed (b065/b067 current), legacy essays bannered (actualization.md, cb-on-the-beam.md), and the undocumented surfaces given front-door homes (cb.retract, cb.repoint, cb.resolve, cb.verify.commits, bs recent, okf.*) in docs/reference.md and guide chapter 3",
     "commit": "6c25f1bf4d2c2acd5474db992d8903c6292c3881",
     "created": "2026-07-02",
     "id": "t0024",
-    "notes": "Shipped out-of-band as the docs-consolidation commit; mental-model/belief-graph/codepaths/eval-ledger/other-applications reduced to resolvable pointer stubs, reference.md rewritten v3-current, README re-pointed at the guide. Discharging commit: 6c25f1bf4d2c2acd5474db992d8903c6292c3881\n\nVerified against the a553 spec: superseded ids refreshed across the reference surface (now docs/guide/ + reference.md, naming c065/c067 as current), legacy essays bannered rather than silently stale, and cb.retract/cb.repoint/cb.resolve/okf.* documented at the front door. CI green on the discharging commit (400 tests, claude_md --check, verify.commits).",
-    "source": "cb:a553",
+    "notes": "Shipped out-of-band as the docs-consolidation commit; mental-model/belief-graph/codepaths/eval-ledger/other-applications reduced to resolvable pointer stubs, reference.md rewritten v3-current, README re-pointed at the guide. Discharging commit: 6c25f1bf4d2c2acd5474db992d8903c6292c3881\n\nVerified against the b553 spec: superseded ids refreshed across the reference surface (now docs/guide/ + reference.md, naming b065/b067 as current), legacy essays bannered rather than silently stale, and cb.retract/cb.repoint/cb.resolve/okf.* documented at the front door. CI green on the discharging commit (400 tests, claude_md --check, verify.commits).",
+    "source": "cb:b553",
     "status": "done"
   },
   {
@@ -189,8 +189,8 @@
     "commit": "ce1f8ffa3f1cf1686302f66f69f53ebd2ba2be62",
     "created": "2026-07-02",
     "id": "t0025",
-    "notes": "Registry reconstructed from the public belief-collections repo at main; mix cb.generate.glossary --check passes post-write (187 terms, 151 referenced beliefs; method:/paradigm: refs intact). Discharging commit: ce1f8ffa3f1cf1686302f66f69f53ebd2ba2be62\n\nRegenerated with the full registry so method:/paradigm: refs and the referenced-beliefs appendix survive - the exact hazard a561 flagged. mix cb.generate.glossary --check passes on the committed doc; the cb-tut glossary-data.js twin was generated and handed to the operator for the tut update session.",
-    "source": "cb:a561",
+    "notes": "Registry reconstructed from the public belief-collections repo at main; mix cb.generate.glossary --check passes post-write (187 terms, 151 referenced beliefs; method:/paradigm: refs intact). Discharging commit: ce1f8ffa3f1cf1686302f66f69f53ebd2ba2be62\n\nRegenerated with the full registry so method:/paradigm: refs and the referenced-beliefs appendix survive - the exact hazard b561 flagged. mix cb.generate.glossary --check passes on the committed doc; the cb-tut glossary-data.js twin was generated and handed to the operator for the tut update session.",
+    "source": "cb:b561",
     "status": "done"
   }
 ]
