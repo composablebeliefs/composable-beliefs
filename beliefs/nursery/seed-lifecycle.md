@@ -5,7 +5,7 @@ description: Covers whether terminal seeds persist by graduation (historicize an
 tags: [cb, nursery, lifecycle, plans, meta]
 status: active
 timestamp: 2026-07-02
-maturity: contested
+maturity: active
 threads: [2026-07-01-seed-lifecycle, 2026-07-02-authoring-pipeline]
 ---
 
@@ -196,6 +196,35 @@ kind** - and now, type is **rows, not documents**. The action-item drift recorde
 (briefs carrying plan sections in an undefined register) resolves compositionally:
 action items are prescription rows in the brief's mint manifest, minted to the desk when
 firm.
+
+## Resolution (2026-07-02): graduation wins the contest
+
+Operator-settled in the authoring-pipeline session. The deciding statement of the chain
+argument, in the operator's words: the round trip runs thread -> routing ledger ->
+proto-belief document -> DAG, "and then you can work backwards from the belief ... in
+reverse through that whole series of documents. And because of that, if you remove the
+[proto-belief document], you've broken that chain." The document is mandatory
+provenance; no counterposition survived (the fold is lossy outside the plant arm, the
+raw-thread substitute is gated on unbuilt machinery, and the node prop is a worse home).
+Rejected: [seed-absorption](seed-absorption.md)'s fold-and-evacuate, grafted into this
+document per its own contest arm - the fold mechanism it contributed survives as the
+graduation step. Retained concession: a true fizzle that accreted nothing and that
+nothing cites may still be deleted - a judgment, never a lifecycle rule.
+
+Sharpened at resolution:
+- **Graduation includes a `cb.repoint` pass.** Moving a document to the archive shelf
+  breaks every `document:` citation into it (the cb:a547 hazard); the graduation
+  procedure swings citations to the new path, and the document-rung verifier (cb:a571)
+  makes a missed pointer a CI failure, not a silent orphan.
+- **The `seed` prop is dead entirely** (with the seed vocabulary itself - cb:a569):
+  `artifact` and `evidence[].artifact` already carry the typed back-pointer; no schema
+  change.
+- **Q7 (the archive shelf) gains the invisibility requirement:** the operator requires
+  archived documents out of the working hierarchy - "redundant architecture that points
+  back to a previous time and can create confusion in new agents" - which rules out
+  archive-in-place and shapes the shelf options (see Open design space).
+- **The graduation prescription mints after Q7** names the shelf, so the policy carries
+  no hole.
 
 ## Related
 - [seed-absorption](seed-absorption.md) - the fold-and-evacuate principle this contests;

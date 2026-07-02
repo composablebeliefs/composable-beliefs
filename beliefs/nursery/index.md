@@ -76,8 +76,8 @@ makes staleness visible; it never silently decides.
 - [contract-predicate-demotion](contract-predicate-demotion.md) - active - drop the redundant contract boolean (derive it) and collapse the c059 carve-out it exposes. Demotion executed 2026-07-01 (`be4ee65`/`c4940b9`); the c059 carve-out decision remains open.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
-- [seed-absorption](seed-absorption.md) - contested - every terminal seed folds into its successor and evacuates (plant -> belief, contest -> winner); challenged by seed-lifecycle.
-- [seed-lifecycle](seed-lifecycle.md) - contested - terminal seeds should graduate (historicize + archive), not evacuate-by-deletion; persisted seed and plan collapse into one durable-brief concept.
+- [seed-absorption](seed-absorption.md) - grafted - lost the 2026-07-02 contest to seed-lifecycle; its fold mechanism survives as the graduation step. Historicized in place pending the Q7 archive shelf.
+- [seed-lifecycle](seed-lifecycle.md) - active - contest resolved 2026-07-02: terminal proto-belief documents graduate (historicize + archive + repoint), never evacuate-by-deletion; the graduation prescription mints once Q7 names the archive shelf (invisibility requirement attached).
 - [seed-recency](seed-recency.md) - active - dating seeds and excerpts to rank competing positions; recency soft, contested-links hard.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
 - [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
