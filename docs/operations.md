@@ -98,10 +98,23 @@ Obligations live in the graph and resumption state in the routing ledger
 
 A SessionEnd finalizer was tried (a marker `/end` dropped, a hook re-copying the
 complete log at true session end, SessionStart recovery for crashes) and
-**removed** (cb:a518). It bought ~1-2 closing turns of no decision content at the
+**removed** (cb:b518). It bought ~1-2 closing turns of no decision content at the
 cost of a marker protocol, a concurrency guard, and a silent-failure surface -
 and produced a real concurrency bug plus a destructive test that swept live state
 (agent-behavior:a108). The accepted trade: the `/end` snapshot is the record;
 turns after it (the close, or work done after `/end`) are captured only by
 **running `/end` again**. If you keep working after a close sweep, re-run `/end`
 before you exit.
+
+**Run `/end` alone, in its own turn (cb:b583).** The Stop hook's render only
+reaches the previous completed turn, so `/end` run *inside* a turn cannot capture
+that turn - the cb:b518 tail-gap now landing on the finalized thread document.
+Do the substantive close work (mint, retro-pair, surface edits, commits) first;
+then invoke `/end` as its own separate exchange. Run that way, the render has
+advanced to include the close, so the embedded body is complete through it and
+only the contentless `/end` turn is omitted. `/end` run inline warns that the
+current turn will not be captured; a same-turn `/final` does not satisfy the rule
+(a turn boundary is a separate exchange, not a second skill call). Whatever
+happens, the thread document's capture-provenance note states the true boundary
+and never claims coverage it lacks (cb:b584) - the fold-chronicle close overstated
+itself by one full topic, which is the failure that note prevents.

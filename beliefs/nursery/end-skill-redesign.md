@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Redesign /end so a thread's finalized record cannot overstate its own completeness
-description: Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn is absent from the body while a provenance note asserts it is present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills. Chosen direction (operator, 2026-07-03): keep the self-contained embedded transcript body, run /end alone in its own turn so the render has caught up, warn on inline invocation, and keep a completeness-honesty backstop. The render-pointer alternative was considered and rejected on a duplication argument. Gates the /end rewrite.
+description: Covers the cb:b518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn is absent from the body while a provenance note asserts it is present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills. Chosen direction (operator, 2026-07-03): keep the self-contained embedded transcript body, run /end alone in its own turn so the render has caught up, warn on inline invocation, and keep a completeness-honesty backstop. The render-pointer alternative was considered and rejected on a duplication argument. Gates the /end rewrite.
 tags: [nursery, threads, provenance, end-skill, observability]
 status: active
 timestamp: 2026-07-03
@@ -19,10 +19,10 @@ Stop hook's render only ever contains through the *previous completed* turn - th
 for turn N is written after turn N's response lands, so an `/end` that runs *inside* turn N
 reads a render frozen at turn N-1. The turn that runs `/end` (and any substantive close
 work done in it), plus everything after, is therefore absent from the finalized body. This
-is the recurring cb:a518 tail-gap, now landing on the one artifact the framework treats as
+is the recurring cb:b518 tail-gap, now landing on the one artifact the framework treats as
 the curated close record.
 
-The tail-gap alone is a known, accepted tradeoff (cb:a518, evidence 8: the SessionEnd
+The tail-gap alone is a known, accepted tradeoff (cb:b518, evidence 8: the SessionEnd
 finalizer that tried to close it was removed as more failure surface than the one-to-two
 closing turns of no-decision-content it recovered). What this document captures is the
 *second* failure the single-artifact close (cb:b578) introduced on top of it: the
@@ -67,7 +67,7 @@ in a *later turn* than the substantive close.
    the render `/end` reads has caught up: it now includes turn N, so the finalized body
    includes the close turn. The finalizer's own turn (N+1) becomes the only gap, and it
    carries no decision content - which is precisely the tradeoff the house already accepted
-   at cb:a518. Split the skills and run them in one turn and it fixes nothing (see option
+   at cb:b518. Split the skills and run them in one turn and it fixes nothing (see option
    2). The split itself is not needed: a single `/end` run in its own later turn achieves
    the same boundary (skill-shape resolved below).
 
@@ -170,8 +170,8 @@ matter simply happens to produce only rules.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | `/end` runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. Run in a later turn, the render has advanced to include the close turn, so the finalized document's embedded transcript body contains it; the only omitted turn is the `/end` invocation turn, which carries no decision content and needs no disclosure. `/end` invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a `/final` running close and finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call. | cb:a518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
-| prescription | A finalized thread document's provenance note must not assert coverage the body lacks: it states the exact last turn the embedded body covers and never claims the close turn or any later turn is present when it is absent. This is the backstop that keeps the artifact truthful even when `/end` is run inline against a render frozen at the previous completed turn - the fold-chronicle overstatement is the failure it prevents. | cb:a518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
+| prescription | `/end` runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. Run in a later turn, the render has advanced to include the close turn, so the finalized document's embedded transcript body contains it; the only omitted turn is the `/end` invocation turn, which carries no decision content and needs no disclosure. `/end` invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a `/final` running close and finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call. | cb:b518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
+| prescription | A finalized thread document's provenance note must not assert coverage the body lacks: it states the exact last turn the embedded body covers and never claims the close turn or any later turn is present when it is absent. This is the backstop that keeps the artifact truthful even when `/end` is run inline against a render frozen at the previous completed turn - the fold-chronicle overstatement is the failure it prevents. | cb:b518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
 
 ## Thread excerpts (what grounds this)
 
@@ -193,7 +193,7 @@ line that this is problematic in the last turn won't be captured." And on the dr
 "the turn that is lost is always just me running /End, then I don't see the issue. It
 doesn't really need to be declared that that is being dropped."
 
-**cb:a518, evidence 8 (the accepted tradeoff this builds on):** "the SessionEnd hook ...
+**cb:b518, evidence 8 (the accepted tradeoff this builds on):** "the SessionEnd hook ...
 was too much fragile machinery for ~1-2 closing turns of no decision content ... Turns
 after it (the close, or work done after /end) are captured by re-running /end; the operator
 accepted that trade." Turn-separation is that same tradeoff made the default: finalize in a
@@ -207,7 +207,7 @@ turn the body does not contain.
 ## Related
 
 - [transcript-format](transcript-format.md) - the persistence pipeline this modifies; its
-  "render must not lag a turn" decision is the same cb:a518 tail-gap at the hook layer. Its
+  "render must not lag a turn" decision is the same cb:b518 tail-gap at the hook layer. Its
   repo-weight/LFS question no longer gates this redesign, since the chosen direction keeps
   the embedded body rather than pointing at the render.
 - cb:b578 - the single-artifact close this redesign amends; the prescription whose body is
@@ -216,7 +216,7 @@ turn the body does not contain.
   embedded body, unchanged.
 - cb:b386 - the cached-digest antipattern; the honesty backstop and the turn-separation rule
   keep the embedded body from becoming the stale, self-misdescribing copy it warns against.
-- cb:a518 - the tail-gap history and the accepted no-decision-content tradeoff this makes
+- cb:b518 - the tail-gap history and the accepted no-decision-content tradeoff this makes
   the default rather than fighting.
 - cb:b507 - retro-pairing and the pair-then-write ordering the redesign must keep legal; the
   embedded-body direction leaves that ordering untouched.
