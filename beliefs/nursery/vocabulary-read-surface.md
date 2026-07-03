@@ -72,8 +72,40 @@ which is what render-time aliasing achieves without moving a single node.
   a belief with provenance.
 - Scope discipline: phrase-level entries only (the id-alias exact-match lesson); never
   bare common words.
-- Whether the worst active offenders (b567, b572) additionally warrant supersession with
-  claims re-worded to current vocabulary, or whether aliasing alone carries the load.
+- ~~Whether the worst active offenders (b567, b572) additionally warrant supersession~~ -
+  executed 2026-07-03 as the option-2 test; findings below.
+
+## The option-2 test (2026-07-03): executed, findings
+
+Operator-decided ("I lean towards 2 as a test"): cb:b567 and cb:b572 were superseded by
+meaning-identical re-issues in current vocabulary - cb:b581 and cb:b582 - through the
+sanctioned doors. What two wording-only supersessions actually cost:
+
+1. **Preflight is re-paid in full.** The re-issued claims re-triggered the known
+   schema-token contract overlaps (cb:b052/b059 contract-level, cb:b398/b399 dag-schema),
+   each re-adjudicated as topical overlap per the cb:b569 mint precedent - adjudication
+   the original mints had already paid, repeated for zero new content.
+2. **The cascade is transitive.** Two supersessions flagged five nodes: cb:b569 and
+   cb:b578 directly, and cb:b570, cb:b577, cb:b540 through them. Two repoint passes
+   (cb:b569 -> b581, cb:b578 -> b582) cleared it; each repoint stamped evidence on the
+   repointed node.
+3. **The mirrors leak.** The wording fix escaped the graph: the glossary's
+   referenced-beliefs entries needed their dep lines and source line numbers re-done, and
+   the nursery index and both documents' descriptions gained re-issue notes. Every
+   surface that mirrors graph state is a maintenance obligation per supersession.
+4. **Forward links now hop.** The minting documents' `minted:` records and manifest
+   Minted cells still point at the originals (kept deliberately - they record the plant
+   event), so every dereference passes through a superseded-see-successor banner,
+   permanently.
+5. **The ledger.** Per node: one preflight adjudication, one supersession write, one or
+   more repoints, two-plus commits, and mirror maintenance - linear in nodes swept,
+   transitive in dependents. Both conventions now read in current vocabulary at the top
+   of `mix bs show`, which is what the test bought.
+
+Net: confirms the scaling argument - re-issue is affordable for a handful of central
+nodes and unaffordable as a rename-epoch policy. The class fix remains render-time
+annotation or [graph-refounding](graph-refounding.md), which would launder vocabulary
+wholesale at the milestone.
 
 ## Related
 
