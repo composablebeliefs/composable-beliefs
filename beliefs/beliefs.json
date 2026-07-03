@@ -6536,7 +6536,8 @@
       "cb:b489",
       "cb:b497"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:b578",
     "created": "2026-06-11"
   },
   {
@@ -9052,5 +9053,38 @@
     ],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b578",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "thread-persistence",
+      "threads",
+      "chronicles",
+      "observability"
+    ],
+    "claim": "Every thread that does substantive work persists once at close: as the thread document, which opens with an operator-facing narrative section carrying the chronicle's register - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits - narrative carrying the load, ids subordinate. The narrative section serves the steering, the thread body serves the audit, the graph serves the work: obligations already live in the graph and resumption state in the routing ledger, so the narrative was the chronicle's only surviving load and it travels with the thread instead of on a separate shelf. chronicles/ is closed to new entries; the existing files are historical record kept in place because references point into them, with physical archiving gated on the archive-shelf decision and a cb.repoint pass.",
+    "artifact": "user:mark:2026-07-02",
+    "evidence": [
+      {
+        "date": "2026-07-02",
+        "detail": "Operator decision in the fold-chronicle-into-threads session: the narrative register survives, the separate shelf does not. The b520 protocol's two artifacts had converged - the thread document already carries the condensed record, obligations live in the graph (b489) and resumption state in the routing ledger (b572) - leaving the operator narrative as the chronicle's only load not carried elsewhere, so it moves into the thread document as its opening section. The shelf closes the way plans/ closed (b569 precedent): a README marks it historical, files stay in place because document: references point into them.",
+        "artifact": "user:mark:2026-07-02"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Accepted via human adjudication against cb:b520. Reasoning: Operator decision (2026-07-02): the chronicle's narrative register survives, the separate chronicles/ shelf does not. b520's twice-at-close protocol is folded into a single artifact - the thread document opening with the operator-facing narrative section - because the chronicle's other loads already live elsewhere: obligations in the graph (cb:b489), resumption state in the routing ledger (cb:b572). The successor closes chronicles/ to new entries; existing files stay in place as historical record pending the archive-shelf decision.",
+        "artifact": "adjudication:human:2026-07-02-fold-chronicle-into-threads"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b489",
+      "cb:b572"
+    ],
+    "status": "active",
+    "created": "2026-07-03"
   }
 ]
