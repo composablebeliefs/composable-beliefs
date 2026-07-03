@@ -9140,6 +9140,11 @@
         "date": "2026-07-03",
         "detail": "deps + cb:b582 via dag-proposal 2026-07-03-vocabulary-reissue-test",
         "artifact": "session:2026-07-03-vocabulary-reissue-test"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
       }
     ],
     "subjects": [],
@@ -9174,6 +9179,11 @@
         "date": "2026-07-03",
         "detail": "Renumbered from cb:a566 (as minted on the PR #8 branch, which forked before the id migration) during the merge with main: serial 566 is taken in the letter-swap alias space by cb:b566, so the pure letter-swap could not apply - the same collision class as the a566 -> b572 renumber in the migration merge. Minted here as the next free b-serial.",
         "artifact": "session:2026-07-03-fix-pr8-merge"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
       }
     ],
     "subjects": [
@@ -9246,6 +9256,11 @@
         "date": "2026-07-03",
         "detail": "Accepted via human adjudication against cb:b567. Reasoning: Vocabulary re-issue, meaning-identical: the operator's option-2 test (beliefs/nursery/vocabulary-read-surface.md, decided 2026-07-03) - supersede solely to reword the claim from the retired register into the cb:b569 vocabulary, measuring what burning a supersession on wording actually costs. No substantive change: type, kind, domain, tags, subjects, deps, and grounding artifact carried unchanged. Preflight 2026-07-03 on the re-issue: the original node surfaces as a supportive match (the supersession target); the contract-level hits (cb:b052, cb:b059) and dag-schema hits (cb:b398, cb:b399) on b567's wording are the known schema-token topical overlaps, dismissed per the cb:b569 mint precedent - this convention governs nursery documents, not DAG node field presence or grounding. A re-issue re-pays the full preflight adjudication its original mint already paid: recorded as a test finding.",
         "artifact": "adjudication:human:2026-07-03-vocabulary-reissue-test"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
       }
     ],
     "subjects": [
@@ -9283,6 +9298,11 @@
         "date": "2026-07-03",
         "detail": "Accepted via human adjudication against cb:b572. Reasoning: Vocabulary re-issue, meaning-identical: the operator's option-2 test (beliefs/nursery/vocabulary-read-surface.md, decided 2026-07-03) - supersede solely to reword the claim from the retired register into the cb:b569 vocabulary, measuring what burning a supersession on wording actually costs. No substantive change: type, kind, domain, tags, subjects, deps, and grounding artifact carried unchanged. Preflight 2026-07-03 on the re-issue: the original node surfaces as a supportive match (the supersession target); the contract-level hits (cb:b052, cb:b059) and dag-schema hits (cb:b398, cb:b399) on b567's wording are the known schema-token topical overlaps, dismissed per the cb:b569 mint precedent - this convention governs nursery documents, not DAG node field presence or grounding. A re-issue re-pays the full preflight adjudication its original mint already paid: recorded as a test finding.",
         "artifact": "adjudication:human:2026-07-03-vocabulary-reissue-test"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
       }
     ],
     "subjects": [
