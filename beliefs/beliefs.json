@@ -9099,6 +9099,16 @@
     "deps": [
       "cb:b569"
     ],
+    "materialized": {
+      "date": "2026-07-03",
+      "todos": [
+        {
+          "action": "Archive shelf decided: graduated proto-belief documents live in beliefs/archive/, a sibling outside the nursery bundle (okf.manifest scans nursery/ only, so archived docs leave the live read surface). First graduation: end-skill-redesign.md.",
+          "id": "t0027",
+          "notes": "Operator decision 2026-07-03; shelf established at commit a77adbab7b7fd28ed3fffd80b26f8b98d6b2e987. Resolves Q7 of seed-lifecycle."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-07-02"
   },
