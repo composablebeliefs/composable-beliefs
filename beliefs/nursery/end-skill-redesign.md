@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Redesign /end so a thread's finalized record cannot overstate its own completeness
-description: Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn and everything after it are absent from the body while a provenance note asserts they are present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills, and proposes dropping the frozen transcript body in favor of a pointer to the continuously-rendered transcript. Gates the /end rewrite; the render-pointer form depends on transcript-format's open repo-weight question.
+description: Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn is absent from the body while a provenance note asserts it is present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills. Chosen direction (operator, 2026-07-03): keep the self-contained embedded transcript body, run /end alone in its own turn so the render has caught up, warn on inline invocation, and keep a completeness-honesty backstop. The render-pointer alternative was considered and rejected on a duplication argument. Gates the /end rewrite.
 tags: [nursery, threads, provenance, end-skill, observability]
 status: active
 timestamp: 2026-07-03
@@ -63,116 +63,115 @@ cleanly, and the separator is not how many skills there are but whether finaliza
 in a *later turn* than the substantive close.
 
 1. **Split into `/transcript` + `/end`.** Works - but *only* if the two run in separate
-   turns. If `/transcript` (or the substantive close work) lands in turn N and `/end`
-   runs in turn N+1, then the render `/end` reads has caught up: it now includes turn N,
-   so the finalized body includes the close turn. The finalizer's own turn (N+1) becomes
-   the only gap, and it carries no decision content - which is precisely the tradeoff the
-   house already accepted at cb:a518. Split the skills and run them in one turn and it
-   fixes nothing (see option 2).
+   turns. If the substantive close work lands in turn N and `/end` runs in turn N+1, then
+   the render `/end` reads has caught up: it now includes turn N, so the finalized body
+   includes the close turn. The finalizer's own turn (N+1) becomes the only gap, and it
+   carries no decision content - which is precisely the tradeoff the house already accepted
+   at cb:a518. Split the skills and run them in one turn and it fixes nothing (see option
+   2). The split itself is not needed: a single `/end` run in its own later turn achieves
+   the same boundary (skill-shape resolved below).
 
 2. **A `/final` skill that runs both successively.** Does *not* close the gap. Successive
    means same turn. Two skills invoked back to back inside turn N both read the render
    frozen at turn N-1; the close turn is still absent. Same-turn is same-staleness
    regardless of how the work is packaged into skills. This is the option that proves the
    variable is turns: it changes the skill count and nothing else, and nothing else
-   changes.
+   changes. Rejected.
 
 3. **Reorder events within `/end`.** Fixes the *honesty* of the provenance note but not
-   the *structural* gap. Ordering `/end`'s own steps can make it compute and state the
-   true boundary ("this body covers through turn N-1; the close turn is not transcribed"),
-   which removes the overstatement. But the close turn's content is still not in the body -
-   reordering cannot pull in a turn whose render does not yet exist. Honest, not complete.
+   the *structural* gap on its own. Ordering `/end`'s own steps can make it state the true
+   boundary ("this body covers through turn N-1; the close turn is not transcribed"), which
+   removes the overstatement - this survives as the honesty backstop below. But reordering
+   alone cannot pull in a turn whose render does not yet exist. Honest, not complete;
+   necessary but not sufficient.
 
 The finding: a single turn's finalized artifact can only ever contain through the previous
 completed turn, because the render it reads is written at turn boundaries. No arrangement
 of skills changes that. Only interposing a turn boundary between the substantive close and
-the finalization lets the render catch up. "Split into two skills" is the *mechanism* that
-makes it natural to interpose that boundary; the boundary is the fix, and the skill shape
-is downstream of it.
+the finalization lets the render catch up - and a turn boundary is a *separate exchange*,
+not a second skill call.
 
-## The stronger proposal: stop embedding a frozen transcript body
+## Chosen direction (operator, 2026-07-03)
 
-There is a cleaner move than racing the render one turn ahead. Stop embedding a frozen
-transcript body in the thread document at all.
+Keep the self-contained embedded transcript body; make it complete by running `/end` in a
+later turn; back it with an honesty note. Three parts:
 
-The Stop hook already persists the render continuously and stages it to ride along with
-the session's commits - a live, self-updating, committed artifact. Embedding a second copy
-of those turns in the thread document, snapshotted at close, is a cached duplicate of
-graph-adjacent content whose freshness depends on when `/end` happened to run. That is the
-cb:b386 antipattern in miniature: a persisted copy that embeds the staleness it was meant
-to remove, and here it does worse than go stale - it can misdescribe itself, as the
-fold-chronicle body does.
+1. **Keep the embedded transcript body.** The thread document stays a self-contained,
+   readable record - narrative section, routing ledger, and the turn-by-turn body inline -
+   not a pointer to a file elsewhere. (Why not the pointer alternative: next section.)
 
-Have the finalized thread document carry only what it *synthesizes* and nothing it merely
-*copies*:
+2. **`/end` runs alone, in its own turn.** The substantive close work happens in one turn;
+   `/end` is invoked in the *next* turn, as its own exchange, never inline with close work.
+   By then the hook has rendered the close turn, so the embedded body includes it. The only
+   omitted turn is the `/end` invocation turn itself - which is nothing but "run `/end`",
+   carries no decision content, and needs no disclosure that it was dropped (operator: the
+   lost turn is always just the operator running `/end`, so there is no issue to declare).
 
-- the operator-facing **narrative section** (cb:b578) - where things stood, the arc, where
-  things stand, what the next session inherits;
-- the **routing ledger** (cb:b572/b582) - one row per topic, states and pointers only;
-- a **pointer to the render** (`threads/.sessions/<date>-<session>.md`) as the single
-  raw-turn surface, in place of the embedded body.
+3. **Warn on inline invocation, and never overstate.** Because the turn-separation rule is
+   procedural (someone must run `/end` as a follow-up turn rather than inline), it is
+   guarded two ways: `/end` invoked inline emits a **warning** that the current turn will
+   not be captured in the finalized body; and whatever happens, the provenance note states
+   the true boundary rather than claiming completeness it lacks. The honesty note is the
+   backstop that makes the artifact truthful even when the workflow rule is violated - the
+   exact failure the fold-chronicle close demonstrates.
 
-This dissolves the tail-gap for the raw record rather than racing it. A pointer to a
-continuously-updated file is never stale: the render keeps catching up each turn (and the
-ride-along commit rewrites it), so by the time any reader dereferences the pointer it
-resolves to the current render, close turn included. Nothing frozen means nothing to
-overstate. The narrative section stays a synthesis a human or agent scopes honestly at
-close; it never claims turn-by-turn completeness, so it carries no false-completeness risk.
-This also realigns the thread document with the accepted cb:a518 tradeoff instead of
-fighting it: the raw record is the live render, and "turns after `/end` are captured by the
-render continuing to update" replaces "turns after `/end` are lost from the frozen body."
+This keeps the render pointer's one real advantage (a body that actually reaches the close)
+without its cost, and it leaves the raw jsonl punted (unchanged): the readable, committed
+record is the embedded body in the thread document.
 
-**The snag to surface.** This makes the committed `.sessions/` render load-bearing: it
-becomes the only turn-by-turn surface the thread document offers, so the pointer must
-durably resolve. That is the still-open repo-weight question in
-[transcript-format](transcript-format.md). Today the render lane *is* committed inline (only
-the raw jsonl is gitignored and punted, per the 2026-07-03 operator deferral), so the
-pointer resolves now. But any future move that bounds repo weight by pruning or
-externalizing renders (the LFS lean, or a render-side equivalent) would dangle the pointer.
-So the render-pointer form cannot be adopted independently of transcript-format settling
-that the render is permanently retained and in-repo-resolvable. The turn-separation fix
-(option 1 done right) has no such dependency and can stand alone if the render-pointer form
-is held.
+## Considered and rejected: the render-pointer form
+
+The alternative was to stop embedding a body at all and have the thread document carry only
+its synthesized parts (narrative, routing ledger) plus a *pointer* to the continuously
+rendered `.sessions/` transcript. Its appeal was that a pointer to a live-updating file is
+never stale - it self-heals to include the close turn - so it would dissolve the tail-gap
+rather than race it, and it would remove a cb:b386-style frozen duplicate.
+
+It was rejected on a duplication argument (operator, 2026-07-03):
+
+- **The readable render exists no matter what.** The Stop hook must write it live for
+  crash-safety, before `/end` ever runs, and the operator needs it readable. So there is
+  always one unavoidable readable copy of the exchange. Every other copy is a *second* one.
+- **The jsonl is the duplicate not worth paying for**, and it stays punted: it is mostly
+  the render's information plus reasoning and tool-calls, at permanent repo-weight cost.
+- **The embedded body is the second copy worth paying for.** The render lives in a hidden
+  `.sessions/` *draft lane*; pointing the curated, operator-facing thread document into a
+  hidden draft file makes the curated artifact *hollow* - a pointer, not a document you can
+  read on its own. The duplication (live render + finalized embedded body) buys a
+  self-contained, readable, curated record, which is what the thread document is for.
+
+So the render-pointer's freshness advantage is recovered by turn-separation instead, and
+the self-contained body is kept. This also **dissolves the transcript-format dependency**
+the earlier draft of this document carried: because the thread document no longer relies on
+the `.sessions/` render being permanently canonical, transcript-format's open
+repo-weight/LFS question no longer gates this redesign.
 
 ## Open
 
-- **Which structural fix.** Turn-separation (option 1, finalize in a later turn than the
-  close) versus the render-pointer form (drop the frozen body). They are not exclusive: the
-  render-pointer form removes the body whose staleness turn-separation was racing, so if it
-  lands, turn-separation of the *body* is moot and only the narrative-synthesis ordering
-  remains. Lean: render-pointer, because it fixes the class rather than the instance - but
-  it is gated (below).
-- **The transcript-format dependency.** The render-pointer form is gated on
-  transcript-format confirming the committed render is durably retained and in-repo
-  resolvable. Resolve that question first, or adopt turn-separation as the unblocked
-  interim and upgrade later.
-- **If a frozen body is retained** (render-pointer held or rejected): does `/end` compute
-  and state the true last-covered turn in the provenance note (option 3), and how does it
-  read that boundary - by diffing the render's last turn against the live session, or by
-  stamping the render with a turn count the note can cite?
-- **Narrative honesty independent of the body.** Even with the body gone, the narrative is
-  written before the close turn completes. Does the narrative disclose that its own close is
-  synthesized-forward (the writer describing the close they are about to perform), and is
-  that disclosure a fixed line `/end` emits?
-- **Skill shape.** `/transcript` + `/end`, a single reordered `/end`, or `/final` - this is
-  the mechanism, decided after the turn-boundary question, not before it. Option 2 (`/final`
-  successive) is ruled out on the merits: it does not interpose a turn boundary.
-- **Interaction with retro-pairing (cb:b507).** The adopted pair-then-write ordering
-  already writes the `document:` pointer before `/end` creates its target in the same close.
-  A render-pointer thread document changes what "its target" is; confirm the pairing still
-  lands cleanly when the body is a pointer rather than an embedded transcript.
+- **How `/end` reads the boundary for the honesty note.** The note needs the last turn the
+  body actually covers. Deferred deliberately (operator): under the turn-separation rule the
+  boundary is predictable - the body covers through the close turn and only the `/end` turn
+  is omitted - so a precise dynamic computation is not needed to get the system going. The
+  mechanism (compare the render's last turn against the live session, or stamp the render
+  with a turn count the note can cite) can be designed when a concrete need arises.
+- **The inline-invocation warning mechanism.** The rule is that `/end` run inline warns that
+  the current turn will not be captured. How the warning fires needs design: `/end`
+  self-checking whether its own turn also did substantive close work, a Stop-hook check, or
+  a comparison of the live turn against the render. Detecting "inline" reliably is the open
+  part; the warning's *content* and *intent* are settled.
 
 ## Mint manifest
 
-The honesty invariant is firm regardless of which structural fix wins; the structural rows
-are candidates gated on the Open calls above and on the transcript-format dependency. This
-document gates the `/end` rewrite - nothing here is planted until the calls resolve.
+Two prescriptions. Both are candidates (unplanted) while the warning mechanism and the
+`/end` rewrite are gated on this document. The type is `prescription` for both because a
+`/end` redesign mints rules; a mint manifest is not limited to prescriptions (its rows can
+be any of the four belief types - attestation, aggregation, inference, prescription) - this
+matter simply happens to produce only rules.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | A finalized thread document must not assert coverage it lacks: its provenance note states the exact last turn its embedded body covers and never claims that the close turn or any later turn is present when it is absent. A finalized body is a frozen snapshot bounded by the render's previous-completed-turn horizon, so any completeness claim is scoped to that horizon. | cb:a518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
-| prescription | A finalized thread document embeds no frozen transcript body. It carries the synthesized narrative section and routing ledger, plus a pointer to the continuously-rendered threads/.sessions/ transcript as the single raw-turn surface; the embedded turn-by-turn copy is retired as a cb:b386 stale duplicate. Adoption is gated on transcript-format confirming the render is durably retained and in-repo resolvable. | cb:b386, cb:b578, cb:b582 | document:beliefs/nursery/end-skill-redesign.md | - |
-| prescription | If a finalized thread document retains a frozen transcript body, its finalization runs in a later turn than the session's substantive close, so the render has advanced to include the close turn; the finalizer's own turn is then the only omitted turn and carries no decision content. Same-turn successive finalization (a /final that runs the close and the finalize in one turn) does not satisfy this and is rejected. | cb:a518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
+| prescription | `/end` runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. Run in a later turn, the render has advanced to include the close turn, so the finalized document's embedded transcript body contains it; the only omitted turn is the `/end` invocation turn, which carries no decision content and needs no disclosure. `/end` invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a `/final` running close and finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call. | cb:a518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
+| prescription | A finalized thread document's provenance note must not assert coverage the body lacks: it states the exact last turn the embedded body covers and never claims the close turn or any later turn is present when it is absent. This is the backstop that keeps the artifact truthful even when `/end` is run inline against a render frozen at the previous completed turn - the fold-chronicle overstatement is the failure it prevents. | cb:a518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
 
 ## Thread excerpts (what grounds this)
 
@@ -181,11 +180,24 @@ Cycle is active at this time, and to what degree ... my description here reflect
 The spike found the top half of the cycle pending because `/end` had never run, which set
 up the first `/end` close and its tail-gap.
 
+**Operator (the duplication argument, rejecting the pointer form):** "if we persist and
+commit the JSONL, we are stuck without a readable transcript of the exchange, which is
+important for the human operator. So either way, it looks to me like we have a duplicate ...
+we should move forward with the embedded transcript and forgo persisting the jsonl and
+pointing to that."
+
+**Operator (the turn-separation rule and its guard):** "The slash end skill should always be
+called alone. It should never be run in line. One way this could be guarded against is a
+belief that's minted in the graph to always provide a warning if end has been provided in
+line that this is problematic in the last turn won't be captured." And on the dropped turn:
+"the turn that is lost is always just me running /End, then I don't see the issue. It
+doesn't really need to be declared that that is being dropped."
+
 **cb:a518, evidence 8 (the accepted tradeoff this builds on):** "the SessionEnd hook ...
 was too much fragile machinery for ~1-2 closing turns of no decision content ... Turns
 after it (the close, or work done after /end) are captured by re-running /end; the operator
-accepted that trade." The render-pointer form generalizes that acceptance from re-running
-`/end` to a live pointer that never needs re-running.
+accepted that trade." Turn-separation is that same tradeoff made the default: finalize in a
+later turn so only the contentless finalizer turn is lost.
 
 **The fold-chronicle provenance note (the overstatement, verbatim from the finalized
 body):** "the close turn is summarized here, not transcribed - the receipts end at the
@@ -195,16 +207,22 @@ turn the body does not contain.
 ## Related
 
 - [transcript-format](transcript-format.md) - the persistence pipeline this modifies; its
-  open repo-weight/LFS question gates the render-pointer form, and its "render must not lag
-  a turn" decision is the same cb:a518 tail-gap at the hook layer.
+  "render must not lag a turn" decision is the same cb:a518 tail-gap at the hook layer. Its
+  repo-weight/LFS question no longer gates this redesign, since the chosen direction keeps
+  the embedded body rather than pointing at the render.
 - cb:b578 - the single-artifact close this redesign amends; the prescription whose body is
   the thing overstating itself.
-- cb:b572 / cb:b582 - the routing ledger, which survives the redesign unchanged as
-  pointers-only synthesis.
-- cb:b386 - the cached-digest antipattern the frozen-body copy instantiates.
-- cb:a518 - the tail-gap history and the accepted no-decision-content tradeoff this works
-  with rather than against.
-- cb:b507 - retro-pairing and the pair-then-write ordering the redesign must keep legal.
+- cb:b572 / cb:b582 - the routing ledger, which the thread document keeps alongside the
+  embedded body, unchanged.
+- cb:b386 - the cached-digest antipattern; the honesty backstop and the turn-separation rule
+  keep the embedded body from becoming the stale, self-misdescribing copy it warns against.
+- cb:a518 - the tail-gap history and the accepted no-decision-content tradeoff this makes
+  the default rather than fighting.
+- cb:b507 - retro-pairing and the pair-then-write ordering the redesign must keep legal; the
+  embedded-body direction leaves that ordering untouched.
+- [mint-manifest](mint-manifest.md) - the convention this document's Mint manifest section
+  follows (cb:b567, re-issued cb:b581); see the note there on why the section is named as it
+  is and carries all four belief types, not only prescriptions.
 - [vocabulary-read-surface](vocabulary-read-surface.md) - a sibling read-surface-hygiene
   matter from the same session; the caution against echoing retired registers applies to
   this document's own vocabulary.

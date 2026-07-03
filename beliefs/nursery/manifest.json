@@ -92,7 +92,7 @@
       "path": "end-skill-redesign.md",
       "type": "concept",
       "title": "Redesign /end so a thread's finalized record cannot overstate its own completeness",
-      "description": "Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn and everything after it are absent from the body while a provenance note asserts they are present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills, and proposes dropping the frozen transcript body in favor of a pointer to the continuously-rendered transcript. Gates the /end rewrite; the render-pointer form depends on transcript-format's open repo-weight question.",
+      "description": "Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn is absent from the body while a provenance note asserts it is present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills. Chosen direction (operator, 2026-07-03): keep the self-contained embedded transcript body, run /end alone in its own turn so the render has caught up, warn on inline invocation, and keep a completeness-honesty backstop. The render-pointer alternative was considered and rejected on a duplication argument. Gates the /end rewrite.",
       "tags": [
         "nursery",
         "threads",
