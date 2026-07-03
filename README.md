@@ -112,7 +112,7 @@ Essays and records:
 - **[Operations vs artifacts](docs/operations-vs-artifacts.md)** - the hidden complexity gap between doing and recording.
 - **[Field note: shared provenance](docs/2026-06-01-shared-provenance-shallow-clone-parable.md)** - "verify against ground truth" is necessary but not sufficient.
 
-Design records and executed plans live in `plans/`; session narratives in `chronicles/`; anchored stances in `positions/`.
+Anchored stances live in `positions/`; session narratives open the thread documents in `beliefs/nursery/threads/` (cb:b578). `plans/` and `chronicles/` are closed shelves - historical record kept in place because references point into them.
 
 ## Origin
 

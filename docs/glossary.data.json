@@ -259,8 +259,8 @@
   },
   "chronicle": {
     "name": "Chronicle",
-    "short": "A dated prose narrative for the operator - where things stood and stand, story beats, what the next session inherits - in which narrative carries the load and ids stay subordinate.",
-    "def": "A chronicle (cb:b520) is a dated prose narrative for the operator, living in <code>chronicles/</code>: where things stood and stand, the story beats, and what the next session inherits. The division of labor is that the transcript serves the audit, the graph serves the work, and the chronicle serves the steering. In a chronicle narrative carries the load and ids stay subordinate, the inverse of the receipts register a <a href='glossary.html#transcript'>transcript</a> is.",
+    "short": "Retired artifact: the dated operator narrative that lived in chronicles/; its register now opens each thread document as the operator-facing narrative section.",
+    "def": "A chronicle (cb:b520, superseded by cb:b578) was a dated prose narrative for the operator, shelved in <code>chronicles/</code>: where things stood and stand, the story beats, and what the next session inherits, with narrative carrying the load and ids subordinate. The register survives as the operator-facing narrative section that opens every thread document; the shelf is closed to new entries and kept in place as historical record because references point into it. The division of labor persists inside the single artifact: the narrative section serves the steering, the thread body serves the audit, and the graph serves the work, the inverse-register pairing a <a href='glossary.html#transcript'>transcript</a> body and its narrative section form.",
     "see": [
       "transcript",
       "decision-weight-session",
@@ -1144,7 +1144,7 @@
   "lap-log": {
     "name": "Lap Log",
     "short": "A scratch markdown file the agent appends to station-by-station so the operator can watch a working session live in a split.",
-    "def": "The lap log (cb:b497) is a scratch markdown file the agent appends to station-by-station (<code>tmp/lap-log.md</code>), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable <a href='glossary.html#chronicle'>chronicle</a> and <a href='glossary.html#transcript'>transcript</a>, and it embodies the rule that <a href='glossary.html#session-memory-cache'>session memory is a cache</a>, not a store.",
+    "def": "The lap log (cb:b497) is a scratch markdown file the agent appends to station-by-station (<code>tmp/lap-log.md</code>), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable <a href='glossary.html#transcript'>thread document</a>, and it embodies the rule that <a href='glossary.html#session-memory-cache'>session memory is a cache</a>, not a store.",
     "see": [
       "chronicle",
       "transcript",
@@ -2112,8 +2112,8 @@
   },
   "transcript": {
     "name": "Transcript",
-    "short": "The condensed record of a thread, co-located with its plan set; it serves the audit, while the graph serves the work and the chronicle serves the steering.",
-    "def": "A transcript (cb:b520, cb:b540) is the condensed record of a substantive thread, co-located with its plan set, that serves the audit. Every substantive thread persists twice at close - as a transcript and as a <a href='glossary.html#chronicle'>chronicle</a> - so the audit trail and the operator narrative are both kept. A <a href='glossary.html#decision-weight-session'>decision-weight session</a> persists its thread verbatim, routed by subject.",
+    "short": "The condensed record of a thread; it serves the audit, while the graph serves the work and the thread document's opening narrative section serves the steering.",
+    "def": "A transcript (cb:b578, cb:b540) is the condensed record of a substantive thread, and it serves the audit. A substantive thread persists once at close, as the thread document: the transcript body under an operator-facing narrative section carrying the former <a href='glossary.html#chronicle'>chronicle</a> register, so the audit trail and the operator narrative are kept in one artifact. A <a href='glossary.html#decision-weight-session'>decision-weight session</a> persists its thread verbatim, routed by subject.",
     "see": [
       "chronicle",
       "decision-weight-session",

@@ -19,6 +19,14 @@ loses the discussion) and **human reading** (what you scan without wading throug
 grounds in a seed, never in a transcript. A transcript is a convenience and a safety net,
 nothing the graph depends on.
 
+**At close, the thread document is the single persisted artifact** (cb:b578): it opens
+with an operator-facing narrative section carrying the register the chronicles used to
+hold - where things stood, the arc with its incidents as story beats, where things stand
+now, and what the next session inherits - narrative carrying the load, ids subordinate.
+The turn-by-turn body below it is the receipts register. Obligations live in the graph
+and resumption state in the routing ledger (cb:b572), so no separate chronicle is
+written; `chronicles/` is a closed shelf.
+
 Live transcripts are captured automatically by a `Stop` hook
 (`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
 is gitignored and skipped by this bundle's manifest, because it is rewritten every turn.

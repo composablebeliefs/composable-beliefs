@@ -25,12 +25,18 @@ beliefs - their shared format, and what gets committed.
 ```
 host jsonl ──(hook copies in, every turn, crash-safe)──► repo raw jsonl
           ──(hook renders)──────────────────────────────► readable render (responses-only)
-          ──(/end)──────────────────────────────────────► metadata populated (frontmatter + digest)
+          ──(/end)──────────────────────────────────────► metadata populated (frontmatter + narrative section + digest)
           ──(human + agent)─────────────────────────────► seed docs (excerpts + synthesis)
           ──(mint)──────────────────────────────────────► beliefs + directives
 ```
 
 ## Decisions
+- **Single artifact at close. (2026-07-02, cb:b578.)** The thread document is the only
+  persisted close artifact, and it opens with the operator-facing narrative section - the
+  chronicle register folded in (where things stood, the arc as story beats, where things
+  stand, what the next session inherits; narrative load-bearing, ids subordinate).
+  `chronicles/` is closed to new entries, so the `/end` metadata step synthesizes the
+  narrative section along with the frontmatter and digest; no separate chronicle write.
 - **Persist the raw, not just the render. (Reopened 2026-06-26 → raw.)** A framework whose
   purpose is agent observability should persist exactly what lets agent behavior be
   audited - the reasoning and actions, not only the agent's self-report (the render is the
@@ -90,8 +96,10 @@ tracker + floor brief), not a new plan type.
    responses-only render; **preserve an existing frontmatter block** on rewrite so `/end`
    metadata survives the every-turn regeneration; **fix the one-turn lag** so the render
    includes the triggering response (the `cb:a518` tail-gap).
-3. **/end step:** synthesize the metadata (description, outcome digest, produced-links) onto
-   the render; commit the final artifacts; optionally delete the working-tree copies.
+3. **/end step:** synthesize the metadata (description, outcome digest, produced-links) and
+   the operator-facing narrative section (cb:b578) onto the render; commit the final
+   artifacts; optionally delete the working-tree copies. The thread document is the single
+   close artifact - no chronicle write.
 4. **Conform** belief-audit.md and the `.sessions/` docs to the one shape (belief-audit.md
    as prototype); un-gitignore the render lane.
 5. **Seeds-carry-excerpts** as standard across seeds.

@@ -1,6 +1,6 @@
 # 4 · Code, anchors, positions
 
-A claim about code is only as good as a live pointer into the code. This chapter covers the anchor grammar that survives refactoring, codepaths - one artifact that reads as a narrated tour and runs as a test suite - and the document forms around the graph: positions for stances whose wording matters, chronicles and transcripts for what a session leaves behind.
+A claim about code is only as good as a live pointer into the code. This chapter covers the anchor grammar that survives refactoring, codepaths - one artifact that reads as a narrated tour and runs as a test suite - and the document forms around the graph: positions for stances whose wording matters, and the thread document a session leaves behind.
 
 ## The code locator
 
@@ -94,29 +94,30 @@ The division of labour is deliberate: the `/position` skill captures the stance,
 
 **The anchored-position format** (`cb:b550`, `cb:b551`): a `**Class:**` header naming the kind of stance, `### Claim:` sections each carrying `**Anchor:**` lines with `code:` URIs, and an optional terms block of `{term, definition, anchor?}` entries. Two constraints make the format load-bearing. Every anchor is verified resolving *with exactly one match* at authoring time through the draft-mode resolver - a loose anchor is an authoring failure. And claim order is the default walk order, which is where positions meet codepaths (`cb:b528`): **position names the epistemic artifact, codepath names the render face**. A position with anchors *has* a codepath - one authored object, two readings, no second source of truth for sequence.
 
-## Chronicles, transcripts, and what survives a session
+## The thread document, and what survives a session
 
-Every thread that does substantive work persists twice at close (`cb:b520`): a **transcript** - the condensed record co-located with its plan set - and a **chronicle** in `chronicles/` - a dated prose narrative for the operator. With the graph itself that is three persistence surfaces, each with one job: *the transcript serves the audit, the graph serves the work, the chronicle serves the steering.*
+Every thread that does substantive work persists once at close (`cb:b578`, superseding the two-artifact protocol of `cb:b520`): as the **thread document**, which opens with an **operator-facing narrative section** - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits. In the narrative section, narrative carries the load and ids stay subordinate - the inverse of the receipts register the thread body is. With the graph itself that is two persistence surfaces, each with one job: *the narrative section serves the steering, the thread body serves the audit, the graph serves the work.*
 
 ```
-At session close: four surfaces, three persist
-==============================================
+At session close: three surfaces, two persist
+=============================================
 
-[session memory] --prune--> gone   (ephemeral cache; no work state;
+[session memory]  --prune--> gone  (ephemeral cache; no work state;
       |                             promote load-bearing items through
       |                             the write flow first, then prune)
       v
-[the graph]      -> serves THE WORK
-                    what is true now and what is next (the desk)
+[the graph]       -> serves THE WORK
+                     what is true now and what is next (the desk)
 
-[transcript]     -> serves THE AUDIT
-                    condensed receipts beside the plan set: did each
-                    claim follow from what happened?
-
-[chronicle]      -> serves THE STEERING
-                    chronicles/, dated prose: the arc as story beats,
-                    what the next session inherits
+[thread document] -> narrative section: serves THE STEERING
+                     dated prose up top: the arc as story beats,
+                     what the next session inherits
+                  -> thread body: serves THE AUDIT
+                     condensed receipts: did each claim follow
+                     from what happened?
 ```
+
+The dated prose narratives that used to persist separately in `chronicles/` are a closed shelf (the `plans/` precedent): historical record kept in place because references point into it, closed to new entries. Obligations already live in the graph and resumption state in the routing ledger (`cb:b572`), so the narrative register was the chronicle's only surviving load - and it now travels with the thread.
 
 **Decision-weight sessions persist more fully** (`cb:b540`): a session that mints or supersedes stipulation-grounded beliefs, settles a stance, or adjudicates contradictory positions persists its thread verbatim at close, routed by subject. Every belief minted that session is then **retro-paired** (`cb:b507`): a `document:` pointer to the thread record joins its evidence, so a fresh agent can dereference what a bare `session:` slug cannot reach (making `session:` artifacts resolvable in their own right is open work, `cb:b518`). The prescription stays the single source of truth and must remain self-bootstrapping on its claim and deps; the verbatim thread is provenance a reader *may* consult, never a dependency a fresh agent *needs*.
 
@@ -124,12 +125,12 @@ The newest capture surface automates the raw end of this: a harness hook writes 
 
 **Session memory is a cache, never a store** (`cb:b509`). Project and work state is banned from it: the graph owns obligations, the repositories own records, and CLAUDE.md compiles the bootstrap. This is the digest antipattern (`cb:b386`) applied to the agent's own notebook - if you treat memory as a store and a concurrent session pushes a superseding belief, your snapshot becomes wrong with no stale-dep signal to catch it, because a private notebook is not in the graph that `mix bs stale` walks. Live work stays observable without violating the rule through the **lap log** (`cb:b497`): a scratch markdown file the operator keeps open in an editor split while the agent appends station by station - scaffolding whose load-bearing content graduates to the transcript or the graph at lap end.
 
-> **Pitfall.** Treating session memory or a chronicle as the source of truth for work state. Memory is pruned at close; a chronicle is steering prose with ids deliberately subordinate; neither is queryable, conflict-audited, or staleness-linked. The one source of truth for what is next is the desk. The chronicle tells the operator the story; the graph tells the agent the work.
+> **Pitfall.** Treating session memory or the narrative section as the source of truth for work state. Memory is pruned at close; the narrative section is steering prose with ids deliberately subordinate; neither is queryable, conflict-audited, or staleness-linked. The one source of truth for what is next is the desk. The narrative tells the operator the story; the graph tells the agent the work.
 
 ---
 
 Next: [chapter 5, collections and memory](5-collections.md) - how graphs compose across namespaces, and the document extension that carries the nursery.
 
 > **Grounding.**
-> - In the graph: `cb:b467` (the `code:` locator), `cb:b049` (the render-spec; navigation never enters deps), `cb:b050` (inspection-only predicates), `cb:b047` (the routing boundary), `cb:b488`/`cb:b512` (answer-time anchoring and draft mode), `cb:b484`/`cb:b485`/`cb:b486` (code as operational substrate), `cb:b528` (position/codepath: artifact and render face), `cb:b492`/`cb:b496`/`cb:b550`/`cb:b551` (positions, ceremony, format), `cb:b520`/`cb:b540`/`cb:b507`/`cb:b518` (transcripts, chronicles, decision-weight sessions, retro-pairing), `cb:b509`/`cb:b497`/`cb:b386` (memory as cache; the lap log). Worked example: `codepath:c005` and its stops.
+> - In the graph: `cb:b467` (the `code:` locator), `cb:b049` (the render-spec; navigation never enters deps), `cb:b050` (inspection-only predicates), `cb:b047` (the routing boundary), `cb:b488`/`cb:b512` (answer-time anchoring and draft mode), `cb:b484`/`cb:b485`/`cb:b486` (code as operational substrate), `cb:b528` (position/codepath: artifact and render face), `cb:b492`/`cb:b496`/`cb:b550`/`cb:b551` (positions, ceremony, format), `cb:b578`/`cb:b540`/`cb:b507`/`cb:b518` (the thread-document close, decision-weight sessions, retro-pairing), `cb:b509`/`cb:b497`/`cb:b386` (memory as cache; the lap log). Worked example: `codepath:c005` and its stops.
 > - In the code: `lib/cb/code_locator.ex`, `lib/cb/anchor.ex`, `lib/cb/codepath.ex` and `lib/cb/codepath/{predicates,assertions}.ex`, `lib/cb/predicate_gate.ex`, `lib/cb/output_target.ex` (the deps-equals-union check), the `mix cb.render.codepath` / `mix cb.verify.codepath` / `mix cb.resolve` tasks, and `skills/position/`, `skills/present-codepath/`.
