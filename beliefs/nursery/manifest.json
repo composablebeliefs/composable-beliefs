@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 29,
+  "count": 30,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -376,6 +376,22 @@
       "status": "active",
       "timestamp": "2026-07-02",
       "artifact": "session:2026-07-02-authoring-pipeline"
+    },
+    {
+      "path": "threads/2026-07-02-fold-chronicle-into-threads.md",
+      "type": "thread",
+      "title": "2026-07-02 - fold the chronicle into threads (the single-artifact close ships)",
+      "description": "The session that superseded the twice-at-close protocol (cb:b520 -> cb:b578), archived chronicles/ to deprecated/, aligned /end with the narrative-section close and the routing ledger, executed the cb:b570 vocabulary sweep, ran the b567/b572 supersession-cost test, and opened the vocabulary-read-surface and graph-refounding deliberations. Use when resuming any of those strands or auditing the first single-artifact close.",
+      "tags": [
+        "thread",
+        "cb",
+        "chronicles",
+        "vocabulary",
+        "provenance"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03",
+      "artifact": "session:2026-07-02-fold-chronicle-into-threads"
     },
     {
       "path": "threads/index.md",

@@ -6,7 +6,7 @@ tags: [nursery, threads, workflow, multi-repo]
 status: active
 timestamp: 2026-07-02
 maturity: active
-threads: [2026-06-26-nursery-workflow]
+threads: [2026-06-26-nursery-workflow, 2026-07-02-fold-chronicle-into-threads]
 ---
 
 # Bind each thread to the repo it relates to

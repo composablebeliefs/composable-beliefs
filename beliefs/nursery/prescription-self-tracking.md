@@ -6,7 +6,7 @@ tags: [nursery, cb, schema, workflow, todos]
 status: active
 timestamp: 2026-07-02
 maturity: active
-threads: []
+threads: [2026-07-02-fold-chronicle-into-threads]
 ---
 
 # Prescriptions self-track discharge

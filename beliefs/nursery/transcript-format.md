@@ -6,7 +6,7 @@ tags: [nursery, transcript, format, provenance, spike]
 status: active
 timestamp: 2026-06-26
 maturity: contested
-threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
+threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow, 2026-07-02-fold-chronicle-into-threads]
 ---
 
 # How transcripts and proto-belief documents persist exchanges
