@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 33,
+  "count": 34,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -129,6 +129,20 @@
       ],
       "status": "active",
       "timestamp": "2026-07-02"
+    },
+    {
+      "path": "mint-manifest-rename.md",
+      "type": "concept",
+      "title": "Rename the \"Mint manifest\" section to plainer, type-accurate vocabulary",
+      "description": "Covers renaming the ## Mint manifest section - the typed table of candidate beliefs a maturing proto-belief document grows before it plants (cb:b567, re-issued cb:b581) - to a plainer name such as \"belief candidates\". Two grounds: \"mint manifest\" is insider jargon (the default-read-surface hygiene vocabulary-read-surface argues for), and \"mint\" misleadingly evokes prescriptions/minting when the rows carry all four belief types. Records the blast radius (a wording sweep across seven living documents plus the cb:b581 convention, not a parser change, since /assert does not read the heading by name) and leaves the naming call open. Spun off from the end-skill-redesign vocabulary exchange.",
+      "tags": [
+        "nursery",
+        "vocabulary",
+        "workflow",
+        "read-surface"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     },
     {
       "path": "mint-manifest.md",
