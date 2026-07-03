@@ -9316,5 +9316,64 @@
     ],
     "status": "active",
     "created": "2026-07-03"
+  },
+  {
+    "id": "cb:b583",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "threads",
+      "thread-persistence",
+      "end-skill",
+      "observability",
+      "lifecycle:recurring"
+    ],
+    "claim": "/end runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. The Stop hook's render only reaches the previous completed turn, so /end run in a later turn reads a render that already includes the close turn and the finalized thread document's embedded transcript body contains it; the only omitted turn is the /end invocation turn itself, which carries no decision content and needs no disclosure. /end invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a /final running the close and the finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call.",
+    "artifact": "user:mark:2026-07-03",
+    "evidence": [
+      {
+        "date": "2026-07-03",
+        "detail": "Operator decision in the end-skill round-trip session (2026-07-03): /end must always be called alone and never run inline, because the Stop hook render lags to the previous completed turn, so an inline /end omits the close turn from the finalized body (the cb:b518 tail-gap landing on the curated artifact). Deliberated in beliefs/nursery/end-skill-redesign.md; the render-pointer alternative was rejected on a duplication argument in favor of keeping the self-contained embedded body and running /end in a later turn.",
+        "artifact": "user:mark:2026-07-03"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b518",
+      "cb:b578"
+    ],
+    "status": "active",
+    "created": "2026-07-03"
+  },
+  {
+    "id": "cb:b584",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "threads",
+      "thread-persistence",
+      "provenance",
+      "observability",
+      "lifecycle:recurring"
+    ],
+    "claim": "A finalized thread document's capture-provenance note must not assert coverage the embedded body lacks: it states the exact last turn the body covers and never claims the close turn or any later turn is present when it is absent. The finalized body is a frozen snapshot bounded by the render's previous-completed-turn horizon, so any completeness claim is scoped to that horizon. This is the backstop that keeps the artifact truthful even when /end is run inline against a render frozen at the previous completed turn - the fold-chronicle close overstated its coverage by one full topic, which this note prevents.",
+    "artifact": "user:mark:2026-07-03",
+    "evidence": [
+      {
+        "date": "2026-07-03",
+        "detail": "Operator decision in the end-skill round-trip session (2026-07-03): even with the turn-separation rule, the thread document's provenance note must state the true coverage boundary and never overstate. The failure is concrete - the first /end-finalized close (beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md) stops its body one turn short of the render and its note claims 'the receipts end at the retro-pair exchange', a turn the body does not contain. Deliberated in beliefs/nursery/end-skill-redesign.md.",
+        "artifact": "user:mark:2026-07-03"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b518",
+      "cb:b386",
+      "cb:b578"
+    ],
+    "status": "active",
+    "created": "2026-07-03"
   }
 ]

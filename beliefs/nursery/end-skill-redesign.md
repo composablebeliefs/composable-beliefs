@@ -5,7 +5,8 @@ description: Covers the cb:b518 tail-gap as it lands on the finalized thread doc
 tags: [nursery, threads, provenance, end-skill, observability]
 status: active
 timestamp: 2026-07-03
-maturity: active
+maturity: planted
+minted: [cb:b583, cb:b584]
 threads: [2026-07-02-fold-chronicle-into-threads]
 ---
 
@@ -170,8 +171,8 @@ matter simply happens to produce only rules.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | `/end` runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. Run in a later turn, the render has advanced to include the close turn, so the finalized document's embedded transcript body contains it; the only omitted turn is the `/end` invocation turn, which carries no decision content and needs no disclosure. `/end` invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a `/final` running close and finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call. | cb:b518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
-| prescription | A finalized thread document's provenance note must not assert coverage the body lacks: it states the exact last turn the embedded body covers and never claims the close turn or any later turn is present when it is absent. This is the backstop that keeps the artifact truthful even when `/end` is run inline against a render frozen at the previous completed turn - the fold-chronicle overstatement is the failure it prevents. | cb:b518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | - |
+| prescription | `/end` runs alone, in its own turn, after the session's substantive close is complete; it is never invoked inline in a turn that also does close work. Run in a later turn, the render has advanced to include the close turn, so the finalized document's embedded transcript body contains it; the only omitted turn is the `/end` invocation turn, which carries no decision content and needs no disclosure. `/end` invoked inline emits a warning that the current turn will not be captured in the finalized body. Same-turn successive finalization (a `/final` running close and finalize in one turn) does not satisfy this and is rejected: a turn boundary is a separate exchange, not a second skill call. | cb:b518, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | cb:b583 |
+| prescription | A finalized thread document's provenance note must not assert coverage the body lacks: it states the exact last turn the embedded body covers and never claims the close turn or any later turn is present when it is absent. This is the backstop that keeps the artifact truthful even when `/end` is run inline against a render frozen at the previous completed turn - the fold-chronicle overstatement is the failure it prevents. | cb:b518, cb:b386, cb:b578 | document:beliefs/nursery/end-skill-redesign.md | cb:b584 |
 
 ## Thread excerpts (what grounds this)
 
