@@ -12,9 +12,11 @@ erl_crash.dump
 # ExUnit @tag :tmp_dir scratch
 /tmp/
 
-# Auto-captured session transcripts: crash-safety + reading, rewritten every turn,
-# non-provenance (the nursery seeds are). Never committed.
-/beliefs/nursery/threads/.sessions/
+# Auto-captured session transcripts, non-provenance (the nursery seeds are).
+# The renders (.md) are tracked - the hook stages them each turn so they ride
+# along with the session's commits (transcript-format's render lane). Only the
+# raw jsonl stays uncommitted, gated on the repo-weight/LFS decision.
+/beliefs/nursery/threads/.sessions/*.jsonl
 
 # Python bytecode cache (e.g. from the transcript hook)
 __pycache__/
