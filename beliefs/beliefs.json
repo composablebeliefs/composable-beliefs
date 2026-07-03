@@ -8936,7 +8936,8 @@
     "deps": [
       "cb:b386"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:b582",
     "created": "2026-07-02"
   },
   {
@@ -9235,6 +9236,43 @@
     ],
     "deps": [
       "cb:b475"
+    ],
+    "status": "active",
+    "created": "2026-07-03"
+  },
+  {
+    "id": "cb:b582",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "threads",
+      "provenance",
+      "lifecycle:recurring"
+    ],
+    "claim": "Every persisted thread carries a routing ledger: a table with one row per topic the thread touches, holding the strand state (open, paused, closed), the dispatch pointer (the proto-belief document the strand's content routed to, or unrouted), and the dangling question when one is pending. Synthesized content always lands in proto-belief documents, never in the ledger; the ledger carries only pointers and states, so it cannot become a digest of the thread or a shadow copy of the proto-belief documents. A multi-topic thread is resumed by reading its ledger, not by replaying the conversation or trusting memory.",
+    "artifact": "document:beliefs/nursery/routing-ledger.md",
+    "evidence": [
+      {
+        "date": "2026-07-03",
+        "detail": "Re-issue of cb:b572 in the cb:b569 vocabulary (focus doc -> proto-belief document, seeds -> proto-belief documents); every operative clause is unchanged. supersede solely to reword the claim from the retired register into the cb:b569 vocabulary, measuring what burning a supersession on wording actually costs. No substantive change: type, kind, domain, tags, subjects, deps, and grounding artifact carried unchanged.",
+        "artifact": "user:mark:2026-07-03"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Accepted via human adjudication against cb:b572. Reasoning: Vocabulary re-issue, meaning-identical: the operator's option-2 test (beliefs/nursery/vocabulary-read-surface.md, decided 2026-07-03) - supersede solely to reword the claim from the retired register into the cb:b569 vocabulary, measuring what burning a supersession on wording actually costs. No substantive change: type, kind, domain, tags, subjects, deps, and grounding artifact carried unchanged. Preflight 2026-07-03 on the re-issue: the original node surfaces as a supportive match (the supersession target); the contract-level hits (cb:b052, cb:b059) and dag-schema hits (cb:b398, cb:b399) on b567's wording are the known schema-token topical overlaps, dismissed per the cb:b569 mint precedent - this convention governs nursery documents, not DAG node field presence or grounding. A re-issue re-pays the full preflight adjudication its original mint already paid: recorded as a test finding.",
+        "artifact": "adjudication:human:2026-07-03-vocabulary-reissue-test"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "nursery threads",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b386"
     ],
     "status": "active",
     "created": "2026-07-03"
