@@ -1,17 +1,17 @@
 ---
 type: concept
 title: Bind each thread to the repo it relates to (thread init)
-description: Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this focus to the concerns-vs-ran-in routing question.
+description: Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this matter to the concerns-vs-ran-in routing question.
 tags: [nursery, threads, workflow, multi-repo]
 status: active
 timestamp: 2026-07-02
 maturity: active
-threads: [2026-06-26-nursery-workflow]
+threads: [2026-06-26-nursery-workflow, 2026-07-02-fold-chronicle-into-threads]
 ---
 
 # Bind each thread to the repo it relates to
 
-## The focus
+## The matter
 Work in this tree spans many repos (composable-beliefs, belief-collections, the direction
 repos, satellites). A thread's transcript should persist in the repo the work concerns, not
 always in composable-beliefs. The transcript hook originally hardcoded one `THREADS_DIR`
@@ -30,7 +30,7 @@ lands too.
   `$CLAUDE_PROJECT_DIR` (falling back to its own location), is registered in the committed
   `.claude/settings.json`, and copies the raw jsonl beside the render - so capture runs in
   remote sessions too, and each session lands in the repo it *ran in*. That narrows this
-  focus to the routing question proper (the repo the work *concerns* is not always the repo
+  matter to the routing question proper (the repo the work *concerns* is not always the repo
   the session ran in), and gives the binding a single seam to hook into: the hook's
   `project_dir()`.
 - **Open:** where the binding lives (a per-session state file the hook reads? a marker the
@@ -42,7 +42,7 @@ lands too.
   one tier up.
 - `cb:a500` - the cross-collection desk view; cross-repo surfacing of the same records.
 - [statement-provenance](statement-provenance.md) - once threads live in the right repo,
-  per-statement links can point at that repo's seeds/beliefs.
+  per-statement links can point at that repo's proto-belief documents/beliefs.
 
 ## Thread excerpts (2026-06-26)
 **User:** "need to determine a workflow so that each thread doc is persisted within the repo

@@ -1,7 +1,85 @@
-# Session transcript - 692c6ff4-41ee-5fbe-8f71-e06de4c08afd
+---
+type: thread
+title: 2026-07-02 - fold the chronicle into threads (the single-artifact close ships)
+description: The session that superseded the twice-at-close protocol (cb:b520 -> cb:b578), archived chronicles/ to deprecated/, aligned /end with the narrative-section close and the routing ledger, executed the cb:b570 vocabulary sweep, ran the b567/b572 supersession-cost test, and opened the vocabulary-read-surface and graph-refounding deliberations. Use when resuming any of those strands or auditing the first single-artifact close.
+tags: [thread, cb, chronicles, vocabulary, provenance]
+status: active
+timestamp: 2026-07-03
+artifact: session:2026-07-02-fold-chronicle-into-threads
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `692c6ff4-41ee-5fbe-8f71-e06de4c08afd` | 2026-07-02
+# 2026-07-02 - fold the chronicle into threads (the single-artifact close ships)
+
+> **Hook-captured, /end-finalized (2026-07-03).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. First close
+> under the single-artifact protocol this session itself minted (cb:b578), and the first
+> to run the pair-then-write ordering: the session's mints were retro-paired against this
+> document's path before the file existed, so the close turn is summarized here, not
+> transcribed - the receipts end at the retro-pair exchange.
+
+## Where things stand (the narrative)
+
+**Where things stood.** Every substantive thread owed two artifacts at close - a
+transcript and a dated chronicle on its own shelf - and the operator had decided the
+narrative register should survive while the shelf should not. The chronicle's other
+loads had already moved out: obligations into the graph, resumption state into the
+routing ledger.
+
+**The arc.** The fold itself went almost quietly: the old protocol was superseded
+through the doors, the shelf closed, every implementing surface updated. Then the world
+moved twice. Main minted its own beliefs into the serial range this session had used, so
+the successor was renumbered and the branch rebuilt - the same collision the id
+migration had taught the house to resolve. And the PR that carried the /end skill turned
+out to be stranded on a pre-migration base with its own colliding mint; rescuing it
+meant a merge, a second renumber, and folding the new close protocol into the skill it
+had just gained. The operator then asked the load-bearing question - does the round trip
+from thread to graph to code and back actually run? - and the verification spike found
+the honest answer: the bottom half (graph, commits, code anchors) machine-verified, the
+top half waiting on a /end that had never run, a routing ledger the skill never wrote,
+and retired vocabulary leaking out of the current rulebook into this very session's
+mouth. The rest of the session was the house repairing itself in response: the /end
+skill gained the ledger step and the pair-then-write ordering, the residual vocabulary
+sweep finally executed and discharged, the two freshest rules were re-issued in current
+vocabulary as a deliberate cost experiment - which priced the cascade at five flagged
+nodes, a re-paid preflight, and leaking mirrors for two wording-only changes - and two
+new deliberations opened: translate the read surface, or re-found the graph at the
+milestone and stop carrying dev churn on the permanent record at all.
+
+**Where things stand.** The single-artifact close is law (cb:b578) and this document is
+its first instance. The chronicles shelf is archived at deprecated/chronicles/ with all
+citations repointed. The graph speaks one vocabulary on every editable surface; only
+pre-rename immutable claims still carry the old words, and the two worst offenders are
+re-issued. The desk's own retirement is drafted and near the mint gate. The raw jsonl
+question is deliberately punted.
+
+**What the next session inherits.** The graph-refounding deliberation (milestone,
+namespace, survival criterion - all open, and it gates the annotation build).
+Prescription-self-tracking sitting at the gate with its fold plan enumerated. cb:b552
+deliberately stale-flagged, ready for review-and-close now that /end is aligned. Q7
+(cb:b577) still owed its archive-shelf decision for the remaining shelves. And one loose
+thread outside this repo: confirming the dotfiles /end actually got deleted.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to document, never
+here ([routing-ledger](../routing-ledger.md), cb:b582).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| Chronicle register folds into the thread document | closed | cb:b578 supersession; [deprecated/chronicles/README.md](../../../deprecated/chronicles/README.md) | - |
+| chronicles/ shelf archive (move + citation repoint) | closed | deprecated/chronicles/; evidence on cb:b578 | - |
+| PR shepherding: #12 conflicts, #13 merge, #8 rescue | closed | merge commits; cb:b579 renumber | - |
+| /end skill: narrative section, routing ledger, pair-then-write | closed | [skills/end/SKILL.md](../../../skills/end/SKILL.md) | - |
+| Round-trip verification spike | closed | narrative above; gaps routed to skills/end and [vocabulary-read-surface](../vocabulary-read-surface.md) | - |
+| Retired vocabulary on the read surface (annotation) | open | [vocabulary-read-surface](../vocabulary-read-surface.md) | gated on graph-refounding |
+| cb:b570 residual vocabulary sweep | closed | discharged as t0026, commit 3a2440a | - |
+| Supersession-cost test (b567 -> b581, b572 -> b582) | closed | findings on [vocabulary-read-surface](../vocabulary-read-surface.md) | - |
+| Graph re-founding at a dev milestone | open | [graph-refounding](../graph-refounding.md) | milestone, namespace, survival criterion |
+| Raw jsonl repo-weight | paused | [transcript-format](../transcript-format.md) (deferral recorded) | reopens on a concrete reason |
+| Desk retirement / prescription self-tracking | open | [prescription-self-tracking](../prescription-self-tracking.md) (fold-plan sweep enumerated) | mint decision pending |
+| Dotfiles /end retirement | paused | unrouted (external repo; handed to a sibling agent) | confirm the deletion landed |
+| cb:b552 transcript destination | paused | the graph (deliberately stale-flagged) | review-and-close next session |
 
 ## User
 
@@ -560,18 +638,8 @@ Done and pushed (`505d052`). The fold plan's vocabulary bullet now enumerates ev
 
 The close remains queued in the agreed order - retro-pair the four mints against the predetermined thread path, then `/end` - on your word.
 
-## User
+## Related
 
-Proceed with the close in order
-
-## Assistant
-
-The close is complete and pushed (`a86bac4`). The round trip your verification spike found half-open is now, for this thread, closed at every rung:
-
-**The close, in the order we agreed.** The pair-then-write ordering went into the `/end` skill as a permanent step first. Then the four mints - cb:b578, b579, b581, b582 - were retro-paired through the evidence door against the predetermined thread path, one batch commit carrying all four trailers. Then `/end` finalized the hook render into `beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md`: the **first thread document to open with the operator-facing narrative section** (the register this session rescued from the chronicles) and to carry a `/end`-written **routing ledger** - thirteen strands dispatched: eight closed, three open (vocabulary annotation, graph-refounding, desk retirement), two paused (jsonl repo-weight, the dotfiles `/end` confirmation). Registered in the threads index and manifest, back-linked from the three documents the session fed, and the retro-pair citations now dereference to a file that exists.
-
-**Verification:** 407 tests, schema 20/20, `verify.commits` green across all three rungs, no emdashes, raw jsonl left uncommitted per the recorded deferral.
-
-**What the next session inherits** is exactly what the thread document's narrative says: the graph-refounding deliberation (which gates the annotation build), prescription-self-tracking at the mint gate with its sweep enumerated, cb:b552 ready for review-and-close, Q7 for the remaining shelves, and one external loose end - confirming the dotfiles `/end` deletion landed.
-
-One practical note: the branch now carries eighteen commits beyond main - the `/end` fixes, both proto-belief documents, the b570 sweep and discharge, the supersession test, and this close. It's PR-ready whenever you want it opened; everything on it is verified green.
+- [vocabulary-read-surface](../vocabulary-read-surface.md), [graph-refounding](../graph-refounding.md) - opened by this session.
+- [transcript-format](../transcript-format.md), [thread-repo-binding](../thread-repo-binding.md), [prescription-self-tracking](../prescription-self-tracking.md) - fed by this session.
+- Minted: cb:b578 (single-artifact close), cb:b579 (renumbered .sessions dot attestation), cb:b581/cb:b582 (vocabulary re-issues). Discharged: cb:b570 (t0026).

@@ -1,7 +1,7 @@
 ---
 type: concept
-title: Commit provenance at the floor tier (threads, ledgers, briefs)
-description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).
+title: Commit provenance at the floor tier (threads, ledgers, proto-belief documents)
+description: Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Proto-Belief: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).
 tags: [nursery, provenance, git, audit-chain, workflow]
 status: active
 timestamp: 2026-07-02
@@ -9,11 +9,11 @@ maturity: active
 threads: [2026-07-02-authoring-pipeline]
 ---
 
-# Commit provenance at the floor tier (threads, ledgers, briefs)
+# Commit provenance at the floor tier (threads, ledgers, proto-belief documents)
 
-## The focus
+## The matter
 The user's aim: every artifact transition in the authoring lifecycle - a thread capture,
-a routing-ledger update, a brief edit or graduation, a mint - routes back to a git
+a routing-ledger update, a proto-belief document edit or graduation, a mint - routes back to a git
 commit, so the entire path from prose brainstorming to DAG materialization is manually
 auditable and teachable to new agents. What must be added, given what already exists?
 
@@ -33,14 +33,14 @@ The belief<->commit loop is already structural and CI-enforced, not a proposal:
 
 So the last rung of cb:a442's audit chain (code -> contract -> graph -> plan -> raw
 conversation) is typed for *graph* events. The gap is the **floor**: thread captures,
-ledger updates, and brief lifecycle events produce commits with no convention naming what
+ledger updates, and document lifecycle events produce commits with no convention naming what
 kind of lifecycle event they are or which floor artifact they concern.
 
 ## Design leans
 
 1. **Atomic lifecycle commits (adopted 2026-07-02; minted cb:b568).** The auditable unit
    is the lifecycle transition - and exactly one per commit: one thread captured or
-   updated, one focus brief opened/updated/graduated, one focus's manifest rows minted.
+   updated, one proto-belief document opened/updated/graduated, one document's manifest rows minted.
    A commit conjoining separable lifecycle events is a mis-authored bundle, split at
    commit time - cb:a475's atomicity doctrine transposed from beliefs to commits. Atomic
    means one *event*, not one file: a brief together with the index and manifest updates
@@ -60,7 +60,7 @@ kind of lifecycle event they are or which floor artifact they concern.
    below.
 3. **Back-pointers only; git is the only index.** An artifact cites the SHA of a
    *predecessor* commit (a minted belief's evidence cites the commit that landed its
-   brief; a brief may cite the commit that captured its thread) - never its own, since a
+   document; a document may cite the commit that captured its thread) - never its own, since a
    SHA cannot self-reference. Forward lookups (which commit landed belief X?) are
    delegated to `git log`/`blame`. No cached artifact-to-commit mapping file is ever
    built: git history is the deterministic, append-only index, and a mapping file would
@@ -76,9 +76,9 @@ kind of lifecycle event they are or which floor artifact they concern.
 ## First instance
 
 The 2026-07-02 authoring-pipeline cycle runs the convention end to end: the thread
-capture, the brief batch, and the mint are separate commits carrying `Thread:`, `Focus:`,
-and `Belief:` trailers respectively, and cb:b572/cb:b567's evidence entries cite the
-brief-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
+capture, the document batch, and the mint are separate commits carrying `Thread:`, `Focus:`
+(since retired for `Proto-Belief:`), and `Belief:` trailers respectively, and
+cb:b572/cb:b567's evidence entries cite the document-batch commit by `commit:` URI. Verify with `mix cb.verify.commits` and
 `git log --grep='^Focus:'`.
 
 ## Atomic commits (2026-07-02)
@@ -93,16 +93,16 @@ in letter, adopted immediately.**
   reviewability and task-granular rollback. The atom differs by
   tier: an execution task in the general form; a lifecycle transition at the floor.
 - **What the review caught.** The first round trip violated its own lean twice:
-  `d7e40cb` bundled four `Focus:` events (three briefs opened plus a concurrence
-  append), and `ae0e63f` bundled two focuses' mints. Under the sharpened lean both are
+  `d7e40cb` bundled four `Focus:` events (three documents opened plus a concurrence
+  append), and `ae0e63f` bundled two documents' mints. Under the sharpened lean both are
   mis-authored bundles - the motivating counterexamples recorded on cb:b568.
 - **What is explicitly not adopted.** A ROADMAP/SUMMARY document apparatus: CB's
-  graph and briefs already hold that state, and a per-phase SUMMARY file is the
+  graph and proto-belief documents already hold that state, and a per-phase SUMMARY file is the
   cb:a386 cached-digest shape verbatim.
-- **Operator decision.** Split commits per focus effective immediately; present the
-  discipline as explicit policy in the DAG via this brief (the intermediary document
+- **Operator decision.** Split commits per document effective immediately; present the
+  discipline as explicit policy in the DAG via this document (the intermediary document
   step) - minted as cb:b568, kind `policy`. The landing sequence of b568 itself is the
-  first compliant instance: thread update, brief update, and mint as three per-focus
+  first compliant instance: thread update, document update, and mint as three per-document
   commits.
 
 ## The document rung (agreed 2026-07-02; build is cb:b571)
@@ -163,7 +163,7 @@ machinery down to the floor tier."
   decisions this composes with (LFS for raw, render inline).
 - [routing-ledger](routing-ledger.md) - ledger updates are among the floor events this
   convention makes addressable.
-- [seed-lifecycle](seed-lifecycle.md) - graduation events (brief archived, minted:
-  recorded) are floor lifecycle transitions that would carry `Focus:` trailers.
+- [seed-lifecycle](seed-lifecycle.md) - graduation events (document archived, minted:
+  recorded) are floor lifecycle transitions that would carry `Proto-Belief:` trailers.
 - cb:a545, cb:c067, cb:a563 - the graph-tier loop this extends; read them live with
   `mix bs show`.

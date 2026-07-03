@@ -6,7 +6,7 @@ tags: [nursery, cb, schema, workflow, todos]
 status: active
 timestamp: 2026-07-02
 maturity: active
-threads: []
+threads: [2026-07-02-fold-chronicle-into-threads]
 ---
 
 # Prescriptions self-track discharge
@@ -58,7 +58,17 @@ discharge.
 - **Vocabulary:** the desk term retires with the indirection that motivated it.
   The session-start query reads literally - list open one-off prescriptions
   (e.g. `mix bs open`: active, `lifecycle:discrete`, not retired) - and
-  CLAUDE.md's session-start prose updates to match.
+  CLAUDE.md's session-start prose updates to match. The retirement sweep must
+  catch every live surface that teaches the term (the vocabulary-read-surface
+  lesson - agents echo what the current rulebook says): CLAUDE.md's generated
+  sections and their graph sources, docs/operations.md's
+  discharging-a-prescription section (the materialize-then-close pattern
+  retires with the door), the glossary's Desk entry and the guide chapters
+  that lean on it (1, 3, 4), the /materialize skill (retires with the sink),
+  and the "desk-tracked" phrasing in live nursery documents
+  (vocabulary-read-surface, graph-refounding, seed-lifecycle's Q7 line,
+  commit-provenance-floor). Historical record and quoted claims stay, per the
+  cb:b570 carve-outs.
 
 ## Open questions
 

@@ -1,12 +1,12 @@
 {
   "bundle": "nursery",
-  "count": 28,
+  "count": 31,
   "docs": [
     {
       "path": "assertions-rename.md",
       "type": "concept",
       "title": "Removing \"assertions\" from cb:a098",
-      "description": "Covers the rename of the dead term \"assertions\" to \"beliefs\" in cb:a098 and the mood fix it forces - the proposed directive D that supersedes a098's first clause.",
+      "description": "Covers the rename of the dead term \"assertions\" to \"beliefs\" in cb:a098 and the mood fix it forces - the proposed prescription D that supersedes a098's first clause.",
       "tags": [
         "cb",
         "schema",
@@ -61,8 +61,8 @@
     {
       "path": "commit-provenance-floor.md",
       "type": "concept",
-      "title": "Commit provenance at the floor tier (threads, ledgers, briefs)",
-      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Focus: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).",
+      "title": "Commit provenance at the floor tier (threads, ledgers, proto-belief documents)",
+      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Proto-Belief: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).",
       "tags": [
         "nursery",
         "provenance",
@@ -89,6 +89,21 @@
       "timestamp": "2026-07-01"
     },
     {
+      "path": "graph-refounding.md",
+      "type": "concept",
+      "title": "Graph re-founding at a dev milestone",
+      "description": "Covers re-initializing the belief graph when CB reaches a development milestone - the dev-era churn (id migrations, vocabulary renames, schema epochs) should not be the permanent record a shipped framework presents. Straight deletion fails three hard tethers; the workable form is re-founding into a fresh collection with the dev graph frozen as a closed, resolvable, out-of-default-view collection. Raised by the operator in the fold-chronicle session; composes with vocabulary-read-surface and the Q7 invisibility requirement.",
+      "tags": [
+        "nursery",
+        "lifecycle",
+        "collections",
+        "provenance",
+        "milestone"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
+    },
+    {
       "path": "index.md",
       "type": "index",
       "title": "Nursery",
@@ -103,8 +118,8 @@
     {
       "path": "mint-manifest.md",
       "type": "concept",
-      "title": "The mint manifest - typed decomposition inside the brief, not typed documents",
-      "description": "Covers the mint manifest - a late-stage section in a maturing focus brief enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in briefs are prescription rows, resolving the focus/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.",
+      "title": "The mint manifest - typed decomposition inside the proto-belief document, not typed documents",
+      "description": "Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567, re-issued as cb:b581 (vocabulary).",
       "tags": [
         "nursery",
         "cb",
@@ -189,7 +204,7 @@
       "path": "routing-ledger.md",
       "type": "concept",
       "title": "The routing ledger - per-thread dispatch for non-linear conversations",
-      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in focus docs; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572; open on hook mechanics and the skill build.",
+      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
       "tags": [
         "nursery",
         "threads",
@@ -202,8 +217,8 @@
     {
       "path": "seed-absorption.md",
       "type": "concept",
-      "title": "Seed absorption - terminal seeds fold into their successor and evacuate",
-      "description": "Covers the principle that every terminal seed folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning seed as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.",
+      "title": "Seed absorption - terminal documents fold into their successor and evacuate",
+      "description": "Covers the principle that every terminal proto-belief document folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning document as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.",
       "tags": [
         "cb",
         "schema",
@@ -217,7 +232,7 @@
       "path": "seed-lifecycle.md",
       "type": "concept",
       "title": "Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)",
-      "description": "Covers whether terminal seeds persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted seeds and plans collapse into one durable-brief concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.",
+      "description": "Covers whether terminal proto-belief documents persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted documents and plans collapse into one durable-document concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.",
       "tags": [
         "cb",
         "nursery",
@@ -231,8 +246,8 @@
     {
       "path": "seed-recency.md",
       "type": "concept",
-      "title": "Recency and dating for adjudicating competing seeds",
-      "description": "Covers datestamping seed docs (last-edited) and their thread excerpts so an agent can rank competing seed positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.",
+      "title": "Recency and dating for adjudicating competing proto-belief documents",
+      "description": "Covers datestamping proto-belief documents (last-edited) and their thread excerpts so an agent can rank competing document positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.",
       "tags": [
         "nursery",
         "provenance",
@@ -246,7 +261,7 @@
       "path": "statement-provenance.md",
       "type": "concept",
       "title": "Associate each thread statement with the artifact it feeds",
-      "description": "Covers linking each user/agent statement in a thread to the seed or belief it is synthesized into - the back-edge of transcript-format's seeds-carry-excerpts (seed to exchange), making transcript-to-graph traceability bidirectional at statement granularity.",
+      "description": "Covers linking each user/agent statement in a thread to the proto-belief document or belief it is synthesized into - the back-edge of transcript-format's excerpts rule (document to exchange), making transcript-to-graph traceability bidirectional at statement granularity.",
       "tags": [
         "nursery",
         "provenance",
@@ -274,7 +289,7 @@
       "path": "thread-repo-binding.md",
       "type": "concept",
       "title": "Bind each thread to the repo it relates to (thread init)",
-      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this focus to the concerns-vs-ran-in routing question.",
+      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this matter to the concerns-vs-ran-in routing question.",
       "tags": [
         "nursery",
         "threads",
@@ -363,6 +378,22 @@
       "artifact": "session:2026-07-02-authoring-pipeline"
     },
     {
+      "path": "threads/2026-07-02-fold-chronicle-into-threads.md",
+      "type": "thread",
+      "title": "2026-07-02 - fold the chronicle into threads (the single-artifact close ships)",
+      "description": "The session that superseded the twice-at-close protocol (cb:b520 -> cb:b578), archived chronicles/ to deprecated/, aligned /end with the narrative-section close and the routing ledger, executed the cb:b570 vocabulary sweep, ran the b567/b572 supersession-cost test, and opened the vocabulary-read-surface and graph-refounding deliberations. Use when resuming any of those strands or auditing the first single-artifact close.",
+      "tags": [
+        "thread",
+        "cb",
+        "chronicles",
+        "vocabulary",
+        "provenance"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03",
+      "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+    },
+    {
       "path": "threads/2026-07-03-git-policy-release.md",
       "type": "thread",
       "title": "2026-07-03 - the runway clearing (git-policy release + cloud toolchain)",
@@ -395,8 +426,8 @@
     {
       "path": "transcript-format.md",
       "type": "concept",
-      "title": "How transcripts and seeds persist exchanges",
-      "description": "Spike brief for the transcript/seed persistence pipeline - whether to commit the raw jsonl, generating metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and seeds carrying per-topic excerpts. Self-contained; start the implementation thread here.",
+      "title": "How transcripts and proto-belief documents persist exchanges",
+      "description": "Spike document for the transcript persistence pipeline - whether to commit the raw jsonl, generating metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and proto-belief documents carrying per-topic excerpts. Self-contained; start the implementation thread here.",
       "tags": [
         "nursery",
         "transcript",
@@ -406,6 +437,20 @@
       ],
       "status": "active",
       "timestamp": "2026-06-26"
+    },
+    {
+      "path": "vocabulary-read-surface.md",
+      "type": "concept",
+      "title": "Retired vocabulary pollutes the agent read surface",
+      "description": "Covers the gap the proto-belief rename left open - immutable claims and unswept living docs keep teaching retired registers (focus, brief, directive) to every agent that reads them, and agents echo the pollution silently. Candidate fix is render-time vocabulary aliasing on the id-alias precedent; a deprecated-graph-directory evacuation was considered and rejected.",
+      "tags": [
+        "nursery",
+        "vocabulary",
+        "observability",
+        "read-surface"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     }
   ]
 }

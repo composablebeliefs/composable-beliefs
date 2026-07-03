@@ -1,7 +1,7 @@
 ---
 type: concept
 title: The routing ledger - per-thread dispatch for non-linear conversations
-description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in focus docs; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572; open on hook mechanics and the skill build.
+description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.
 tags: [nursery, threads, provenance, workflow]
 status: active
 timestamp: 2026-07-02
@@ -12,11 +12,12 @@ threads: [2026-07-02-authoring-pipeline]
 
 # The routing ledger - per-thread dispatch for non-linear conversations
 
-## The focus
-Threads are demonstrably non-linear: a session touches several focuses, spawns side
-quests, pauses strands mid-air (the 2026-06-25/26 thread seeded at least five focuses
-with reversals mid-stream). Under focus-as-unit the synthesized *content* is already
-homed - it lands in whichever focus docs the conversation concerns - but nothing tracks
+## The matter
+Threads are demonstrably non-linear: a session touches several matters, spawns side
+quests, pauses strands mid-air (the 2026-06-25/26 thread seeded at least five
+proto-belief documents with reversals mid-stream). Under one-document-per-matter the
+synthesized *content* is already homed - it lands in whichever proto-belief documents
+the conversation concerns - but nothing tracks
 the *dispatch*: which strands this thread opened, which are paused on a question, which
 were routed where, and which dangle unrouted. The user is left holding that state in
 memory. Should each thread carry a parallel summary document, and if so, what shape keeps
@@ -28,8 +29,8 @@ The originating proposal was a running thread-summary document - synthesized sta
 grouped by topic heading, updated by a `/decompose` skill, so the user replies from the
 summary instead of re-reading the thread. The trap is cb:a386: a persisted summary whose
 freshness depends on remembering to regenerate it embeds the staleness it was meant to
-solve - and a summary that *restates* thread content also silently duplicates the focus
-docs, where that content is supposed to live.
+solve - and a summary that *restates* thread content also silently duplicates the proto-belief
+documents, where that content is supposed to live.
 
 The version that survives both objections is a **routing ledger**: one row per topic the
 thread touches, holding only
@@ -37,13 +38,14 @@ thread touches, holding only
 - **topic** - what the strand is about, one line;
 - **state** - `open` (live), `paused` (waiting on a dangling question), `closed`
   (resolved; nothing further expected in this thread);
-- **routed to** - the focus doc that absorbed the strand's content, or `unrouted`;
+- **routed to** - the proto-belief document that absorbed the strand's content, or `unrouted`;
 - **dangling** - the open question, when paused or open.
 
 State describes the conversation strand; routed-to describes dispatch. They are
-orthogonal: a strand can be routed and still open (deliberation continues in the focus),
+orthogonal: a strand can be routed and still open (deliberation continues in the document),
 or closed and unrouted (nothing worth keeping). Content never lives in the ledger - only
-pointers and states - so it cannot drift into a shadow copy of the seeds. It answers
+pointers and states - so it cannot drift into a shadow copy of the proto-belief
+documents. It answers
 exactly one question: *what would I need to know to reply to this thread without
 re-reading it?*
 
@@ -59,7 +61,7 @@ First instance: [threads/2026-07-02-authoring-pipeline](threads/2026-07-02-autho
 ## Maintenance
 
 For hook-captured threads, a `/decompose` skill (or an extension of the transcript hook's
-`/end` half) maintains the rows at the same moment content is routed into focus docs -
+`/end` half) maintains the rows at the same moment content is routed into proto-belief documents -
 routing and ledger update are one motion, not a regeneration step that can be forgotten.
 For hand-captured threads the ledger is hand-kept, as here. The skill build is open work;
 the practice does not wait for it (cb:b572 prescribes the ledger, not the automation).
