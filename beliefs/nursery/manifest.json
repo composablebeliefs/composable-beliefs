@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 27,
+  "count": 28,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -389,6 +389,20 @@
       ],
       "status": "active",
       "timestamp": "2026-06-26"
+    },
+    {
+      "path": "vocabulary-read-surface.md",
+      "type": "concept",
+      "title": "Retired vocabulary pollutes the agent read surface",
+      "description": "Covers the gap the proto-belief rename left open - immutable claims and unswept living docs keep teaching retired registers (focus, brief, directive) to every agent that reads them, and agents echo the pollution silently. Candidate fix is render-time vocabulary aliasing on the id-alias precedent; a deprecated-graph-directory evacuation was considered and rejected.",
+      "tags": [
+        "nursery",
+        "vocabulary",
+        "observability",
+        "read-surface"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     }
   ]
 }
