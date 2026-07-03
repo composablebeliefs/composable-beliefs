@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 30,
+  "count": 31,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -392,6 +392,23 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+    },
+    {
+      "path": "threads/2026-07-03-git-policy-release.md",
+      "type": "thread",
+      "title": "2026-07-03 - the runway clearing (git-policy release + cloud toolchain)",
+      "description": "Covers the session that began as a per-belief-files question, answered from the graph, and turned into clearing the operational runway for that refactor - forensics on the CCR stop hook's false Unverified warnings (wrong commit range, SSH-signature misread), the release of the ask-before-commit policy (cb:b456 superseded by cb:b580 through the full sanctioned write flow), the SessionStart hook that provisions Elixir in cloud containers, and the decision to hand the per-belief-files implementation (cb:b555-b560) to a fresh session. Use when revisiting the git-policy release, the ride-along render rhythm, the stop-hook bug report, or the cloud toolchain provisioning.",
+      "tags": [
+        "cb",
+        "nursery",
+        "git",
+        "workflow",
+        "toolchain",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03",
+      "artifact": "session:2026-07-03-git-policy-release"
     },
     {
       "path": "threads/index.md",
