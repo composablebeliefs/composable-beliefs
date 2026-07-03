@@ -1,7 +1,7 @@
 ---
 type: thread
 title: 2026-07-03 - the /end round-trip (turn-separation ships, first honest close)
-description: The session that carried the /end redesign from proto-belief document to graph to code and back - authored end-skill-redesign, settled its open calls (keep the embedded transcript body, run /end alone in a later turn; the render-pointer alternative rejected on a duplication argument), minted cb:b583 (turn-separation) and cb:b584 (honesty note), refactored the /end skill and docs/operations.md, resolved Q7 as beliefs/archive/ and discharged cb:b577, graduated end-skill-redesign to the archive shelf, spun off mint-manifest-rename, and closed with the first /end run under the new turn-separation rule. Use when resuming the /end mechanism work, the mint-manifest rename, graph-refounding, or auditing the first single-artifact close honest about its own coverage.
+description: The session that carried the /end redesign from proto-belief document to graph to code and back - authored end-skill-redesign, settled its open calls (keep the embedded transcript body, run /end alone in a later turn; the render-pointer alternative rejected on a duplication argument), minted cb:b583 (turn-separation) and cb:b584 (honesty note), refactored the /end skill and docs/operations.md, resolved Q7 as beliefs/archive/ and discharged cb:b577, graduated end-skill-redesign to the archive shelf, spun off mint-manifest-rename, closed with the first /end run under the new turn-separation rule, then self-audited the close, swept operations.md's legacy ids, and settled the PR ordering (merge after /end). Use when resuming the /end mechanism work, the mint-manifest rename, graph-refounding, or auditing the first single-artifact close honest about its own coverage.
 tags: [thread, cb, end-skill, threads, provenance, lifecycle]
 status: active
 timestamp: 2026-07-03
@@ -10,16 +10,17 @@ artifact: session:2026-07-03-end-skill-round-trip
 
 # 2026-07-03 - the /end round-trip (turn-separation ships, first honest close)
 
-> **Hook-captured, /end-finalized (2026-07-03).** Body auto-rendered by the Stop hook
-> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
-> synthesized at close. **Non-provenance** - the proto-belief documents are. This is the
-> first close run under the cb:b583 turn-separation rule the session itself minted: the
-> substantive close (the a518->b518 fix, the skill refactor, the cb:b583/b584 mint, the Q7
-> resolution, the graduation, the retro-pair) ran in an earlier turn and is transcribed in
-> full below; /end then ran alone in its own later turn. So the body is complete through the
-> session's close, and the only omitted turn is this contentless /end turn itself - and this
-> note claims no coverage the body lacks (cb:b584), which is exactly the honesty the
-> fold-chronicle close failed.
+> **Hook-captured, /end-finalized (2026-07-03), re-run.** Body auto-rendered by the Stop
+> hook (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. Closed under the
+> cb:b583 turn-separation rule the session itself minted, and this is a deliberate re-run of
+> that close: the first /end (in an earlier turn) finalized the thread through the substantive
+> close; this re-run extends it to capture the turns after - the self-audit and the
+> operations.md id cleanup - by running /end alone again. So the body is complete through the
+> PR-ordering exchange, and the only omitted turn is this contentless /end turn itself; this
+> note claims no coverage the body lacks (cb:b584), which is the honesty the fold-chronicle
+> close failed. Re-running /end to capture later turns is the accepted cb:b518 tradeoff, shown
+> working here.
 
 ## Where things stand (the narrative)
 
@@ -53,7 +54,15 @@ substantive close - swept the id, refactored the skill and operations doc, minte
 and cb:b584 through the write flow (preflight clean, no supersession), resolved Q7 as
 `beliefs/archive/` and discharged cb:b577 through the sanctioned doors, graduated
 `end-skill-redesign` onto the new shelf, and retro-paired the two mints against this thread's
-predetermined path. Then, in this separate turn, `/end` alone.
+predetermined path. Then, in a separate turn, `/end` alone - the first honest close. The
+session did not stop at the close: the operator asked for a skeptical self-audit of every
+claim, which held on every rung except one - the earlier "a518->b518 id fix" had been
+complete in the proto-belief document but only partial in `operations.md`, a pre-migration
+file carrying fourteen legacy `a`-ids. That was swept clean (twelve resolved to canonical
+`b`-form; the dangling `cb:a165` and the cross-namespace `agent-behavior:a108` left with
+reasons). Last, the operator asked the delivery question and it resolved cleanly: the merge
+must come after `/end`, so the finalized thread ships inside the PR rather than stranded
+after it - the fold-chronicle sliver, avoided by design.
 
 **Where things stand.** The round trip is closed end to end, and this thread is the proof:
 proto-belief document -> mint manifest -> beliefs in the graph (cb:b583, cb:b584) -> the
@@ -61,18 +70,22 @@ proto-belief document -> mint manifest -> beliefs in the graph (cb:b583, cb:b584
 commits -> retro-pair pointers closing back to this thread -> graduation of the source
 document to the archive shelf. cb:b583 (run `/end` alone) and cb:b584 (the provenance note
 never overstates) are live rules the close protocol now carries. `end-skill-redesign` is
-planted and graduated to `beliefs/archive/`; Q7 is resolved and off the desk. And this is
-the first `/end` close honest about its own coverage - run, fittingly, under the very rule
-it exists to demonstrate.
+planted and graduated to `beliefs/archive/`; Q7 is resolved and off the desk;
+`operations.md` speaks one id vocabulary. The self-audit confirmed all of it. And this close
+is the first honest about its own coverage - run, and re-run, under the very rule it exists
+to demonstrate.
 
-**What the next session inherits.** `mint-manifest-rename` at the gate - name settled
-("belief candidates"), execution deferred: the cb:b581 supersession and the living-doc sweep
-across seven headings, a candidate to fold into graph-refounding so the re-mint carries the
-new name for free. The two `/end` mechanism details left deferred - how the note reads its
-exact boundary, and how inline invocation is detected - shipped as the standing-caution v1
-and can harden later. graph-refounding still open (milestone, namespace, survival criterion),
-and it gates vocabulary-read-surface's annotation build. The archive shelf now exists for the
-next terminal document that graduates.
+**What the next session inherits.** The PR is not yet created - the settled order is `/end`
+(this close), then open the PR, then merge (merge commit, cb:b573). `mint-manifest-rename` at
+the gate - name settled ("belief candidates"), execution deferred: the cb:b581 supersession
+and the living-doc sweep across seven headings, a candidate to fold into graph-refounding so
+the re-mint carries the new name for free. The two `/end` mechanism details left deferred -
+how the note reads its exact boundary, and how inline invocation is detected - shipped as the
+standing-caution v1 and can harden later. One dangling reference surfaced and was left
+flagged, not guessed: `cb:a165` in `operations.md` names a belief absent from the graph
+(neither `a165` nor `b165` resolves) - identify or retire it. graph-refounding still open
+(milestone, namespace, survival criterion), gating vocabulary-read-surface's annotation
+build. The archive shelf now exists for the next terminal document that graduates.
 
 ## Routing
 
@@ -85,11 +98,15 @@ One row per topic this thread touched. Content lives in the routed-to document, 
 | Render-pointer vs embedded body | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) - render-pointer rejected on the duplication argument | - |
 | Turn-separation rule + inline warning | closed | cb:b583; skills/end/SKILL.md | - |
 | Provenance-note honesty backstop | closed | cb:b584 | - |
-| a518 -> b518 legacy-id fix | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) sweep | - |
+| a518 -> b518 legacy-id fix (proto-belief doc) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) sweep | - |
 | Q7 archive-shelf decision | closed | [beliefs/archive/](../../archive/README.md); cb:b577 discharged (t0027) | - |
 | end-skill-redesign graduation | closed | [beliefs/archive/end-skill-redesign.md](../../archive/end-skill-redesign.md) | - |
 | Mint-manifest section rename | open | [mint-manifest-rename](../mint-manifest-rename.md) - name settled "belief candidates" | supersede cb:b581 vs annotate vs hold-for-refounding |
 | /end boundary-read + inline-detection mechanisms | paused | [end-skill-redesign](../../archive/end-skill-redesign.md) Open - shipped as standing-caution v1 | precise detection deferred |
+| Self-audit of the close | closed | narrative above - all rungs held; the operations.md partial id-sweep found and fixed | - |
+| operations.md legacy-id cleanup | closed | [operations.md](../../../docs/operations.md) - twelve ids swept to canonical b-form | - |
+| Dangling cb:a165 reference | open | unrouted (operations.md line 73) | belief absent from graph; identify or retire |
+| PR creation + merge ordering | closed | narrative - merge after /end, PR ships the finalized thread | PR not yet created |
 | Graph re-founding at a dev milestone | open | [graph-refounding](../graph-refounding.md) | milestone, namespace, survival criterion |
 | Vocabulary read-surface annotation | paused | [vocabulary-read-surface](../vocabulary-read-surface.md) | gated on graph-refounding |
 
@@ -697,7 +714,120 @@ That's cb:b583 working exactly as intended - by the time `/end` reads the render
 
 Go ahead - `/end` on your next turn.
 
-Render committed and pushed. Ready for `/end` on your next turn.
+Done. The `/end` close ran alone, and the round trip is closed end to end - **the first canonical example of the full pipeline under the fixed `/end`.**
+
+## The close, verified
+
+- **Thread document** `2026-07-03-end-skill-round-trip.md` written and registered (index + manifest, count 34), with frontmatter, the operator-facing narrative, an eleven-strand routing ledger, and the embedded transcript.
+- **It is honest about its own coverage** - the exact thing that failed before. The body runs complete through the confirmation turn (the last substantive exchange); only this contentless `/end` turn is omitted, and the capture-provenance note says precisely that (cb:b584). No overstatement.
+- **Every rung resolves:** beliefs → thread pointer resolves to a real file, beliefs → graduated proto-belief doc resolves, `verify.commits` green (Belief: trailers both directions), schema 20/20.
+
+## What this session produced
+
+The complete arc, now traversable in both directions:
+
+**thread** (`2026-07-03-end-skill-round-trip`) → **proto-belief document** (`end-skill-redesign`) → **belief candidates** (its mint manifest) → **graph** (cb:b583 turn-separation, cb:b584 honesty note) → **code** (the `/end` skill + `docs/operations.md` implementing them) → **`Belief:` trailers** linking the commits → **retro-pair pointers** back to the thread → **graduation** of the source document to `beliefs/archive/`.
+
+Plus: Q7 resolved (`beliefs/archive/` shelf, cb:b577 discharged), the `a518→b518` legacy-id leak fixed, and `mint-manifest-rename` spun off (name settled to "belief candidates," execution deferred).
+
+## What the next session inherits
+
+- **`mint-manifest-rename`** at the gate - name settled, execution (the cb:b581 supersession + seven-heading sweep) deferred, a candidate to fold into graph-refounding.
+- **The two `/end` mechanism details** - boundary-read and inline-detection - shipped as the standing-caution v1; they can harden later.
+- **graph-refounding** still open (milestone, namespace, survival criterion), gating vocabulary-read-surface's annotation build.
+- **The archive shelf** now exists for the next terminal document.
+
+Everything is pushed to `claude/effort-estimation-0xs2rd`. The only remaining housekeeping is the ride-along render for this `/end` turn, which the Stop hook will flag next - and notably, that render will be the one artifact this close couldn't include, exactly as the design intends.
+
+## User
+
+Ok well your response had some great info I would like to persist, especially the full description of the round trip. Because of this, i will be repeating the end skill after this, again as its own turn. But first - can you verify the work you've done, that everything you told me that you think you did is in facr confirmed to be the case?
+
+## Assistant
+
+Audit complete. Here's the honest result - I checked each claim against the actual state rather than trusting my narration.
+
+## Verified TRUE
+
+| Claim | Verified |
+|---|---|
+| **cb:b583** minted - prescription, active, deps `cb:b518, cb:b578`, turn-separation claim, 2 `document:` evidence entries (retro-pair) | ✓ |
+| **cb:b584** minted - prescription, active, deps `cb:b518, cb:b386, cb:b578`, 2 `document:` evidence | ✓ |
+| **cb:b577 (Q7) discharged** - materialized 2026-07-03, off the desk (unlinked query returns 0), t0027 `done` | ✓ |
+| **beliefs/archive/** shelf exists (README + graduated doc) | ✓ |
+| **end-skill-redesign graduated** - absent from nursery, `maturity: planted`, `minted: [cb:b583, cb:b584]`, graduation blockquote, grounding cells repointed to archive path, this thread back-linked | ✓ |
+| **/end skill refactored** - symlink resolves to `skills/end/SKILL.md`, turn-separation section, standing caution, cb:b584 honesty note, no residual "seeds/focuses" | ✓ |
+| **Thread doc** - 11 routing rows (I said "eleven strands"), body ends at the confirmation turn, the `/end` command turn correctly omitted | ✓ |
+| **Git** - local HEAD == `origin` (in sync, `56aa8ad`); working tree clean except the ride-along render | ✓ |
+| **Verifiers** - 407 tests, schema 20/20, `verify.commits` all 3 PASS | ✓ |
+
+Two nuances worth stating precisely, both correct-as-is:
+- **cb:b577 shows `Status: active`** - that is the *right* discharged state. Status and materialization are orthogonal (a379); a discharged discrete prescription stays `active` with `materialized` set. It is off the desk.
+- **The thread body is responses-only** (the hook strips tool calls/reasoning), so it carries my summary account of the close, not the raw mint commands - which the provenance note states accurately. No overstatement.
+
+## One real finding (my narration was slightly too broad)
+
+I claimed an "a518→b518 id fix." That's **fully true for `end-skill-redesign.md`** (8 occurrences, the doc you flagged) - but **`docs/operations.md` is a pre-migration document carrying 14 legacy `a`-ids** (a108, a112, a165, a386, a460-a462, a467, a497, **a518**, a537, a540, a543, a548). My edits there *added* canonical `b`-ids (b518/b583/b584) but did **not** sweep the file's existing legacy ids, so line 77 still reads `cb:a518/a540` and the doc now visibly mixes forms.
+
+This is **not a bug** - legacy `a`-ids resolve via the cb:b566 alias, and the mixed state predates my work (fold-chronicle had already added b-ids to that same section). But my summary implied more than I did: I only used `b`-form in new prose; I didn't clean the doc's legacy ids.
+
+**Your call:** I can sweep all 14 legacy `a`-ids in `operations.md` to canonical `b`-form (mechanical, alias-safe, removes the read-surface leak entirely) - a clean separate cleanup. Or leave it, since it's a pre-migration doc and the aliases resolve. I'd lean toward the sweep since read-surface hygiene is this whole session's theme, but I didn't want to expand scope onto a whole doc without asking.
+
+Everything else you were told is confirmed. Ready for your `/end` re-run whenever - it'll capture this audit turn into the thread and regenerate cleanly.
+
+Render pushed. The audit stands: everything I told you is confirmed true, with the one honest correction that `docs/operations.md` retains its pre-existing legacy `a`-ids (my "id fix" was fully done in `end-skill-redesign.md` but only partial in `operations.md`).
+
+Your call on whether to sweep `operations.md`'s 14 legacy ids to canonical `b`-form (I lean yes, for read-surface hygiene) - and then your `/end` re-run whenever you're ready, which will capture this audit turn and regenerate the thread cleanly.
+
+## User
+
+Clean up the ids
+
+## Assistant
+
+Clear now:
+- **Sweep** (all resolve, same serial): a112, a386, a460, a461, a462, a467, a497, a518, a537, a540, a543, a548 → b-form.
+- **Leave `cb:a165`** - it's a dangling reference; neither `cb:a165` nor `cb:b165` exists in the graph, so swapping to b165 would be equally dangling and hide a pre-existing stale citation.
+- **Leave `agent-behavior:a108`** - different namespace, not the cb migration.
+
+Applying the sweep:
+
+Done - `operations.md` ids cleaned up and pushed (`df281c9`).
+
+**Swept** (12, all resolve to the same serial): a112, a386, a460, a461, a462, a467, a497, a518, a537, a540, a543, a548 → canonical `b`-form. The file now speaks the current id vocabulary throughout, and my other authored files this session carry no stray legacy ids.
+
+**Deliberately left, with reasons:**
+- **`cb:a165`** (line 73) - a genuinely **dangling reference**: neither `cb:a165` nor `cb:b165` exists in the graph. Swapping it to b165 would just hide a pre-existing stale citation behind a current-looking id. It's paired with the cached-digest antipattern (now `cb:b386`) as "the procedural→structural pattern," so it likely named a belief that was superseded or renumbered out. Worth a separate look when convenient - but not something I can fix by guessing.
+- **`agent-behavior:a108`** (line 104) - a different namespace, outside the cb migration; its canonical form isn't verifiable from this repo (that collection isn't staged here).
+
+Verifiers green (schema 20/20, manifest check), doc-only change.
+
+That closes the audit finding. The one loose end I'll flag but not touch is the dangling `cb:a165`. Everything else you were told is confirmed, and the branch is in sync. Ready for your `/end` re-run whenever - it'll fold this cleanup and the audit into the thread.
+
+## User
+
+Should the pr be created and merged before or after the end skill is called?
+
+## Assistant
+
+Short answer: **merge must come after `/end`; PR creation can be either side, but I'd create it after too.**
+
+The deciding constraint is that the thread document has to end up *inside* the merged PR, and `/end` is what writes it. So:
+
+**Merge after `/end` - non-negotiable.** If you merge first, the branch is finished (per the repo's own policy: a merged PR can't take new commits - you'd restart from main). The thread doc that `/end` writes would then land orphaned on a restarted branch and need a *second* PR. That's exactly the mess the fold-chronicle session hit - its finalized thread ended up as a one-commit sliver stranded after the merge. Running `/end` before the merge keeps the whole round trip - work, beliefs, skill, and its own finalized thread - in one reviewable, mergeable PR.
+
+**PR creation: after `/end` is cleanest.** Then the PR is opened against a branch that already contains the finalized thread, and there's nothing left to add. (The one reason to create it *before* `/end` is if you want the narrative section to cite the PR number - but the merge commit records that linkage structurally anyway, so it's not worth the added ordering dependency.)
+
+So the clean sequence:
+1. **`/end` alone** (next turn) - writes/commits/pushes the thread doc, capturing everything through this audit turn. Only the contentless `/end` turn is omitted.
+2. **Create the PR** - now contains the complete session.
+3. **Merge** (merge commit, per cb:b573).
+
+One honest note that holds in every ordering: the **merge event itself is never in the thread body** - it happens after `/end`, and it's mechanical delivery with no decision content, so that's fine and consistent with the accepted tradeoff. If you ever want the merge recorded in the graph, that's what the `Belief:`-trailer'd merge commit and `verify.commits` already do structurally; the thread narrative doesn't need to.
+
+So: `/end` next (alone), then PR, then merge. Say the word and I'll run `/end`.
+
+Render pushed. To recap the recommendation: **`/end` alone next turn**, then create the PR, then merge (the merge must come after `/end` so the finalized thread ships inside the PR rather than stranded after it). Ready when you are.
 
 ## Related
 
