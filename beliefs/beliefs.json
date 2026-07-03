@@ -2755,7 +2755,8 @@
     ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:b580",
     "created": "2026-06-07"
   },
   {
@@ -7460,7 +7461,7 @@
           },
           {
             "beliefs": [
-              "cb:b456"
+              "cb:b580"
             ],
             "title": "Git Policy"
           },
@@ -7506,6 +7507,21 @@
         "date": "2026-07-02",
         "detail": "Schema-section render re-pointed from the superseded cb:b481 to its successor cb:b565 (schema-rules sentence updated for the b059 grounding collapse). Pure dep maintenance - render structure unchanged.",
         "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps − cb:b456 via dag-proposal d2ce915c-git-policy-release",
+        "artifact": "session:d2ce915c-git-policy-release"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps + cb:b580 via dag-proposal d2ce915c-git-policy-release",
+        "artifact": "session:d2ce915c-git-policy-release"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Git Policy section render re-pointed from the superseded cb:b456 to its successor cb:b580 (commit autonomously, push only when explicitly instructed - the ride-along render lane made ask-before-commit a per-turn interruption). Dep already swung via mix cb.repoint (slug d2ce915c-git-policy-release); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged.",
+        "artifact": "session:d2ce915c-f0b7-550a-b422-86108204d983"
       }
     ],
     "subjects": [],
@@ -7515,7 +7531,6 @@
       "cb:b450",
       "cb:b454",
       "cb:b455",
-      "cb:b456",
       "cb:b457",
       "cb:b458",
       "cb:b459",
@@ -7526,7 +7541,8 @@
       "cb:b508",
       "cb:b524",
       "cb:b533",
-      "cb:b565"
+      "cb:b565",
+      "cb:b580"
     ],
     "status": "active",
     "created": "2026-06-12"
@@ -9141,5 +9157,38 @@
     "deps": [],
     "status": "active",
     "created": "2026-07-02"
+  },
+  {
+    "id": "cb:b580",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "git"
+    ],
+    "claim": "Commit autonomously; push only when explicitly instructed. A session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first. The remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction. This supersedes the ask-before-commit rule, which deadlocked against the ride-along render lane: the Stop hook stages the session render each turn expecting it to ride along with the session's commits, and a policy that gates every commit on the operator turns that expectation into a per-turn interruption.",
+    "artifact": "user:mark:2026-07-03",
+    "evidence": [
+      {
+        "date": "2026-07-03",
+        "detail": "Stipulated by the operator in session d2ce915c after the ride-along render lane (merged from main) collided with the ask-before-commit policy: the staged render could not ride along because no commit could happen without an explicit instruction, and the operator was prompted every turn. Chose free commit with gated push over free push or dropping the policy entirely.",
+        "artifact": "session:d2ce915c-f0b7-550a-b422-86108204d983"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Accepted via human adjudication against cb:b456. Reasoning: Operator chose to release the ask-before-commit policy: the ride-along transcript render lane assumes sessions commit as they work, and gating every commit on explicit instruction deadlocked that design into a per-turn prompt. Successor keeps the push gate (the remote is the publication boundary) while freeing local commits.",
+        "artifact": "adjudication:human:session:d2ce915c-f0b7-550a-b422-86108204d983"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the git workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-07-03"
   }
 ]

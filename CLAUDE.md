@@ -52,7 +52,7 @@ Never use emdashes. Use hyphens (-) instead.
 
 ## Git Policy
 
-Never commit or push unless explicitly instructed.
+Commit autonomously; push only when explicitly instructed. A session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first. The remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction. This supersedes the ask-before-commit rule, which deadlocked against the ride-along render lane: the Stop hook stages the session render each turn expecting it to ride along with the session's commits, and a policy that gates every commit on the operator turns that expectation into a per-turn interruption.
 
 ## Data Protection
 
