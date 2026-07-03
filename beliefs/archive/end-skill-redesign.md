@@ -7,7 +7,7 @@ status: active
 timestamp: 2026-07-03
 maturity: planted
 minted: [cb:b583, cb:b584]
-threads: [2026-07-02-fold-chronicle-into-threads]
+threads: [2026-07-02-fold-chronicle-into-threads, 2026-07-03-end-skill-round-trip]
 ---
 
 # Redesign /end so a thread's finalized record cannot overstate its own completeness

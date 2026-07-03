@@ -1,7 +1,97 @@
-# Session transcript - 73f0f38b-f6c2-5b59-ab69-219f147d16f1
+---
+type: thread
+title: 2026-07-03 - the /end round-trip (turn-separation ships, first honest close)
+description: The session that carried the /end redesign from proto-belief document to graph to code and back - authored end-skill-redesign, settled its open calls (keep the embedded transcript body, run /end alone in a later turn; the render-pointer alternative rejected on a duplication argument), minted cb:b583 (turn-separation) and cb:b584 (honesty note), refactored the /end skill and docs/operations.md, resolved Q7 as beliefs/archive/ and discharged cb:b577, graduated end-skill-redesign to the archive shelf, spun off mint-manifest-rename, and closed with the first /end run under the new turn-separation rule. Use when resuming the /end mechanism work, the mint-manifest rename, graph-refounding, or auditing the first single-artifact close honest about its own coverage.
+tags: [thread, cb, end-skill, threads, provenance, lifecycle]
+status: active
+timestamp: 2026-07-03
+artifact: session:2026-07-03-end-skill-round-trip
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `73f0f38b-f6c2-5b59-ab69-219f147d16f1` | 2026-07-03
+# 2026-07-03 - the /end round-trip (turn-separation ships, first honest close)
+
+> **Hook-captured, /end-finalized (2026-07-03).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. This is the
+> first close run under the cb:b583 turn-separation rule the session itself minted: the
+> substantive close (the a518->b518 fix, the skill refactor, the cb:b583/b584 mint, the Q7
+> resolution, the graduation, the retro-pair) ran in an earlier turn and is transcribed in
+> full below; /end then ran alone in its own later turn. So the body is complete through the
+> session's close, and the only omitted turn is this contentless /end turn itself - and this
+> note claims no coverage the body lacks (cb:b584), which is exactly the honesty the
+> fold-chronicle close failed.
+
+## Where things stand (the narrative)
+
+**Where things stood.** The task was narrow and gated: author a proto-belief document
+proposing a redesign of `/end`, and stop there - the rewrite itself was explicitly *not*
+part of the task. The defect was real and already demonstrated. `/end` writes the finalized
+thread document during a turn, but the Stop hook's render only reaches the previous
+completed turn, so the turn that runs `/end` is absent from the body - the cb:b518 tail-gap.
+The first `/end`-finalized close (the 2026-07-02 fold-chronicle thread) had walked straight
+into it: its body stopped one turn short of the render, and its provenance note claimed to
+reach a turn the body never contained. The close artifact overstated itself.
+
+**The arc.** The document went in first, and then the operator turned it from a proposal
+into a decision and then into shipped machinery. The initial draft carried a "stronger
+proposal" - drop the embedded transcript body entirely and point at the continuously
+rendered transcript, so a self-healing pointer would dissolve the tail-gap. The operator
+took it apart on a duplication argument: the readable render has to exist regardless (the
+hook writes it live for crash-safety), so pointing the curated, operator-facing thread
+document into that hidden draft lane just makes the curated artifact hollow. The embedded
+body is the second copy worth keeping; the jsonl is the one not, and it stays punted. That
+settled the direction - keep the self-contained body, and recover the pointer's only real
+advantage by running `/end` alone in a later turn so the render has already caught up, with
+a standing caution on inline invocation and an honesty note as the backstop. A vocabulary
+critique of the "Mint manifest" section name spun off its own proto-belief document
+(`mint-manifest-rename`); the name settled to "belief candidates" with execution deferred.
+Along the way the operator caught a legacy-id leak - the tail-gap belief is cb:b518, not the
+pre-migration cb:a518 the task prompt used - the read-surface pattern the framework already
+tracks, now landing on ids. Then the operator lifted the gate: do the refactor here, and
+make this thread the first canonical example of the full round trip. Turn 1 ran the whole
+substantive close - swept the id, refactored the skill and operations doc, minted cb:b583
+and cb:b584 through the write flow (preflight clean, no supersession), resolved Q7 as
+`beliefs/archive/` and discharged cb:b577 through the sanctioned doors, graduated
+`end-skill-redesign` onto the new shelf, and retro-paired the two mints against this thread's
+predetermined path. Then, in this separate turn, `/end` alone.
+
+**Where things stand.** The round trip is closed end to end, and this thread is the proof:
+proto-belief document -> mint manifest -> beliefs in the graph (cb:b583, cb:b584) -> the
+`/end` skill and `docs/operations.md` implementing them -> `Belief:` trailers linking the
+commits -> retro-pair pointers closing back to this thread -> graduation of the source
+document to the archive shelf. cb:b583 (run `/end` alone) and cb:b584 (the provenance note
+never overstates) are live rules the close protocol now carries. `end-skill-redesign` is
+planted and graduated to `beliefs/archive/`; Q7 is resolved and off the desk. And this is
+the first `/end` close honest about its own coverage - run, fittingly, under the very rule
+it exists to demonstrate.
+
+**What the next session inherits.** `mint-manifest-rename` at the gate - name settled
+("belief candidates"), execution deferred: the cb:b581 supersession and the living-doc sweep
+across seven headings, a candidate to fold into graph-refounding so the re-mint carries the
+new name for free. The two `/end` mechanism details left deferred - how the note reads its
+exact boundary, and how inline invocation is detected - shipped as the standing-caution v1
+and can harden later. graph-refounding still open (milestone, namespace, survival criterion),
+and it gates vocabulary-read-surface's annotation build. The archive shelf now exists for the
+next terminal document that graduates.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to document, never here
+([routing-ledger](../routing-ledger.md), cb:b582).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| /end tail-gap redesign (the defect + analysis) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) (planted cb:b583/b584); [skills/end/SKILL.md](../../../skills/end/SKILL.md); [operations.md](../../../docs/operations.md) | - |
+| Render-pointer vs embedded body | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) - render-pointer rejected on the duplication argument | - |
+| Turn-separation rule + inline warning | closed | cb:b583; skills/end/SKILL.md | - |
+| Provenance-note honesty backstop | closed | cb:b584 | - |
+| a518 -> b518 legacy-id fix | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) sweep | - |
+| Q7 archive-shelf decision | closed | [beliefs/archive/](../../archive/README.md); cb:b577 discharged (t0027) | - |
+| end-skill-redesign graduation | closed | [beliefs/archive/end-skill-redesign.md](../../archive/end-skill-redesign.md) | - |
+| Mint-manifest section rename | open | [mint-manifest-rename](../mint-manifest-rename.md) - name settled "belief candidates" | supersede cb:b581 vs annotate vs hold-for-refounding |
+| /end boundary-read + inline-detection mechanisms | paused | [end-skill-redesign](../../archive/end-skill-redesign.md) Open - shipped as standing-caution v1 | precise detection deferred |
+| Graph re-founding at a dev milestone | open | [graph-refounding](../graph-refounding.md) | milestone, namespace, survival criterion |
+| Vocabulary read-surface annotation | paused | [vocabulary-read-surface](../vocabulary-read-surface.md) | gated on graph-refounding |
 
 ## User
 
@@ -608,3 +698,10 @@ That's cb:b583 working exactly as intended - by the time `/end` reads the render
 Go ahead - `/end` on your next turn.
 
 Render committed and pushed. Ready for `/end` on your next turn.
+
+## Related
+
+- [end-skill-redesign](../../archive/end-skill-redesign.md) - the proto-belief document this session authored, planted (cb:b583/b584), and graduated to the archive shelf; its deliberation and Mint manifest.
+- [mint-manifest-rename](../mint-manifest-rename.md) - spun off this session; name settled to "belief candidates", execution deferred.
+- [graph-refounding](../graph-refounding.md), [vocabulary-read-surface](../vocabulary-read-surface.md), [transcript-format](../transcript-format.md) - referenced/fed; the render-pointer's transcript-format dependency dissolved when the embedded body was kept.
+- Minted: cb:b583 (run /end alone in its own turn; warn on inline), cb:b584 (the provenance note never overstates coverage). Discharged: cb:b577 (Q7 archive shelf, t0027).

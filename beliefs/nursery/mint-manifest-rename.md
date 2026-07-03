@@ -6,7 +6,7 @@ tags: [nursery, vocabulary, workflow, read-surface]
 status: active
 timestamp: 2026-07-03
 maturity: active
-threads: [2026-07-02-fold-chronicle-into-threads]
+threads: [2026-07-02-fold-chronicle-into-threads, 2026-07-03-end-skill-round-trip]
 ---
 
 # Rename the "Mint manifest" section to plainer, type-accurate vocabulary
