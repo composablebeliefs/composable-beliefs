@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 28,
+  "count": 29,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -87,6 +87,21 @@
       ],
       "status": "active",
       "timestamp": "2026-07-01"
+    },
+    {
+      "path": "graph-refounding.md",
+      "type": "concept",
+      "title": "Graph re-founding at a dev milestone",
+      "description": "Covers re-initializing the belief graph when CB reaches a development milestone - the dev-era churn (id migrations, vocabulary renames, schema epochs) should not be the permanent record a shipped framework presents. Straight deletion fails three hard tethers; the workable form is re-founding into a fresh collection with the dev graph frozen as a closed, resolvable, out-of-default-view collection. Raised by the operator in the fold-chronicle session; composes with vocabulary-read-surface and the Q7 invisibility requirement.",
+      "tags": [
+        "nursery",
+        "lifecycle",
+        "collections",
+        "provenance",
+        "milestone"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     },
     {
       "path": "index.md",
