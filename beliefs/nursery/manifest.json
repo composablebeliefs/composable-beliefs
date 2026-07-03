@@ -1,456 +1,471 @@
 {
-  "bundle": "nursery",
-  "count": 31,
-  "docs": [
-    {
-      "path": "assertions-rename.md",
-      "type": "concept",
-      "title": "Removing \"assertions\" from cb:a098",
-      "description": "Covers the rename of the dead term \"assertions\" to \"beliefs\" in cb:a098 and the mood fix it forces - the proposed prescription D that supersedes a098's first clause.",
-      "tags": [
-        "cb",
-        "schema",
-        "a098",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25"
-    },
-    {
-      "path": "atomicity-generalization.md",
-      "type": "concept",
-      "title": "Generalize atomicity (cb:a475) to all four types",
-      "description": "Covers extending the primitive-only atomicity doctrine (cb:a475) to all belief types - one belief, one falsifiable proposition - which is what licenses splitting multi-claim nodes like a098.",
-      "tags": [
-        "cb",
-        "schema",
-        "a475",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25"
-    },
-    {
-      "path": "cb-id-b-migration.md",
-      "type": "concept",
-      "title": "Migrate cb: ids to opaque b-serials",
-      "description": "Covers retiring the a/c id prefixes for the single opaque b prefix - the letter-swap migration (serials preserved, disjointness-proven), the content-derived legacy alias, single-series minting, the merge-commit-only condition, and the last-alpha-rename closure. Executed 2026-07-02 (PR #10). Minted cb:b566 (the id protocol), cb:b573 (merge-commit only), cb:b574-b576 (the follow-up obligations).",
-      "tags": [
-        "nursery",
-        "cb",
-        "schema",
-        "id-protocol"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "citation-discipline.md",
-      "type": "concept",
-      "title": "Quote sources verbatim alongside citations",
-      "description": "Covers the citation-discipline rule - quote the load-bearing source passage beside the pointer - minted as agent-behavior:a411. This doc is the focus that produced it.",
-      "tags": [
-        "agent-behavior",
-        "provenance",
-        "citation",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25"
-    },
-    {
-      "path": "commit-provenance-floor.md",
-      "type": "concept",
-      "title": "Commit provenance at the floor tier (threads, ledgers, proto-belief documents)",
-      "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Proto-Belief: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).",
-      "tags": [
-        "nursery",
-        "provenance",
-        "git",
-        "audit-chain",
-        "workflow"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "contract-predicate-demotion.md",
-      "type": "concept",
-      "title": "Demote the contract boolean to a derived predicate",
-      "description": "Covers dropping the stored `contract` field - redundant with rules/invariants by c056's biconditional, zero-drift across 39 nodes, a a386-style stored derivation - so contract-grade-ness is computed on read; and collapsing the c059 \"contracts may stand alone\" carve-out that the demotion exposes as arbitrary, so every prescription grounds in deps or a stipulation artifact.",
-      "tags": [
-        "cb",
-        "schema",
-        "contract",
-        "grounding",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-01"
-    },
-    {
-      "path": "graph-refounding.md",
-      "type": "concept",
-      "title": "Graph re-founding at a dev milestone",
-      "description": "Covers re-initializing the belief graph when CB reaches a development milestone - the dev-era churn (id migrations, vocabulary renames, schema epochs) should not be the permanent record a shipped framework presents. Straight deletion fails three hard tethers; the workable form is re-founding into a fresh collection with the dev graph frozen as a closed, resolvable, out-of-default-view collection. Raised by the operator in the fold-chronicle session; composes with vocabulary-read-surface and the Q7 invisibility requirement.",
-      "tags": [
-        "nursery",
-        "lifecycle",
-        "collections",
-        "provenance",
-        "milestone"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-03"
-    },
-    {
-      "path": "index.md",
-      "type": "index",
-      "title": "Nursery",
-      "description": "Use when orienting to the belief nursery - the floor-tier workspace where proto-belief documents are deliberated in place until they plant into the graph or compost.",
-      "tags": [
-        "nursery",
-        "index"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "mint-manifest.md",
-      "type": "concept",
-      "title": "The mint manifest - typed decomposition inside the proto-belief document, not typed documents",
-      "description": "Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567, re-issued as cb:b581 (vocabulary).",
-      "tags": [
-        "nursery",
-        "cb",
-        "schema",
-        "workflow",
-        "structural-types"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "negative-case-field.md",
-      "type": "concept",
-      "title": "A negative-case schema field?",
-      "description": "Covers whether CB should add a negative-case field for the \"X, not Y\" contrast in claims - leaning no, because the negative channel already exists as invariants.",
-      "tags": [
-        "cb",
-        "schema",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25"
-    },
-    {
-      "path": "nursery-architecture.md",
-      "type": "concept",
-      "title": "The nursery architecture (focus-as-unit, Layer 1/2 fusion)",
-      "description": "Covers the nursery model itself - focus-as-unit, conversing directly in the artifact, making the raw transcript vestigial - and its conflict with the OKF transcript-pair rule.",
-      "tags": [
-        "okf",
-        "cb",
-        "nursery",
-        "meta"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-26"
-    },
-    {
-      "path": "per-belief-files.md",
-      "type": "concept",
-      "title": "Per-belief file storage (split beliefs.json into one file per node)",
-      "description": "Covers the decision to store the graph as one JSON file per belief (a beliefs/cb/a512.json layout) instead of a single array - distinct from the per-entity grouping cb:a112 rejected - the worktree prototype that proved the read path, and the six-step implementation plan that mints from here.",
-      "tags": [
-        "cb",
-        "storage",
-        "schema",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25"
-    },
-    {
-      "path": "prescription-self-tracking.md",
-      "type": "concept",
-      "title": "Prescriptions self-track discharge; todos, materialization, and the desk term retire",
-      "description": "Covers folding the todo layer into prescriptions - discrete prescriptions carry their own open/discharged lifecycle through a generalized close door (the b563 commit-citation gate applied to the node itself), decomposition happens as child prescriptions rather than t-items, and todos.json plus the materialized field retire as a two-store sync invariant the framework rejects everywhere else. The operator's architecture: the prescription is the immutable pointer to an obligation; its mutable implementation plan, with dynamic todos, is a companion proto-belief document - a plan in proto-belief's clothing, unifying with cb:b569. The desk term retires with the indirection: the query reads literally as listing open one-off prescriptions.",
-      "tags": [
-        "nursery",
-        "cb",
-        "schema",
-        "workflow",
-        "todos"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "proto-belief-rename.md",
-      "type": "concept",
-      "title": "Proto-belief - naming the nursery artifact, retiring focus/seed/brief/plan",
-      "description": "Covers the vocabulary settlement naming the nursery artifact the proto-belief document - the gloss becomes the name per the rename test - retiring focus, seed (for documents; threads keep it informally), brief, and plan, with no informal genre registers surviving (mood is carried only by the structural type system, and a plan is a proto-belief whose rows are prescriptions); the split-test doctrine replacing focus-as-unit; the Proto-Belief: commit trailer; and the migration spike over live surfaces. Minted cb:b569 (doctrine) and cb:b570 (residual sweep).",
-      "tags": [
-        "nursery",
-        "vocabulary",
-        "meta",
-        "structural-types"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "routing-ledger.md",
-      "type": "concept",
-      "title": "The routing ledger - per-thread dispatch for non-linear conversations",
-      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
-      "tags": [
-        "nursery",
-        "threads",
-        "provenance",
-        "workflow"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "seed-absorption.md",
-      "type": "concept",
-      "title": "Seed absorption - terminal documents fold into their successor and evacuate",
-      "description": "Covers the principle that every terminal proto-belief document folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning document as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.",
-      "tags": [
-        "cb",
-        "schema",
-        "nursery",
-        "provenance"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "seed-lifecycle.md",
-      "type": "concept",
-      "title": "Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)",
-      "description": "Covers whether terminal proto-belief documents persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted documents and plans collapse into one durable-document concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.",
-      "tags": [
-        "cb",
-        "nursery",
-        "lifecycle",
-        "plans",
-        "meta"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "seed-recency.md",
-      "type": "concept",
-      "title": "Recency and dating for adjudicating competing proto-belief documents",
-      "description": "Covers datestamping proto-belief documents (last-edited) and their thread excerpts so an agent can rank competing document positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.",
-      "tags": [
-        "nursery",
-        "provenance",
-        "recency",
-        "schema"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-26"
-    },
-    {
-      "path": "statement-provenance.md",
-      "type": "concept",
-      "title": "Associate each thread statement with the artifact it feeds",
-      "description": "Covers linking each user/agent statement in a thread to the proto-belief document or belief it is synthesized into - the back-edge of transcript-format's excerpts rule (document to exchange), making transcript-to-graph traceability bidirectional at statement granularity.",
-      "tags": [
-        "nursery",
-        "provenance",
-        "threads",
-        "linkage"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-26"
-    },
-    {
-      "path": "structural-type-rename.md",
-      "type": "concept",
-      "title": "Rename the four structural types to nominalized epistemic acts",
-      "description": "Covers renaming the type enum from primitive/compound/inference/directive to attestation/aggregation/inference/prescription - nominalizations of c051's four verbs (attest/aggregate/infer/prescribe) - fixing the mixed shape-word/act-word register, why compound and inference cannot collapse, why prescription is preferred over actualization, and the layered vocabulary migration.",
-      "tags": [
-        "cb",
-        "schema",
-        "structural-types",
-        "nursery"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-01"
-    },
-    {
-      "path": "thread-repo-binding.md",
-      "type": "concept",
-      "title": "Bind each thread to the repo it relates to (thread init)",
-      "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this matter to the concerns-vs-ran-in routing question.",
-      "tags": [
-        "nursery",
-        "threads",
-        "workflow",
-        "multi-repo"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "threads/2026-06-25-belief-audit.md",
-      "type": "thread",
-      "title": "2026-06-25 - belief-by-belief audit (starting cb:a098)",
-      "description": "Covers the node-by-node belief audit opened on cb:a098 - its split into a directive plus inference, and the schema questions raised: generalizing atomicity past primitives, a negative-case field, mood living in kind. Use when revisiting a098 or those decisions.",
-      "tags": [
-        "cb",
-        "schema",
-        "belief-audit",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-25",
-      "artifact": "session:2026-06-25-belief-audit"
-    },
-    {
-      "path": "threads/2026-07-01-schema-v3-execution.md",
-      "type": "thread",
-      "title": "2026-07-01 - schema-v3 execution (rename + demotion shipped)",
-      "description": "Covers the execution session for the structural-type vocabulary migration - the code-only compat-shim phase (PR #1), the authorized beliefs/ migration (220 type rewrites, contract field stripped, contract family rewritten, evidence recorded on c051/c056), the scope calls made in flight (history untouched, c059 carve-out kept, glossary render deferred), and the two follow-up prescriptions minted at close (cb:a561, cb:a562). Use when tracing the migration commits back to their seeds and decisions.",
-      "tags": [
-        "cb",
-        "schema",
-        "structural-types",
-        "nursery",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-01",
-      "artifact": "session:2026-07-01-schema-v3-execution"
-    },
-    {
-      "path": "threads/2026-07-01-seed-lifecycle.md",
-      "type": "thread",
-      "title": "2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)",
-      "description": "Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; then the thread-persistence arc it opened - diagnosing why the Stop hook could not run remotely and implementing the fix (env-agnostic hook, committed registration, raw jsonl copy, the /end skill). Use when revisiting the seed-lifecycle decision, the commit-the-threads question, or the remote-capture machinery.",
-      "tags": [
-        "cb",
-        "nursery",
-        "lifecycle",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02",
-      "artifact": "session:2026-07-01-seed-lifecycle"
-    },
-    {
-      "path": "threads/2026-07-01-structural-type-vocabulary.md",
-      "type": "thread",
-      "title": "2026-07-01 - structural-type vocabulary (rename + contract demotion)",
-      "description": "Covers the design conversation that questioned the contract boolean and the primitive/compound/directive names, arriving at a four-type rename to nominalized epistemic acts, a demotion of the contract field to a derived predicate, the c059 carve-out that demotion exposes, and the decision to persist the work as nursery seeds rather than a separate plan. Use when revisiting the structural-type vocabulary or the seed-vs-plan question.",
-      "tags": [
-        "cb",
-        "schema",
-        "structural-types",
-        "nursery",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-01",
-      "artifact": "session:2026-07-01-structural-type-vocabulary"
-    },
-    {
-      "path": "threads/2026-07-02-authoring-pipeline.md",
-      "type": "thread",
-      "title": "2026-07-02 - authoring pipeline (thread-to-graph round trip)",
-      "description": "Covers the session that designed the thread-to-graph authoring pipeline - the routing ledger, the mint manifest (typed decomposition inside the brief, rejecting typed nursery documents), concurrence with seed-lifecycle's collapse, and extending commit provenance to the floor tier - executed same-session as the first full round trip from thread capture to minted beliefs. Use when orienting to the authoring pipeline or auditing the round-trip reference.",
-      "tags": [
-        "cb",
-        "nursery",
-        "pipeline",
-        "provenance",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02",
-      "artifact": "session:2026-07-02-authoring-pipeline"
-    },
-    {
-      "path": "threads/2026-07-02-fold-chronicle-into-threads.md",
-      "type": "thread",
-      "title": "2026-07-02 - fold the chronicle into threads (the single-artifact close ships)",
-      "description": "The session that superseded the twice-at-close protocol (cb:b520 -> cb:b578), archived chronicles/ to deprecated/, aligned /end with the narrative-section close and the routing ledger, executed the cb:b570 vocabulary sweep, ran the b567/b572 supersession-cost test, and opened the vocabulary-read-surface and graph-refounding deliberations. Use when resuming any of those strands or auditing the first single-artifact close.",
-      "tags": [
-        "thread",
-        "cb",
-        "chronicles",
-        "vocabulary",
-        "provenance"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-03",
-      "artifact": "session:2026-07-02-fold-chronicle-into-threads"
-    },
-    {
-      "path": "threads/2026-07-03-git-policy-release.md",
-      "type": "thread",
-      "title": "2026-07-03 - the runway clearing (git-policy release + cloud toolchain)",
-      "description": "Covers the session that began as a per-belief-files question, answered from the graph, and turned into clearing the operational runway for that refactor - forensics on the CCR stop hook's false Unverified warnings (wrong commit range, SSH-signature misread), the release of the ask-before-commit policy (cb:b456 superseded by cb:b580 through the full sanctioned write flow), the SessionStart hook that provisions Elixir in cloud containers, and the decision to hand the per-belief-files implementation (cb:b555-b560) to a fresh session. Use when revisiting the git-policy release, the ride-along render rhythm, the stop-hook bug report, or the cloud toolchain provisioning.",
-      "tags": [
-        "cb",
-        "nursery",
-        "git",
-        "workflow",
-        "toolchain",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-03",
-      "artifact": "session:2026-07-03-git-policy-release"
-    },
-    {
-      "path": "threads/index.md",
-      "type": "index",
-      "title": "Threads (session transcripts)",
-      "description": "Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.",
-      "tags": [
-        "threads",
-        "transcript",
-        "index"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-02"
-    },
-    {
-      "path": "transcript-format.md",
-      "type": "concept",
-      "title": "How transcripts and proto-belief documents persist exchanges",
-      "description": "Spike document for the transcript persistence pipeline - whether to commit the raw jsonl, generating metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and proto-belief documents carrying per-topic excerpts. Self-contained; start the implementation thread here.",
-      "tags": [
-        "nursery",
-        "transcript",
-        "format",
-        "provenance",
-        "spike"
-      ],
-      "status": "active",
-      "timestamp": "2026-06-26"
-    },
-    {
-      "path": "vocabulary-read-surface.md",
-      "type": "concept",
-      "title": "Retired vocabulary pollutes the agent read surface",
-      "description": "Covers the gap the proto-belief rename left open - immutable claims and unswept living docs keep teaching retired registers (focus, brief, directive) to every agent that reads them, and agents echo the pollution silently. Candidate fix is render-time vocabulary aliasing on the id-alias precedent; a deprecated-graph-directory evacuation was considered and rejected.",
-      "tags": [
-        "nursery",
-        "vocabulary",
-        "observability",
-        "read-surface"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-03"
-    }
-  ]
+ "bundle": "nursery",
+ "count": 32,
+ "docs": [
+  {
+   "path": "assertions-rename.md",
+   "type": "concept",
+   "title": "Removing \"assertions\" from cb:a098",
+   "description": "Covers the rename of the dead term \"assertions\" to \"beliefs\" in cb:a098 and the mood fix it forces - the proposed prescription D that supersedes a098's first clause.",
+   "tags": [
+    "cb",
+    "schema",
+    "a098",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25"
+  },
+  {
+   "path": "atomicity-generalization.md",
+   "type": "concept",
+   "title": "Generalize atomicity (cb:a475) to all four types",
+   "description": "Covers extending the primitive-only atomicity doctrine (cb:a475) to all belief types - one belief, one falsifiable proposition - which is what licenses splitting multi-claim nodes like a098.",
+   "tags": [
+    "cb",
+    "schema",
+    "a475",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25"
+  },
+  {
+   "path": "cb-id-b-migration.md",
+   "type": "concept",
+   "title": "Migrate cb: ids to opaque b-serials",
+   "description": "Covers retiring the a/c id prefixes for the single opaque b prefix - the letter-swap migration (serials preserved, disjointness-proven), the content-derived legacy alias, single-series minting, the merge-commit-only condition, and the last-alpha-rename closure. Executed 2026-07-02 (PR #10). Minted cb:b566 (the id protocol), cb:b573 (merge-commit only), cb:b574-b576 (the follow-up obligations).",
+   "tags": [
+    "nursery",
+    "cb",
+    "schema",
+    "id-protocol"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "citation-discipline.md",
+   "type": "concept",
+   "title": "Quote sources verbatim alongside citations",
+   "description": "Covers the citation-discipline rule - quote the load-bearing source passage beside the pointer - minted as agent-behavior:a411. This doc is the focus that produced it.",
+   "tags": [
+    "agent-behavior",
+    "provenance",
+    "citation",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25"
+  },
+  {
+   "path": "commit-provenance-floor.md",
+   "type": "concept",
+   "title": "Commit provenance at the floor tier (threads, ledgers, proto-belief documents)",
+   "description": "Covers extending the graph tier's structural commit provenance (cb:c067 commit: scheme, Belief: trailers, mix cb.verify.commits, the cb:a563 todo gate) down to floor-tier lifecycle events - atomic lifecycle commits (one transition of one artifact per commit, cb:a475 transposed, adopted as atomic commits and minted cb:b568), Thread:/Proto-Belief: trailers as floor analogs of Belief:, back-pointers only with git as the sole index, and merge-without-squash as the SHA-durability condition. Deliberation open: trailer vocabulary, verify extension, and checkpoint cadence await resolution; squash policy resolved 2026-07-02 (cb:b573: merge-commit only, squash and rebase merging disabled).",
+   "tags": [
+    "nursery",
+    "provenance",
+    "git",
+    "audit-chain",
+    "workflow"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "contract-predicate-demotion.md",
+   "type": "concept",
+   "title": "Demote the contract boolean to a derived predicate",
+   "description": "Covers dropping the stored `contract` field - redundant with rules/invariants by c056's biconditional, zero-drift across 39 nodes, a a386-style stored derivation - so contract-grade-ness is computed on read; and collapsing the c059 \"contracts may stand alone\" carve-out that the demotion exposes as arbitrary, so every prescription grounds in deps or a stipulation artifact.",
+   "tags": [
+    "cb",
+    "schema",
+    "contract",
+    "grounding",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-01"
+  },
+  {
+   "path": "graph-refounding.md",
+   "type": "concept",
+   "title": "Graph re-founding at a dev milestone",
+   "description": "Covers re-initializing the belief graph when CB reaches a development milestone - the dev-era churn (id migrations, vocabulary renames, schema epochs) should not be the permanent record a shipped framework presents. Straight deletion fails three hard tethers; the workable form is re-founding into a fresh collection with the dev graph frozen as a closed, resolvable, out-of-default-view collection. Raised by the operator in the fold-chronicle session; composes with vocabulary-read-surface and the Q7 invisibility requirement.",
+   "tags": [
+    "nursery",
+    "lifecycle",
+    "collections",
+    "provenance",
+    "milestone"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-03"
+  },
+  {
+   "path": "index.md",
+   "type": "index",
+   "title": "Nursery",
+   "description": "Use when orienting to the belief nursery - the floor-tier workspace where proto-belief documents are deliberated in place until they plant into the graph or compost.",
+   "tags": [
+    "nursery",
+    "index"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "mint-manifest.md",
+   "type": "concept",
+   "title": "The mint manifest - typed decomposition inside the proto-belief document, not typed documents",
+   "description": "Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567, re-issued as cb:b581 (vocabulary).",
+   "tags": [
+    "nursery",
+    "cb",
+    "schema",
+    "workflow",
+    "structural-types"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "negative-case-field.md",
+   "type": "concept",
+   "title": "A negative-case schema field?",
+   "description": "Covers whether CB should add a negative-case field for the \"X, not Y\" contrast in claims - leaning no, because the negative channel already exists as invariants.",
+   "tags": [
+    "cb",
+    "schema",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25"
+  },
+  {
+   "path": "nursery-architecture.md",
+   "type": "concept",
+   "title": "The nursery architecture (focus-as-unit, Layer 1/2 fusion)",
+   "description": "Covers the nursery model itself - focus-as-unit, conversing directly in the artifact, making the raw transcript vestigial - and its conflict with the OKF transcript-pair rule.",
+   "tags": [
+    "okf",
+    "cb",
+    "nursery",
+    "meta"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-26"
+  },
+  {
+   "path": "per-belief-files.md",
+   "type": "concept",
+   "title": "Per-belief file storage (split beliefs.json into one file per node)",
+   "description": "Covers the decision to store the graph as one JSON file per belief (a beliefs/cb/a512.json layout) instead of a single array - distinct from the per-entity grouping cb:a112 rejected - the worktree prototype that proved the read path, and the six-step implementation plan that mints from here.",
+   "tags": [
+    "cb",
+    "storage",
+    "schema",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25"
+  },
+  {
+   "path": "prescription-self-tracking.md",
+   "type": "concept",
+   "title": "Prescriptions self-track discharge; todos, materialization, and the desk term retire",
+   "description": "Covers folding the todo layer into prescriptions - discrete prescriptions carry their own open/discharged lifecycle through a generalized close door (the b563 commit-citation gate applied to the node itself), decomposition happens as child prescriptions rather than t-items, and todos.json plus the materialized field retire as a two-store sync invariant the framework rejects everywhere else. The operator's architecture: the prescription is the immutable pointer to an obligation; its mutable implementation plan, with dynamic todos, is a companion proto-belief document - a plan in proto-belief's clothing, unifying with cb:b569. The desk term retires with the indirection: the query reads literally as listing open one-off prescriptions.",
+   "tags": [
+    "nursery",
+    "cb",
+    "schema",
+    "workflow",
+    "todos"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "proto-belief-rename.md",
+   "type": "concept",
+   "title": "Proto-belief - naming the nursery artifact, retiring focus/seed/brief/plan",
+   "description": "Covers the vocabulary settlement naming the nursery artifact the proto-belief document - the gloss becomes the name per the rename test - retiring focus, seed (for documents; threads keep it informally), brief, and plan, with no informal genre registers surviving (mood is carried only by the structural type system, and a plan is a proto-belief whose rows are prescriptions); the split-test doctrine replacing focus-as-unit; the Proto-Belief: commit trailer; and the migration spike over live surfaces. Minted cb:b569 (doctrine) and cb:b570 (residual sweep).",
+   "tags": [
+    "nursery",
+    "vocabulary",
+    "meta",
+    "structural-types"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "routing-ledger.md",
+   "type": "concept",
+   "title": "The routing ledger - per-thread dispatch for non-linear conversations",
+   "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
+   "tags": [
+    "nursery",
+    "threads",
+    "provenance",
+    "workflow"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "seed-absorption.md",
+   "type": "concept",
+   "title": "Seed absorption - terminal documents fold into their successor and evacuate",
+   "description": "Covers the principle that every terminal proto-belief document folds into its successor and evacuates the nursery - on planting into a `seed` prop on the belief, on losing a contest into the winning document as dated historical evidence - so the nursery never holds a tombstone; plus the floor/graph tier split, the persist-raw safety condition, and the open granularity and field questions.",
+   "tags": [
+    "cb",
+    "schema",
+    "nursery",
+    "provenance"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "seed-lifecycle.md",
+   "type": "concept",
+   "title": "Seed lifecycle - graduate, don't evacuate (and the seed/plan collapse)",
+   "description": "Covers whether terminal proto-belief documents persist by graduation (historicize and archive) instead of evacuating by deletion, and whether persisted documents and plans collapse into one durable-document concept - contesting seed-absorption's fold-and-evacuate and the no-tombstones-by-deletion reading of the nursery doctrine.",
+   "tags": [
+    "cb",
+    "nursery",
+    "lifecycle",
+    "plans",
+    "meta"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "seed-recency.md",
+   "type": "concept",
+   "title": "Recency and dating for adjudicating competing proto-belief documents",
+   "description": "Covers datestamping proto-belief documents (last-edited) and their thread excerpts so an agent can rank competing document positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.",
+   "tags": [
+    "nursery",
+    "provenance",
+    "recency",
+    "schema"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-26"
+  },
+  {
+   "path": "statement-provenance.md",
+   "type": "concept",
+   "title": "Associate each thread statement with the artifact it feeds",
+   "description": "Covers linking each user/agent statement in a thread to the proto-belief document or belief it is synthesized into - the back-edge of transcript-format's excerpts rule (document to exchange), making transcript-to-graph traceability bidirectional at statement granularity.",
+   "tags": [
+    "nursery",
+    "provenance",
+    "threads",
+    "linkage"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-26"
+  },
+  {
+   "path": "structural-type-rename.md",
+   "type": "concept",
+   "title": "Rename the four structural types to nominalized epistemic acts",
+   "description": "Covers renaming the type enum from primitive/compound/inference/directive to attestation/aggregation/inference/prescription - nominalizations of c051's four verbs (attest/aggregate/infer/prescribe) - fixing the mixed shape-word/act-word register, why compound and inference cannot collapse, why prescription is preferred over actualization, and the layered vocabulary migration.",
+   "tags": [
+    "cb",
+    "schema",
+    "structural-types",
+    "nursery"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-01"
+  },
+  {
+   "path": "thread-repo-binding.md",
+   "type": "concept",
+   "title": "Bind each thread to the repo it relates to (thread init)",
+   "description": "Covers persisting each thread doc in the repo the work concerns rather than always in composable-beliefs - set by a thread-init step at the start of a session. The hook now derives its dir from the repo the session ran in ($CLAUDE_PROJECT_DIR), which narrows this matter to the concerns-vs-ran-in routing question.",
+   "tags": [
+    "nursery",
+    "threads",
+    "workflow",
+    "multi-repo"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "threads/2026-06-25-belief-audit.md",
+   "type": "thread",
+   "title": "2026-06-25 - belief-by-belief audit (starting cb:a098)",
+   "description": "Covers the node-by-node belief audit opened on cb:a098 - its split into a directive plus inference, and the schema questions raised: generalizing atomicity past primitives, a negative-case field, mood living in kind. Use when revisiting a098 or those decisions.",
+   "tags": [
+    "cb",
+    "schema",
+    "belief-audit",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-25",
+   "artifact": "session:2026-06-25-belief-audit"
+  },
+  {
+   "path": "threads/2026-07-01-schema-v3-execution.md",
+   "type": "thread",
+   "title": "2026-07-01 - schema-v3 execution (rename + demotion shipped)",
+   "description": "Covers the execution session for the structural-type vocabulary migration - the code-only compat-shim phase (PR #1), the authorized beliefs/ migration (220 type rewrites, contract field stripped, contract family rewritten, evidence recorded on c051/c056), the scope calls made in flight (history untouched, c059 carve-out kept, glossary render deferred), and the two follow-up prescriptions minted at close (cb:a561, cb:a562). Use when tracing the migration commits back to their seeds and decisions.",
+   "tags": [
+    "cb",
+    "schema",
+    "structural-types",
+    "nursery",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-01",
+   "artifact": "session:2026-07-01-schema-v3-execution"
+  },
+  {
+   "path": "threads/2026-07-01-seed-lifecycle.md",
+   "type": "thread",
+   "title": "2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)",
+   "description": "Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; then the thread-persistence arc it opened - diagnosing why the Stop hook could not run remotely and implementing the fix (env-agnostic hook, committed registration, raw jsonl copy, the /end skill). Use when revisiting the seed-lifecycle decision, the commit-the-threads question, or the remote-capture machinery.",
+   "tags": [
+    "cb",
+    "nursery",
+    "lifecycle",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02",
+   "artifact": "session:2026-07-01-seed-lifecycle"
+  },
+  {
+   "path": "threads/2026-07-01-structural-type-vocabulary.md",
+   "type": "thread",
+   "title": "2026-07-01 - structural-type vocabulary (rename + contract demotion)",
+   "description": "Covers the design conversation that questioned the contract boolean and the primitive/compound/directive names, arriving at a four-type rename to nominalized epistemic acts, a demotion of the contract field to a derived predicate, the c059 carve-out that demotion exposes, and the decision to persist the work as nursery seeds rather than a separate plan. Use when revisiting the structural-type vocabulary or the seed-vs-plan question.",
+   "tags": [
+    "cb",
+    "schema",
+    "structural-types",
+    "nursery",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-01",
+   "artifact": "session:2026-07-01-structural-type-vocabulary"
+  },
+  {
+   "path": "threads/2026-07-02-authoring-pipeline.md",
+   "type": "thread",
+   "title": "2026-07-02 - authoring pipeline (thread-to-graph round trip)",
+   "description": "Covers the session that designed the thread-to-graph authoring pipeline - the routing ledger, the mint manifest (typed decomposition inside the brief, rejecting typed nursery documents), concurrence with seed-lifecycle's collapse, and extending commit provenance to the floor tier - executed same-session as the first full round trip from thread capture to minted beliefs. Use when orienting to the authoring pipeline or auditing the round-trip reference.",
+   "tags": [
+    "cb",
+    "nursery",
+    "pipeline",
+    "provenance",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02",
+   "artifact": "session:2026-07-02-authoring-pipeline"
+  },
+  {
+   "path": "threads/2026-07-02-fold-chronicle-into-threads.md",
+   "type": "thread",
+   "title": "2026-07-02 - fold the chronicle into threads (the single-artifact close ships)",
+   "description": "The session that superseded the twice-at-close protocol (cb:b520 -> cb:b578), archived chronicles/ to deprecated/, aligned /end with the narrative-section close and the routing ledger, executed the cb:b570 vocabulary sweep, ran the b567/b572 supersession-cost test, and opened the vocabulary-read-surface and graph-refounding deliberations. Use when resuming any of those strands or auditing the first single-artifact close.",
+   "tags": [
+    "thread",
+    "cb",
+    "chronicles",
+    "vocabulary",
+    "provenance"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-03",
+   "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+  },
+  {
+   "path": "threads/2026-07-03-git-policy-release.md",
+   "type": "thread",
+   "title": "2026-07-03 - the runway clearing (git-policy release + cloud toolchain)",
+   "description": "Covers the session that began as a per-belief-files question, answered from the graph, and turned into clearing the operational runway for that refactor - forensics on the CCR stop hook's false Unverified warnings (wrong commit range, SSH-signature misread), the release of the ask-before-commit policy (cb:b456 superseded by cb:b580 through the full sanctioned write flow), the SessionStart hook that provisions Elixir in cloud containers, and the decision to hand the per-belief-files implementation (cb:b555-b560) to a fresh session. Use when revisiting the git-policy release, the ride-along render rhythm, the stop-hook bug report, or the cloud toolchain provisioning.",
+   "tags": [
+    "cb",
+    "nursery",
+    "git",
+    "workflow",
+    "toolchain",
+    "thread"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-03",
+   "artifact": "session:2026-07-03-git-policy-release"
+  },
+  {
+   "path": "threads/index.md",
+   "type": "index",
+   "title": "Threads (session transcripts)",
+   "description": "Use when you need the raw turn-by-turn transcript of a session - the human-readable, crash-safe record. Not provenance; the nursery seeds are.",
+   "tags": [
+    "threads",
+    "transcript",
+    "index"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-02"
+  },
+  {
+   "path": "transcript-format.md",
+   "type": "concept",
+   "title": "How transcripts and proto-belief documents persist exchanges",
+   "description": "Spike document for the transcript persistence pipeline - whether to commit the raw jsonl, generating metadata at /end, conforming belief-audit.md and the .sessions transcripts to one format, and proto-belief documents carrying per-topic excerpts. Self-contained; start the implementation thread here.",
+   "tags": [
+    "nursery",
+    "transcript",
+    "format",
+    "provenance",
+    "spike"
+   ],
+   "status": "active",
+   "timestamp": "2026-06-26"
+  },
+  {
+   "path": "vocabulary-read-surface.md",
+   "type": "concept",
+   "title": "Retired vocabulary pollutes the agent read surface",
+   "description": "Covers the gap the proto-belief rename left open - immutable claims and unswept living docs keep teaching retired registers (focus, brief, directive) to every agent that reads them, and agents echo the pollution silently. Candidate fix is render-time vocabulary aliasing on the id-alias precedent; a deprecated-graph-directory evacuation was considered and rejected.",
+   "tags": [
+    "nursery",
+    "vocabulary",
+    "observability",
+    "read-surface"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-03"
+  },
+  {
+   "path": "threads/2026-07-02-id-migration.md",
+   "type": "thread",
+   "title": "2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)",
+   "description": "The session that retired the a/c id prefixes for opaque b-serials (PR #10/#11, cb:b566/cb:b573), minted the follow-up obligations cb:b574-b577, re-homed the migration spec to the nursery, and handed off the chronicle-fold and prescription-self-tracking deliberations. Use when auditing the id epoch boundary.",
+   "tags": [
+    "thread",
+    "cb",
+    "schema",
+    "id-protocol"
+   ],
+   "status": "active",
+   "timestamp": "2026-07-03",
+   "artifact": "session:2026-07-02-id-migration"
+  }
+ ]
 }

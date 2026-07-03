@@ -7,7 +7,7 @@ status: active
 timestamp: 2026-07-02
 maturity: planted
 minted: cb:b566
-threads: []
+threads: [2026-07-02-id-migration]
 ---
 
 # cb-id-b-migration: opaque b-serial ids for the cb: graph

@@ -8729,6 +8729,11 @@
         "date": "2026-07-02",
         "detail": "Rejected as dep-tie against cb:b398. Reasoning: No contradiction: b398 defines the artifact field as a typed URI naming an external referent; the id protocol's slug-preservation rule leans on exactly that - artifact URIs are proper names of external things, so the id migration never respells them. Tie the definitional attestation in as a dep rather than rewording the claim to duck a token overlap.",
         "artifact": "adjudication:human:2026-07-02-id-b-migration"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [],
@@ -8977,6 +8982,11 @@
         "date": "2026-07-02",
         "detail": "Stipulated by the operator during PR #10 review, where the id migration made the dependency concrete: cb:b566 cites its migration commit by SHA and its mint commit carries the first Belief: trailer - a squash or rebase merge of that PR would have orphaned both. Squash and rebase merging disabled in repository settings the same day.",
         "artifact": "https://github.com/composablebeliefs/composable-beliefs/pull/10"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [
@@ -9011,6 +9021,11 @@
         "date": "2026-07-02",
         "detail": "Deferred from the cb-id-b-migration (PR #10): the sibling repo was absent from the migration environment. Materialized as a desk obligation on operator instruction so the follow-up lives in the graph, not in prose.",
         "artifact": "commit:eb8cb76dc054750ac97f087fe8be1238c69becc2"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [],
@@ -9038,6 +9053,11 @@
         "date": "2026-07-02",
         "detail": "Deferred from the cb-id-b-migration (PR #10) when the serial collision was discovered; the same collision pattern forced the cb:a566 -> cb:b572 renumber during the merge of main's concurrent mints. Materialized as a desk obligation on operator instruction.",
         "artifact": "commit:eb8cb76dc054750ac97f087fe8be1238c69becc2"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [],
@@ -9065,6 +9085,11 @@
         "date": "2026-07-02",
         "detail": "Deferred from the cb-id-b-migration (PR #10): the generator dereferences the sibling registry, absent from the migration environment. Materialized as a desk obligation on operator instruction.",
         "artifact": "commit:eb8cb76dc054750ac97f087fe8be1238c69becc2"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [],
@@ -9093,6 +9118,11 @@
         "date": "2026-07-02",
         "detail": "Minted so the desk tracks the open decision. The mints-after-Q7 gate existed only as prose - in seed-lifecycle's resolution block, proto-belief-rename spike item 4, the authoring-pipeline routing ledger, and the nursery index - and pre-mint rows carry no machine-readable deps, so nothing structural prevented minting the gated work early. The gate becomes structural at mint time: item 4's and the graduation prescription's future nodes dep on this node's resolution.",
         "artifact": "document:beliefs/nursery/threads/2026-07-02-authoring-pipeline.md"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Retro-paired with the session thread record (the b578 close protocol's pairing step, applied when the protocol landed mid-close): minted by the 2026-07-02 id-migration session.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-02-id-migration.md"
       }
     ],
     "subjects": [],
