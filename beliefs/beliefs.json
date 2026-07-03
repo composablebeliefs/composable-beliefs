@@ -7792,12 +7792,22 @@
         "date": "2026-06-22",
         "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:b546); the prior document:../knowledge/ pointer dangles. Corrected target.",
         "artifact": "document:okf/standard/types.md"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps − cb:b520 via dag-proposal 2026-07-03-fold-chronicle-into-threads",
+        "artifact": "session:2026-07-03-fold-chronicle-into-threads"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps + cb:b578 via dag-proposal 2026-07-03-fold-chronicle-into-threads",
+        "artifact": "session:2026-07-03-fold-chronicle-into-threads"
       }
     ],
     "subjects": [],
     "deps": [
-      "cb:b520",
-      "cb:b507"
+      "cb:b507",
+      "cb:b578"
     ],
     "status": "active",
     "created": "2026-06-21"
