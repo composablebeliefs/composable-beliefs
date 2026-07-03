@@ -212,8 +212,7 @@ defmodule CB.Schema.VerifierTest do
           "contract definition",
           "grounding",
           "subject containment",
-          "retired is prescription",
-          "c-prefix is contract-grade"
+          "retired is prescription"
         ] do
       assert status_of(results, name) == :ok
     end

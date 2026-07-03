@@ -41,19 +41,19 @@ At its core CB is a schema. The graph has four structural types, one per epistem
 
 ```sh
 mix deps.get && mix compile
-mix bs tree cb:c047
+mix bs tree cb:b047
 ```
 
 ```
-cb:c047 [contract] Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
-├── cb:a300 [attestation] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
-├── cb:c054 [contract] A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. ...
-│   ├── cb:a300 [attestation] ...
-│   └── cb:a470 [attestation] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
-└── cb:c046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
+cb:b047 [contract] Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
+├── cb:b300 [attestation] A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
+├── cb:b054 [contract] A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. ...
+│   ├── cb:b300 [attestation] ...
+│   └── cb:b470 [attestation] The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation ...
+└── cb:b046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
 ```
 
-That is the whole idea on one screen. A design rule of this framework (`cb:c047`) is data, not prose; the premises it rests on are themselves beliefs you can keep walking; and the traversal is pure - no model, no ranking, no retrieval, just the graph.
+That is the whole idea on one screen. A design rule of this framework (`cb:b047`) is data, not prose; the premises it rests on are themselves beliefs you can keep walking; and the traversal is pure - no model, no ranking, no retrieval, just the graph.
 
 ## Beyond the ledger
 
@@ -84,9 +84,9 @@ Deferred by design: codepath predicates run in-process today; federation into a 
 ```sh
 mix deps.get && mix compile
 mix bs stats              # graph overview
-mix bs show cb:c056       # one contract in full (schema discipline)
-mix bs tree cb:c056       # a contract and its dependency context
-mix bs history cb:c067    # a supersession chain (the artifact-scheme enum)
+mix bs show cb:b056       # one contract in full (schema discipline)
+mix bs tree cb:b056       # a contract and its dependency context
+mix bs history cb:b067    # a supersession chain (the artifact-scheme enum)
 mix cb.verify.schema      # check the struct against the in-graph schema contracts
 ```
 
@@ -112,7 +112,7 @@ Essays and records:
 - **[Operations vs artifacts](docs/operations-vs-artifacts.md)** - the hidden complexity gap between doing and recording.
 - **[Field note: shared provenance](docs/2026-06-01-shared-provenance-shallow-clone-parable.md)** - "verify against ground truth" is necessary but not sufficient.
 
-Design records and executed plans live in `plans/`; session narratives in `chronicles/`; anchored stances in `positions/`.
+Anchored stances live in `positions/`; session narratives open the thread documents in `beliefs/nursery/threads/` (cb:b578). `plans/` is a closed shelf kept in place because references point into it; the chronicles shelf is archived at `deprecated/chronicles/`.
 
 ## Origin
 

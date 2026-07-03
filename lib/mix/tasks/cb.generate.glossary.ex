@@ -28,7 +28,7 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
 
   use Mix.Task
 
-  @ref_re ~r/[a-z][a-z0-9-]*:[ac]\d+/
+  @ref_re ~r/[a-z][a-z0-9-]*:[abc]\d+/
 
   @impl true
   def run(args) do

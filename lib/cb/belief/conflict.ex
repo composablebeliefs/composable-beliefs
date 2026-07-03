@@ -26,7 +26,7 @@ defmodule CB.Belief.Conflict do
   ## Classification
 
   - **Conflicting** when the matched belief is contract-grade
-    (`CB.Belief.contract?/1` or c-prefix ID) or carries the `dag-schema`
+    (`CB.Belief.contract?/1`) or carries the `dag-schema`
     tag, AND the match carries semantic contact - a shared subject ref
     or claim overlap. Contract-grade matches also receive a
     `priority: :contract_level` marker.
@@ -231,15 +231,10 @@ defmodule CB.Belief.Conflict do
     :subject_overlap in reasons or :claim_overlap in reasons
   end
 
-  defp contract_level?(%Belief{id: id} = b) do
-    (is_binary(id) and String.starts_with?(local_id(id), "c")) or Belief.contract?(b)
-  end
-
-  # Local id is the segment after the last namespace separator. The c-prefix
-  # convention lives on the local id (`cb:c038` -> `c038`), so the heuristic
-  # must look past the namespace.
-  defp local_id(id) when is_binary(id), do: id |> String.split(":") |> List.last()
-  defp local_id(id), do: id
+  # Contract-grade is derived from rules/invariants, never from the id -
+  # the id prefix carries no semantics (cb:b056), and the old c-prefix
+  # heuristic this replaced was exactly the prefix-matching b056 forbids.
+  defp contract_level?(%Belief{} = b), do: Belief.contract?(b)
 
   defp schema_tagged?(%Belief{tags: tags}), do: "dag-schema" in (tags || [])
 

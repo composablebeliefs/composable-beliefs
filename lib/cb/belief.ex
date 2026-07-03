@@ -164,6 +164,33 @@ defmodule CB.Belief do
   @doc "Legacy structural-type names still accepted on read (old -> new)."
   def legacy_type_map, do: @legacy_type_map
 
+  @doc """
+  Letter-swap a legacy id to its b-serial alias.
+
+  The 2026-07 id migration renamed the cb: graph's `a`/`c`-prefixed
+  local ids to the single opaque prefix `b`, serials preserved
+  (`cb:a386` -> `cb:b386`, bare `c051` -> `b051`). Returns the swapped
+  id when the local part is legacy-shaped (`^[ac]\\d+$`), else nil.
+
+  Callers use this as a resolution fallback only - an exact match
+  always wins - so graphs still carrying real a/c ids (unmigrated
+  collections) are never re-pointed by the alias.
+  """
+  def legacy_id_alias(id) when is_binary(id) do
+    {ns, local} =
+      case String.split(id, ":") do
+        [local] -> {nil, local}
+        parts -> {parts |> Enum.drop(-1) |> Enum.join(":"), List.last(parts)}
+      end
+
+    case Regex.run(~r/^[ac](\d+)$/, local) do
+      [_, serial] -> if ns, do: "#{ns}:b#{serial}", else: "b#{serial}"
+      _ -> nil
+    end
+  end
+
+  def legacy_id_alias(_), do: nil
+
   @doc "Valid status values."
   def statuses, do: @statuses
 

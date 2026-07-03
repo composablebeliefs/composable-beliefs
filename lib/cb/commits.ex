@@ -88,12 +88,22 @@ defmodule CB.Commits do
   @spec log_format() :: String.t()
   def log_format, do: "%H|%(trailers:key=Belief,valueonly,separator=%x2C)"
 
-  @doc "Trailer refs naming belief ids absent from the graph."
+  @doc """
+  Trailer refs naming belief ids absent from the graph.
+
+  Refs written before the b-serial id migration resolve through the
+  legacy letter-swap alias (`CB.Belief.legacy_id_alias/1`) - commit
+  history is immutable, so a trailer citing `cb:a545` must keep naming
+  the node now stored as `cb:b545`.
+  """
   @spec dead_trailer_refs([{String.t(), String.t()}], [CB.Belief.t()]) ::
           [{String.t(), String.t()}]
   def dead_trailer_refs(refs, beliefs) do
     ids = MapSet.new(beliefs, & &1.id)
-    Enum.reject(refs, fn {_sha, id} -> MapSet.member?(ids, id) end)
+
+    Enum.reject(refs, fn {_sha, id} ->
+      MapSet.member?(ids, id) or MapSet.member?(ids, CB.Belief.legacy_id_alias(id) || id)
+    end)
   end
 
   @doc """

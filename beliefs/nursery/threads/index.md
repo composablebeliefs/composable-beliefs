@@ -19,6 +19,14 @@ loses the discussion) and **human reading** (what you scan without wading throug
 grounds in a seed, never in a transcript. A transcript is a convenience and a safety net,
 nothing the graph depends on.
 
+**At close, the thread document is the single persisted artifact** (cb:b578): it opens
+with an operator-facing narrative section carrying the register the chronicles used to
+hold - where things stood, the arc with its incidents as story beats, where things stand
+now, and what the next session inherits - narrative carrying the load, ids subordinate.
+The turn-by-turn body below it is the receipts register. Obligations live in the graph
+and resumption state in the routing ledger (cb:b572), so no separate chronicle is
+written; the chronicles shelf is closed and archived at `deprecated/chronicles/`.
+
 Live transcripts are captured automatically by a `Stop` hook
 (`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`
 and pathed via `$CLAUDE_PROJECT_DIR`, so it runs in local and remote sessions alike) into
@@ -37,3 +45,4 @@ decision lands. The hook reminds on first capture.
 - [2026-07-01 - structural-type vocabulary (rename + contract demotion)](2026-07-01-structural-type-vocabulary.md) - hand-captured; seeded the structural-type-rename and contract-predicate-demotion focuses.
 - [2026-07-01 - schema-v3 execution (rename + demotion shipped)](2026-07-01-schema-v3-execution.md) - hand-captured; the execution session for those seeds: code shim (PR #1, `be4ee65`), graph migration (`c4940b9`), follow-ups minted as cb:a561/cb:a562.
 - [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured, finalized by the first /end run; seeded the seed-lifecycle focus, contested seed-absorption, and shipped the remote-capture machinery (PR #8).
+- [2026-07-02 - authoring pipeline (thread-to-graph round trip)](2026-07-02-authoring-pipeline.md) - hand-captured; carries the first routing ledger; seeded routing-ledger, mint-manifest, and commit-provenance-floor, and executed the first full thread-to-graph round trip (cb:b572/cb:b567).

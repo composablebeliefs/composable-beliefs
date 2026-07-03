@@ -6,7 +6,7 @@ description: Present a codepath interactively - a code-anchored cb collection re
 Present a codepath: lead a reader through real source files via clickable
 `path:line` references, narrating each stop and pausing at branch points for the
 reader to choose. A codepath is a cb collection (claim beliefs anchored by `code:`
-artifacts) plus a codepath output-target (the render-spec governed by `cb:c049`:
+artifacts) plus a codepath output-target (the render-spec governed by `cb:b049`:
 `entry` + `render_steps` rows carrying `goto`/`choices` navigation). Read-only -
 this skill never edits source or the collection.
 
@@ -79,13 +79,13 @@ a tour), pair each contract-grade stop with its predicate result:
    pass/fail history onto each contract stop's `materialized` field (a re-run
    replaces the prior record).
 
-Predicates are inspection-only per `cb:c050` - names end in `?` or `_check` and
+Predicates are inspection-only per `cb:b050` - names end in `?` or `_check` and
 resolve to repo-resident functions (`CB.Codepath.Predicates`); the DAG stores only
-routing (per c047). Never eval an expression from the collection.
+routing (per b047). Never eval an expression from the collection.
 
 ## Authoring loop (draft -> import)
 
-When helping author or reorder a codepath, remember the c049 discipline: claim
+When helping author or reorder a codepath, remember the b049 discipline: claim
 beliefs (the durable nodes) are imported through the write flow as usual, but the
 render-spec is **drafted outside the graph** and imported only once the order is
 settled - the output-target is itself a belief, so every post-import reorder

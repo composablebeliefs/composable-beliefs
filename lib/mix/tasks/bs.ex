@@ -99,7 +99,7 @@ defmodule Mix.Tasks.Bs do
         cmd_help()
 
       [cmd | _] ->
-        if Regex.match?(~r/^([a-z][a-z0-9-]*:)?[ac]\d+$/, cmd) do
+        if Regex.match?(~r/^([a-z][a-z0-9-]*:)?[abc]\d+$/, cmd) do
           cmd_show(cmd)
         else
           IO.puts(:stderr, "Unknown command: #{cmd}")

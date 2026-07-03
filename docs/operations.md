@@ -87,6 +87,15 @@ itself: step 5 chooses the destination + retro-pairs, and step 7 (as the last
 write before commit) does the byte-copy and commits it - the latest-possible
 in-session snapshot, verifiable while you watch.
 
+A substantive thread persists **once** at close (`cb:b578`): as the thread
+document, which opens with the operator-facing narrative section - where things
+stood, the arc as story beats, where things stand now, what the next session
+inherits - narrative carrying the load, ids subordinate. No separate chronicle
+is written; the chronicles shelf is closed and archived (see
+`deprecated/chronicles/README.md`).
+Obligations live in the graph and resumption state in the routing ledger
+(`cb:b572`), so the narrative section is the close's only steering artifact.
+
 A SessionEnd finalizer was tried (a marker `/end` dropped, a hook re-copying the
 complete log at true session end, SessionStart recovery for crashes) and
 **removed** (cb:a518). It bought ~1-2 closing turns of no decision content at the

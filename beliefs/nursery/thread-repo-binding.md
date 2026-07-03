@@ -14,9 +14,13 @@ threads: [2026-06-26-nursery-workflow]
 ## The focus
 Work in this tree spans many repos (composable-beliefs, belief-collections, the direction
 repos, satellites). A thread's transcript should persist in the repo the work concerns, not
-always in composable-beliefs. The transcript hook hardcodes one `THREADS_DIR`
-(`.claude/hooks/transcript_hook.py`), so every session lands in composable-beliefs
-regardless of subject.
+always in composable-beliefs. The transcript hook originally hardcoded one `THREADS_DIR`
+(`.claude/hooks/transcript_hook.py`), so every session landed in composable-beliefs
+regardless of subject; the constant is gone (below), leaving the concerns-vs-ran-in
+routing question. The stakes rose with the single-artifact close (cb:b578): the
+thread document is now the only persisted close artifact and opens with the
+operator-facing narrative section, so the binding decides where the steering narrative
+lands too.
 
 ## Where it stands
 - **A thread-init step.** At the start of a session, declare the owning repo (and thus the
