@@ -95,6 +95,10 @@ makes staleness visible; it never silently decides.
 - [transcript-format](transcript-format.md) - contested - how transcripts and proto-belief documents persist exchanges; the current live reference.
 - [vocabulary-read-surface](vocabulary-read-surface.md) - active - retired registers (focus, brief, directive) leak from immutable claims and unswept living docs into agent output; candidate fix is render-time vocabulary aliasing on the cb:b566 id-alias precedent (annotate, never rewrite); deprecated-directory evacuation considered and rejected. The cb:b570 sweep executed 2026-07-03; the annotation build is gated on graph-refounding.
 - [graph-refounding](graph-refounding.md) - active - re-initialize the graph at a dev milestone so the shipped record is the design, not the dev churn: straight deletion fails the trailer/citation/test-corpus tethers; the workable form freezes the dev graph as a closed cb-v0: collection and re-mints the survivors into a fresh one, ancestors cited. Milestone definition, namespace assignment, and survival criterion open.
+- [mint-manifest-rename](mint-manifest-rename.md) - active - rename the ## Mint manifest section (cb:b567/b581) to plainer, type-accurate vocabulary such as "belief candidates": "mint manifest" is jargon and "mint" misleadingly implies the rows are prescription-only when they carry all four belief types. A wording sweep across seven living documents plus the cb:b581 convention, not a parser change (/assert does not read the heading by name). Naming call and supersede-vs-annotate-vs-hold-for-refounding open.
+
+## Graduated
+Terminal proto-belief documents leave the live list above and move to the archive shelf (`beliefs/archive/`, the Q7 decision cb:b577); their `document:` citations follow. See [../archive/README.md](../archive/README.md) for the shelf and its contents. First tenant: `end-skill-redesign` (planted 2026-07-03 as cb:b583/cb:b584).
 
 ## Subdomains
 - [threads/](threads/index.md) - living session transcripts: crash-safe, human-readable, and explicitly **not** provenance (the proto-belief documents above are). Captured automatically by a `Stop` hook.

@@ -201,5 +201,14 @@
     "notes": "Rewrote the retired registers out of the fourteen live nursery documents (including the three 2026-07-02 documents' own prose and the 'The focus' -> 'The matter' heading), the nursery index glosses, docs/operations.md's discharge section, the thesis doc's graph-of-assertions line, and the glossary (plan entry retirement note plus a new Proto-Belief Document entry carrying the retired aliases). Historical record, verbatim quotes, quoted pre-rename claims, proposal proper names, the seed prop field name, threads' informal seed register, and the b562-gated compat shim left untouched per the prescription.\n\nSweep verified: mix test 407/0, cb.verify.schema 20 passed, cb.generate.claude_md --check, okf.manifest --check; residual-register grep clean outside the sanctioned survivals. Discharged by the cited commit.",
     "source": "cb:b570",
     "status": "done"
+  },
+  {
+    "action": "Archive shelf decided: graduated proto-belief documents live in beliefs/archive/, a sibling outside the nursery bundle (okf.manifest scans nursery/ only, so archived docs leave the live read surface). First graduation: end-skill-redesign.md.",
+    "commit": "a77adbab7b7fd28ed3fffd80b26f8b98d6b2e987",
+    "created": "2026-07-03",
+    "id": "t0027",
+    "notes": "Operator decision 2026-07-03; shelf established at commit a77adbab7b7fd28ed3fffd80b26f8b98d6b2e987. Resolves Q7 of seed-lifecycle.\n\nDischarged: archive shelf resolved as beliefs/archive/ (operator 2026-07-03), shelf established with README. Q7 of seed-lifecycle closed.",
+    "source": "cb:b577",
+    "status": "done"
   }
 ]

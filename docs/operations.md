@@ -2,7 +2,7 @@
 
 Companion to [the guide](guide/README.md). The durable *principles* now live in the graph as beliefs (`mix bs list domain:design tag:operations`); this doc keeps the **workflow** - how to run an extraction session in practice.
 
-> The shared-prosthetic framing (`cb:a460`), composition-over-retrieval (`cb:a462`), scope-decisions-as-beliefs (`cb:a461`), and the centralized-graph rationale (`cb:a112`) are beliefs now, not prose here - read them with `mix bs show`.
+> The shared-prosthetic framing (`cb:b460`), composition-over-retrieval (`cb:b462`), scope-decisions-as-beliefs (`cb:b461`), and the centralized-graph rationale (`cb:b112`) are beliefs now, not prose here - read them with `mix bs show`.
 
 ## Extraction workflow
 
@@ -38,7 +38,7 @@ work (put the discharging commit in its notes), and immediately
 field then records the discharge and the prescription leaves the desk; the closed
 todo is the honest record of what discharged it. There is no separate
 "mark discharged" verb - materialize-then-close is the path, and the action-item
-text carries the out-of-band provenance (worked example: cb:a537, discharged by
+text carries the out-of-band provenance (worked example: cb:b537, discharged by
 `mix cb.repoint` at ac3e199).
 
 ## Observing live agent work: the lap log
@@ -46,8 +46,8 @@ text carries the out-of-band provenance (worked example: cb:a537, discharged by
 A working session is observable from inside the editor: the agent appends to a
 scratch markdown file (`tmp/lap-log.md`) station by station, and the operator
 keeps it open in a split - Zed reloads externally-changed buffers silently, so
-the pane updates live (per `cb:a497`). Entries follow the anchor discipline
-(`cb:a467`): the content anchor is the truth, the line number is a write-time
+the pane updates live (per `cb:b497`). Entries follow the anchor discipline
+(`cb:b467`): the content anchor is the truth, the line number is a write-time
 snapshot, and stations that rewrite files re-emit fresh locators.
 
 Zed link mechanics, current as of 2026-06-11: cmd-click follows markdown links
@@ -64,17 +64,17 @@ credential (OAuth app token, e.g. the default `gh`/Claude auth) lacks the
 ... without 'workflow' scope`. The rest of the commit is fine; only the workflow
 file is blocked, and the whole push fails atomically. Either push workflow edits
 with a `workflow`-scoped token, or split them out and hand them off (the okf CI
-gate was parked as `cb:a548` for exactly this reason, 2026-06-22).
+gate was parked as `cb:b548` for exactly this reason, 2026-06-22).
 
 ## Session start hook + transcript capture (the host workspace)
 
 Session **start** is surfaced by one harness hook; the **transcript** is captured
 by `/end` itself (no end hook - see below). The surfacing hook is the structural
-answer to the cb:a165/cb:a386 pattern - a reminder the agent must remember to act
+answer to the cb:a165/cb:b386 pattern - a reminder the agent must remember to act
 on is procedural surfacing; a hook makes it structural. It lives in dotfiles-claude
 (`~/.claude/hooks/`, registered in `~/.claude/settings.json`) as machine-level
-harness config; the graph records the *why* (cb:a543 family for surfacing,
-cb:a518/a540 for the transcript).
+harness config; the graph records the *why* (cb:b543 family for surfacing,
+cb:b518/b540 for the transcript).
 
 - **SessionStart -> `cb-desk.sh`.** When a session opens with cwd under
   the host workspace root, it injects the live desk
@@ -98,10 +98,23 @@ Obligations live in the graph and resumption state in the routing ledger
 
 A SessionEnd finalizer was tried (a marker `/end` dropped, a hook re-copying the
 complete log at true session end, SessionStart recovery for crashes) and
-**removed** (cb:a518). It bought ~1-2 closing turns of no decision content at the
+**removed** (cb:b518). It bought ~1-2 closing turns of no decision content at the
 cost of a marker protocol, a concurrency guard, and a silent-failure surface -
 and produced a real concurrency bug plus a destructive test that swept live state
 (agent-behavior:a108). The accepted trade: the `/end` snapshot is the record;
 turns after it (the close, or work done after `/end`) are captured only by
 **running `/end` again**. If you keep working after a close sweep, re-run `/end`
 before you exit.
+
+**Run `/end` alone, in its own turn (cb:b583).** The Stop hook's render only
+reaches the previous completed turn, so `/end` run *inside* a turn cannot capture
+that turn - the cb:b518 tail-gap now landing on the finalized thread document.
+Do the substantive close work (mint, retro-pair, surface edits, commits) first;
+then invoke `/end` as its own separate exchange. Run that way, the render has
+advanced to include the close, so the embedded body is complete through it and
+only the contentless `/end` turn is omitted. `/end` run inline warns that the
+current turn will not be captured; a same-turn `/final` does not satisfy the rule
+(a turn boundary is a separate exchange, not a second skill call). Whatever
+happens, the thread document's capture-provenance note states the true boundary
+and never claims coverage it lacks (cb:b584) - the fold-chronicle close overstated
+itself by one full topic, which is the failure that note prevents.

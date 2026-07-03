@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 31,
+  "count": 34,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -114,6 +114,20 @@
       ],
       "status": "active",
       "timestamp": "2026-07-02"
+    },
+    {
+      "path": "mint-manifest-rename.md",
+      "type": "concept",
+      "title": "Rename the \"Mint manifest\" section to plainer, type-accurate vocabulary",
+      "description": "Covers renaming the ## Mint manifest section - the typed table of candidate beliefs a maturing proto-belief document grows before it plants (cb:b567, re-issued cb:b581) - to a plainer name such as \"belief candidates\". Two grounds: \"mint manifest\" is insider jargon (the default-read-surface hygiene vocabulary-read-surface argues for), and \"mint\" misleadingly evokes prescriptions/minting when the rows carry all four belief types. Records the blast radius (a wording sweep across seven living documents plus the cb:b581 convention, not a parser change, since /assert does not read the heading by name). The name is settled to \"belief candidates\" (operator, 2026-07-03); execution - the cb:b581 supersession and the living-doc sweep - is deferred to a later authoring thread. Spun off from the end-skill-redesign vocabulary exchange.",
+      "tags": [
+        "nursery",
+        "vocabulary",
+        "workflow",
+        "read-surface"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     },
     {
       "path": "mint-manifest.md",
@@ -392,6 +406,39 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+    },
+    {
+      "path": "threads/2026-07-02-id-migration.md",
+      "type": "thread",
+      "title": "2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)",
+      "description": "Covers the session that retired the a/c id prefixes for opaque b-serials (PR #10) and the review thread that followed (PR #11) - the letter-swap migration and legacy alias, the concurrent-mint merge translation, the merge-commit-only contract, a name redaction, follow-up obligations minted to the desk, the Q7 gate made structural, and two handed-off deliberations (chronicle fold, prescription self-tracking). Use when auditing the id epoch boundary or orienting to the close-out conventions this thread practiced.",
+      "tags": [
+        "cb",
+        "nursery",
+        "schema",
+        "id-protocol",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02",
+      "artifact": "session:2026-07-02-id-migration"
+    },
+    {
+      "path": "threads/2026-07-03-end-skill-round-trip.md",
+      "type": "thread",
+      "title": "2026-07-03 - the /end round-trip (turn-separation ships, first honest close)",
+      "description": "The session that carried the /end redesign from proto-belief document to graph to code and back - authored end-skill-redesign, settled its open calls (keep the embedded transcript body, run /end alone in a later turn; the render-pointer alternative rejected on a duplication argument), minted cb:b583 (turn-separation) and cb:b584 (honesty note), refactored the /end skill and docs/operations.md, resolved Q7 as beliefs/archive/ and discharged cb:b577, graduated end-skill-redesign to the archive shelf, spun off mint-manifest-rename, closed with the first /end run under the new turn-separation rule, then self-audited the close, swept operations.md's legacy ids, and settled the PR ordering (merge after /end). Use when resuming the /end mechanism work, the mint-manifest rename, graph-refounding, or auditing the first single-artifact close honest about its own coverage.",
+      "tags": [
+        "thread",
+        "cb",
+        "end-skill",
+        "threads",
+        "provenance",
+        "lifecycle"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03",
+      "artifact": "session:2026-07-03-end-skill-round-trip"
     },
     {
       "path": "threads/2026-07-03-git-policy-release.md",
