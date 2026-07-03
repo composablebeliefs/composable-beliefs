@@ -2216,8 +2216,8 @@ source: `../beliefs/beliefs.json:8182`  ·  `mix bs show cb:b551`
 
 The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.
 
-deps: [cb:b475](#cba475), `cb:b567`  
-source: `../beliefs/beliefs.json:8808`  ·  `mix bs show cb:b569`
+deps: [cb:b475](#cba475), `cb:b581`  
+source: `../beliefs/beliefs.json:8809`  ·  `mix bs show cb:b569`
 
 ### cb:b578
 
@@ -2225,8 +2225,8 @@ source: `../beliefs/beliefs.json:8808`  ·  `mix bs show cb:b569`
 
 Every thread that does substantive work persists once at close: as the thread document, which opens with an operator-facing narrative section carrying the chronicle's register - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits - narrative carrying the load, ids subordinate. The narrative section serves the steering, the thread body serves the audit, the graph serves the work: obligations already live in the graph and resumption state in the routing ledger, so the narrative was the chronicle's only surviving load and it travels with the thread instead of on a separate shelf. chronicles/ is closed to new entries; the existing files are historical record kept in place because references point into them, with physical archiving gated on the archive-shelf decision and a cb.repoint pass.
 
-deps: [cb:b489](#cba489), `cb:b572`  
-source: `../beliefs/beliefs.json:9068`  ·  `mix bs show cb:b578`
+deps: [cb:b489](#cba489), `cb:b582`  
+source: `../beliefs/beliefs.json:9106`  ·  `mix bs show cb:b578`
 
 ### cb:b026
 

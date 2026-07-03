@@ -1,7 +1,7 @@
 ---
 type: concept
 title: The mint manifest - typed decomposition inside the proto-belief document, not typed documents
-description: Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.
+description: Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567, re-issued as cb:b581 (vocabulary).
 tags: [nursery, cb, schema, workflow, structural-types]
 status: active
 timestamp: 2026-07-02

@@ -119,7 +119,7 @@
       "path": "mint-manifest.md",
       "type": "concept",
       "title": "The mint manifest - typed decomposition inside the proto-belief document, not typed documents",
-      "description": "Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.",
+      "description": "Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567, re-issued as cb:b581 (vocabulary).",
       "tags": [
         "nursery",
         "cb",
@@ -204,7 +204,7 @@
       "path": "routing-ledger.md",
       "type": "concept",
       "title": "The routing ledger - per-thread dispatch for non-linear conversations",
-      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572; open on hook mechanics and the skill build.",
+      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
       "tags": [
         "nursery",
         "threads",

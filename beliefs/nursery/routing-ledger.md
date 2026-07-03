@@ -1,7 +1,7 @@
 ---
 type: concept
 title: The routing ledger - per-thread dispatch for non-linear conversations
-description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572; open on hook mechanics and the skill build.
+description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.
 tags: [nursery, threads, provenance, workflow]
 status: active
 timestamp: 2026-07-02
