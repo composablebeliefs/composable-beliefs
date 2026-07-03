@@ -1,4 +1,4 @@
-Finalize and persist the session's thread: synthesize metadata onto the live render, conform it to the thread shape, register it in the nursery, and commit it with the session's work.
+Finalize and persist the session's thread: synthesize metadata and the operator-facing narrative section onto the live render, conform it to the thread shape, register it in the nursery, and commit it with the session's work. The thread document is the single persisted close artifact (cb:b578); no separate chronicle is written - the chronicles shelf is closed and archived at `deprecated/chronicles/`.
 
 The Stop hook (`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`) rewrites a responses-only render plus a raw jsonl copy into `beliefs/nursery/threads/.sessions/` every turn, in local and remote sessions alike, and stages the render so it rides along with the session's commits - a crash-safe draft lane that persists even if this skill never runs. `/end` is the finalization on top: it turns the live render into a curated, registered thread doc.
 
@@ -10,7 +10,7 @@ The Stop hook (`.claude/hooks/transcript_hook.py`, registered in the committed `
 
 2. **Synthesize the metadata the hook cannot know.** Frontmatter: `type: thread`, `title` (`<date> - <short arc name>`), `description` (what the session covered and when to read it), `tags` (include `thread`), `status: active`, `timestamp` (today), `artifact: session:<date>-<slug>`. These are only knowable at session end; the hook owns the live body, `/end` owns the metadata (transcript-format's pipeline).
 
-3. **Conform the body** to the thread shape (`2026-06-25-belief-audit.md` is the prototype): the frontmatter above, a capture-provenance blockquote (hook-rendered or hand-captured), a `## Where we are` digest of what settled, the turn-by-turn body, and a `## Related` section linking the focuses and beliefs the session fed.
+3. **Open with the operator-facing narrative section** (cb:b578), then conform the body to the thread shape (`2026-06-25-belief-audit.md` is the prototype for the receipts register below it): the frontmatter above, a capture-provenance blockquote (hook-rendered or hand-captured), the narrative section - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits, narrative carrying the load and ids subordinate (this is the register the retired chronicles held; it absorbs the old `## Where we are` digest) - then the turn-by-turn body, and a `## Related` section linking the focuses and beliefs the session fed.
 
 4. **Write and register.** Write to `beliefs/nursery/threads/<date>-<slug>.md`. Add it to the threads index (`threads/index.md` Contents) and the nursery `manifest.json` (bump `count`, add the entry with the `session:` artifact). Back-link it from any focus docs the session fed (their `threads:` frontmatter).
 
