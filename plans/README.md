@@ -10,4 +10,4 @@ citations point into it. Physical archiving (with a `cb.repoint` pass and under 
 archive-invisibility requirement) and the triage of any still-live plans into
 proto-belief documents are scoped in
 `beliefs/nursery/proto-belief-rename.md` (spike item 4), gated on the archive-shelf
-decision recorded in `beliefs/nursery/seed-lifecycle.md`.
+decision recorded in `beliefs/nursery/seed-lifecycle.md` (desk-tracked as cb:b577).

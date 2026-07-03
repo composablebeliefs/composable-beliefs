@@ -1,21 +1,25 @@
 ---
 type: thread
 title: 2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)
-description: Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; plus the branch mechanics (merge, post-PR reset) and the thread-persistence exchange that led to hand-capturing this transcript. Use when revisiting the seed-lifecycle decision or the commit-the-threads question.
+description: Covers the session that deliberated the seed-lifecycle brief - whether terminal seeds evacuate or persist, and whether seed and plan collapse - landing on scenario C and authoring the seed-lifecycle focus; then the thread-persistence arc it opened - diagnosing why the Stop hook could not run remotely and implementing the fix (env-agnostic hook, committed registration, raw jsonl copy, the /end skill). Use when revisiting the seed-lifecycle decision, the commit-the-threads question, or the remote-capture machinery.
 tags: [cb, nursery, lifecycle, thread]
 status: active
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 artifact: session:2026-07-01-seed-lifecycle
 ---
 
 # 2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)
 
-> **Hand-captured (2026-07-01).** No `Stop` hook was running in this remote session (the
-> hook is unregistered here and hardcodes a local `THREADS_DIR`), so this thread was
-> written by hand against the still-`contested` transcript format
-> ([transcript-format](../transcript-format.md)). Tool calls and reasoning are stripped;
-> only what was said is kept. Produced: [seed-lifecycle](../seed-lifecycle.md), and the
-> contested-links marking [seed-absorption](../seed-absorption.md) contested.
+> **Hand-captured (2026-07-01), finalized by `/end` (2026-07-02).** No `Stop` hook was
+> running when this remote session started (the hook was unregistered here and hardcoded a
+> local `THREADS_DIR`), so the first arc was written by hand against the still-`contested`
+> transcript format ([transcript-format](../transcript-format.md)). The session then fixed
+> that: once it committed the hook registration, capture went live mid-session and the
+> full render appeared in `.sessions/` retroactively - this doc's later turns are
+> finalized from it, the first `/end` run. Tool calls and reasoning are stripped; only
+> what was said is kept. Produced: [seed-lifecycle](../seed-lifecycle.md), the
+> contested-links marking [seed-absorption](../seed-absorption.md) contested, and the
+> capture machinery (hook + `.claude/settings.json` + `/end`).
 
 ## Where we are
 
@@ -43,6 +47,16 @@ artifact: session:2026-07-01-seed-lifecycle
 - **Process decisions:** the focus authored as `contested`, with explicit contested-links
   flipping seed-absorption to `contested`; and this transcript hand-captured after the
   thread-persistence exchange below.
+- **The capture arc (second half):** the persisted-per-convention question exposed that
+  the Stop hook could not run remotely for three separable reasons - registration was
+  local-only, the output path was hardcoded local, and the local persistence model
+  (write to disk) does not survive an ephemeral container. Implemented: the hook derives
+  its repo from `$CLAUDE_PROJECT_DIR` (fallback: its own location), is registered in a
+  committed `.claude/settings.json`, copies the raw jsonl beside the render, and reminds
+  once on first capture; an `/end` skill finalizes the live render into a committed
+  thread doc (raw stays working-area pending transcript-format's LFS decision). Shipped
+  as PR #8. The fix validated itself live: registration took effect mid-session and the
+  full render appeared in `.sessions/` retroactively.
 
 ## Turn-by-turn
 
@@ -128,10 +142,50 @@ on the user's laptop.
 thread established, registered it in the threads index and nursery manifest, committed and
 pushed.
 
+**User:** Yea, PR. (Then: merged to main.)
+
+**Claude:** Opened PR #3 for the thread; on merge, restarted the branch from main.
+
+**User:** Was this thread persisted in the repo per convention?
+
+**Claude:** Per the convention as it exists (the hand-capture lane) - yes, exactly. Per
+the target convention (hook-rendered from the jsonl, raw persisted) - only partially:
+this doc is a reconstruction, not a file copy, and the raw layer existed nowhere but the
+ephemeral container.
+
+**User:** The hook was written for local agents - am I to understand it won't work for a
+remote agent? What could be a workable substitute?
+
+**Claude:** Finer-grained than that: hooks do run remotely; what breaks is registration
+(local-only), the path (hardcoded local), and the persistence model (remote persistence
+is push-only). Substitute in tiers: (1) env-agnostic path + committed registration; (2)
+an /end commit convention with a hook reminder, raw jsonl copied in-container; (3)
+per-turn pushes to a dedicated ref - recommended against, since remote sessions are
+resumable host-side. Recommendation: tiers 1 + 2.
+
+**User:** Implement all.
+
+**Claude:** Implemented tiers 1 + 2: rewrote the hook (env-derived dir, raw copy,
+first-capture reminder), committed `.claude/settings.json`, authored the `/end` skill,
+updated the threads index and thread-repo-binding (the hardcoded-dir limitation is gone,
+narrowing that focus to concerns-vs-ran-in routing). Tested four paths against a
+synthetic jsonl: env-var resolution, script-location fallback, reminder-once-then-silent,
+no-op on missing transcript. Pushed; opened PR #8 on request.
+
+**User:** Pull main to update. Should we then run the new /end and update the PR?
+
+**Claude:** Merged main cleanly (the schema-v3 execution had landed - the rename and
+contract demotion shipped). Ran the first `/end`: found the hook's live render already
+covering the whole session (registration had taken effect mid-session), finalized this
+doc from it, registered main's schema-v3-execution thread in the manifest it was missing
+from, and pushed - updating PR #8.
+
 ## Related
 - [seed-lifecycle](../seed-lifecycle.md) - the focus this session produced.
 - [seed-absorption](../seed-absorption.md) - flipped to `contested` by this session.
 - [transcript-format](../transcript-format.md) - the persist-raw/commit-the-renders
   decisions the closing exchange bears on.
 - [thread-repo-binding](../thread-repo-binding.md) - the hardcoded-THREADS_DIR limitation
-  this session ran into.
+  this session ran into, then removed.
+- `.claude/hooks/transcript_hook.py`, `.claude/settings.json`, `skills/end/SKILL.md` - the
+  capture machinery this session shipped (PR #8).

@@ -8,7 +8,7 @@
 
 Composable Beliefs is a paradigm for giving AI agents persistent, source-grounded, inspectable reasoning that survives session boundaries and composes into understanding the agent never explicitly derived.
 
-The mechanism is a directed acyclic graph of assertions - atomic claims grounded in sources, composed into beliefs with explicit dependency chains, surfacing implications that drive action. Four types, one per epistemic operation: primitive (what a source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), directive (what needs to happen). Structural support - the artifacts, evidence, and dependencies behind a belief - makes its grounding visible. Immutability makes change traceable. Composition makes the whole greater than the parts.
+The mechanism is a directed acyclic graph of beliefs - atomic claims grounded in sources, composed into beliefs with explicit dependency chains, surfacing implications that drive action. Four types, one per epistemic operation: primitive (what a source said), compound (what its deps jointly state), inference (a conclusion licensed to exceed its deps), directive (what needs to happen). Structural support - the artifacts, evidence, and dependencies behind a belief - makes its grounding visible. Immutability makes change traceable. Composition makes the whole greater than the parts.
 
 The name is the paradigm. Not a company. Not a product. A category that doesn't exist yet.
 

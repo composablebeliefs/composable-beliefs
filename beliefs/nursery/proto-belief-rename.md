@@ -83,7 +83,7 @@ vocabulary in superseded nodes.
    superseded nodes, quotes of pre-rename claims) and the sanctioned survivals (the
    belief.ex compat shim pending cb:a562; structural-type-rename itself, which is about
    the old vocabulary).
-4. **Gated on Q7 (archive shelf):** triage of still-live plans into proto-belief
+4. **Gated on Q7 (archive shelf, desk-tracked as cb:b577):** triage of still-live plans into proto-belief
    documents; physical archiving of the closed plans/ shelves with a `cb.repoint` pass,
    under the operator's invisibility requirement (archived architecture must not sit in
    the working hierarchy confusing new agents). The `plan:` artifact scheme in cb:c067

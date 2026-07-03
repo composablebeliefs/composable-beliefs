@@ -19,16 +19,33 @@ loses the discussion) and **human reading** (what you scan without wading throug
 grounds in a seed, never in a transcript. A transcript is a convenience and a safety net,
 nothing the graph depends on.
 
+**At close, the thread document is the single persisted artifact** (cb:b578): it opens
+with an operator-facing narrative section carrying the register the chronicles used to
+hold - where things stood, the arc with its incidents as story beats, where things stand
+now, and what the next session inherits - narrative carrying the load, ids subordinate.
+The turn-by-turn body below it is the receipts register. Obligations live in the graph
+and resumption state in the routing ledger (cb:b572), so no separate chronicle is
+written; the chronicles shelf is closed and archived at `deprecated/chronicles/`.
+
 Live transcripts are captured automatically by a `Stop` hook
-(`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
-is gitignored and skipped by this bundle's manifest, because it is rewritten every turn.
-Read them there; they are never committed. The curated thread docs below are the hand-kept
-exceptions that do get committed.
+(`.claude/hooks/transcript_hook.py`, registered in the committed `.claude/settings.json`
+and pathed via `$CLAUDE_PROJECT_DIR`, so it runs in local and remote sessions alike) into
+`.sessions/<date>-<session>.md`, with a raw jsonl copy beside it - a dot-dir skipped by
+this bundle's manifest because its contents are unfinalized drafts, rewritten every turn.
+The renders are tracked and the hook stages the current one after each rewrite, so it
+rides along with whatever commit the session makes next - any push persists the
+through-last-turn render, even if the session ends abruptly (the ride-along lane;
+transcript-format's "un-gitignore the render lane"). `/end` remains the finalization
+step: metadata, digest, and registration into a curated thread doc below. Only the raw
+jsonl stays gitignored and uncommitted, until transcript-format's repo-weight/LFS
+decision lands. The hook reminds on first capture.
 
 ## Contents
 - [2026-06-25 - belief-by-belief audit (starting cb:a098)](2026-06-25-belief-audit.md) - the session that seeded the nursery.
 - [2026-07-01 - structural-type vocabulary (rename + contract demotion)](2026-07-01-structural-type-vocabulary.md) - hand-captured; seeded the structural-type-rename and contract-predicate-demotion focuses.
 - [2026-07-01 - schema-v3 execution (rename + demotion shipped)](2026-07-01-schema-v3-execution.md) - hand-captured; the execution session for those seeds: code shim (PR #1, `be4ee65`), graph migration (`c4940b9`), follow-ups minted as cb:a561/cb:a562.
-- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured; seeded the seed-lifecycle focus and contested seed-absorption.
+- [2026-07-01 - seed lifecycle deliberation (graduate vs evacuate)](2026-07-01-seed-lifecycle.md) - hand-captured, finalized by the first /end run; seeded the seed-lifecycle focus, contested seed-absorption, and shipped the remote-capture machinery (PR #8).
 - [2026-07-02 - authoring pipeline (thread-to-graph round trip)](2026-07-02-authoring-pipeline.md) - hand-captured; carries the first routing ledger; seeded routing-ledger, mint-manifest, and commit-provenance-floor, and executed the first full thread-to-graph round trip (cb:b572/cb:b567).
-- [2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)](2026-07-02-id-migration.md) - hand-captured; the a/c -> b-serial migration (PR #10/#11, cb:b566/cb:b573), follow-up obligations cb:b574-b577, and the first thread record carrying the narrative section in place of a chronicle (fold decision recorded in its routing ledger, execution handed off).
+- [2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)](2026-07-02-id-migration.md) - hand-captured; the a/c -> b-serial migration (PR #10/#11, cb:b566/cb:b573), follow-up obligations cb:b574-b577, and a thread record written in the narrative-section convention concurrently with the fold that made it law (PR #16).
+- [2026-07-02 - fold the chronicle into threads (the single-artifact close ships)](2026-07-02-fold-chronicle-into-threads.md) - hook-captured, first /end-finalized close under its own cb:b578 protocol; superseded b520, archived chronicles/, executed the b570 sweep and the supersession-cost test, and seeded vocabulary-read-surface and graph-refounding.
+- [2026-07-03 - the runway clearing (git-policy release + cloud toolchain)](2026-07-03-git-policy-release.md) - hook-rendered, first fully hook-captured thread; released the ask-before-commit policy (cb:b456 -> cb:b580), diagnosed the CCR stop-hook false-Unverified bugs, shipped the cloud Elixir SessionStart hook (PR #14), and staged the per-belief-files implementation for a fresh session.

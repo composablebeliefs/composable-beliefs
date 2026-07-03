@@ -170,7 +170,7 @@ Persistence ceremony is proportionate to stance ([cb:b496](#cba496)): a [positio
 
 ## Chronicle
 
-A chronicle ([cb:b520](#cba520)) is a dated prose narrative for the operator, living in `chronicles/`: where things stood and stand, the story beats, and what the next session inherits. The division of labor is that the transcript serves the audit, the graph serves the work, and the chronicle serves the steering. In a chronicle narrative carries the load and ids stay subordinate, the inverse of the receipts register a [transcript](#transcript) is.
+A chronicle ([cb:b520](#cbb520), superseded by [cb:b578](#cbb578)) was a dated prose narrative for the operator, shelved in `chronicles/`: where things stood and stand, the story beats, and what the next session inherits, with narrative carrying the load and ids subordinate. The register survives as the operator-facing narrative section that opens every thread document; the shelf is closed to new entries and archived to `deprecated/chronicles/`, retained as historical record because references point into it. The division of labor persists inside the single artifact: the narrative section serves the steering, the thread body serves the audit, and the graph serves the work, the inverse-register pairing a [transcript](#transcript) body and its narrative section form.
 
 **See also:** [Transcript](#transcript), [Decision-Weight Session](#decision-weight-session), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Lap Log](#lap-log)
 
@@ -634,7 +634,7 @@ The kind-type table ([cb:b057](#cbc057), a derivation-table contract, design [cb
 
 ## Lap Log
 
-The lap log ([cb:b497](#cba497)) is a scratch markdown file the agent appends to station-by-station (`tmp/lap-log.md`), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable [chronicle](#chronicle) and [transcript](#transcript), and it embodies the rule that [session memory is a cache](#session-memory-as-ephemeral-cache), not a store.
+The lap log ([cb:b497](#cba497)) is a scratch markdown file the agent appends to station-by-station (`tmp/lap-log.md`), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable [thread document](#transcript), and it embodies the rule that [session memory is a cache](#session-memory-as-ephemeral-cache), not a store.
 
 **See also:** [Chronicle](#chronicle), [Transcript](#transcript), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Author Against the Live Graph](#author-against-the-live-graph)
 
@@ -794,9 +794,9 @@ Persistence across sessions and subagents ([cb:b339](#cba339), [cb:b340](#cba340
 
 *Also: plans*
 
-A plan is what a large [directive](#directive) materializes into ([cb:b490](#cba490)): the [materialized](#materialized) field's plan path links the obligation to its execution record, and `plans/` are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts ([cb:b382](#cba382), [cb:b375](#cba375)). The reference direction inverts: query the graph for what is next, then follow it into `plans/` for how and history.
+A plan is what a large [directive](#directive) materializes into ([cb:b490](#cba490)): the [materialized](#materialized) field's plan path links the obligation to its execution record, and `plans/` are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts ([cb:b382](#cba382), [cb:b375](#cba375)). The reference direction inverts: query the graph for what is next, then follow it into `plans/` for how and history. Plan is retired as an artifact category ([cb:b569](#cbb569)): new work of that shape is a [proto-belief document](#proto-belief-document) whose mint-manifest rows are predominantly prescriptions, and `plans/` is a closed shelf, kept in place because references point into it.
 
-**See also:** [Materialization](#materialization), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation), [The Desk](#the-desk), [Self-Bootstrapping Directive](#self-bootstrapping-directive)
+**See also:** [Materialization](#materialization), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation), [The Desk](#the-desk), [Self-Bootstrapping Directive](#self-bootstrapping-directive), [Proto-Belief Document](#proto-belief-document)
 
 ## Position
 
@@ -849,6 +849,14 @@ Primitive atomicity ([cb:b475](#cba475), [cb:b298](#cba298)) is the doctrine tha
 The problem of induction is that no finite set of observations deductively entails a universal generalization about all cases. CB makes this gap a structural feature: the premises of an [inference](#inference) are about particular cases (case 7 of run 3), while its conclusion is about every such case ever, and no chain of deductive steps bridges that distance ([cb:b473](#cba473)). The schema does not pretend to close the gap; it licenses the leap and then makes the resulting claim [falsifiable](#falsifiability), so a single counter-run can retire the generalization.
 
 **See also:** [Inference](#inference), [Ampliative](#ampliative), [Licensing](#licensing), [Falsifiability](#falsifiability)
+
+## Proto-Belief Document
+
+*Also: focus (retired), seed (retired), brief (retired)*
+
+The proto-belief document ([cb:b569](#cbb569)) is the nursery artifact: a mutable document in `beliefs/nursery/` where one separable matter is deliberated until its mint-manifest rows plant into the graph or the document composts. The retired registers focus, seed (for documents), brief, and plan all named this one artifact; no informal genre register survives the rename - mood is carried only by the structural type system, and a plan is a proto-belief document whose rows are predominantly prescriptions. Separable means the strands' eventual mint-manifest rows stand on independent argument (the split test). The commit trailer for document lifecycle events is `Proto-Belief:`, completing the chain Thread: -> Proto-Belief: -> Belief:. Threads keep seed informally, as the seed bed ideas germinate in.
+
+**See also:** [Plan](#plan)
 
 ## Proving Ground
 
@@ -1162,7 +1170,7 @@ The todo-close front door (`mix cb.todo.close`, [cb:b530](#cba530)) flips a [mat
 
 ## Transcript
 
-A transcript ([cb:b520](#cba520), [cb:b540](#cba540)) is the condensed record of a substantive thread, co-located with its plan set, that serves the audit. Every substantive thread persists twice at close - as a transcript and as a [chronicle](#chronicle) - so the audit trail and the operator narrative are both kept. A [decision-weight session](#decision-weight-session) persists its thread verbatim, routed by subject.
+A transcript ([cb:b578](#cbb578), [cb:b540](#cbb540)) is the condensed record of a substantive thread, and it serves the audit. A substantive thread persists once at close, as the thread document: the transcript body under an operator-facing narrative section carrying the former [chronicle](#chronicle) register, so the audit trail and the operator narrative are kept in one artifact. A [decision-weight session](#decision-weight-session) persists its thread verbatim, routed by subject.
 
 **See also:** [Chronicle](#chronicle), [Decision-Weight Session](#decision-weight-session), [Session Artifacts Resolvable (Future)](#session-artifacts-resolvable-future), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache)
 
@@ -2057,12 +2065,12 @@ source: `../beliefs/beliefs.json:6454`  ·  `mix bs show cb:b519`
 
 ### cb:b520
 
-**prescription** · convention · _active_
+**prescription** · convention · _superseded_
 
 Every thread that does substantive work persists twice at close: a transcript (the condensed record, co-located with its plan set or the thread's center of gravity) and a chronicle (chronicles/, dated) - a prose narrative for the operator: where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits. The transcript serves the audit, the graph serves the work, the chronicle serves the steering; in a chronicle, narrative carries the load and ids stay subordinate - the inverse of the receipts register.
 
 deps: [cb:b489](#cba489), [cb:b497](#cba497)  
-source: `../beliefs/beliefs.json:6511`  ·  `mix bs show cb:b520`
+source: `../beliefs/beliefs.json:6516`  ·  `mix bs show cb:b520`
 
 ### cb:b522
 
@@ -2201,6 +2209,24 @@ A position may carry a terms block: entries of shape {term, definition, anchor?}
 
 deps: [cb:b550](#cba550)  
 source: `../beliefs/beliefs.json:8182`  ·  `mix bs show cb:b551`
+
+### cb:b569
+
+**prescription** · convention · _active_
+
+The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.
+
+deps: [cb:b475](#cba475), `cb:b581`  
+source: `../beliefs/beliefs.json:8809`  ·  `mix bs show cb:b569`
+
+### cb:b578
+
+**prescription** · convention · _active_
+
+Every thread that does substantive work persists once at close: as the thread document, which opens with an operator-facing narrative section carrying the chronicle's register - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits - narrative carrying the load, ids subordinate. The narrative section serves the steering, the thread body serves the audit, the graph serves the work: obligations already live in the graph and resumption state in the routing ledger, so the narrative was the chronicle's only surviving load and it travels with the thread instead of on a separate shelf. chronicles/ is closed to new entries; the existing files are historical record kept in place because references point into them, with physical archiving gated on the archive-shelf decision and a cb.repoint pass.
+
+deps: [cb:b489](#cba489), `cb:b582`  
+source: `../beliefs/beliefs.json:9106`  ·  `mix bs show cb:b578`
 
 ### cb:b026
 

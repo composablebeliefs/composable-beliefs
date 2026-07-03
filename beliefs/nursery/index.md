@@ -50,7 +50,7 @@ Verbs: **seed** (start) -> **plant** (into the graph - the wild) | **compost** (
 
 **Terminal documents graduate; they are never deleted** (contest resolved 2026-07-02,
 [seed-lifecycle](seed-lifecycle.md)): historicize (date-stamp, record the terminal
-maturity and forward links) and move to the archive shelf (location = Q7, open), with a
+maturity and forward links) and move to the archive shelf (location = Q7, desk-tracked as cb:b577), with a
 `cb.repoint` pass so `document:` citations follow. The document is mandatory provenance -
 every belief traces back through it to the thread - so deleting it breaks the chain. A
 true fizzle that accreted nothing and that nothing cites may still just be deleted: a
@@ -64,7 +64,7 @@ manifest are checked - but it carries no dep-resolution, staleness cascade, or
 conflict-preflight *between* docs. Cross-links are provisional and elevate to real graph
 edges only on mint. The graph is the only authoritative structure; the nursery has no
 authority, so it cannot drift against the graph - it can only feed it. Active and
-contested focuses are the ones to keep visible, the way `mix bs list tag:lifecycle:discrete`
+contested documents are the ones to keep visible, the way `mix bs list tag:lifecycle:discrete`
 surfaces the desk.
 
 Competing proto-beliefs resolve by **explicit contested-links** (the hard resolution);
@@ -79,18 +79,22 @@ makes staleness visible; it never silently decides.
 - [negative-case-field](negative-case-field.md) - active - whether to add a negative-case schema field.
 - [atomicity-generalization](atomicity-generalization.md) - active - generalizing cb:a475 atomicity to all four types.
 - [seed-absorption](seed-absorption.md) - grafted - lost the 2026-07-02 contest to seed-lifecycle; its fold mechanism survives as the graduation step. Historicized in place pending the Q7 archive shelf.
-- [seed-lifecycle](seed-lifecycle.md) - active - contest resolved 2026-07-02: terminal proto-belief documents graduate (historicize + archive + repoint), never evacuate-by-deletion; the graduation prescription mints once Q7 names the archive shelf (invisibility requirement attached).
+- [seed-lifecycle](seed-lifecycle.md) - active - contest resolved 2026-07-02: terminal proto-belief documents graduate (historicize + archive + repoint), never evacuate-by-deletion; the graduation prescription mints once Q7 (cb:b577) names the archive shelf (invisibility requirement attached).
 - [seed-recency](seed-recency.md) - active - dating seeds and excerpts to rank competing positions; recency soft, contested-links hard.
 - [thread-repo-binding](thread-repo-binding.md) - active - persist each thread in the repo it concerns, set at thread init.
-- [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of seeds-carry-excerpts).
+- [statement-provenance](statement-provenance.md) - active - link each thread statement to the artifact it feeds (the back-edge of the excerpts rule).
 - [per-belief-files](per-belief-files.md) - planted - one JSON file per node; minted cb:a554 + the a555-a560 plan.
-- [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:b572; the /decompose skill build stays open.
-- [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing brief, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:b567.
-- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events. Atomic lifecycle commits minted cb:b568; trailer vocabulary settled (Thread:/Proto-Belief:/Belief:); document-rung verifier minted cb:b571; floor-trailer enforcement, squash policy, and cadence open.
+- [routing-ledger](routing-ledger.md) - active - per-thread dispatch table (topics, strand states, pointers, dangling questions) so a non-linear thread resumes from its ledger, not memory; a router, never a digest. Minted cb:b572, re-issued as cb:b582 (vocabulary); the /decompose skill build stays open.
+- [mint-manifest](mint-manifest.md) - active - typed candidate-belief rows inside a maturing proto-belief document, the adopted weak form of the rejected typed-nursery-documents proposal; action items are prescription rows. Minted cb:b567, re-issued as cb:b581 (vocabulary).
+- [commit-provenance-floor](commit-provenance-floor.md) - active - extending the graph tier's structural commit provenance (c067, Belief: trailers, verify.commits) to floor lifecycle events. Atomic lifecycle commits minted cb:b568; trailer vocabulary settled (Thread:/Proto-Belief:/Belief:); document-rung verifier minted cb:b571; squash policy resolved as cb:b573 (merge-commit only); floor-trailer enforcement and cadence open.
 - [nursery-architecture](nursery-architecture.md) - contested - this model; its "Layer 1 vestigial" lean is decided-against, queued to fold into transcript-format.
 - [citation-discipline](citation-discipline.md) - planted - minted as agent-behavior:a411.
 - [proto-belief-rename](proto-belief-rename.md) - active - the vocabulary settlement: the artifact is the proto-belief document, focus/seed/brief/plan retired with no informal registers, the split-test unit doctrine, the Proto-Belief: trailer. Minted cb:b569; residual sweep is cb:b570.
-- [transcript-format](transcript-format.md) - contested - how transcripts/seeds persist exchanges; the current live reference.
+- [cb-id-b-migration](cb-id-b-migration.md) - planted - retire the a/c id prefixes for opaque b-serials: letter-swap with serials preserved, content-derived legacy alias, last-alpha-rename closure. Executed 2026-07-02 (PR #10); minted cb:b566/cb:b573; follow-up obligations cb:b574-b576. Re-homed from the closed plans/ shelf.
+- [prescription-self-tracking](prescription-self-tracking.md) - active - fold the todo layer into prescriptions: self-tracked discharge (b563 gate at the node), decomposition as child prescriptions, todos.json/materialized retire, mutable implementation plans as companion proto-belief documents, the desk term retires. Unminted; rows staged.
+- [transcript-format](transcript-format.md) - contested - how transcripts and proto-belief documents persist exchanges; the current live reference.
+- [vocabulary-read-surface](vocabulary-read-surface.md) - active - retired registers (focus, brief, directive) leak from immutable claims and unswept living docs into agent output; candidate fix is render-time vocabulary aliasing on the cb:b566 id-alias precedent (annotate, never rewrite); deprecated-directory evacuation considered and rejected. The cb:b570 sweep executed 2026-07-03; the annotation build is gated on graph-refounding.
+- [graph-refounding](graph-refounding.md) - active - re-initialize the graph at a dev milestone so the shipped record is the design, not the dev churn: straight deletion fails the trailer/citation/test-corpus tethers; the workable form freezes the dev graph as a closed cb-v0: collection and re-mints the survivors into a fresh one, ancestors cited. Milestone definition, namespace assignment, and survival criterion open.
 
 ## Subdomains
-- [threads/](threads/index.md) - living session transcripts: crash-safe, human-readable, and explicitly **not** provenance (the seeds above are). Captured automatically by a `Stop` hook.
+- [threads/](threads/index.md) - living session transcripts: crash-safe, human-readable, and explicitly **not** provenance (the proto-belief documents above are). Captured automatically by a `Stop` hook.
