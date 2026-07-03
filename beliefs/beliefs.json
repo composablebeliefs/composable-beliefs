@@ -8861,6 +8861,16 @@
     "deps": [
       "cb:b569"
     ],
+    "materialized": {
+      "date": "2026-07-03",
+      "todos": [
+        {
+          "action": "Execute the residual vocabulary sweep across the live surfaces",
+          "id": "t0026",
+          "notes": "Rewrote the retired registers out of the fourteen live nursery documents (including the three 2026-07-02 documents' own prose and the 'The focus' -> 'The matter' heading), the nursery index glosses, docs/operations.md's discharge section, the thesis doc's graph-of-assertions line, and the glossary (plan entry retirement note plus a new Proto-Belief Document entry carrying the retired aliases). Historical record, verbatim quotes, quoted pre-rename claims, proposal proper names, the seed prop field name, threads' informal seed register, and the b562-gated compat shim left untouched per the prescription."
+        }
+      ]
+    },
     "status": "active",
     "created": "2026-07-02"
   },
