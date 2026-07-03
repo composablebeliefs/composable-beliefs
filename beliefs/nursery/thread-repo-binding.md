@@ -16,7 +16,10 @@ Work in this tree spans many repos (composable-beliefs, belief-collections, the 
 repos, satellites). A thread's transcript should persist in the repo the work concerns, not
 always in composable-beliefs. The transcript hook hardcodes one `THREADS_DIR`
 (`.claude/hooks/transcript_hook.py`), so every session lands in composable-beliefs
-regardless of subject.
+regardless of subject. The stakes rose with the single-artifact close (cb:b578): the
+thread document is now the only persisted close artifact and opens with the
+operator-facing narrative section, so the binding decides where the steering narrative
+lands too.
 
 ## Where it stands
 - **A thread-init step.** At the start of a session, declare the owning repo (and thus the

@@ -22,7 +22,7 @@ It is the canonical narrative reference for this repository. Each chapter consol
 | 1 | [The epistemic core](1-epistemics.md) | The four structural types - attestation, aggregation, inference, prescription - one per epistemic operation. Licensing and falsifiability, immutability and the status lifecycle, and why there are no confidence scores. |
 | 2 | [The schema](2-schema.md) | The belief field by field, provenance and the closed artifact-scheme enum, contracts as schema-as-data, and how the graph describes its own schema in the graph. |
 | 3 | [Operating the graph](3-operations.md) | Querying with the belief shell, the preflight-adjudicate-import write flow, obligation as queryable prescriptions, staleness detected instead of remembered, and the nursery where proto-beliefs gestate. |
-| 4 | [Code, anchors, positions](4-code.md) | Codepaths - anchored tours of real source that also run as tests - plus positions and chronicles. |
+| 4 | [Code, anchors, positions](4-code.md) | Codepaths - anchored tours of real source that also run as tests - plus positions and the thread document. |
 | 5 | [Collections and memory](5-collections.md) | How graphs compose across namespaces, borrow contracts by role, the OKF document extension, and where CB draws the line against being a memory system. |
 | 6 | [Inside the code](6-architecture.md) | The Elixir implementation: a pure, deterministic graph over one JSON file, layer by layer. |
 | 7 | [The eval ledger](7-eval-ledger.md) | The first shipped application: grounding model-eval findings in an immutable, traversable graph. The run-manifest seam and the audit tree. |
