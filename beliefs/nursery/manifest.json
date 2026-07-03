@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 31,
+  "count": 33,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -87,6 +87,21 @@
       ],
       "status": "active",
       "timestamp": "2026-07-01"
+    },
+    {
+      "path": "end-skill-redesign.md",
+      "type": "concept",
+      "title": "Redesign /end so a thread's finalized record cannot overstate its own completeness",
+      "description": "Covers the cb:a518 tail-gap as it lands on the finalized thread document - /end writes the curated body during a turn whose render only reaches the previous completed turn, so the close turn and everything after it are absent from the body while a provenance note asserts they are present. Analyzes the three operator-posed options against the finding that the decisive variable is turns, not skills, and proposes dropping the frozen transcript body in favor of a pointer to the continuously-rendered transcript. Gates the /end rewrite; the render-pointer form depends on transcript-format's open repo-weight question.",
+      "tags": [
+        "nursery",
+        "threads",
+        "provenance",
+        "end-skill",
+        "observability"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-03"
     },
     {
       "path": "graph-refounding.md",
@@ -392,6 +407,22 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+    },
+    {
+      "path": "threads/2026-07-02-id-migration.md",
+      "type": "thread",
+      "title": "2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)",
+      "description": "Covers the session that retired the a/c id prefixes for opaque b-serials (PR #10) and the review thread that followed (PR #11) - the letter-swap migration and legacy alias, the concurrent-mint merge translation, the merge-commit-only contract, a name redaction, follow-up obligations minted to the desk, the Q7 gate made structural, and two handed-off deliberations (chronicle fold, prescription self-tracking). Use when auditing the id epoch boundary or orienting to the close-out conventions this thread practiced.",
+      "tags": [
+        "cb",
+        "nursery",
+        "schema",
+        "id-protocol",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02",
+      "artifact": "session:2026-07-02-id-migration"
     },
     {
       "path": "threads/2026-07-03-git-policy-release.md",
