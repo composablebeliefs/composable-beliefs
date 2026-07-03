@@ -1,7 +1,7 @@
 ---
 type: concept
 title: Rename the "Mint manifest" section to plainer, type-accurate vocabulary
-description: Covers renaming the ## Mint manifest section - the typed table of candidate beliefs a maturing proto-belief document grows before it plants (cb:b567, re-issued cb:b581) - to a plainer name such as "belief candidates". Two grounds: "mint manifest" is insider jargon (the default-read-surface hygiene vocabulary-read-surface argues for), and "mint" misleadingly evokes prescriptions/minting when the rows carry all four belief types. Records the blast radius (a wording sweep across seven living documents plus the cb:b581 convention, not a parser change, since /assert does not read the heading by name) and leaves the naming call open. Spun off from the end-skill-redesign vocabulary exchange.
+description: Covers renaming the ## Mint manifest section - the typed table of candidate beliefs a maturing proto-belief document grows before it plants (cb:b567, re-issued cb:b581) - to a plainer name such as "belief candidates". Two grounds: "mint manifest" is insider jargon (the default-read-surface hygiene vocabulary-read-surface argues for), and "mint" misleadingly evokes prescriptions/minting when the rows carry all four belief types. Records the blast radius (a wording sweep across seven living documents plus the cb:b581 convention, not a parser change, since /assert does not read the heading by name). The name is settled to "belief candidates" (operator, 2026-07-03); execution - the cb:b581 supersession and the living-doc sweep - is deferred to a later authoring thread. Spun off from the end-skill-redesign vocabulary exchange.
 tags: [nursery, vocabulary, workflow, read-surface]
 status: active
 timestamp: 2026-07-03
@@ -31,8 +31,9 @@ grounds:
    prescription), and a document extracting facts from a source would fill it with
    attestation and aggregation rows. The rows are *belief candidates* of any type.
 
-The operator's proposed replacement is **"belief candidates"**, which states plainly what
-the rows are and carries no type bias. The final token is the open call below.
+The replacement is **"belief candidates"** (operator decision, 2026-07-03): it states
+plainly what the rows are and carries no type bias. The name is settled; what stays open is
+how and when the rename executes (below).
 
 ## Where things stand
 
@@ -71,9 +72,10 @@ reads as jargon, render-time annotation or a document-only rename may suffice.
 
 ## Open
 
-- **The name.** "belief candidates" (operator's lead) versus alternatives: "candidate
-  beliefs", "plant list", "graduation manifest", "candidates". The vocabulary-read-surface
-  scope lesson applies - prefer a phrase that reads plainly and never a bare common word.
+- **The name: settled to "belief candidates"** (operator, 2026-07-03). Alternatives
+  ("candidate beliefs", "plant list", "graduation manifest", "candidates") set aside;
+  "belief candidates" reads plainly and is not a bare common word (the
+  vocabulary-read-surface scope lesson). What remains open is execution, not the token.
 - **Supersede cb:b581, or annotate, or document-rename only.** Turns on the misleads-vs-
   dates question above. If the graph-refounding path lands first, the re-mint speaks the new
   vocabulary by construction and no supersession is spent - so this may be one to hold for
@@ -87,12 +89,13 @@ reads as jargon, render-time annotation or a document-only rename may suffice.
 
 ## Mint manifest
 
-One candidate prescription; unplanted, and the name token is the open variable above. Held
-if graph-refounding lands first (the re-mint would carry the new name for free).
+One candidate prescription; unplanted. The name is settled ("belief candidates"); what
+remains before it plants is the execute-now-versus-hold-for-refounding call. Held if
+graph-refounding lands first (the re-mint would carry the new name for free).
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | The section a maturing proto-belief document grows to enumerate the beliefs it will plant is named "belief candidates" (pending the naming call), a typed table with one row per candidate carrying all four belief types, not only prescriptions; the name states what the rows are and carries no type bias. Supersedes cb:b581's "mint manifest" naming. | cb:b569 | document:beliefs/nursery/mint-manifest-rename.md | - |
+| prescription | The section a maturing proto-belief document grows to enumerate the beliefs it will plant is named "belief candidates", a typed table with one row per candidate carrying all four belief types, not only prescriptions; the name states what the rows are and carries no type bias. Supersedes cb:b581's "mint manifest" naming. | cb:b569 | document:beliefs/nursery/mint-manifest-rename.md | - |
 
 ## Thread excerpts (what grounds this)
 
