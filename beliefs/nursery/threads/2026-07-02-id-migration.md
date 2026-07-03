@@ -22,7 +22,9 @@ artifact: session:2026-07-02-id-migration
 This section practices the successor close-out convention: the operator decided this
 session that the chronicle register folds into the thread document (execution handed to
 an agent; the chronicle prescription's supersession is pending), so no chronicles/ entry
-accompanies this thread - the narrative lives here instead.
+accompanies this thread - the narrative lives here instead. (Merge-time note: the fold
+executed the same day as PR #16 - cb:b578 minted, b520 superseded, chronicles/
+archived - so the convention this record practiced is now law.)
 
 Where things stood: the graph carried two id prefixes whose meanings the schema-v3
 rename had orphaned - `a` for a retired type name, `c` for a grade that b056 had
@@ -50,8 +52,8 @@ desk holds four open obligations.
 
 What the next session inherits: b574 (belief-collections sweep), b575 (codepath/cb-okf
 renumbering), b576 (glossary regeneration), b577 (the Q7 archive-shelf decision), and
-two agent prompts held by the operator - chronicle fold first, prescription
-self-tracking second, the latter staged in its seed.
+one remaining agent prompt held by the operator - prescription self-tracking,
+staged in its seed (the chronicle-fold prompt executed as PR #16 the same day).
 
 ## Routing
 
@@ -64,8 +66,8 @@ self-tracking second, the latter staged in its seed.
 | Follow-up obligations to the desk | closed | minted cb:b574-b576 | discharge pending (open on the desk) |
 | plans/ shelf mis-shelving | closed | re-homed as [cb-id-b-migration](../cb-id-b-migration.md) | physical archiving rides Q7 (cb:b577) |
 | Q7 gate made structural | closed | minted cb:b577; annotations on the four prose sites | decision itself open on the desk |
-| Chronicle fold (register into thread docs, shelf closes) | open | agent prompt held by operator (first of two) | prescription supersession + chronicles/ closure unexecuted; decision persisted only here and in the prompt until the agent runs |
-| Prescription self-tracking (todos/desk fold) | open | [prescription-self-tracking](../prescription-self-tracking.md); agent prompt held by operator (second of two) | rows unminted; sequencing note in the prompt |
+| Chronicle fold (register into thread docs, shelf closes) | closed | executed same day as PR #16: b520 superseded, close protocol minted cb:b578, chronicles/ archived ([2026-07-02-fold-chronicle-into-threads](2026-07-02-fold-chronicle-into-threads.md)) | - |
+| Prescription self-tracking (todos/desk fold) | open | [prescription-self-tracking](../prescription-self-tracking.md); agent prompt held by operator | rows unminted; the prompt's sequencing guard (chronicle fold first) is satisfied by PR #16 |
 
 ## Exchanges (condensed)
 
