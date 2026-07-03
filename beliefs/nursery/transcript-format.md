@@ -70,7 +70,11 @@ weight. Real options to bound it:
   gives ~30 days of ephemeral raw).
 - **External archive** + commit a pointer.
 Decision: LFS for raw, render committed inline, and the delete-from-working-tree cleanup on
-top (clean tree, blobs in LFS).
+top (clean tree, blobs in LFS). **Deferred 2026-07-03 (operator):** punt on persisting the
+jsonl until there is a concrete reason to do so - the raw stays gitignored working-area
+(the shipped /end behavior), the host retains raw ~30 days, and LFS remains the lean for
+when a reason lands. Note the seed-absorption coupling below still assumed permanent raw;
+graduation's win (seed-lifecycle) already dissolved that dependency.
 
 **Now load-bearing downstream.** Fold-and-evacuate ([seed-absorption](seed-absorption.md))
 deletes a losing document and keeps only a folded summary in the winner - safe *only* if the
