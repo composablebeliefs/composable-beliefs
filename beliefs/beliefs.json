@@ -8823,6 +8823,16 @@
         "date": "2026-07-02",
         "detail": "Settled by the operator in the 2026-07-02 authoring-pipeline session: proto-belief is the name most likely to make intuitive sense to someone new to the framework - and it was already the index's own gloss for 'focus', so the rename test (structural-type-rename: when renaming lets you delete the explaining sentence, the name was underpowered) applied directly. The no-registers rule is the operator's argument conceded in full: everything the house stands behind is a belief, prescriptions included, so plan/brief as genre words would re-encode mood outside the type system - the typed-nursery-documents smell in softer form. 'Question' as unit noun was considered and withdrawn (fails practice-formalization, execution-phase, and observation documents); the split test with the mint manifest as boundary oracle replaced it, locked verbatim by the operator. Preflight 2026-07-02: one contract-level claim-overlap (cb:b052), operator-adjudicated as topical overlap per the b475/b067 precedent - this convention governs nursery vocabulary, not DAG node field presence; supportive match cb:b567 tied in as a dep (the split test runs on the manifest it prescribes). The cited commit landed the proto-belief-rename document and the index rewrite.",
         "artifact": "commit:caf76c1b968801ea1cd8ef5774e4c03f99b08308"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps − cb:b567 via dag-proposal 2026-07-03-vocabulary-reissue-test",
+        "artifact": "session:2026-07-03-vocabulary-reissue-test"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps + cb:b581 via dag-proposal 2026-07-03-vocabulary-reissue-test",
+        "artifact": "session:2026-07-03-vocabulary-reissue-test"
       }
     ],
     "subjects": [
@@ -8833,7 +8843,7 @@
     ],
     "deps": [
       "cb:b475",
-      "cb:b567"
+      "cb:b581"
     ],
     "status": "active",
     "created": "2026-07-02"
