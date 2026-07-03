@@ -1424,14 +1424,28 @@
   },
   "plan": {
     "name": "Plan",
-    "short": "What a large directive materializes into: a record of execution and history, retained permanently as a cited source doc, never the live source of obligation.",
-    "def": "A plan is what a large <a href='glossary.html#directive'>directive</a> materializes into (cb:b490): the <a href='glossary.html#materialized-field'>materialized</a> field's plan path links the obligation to its execution record, and <code>plans/</code> are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts (cb:b382, cb:b375). The reference direction inverts: query the graph for what is next, then follow it into <code>plans/</code> for how and history.",
+    "short": "What a large directive materialized into: an execution record retained permanently as a cited source doc - retired as an artifact category (cb:b569) in favor of the proto-belief document.",
+    "def": "A plan is what a large <a href='glossary.html#directive'>directive</a> materializes into (cb:b490): the <a href='glossary.html#materialized-field'>materialized</a> field's plan path links the obligation to its execution record, and <code>plans/</code> are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts (cb:b382, cb:b375). The reference direction inverts: query the graph for what is next, then follow it into <code>plans/</code> for how and history. Plan is retired as an artifact category (cb:b569): new work of that shape is a <a href='glossary.html#proto-belief-document'>proto-belief document</a> whose mint-manifest rows are predominantly prescriptions, and <code>plans/</code> is a closed shelf, kept in place because references point into it.",
     "also": "plans",
     "see": [
       "materialization",
       "graph-index-of-obligation",
       "the-desk",
-      "self-bootstrapping"
+      "self-bootstrapping",
+      "proto-belief-document"
+    ]
+  },
+  "proto-belief-document": {
+    "name": "Proto-Belief Document",
+    "also": [
+      "focus (retired)",
+      "seed (retired)",
+      "brief (retired)"
+    ],
+    "short": "The nursery artifact: a mutable document deliberating one separable matter until its mint-manifest rows plant into the graph - successor of the retired names focus, seed, brief, and plan (cb:b569).",
+    "def": "The proto-belief document (cb:b569) is the nursery artifact: a mutable document in <code>beliefs/nursery/</code> where one separable matter is deliberated until its mint-manifest rows plant into the graph or the document composts. The retired registers focus, seed (for documents), brief, and plan all named this one artifact; no informal genre register survives the rename - mood is carried only by the structural type system, and a plan is a proto-belief document whose rows are predominantly prescriptions. Separable means the strands' eventual mint-manifest rows stand on independent argument (the split test). The commit trailer for document lifecycle events is <code>Proto-Belief:</code>, completing the chain Thread: -> Proto-Belief: -> Belief:. Threads keep seed informally, as the seed bed ideas germinate in.",
+    "see": [
+      "plan"
     ]
   },
   "position": {

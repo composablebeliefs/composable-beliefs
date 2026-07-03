@@ -11,7 +11,7 @@ threads: [2026-07-01-structural-type-vocabulary, 2026-07-01-schema-v3-execution]
 
 # Demote the contract boolean to a derived predicate
 
-## The focus
+## The matter
 The `contract` field is a stored boolean, but c056 makes it a strict biconditional with
 non-empty `rules`/`invariants`. A field provably equal to `rules != [] or invariants != []`
 carries no independent information. Demote it: compute `contract?` on read, drop the stored
@@ -27,7 +27,7 @@ field. Then resolve the c059 carve-out the demotion exposes.
 - **Precedent for the removal.** `confidence`, `source`, and `implication` were already
   migrated/expunged from the schema (belief.ex moduledoc); `contract` follows the same path,
   handled in `from_map/1`'s `_keys` deletion set.
-- **The demotion exposes an arbitrary carve-out.** c059 exempts contract-grade directives
+- **The demotion exposes an arbitrary carve-out.** c059 exempts contract-grade prescriptions
   from grounding ("contracts may stand alone"). Once `contract` is just a predicate, that
   reads as "a prescription needs no adoption record if it happens to carry rules" - which
   conflates two orthogonal things: *internal structure* (has a DSL payload) and *provenance*
@@ -79,11 +79,11 @@ The demotion shipped the same day, in the session captured as
   stripped from all 39 carriers (zero drift confirmed at execution, matching the
   measurement above); c056 restates the biconditional as the definition of
   `contract?`, adds a no-stored-contract-field invariant, and carries the migration
-  as dated evidence citing this seed.
+  as dated evidence citing this document.
 - **NOT executed: the c059 carve-out collapse.** The migration kept c059's semantics
   (renamed `prescription-grounding`, exemption intact). The option-a lean - every
   prescription grounds, foundational contracts cite a charter, ~39 stipulation
-  artifacts added - remains this seed's open decision; option b stays the fallback.
+  artifacts added - remains this document's open decision; option b stays the fallback.
   (Resolved 2026-07-02 - see the execution record below.)
 
 ## Execution record (2026-07-02): the carve-out collapse

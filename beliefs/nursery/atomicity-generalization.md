@@ -11,7 +11,7 @@ threads: [2026-06-25-belief-audit]
 
 # Generalize atomicity (cb:a475) to all four types
 
-## The focus
+## The matter
 `cb:a475` holds atomicity for primitives only:
 > a primitive is one atomic statement of what a single source said... A primitive whose
 > claim conjoins separable assertions is a mis-authored compound and is split at
@@ -27,7 +27,7 @@ Generalize the doctrine to all four structural types.
 - Enforcement stays judgment (a475: *"atomicity is judgment, enforced in the write flow
   rather than by a verifier check"*); a multi-sentence `claim` is a lintable *smell*, not
   a hard fail.
-- This is the doctrine that licenses splitting a098 into a directive + an inference.
+- This is the doctrine that licenses splitting a098 into a prescription + an inference.
 
 ## Next
 Draft a successor to a475 that generalizes the doctrine; run `mix cb.preflight`.

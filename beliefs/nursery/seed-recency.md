@@ -1,7 +1,7 @@
 ---
 type: concept
-title: Recency and dating for adjudicating competing seeds
-description: Covers datestamping seed docs (last-edited) and their thread excerpts so an agent can rank competing seed positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.
+title: Recency and dating for adjudicating competing proto-belief documents
+description: Covers datestamping proto-belief documents (last-edited) and their thread excerpts so an agent can rank competing document positions by recency - resolved as a soft prioritization hint, with explicit contested-links as the hard resolution; the frontmatter field is the open mechanic.
 tags: [nursery, provenance, recency, schema]
 status: active
 timestamp: 2026-06-26
@@ -9,18 +9,18 @@ maturity: active
 threads: [2026-06-26-nursery-workflow]
 ---
 
-# Recency and dating for adjudicating competing seeds
+# Recency and dating for adjudicating competing proto-belief documents
 
-## The focus
-When two seed docs hold competing positions (nursery-architecture vs transcript-format on
-Layer-1, right now), how does an agent tell which is the live one? Datestamp both the seed
-doc (last-edited) and each excerpted thread exchange inside it, so recency is legible at a
+## The matter
+When two proto-belief documents hold competing positions (nursery-architecture vs
+transcript-format on Layer-1, right now), how does an agent tell which is the live one?
+Datestamp both the document (last-edited) and each excerpted thread exchange inside it, so recency is legible at a
 glance.
 
 ## Where it stands - resolved in principle
 - **Recency is a soft prioritization hint, not the arbiter.** The newer doc is the
   probable live lean; that lets a fresh agent prioritize without reading the whole bundle.
-- **Explicit contested-links are the hard resolution.** Where two seeds genuinely conflict,
+- **Explicit contested-links are the hard resolution.** Where two documents genuinely conflict,
   one carries a `contested`/supersedes link to the other; recency never silently decides.
   This keeps the nursery aligned with CB's discipline - competing positions resolve by
   authored supersession, not "newest wins" (there are no confidence scores; `README.md`).

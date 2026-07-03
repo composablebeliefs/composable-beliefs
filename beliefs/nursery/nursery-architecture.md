@@ -11,16 +11,16 @@ threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow]
 
 # The nursery architecture
 
-## The focus
-Replace thread-as-unit with **focus-as-unit**: a nursery of per-focus concept docs,
-deliberated in place. Collapse OKF Layer 1 (source / transcript) and Layer 2 (synthesis)
+## The matter
+Replace thread-as-unit with **focus-as-unit** (in current vocabulary: one proto-belief
+document per matter): a nursery of per-matter concept documents, deliberated in place. Collapse OKF Layer 1 (source / transcript) and Layer 2 (synthesis)
 by *conversing directly in the artifact* - the conversation is the synthesis being
 authored live, not a transcript to be synthesized later. Goal: make the raw transcript
 vestigial.
 
 ## Where it stands
-- The model: a `nursery/` bundle; one concept doc per focus; the `maturity` lifecycle
-  (active / contested / frozen / dropped / folded); seed -> mint; validate format not
+- The model: a `nursery/` bundle; one document per matter; the `maturity` lifecycle
+  (active / contested / frozen / dropped / folded); document -> mint; validate format not
   relations; a frozen doc serves as the belief's `cb:c059` stipulation artifact and
   forward-links it; reckless-in-nursery, deliberate-at-mint.
 - The mechanism that makes Layer 1 droppable is `agent-behavior:a411`: load-bearing
@@ -60,4 +60,5 @@ and this doc evacuates - queued, pending transcript-format's persist-raw resolut
 - [seed-absorption](seed-absorption.md) - the mechanism that makes path 1 safe.
 - [citation-discipline](citation-discipline.md) - the rule (a411) that lets Layer 1 drop.
 - [seed-lifecycle](seed-lifecycle.md) - contests this model's evacuation half (terminal
-  seeds should graduate, not delete) while building on its focus-as-unit half.
+  proto-belief documents should graduate, not delete) while building on its
+  one-document-per-matter half.

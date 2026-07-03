@@ -11,7 +11,7 @@ threads: [2026-07-02-fold-chronicle-into-threads]
 
 # Retired vocabulary pollutes the agent read surface
 
-## The focus
+## The matter
 
 The rename epochs (structural types, cb:b051 evidence; proto-belief vocabulary, cb:b569)
 keep history immutable: claims minted before a rename carry their day's vocabulary

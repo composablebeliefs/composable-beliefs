@@ -12,7 +12,7 @@ threads: [2026-06-23-a0e89dc3]
 
 # Per-belief file storage
 
-## The focus
+## The matter
 Should the belief graph be stored as **one JSON file per node** (`beliefs/<ns>/<local>.json`,
 e.g. `beliefs/cb/a512.json`) instead of the single `beliefs/beliefs.json` array?
 
@@ -65,7 +65,7 @@ directory-aware. The findings below are the durable record; the implementer re-a
 
 ## Mint shape (open - the nursery link mechanism is itself contested)
 The decision mints as one belief (primitive/design-observation, refining a112); the six steps mint
-as discrete directives dep-chained on it. The seed-to-belief link is undecided between
+as discrete directives dep-chained on it. The document-to-belief link is undecided between
 [seed-absorption](seed-absorption.md)'s `seed` prop (needs a schema change, not yet landed) and a
 frozen doc as the `cb:c059` `document:` stipulation artifact. Until that resolves, mint with this
 doc as the `document:` artifact and stamp `minted:` here.
@@ -79,4 +79,4 @@ supersession is folded into `cb:a560` and lands only when the code does.
 
 ## Related
 - [seed-absorption](seed-absorption.md) - the alternative link mechanism (fold into a `seed` prop).
-- [nursery-architecture](nursery-architecture.md) - the focus-as-unit model this follows.
+- [nursery-architecture](nursery-architecture.md) - the one-document-per-matter model this follows.

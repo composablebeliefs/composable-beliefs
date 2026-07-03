@@ -1,7 +1,7 @@
 ---
 type: concept
-title: The mint manifest - typed decomposition inside the brief, not typed documents
-description: Covers the mint manifest - a late-stage section in a maturing focus brief enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in briefs are prescription rows, resolving the focus/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.
+title: The mint manifest - typed decomposition inside the proto-belief document, not typed documents
+description: Covers the mint manifest - a late-stage section in a maturing proto-belief document enumerating the candidate beliefs it will plant as typed rows (structural type, draft claim, deps, grounding artifact, minted id) - adopted as the surviving weak form of the rejected typed-nursery-documents proposal; action items in proto-belief documents are prescription rows, resolving the document/plan drift in composition with seed-lifecycle's collapse. Minted cb:b567.
 tags: [nursery, cb, schema, workflow, structural-types]
 status: active
 timestamp: 2026-07-02
@@ -10,15 +10,15 @@ minted: cb:b567
 threads: [2026-07-02-authoring-pipeline]
 ---
 
-# The mint manifest - typed decomposition inside the brief, not typed documents
+# The mint manifest - typed decomposition inside the proto-belief document, not typed documents
 
-## The focus
-How does a focus brief's informal prose become the typed, immutable nodes the graph
-demands? The originating proposal: type the *nursery documents themselves* by eventual
+## The matter
+How does a proto-belief document's informal prose become the typed, immutable nodes the
+graph demands? The originating proposal: type the *nursery documents themselves* by eventual
 DAG type - mutable attestation-seed, aggregation-seed, inference-seed, and
 prescription-seed docs as a staging layer between briefs and the graph, so ideas move
-from the informal to the formal through explicitly typed workspaces. This focus records
-why that loses, and what survives it.
+from the informal to the formal through explicitly typed workspaces. This document
+records why that loses, and what survives it.
 
 ## Rejected: typed nursery documents
 
@@ -30,11 +30,11 @@ Four grounds, each drawn from doctrine already in force:
    [structural-type-rename](structural-type-rename.md) calls the whole point of the
    framework. Filing a mutable doc under a type forces classification at the moment of
    least information; the nursery's value is deferring expensive commitments to the gate.
-2. **It fragments the focus.** One focus routinely mints several beliefs of several types
+2. **It fragments the matter.** One proto-belief document routinely mints several beliefs of several types
    (structural-type-rename minted contract rewrites plus prescriptions cb:a561/a562; the
    a098 audit minted a prescription plus an inference). Typed docs shatter one argument
    across three or four files - the same mistake [seed-lifecycle](seed-lifecycle.md)
-   rejected on the phase axis, transposed to the type axis, against focus-as-unit.
+   rejected on the phase axis, transposed to the type axis, against one-document-per-matter.
 3. **It builds the shadow graph.** The nursery validates format, never relations. Typed
    proto-beliefs want typed proto-relations (a proto-inference wants proto-deps, a
    proto-aggregation wants proto-attestations) - a second, mutable DAG that can drift
@@ -46,38 +46,39 @@ Four grounds, each drawn from doctrine already in force:
 
 ## Adopted: the manifest section
 
-What survives is **progressive formalization as phases of one document**: when a focus
-approaches the mint gate, its brief grows a `## Mint manifest` section - a table of the
-candidate beliefs the focus will plant, one row each:
+What survives is **progressive formalization as phases of one document**: when a
+proto-belief document approaches the mint gate, it grows a `## Mint manifest` section - a
+table of the candidate beliefs the document will plant, one row each:
 
 | Column | Meaning |
 |---|---|
 | Type | attestation / aggregation / inference / prescription |
 | Draft claim | the proposition as currently worded |
 | Deps | known dependency ids |
-| Grounding | the artifact URI (for prescriptions, typically `document:` this brief per cb:c059) |
+| Grounding | the artifact URI (for prescriptions, typically `document:` this document per cb:c059) |
 | Minted | `-` while a candidate; the belief id once planted |
 
 The type commitment happens **late** (at the gate, when the deliberation that justifies
-it is done) and **in place** (inside the brief, next to the argument). `/assert` consumes
+it is done) and **in place** (inside the document, next to the argument). `/assert` consumes
 manifest rows at mint; a row flips its Minted cell when it plants. The practice existed
 informally before it had a name - structural-type-rename's "Decisions" plus its ordered
-spike functioned as a manifest and drove same-day execution - so this focus names and
+spike functioned as a manifest and drove same-day execution - so this document names and
 standardizes it rather than inventing it.
 
-**Partial planting.** A focus may mint some rows and stay live: maturity stays `active`,
+**Partial planting.** A proto-belief document may mint some rows and stay live: maturity stays `active`,
 minted rows carry their ids, open strands keep deliberating. This sidesteps the contested
 graduation-timing question ([seed-lifecycle](seed-lifecycle.md) vs
 [seed-absorption](seed-absorption.md)) - nothing about the manifest presumes either
 terminal lifecycle.
 
-**Action items are prescription rows.** The observed drift of briefs growing loose
-"action item" sections that do plan-work in an undefined register resolves here: an
-action item is a prescription row in the manifest - loose while the focus is live, minted
+**Action items are prescription rows.** The observed drift of proto-belief documents
+growing loose "action item" sections that do plan-work in an undefined register resolves
+here: an action item is a prescription row in the manifest - loose while the document is
+live, minted
 as a real prescription (and `/materialize`d) when firm. The graph remains the only todo
 tracker (the desk is `mix bs list unlinked tag:lifecycle:discrete`); no mutable
 prescription-feed document competes with it. This composes with seed-lifecycle's
-collapse: the brief is one artifact whatever phase its focus is in, and type appears
+collapse: the document is one artifact whatever phase its matter is in, and type appears
 late, on rows, never on documents.
 
 ## Mint manifest
@@ -109,7 +110,8 @@ argument that justifies the typing lives)."
 - [structural-type-rename](structural-type-rename.md) - supplies the type vocabulary the
   manifest rows carry, and the informal precedent for the section.
 - [routing-ledger](routing-ledger.md) - the same session's other adopted practice; the
-  ledger dispatches threads into briefs, the manifest dispatches briefs into the graph.
+  ledger dispatches threads into proto-belief documents, the manifest dispatches
+  documents into the graph.
 - [atomicity-generalization](atomicity-generalization.md) - one row, one falsifiable
   proposition; the manifest is where mis-bundled claims get split before they cost a
   supersession.
