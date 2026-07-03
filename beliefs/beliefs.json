@@ -9130,12 +9130,22 @@
         "date": "2026-07-03",
         "detail": "Archive executed 2026-07-03 by operator decision: chronicles/ moved to deprecated/chronicles/ with an eye on eventual removal, discharging the physical-archiving gate this claim carries for this shelf (the Q7 archive-shelf decision cb:b577 stays open for the other shelves). All 28 document:chronicles/ URIs in the graph were repointed to deprecated/chronicles/ in the same change; no door exists for artifact-URI repoints, so the rewrite was a documented in-place mutation on explicit operator authorization, per the 3b1aec1 precedent. Eventual removal stays gated on repointing or retiring the citing evidence - the dereference discipline refuses dangling document: citations.",
         "artifact": "user:mark:2026-07-03"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps − cb:b572 via dag-proposal 2026-07-03-vocabulary-reissue-test",
+        "artifact": "session:2026-07-03-vocabulary-reissue-test"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "deps + cb:b582 via dag-proposal 2026-07-03-vocabulary-reissue-test",
+        "artifact": "session:2026-07-03-vocabulary-reissue-test"
       }
     ],
     "subjects": [],
     "deps": [
       "cb:b489",
-      "cb:b572"
+      "cb:b582"
     ],
     "status": "active",
     "created": "2026-07-03"
