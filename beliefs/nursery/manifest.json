@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 31,
+  "count": 32,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -392,6 +392,22 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-02-fold-chronicle-into-threads"
+    },
+    {
+      "path": "threads/2026-07-02-id-migration.md",
+      "type": "thread",
+      "title": "2026-07-02 - id migration (b-serials, merge policy, obligation hygiene)",
+      "description": "Covers the session that retired the a/c id prefixes for opaque b-serials (PR #10) and the review thread that followed (PR #11) - the letter-swap migration and legacy alias, the concurrent-mint merge translation, the merge-commit-only contract, a name redaction, follow-up obligations minted to the desk, the Q7 gate made structural, and two handed-off deliberations (chronicle fold, prescription self-tracking). Use when auditing the id epoch boundary or orienting to the close-out conventions this thread practiced.",
+      "tags": [
+        "cb",
+        "nursery",
+        "schema",
+        "id-protocol",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-02",
+      "artifact": "session:2026-07-02-id-migration"
     },
     {
       "path": "threads/2026-07-03-git-policy-release.md",
