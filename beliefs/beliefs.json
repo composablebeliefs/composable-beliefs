@@ -6197,7 +6197,7 @@
       {
         "date": "2026-06-11",
         "detail": "Discharged 2026-06-11 (commit 06b6bc5, materialized t0003/t0004): rejection chosen over normalization - normalizing bare ids would also require heuristically rewriting intra-batch dep references, and would write a graph differing from the dry-run-reviewed spec. The graph's namespace is derived as the single prefix all existing ids share; empty, bare, or mixed graphs pass vacuously.",
-        "artifact": "document:chronicles/2026-06-11-the-bare-id-class-closes.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-the-bare-id-class-closes.md"
       }
     ],
     "subjects": [],
@@ -6482,7 +6482,7 @@
       {
         "date": "2026-06-12",
         "detail": "Third specimen, with a wrinkle that cuts the other way: the b526/b527 preflight (the b511 discharge) returned 17 contract / 35 schema hits, all bare tag_overlap from a dag-schema tag - but this time the tag was semantically wrong on the proposal (the anchored-position format is document schema, not DAG-node schema), and the wall prompted the correction before import; under b511's own positions/schema/anchoring family the matches collapsed to zero in every conflict bucket. Calibration data point: the escalation tracks the tag, and exactly because it does, a contract-level wall on a mis-tagged proposal had diagnostic value once. The one genuine flag in the batch (b473 vs b528) was naming-tag overlap with no semantic contact, user-adjudicated proceed-unchanged.",
-        "artifact": "document:chronicles/2026-06-12-the-format-pins-itself.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-format-pins-itself.md"
       },
       {
         "date": "2026-06-12",
@@ -6744,12 +6744,12 @@
       {
         "date": "2026-06-12",
         "detail": "Third and fourth instances in one session (the b515 discharge thread): the discharge rationale append on b515 and this close's b507 retro-pairs both required raw CB.Belief.Store scripts because no sanctioned append entry point exists. Now the most-reproved gap on the desk.",
-        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-the-position-skill-lands.md"
       },
       {
         "date": "2026-06-12",
         "detail": "Fifth and sixth specimens (the b511 discharge close), plus a new failure mode the front door would also close: the b511 discharge-evidence append and the t0013 status flip both went through raw python against the graph files, and the whole-file re-dump used json.dumps defaults (ensure_ascii=true), unicode-escaping every non-ascii character in beliefs.json - caught only by diff inspection and re-dumped clean. A sanctioned append entry point would pin serialization along with the write. This close's own appends (this entry and b519's third specimen) ran through CB.Belief.Store directly - still a hand-rolled script, specimens seven and eight by the same count.",
-        "artifact": "document:chronicles/2026-06-12-the-format-pins-itself.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-format-pins-itself.md"
       },
       {
         "date": "2026-06-12",
@@ -6759,7 +6759,7 @@
       {
         "date": "2026-06-12",
         "detail": "First-production-run catch, the b530 close: the front door's date default drifted from the system's convention - Mutation.resolve_date defaulted to Date.utc_today() while every other writer stamps CB.today() (local), so two appends run past midnight UTC landed dated 2026-06-13 on a 2026-06-12 ceremony. Fixed inline (resolve_date now stamps CB.today()); the two misstamped dates repaired surgically in the graph, the repair recorded in the chronicle. Date semantics of this front door are now: local date, same as the materializer.",
-        "artifact": "document:chronicles/2026-06-12-the-other-half-of-the-door.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-other-half-of-the-door.md"
       }
     ],
     "subjects": [],
@@ -6789,17 +6789,17 @@
       "materializer"
     ],
     "claim": "Make materialization notes persist: the /materialize skill requires each action item to carry notes referencing the directive's reasoning for traceability, but CB.Materializer.Sink.JSON records only id/action/source/created/status and drops extra keys by design, so the promised traceability never lands - not in the todo record, not in the materialized link-back refs. Either the default sink persists notes (and the link-back carries them) or the skill stops mandating what the flow discards; the silent divergence between the skill's contract and the sink's behavior is the part that must not survive.",
-    "artifact": "document:chronicles/2026-06-11-the-bare-id-class-closes.md",
+    "artifact": "document:deprecated/chronicles/2026-06-11-the-bare-id-class-closes.md",
     "evidence": [
       {
         "date": "2026-06-11",
         "detail": "Live specimen at the materialize flow's first batch use: the b513/b514 discharge wrote rationale notes on all four action items (t0003-t0006) per the skill's traceability rule; the sink ignored them by documented design and the flow reported success - same species as agent-behavior:a405, a success message describing the code path rather than the state that landed. Preflight 2026-06-11: 2 schema hits, both bare tag-overlap (b494 backlog family, b498 write-flow family), reviewed per b055 - no active structure contradicted; the b519 calibration pattern applies.",
-        "artifact": "document:chronicles/2026-06-11-the-bare-id-class-closes.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-the-bare-id-class-closes.md"
       },
       {
         "date": "2026-06-11",
         "detail": "Second live specimen, at the very next materialization (the b512 discharge, t0007-t0009): the skill's traceability mandate was followed - all three action items carried notes - and the JSON sink dropped them by documented design while the flow reported success. The divergence reproduces on every materialization until the sink persists notes or the skill stops mandating them.",
-        "artifact": "document:chronicles/2026-06-11-draft-mode-anchoring.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-draft-mode-anchoring.md"
       },
       {
         "date": "2026-06-11",
@@ -6852,7 +6852,7 @@
       {
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:b507: the session: stipulation above resolves in chronicles/2026-06-11-the-position-skill-lands.md; the skill itself is readable at the evidence anchor.",
-        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-the-position-skill-lands.md"
       }
     ],
     "subjects": [],
@@ -6982,7 +6982,7 @@
       {
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:b507: the session: stipulation above resolves in chronicles/2026-06-11-the-position-skill-lands.md.",
-        "artifact": "document:chronicles/2026-06-11-the-position-skill-lands.md"
+        "artifact": "document:deprecated/chronicles/2026-06-11-the-position-skill-lands.md"
       }
     ],
     "subjects": [],
@@ -7168,17 +7168,17 @@
       "todos"
     ],
     "claim": "Extend the write-flow front door to the todo collection: a sanctioned entry point for flipping a materialized item's status (open -> done, with discharge notes). The belief half of the gap closed with mix cb.evidence (b522); the todo half remains - every t-item status flip is still a hand-rolled script against todos.json, and the flip is half of every discharge.",
-    "artifact": "document:chronicles/2026-06-12-the-front-door-opens.md",
+    "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md",
     "evidence": [
       {
         "date": "2026-06-12",
         "detail": "Two specimens bracket the gap: the t0013 flip went through raw python (the ensure_ascii incident's other half), and the t0014 flip went through an ad-hoc mix run -e script in the very session that built the evidence front door - the b522 discharge could sanction its own evidence append but not its own todo flip. Preflight 2026-06-12: 0 contract, 2 non-contract flags (b494, b498), both bare tag_overlap with no semantic contact - b498 (canon changes through the write flow) is supportive in spirit; reviewed per b055 and proceeded.",
-        "artifact": "document:chronicles/2026-06-12-the-front-door-opens.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md"
       },
       {
         "date": "2026-06-12",
         "detail": "Specimens nine and ten by the running count: the t0015/t0016 status flips in the b519 discharge went through a hand-rolled .exs (CB.JSON read, Jason pretty encode, write_atomic_raw) - serialization pinned by using the sink's own modules, but still an ad-hoc script in the session that had just used mix cb.evidence for the belief half of the same discharge. The asymmetry is now the routine shape of every close: sanctioned append on the node, hand-rolled flip on the todo.",
-        "artifact": "document:chronicles/2026-06-12-overlap-is-not-contact.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md"
       },
       {
         "date": "2026-06-12",
@@ -7215,22 +7215,22 @@
       "docs"
     ],
     "claim": "Surface the evidence front door in the generated CLAUDE.md: the Operations write-flow line (cb:b449, rendered via b063) names preflight/adjudicate/import but not mix cb.evidence, so the one sanctioned in-place write is invisible to a cold session reading the file. Supersede b449 with a successor naming the evidence append, re-point b063's deps, and regenerate per the live-render rule (b386).",
-    "artifact": "document:chronicles/2026-06-12-the-front-door-opens.md",
+    "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md",
     "evidence": [
       {
         "date": "2026-06-12",
         "detail": "Surfaced at the b522 close: the discharge deliberately left CLAUDE.md untouched because the Operations mention requires the b449 supersession ceremony, which exceeded the discharge's authorized scope. Precedent: the b515 close updated the skills line the same way (b521 -> b524, b062 -> b063). Preflight 2026-06-12: 0 contract, 2 non-contract flags (b494, b498), both bare tag_overlap, no semantic contact; b449's claim_overlap surfaced neutral - it is the supersession target. Reviewed per b055 and proceeded.",
-        "artifact": "document:chronicles/2026-06-12-the-front-door-opens.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md"
       },
       {
         "date": "2026-06-12",
         "detail": "Scope widened by the b530 close: the write surface now also includes mix cb.todo.close, so the b449 successor should name the whole surface in one pass - preflight/adjudicate/import, mix cb.evidence, and mix cb.todo.close - rather than adding the evidence task alone and leaving the todo task invisible to the next cold session.",
-        "artifact": "document:chronicles/2026-06-12-the-other-half-of-the-door.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-other-half-of-the-door.md"
       },
       {
         "date": "2026-06-12",
         "detail": "Discharged 2026-06-12 (materialized t0019): b449 superseded by b533, whose claim carries the original preflight/adjudicate/import sentence verbatim and adds the two further doors - mix cb.evidence and mix cb.todo.close with their dry-run default - the whole surface in one pass per evidence 2. b063 superseded by b065 re-pointing the Operations render section and the dep union; b049's dep re-pointed b063 -> b065 through the drop-dep/add-dep Mutation clauses. CLAUDE.md regenerated from b065 and verified current; a cold session reading the file now sees the same write surface the graph sanctions. 326 tests, schema 20/20, collection 21/23, no stale beliefs. Preflights recorded on the successors; both ran clean under the b064 calibration.",
-        "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md"
       }
     ],
     "subjects": [],
@@ -7310,12 +7310,12 @@
       "materializer"
     ],
     "claim": "Give CB.Belief.Materializer bare-id resolution: materialize/1 rejects a bare id (node_not_found on 'b519') while mix bs and mix cb.evidence both resolve bare ids when exactly one belief matches - and the /materialize skill's own spec example uses a bare id, so the documented path fails on first try. Reuse the resolution (and ambiguity error) the evidence front door already carries.",
-    "artifact": "document:chronicles/2026-06-12-overlap-is-not-contact.md",
+    "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md",
     "evidence": [
       {
         "date": "2026-06-12",
         "detail": "Hit live in the b519 discharge: the materialization spec was written with belief_id 'b519' per the skill's own example shape, failed with {:node_not_found, \"b519\"}, and succeeded only after namespacing to 'cb:b519'. The temp script's exit-0-on-error compounded it - the && rm cleaned up the failed script before the retry. mix cb.evidence resolves the same bare id without complaint in the same session. Kin to the bare-id class b510/b513 close: this is the materializer member. Preflight 2026-06-12 (first close under the b064 calibration): 0 contract, 0 schema, 25 neutral - all bare tag_overlap from the backlog family, reviewed at a glance, no wall.",
-        "artifact": "document:chronicles/2026-06-12-overlap-is-not-contact.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md"
       },
       {
         "date": "2026-06-12",
@@ -7364,7 +7364,7 @@
       {
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:b507: the session: stipulation above resolves in chronicles/2026-06-12-the-house-lists-its-doors.md.",
-        "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md"
       },
       {
         "date": "2026-06-22",
@@ -7500,7 +7500,7 @@
       {
         "date": "2026-06-12",
         "detail": "Self-bootstrapping pointer per cb:b507: the session: stipulation above resolves in chronicles/2026-06-12-the-house-lists-its-doors.md.",
-        "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md"
       },
       {
         "date": "2026-07-02",
@@ -7608,12 +7608,12 @@
       "deps"
     ],
     "claim": "Extend the write-flow front door to dep re-points: a sanctioned mix task for re-pointing a belief's dep from a superseded node to its successor (drop-dep + add-dep in one atomic pass, dry-run default, refusal on dangling targets, mirroring mix cb.evidence and mix cb.todo.close). The Mutation clauses exist and append their own evidence trail; only the task front door is missing, so every re-point is still a hand-rolled mix run script.",
-    "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md",
+    "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md",
     "evidence": [
       {
         "date": "2026-06-12",
         "detail": "Three specimens, all the same shape: b049's dep re-points at every link of the render-contract chain (b061 -> b062 in the assert-session fold, b062 -> b063 in the b515 close, b063 -> b065 in the b531 close), each a throwaway .exs around Mutation.apply_batch plus Store.write. The b531 close's script also tripped on Store.write returning {:ok, path} - exactly the API-shape friction a front door absorbs once. Completes the b522/b530 arc: with this door the supersession ceremony needs no scripts at all. Preflight 2026-06-12 under the b064 calibration: 0 contract, 0 schema, 29 neutral; the claim_overlap hits were the grounding family itself (b522/b530/b531/b533), overlap without contradiction, reviewed per b055.",
-        "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md"
       },
       {
         "date": "2026-06-23",
@@ -7651,12 +7651,12 @@
       "concurrency"
     ],
     "claim": "Settle commit hygiene for concurrently-written graph repos: a mid-session commit that stages the graph file sweeps foreign in-flight writes and can land a torn HEAD where the repo's own gates are red. Decide and encode the rule - for example, run the repo gates (mix cb.verify.schema, mix cb.generate.claude_md --check) against the staged tree before any commit touching graph-rendered surfaces, or coordinate commits across live sessions.",
-    "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md",
+    "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md",
     "evidence": [
       {
         "date": "2026-06-12",
         "detail": "First specimen, 585f9ec: a session minting b535/b536 staged beliefs.json while the b531 ceremony was mid-flight in another session, committing the b533/b065 supersessions and t0019 materialization without the matching regenerated CLAUDE.md - at that commit mix cb.generate.claude_md --check fails. No data lost in either direction; the b531 close's commit repairs main. The hazard is structural: CLAUDE.md's own session-start doctrine says other sessions write these repos concurrently, so selective staging of a shared graph file will recur. Preflight 2026-06-12 under the b064 calibration: 0 contract, 0 schema, 29 neutral; the single claim_overlap was b450 (the verify-tooling line this directive asks to invoke at commit time), supportive in spirit, reviewed per b055.",
-        "artifact": "document:chronicles/2026-06-12-the-house-lists-its-doors.md"
+        "artifact": "document:deprecated/chronicles/2026-06-12-the-house-lists-its-doors.md"
       },
       {
         "date": "2026-06-23",
@@ -8130,12 +8130,12 @@
       {
         "date": "2026-06-23",
         "detail": "Authored in the worked-example transcript-drift thread; the arc (the doc refreshed twice in one thread, b043->b066 being the second pass) and the generate-not-hand-maintain rationale are narrated in the chronicle.",
-        "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md"
+        "artifact": "document:deprecated/chronicles/2026-06-23-the-transcript-wants-a-generator.md"
       },
       {
         "date": "2026-06-23",
         "detail": "Tradeoffs between the two paths the claim names, recorded so the choice need not be re-derived. GENERATOR (a mix task renders the doc's command blocks live from the graph): prevents drift outright since the committed doc is produced rather than hand-edited, but it must reproduce the doc's editorial curation rather than raw command dumps - blocks elide rows (e.g. '15 more schema PASS rows ... elided') and truncate claim columns - and it couples doc generation to the mix tooling plus a sibling belief-collections checkout, because the sdl/method blocks need --beliefs paths resolvable. CHECKER (a CI gate re-runs each fenced block and fails on mismatch): lighter, changes no authoring, makes silent drift impossible because the build goes red - but it only flags, a human still re-pastes, and it must normalize the curated/elided regions before diffing and resolve the cross-repo collections in CI. HYBRID is viable: generate verbatim-dump blocks, normalize-and-check the curated ones. Leaning (not decided): start with the checker - lowest authoring risk, stops drift immediately, the same normalization handles curation - and promote to a generator only if curation reproduction and cross-repo resolution prove cheap. Either path first needs belief-collections present in CI; that cross-repo dependency is the shared prerequisite.",
-        "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md"
+        "artifact": "document:deprecated/chronicles/2026-06-23-the-transcript-wants-a-generator.md"
       }
     ],
     "deps": [
@@ -8244,7 +8244,7 @@
       "transcript"
     ],
     "claim": "Settle the transcript destination for non-plan-scale sessions and reconcile the docs to one rule. cb:b540 routes a decision-weight session's verbatim thread to plans/<set>/ when plan-scale, but a low-ceremony thread (e.g. doc maintenance) has no plan set; the /end skill conditions the transcript byte-copy on plan-scale work while docs/operations.md frames the /end snapshot as the standard record captured every close. The two read differently, and a non-plan session's verbatim transcript went uncopied this session until asked for, then was stored ad hoc beside its chronicle (chronicles/<slug>.jsonl, the chronicle serving as the readable summary, mirroring the plans/<set>/sessions/ convention). Codify the non-plan destination and align cb:b540, the /end skill (steps 5 and 7), and docs/operations.md to one rule, so the next session does not guess whether a transcript copy is due or where it lands.",
-    "artifact": "document:chronicles/2026-06-23-the-transcript-wants-a-generator.md",
+    "artifact": "document:deprecated/chronicles/2026-06-23-the-transcript-wants-a-generator.md",
     "deps": [
       "cb:b540",
       "cb:b520"
@@ -9087,6 +9087,11 @@
         "date": "2026-07-03",
         "detail": "Accepted via human adjudication against cb:b520. Reasoning: Operator decision (2026-07-02): the chronicle's narrative register survives, the separate chronicles/ shelf does not. b520's twice-at-close protocol is folded into a single artifact - the thread document opening with the operator-facing narrative section - because the chronicle's other loads already live elsewhere: obligations in the graph (cb:b489), resumption state in the routing ledger (cb:b572). The successor closes chronicles/ to new entries; existing files stay in place as historical record pending the archive-shelf decision.",
         "artifact": "adjudication:human:2026-07-02-fold-chronicle-into-threads"
+      },
+      {
+        "date": "2026-07-03",
+        "detail": "Archive executed 2026-07-03 by operator decision: chronicles/ moved to deprecated/chronicles/ with an eye on eventual removal, discharging the physical-archiving gate this claim carries for this shelf (the Q7 archive-shelf decision cb:b577 stays open for the other shelves). All 28 document:chronicles/ URIs in the graph were repointed to deprecated/chronicles/ in the same change; no door exists for artifact-URI repoints, so the rewrite was a documented in-place mutation on explicit operator authorization, per the 3b1aec1 precedent. Eventual removal stays gated on repointing or retiring the citing evidence - the dereference discipline refuses dangling document: citations.",
+        "artifact": "user:mark:2026-07-03"
       }
     ],
     "subjects": [],

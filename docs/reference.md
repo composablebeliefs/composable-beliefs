@@ -59,7 +59,7 @@ mix cb.retract <id> --reason <text>                     # retract with date and 
 - `okf/` - the cb-okf knowledge methodology: the standard, its conformance corpus, a demo bundle, and the `cb-okf:` operational graph.
 - `skills/` - agent skills for a Claude-Code-style harness: `/assert`, `/assertions`, `/materialize`, `/position`, `/present-codepath`. Symlinked into `.claude/skills/`.
 - `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), the [run-manifest spec](run-manifest.md), the [worked example](worked-example-eval-verdict.md), and the essays and dated analyses.
-- `plans/` - closed shelf: design records and executed plans with their transcripts. `chronicles/` - closed shelf: session narratives, a register that now opens each thread document (cb:b578). `positions/` - anchored stances.
+- `plans/` - closed shelf: design records and executed plans with their transcripts. `deprecated/chronicles/` - archived shelf: session narratives, a register that now opens each thread document (cb:b578). `positions/` - anchored stances.
 - CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard against the real source), `cb.verify.schema`, and the CLAUDE.md freshness gate.
 
 ## A quick tour

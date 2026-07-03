@@ -117,7 +117,7 @@ At session close: three surfaces, two persist
                      from what happened?
 ```
 
-The dated prose narratives that used to persist separately in `chronicles/` are a closed shelf (the `plans/` precedent): historical record kept in place because references point into it, closed to new entries. Obligations already live in the graph and resumption state in the routing ledger (`cb:b572`), so the narrative register was the chronicle's only surviving load - and it now travels with the thread.
+The dated prose narratives that used to persist separately in `chronicles/` are a closed shelf, archived to `deprecated/chronicles/`: closed to new entries, retained as historical record because the graph's `document:` citations point into it. Obligations already live in the graph and resumption state in the routing ledger (`cb:b572`), so the narrative register was the chronicle's only surviving load - and it now travels with the thread.
 
 **Decision-weight sessions persist more fully** (`cb:b540`): a session that mints or supersedes stipulation-grounded beliefs, settles a stance, or adjudicates contradictory positions persists its thread verbatim at close, routed by subject. Every belief minted that session is then **retro-paired** (`cb:b507`): a `document:` pointer to the thread record joins its evidence, so a fresh agent can dereference what a bare `session:` slug cannot reach (making `session:` artifacts resolvable in their own right is open work, `cb:b518`). The prescription stays the single source of truth and must remain self-bootstrapping on its claim and deps; the verbatim thread is provenance a reader *may* consult, never a dependency a fresh agent *needs*.
 

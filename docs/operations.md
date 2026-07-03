@@ -91,7 +91,8 @@ A substantive thread persists **once** at close (`cb:b578`): as the thread
 document, which opens with the operator-facing narrative section - where things
 stood, the arc as story beats, where things stand now, what the next session
 inherits - narrative carrying the load, ids subordinate. No separate chronicle
-is written; `chronicles/` is a closed shelf (see `chronicles/README.md`).
+is written; the chronicles shelf is closed and archived (see
+`deprecated/chronicles/README.md`).
 Obligations live in the graph and resumption state in the routing ledger
 (`cb:b572`), so the narrative section is the close's only steering artifact.
 

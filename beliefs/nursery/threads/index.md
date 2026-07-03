@@ -25,7 +25,7 @@ hold - where things stood, the arc with its incidents as story beats, where thin
 now, and what the next session inherits - narrative carrying the load, ids subordinate.
 The turn-by-turn body below it is the receipts register. Obligations live in the graph
 and resumption state in the routing ledger (cb:b572), so no separate chronicle is
-written; `chronicles/` is a closed shelf.
+written; the chronicles shelf is closed and archived at `deprecated/chronicles/`.
 
 Live transcripts are captured automatically by a `Stop` hook
 (`.claude/hooks/transcript_hook.py`) into `.sessions/<date>-<session>.md` - a dot-dir that
