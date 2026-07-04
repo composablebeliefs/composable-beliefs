@@ -1,0 +1,534 @@
+---
+type: thread
+title: 2026-07-04 - route-tagging - spec authored, first retrofit demonstrated
+description: The session that designed the route-tagging spec - per-paragraph, multi-ref XML tags on the frozen thread body keyed on the routed-to artifact id, aggregating a matter's cross-thread discussion into an append-only date-stamped excerpt log in its proto-belief document - drafted it as beliefs/nursery/route-tagging.md (three staged candidates, unminted), and retrofitted the 2026-07-03-end-skill-round-trip example as the first living instance (18 tagged regions; excerpt logs materialized into end-skill-redesign as a freeze backfill and mint-manifest-rename). Settled the tag key (artifact id), doc-side view (materialized, not live), granularity (per-paragraph multi-ref), freeze trigger (strand/matter resolution, cb:b569 one-focus-per-doc), and the graduated-doc edge (A - new doc). Use when resuming route-tagging, the /decompose build, statement-provenance, or auditing the retrofit.
+tags: [thread, cb, threads, provenance, route-tagging, linkage]
+status: active
+timestamp: 2026-07-04
+artifact: session:2026-07-04-route-tagging
+---
+
+# 2026-07-04 - route-tagging - spec authored, first retrofit demonstrated
+
+> **Hook-captured, /end-finalized (2026-07-04).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. Closed under the
+> cb:b583 turn-separation rule: `/end` ran alone in its own turn, after the commit-and-push
+> that ended the substantive work, so the render had advanced to include that close. The
+> embedded body is complete through the push-confirmation exchange; the only omitted turn is
+> this contentless `/end` turn itself, and this note claims no coverage the body lacks
+> (cb:b584). Nothing was minted this session, so there was no retro-pairing to land.
+
+## Where things stand (the narrative)
+
+**Where things stood.** The session opened on a verification request: confirm that the
+end-skill round-trip arc - the first canonical thread -> proto-belief -> belief -> code ->
+back example, finalized the day before - actually holds. It did: every link traversable in
+both directions, the graph green. That verified example became the reference case for the
+session's real work.
+
+**The arc.** The operator proposed formalizing the scattershot, hand-curated "Thread
+excerpts" sections that sit at the bottom of proto-belief documents: use the routing table to
+work backwards into the thread, mark each topic's regions with XML tags, and aggregate them
+per proto-belief document - cross-thread, timestamped - so a matter's whole conversational
+history is auditable in one place. The design converged over several turns against the
+framework's own constraints, and each decision settled against a rejected alternative: the
+tag is keyed on the **routed-to artifact id**, not a free topic phrase (the routing table's
+vocabulary is already controlled and cannot drift); the doc-side view is **materialized into
+the .md**, not rendered live on the command line (the operator reads in GitHub and editors,
+and a frozen-source copy is not the cb:b386 staleness trap - the dodge is append-at-route-time,
+additive-only); granularity is **per-paragraph, multi-ref**, not whole-turn (a turn covers
+many topics; a paragraph feeding two matters carries both refs on one element, so aggregation
+is set-membership and there are never overlapping tags); and the freeze trigger is the
+**strand's/matter's resolution, not archival**, grounded in cb:b569's one-separable-matter-
+per-document doctrine (which is why the routing ledger stays legitimately multi-row while the
+matter is the aggregation and freeze unit, and a would-be multi-focus document is a split
+signal). The graduated-doc edge resolved to **A**: new discussion of an already-resolved
+matter opens a new document, not an append into the frozen one.
+
+That drafted `beliefs/nursery/route-tagging.md` - three staged candidate prescriptions
+(the tagging rule, the excerpt-log rule, the `/decompose` third motion), all unminted, five
+open items flagged. Then the operator asked to retrofit the reference example as a living
+instance. The thread body was route-tagged - 18 substantive paragraph-runs wrapped in
+`<routes ref="...">` blocks, multi-ref, none crossing a `## User`/`## Assistant` boundary
+(a guard enforces it) - and append-only, date-stamped excerpt logs were materialized
+mechanically from the tags into `end-skill-redesign` (a one-time freeze backfill of the
+graduated founding example) and `mint-manifest-rename` (live, demonstrating cross-thread
+aggregation). A real bug surfaced mid-retrofit: extracted regions leaked their internal `##`
+sub-headers - and one region crossed a turn boundary - into the archived document as spurious
+sections; the retrofit was reverted, the region split, excerpt headers demoted to bold, and a
+turn-boundary guard added. The pre-existing dangling `end-skill-redesign.md` link in
+`mint-manifest-rename.md` was fixed. Everything committed and pushed.
+
+**Where things stand.** `route-tagging.md` is drafted and staged, unminted; its spec is
+demonstrated end to end on the reference example, validating clean (`okf.validate` 0 errors,
+schema 20/20). The thread carries route tags; two proto-belief documents carry materialized
+excerpt logs. Nothing was minted and nothing in the graph changed - the belief nodes are
+already spec-current, since the excerpt log lives in the document they already ground in. The
+branch is pushed to `origin`.
+
+**What the next session inherits.** The spec's open items before it can mint: the **tag
+syntax** (provisional `<routes>` block chosen; comment-fence alternative open), the **no-trim
+bloat** (real and now visible - the excerpt log added ~150 lines to a 233-line document, so
+whether whole-region lifting needs a bound is a live call), **valid ref targets** (documents
+are sinks; code and immutable beliefs are not), **migration** of the existing hand-picked
+excerpt sections, and the **`/decompose` automation** (unbuilt - tagging and excerpt-append
+is a third motion of that pass, hand-done here). This finalized thread body is itself *not*
+yet route-tagged - that is the `/decompose` motion, deferred. The operator plans to open and
+merge a PR untested, then audit the retrofit with a fresh context (the 18 tag placements, the
+freeze-backfill's legitimacy, the syntax and header-demotion choices), then return. Per repo
+policy, any post-merge follow-up starts on a fresh branch off main.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to document, never here
+([routing-ledger](../routing-ledger.md), cb:b582).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| Verify the end-skill round-trip arc holds | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) - all links traversable, graph green | - |
+| Formalize the scattershot thread-excerpt sections (the matter) | closed | [route-tagging](../route-tagging.md) | - |
+| Tag key: routed-to artifact id vs free topic name | closed | [route-tagging](../route-tagging.md) - artifact id | - |
+| Doc-side view: live-rendered vs materialized | closed | [route-tagging](../route-tagging.md) - materialized, for GitHub readability | - |
+| Granularity: whole-turn vs per-paragraph multi-ref | closed | [route-tagging](../route-tagging.md) - per-paragraph, multi-ref, set-membership | - |
+| Freeze trigger + one-focus-per-doc | closed | [route-tagging](../route-tagging.md) (cb:b569) - matter-resolution, not archival | - |
+| Graduated-doc edge (A vs B) | closed | [route-tagging](../route-tagging.md) - A (new doc on re-opening) | - |
+| Draft the route-tagging proto-belief document | closed | [route-tagging](../route-tagging.md) - 3 staged candidates, unminted | - |
+| Retrofit the reference example (tag thread + excerpt logs) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md), [mint-manifest-rename](../mint-manifest-rename.md), this thread | - |
+| Dangling end-skill-redesign link | closed | [mint-manifest-rename](../mint-manifest-rename.md) - repointed to archive path | - |
+| Tag syntax (`<routes>` block vs comment fence) | paused | [route-tagging](../route-tagging.md) Open - shipped provisional `<routes>` | comment-fence alternative not evaluated |
+| No-trim excerpt bloat | open | [route-tagging](../route-tagging.md) Open | whether whole-region lifting needs a bound |
+| `/decompose` build (tag + append-excerpt motion) | open | [routing-ledger](../routing-ledger.md), [route-tagging](../route-tagging.md) | automation unbuilt; tagging hand-done |
+| Route-tag this thread's own body | paused | unrouted - the `/decompose` motion, deferred | this finalized body is not yet tagged |
+| Fresh-context audit of the retrofit | open | unrouted - operator will run | tag placements, freeze-backfill, syntax choices |
+| Commit signing (unsigned commits) | closed | narrative - env limitation (empty key), not a blocker; applies at push | - |
+
+## User
+
+See the following, which is a record of what is the first real canonical example of a thread being persisted correctly, linked to created proto-belief documents, then linked to minted beliefs:
+
+The complete arc, now traversable in both directions:
+
+thread (2026-07-03-end-skill-round-trip) → proto-belief document (end-skill-redesign) → belief candidates (its mint manifest) → graph (cb:b583 turn-separation, cb:b584 honesty note) → code (the /end skill + docs/operations.md implementing them) → Belief: trailers linking the commits → retro-pair pointers back to the thread → graduation of the source document to beliefs/archive/.
+
+(Let me know if this makes sense, and we will proceed with next steps)
+
+## Assistant
+
+Yes, this makes sense - and I've verified every link in the arc against the actual repo state. It's not just plausible; it's traversable in both directions and the graph passes verification. Here's what I confirmed:
+
+**The chain holds, end to end:**
+
+| Link | Evidence |
+|---|---|
+| thread → proto-belief doc | `2026-07-03-end-skill-round-trip.md` front-matter + narrative cite `end-skill-redesign.md` |
+| proto-belief → candidates | archive doc's **Mint manifest** (lines 168-179) lists both draft claims with deps/grounding, marked `minted: [cb:b583, cb:b584]` |
+| candidates → graph | `cb:b583` (turn-separation) and `cb:b584` (honesty note) both exist, `active`, fully grounded (3 artifacts / 3 evidence each) |
+| graph → code | `skills/end/SKILL.md` §"When to run" cites cb:b583; the capture-provenance step cites cb:b584; `docs/operations.md:109-119` mirrors both |
+| commits → beliefs | `Belief: cb:b583` / `Belief: cb:b584` trailers on the mint commit `878988e`; `Proto-Belief: end-skill-redesign` trailer present |
+| retro-pair → thread | commit `767ba73` writes the pair *before* the file, per the pair-then-write ordering cb:b583 itself governs - and both beliefs carry Evidence 3 pointing back to the thread doc |
+| graduation | `beliefs/archive/end-skill-redesign.md` graduated (commit `6c393a5`), left the nursery read surface, gained a `Graduated 2026-07-03` banner |
+
+**Two things worth flagging as genuinely well-done, not just present:**
+
+1. **The honesty note works on the very close that minted it.** The thread's own provenance blockquote states the body is complete through the PR-ordering exchange with only the contentless `/end` turn omitted - it doesn't overstate. cb:b584 is being obeyed by the first artifact it governs.
+2. **`mix cb.verify.schema` is green** (20 passed, 0 failed) - the two new prescriptions satisfy b059 grounding and the kind/type contracts.
+
+One small naming loose end the thread itself already spun off: **`mint-manifest-rename`** (referenced in the thread description and the archive doc's related-docs list). That's the only dangling thread I see, and it looks intentionally deferred.
+
+So: the arc is sound and complete. I'm ready for next steps - tell me what they are (the mint-manifest rename, graph-refounding, the PR merge-after-`/end`, or something else).
+
+## User
+
+If you look at some of the other proto-belief documents, you'll see that there have been some haphazard and scattershot attempts to create thread specific aggregations related to topics within the proto belief. These were preliminary and rather imprecise. What I would like to do is formalize this. the idea I have is the following, using the currently studied example as the reference, which is the arc that you have just examined and tested and that this prompt it was focusing on. The idea I have is to use the routing table and work backwards into the thread and create XML tags that mark where in the thread there are sections that pertain to different topics defined in the routing table. So as an example, let's say in the thread, the thread begins with topic a, and then it spins out into topic b, and then topic c, which has c one, c two, c three, etcetera, in a branching tree of logic And then let's say it loops back to b, and then it goes to c three, etcetera, etcetera. And the routing table, let's say you had b. B would have informationally helpful XML tags, i e, the name would represent what the idea or focus or matter is. And that would be set with beginning and closing tags around the sections that b relates to or rather the sections that relate to b. Now for readability, in a perfect world, that would then be lifted and and reprinted within the proto police document for readability, which would allow you to audit essentially the conversations that have occurred that relate to a specific topic. A no... another alternative is to jump to the thread file and be able to scan by XML tags and scan through in that way. There's pros and cons to each, I imagine. Copying it is a violation of dry or don't repeat yourself, but it does aid in readability that is a rather significant aspect of this. So let's discuss. Now the idea is also that other threads can relate to single protobelief documents. So let's say what I was referring to as topic b is referenced in another thread, well, that would get the same XML tag, which would then connect to the routing table and then connect to the protocol leaf document. Now in the portal leaf document, when you had the b thread summary that, let's say, we chose the excerpt path and had excerpts from both thread one and thread two, that would be marked within it with date, time stamps. So in other words, you'd be able to see all the conversations that have happened across all threads that relate to this topic. Let me know what you think of this idea. I
+
+## Assistant
+
+I read the three pieces this connects to before reacting: the routing ledger (cb:b572/b582), `statement-provenance.md`, and the hand-curated "Thread excerpts" sections that sit at the bottom of every proto-belief doc. Here's my honest take.
+
+## Your idea already has a half-built home
+
+What you're describing is not new territory for the graph - it's the concrete form of two designs that are already staked out but unbuilt, plus one genuinely new capability on top:
+
+- **`statement-provenance.md`** is *exactly* the back-edge you want: "each statement by agent and user should have a way of being associated with an artifact it is being synthesized into." It's explicitly open on the one question your XML tags answer: "annotate the render inline, or keep a side index?" Your tags are the inline-annotation option.
+- **The routing ledger** gives you the topic axis - one row per topic, with a `routed to` pointer. Your insight is to reuse the routing table as the tag vocabulary. That's the right instinct: the ledger already enumerates the topics, so the tags and the router should share one vocabulary rather than drift into two.
+- **The "Thread excerpts" sections** are the scattershot hand-curation you're naming. They're hand-picked verbatim quotes with no systematic pointer back to *where* in the thread they came from and no cross-thread view. That's the imprecision you want to formalize.
+
+So the framing I'd use: you're not inventing a mechanism, you're **collapsing three loose pieces into one** - the ledger's topic, statement-provenance's back-edge, and the excerpt section's readability payoff.
+
+## The DRY worry is already resolved - by precedent
+
+You flagged copying-into-the-doc as a DRY violation, and instinctively reached for cb:b386. But cb:b386 forbids a *digest whose freshness depends on remembering to regenerate it* - a digest of a **live, changing** source. A thread body is **frozen** once `/end` finalizes it (that is the entire point of cb:b583/b584 - the embedded body is a frozen snapshot). A quote from a frozen transcript never goes stale, because its source never changes. transcript-format's excerpts rule already sanctions exactly this copy. So the copy-vs-DRY tension you were worried about is smaller than it looks.
+
+That said, there's a cleaner move than copying that gets you the readability *without* even the frozen-copy duplication: **store the tags in the thread as the single source of truth, and render the doc's topical view live from a scan of those tags** (a `mix bs` command or a build step), marked non-provenance the same way the render already is. That is the cb:b386-faithful version of your option (a): you get the reprinted, auditable, cross-thread excerpt view, but it's *generated on demand from the frozen tags*, not hand-maintained. Same move the framework made for active prescriptions - render live, don't cache the digest.
+
+## The one real weak point: tag vocabulary stability
+
+This is where the idea breaks if you're not careful. For "all conversations across all threads about topic b" to be a mechanical query, "topic b" needs a **stable identifier shared across threads**. The routing-table topics today are free-text one-liners (`Turn-separation rule + inline warning`). Free text drifts - one thread writes `turn-separation`, another writes `end-turn-sep` - and the cross-thread join silently fails.
+
+My substantive refinement: **key the tag on the routed-to artifact, not a free topic name.** `<routes ref="end-skill-redesign">` or `<routes ref="cb:b583">`. The artifact namespace is already controlled and stable, so:
+
+- forward edge (doc → exchange): scan threads for `<routes ref="thisdoc">`
+- back edge (exchange → doc): the tag itself names the doc, satisfying statement-provenance
+- routing ledger: the coarse per-thread `routed to` pointer
+- the tags: the *same* routed-to, marked at sub-thread region level
+
+One vocabulary (artifact ids), three views - which is precisely what statement-provenance asks for ("one mechanism, two readings, not two ledgers").
+
+## Three constraints to design around
+
+1. **Tags must land in the frozen body, not the live one.** The Stop hook rewrites the thread body every turn from the render. Hand-placed tags in a live thread get clobbered next turn - the same frontmatter-preservation problem the ledger already has. So tagging is a **finalization-time operation** (part of `/end`, or a `/decompose` pass over the frozen body). Clean home, but it means it rides on the same unbuilt automation the routing ledger's `/decompose` skill is already waiting on. You'd be inheriting that debt, not escaping it.
+
+2. **Granularity rule for re-entrancy.** Your a→b→c→loop-back-to-b example means topics recur and interleave. XML handles *repeated* blocks fine (`<routes ref="b">` twice, non-contiguous) but not *overlapping* ranges (illegal XML). Fix: tag at **turn/section boundaries**, allow repeats, forbid overlaps. A turn is about a topic; re-entrancy becomes "several non-overlapping blocks with the same ref," which stays valid and scannable.
+
+3. **Two artifacts with different jobs - don't force one to be the other.** The curated doc's excerpt section is *editorial* - the curator picks the one load-bearing sentence. A mechanical scan returns the *whole* tagged region. Keep both: the doc keeps hand-picked highlights; the generated cross-thread view is the complete timestamped audit trail. Making the doc's section a raw dump of everything tagged would bloat it.
+
+## Where I land
+
+The idea is sound and it's the natural convergence point for `statement-provenance` + `routing-ledger` + the excerpt sections. I'd adopt it with two amendments: **tag on the routed-to artifact id (not free topic text)**, and **render the doc-side view live from the frozen tags rather than hand-copying**. The cross-thread timestamped topical view is the real prize - it's a capability the current scattershot excerpts genuinely cannot produce.
+
+The honest cost: it rides on the unbuilt `/decompose`/hook automation, and manual tagging per thread is real labor until that lands.
+
+Two decisions I'd want your call on before this firms into a proto-belief doc:
+
+1. **Tag key** - routed-to artifact id (my recommendation, stable, aggregates) vs free topic name (matches the ledger's current prose, but drifts)?
+2. **Doc-side view** - live-rendered scan (cb:b386-clean) vs frozen hand-copied excerpts (simpler, more editorial control)?
+
+Want me to draft this as a new proto-belief document in the nursery so it enters the graph properly - co-designed with `statement-provenance` and `routing-ledger` rather than bolted on?
+
+Committed the ride-along render (`748e1e8`). Working tree is clean now. Nothing pushed - that waits for your explicit instruction, per the project's Git Policy.
+
+Back to the open thread: my two questions still stand whenever you want to move this forward -
+
+1. **Tag key** - routed-to artifact id (stable, aggregates cleanly) vs free topic name?
+2. **Doc-side view** - live-rendered scan vs hand-copied frozen excerpts?
+
+And whether you'd like me to draft this as a nursery proto-belief document, co-designed with `statement-provenance` and `routing-ledger`.
+
+## User
+
+1- heard. What is the /decompose skill supposed to do?
+2- agree
+3- disagree. Have found the agent's selections to be arbitrary, with sins of omission. One man's bloated is another's sufficient
+Decisions:
+1- artifact id, not totally following but deferring
+2- the main disadvantage with live renders is it would not be readable while in github or code editors, which is a big part of how i work. Although i like the conceptual purity of deriving it on the command line, i don't think i'm there enough to justify
+Lets discuss and lock down before creatong a proto-belief doc
+
+## Assistant
+
+Good - the `/decompose` answer actually clarifies where this whole thing lives, so let me start there, then lock the rest.
+
+## 1. What `/decompose` is supposed to do
+
+It comes from `routing-ledger.md`. The *originating* proposal was a running thread-summary document grouped by topic, regenerated by a `/decompose` skill - and that got **rejected** as a cb:a386 digest trap. What survived is the routing ledger (router, not digest), and `/decompose` survived as the skill that **maintains the ledger rows at the exact moment content is routed into a proto-belief doc** - "routing and ledger update are one motion, not a regeneration step that can be forgotten." It's unbuilt; the practice is currently hand-done.
+
+The relevant part for us: `/decompose` is *already* defined as the thing that runs at finalization and touches both the thread (ledger) and the proto-belief docs (routing). Your tagging + excerpt-lifting is a **third motion in that same pass**. So this doesn't need a new mechanism - it extends `/decompose`'s job from two motions (route, update ledger) to three (route, update ledger, tag + append excerpt). That's a clean fit, and it's why the frozen-body timing works: `/decompose` runs after `/end` freezes the body.
+
+## 3 (taking this before the decisions, because it changes them): the omission complaint reframes the whole thing
+
+You're right, and it's a better objection than my "two artifacts" split deserved. So drop the editorial-highlight version entirely. But notice *what* actually fixes the sin-of-omission: it isn't "put everything in the file." It's **moving the selection act from invisible to visible**.
+
+Today: someone silently cherry-picks quotes for the doc's excerpt section. The omission is hidden - you can't see what was left out without re-reading the whole thread.
+
+Under tags: the selection *is the tag boundary, and the tag lives in the thread.* You lift the **whole tagged region, no trimming inside it**, and the boundary itself is auditable - anyone can open the thread and see exactly what's inside vs outside the tags. Omission doesn't disappear (a boundary is still a choice), but it becomes **located and reviewable** instead of hidden. That's the actual cure for "arbitrary selections with sins of omission."
+
+To make that bite, pin the granularity to **whole turns** (which is also your point-2 agreement): a turn is either inside a topic's tags or it isn't - no sub-sentence picking. Bloat is the accepted cost of never trimming; you've explicitly chosen readability over DRY, so that's coherent. Confirm: **tag at whole-turn granularity, lift the entire tagged region verbatim, no within-region editing.**
+
+## Decision 2 (materialize into the doc) - accepted, but it has exactly one staleness trap, and it's dodge-able
+
+Writing the excerpts *into* the `.md` so they render in GitHub is the right call for how you work - I'm not going to argue conceptual purity against your actual workflow. And a copy from a **frozen** thread is safe: that thread never changes, so its block never goes stale.
+
+The one place cb:a386 still bites: **the cross-thread aggregation grows.** When a *new* thread later tags the same artifact, the doc's materialized section is now silently missing that thread's block. If the fix were "remember to regenerate the section," you'd be right back in the digest trap.
+
+The dodge: **append-at-route-time, additive-only.** The same `/decompose` pass that finalizes thread N and writes its tags *also appends thread N's tagged regions* into each referenced doc, stamped with thread N's date. Because each thread is frozen when it's finalized, each appended block is write-once and never revisited. The section grows by one dated block per thread, in chronological order, and **nothing is ever regenerated from scratch.** No staleness, because there's no cache to refresh - only an append log. This is literally the routing-ledger's own "one motion, not a regeneration step" principle, extended to the excerpt.
+
+So the doc's section becomes an **append-only, chronologically-stamped, per-thread excerpt log** - which is exactly the cross-thread audit view you wanted, and it's readable in GitHub. Lock this?
+
+## Decision 1 (artifact id) - here's the concrete version so you're not deferring blind
+
+The tag is named after **the thing the strand routed to - the proto-belief doc's filename (or belief id) - not a topic phrase.** Concretely, in the thread body:
+
+```
+<routes ref="end-skill-redesign">
+... the whole turn(s) about turn-separation ...
+</routes>
+```
+
+Not `<topic="turn separation">`. Why this and not a topic name: **you already maintain this vocabulary** - it's the routing table's `Routed to` column. Every row already points at a doc. So the tag namespace = the routed-to column you're already filling in. Nothing new to keep stable, and it can't drift, because `end-skill-redesign` is a filename, not a phrase two threads might word differently. That's the entire reason it aggregates cleanly across threads: two threads pointing at the same doc *necessarily* use the same string.
+
+## The one edge I can't resolve for you - where excerpts land when the doc has graduated
+
+`end-skill-redesign` **graduated to `archive/` and froze.** If a new thread next month discusses turn-separation again, its excerpt can't append into a frozen archived doc, and it can't go into the immutable belief (cb:b583) either. Two options, and this is a real fork:
+
+- **A - graduated topic is closed:** new discussion means a *new* proto-belief doc (a re-opening), and the excerpt lands there. Clean, matches how supersession already works, but the cross-thread view for that topic is now split across two docs.
+- **B - the excerpt sink is permanent:** excerpts aggregate against the *belief id*, in a side location that survives graduation, so all threads-ever about cb:b583 stay in one place. More faithful to your "all conversations across all threads" goal, but it needs a home outside the frozen doc.
+
+Your reference example is *already* graduated, so whichever we pick, it's live immediately - this isn't hypothetical.
+
+## Locked shape, pending your confirms
+
+1. `/decompose` gains a third motion: tag + append-excerpt, at finalization, on the frozen body.
+2. Tags keyed on routed-to artifact id (`ref="doc-name"`), whole-turn granularity, repeats allowed, overlaps forbidden.
+3. Doc-side excerpt section = **append-only, per-thread, date-stamped log of whole tagged regions**, materialized into the `.md`, never regenerated.
+
+Two things I need from you: **confirm the whole-turn / no-trim granularity**, and **pick A or B for the graduated-doc edge.** Once those two land, I'll draft the proto-belief doc.
+
+Committed the ride-along render (`93f8f93`); working tree clean. Nothing pushed.
+
+The design discussion is paused on two things I need from you before drafting the proto-belief doc:
+
+1. **Confirm whole-turn / no-trim granularity** - tag at whole-turn boundaries, lift the entire tagged region verbatim, no editing inside it.
+2. **Pick A or B for the graduated-doc edge** - new discussion of an already-graduated topic goes into a *new* proto-belief doc (A), or excerpts aggregate against the permanent belief id in a home that survives graduation (B).
+
+## User
+
+The issue with whole turn granularity is that turns often cover many topics that should be separately marked. More realistic is per-paragraph
+
+Agree with append-at-route-time. Yes lock
+
+Agree with decision 1 (artifact id)
+
+I tend to favor A because if a proto-belief leads to the minting of a belief, that belief can only be superseeded - so it makes sense the proto-belief that authored it can only be superseeded too. We freeze that doc at the point all beliefs that it may mint have been authored. Now, this would mean that if topic a led to the minting of a belief which ties to it, but the proto-belief docs routing ledger contains other proto-beliefs that have NOT minted or resolved, the proto-belief doc would NOT be archivable, BUT the thread excerpt section and the routing ledger row would need to still be frozen. This points to it being less about whether the document is archived and more about the state of the routing ledger row. Agree?
+
+## Assistant
+
+Per-paragraph is right, and it actually fixes a problem whole-turn had. Let me lock what's settled and then sharpen your last point, because you've found the real invariant and it has one consequence for decision 1.
+
+## Per-paragraph granularity - accepted, plus the multi-topic fix
+
+Whole-turn forced one-topic-per-turn, which is false. Per-paragraph is realistic. But it reintroduces the case you'd expect: a single paragraph that genuinely serves two topics. You can't wrap it in two overlapping tags (illegal). The clean fix is **multiple refs on one element**, not overlapping elements:
+
+```
+<p routes="end-skill-redesign statement-provenance">
+... one paragraph feeding both strands ...
+</p>
+```
+
+Aggregation for a given doc becomes **set-membership** (include every paragraph whose ref-set contains this doc), and the overlap problem disappears because there's never a nested range - just paragraphs, each carrying one-or-more refs. This is strictly better than the turn-level "forbid overlaps" rule. **Confirm: per-paragraph, multi-ref allowed, lifted whole.**
+
+Locked: append-at-route-time, decision 1 (artifact-id key).
+
+## Your per-row insight - agreed, and here's the precise form
+
+Yes, I agree, and I'd state it harder than "less about the document": **archival doesn't confer the freeze - focus-resolution does, and archival is just that same event's effect on the read surface.** They fire together, so archival *looks* like the cause, but the trigger is the strand's state.
+
+Precise rule this gives us:
+
+> A proto-belief doc **accepts excerpt appends while its focus is unresolved**, and **freezes the moment its focus resolves** (mints its belief[s], or is dropped). Each appended block was already frozen-on-arrival; what the focus-resolution freezes is the doc's *acceptance of new appends*. "Archived" is the name for the doc after that point, not a separate gate.
+
+So a doc can accumulate excerpts across several threads while the focus is still open, then freeze at the mint. That's exactly your model.
+
+## The one consequence for decision 1
+
+Your row-vs-doc distinction only *diverges* in one case: **a doc that hosts more than one focus** - some strands minted, others still open. That's the scenario in your message ("other proto-beliefs that have NOT minted or resolved"). If that's allowed, then:
+
+- freeze must be tracked **per row**, not per doc, and
+- the excerpt key can no longer be the *doc* (decision 1) - it must be the **strand/belief**, because you need to freeze strand-a's excerpts while strand-b in the same file keeps accepting them. Decision 1 would have to become `ref="cb:b583"` (belief/candidate) rather than `ref="doc-name"`.
+
+But the nursery's stated norm is **one focus per doc** (`docs/guide/3-operations.md:159`: "one markdown document per focus - a single question or proto-belief"; "over-decompose freely"). Your reference doc mints *two* beliefs (b583, b584) but they're **one focus** that graduates as a unit - so per-doc keying groups them correctly and they resolve together. Under one-focus-per-doc, **row-freeze and doc-freeze coincide**, and decision 1's per-doc key stands as-is.
+
+So the fork is really: **do we uphold one-focus-per-doc, or allow multi-focus docs?**
+
+- **Uphold it** (my recommendation): decision 1 stays per-doc; your per-row principle is the deeper truth but it maps 1:1 onto the doc because doc = focus = strand. Simpler, matches existing norm, your b583/b584 case already works.
+- **Allow multi-focus docs:** your per-row freeze is mandatory and decision 1 must switch to per-belief keys.
+
+I don't think you *want* multi-focus docs - the nursery is built to over-decompose, and your own reasoning ("the proto-belief that authored it can only be superseded too, like the belief") is a one-focus-one-lineage argument. So I'd uphold one-focus-per-doc, accept your per-row framing as the underlying invariant, and keep decision 1.
+
+Confirm that - **one focus per doc, per-row freeze as the stated invariant, decision 1 unchanged** - and confirm the per-paragraph/multi-ref point above, and I have everything to draft the proto-belief doc.
+
+Committed the ride-along render (`896f261`); tree clean, nothing pushed.
+
+Design is paused pending your two confirms before I draft the proto-belief doc:
+
+1. **Per-paragraph, multi-ref, lifted whole** - a paragraph carries one-or-more `routes` refs; aggregation is set-membership; no overlapping tags.
+2. **One focus per doc; per-row freeze as the underlying invariant; decision 1 (per-doc artifact-id key) unchanged** - i.e. we uphold one-focus-per-doc rather than allowing multi-focus docs, so row-freeze and doc-freeze coincide.
+
+## User
+
+Per paragraph, multi-ref confirmed
+Agree trigger is the strand's state
+The precise rule is good but presupposes a document only has one focus when this will rarely be the case - either we are doing bad job of keeping the routing ledger to 1 item per document, or its just too hard to do that. Thoughts?
+Ah yes, the consequence. Which in the wild seems to be the reality. 
+If we uphold, does that mean the routing ledger collapses to one item? Why are current proto-beliefs showing so many items in their ledgers?
+
+## Assistant
+
+The data settles this cleanly, and it's a category slip between two different tables - not a real conflict. Here's the proof from your own corpus:
+
+**In the reference thread's routing table, one doc receives many rows:**
+
+```
+11 mentions → end-skill-redesign   (4 distinct topic rows)
+ 7 → operations.md
+ 3 → graph-refounding
+ 2 → vocabulary-read-surface
+ 2 → mint-manifest-rename
+```
+
+That's *one thread* whose routing ledger sends **four separate topic-rows** at the **single focus** `end-skill-redesign` ("/end tail-gap redesign", "render-pointer vs embedded body", "a518→b518 fix", "graduation"). Four rows, one focus, one doc.
+
+## The two tables you're conflating
+
+There is no "proto-belief doc ledger." I grepped - only `routing-ledger.md` and `seed-lifecycle.md` even mention routing, and only in prose. The ledger lives in the **thread**. So:
+
+| Table | Lives in | Granularity | Row count |
+|---|---|---|---|
+| **Routing ledger** | the **thread** | topic (conversational strand) | many per thread - correct |
+| **Focus / doc** | the **nursery** | focus (settled matter) | one focus each |
+
+These are **orthogonal axes**, related many-to-one: **many ledger rows (topic × thread, across all threads) → one doc (focus).** The "so many items" you're seeing is the *thread* ledger doing its job (a thread touches 15 topics), plus the fact that several of those topics point at the *same* focus.
+
+## Your three questions, answered
+
+**"Does upholding one-focus-per-doc collapse the ledger to one item?"** No. The ledger is the *many* side of the many-to-one. It's supposed to have many rows. Upholding one-focus-per-doc constrains the *doc*, and never touches the ledger.
+
+**"Why do current docs show so many ledger items?"** They don't - the *threads* do. And a single focus legitimately shatters into several topic-rows as the conversation wanders in and out of it (the 4 rows → end-skill-redesign above). Row granularity is *finer* than focus granularity, by design: a row is a conversational strand; a focus is the settled matter several strands compose.
+
+**"One focus per doc will rarely be the case."** The corpus says otherwise - it's upheld. Mint-manifest counts: 1-5 candidates per doc, but each doc is *one deep focus* minting a few tight beliefs (b583+b584 are one focus; cb-id-migration's 5 are one migration). **Depth is not multi-focus.** And the gradient *pushes* you to one-focus: the nursery says "over-decompose freely," splitting is "concatenate-and-delete," and the only accretion path (fold-and-evacuate) is dedup of the *same* focus. So it's not "too hard" - the cheap default *is* one focus.
+
+## The consequence for our design - and why decision 1 survives intact
+
+This is actually the reassuring part. Our tag key is the **doc (focus)**, which is *coarser* than the topic-row. So when several strands about the /end redesign get tagged `routes="end-skill-redesign"`, they **automatically unify into one excerpt log** under that focus - which is exactly the aggregation you want. Decision 1 does the right collapsing for free.
+
+And your per-row freeze insight still holds as the invariant, one level down: the focus freezes when its belief(s) mint; the individual topic-rows are frozen when their thread finalizes. No contradiction.
+
+The one genuine multi-focus case - a doc with one strand minted and another still open - is **a split signal, not a supported state.** The nursery's cheap-split tooling exists precisely for that: if a doc wants half-freezing, it should be two docs. That keeps decision 1 valid (you never freeze half a file).
+
+So: **uphold one-focus-per-doc; multi-focus doc = split signal; ledger stays multi-row; decision 1 unchanged.** Nothing collapses.
+
+I now have everything locked. Want me to draft the proto-belief doc? It'll be co-designed with `statement-provenance`, `routing-ledger`, and `transcript-format`, and I'll flag the `/decompose` third-motion as the action-item that mints once this firms up.
+
+Committed (`fbe7887`); tree clean, nothing pushed.
+
+The design is fully locked:
+
+- **Tags**: per-paragraph, multi-ref, lifted whole, keyed on routed-to artifact id (`routes="doc-name"`); aggregation is set-membership; no overlapping tags.
+- **Placement**: at finalization, on the frozen body, as a third motion of `/decompose`.
+- **Doc-side view**: materialized into the `.md` as an append-only, per-thread, date-stamped excerpt log; never regenerated.
+- **Freeze invariant**: triggered by the strand's/focus's resolution, not by archival; one focus per doc; multi-focus is a split signal; ledger stays multi-row; decision 1 intact.
+
+Ready to draft the proto-belief doc whenever you give the word. Just confirm and I'll write it into the nursery, co-designed with `statement-provenance`, `routing-ledger`, and `transcript-format`, with the `/decompose` third-motion flagged as the action-item to mint once this firms up.
+
+## User
+
+Whoops! Yes draft
+
+## Assistant
+
+Key find: the unit doctrine is **cb:b569** - "one proto-belief document per *separable matter*," where separable means strands whose mint-manifest rows stand on *independent argument*; strands that share reasoning cohabit. That's more precise than my "one focus" phrasing and it actually strengthens your per-row instinct. Let me check the manifest and a mint-manifest exemplar so I match format exactly.
+
+Drafted and committed (`10eb646`). Not pushed.
+
+**`beliefs/nursery/route-tagging.md`** - a proto-belief document, `maturity: active`, unminted. What it locks in:
+
+- **The matter**: the hand-picked `## Thread excerpts` sections are invisible-selection, omission-prone, no cross-thread view; this is the back-edge at sub-thread granularity.
+- **The mechanism**: per-paragraph, multi-ref `routes="<artifact-id>"` tags, keyed on the routing-ledger's routed-to vocabulary, placed on the frozen body at finalization as a third `/decompose` motion.
+- **The doc-side view**: materialized append-only, per-thread, date-stamped excerpt log (readable in GitHub, not CLI-only), dodging cb:b386 via append-at-route-time.
+- **Freeze**: matter-resolution triggers it, not archival; grounded in cb:b569's separable-matter doctrine (which is why the ledger stays multi-row and half-freeze is a split signal).
+
+**Three staged candidates** in the Mint manifest (all unminted): the tagging rule, the excerpt-log rule, and the `/decompose` third-motion. **Five open items** flagged honestly - notably the Markdown tag syntax (`<p routes>` vs comment fences), valid ref targets, and migration of the existing sections.
+
+Grounded in five verbatim operator excerpts from this session, co-designed via Related links to `statement-provenance`, `routing-ledger`, `transcript-format`, `mint-manifest`, `seed-lifecycle`.
+
+Two notes:
+- I regenerated `manifest.json` (34→35) and added the index line - both authorized as part of drafting into the nursery.
+- I noticed a **pre-existing** unrelated lint: `mint-manifest-rename.md` links to `end-skill-redesign.md`, which graduated to `archive/`. Not mine, not touched. Want me to fix that dangling link while we're here, or leave it?
+
+Review the draft when you can - especially the **Open** section, since those are the calls that remain before this could mint. And say the word if you want it pushed.
+
+Committed (`c4c2b00`); tree clean. Nothing pushed.
+
+The `route-tagging` proto-belief draft is in the nursery and ready for your review - particularly the **Open** section, which holds the remaining calls before it could mint. Standing by on:
+
+1. Your review of the draft (any changes to the mechanism, the three staged candidates, or the open items).
+2. Whether to fix the pre-existing dangling link in `mint-manifest-rename.md`.
+3. Whether to push.
+
+## User
+
+Fix dangling link
+
+Would it be possible, using the proto-belief doc as is, not minting anything yet, to bring 2026-07-03-end-skill-round-trip, the associated thread, proto-beliefs, and beliefs, up to date with this spec? So the thread xml tags, the link to the proto-belief docs? Then i would examine the doc with a living example
+
+## Assistant
+
+I have the full thread. Now I'll retrofit it to the spec. Two design notes I'm deciding as I go (both feed the spec's open items, and I'll flag them):
+
+- **Tag syntax**: visible block `<routes ref="...">` … `</routes>` around paragraph-runs, multi-ref, no nesting. GitHub's sanitizer strips unknown tags in the *rendered* view (clean reading) while they stay greppable in *source* - which happens to give both readings the spec wants.
+- **Freeze backfill**: `end-skill-redesign` is graduated/frozen, so appending its excerpt log is a deliberate one-time backfill of the founding example; I'll annotate it as such.
+
+Let me tag the thread's substantive regions with a precise, self-checking script.
+
+I found a real bug: some extracted regions contained the thread's internal `##` sub-headers (and one region crossed a `## User`/`## Assistant` turn boundary), so those leaked into the archived doc as spurious sections (`## Verified TRUE`, `## User`, etc.). I need to revert the retrofit and redo it with two fixes: split the turn-crossing region, and neutralize headers inside excerpts. Let me revert cleanly.
+
+Done - the reference example is now a living instance of the spec, and it validates clean (`okf.validate` 0 errors, schema 20/20). Here's what landed (`34aa23f`), and one honest thing the exercise surfaced.
+
+## What the retrofit produced
+
+**1. The thread is route-tagged.** `2026-07-03-end-skill-round-trip.md` now wraps 18 substantive paragraph-runs in `<routes ref="...">` blocks, keyed on the routed-to artifact id, multi-ref where a run feeds several matters (e.g. `ref="end-skill-redesign cb:b583 cb:b584 skills/end/SKILL.md docs/operations.md"`), **none crossing a `## User`/`## Assistant` boundary** (a guard enforces it). A note under `## Routing` explains the scheme. Grep `routes ref` to scan by matter.
+
+**2. The proto-belief docs carry materialized excerpt logs**, generated *mechanically* from the tags (this is the `/decompose` append motion, demonstrated):
+- `end-skill-redesign.md` (archived) - a `### 2026-07-03-... (date)` block, 9 whole regions, marked as a **one-time freeze backfill** of the graduated founding example.
+- `mint-manifest-rename.md` (live) - the same, framed as accepting future dated blocks, demonstrating **cross-thread aggregation** (the same tag string in any thread lands here).
+
+**3. Beliefs: nothing to change, and that's correct.** Per the spec the excerpt log lives in the *document*, not the belief node - and cb:b583/cb:b584 already ground in `end-skill-redesign.md` via their `document:` evidence. So they're already spec-current; I did not touch the protected graph.
+
+## Two things worth your eye when you examine it
+
+- **The "no-trim" bloat is real and now visible.** The `end-skill-redesign` log added ~150 lines to a 233-line doc. That's the honest cost of your "no editorial selection" decision, made concrete - it's exactly the open-item I flagged, and now you can judge whether whole-region lifting is sustainable or wants a bound.
+- **Two provisional choices I had to make** (both feed the spec's Open section, both easily changed): the **tag syntax** (`<routes>` blocks - stripped in GitHub's render, greppable in source) and **header-demotion** (ATX headers inside excerpts rendered as bold so they don't collide with the doc's outline - a real bug the first pass hit).
+
+Also fixed the dangling link you asked about.
+
+Nothing pushed. Examine `beliefs/archive/end-skill-redesign.md` (the aggregated view) and the tagged thread side by side - and tell me if the syntax, the bloat, or the header-handling want a different call before this hardens into the spec.
+
+This is the known environment limitation, not an identity problem - the hook's own output shows the committer email is already `noreply@anthropic.com`; the `N` is the missing *signature*, which this container can't produce (the diagnosis earlier in this thread: the in-session signing key is an empty file, so `--reset-author`/rebase can't add a signature - it applies at push time). Rebasing would be futile churn, so I won't. Let me just commit any pending render.
+
+Committed the render (`af68809`); tree clean.
+
+On the hook: the committer identity is already correct (`noreply@anthropic.com / Claude`) - the `N` is a missing *signature*, and as this thread diagnosed earlier, this container's signing key is an empty file, so amend/rebase can't add one (it'd be futile history churn). Signatures apply at push time through the environment's signing path. Not a blocker, and you confirmed earlier signed commits aren't required to merge here.
+
+The route-tagging spec and its living example are both in place and validating. Ready for your examination - the aggregated view in `beliefs/archive/end-skill-redesign.md` and the tagged thread - and your call on the syntax/bloat/header questions, whenever you've had a look. Say the word if you want it pushed.
+
+## User
+
+Commit and push. I then plan to run end, then open and merge a pr, untested. I then plan to audit everything with a fresh agent/context, then return here to audit of amy changes are suggested
+
+## Assistant
+
+Pushed. `claude/thread-belief-persistence-moxn0w` is now on `origin`, tracking set up. Everything durable off the container.
+
+Your plan from here, and where I fit:
+
+1. **Run `/end`** - in its own turn, alone (cb:b583). You've got that right. When it finalizes this thread, note it'll route to `route-tagging` (the new proto-belief doc) plus the retrofit work, and by the spec the finalized thread body *should itself* get route-tagged - though that's the `/decompose` motion, still unbuilt, so it'll be hand-or-skip for now.
+2. **Open + merge a PR, untested** - your call; I'm not creating it (you didn't ask me to, and you're driving that).
+3. **Audit with a fresh agent/context** - good instinct, especially for the retrofit: the things most worth a skeptical eye are the **18 tag placements** (are the regions correctly scoped to their matters?), the **freeze-backfill** into an archived doc (does that violate the freeze rule in spirit?), and the **provisional syntax/header-demotion** choices.
+4. **Return here** - I'll be ready to fold in whatever the audit surfaces.
+
+One thing to flag before you go: since you're pushing then likely merging, and this branch's PR would then be *merged*, per the repo's policy any follow-up from the audit is **new work on a fresh branch off main** (a merged PR can't take new commits) - I'll handle that restart correctly when you return. Standing by.
+
+Committed and pushed (`fe5296a`). Tree clean, branch in sync with `origin`.
+
+You're clear to run `/end` in your next turn (alone). I'll be here when you return from the fresh-context audit.
+
+## Related
+
+- [route-tagging](../route-tagging.md) - the proto-belief document this session authored; the
+  spec whose three candidates stay staged and unminted, and whose Open items (tag syntax,
+  no-trim bloat, ref targets, migration, `/decompose` build) this thread hands forward.
+- [statement-provenance](../statement-provenance.md) - the back-edge route-tagging makes
+  concrete (exchange -> artifact at sub-thread granularity); co-designed, not bolted on.
+- [routing-ledger](../routing-ledger.md) - supplies the routed-to vocabulary the tags key on
+  and the `/decompose` pass the tag+append motion inserts into.
+- [transcript-format](../transcript-format.md) - the forward excerpts rule and the frozen-body
+  persistence (cb:b583) route-tagging depends on.
+- [mint-manifest](../mint-manifest.md) - the candidate-row convention route-tagging's Mint
+  manifest follows.
+- [end-skill-redesign](../../archive/end-skill-redesign.md) - the reference example verified
+  and retrofitted; carries the freeze-backfill excerpt log.
+- [mint-manifest-rename](../mint-manifest-rename.md) - carries a live route-tagged excerpt log
+  demonstrating cross-thread aggregation; its dangling link fixed this session.
+- [seed-lifecycle](../seed-lifecycle.md) - graduation and the terminal-document freeze the
+  route-tagging freeze rule reads matter-resolution against.
+- No beliefs minted this session; nothing added to the graph.

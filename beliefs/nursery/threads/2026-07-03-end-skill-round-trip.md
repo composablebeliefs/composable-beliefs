@@ -92,6 +92,14 @@ build. The archive shelf now exists for the next terminal document that graduate
 One row per topic this thread touched. Content lives in the routed-to document, never here
 ([routing-ledger](../routing-ledger.md), cb:b582).
 
+The body below is **route-tagged** ([route-tagging](../route-tagging.md), staged): substantive
+paragraph-runs are wrapped in `routes` blocks keyed on the routed-to artifact id (a doc,
+belief, or code path; multi-valued where a run feeds several matters, never crossing a turn
+boundary). Grep the body for `routes ref` to scan by matter; each referenced proto-belief
+document carries the same paragraphs in a dated excerpt log. Tag syntax is provisional (the
+spec's open item); the element is unknown to GitHub's sanitizer, so it is stripped in the
+rendered view (clean prose) and preserved in source (greppable).
+
 | Topic | State | Routed to | Dangling |
 |---|---|---|---|
 | /end tail-gap redesign (the defect + analysis) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) (planted cb:b583/b584); [skills/end/SKILL.md](../../../skills/end/SKILL.md); [operations.md](../../../docs/operations.md) | - |
@@ -112,9 +120,13 @@ One row per topic this thread touched. Content lives in the routed-to document, 
 
 ## User
 
+<routes ref="end-skill-redesign">
+
 Investigate and author a proto-belief document in the composable-beliefs repo
 proposing a redesign of the /end skill. Produce the document only; the actual
 /end rewrite is gated on it, not part of this task.
+
+</routes>
 
 SETUP
 - Work in composable-beliefs. Develop on your assigned branch per the repo's git
@@ -130,11 +142,15 @@ SETUP
   worth reading first as a caution.
 
 THE DEFECT TO CAPTURE
+<routes ref="end-skill-redesign cb:b518">
+
 /end writes the finalized thread document *during a turn*, but the Stop hook's
 render only contains through the *previous completed* turn. So the turn that runs
 /end (and any substantive close work done in it) and everything after are absent
 from the finalized body - the cb:a518 tail-gap. Worse, /end can then assert a
 completeness it does not have.
+
+</routes>
 
 CONCRETE EVIDENCE (read these)
 - beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md - the first
@@ -157,6 +173,8 @@ mix bs show cb:b578 (single-artifact close), cb:b572 (routing ledger), cb:b507
 cb:a518 (the tail-gap history). Also read beliefs/nursery/transcript-format.md -
 its repo-weight/LFS question is an open dependency for one option below.
 
+<routes ref="end-skill-redesign transcript-format">
+
 OPTIONS TO ANALYZE (the operator posed the first three)
 1. Split into /transcript + /end.
 2. A /final skill that runs both successively.
@@ -174,6 +192,8 @@ stale copy that can misdescribe itself is the cb:b386 duplication the framework
 rejects elsewhere. Have the finalized doc carry only what it synthesizes -
 narrative section + routing ledger + a pointer to the render for raw turns.
 Snag to surface: this depends on the render being durably retained, which is
+
+</routes>
 transcript-format's still-open repo-weight/LFS question.
 
 DELIVERABLE
@@ -190,9 +210,13 @@ before committing. Do not modify skills/end/SKILL.md.
 
 ## Assistant
 
+<routes ref="end-skill-redesign cb:b518">
+
 Excellent - the raw render confirms the tail-gap precisely. The `.sessions/692c6ff4.md` render includes one turn the finalized body lacks: "Proceed with the close in order" → the close response (raw lines 563-577), while the finalized body stops at "Add the line in the fold plan re: desk." Let me confirm the diff mechanically and read the mint-manifest format + graph-refounding doc as format templates.
 
 Confirmed mechanically: the finalized body has 22 user turns (ending at "Add the line in the fold plan re: desk", line 631); the raw render has 23 (the extra being "Proceed with the close in order", line 563 → the close response). That one-turn boundary is the tail-gap exactly. And the finalized doc's provenance blockquote claims "the receipts end at the retro-pair exchange" - but the retro-pair ran in that missing 23rd turn, so the body actually stops one topic short of what it claims.
+
+</routes>
 
 Let me check the manifest format and confirm the verify tooling before writing.
 
@@ -220,7 +244,11 @@ Fixed. The tip commit (`a6a2e03`) now carries the correct committer identity (`n
 
 ## User
 
+<routes ref="transcript-format">
+
 What is "transcript-format’s still-open repo-weight/LFS question."
+
+</routes>
 
 "Open section for the unresolved calls, and a Mint manifest with a firm completeness-honesty invariant plus the two competing structural rows (render-pointer vs turn-separation), all candidates while the rewrite stays gated." - can you expand on this in plainspeak?
 
@@ -231,6 +259,8 @@ What did you just do that you committed?
 Three questions. Let me take them in order.
 
 ## 1. What is "transcript-format's still-open repo-weight/LFS question"?
+
+<routes ref="transcript-format">
 
 Every session produces two files in `.sessions/`: a **raw jsonl** (the full machine log - every reasoning step and tool call) and a **readable render** (responses only). The question transcript-format never settled is: *do we commit the raw jsonl into git, and if so, how do we stop it from bloating the repo forever?*
 
@@ -244,6 +274,8 @@ The options transcript-format lists:
 On **2026-07-03 the operator punted**: for now, the raw jsonl stays gitignored (working-area only), the host's ~30-day retention is the safety net, and LFS remains the plan for whenever a concrete reason to persist raw actually shows up. So it's *deferred, not decided*.
 
 **Why my document depends on it:** my stronger proposal is to have the thread document stop embedding a copy of the turns and instead point at the render. That makes the render the *only* turn-by-turn record the thread offers - so the render now has to be durably kept and resolvable. Today the render lane *is* committed (only the raw jsonl is punted), so a pointer resolves fine. But if a future weight-saving decision ever prunes or externalizes renders the way LFS would the raw, my pointer would dangle. So my proposal can't be locked in until transcript-format confirms the render is permanently retained in-repo. That's the gate.
+
+</routes>
 
 ## 2. The "Open section + Mint manifest" line, in plainspeak
 
@@ -336,6 +368,8 @@ So: **agree there's a duplicate either way, and that tips toward keeping the emb
 
 ## 3. Row 3 - turn-separation - explained
 
+<routes ref="cb:b583 end-skill-redesign">
+
 This is the fix that replaces the pointer, now that you've chosen the embedded body.
 
 The tail-gap exists because **`/end` reads a render that is frozen at the previous completed turn.** When the hook renders, it renders *at the end of a turn*. So an `/end` running *inside* turn N only ever sees the render as it stood after turn N-1. The close turn (N) can't be in the body, because the render of turn N doesn't exist yet while turn N is still happening.
@@ -349,6 +383,8 @@ The tail-gap exists because **`/end` reads a render that is frozen at the previo
 
 **The honest catch to flag:** turn-separation is *procedural* - it depends on someone actually running `/end` as a follow-up turn rather than inline. That brushes against the cb:b386 "don't rely on remembering" concern. There's no way around it if you keep the embedded body: *some* turn is always the last one captured, and the finalizer's own no-decision turn is the least-bad one to lose. That's why row 1 (the honesty invariant) is the backstop: even when someone *does* finalize inline, the provenance note must truthfully say "body reaches turn N-1, close turn not included" rather than overstating. Row 1 makes the artifact honest always; row 3 makes it *complete* when the workflow is followed.
 
+</routes>
+
 So the net shape you're steering toward: **keep the embedded body (self-contained readable record) + run `/end` in a later turn so the body is complete + a truthful provenance note as the backstop.** That drops my render-pointer proposal entirely and keeps rows 1 and 3.
 
 ---
@@ -359,10 +395,14 @@ Committed. Awaiting your calls on **(B/C)** - whether turn-separation becomes a 
 
 ## User
 
+<routes ref="mint-manifest-rename">
+
 Why is there a mint manifest section in the Enskill redesign, and can it be named something else? Why is there a markdown table of candidate beliefs I don't understand the purpose?
 
 It's a mysterious mint manifest row, Clant's prescriptions, why isn't it called a prescription list or something? 
 Also, why is it limited to prescriptions? Seems like a better title would be belief candidates. too many
+
+</routes>
 
 I am going to respond to the rest in a follow up. Do not respond or take action yet
 
@@ -387,6 +427,8 @@ Done - revision committed (`7ac8833`), all green (407 tests, schema 20/20, manif
 
 ## The Mint manifest - what it is and why it's named that
 
+<routes ref="mint-manifest-rename">
+
 **It is not my invention, and it is not a separate file.** The `## Mint manifest` section is an existing house convention (belief cb:b567, re-issued as cb:b581; the `mint-manifest.md` proto-belief document defines it). Every maturing proto-belief document grows one as it approaches the point of creating real beliefs. It lives *inside* the `.md` document as a markdown table - saved and committed with the document, nothing more.
 
 **Its purpose** is to be the bridge from informal prose to the typed, immutable nodes the graph demands. A proto-belief document is loose deliberation; the graph is strict typed data. Before you pay the (expensive, immutable) cost of writing beliefs, the manifest lists exactly what you're about to create - one row per candidate belief, with its type, draft wording, dependencies, and grounding. The `/assert` skill *consumes* those rows when it plants them, and each row's "Minted" cell flips from `-` to the belief's id once it's in the graph. So the table is the checklist of what will ship into the graph and the record of what has. "Manifest" in the shipping sense - a list of what's going out.
@@ -394,6 +436,8 @@ Done - revision committed (`7ac8833`), all green (407 tests, schema 20/20, manif
 **"Do you mean a belief?"** Yes. When a row **plants**, it becomes a real belief written into `beliefs/beliefs.json` through the write flow (`preflight` → `adjudicate` → `import`). A "rule" is a prescription, and a prescription is one of the four belief types.
 
 **"Why limited to prescriptions? / 'belief candidates' is a better title."** You've caught a real thing, with a correction: **the manifest is *not* limited to prescriptions.** The Type column accepts all four belief types (attestation / aggregation / inference / prescription) - your "belief candidates" instinct is exactly what it already is. In *my* document all the rows happen to be prescriptions only because redesigning `/end` produces *rules*, and rules are prescriptions. A different document (say, one extracting facts from a source) would have attestation and aggregation rows. I've added a line to the manifest section and a Related pointer making that explicit, so it doesn't read as prescription-only.
+
+</routes>
 
 **On renaming it.** I'd recommend *not* renaming it inside this one document, because `## Mint manifest` is the heading the convention and the `/assert` consumer recognize - forking the name here would just make my document inconsistent with every other one. But your critique is legitimate at the *convention* level: "Mint manifest" is jargon, and "belief candidates" is plainer and more accurate about the scope. That's a change to cb:b581 / the mint-manifest convention itself, with blast radius (the mint-manifest document, `/assert`, and every proto-belief document using the heading) - a separate matter from the `/end` redesign. If you want it, I can open a small nursery note proposing the rename so it's deliberated on its own rather than smuggled in here. Say the word.
 
@@ -423,11 +467,15 @@ You mentioned creating a small nursery note addressing the possible change name.
 
 ## Assistant
 
+<routes ref="mint-manifest-rename">
+
 You're right, and thank you for the catch - it should be called a proto-belief document, not a "note." Anything deliberated in the nursery *is* a proto-belief document; that's the whole unit doctrine (one proto-belief document per separable matter, cb:b569). "Small nursery note" was loose wording on my part - and, fittingly, exactly the kind of retired/informal register slip that vocabulary-read-surface warns about. The nursery retired the informal registers precisely so there's one name for the artifact.
 
 So the rename deliberation would be its own **proto-belief document** - something like `beliefs/nursery/mint-manifest-rename.md` - a separable matter because its argument (the "Mint manifest" heading is jargon; "belief candidates" is plainer and correctly signals all four types) stands independently of the `/end` redesign and would supersede cb:b581's wording with blast radius across `/assert` and every document using the heading.
 
 Want me to author it? If so I'll give it the full frontmatter (type: concept, when-to-read description, tags, status/maturity active), state the case for the rename, record the blast radius (the `/assert` consumer, the `mint-manifest.md` convention document, and every proto-belief document carrying a `## Mint manifest` section), and leave an Open section for the actual naming call - `belief candidates` vs alternatives - plus a Mint manifest of its own candidate prescription. Just confirm and I'll write it on this branch.
+
+</routes>
 
 Committed the ride-along render. Standing by for your confirmation on whether to author the `mint-manifest-rename` proto-belief document.
 
@@ -437,7 +485,11 @@ Author it
 
 ## Assistant
 
+<routes ref="mint-manifest-rename">
+
 `/assert` references "at mint time" generically - it does **not** parse the `## Mint manifest` heading by name, so the coupling is convention-level (documentation), not a hardcoded parser. The heading appears in 7 live proto-belief documents. That makes the rename a wording sweep, not a code change - I'll state it accurately. Writing the document now.
+
+</routes>
 
 Committed (`c55ded7`), all green (407 tests, schema 20/20, manifest check).
 
@@ -549,6 +601,8 @@ Taking your four in order, starting with the two quick confirmations:
 
 ## 2 - The /end questions, re-presented, and the unblock answer
 
+<routes ref="cb:b583 cb:b584 skills/end/SKILL.md">
+
 **Short answer: yes.** The design is settled by your earlier calls - embedded body, `/end` alone in its own later turn, warn on inline, honesty-note backstop. Only two *implementation-mechanism* choices remain, and both have simple defaults. Answer them (or accept the defaults) and the refactor is fully unblocked - it becomes a mechanical edit to `skills/end/SKILL.md`.
 
 The two open questions actually collapse into one - *can `/end` tell whether it's being run inline?* - because both the honesty note and the warning key off that same fact:
@@ -568,6 +622,8 @@ If you accept **(i) + the two-fixed-notes approach**, there is nothing left to d
 **One scope note:** the task that opened this thread explicitly gated the `/end` rewrite *out* - "produce the document only; the actual rewrite is gated on it, not part of this task." So doing the refactor is new work you'd authorize as its own thread. It *can* happen right here (the skill lives in this repo at `skills/end/SKILL.md`), and by the graph's own logic it should ideally be the authoring thread that also **mints** `end-skill-redesign`'s two candidate prescriptions and updates cb:b578 - skill edit and graph change in one reviewable diff, the way the fold-chronicle PR did it.
 
 So: pick (i) or (ii) on Q-B, confirm the note approach on Q-A, and tell me whether to proceed with the refactor-plus-mint in this session or leave it as the next thread's job.
+
+</routes>
 
 ## User
 
@@ -651,6 +707,8 @@ Verified. Answers in order:
 
 **3 - You're right, the glossary is out of scope.** I over-flagged it from fold-chronicle caution. Minting two prescriptions + editing the skill + `operations.md` touches no glossed terms, so there's no glossary regeneration to do. Dropped from the plan. Scope is cleanly: **skill + graph + `operations.md`**.
 
+<routes ref="cb:b577 end-skill-redesign">
+
 **4 - Q7 (cb:b577): the archive-shelf decision.** It's the open call for *where graduated proto-belief documents physically live once they're terminal (planted)*. The constraint is the operator's **invisibility requirement**: archived deliberation must not sit in the working hierarchy confusing fresh agents - so archive-in-place is ruled out. cb:b577's stated lean is **`beliefs/archive/` as a sibling outside `nursery/`**.
 
 You're right that it's better to resolve now for the full lifecycle - here's why it matters and what it costs:
@@ -660,6 +718,8 @@ You're right that it's better to resolve now for the full lifecycle - here's why
 - **What resolving it entails this session:** decide the shelf (your call), discharge cb:b577 through the sanctioned close, then graduate `end-skill-redesign` into it as the capstone - repointing the two new beliefs' `document:` grounding to `beliefs/archive/end-skill-redesign.md` and dropping it from the live nursery index. `mint-manifest-rename` stays live (execution deferred), so it does *not* graduate.
 
 One honest caveat on graduating `end-skill-redesign` immediately: it makes the thread's routing-ledger link and the beliefs' grounding point into `beliefs/archive/` rather than the live nursery. That's *correct* lifecycle behavior, but it means the canonical example's centerpiece document lives in the archive by the time the thread doc is written. If you'd rather keep it visibly in the nursery for now and demonstrate graduation as a distinct later step, that's the one reason to hold rung-final.
+
+</routes>
 
 So the only thing I need from you before running Turn 1: **confirm `beliefs/archive/` as the shelf** (or name another), and whether to **graduate `end-skill-redesign` this session** or leave it live and demonstrate graduation later. Everything else in the plan is settled.
 
@@ -677,6 +737,8 @@ Once you confirm, Turn 1 runs the full substantive close (a518→b518 sweep, ski
 
 ## Assistant
 
+<routes ref="end-skill-redesign cb:b583 cb:b584 skills/end/SKILL.md docs/operations.md">
+
 **Turn 1 is complete and pushed.** The full substantive close ran; here's what landed on the branch, all verified green (407 tests, schema 20/20, verify.commits, CLAUDE.md, manifest):
 
 | Commit | What |
@@ -689,6 +751,8 @@ Once you confirm, Turn 1 runs the full substantive close (a518→b518 sweep, ski
 | `767ba73` | Retro-paired cb:b583/b584 (cb:b507) with doc + thread pointers |
 
 The round trip is now built end to end: thread → proto-belief document → mint manifest (`belief candidates`) → **beliefs in the graph** (cb:b583/b584) → the `/end` skill + `operations.md` implementing them → `Belief:` trailers linking commits back → retro-pair pointers closing the loop to the thread → graduation to the archive shelf.
+
+</routes>
 
 ## The one thing left: `/end`, and it must be a separate turn
 
@@ -714,6 +778,8 @@ That's cb:b583 working exactly as intended - by the time `/end` reads the render
 
 Go ahead - `/end` on your next turn.
 
+<routes ref="end-skill-redesign cb:b584">
+
 Done. The `/end` close ran alone, and the round trip is closed end to end - **the first canonical example of the full pipeline under the fixed `/end`.**
 
 ## The close, verified
@@ -727,6 +793,8 @@ Done. The `/end` close ran alone, and the round trip is closed end to end - **th
 The complete arc, now traversable in both directions:
 
 **thread** (`2026-07-03-end-skill-round-trip`) → **proto-belief document** (`end-skill-redesign`) → **belief candidates** (its mint manifest) → **graph** (cb:b583 turn-separation, cb:b584 honesty note) → **code** (the `/end` skill + `docs/operations.md` implementing them) → **`Belief:` trailers** linking the commits → **retro-pair pointers** back to the thread → **graduation** of the source document to `beliefs/archive/`.
+
+</routes>
 
 Plus: Q7 resolved (`beliefs/archive/` shelf, cb:b577 discharged), the `a518→b518` legacy-id leak fixed, and `mint-manifest-rename` spun off (name settled to "belief candidates," execution deferred).
 
@@ -744,6 +812,8 @@ Everything is pushed to `claude/effort-estimation-0xs2rd`. The only remaining ho
 Ok well your response had some great info I would like to persist, especially the full description of the round trip. Because of this, i will be repeating the end skill after this, again as its own turn. But first - can you verify the work you've done, that everything you told me that you think you did is in facr confirmed to be the case?
 
 ## Assistant
+
+<routes ref="end-skill-redesign cb:b583 cb:b584 docs/operations.md">
 
 Audit complete. Here's the honest result - I checked each claim against the actual state rather than trusting my narration.
 
@@ -777,6 +847,8 @@ Everything else you were told is confirmed. Ready for your `/end` re-run wheneve
 
 Render pushed. The audit stands: everything I told you is confirmed true, with the one honest correction that `docs/operations.md` retains its pre-existing legacy `a`-ids (my "id fix" was fully done in `end-skill-redesign.md` but only partial in `operations.md`).
 
+</routes>
+
 Your call on whether to sweep `operations.md`'s 14 legacy ids to canonical `b`-form (I lean yes, for read-surface hygiene) - and then your `/end` re-run whenever you're ready, which will capture this audit turn and regenerate the thread cleanly.
 
 ## User
@@ -784,6 +856,8 @@ Your call on whether to sweep `operations.md`'s 14 legacy ids to canonical `b`-f
 Clean up the ids
 
 ## Assistant
+
+<routes ref="docs/operations.md">
 
 Clear now:
 - **Sweep** (all resolve, same serial): a112, a386, a460, a461, a462, a467, a497, a518, a537, a540, a543, a548 → b-form.
@@ -798,6 +872,8 @@ Done - `operations.md` ids cleaned up and pushed (`df281c9`).
 
 **Deliberately left, with reasons:**
 - **`cb:a165`** (line 73) - a genuinely **dangling reference**: neither `cb:a165` nor `cb:b165` exists in the graph. Swapping it to b165 would just hide a pre-existing stale citation behind a current-looking id. It's paired with the cached-digest antipattern (now `cb:b386`) as "the procedural→structural pattern," so it likely named a belief that was superseded or renumbered out. Worth a separate look when convenient - but not something I can fix by guessing.
+
+</routes>
 - **`agent-behavior:a108`** (line 104) - a different namespace, outside the cb migration; its canonical form isn't verifiable from this repo (that collection isn't staged here).
 
 Verifiers green (schema 20/20, manifest check), doc-only change.
@@ -809,6 +885,8 @@ That closes the audit finding. The one loose end I'll flag but not touch is the 
 Should the pr be created and merged before or after the end skill is called?
 
 ## Assistant
+
+<routes ref="cb:b573">
 
 Short answer: **merge must come after `/end`; PR creation can be either side, but I'd create it after too.**
 
@@ -824,6 +902,8 @@ So the clean sequence:
 3. **Merge** (merge commit, per cb:b573).
 
 One honest note that holds in every ordering: the **merge event itself is never in the thread body** - it happens after `/end`, and it's mechanical delivery with no decision content, so that's fine and consistent with the accepted tradeoff. If you ever want the merge recorded in the graph, that's what the `Belief:`-trailer'd merge commit and `verify.commits` already do structurally; the thread narrative doesn't need to.
+
+</routes>
 
 So: `/end` next (alone), then PR, then merge. Say the word and I'll run `/end`.
 
