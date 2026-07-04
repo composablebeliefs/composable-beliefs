@@ -1,7 +1,107 @@
-# Session transcript - e309b06c-f418-586f-aeeb-d34a3cdcb5fd
+---
+type: thread
+title: 2026-07-04 - route-tagging - spec authored, first retrofit demonstrated
+description: The session that designed the route-tagging spec - per-paragraph, multi-ref XML tags on the frozen thread body keyed on the routed-to artifact id, aggregating a matter's cross-thread discussion into an append-only date-stamped excerpt log in its proto-belief document - drafted it as beliefs/nursery/route-tagging.md (three staged candidates, unminted), and retrofitted the 2026-07-03-end-skill-round-trip example as the first living instance (18 tagged regions; excerpt logs materialized into end-skill-redesign as a freeze backfill and mint-manifest-rename). Settled the tag key (artifact id), doc-side view (materialized, not live), granularity (per-paragraph multi-ref), freeze trigger (strand/matter resolution, cb:b569 one-focus-per-doc), and the graduated-doc edge (A - new doc). Use when resuming route-tagging, the /decompose build, statement-provenance, or auditing the retrofit.
+tags: [thread, cb, threads, provenance, route-tagging, linkage]
+status: active
+timestamp: 2026-07-04
+artifact: session:2026-07-04-route-tagging
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `e309b06c-f418-586f-aeeb-d34a3cdcb5fd` | 2026-07-03
+# 2026-07-04 - route-tagging - spec authored, first retrofit demonstrated
+
+> **Hook-captured, /end-finalized (2026-07-04).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. Closed under the
+> cb:b583 turn-separation rule: `/end` ran alone in its own turn, after the commit-and-push
+> that ended the substantive work, so the render had advanced to include that close. The
+> embedded body is complete through the push-confirmation exchange; the only omitted turn is
+> this contentless `/end` turn itself, and this note claims no coverage the body lacks
+> (cb:b584). Nothing was minted this session, so there was no retro-pairing to land.
+
+## Where things stand (the narrative)
+
+**Where things stood.** The session opened on a verification request: confirm that the
+end-skill round-trip arc - the first canonical thread -> proto-belief -> belief -> code ->
+back example, finalized the day before - actually holds. It did: every link traversable in
+both directions, the graph green. That verified example became the reference case for the
+session's real work.
+
+**The arc.** The operator proposed formalizing the scattershot, hand-curated "Thread
+excerpts" sections that sit at the bottom of proto-belief documents: use the routing table to
+work backwards into the thread, mark each topic's regions with XML tags, and aggregate them
+per proto-belief document - cross-thread, timestamped - so a matter's whole conversational
+history is auditable in one place. The design converged over several turns against the
+framework's own constraints, and each decision settled against a rejected alternative: the
+tag is keyed on the **routed-to artifact id**, not a free topic phrase (the routing table's
+vocabulary is already controlled and cannot drift); the doc-side view is **materialized into
+the .md**, not rendered live on the command line (the operator reads in GitHub and editors,
+and a frozen-source copy is not the cb:b386 staleness trap - the dodge is append-at-route-time,
+additive-only); granularity is **per-paragraph, multi-ref**, not whole-turn (a turn covers
+many topics; a paragraph feeding two matters carries both refs on one element, so aggregation
+is set-membership and there are never overlapping tags); and the freeze trigger is the
+**strand's/matter's resolution, not archival**, grounded in cb:b569's one-separable-matter-
+per-document doctrine (which is why the routing ledger stays legitimately multi-row while the
+matter is the aggregation and freeze unit, and a would-be multi-focus document is a split
+signal). The graduated-doc edge resolved to **A**: new discussion of an already-resolved
+matter opens a new document, not an append into the frozen one.
+
+That drafted `beliefs/nursery/route-tagging.md` - three staged candidate prescriptions
+(the tagging rule, the excerpt-log rule, the `/decompose` third motion), all unminted, five
+open items flagged. Then the operator asked to retrofit the reference example as a living
+instance. The thread body was route-tagged - 18 substantive paragraph-runs wrapped in
+`<routes ref="...">` blocks, multi-ref, none crossing a `## User`/`## Assistant` boundary
+(a guard enforces it) - and append-only, date-stamped excerpt logs were materialized
+mechanically from the tags into `end-skill-redesign` (a one-time freeze backfill of the
+graduated founding example) and `mint-manifest-rename` (live, demonstrating cross-thread
+aggregation). A real bug surfaced mid-retrofit: extracted regions leaked their internal `##`
+sub-headers - and one region crossed a turn boundary - into the archived document as spurious
+sections; the retrofit was reverted, the region split, excerpt headers demoted to bold, and a
+turn-boundary guard added. The pre-existing dangling `end-skill-redesign.md` link in
+`mint-manifest-rename.md` was fixed. Everything committed and pushed.
+
+**Where things stand.** `route-tagging.md` is drafted and staged, unminted; its spec is
+demonstrated end to end on the reference example, validating clean (`okf.validate` 0 errors,
+schema 20/20). The thread carries route tags; two proto-belief documents carry materialized
+excerpt logs. Nothing was minted and nothing in the graph changed - the belief nodes are
+already spec-current, since the excerpt log lives in the document they already ground in. The
+branch is pushed to `origin`.
+
+**What the next session inherits.** The spec's open items before it can mint: the **tag
+syntax** (provisional `<routes>` block chosen; comment-fence alternative open), the **no-trim
+bloat** (real and now visible - the excerpt log added ~150 lines to a 233-line document, so
+whether whole-region lifting needs a bound is a live call), **valid ref targets** (documents
+are sinks; code and immutable beliefs are not), **migration** of the existing hand-picked
+excerpt sections, and the **`/decompose` automation** (unbuilt - tagging and excerpt-append
+is a third motion of that pass, hand-done here). This finalized thread body is itself *not*
+yet route-tagged - that is the `/decompose` motion, deferred. The operator plans to open and
+merge a PR untested, then audit the retrofit with a fresh context (the 18 tag placements, the
+freeze-backfill's legitimacy, the syntax and header-demotion choices), then return. Per repo
+policy, any post-merge follow-up starts on a fresh branch off main.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to document, never here
+([routing-ledger](../routing-ledger.md), cb:b582).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| Verify the end-skill round-trip arc holds | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) - all links traversable, graph green | - |
+| Formalize the scattershot thread-excerpt sections (the matter) | closed | [route-tagging](../route-tagging.md) | - |
+| Tag key: routed-to artifact id vs free topic name | closed | [route-tagging](../route-tagging.md) - artifact id | - |
+| Doc-side view: live-rendered vs materialized | closed | [route-tagging](../route-tagging.md) - materialized, for GitHub readability | - |
+| Granularity: whole-turn vs per-paragraph multi-ref | closed | [route-tagging](../route-tagging.md) - per-paragraph, multi-ref, set-membership | - |
+| Freeze trigger + one-focus-per-doc | closed | [route-tagging](../route-tagging.md) (cb:b569) - matter-resolution, not archival | - |
+| Graduated-doc edge (A vs B) | closed | [route-tagging](../route-tagging.md) - A (new doc on re-opening) | - |
+| Draft the route-tagging proto-belief document | closed | [route-tagging](../route-tagging.md) - 3 staged candidates, unminted | - |
+| Retrofit the reference example (tag thread + excerpt logs) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md), [mint-manifest-rename](../mint-manifest-rename.md), this thread | - |
+| Dangling end-skill-redesign link | closed | [mint-manifest-rename](../mint-manifest-rename.md) - repointed to archive path | - |
+| Tag syntax (`<routes>` block vs comment fence) | paused | [route-tagging](../route-tagging.md) Open - shipped provisional `<routes>` | comment-fence alternative not evaluated |
+| No-trim excerpt bloat | open | [route-tagging](../route-tagging.md) Open | whether whole-region lifting needs a bound |
+| `/decompose` build (tag + append-excerpt motion) | open | [routing-ledger](../routing-ledger.md), [route-tagging](../route-tagging.md) | automation unbuilt; tagging hand-done |
+| Route-tag this thread's own body | paused | unrouted - the `/decompose` motion, deferred | this finalized body is not yet tagged |
+| Fresh-context audit of the retrofit | open | unrouted - operator will run | tag placements, freeze-backfill, syntax choices |
+| Commit signing (unsigned commits) | closed | narrative - env limitation (empty key), not a blocker; applies at push | - |
 
 ## User
 
@@ -411,3 +511,24 @@ One thing to flag before you go: since you're pushing then likely merging, and t
 Committed and pushed (`fe5296a`). Tree clean, branch in sync with `origin`.
 
 You're clear to run `/end` in your next turn (alone). I'll be here when you return from the fresh-context audit.
+
+## Related
+
+- [route-tagging](../route-tagging.md) - the proto-belief document this session authored; the
+  spec whose three candidates stay staged and unminted, and whose Open items (tag syntax,
+  no-trim bloat, ref targets, migration, `/decompose` build) this thread hands forward.
+- [statement-provenance](../statement-provenance.md) - the back-edge route-tagging makes
+  concrete (exchange -> artifact at sub-thread granularity); co-designed, not bolted on.
+- [routing-ledger](../routing-ledger.md) - supplies the routed-to vocabulary the tags key on
+  and the `/decompose` pass the tag+append motion inserts into.
+- [transcript-format](../transcript-format.md) - the forward excerpts rule and the frozen-body
+  persistence (cb:b583) route-tagging depends on.
+- [mint-manifest](../mint-manifest.md) - the candidate-row convention route-tagging's Mint
+  manifest follows.
+- [end-skill-redesign](../../archive/end-skill-redesign.md) - the reference example verified
+  and retrofitted; carries the freeze-backfill excerpt log.
+- [mint-manifest-rename](../mint-manifest-rename.md) - carries a live route-tagged excerpt log
+  demonstrating cross-thread aggregation; its dangling link fixed this session.
+- [seed-lifecycle](../seed-lifecycle.md) - graduation and the terminal-document freeze the
+  route-tagging freeze rule reads matter-resolution against.
+- No beliefs minted this session; nothing added to the graph.

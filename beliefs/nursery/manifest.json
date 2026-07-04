@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 35,
+  "count": 36,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -471,6 +471,23 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-03-git-policy-release"
+    },
+    {
+      "path": "threads/2026-07-04-route-tagging.md",
+      "type": "thread",
+      "title": "2026-07-04 - route-tagging - spec authored, first retrofit demonstrated",
+      "description": "The session that designed the route-tagging spec - per-paragraph, multi-ref XML tags on the frozen thread body keyed on the routed-to artifact id, aggregating a matter's cross-thread discussion into an append-only date-stamped excerpt log in its proto-belief document - drafted it as beliefs/nursery/route-tagging.md (three staged candidates, unminted), and retrofitted the 2026-07-03-end-skill-round-trip example as the first living instance (18 tagged regions; excerpt logs materialized into end-skill-redesign as a freeze backfill and mint-manifest-rename). Settled the tag key (artifact id), doc-side view (materialized, not live), granularity (per-paragraph multi-ref), freeze trigger (strand/matter resolution, cb:b569 one-focus-per-doc), and the graduated-doc edge (A - new doc). Use when resuming route-tagging, the /decompose build, statement-provenance, or auditing the retrofit.",
+      "tags": [
+        "thread",
+        "cb",
+        "threads",
+        "provenance",
+        "route-tagging",
+        "linkage"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-04",
+      "artifact": "session:2026-07-04-route-tagging"
     },
     {
       "path": "threads/index.md",
