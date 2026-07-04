@@ -6,7 +6,7 @@ tags: [nursery, threads, provenance, linkage, workflow]
 status: active
 timestamp: 2026-07-04
 maturity: active
-threads: [2026-07-04-route-tagging]
+threads: [2026-07-04-route-tagging, 2026-07-04-council-design]
 ---
 
 # Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus

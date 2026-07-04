@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 37,
+  "count": 38,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -486,6 +486,23 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-03-git-policy-release"
+    },
+    {
+      "path": "threads/2026-07-04-council-design.md",
+      "type": "thread",
+      "title": "2026-07-04 - council mechanism (review-gate designed; route-tagging audit dispositioned)",
+      "description": "The session that designed the /council review-and-converge mechanism - a draft PR as the medium (comments, never committed files), an adjudicate-style close-gate, decisions distilled into the target proto-belief with the raw exchange cited by commit, and the provenance-tiering rule (a dev-dev review round mints no thread; only operator design deliberation does). Authored beliefs/nursery/council-mechanism.md (staged, unminted), revised beliefs/nursery/route-tagging.md with the fresh-context audit's dispositions (F1 canonical-id keying, F2 the cb.verify.route_tags backstop, F4 the routes-ref tag syntax, F6 bounded-migration, F7 bloat bound; F3 spun off to /end), renamed /decompose to /route (swept route-tagging and routing-ledger), and captured a hand-off prompt for the git-check-hook-vs-cb:b573 rebase hazard. This thread is itself the tiering rule in force - its own dev-dev audit half is excised to PR #20, not persisted here. Use when resuming the council build, the route-tagging rework (PR #20), the /route fold into /end, or the rebase-hazard read-surface fix.",
+      "tags": [
+        "thread",
+        "council",
+        "review",
+        "provenance",
+        "route-tagging",
+        "lifecycle"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-04",
+      "artifact": "session:2026-07-04-council-design"
     },
     {
       "path": "threads/2026-07-04-route-tagging.md",
