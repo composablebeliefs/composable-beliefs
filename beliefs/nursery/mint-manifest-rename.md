@@ -111,6 +111,53 @@ are all prescriptions only because a redesign mints rules. That clarification is
 surfaces the naming defect: the name reinforces the very prescription-only reading the
 convention rejects.
 
+## Thread excerpts - route-tagged log (route-tagging spec)
+
+Append-only, per-thread, date-stamped log generated from the
+`<routes ref="mint-manifest-rename">` regions of the threads that fed this matter, lifted
+whole ([route-tagging](route-tagging.md), staged). This matter is live, so the log accepts a
+new dated block each time a later thread routes to it; nothing here is regenerated. It
+demonstrates cross-thread aggregation: the same tag string in any thread lands here.
+
+### 2026-07-03-end-skill-round-trip (2026-07-03)
+
+4 tagged region(s), lifted whole. Refs shown are the full ref-set of each region (this matter plus any it co-feeds).
+
+**[`mint-manifest-rename`]**
+
+Why is there a mint manifest section in the Enskill redesign, and can it be named something else? Why is there a markdown table of candidate beliefs I don't understand the purpose?
+
+It's a mysterious mint manifest row, Clant's prescriptions, why isn't it called a prescription list or something? 
+Also, why is it limited to prescriptions? Seems like a better title would be belief candidates. too many
+
+---
+
+**[`mint-manifest-rename`]**
+
+**It is not my invention, and it is not a separate file.** The `## Mint manifest` section is an existing house convention (belief cb:b567, re-issued as cb:b581; the `mint-manifest.md` proto-belief document defines it). Every maturing proto-belief document grows one as it approaches the point of creating real beliefs. It lives *inside* the `.md` document as a markdown table - saved and committed with the document, nothing more.
+
+**Its purpose** is to be the bridge from informal prose to the typed, immutable nodes the graph demands. A proto-belief document is loose deliberation; the graph is strict typed data. Before you pay the (expensive, immutable) cost of writing beliefs, the manifest lists exactly what you're about to create - one row per candidate belief, with its type, draft wording, dependencies, and grounding. The `/assert` skill *consumes* those rows when it plants them, and each row's "Minted" cell flips from `-` to the belief's id once it's in the graph. So the table is the checklist of what will ship into the graph and the record of what has. "Manifest" in the shipping sense - a list of what's going out.
+
+**"Do you mean a belief?"** Yes. When a row **plants**, it becomes a real belief written into `beliefs/beliefs.json` through the write flow (`preflight` → `adjudicate` → `import`). A "rule" is a prescription, and a prescription is one of the four belief types.
+
+**"Why limited to prescriptions? / 'belief candidates' is a better title."** You've caught a real thing, with a correction: **the manifest is *not* limited to prescriptions.** The Type column accepts all four belief types (attestation / aggregation / inference / prescription) - your "belief candidates" instinct is exactly what it already is. In *my* document all the rows happen to be prescriptions only because redesigning `/end` produces *rules*, and rules are prescriptions. A different document (say, one extracting facts from a source) would have attestation and aggregation rows. I've added a line to the manifest section and a Related pointer making that explicit, so it doesn't read as prescription-only.
+
+---
+
+**[`mint-manifest-rename`]**
+
+You're right, and thank you for the catch - it should be called a proto-belief document, not a "note." Anything deliberated in the nursery *is* a proto-belief document; that's the whole unit doctrine (one proto-belief document per separable matter, cb:b569). "Small nursery note" was loose wording on my part - and, fittingly, exactly the kind of retired/informal register slip that vocabulary-read-surface warns about. The nursery retired the informal registers precisely so there's one name for the artifact.
+
+So the rename deliberation would be its own **proto-belief document** - something like `beliefs/nursery/mint-manifest-rename.md` - a separable matter because its argument (the "Mint manifest" heading is jargon; "belief candidates" is plainer and correctly signals all four types) stands independently of the `/end` redesign and would supersede cb:b581's wording with blast radius across `/assert` and every document using the heading.
+
+Want me to author it? If so I'll give it the full frontmatter (type: concept, when-to-read description, tags, status/maturity active), state the case for the rename, record the blast radius (the `/assert` consumer, the `mint-manifest.md` convention document, and every proto-belief document carrying a `## Mint manifest` section), and leave an Open section for the actual naming call - `belief candidates` vs alternatives - plus a Mint manifest of its own candidate prescription. Just confirm and I'll write it on this branch.
+
+---
+
+**[`mint-manifest-rename`]**
+
+`/assert` references "at mint time" generically - it does **not** parse the `## Mint manifest` heading by name, so the coupling is convention-level (documentation), not a hardcoded parser. The heading appears in 7 live proto-belief documents. That makes the rename a wording sweep, not a code change - I'll state it accurately. Writing the document now.
+
 ## Related
 
 - [mint-manifest](mint-manifest.md) - the convention this renames (cb:b567, re-issued
@@ -120,5 +167,5 @@ convention rejects.
   inherits.
 - [graph-refounding](graph-refounding.md) - if it lands first, the re-mint carries the new
   name for free, so this rename may be one to hold rather than pay a supersession now.
-- [end-skill-redesign](end-skill-redesign.md) - the deliberation this spun off from; its
+- [end-skill-redesign](../archive/end-skill-redesign.md) - the deliberation this spun off from; its
   Mint manifest section is one of the seven headings a rename would sweep.
