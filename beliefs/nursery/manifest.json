@@ -233,7 +233,7 @@
       "path": "route-tagging.md",
       "type": "concept",
       "title": "Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus",
-      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /decompose. Unminted; rows staged.",
+      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Unminted; rows staged.",
       "tags": [
         "nursery",
         "threads",
@@ -248,7 +248,7 @@
       "path": "routing-ledger.md",
       "type": "concept",
       "title": "The routing ledger - per-thread dispatch for non-linear conversations",
-      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
+      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /route skill (renamed from /decompose). Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
       "tags": [
         "nursery",
         "threads",
