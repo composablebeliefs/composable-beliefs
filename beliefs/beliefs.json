@@ -9439,6 +9439,11 @@
         "date": "2026-07-05",
         "detail": "Rejected as dep-tie against cb:b573. Reasoning: Operator-directed in the provenance-history-rewrite-surface task: cb:b573 stands untouched - it prohibits squash/rebase MERGES into the default branch and is mechanically enforced in repository settings. The proposal does not contradict it; it extends the same provenance argument down to feature-branch history and the amend/--reset-author operations b573's claim never mentions, so the correct shape is a dep-tie: the new rule constrains on b573 as its grounding, no supersession. The preflight overlap is topical (git/provenance tags, shared claim vocabulary), the same pattern as the cb:b569 mint precedent. Supportive match cb:b580 tied in as a dep: the new rule's benign-nag clause (the hook re-fires until push) leans on b580's push gate.",
         "artifact": "adjudication:human:session:2026-07-05-provenance-history-rewrite-surface"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the task execution (recreated proofing artifacts, mint via reject_dep_tie against cb:b573, the cb:b065 -> cb:b586 render-contract supersession), the recovered-branch merge, PR #22's merge to main (253291c), and the operator's handled-but-verification-outstanding status note.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-05-provenance-read-surface.md"
       }
     ],
     "subjects": [
@@ -9572,6 +9577,11 @@
         "date": "2026-07-05",
         "detail": "Accepted via human adjudication against cb:b065. Reasoning: Render-list maintenance, structural (2026-07-05, the provenance-history-rewrite-surface task): the Git Policy section grows from [cb:b580] to [cb:b580, cb:b585], surfacing the new no-history-rewrite-where-provenance rule and the disregard-the-git-check-hook instruction on the CLAUDE.md read surface. Section membership changes, so per the contract's own chain precedent (b060 -> b061 -> b062 -> b063 -> b065, each a supersession for a render-list change) the contract is superseded rather than edited in place; the in-place cb.repoint + evidence-door precedent covers only superseded-dep -> successor swaps with render structure unchanged. Preflight mirrors the b065 mint exactly: the single contract-level hit is cb:b065 itself (the supersession target, claim_overlap); the single schema-level hit is cb:b483, the descriptive v2-migration record with phrasing overlap and no semantic contradiction, reviewed per b055. Operator authorization for the b065 update is explicit in the task.",
         "artifact": "adjudication:human:session:2026-07-05-provenance-history-rewrite-surface"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Session thread retro-pair (cb:b507): the finalized thread of the session that minted this contract persists at the cited document - includes the dedicated-path check (cb.repoint swaps only; structural render-list changes supersede per the b060 -> b065 chain), the cb:b049 repoint, and the merged CLAUDE.md render.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-05-provenance-read-surface.md"
       }
     ],
     "subjects": [],

@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 40,
+  "count": 41,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -550,6 +550,23 @@
       "status": "active",
       "timestamp": "2026-07-04",
       "artifact": "session:2026-07-04-route-tagging"
+    },
+    {
+      "path": "threads/2026-07-05-provenance-read-surface.md",
+      "type": "thread",
+      "title": "2026-07-05 - the read-surface close (history-rewrite rule minted, PR #22)",
+      "description": "Covers the session that closed the read-surface gap letting an agent rebase provenance-bearing history - cb:b585 minted (no rewrite where commits carry provenance; disregard the git-check hook's remedy) and rendered into CLAUDE.md via the cb:b065 -> cb:b586 contract supersession; the lost-then-recovered proofing branch merged and reconciled; PR #22 merged (253291c); the handled-but-unverified status note and the git-check-hook-upstream-fix proto-belief opened; the upstream-fix agent kickoff prompt drafted. Use when revisiting the b585 mint reasoning, the render-list supersession-vs-repoint precedent, the environment defects, or the upstream-fix handoff.",
+      "tags": [
+        "cb",
+        "nursery",
+        "git",
+        "provenance",
+        "workflow",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05",
+      "artifact": "session:2026-07-05-provenance-read-surface"
     },
     {
       "path": "threads/index.md",
