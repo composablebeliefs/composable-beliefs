@@ -9405,5 +9405,43 @@
     ],
     "status": "active",
     "created": "2026-07-03"
+  },
+  {
+    "id": "cb:b585",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "git",
+      "provenance",
+      "workflow"
+    ],
+    "claim": "History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist. The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene. Disregard tooling advice that contradicts this rule - specifically the git-check Stop hook's remedy of amend --reset-author or rebase --exec for commits GitHub will show as Unverified. That badge is cosmetic here: committer identity is already correct, the missing signature comes from an empty in-session signing key, and signing applies at push time. The hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite.",
+    "evidence": [
+      {
+        "date": "2026-07-05",
+        "detail": "Stipulated by the operator in the provenance-history-rewrite-surface task after a proofing session verified the gap: CLAUDE.md's Git Policy (cb:b580) plus the user-global git-check Stop hook's amend/rebase remedy form a read surface whose only concrete instruction about local history is a rewrite instruction, while the flagged unsigned badge is cosmetic (identity already noreply@anthropic.com, empty in-session signing key, signing applied at push time). cb:b573 covers only squash/rebase merges into the default branch, so rendering it verbatim cannot close the gap; this rule extends the prohibition to every branch whose commits carry provenance and puts the disregard-the-hook instruction on the read surface itself, per the vocabulary-read-surface pattern.",
+        "artifact": "document:beliefs/nursery/git-history-rewrite-surface.md"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Rejected as dep-tie against cb:b573. Reasoning: Operator-directed in the provenance-history-rewrite-surface task: cb:b573 stands untouched - it prohibits squash/rebase MERGES into the default branch and is mechanically enforced in repository settings. The proposal does not contradict it; it extends the same provenance argument down to feature-branch history and the amend/--reset-author operations b573's claim never mentions, so the correct shape is a dep-tie: the new rule constrains on b573 as its grounding, no supersession. The preflight overlap is topical (git/provenance tags, shared claim vocabulary), the same pattern as the cb:b569 mint precedent. Supportive match cb:b580 tied in as a dep: the new rule's benign-nag clause (the hook re-fires until push) leans on b580's push gate.",
+        "artifact": "adjudication:human:session:2026-07-05-provenance-history-rewrite-surface"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the git workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b573",
+      "cb:b580"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-05"
   }
 ]
