@@ -139,3 +139,17 @@ git log --format='%h %G?' -1               # reports N anyway (no allowedSigners
 # -> Stop hook flags the commit as Unverified and prescribes amend/rebase,
 #    although pushing it as-is yields verified: true on GitHub.
 ```
+
+## Mint manifest
+
+| Type | Draft claim | Deps | Grounding | Minted |
+|---|---|---|---|---|
+| prescription (policy) | Re-issue the cb:b585 read-surface rule with its rationale corrected: the hook's Unverified flag is a false positive (commits SSH-signed at creation by the environment helper, verified on GitHub; %G? reads N for SSH-signed commits without an allowedSignersFile); the prohibition and disregard-the-hook instruction carry forward unchanged. | cb:b573, cb:b580 | document:beliefs/nursery/upstream-request-git-check-hook.md | cb:b587 (2026-07-05, accept_supersede of cb:b585) |
+
+Minted 2026-07-05, operator-authorized: cb:b587 supersedes cb:b585; the
+cb:b586 render contract's Git Policy dep and render_sections entry were
+repointed b585 -> b587 (repoint door + matching render swap, the b065
+Evidence 5-7 precedent) and CLAUDE.md regenerated. The upstream filing
+action item is NOT this row - it stays staged in
+[git-check-hook-upstream-fix](git-check-hook-upstream-fix.md), gated on the
+delivery channel.

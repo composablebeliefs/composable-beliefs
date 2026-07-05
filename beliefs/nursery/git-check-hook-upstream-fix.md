@@ -108,7 +108,14 @@ Rows staged, unminted - gated on the delivery channel question above:
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription (action-item) | File the upstream git-check hook fix with the environment provisioner: preferred fix is provisioning a working in-session signing key (makes the Unverified state impossible); acceptable is removing the amend/rebase remedy in favor of "identity correct, signatures apply at push time"; minimum is gating the remedy on a provenance-repo marker. | cb:b585 | document:beliefs/nursery/git-check-hook-upstream-fix.md | - |
+| prescription (action-item) | File the upstream git-check hook fix with the environment provisioner, per the paste-ready request document: preferred fix is repairing the hook's detection (provision an allowedSignersFile or test signature presence - commits are already signed at creation); acceptable is removing the amend/rebase remedy in favor of "identity correct, commits signed at creation, push when ready"; minimum is gating the remedy on a provenance-repo marker. | cb:b587 | document:beliefs/nursery/upstream-request-git-check-hook.md | - |
+
+Row revised 2026-07-05 after the re-verified forensics (see
+[upstream-request-git-check-hook](upstream-request-git-check-hook.md)): the
+preference order corrected (signing already works at creation; the defect is
+the hook's detection plus its remedy), deps repointed cb:b585 -> cb:b587, and
+the grounding moved to the paste-ready request document. Still gated on the
+delivery channel.
 
 ## Related
 
@@ -120,7 +127,9 @@ Rows staged, unminted - gated on the delivery channel question above:
   `allowedSignersFile`, so branch 1 above ("provision a real signing key")
   is effectively already in place and the preferred fix shifts to fixing
   the hook's detection. The "signatures apply at push time" premise in
-  this document's Context section is superseded by that record.
+  this document's Context section is superseded by that record; the
+  correction minted 2026-07-05 as cb:b587 (accept_supersede of cb:b585),
+  with cb:b586's Git Policy render repointed and CLAUDE.md regenerated.
 - [git-history-rewrite-surface](git-history-rewrite-surface.md) - the
   in-repo defense this complements; its Status note owes the verification
   check that this fix, once landed, would re-frame.

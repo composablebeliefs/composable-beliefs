@@ -60,7 +60,9 @@ user-global tooling that this repo depends on but does not control.
   history rewriting to fix a state that does not exist - and shifts the
   preferred upstream fix from "provision a signing key" (effectively already
   in place) to "fix the hook's detection". Full record:
-  `beliefs/nursery/upstream-request-git-check-hook.md`.
+  `beliefs/nursery/upstream-request-git-check-hook.md`. The read-surface rule
+  was re-issued the same day as cb:b587 (accept_supersede of cb:b585) so
+  CLAUDE.md's Git Policy carries the corrected rationale.
 
 ## 2. Pre-baked container image ships a stale local `main` (upstream + in-repo mitigation)
 
