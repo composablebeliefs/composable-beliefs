@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 38,
+  "count": 39,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -102,6 +102,21 @@
       ],
       "status": "active",
       "timestamp": "2026-07-04"
+    },
+    {
+      "path": "git-history-rewrite-surface.md",
+      "type": "concept",
+      "title": "History rewriting where commits carry provenance (the git-check hook gap)",
+      "description": "Covers the read-surface gap that lets an agent rebase provenance-bearing git history - cb:b573 prohibits squash/rebase merges on the default branch only, CLAUDE.md's Git Policy (cb:b580) covers only commit autonomy and push gating, and the user-global git-check Stop hook recommends amend --reset-author / rebase --exec every turn that local commits show an unsigned badge. The vocabulary-read-surface pattern applied to a dangerous operation; the fix is a new prescription rendered into the Git Policy section.",
+      "tags": [
+        "nursery",
+        "git",
+        "provenance",
+        "read-surface",
+        "workflow"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05"
     },
     {
       "path": "graph-refounding.md",
