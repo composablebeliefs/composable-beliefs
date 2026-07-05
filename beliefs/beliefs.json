@@ -3752,6 +3752,16 @@
         "date": "2026-06-12",
         "detail": "deps + cb:b065 via dag-proposal c049-repoint-c063-to-c065",
         "artifact": "session:2026-06-12-claude-md-write-surface"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "deps − cb:b065 via dag-proposal 2026-07-05-provenance-history-rewrite-surface",
+        "artifact": "session:2026-07-05-provenance-history-rewrite-surface"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "deps + cb:b586 via dag-proposal 2026-07-05-provenance-history-rewrite-surface",
+        "artifact": "session:2026-07-05-provenance-history-rewrite-surface"
       }
     ],
     "subjects": [
@@ -3766,7 +3776,7 @@
     ],
     "deps": [
       "cb:b467",
-      "cb:b065"
+      "cb:b586"
     ],
     "status": "active",
     "created": "2026-06-09"
@@ -7544,7 +7554,8 @@
       "cb:b565",
       "cb:b580"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:b586",
     "created": "2026-06-12"
   },
   {
@@ -9405,5 +9416,186 @@
     ],
     "status": "active",
     "created": "2026-07-03"
+  },
+  {
+    "id": "cb:b585",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "git",
+      "provenance",
+      "workflow"
+    ],
+    "claim": "History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist. The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene. Disregard tooling advice that contradicts this rule - specifically the git-check Stop hook's remedy of amend --reset-author or rebase --exec for commits GitHub will show as Unverified. That badge is cosmetic here: committer identity is already correct, the missing signature comes from an empty in-session signing key, and signing applies at push time. The hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite.",
+    "evidence": [
+      {
+        "date": "2026-07-05",
+        "detail": "Stipulated by the operator in the provenance-history-rewrite-surface task after a proofing session verified the gap: CLAUDE.md's Git Policy (cb:b580) plus the user-global git-check Stop hook's amend/rebase remedy form a read surface whose only concrete instruction about local history is a rewrite instruction, while the flagged unsigned badge is cosmetic (identity already noreply@anthropic.com, empty in-session signing key, signing applied at push time). cb:b573 covers only squash/rebase merges into the default branch, so rendering it verbatim cannot close the gap; this rule extends the prohibition to every branch whose commits carry provenance and puts the disregard-the-hook instruction on the read surface itself, per the vocabulary-read-surface pattern.",
+        "artifact": "document:beliefs/nursery/git-history-rewrite-surface.md"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Rejected as dep-tie against cb:b573. Reasoning: Operator-directed in the provenance-history-rewrite-surface task: cb:b573 stands untouched - it prohibits squash/rebase MERGES into the default branch and is mechanically enforced in repository settings. The proposal does not contradict it; it extends the same provenance argument down to feature-branch history and the amend/--reset-author operations b573's claim never mentions, so the correct shape is a dep-tie: the new rule constrains on b573 as its grounding, no supersession. The preflight overlap is topical (git/provenance tags, shared claim vocabulary), the same pattern as the cb:b569 mint precedent. Supportive match cb:b580 tied in as a dep: the new rule's benign-nag clause (the hook re-fires until push) leans on b580's push gate.",
+        "artifact": "adjudication:human:session:2026-07-05-provenance-history-rewrite-surface"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the git workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b573",
+      "cb:b580"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-05"
+  },
+  {
+    "id": "cb:b586",
+    "type": "prescription",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "output:claude-md"
+    ],
+    "claim": "The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.",
+    "rules": [
+      {
+        "output_path": "CLAUDE.md"
+      },
+      {
+        "header_comment": "<!-- Generated by mix cb.generate.claude_md from the cb: DAG. Do not edit; run the task to regenerate. -->\n\n# Composable Beliefs\n\nA framework for giving AI agents persistent, source-grounded, inspectable reasoning that survives session boundaries and composes into understanding the agent never explicitly derived."
+      },
+      {
+        "render_sections": [
+          {
+            "beliefs": [
+              "cb:b459",
+              "cb:b444"
+            ],
+            "title": "Quick Start"
+          },
+          {
+            "beliefs": [
+              "cb:b477"
+            ],
+            "title": "Active prescriptions"
+          },
+          {
+            "beliefs": [
+              "cb:b508"
+            ],
+            "title": "Session start"
+          },
+          {
+            "beliefs": [
+              "cb:b478",
+              "cb:b479",
+              "cb:b448"
+            ],
+            "title": "Architecture"
+          },
+          {
+            "beliefs": [
+              "cb:b533",
+              "cb:b450"
+            ],
+            "title": "Operations"
+          },
+          {
+            "beliefs": [
+              "cb:b482",
+              "cb:b565"
+            ],
+            "title": "Schema"
+          },
+          {
+            "beliefs": [
+              "cb:b524"
+            ],
+            "title": "Skills"
+          },
+          {
+            "beliefs": [
+              "cb:b454"
+            ],
+            "title": "Collections"
+          },
+          {
+            "beliefs": [
+              "cb:b455"
+            ],
+            "title": "Formatting"
+          },
+          {
+            "beliefs": [
+              "cb:b580",
+              "cb:b585"
+            ],
+            "title": "Git Policy"
+          },
+          {
+            "beliefs": [
+              "cb:b457"
+            ],
+            "title": "Data Protection"
+          },
+          {
+            "beliefs": [
+              "cb:b458"
+            ],
+            "title": "Origin"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "CLAUDE.md is read-only - edits are overwritten on next generation",
+      "Every line of output traces to exactly one belief's claim field",
+      "deps equals the union of all beliefs referenced in render_sections",
+      "Section titles are human-readable; tags remain free for cross-cutting audit queries"
+    ],
+    "artifact": "session:2026-07-05-provenance-history-rewrite-surface",
+    "evidence": [
+      {
+        "date": "2026-07-05",
+        "detail": "Single change from cb:b065: the Git Policy section renders cb:b585 (no history rewriting where commits carry provenance - feature branches included; disregard the git-check hook's amend/rebase remedy, whose Unverified badge is cosmetic) alongside cb:b580; deps updated to match per the union invariant. All other sections, rules, and invariants carried verbatim. A structural render-list change (section membership grows), so it takes the supersession precedent of the b060 -> b061 -> b062 -> b063 -> b065 chain, not the in-place dep-maintenance precedent reserved for superseded-dep -> successor swaps. The chain is b060 -> b061 -> b062 -> b063 -> b065 -> this node.",
+        "artifact": "document:beliefs/nursery/git-history-rewrite-surface.md"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Accepted via human adjudication against cb:b065. Reasoning: Render-list maintenance, structural (2026-07-05, the provenance-history-rewrite-surface task): the Git Policy section grows from [cb:b580] to [cb:b580, cb:b585], surfacing the new no-history-rewrite-where-provenance rule and the disregard-the-git-check-hook instruction on the CLAUDE.md read surface. Section membership changes, so per the contract's own chain precedent (b060 -> b061 -> b062 -> b063 -> b065, each a supersession for a render-list change) the contract is superseded rather than edited in place; the in-place cb.repoint + evidence-door precedent covers only superseded-dep -> successor swaps with render structure unchanged. Preflight mirrors the b065 mint exactly: the single contract-level hit is cb:b065 itself (the supersession target, claim_overlap); the single schema-level hit is cb:b483, the descriptive v2-migration record with phrasing overlap and no semantic contradiction, reviewed per b055. Operator authorization for the b065 update is explicit in the task.",
+        "artifact": "adjudication:human:session:2026-07-05-provenance-history-rewrite-surface"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "cb:b444",
+      "cb:b448",
+      "cb:b450",
+      "cb:b454",
+      "cb:b455",
+      "cb:b457",
+      "cb:b458",
+      "cb:b459",
+      "cb:b477",
+      "cb:b478",
+      "cb:b479",
+      "cb:b482",
+      "cb:b508",
+      "cb:b524",
+      "cb:b533",
+      "cb:b565",
+      "cb:b580",
+      "cb:b585"
+    ],
+    "status": "active",
+    "created": "2026-07-05"
   }
 ]
