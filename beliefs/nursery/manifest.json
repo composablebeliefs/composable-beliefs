@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 41,
+  "count": 42,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -595,6 +595,21 @@
       ],
       "status": "active",
       "timestamp": "2026-06-26"
+    },
+    {
+      "path": "upstream-request-git-check-hook.md",
+      "type": "concept",
+      "title": "Upstream request - CCR git-check Stop hook (paste-ready)",
+      "description": "The paste-ready upstream request for the CCR git-check Stop hook defect - a false Unverified detection (%G? misreads SSH-signed commits when no allowedSignersFile is configured) coupled to a history-rewrite remedy. Prescriptive proto-belief, companion to git-check-hook-upstream-fix; carries the 2026-07-05 revised forensics (commits are signed at creation by the environment helper and verify on GitHub).",
+      "tags": [
+        "nursery",
+        "git",
+        "provenance",
+        "environment",
+        "upstream"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05"
     },
     {
       "path": "vocabulary-read-surface.md",

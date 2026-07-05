@@ -1,11 +1,23 @@
+---
+type: concept
+title: Upstream request - CCR git-check Stop hook (paste-ready)
+description: The paste-ready upstream request for the CCR git-check Stop hook defect - a false Unverified detection (%G? misreads SSH-signed commits when no allowedSignersFile is configured) coupled to a history-rewrite remedy. Prescriptive proto-belief, companion to git-check-hook-upstream-fix; carries the 2026-07-05 revised forensics (commits are signed at creation by the environment helper and verify on GitHub).
+tags: [nursery, git, provenance, environment, upstream]
+status: active
+timestamp: 2026-07-05
+maturity: active
+---
+
 # Upstream request: CCR git-check Stop hook - false "Unverified" detection and history-rewrite remedy
 
-Status: draft, paste-ready. Target: whoever provisions the Claude Code on the
-web (CCR) container environment - the user-global `/root/.claude` layer and the
-`/opt/env-runner/environment-manager` signing helper. This document is written
-to be filed verbatim in a tracker; the companion forensic record lives in this
-repo at `ENVIRONMENT_DEFECTS.md` (defect 1) and
-`beliefs/nursery/git-check-hook-upstream-fix.md`.
+A prescriptive proto-belief: the request itself, drafted to be filed verbatim
+in whatever tracker the delivery channel turns out to be. Target: whoever
+provisions the Claude Code on the web (CCR) container environment - the
+user-global `/root/.claude` layer and the `/opt/env-runner/environment-manager`
+signing helper. The deliberation about the fix lives in
+[git-check-hook-upstream-fix](git-check-hook-upstream-fix.md); the condensed
+forensic record lives at `ENVIRONMENT_DEFECTS.md` (defect 1). Everything below
+the rule is the paste payload.
 
 ---
 

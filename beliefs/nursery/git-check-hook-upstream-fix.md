@@ -112,6 +112,15 @@ Rows staged, unminted - gated on the delivery channel question above:
 
 ## Related
 
+- [upstream-request-git-check-hook](upstream-request-git-check-hook.md) - the
+  paste-ready request document this proto-belief calls for, drafted
+  2026-07-05 with re-verified and revised forensics: commits are in fact
+  SSH-signed at creation by the environment helper and verify on GitHub;
+  the hook's `%G? == N` test false-positives without an
+  `allowedSignersFile`, so branch 1 above ("provision a real signing key")
+  is effectively already in place and the preferred fix shifts to fixing
+  the hook's detection. The "signatures apply at push time" premise in
+  this document's Context section is superseded by that record.
 - [git-history-rewrite-surface](git-history-rewrite-surface.md) - the
   in-repo defense this complements; its Status note owes the verification
   check that this fix, once landed, would re-frame.
