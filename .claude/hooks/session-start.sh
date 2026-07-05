@@ -14,6 +14,18 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
 
+# The container image can bake in a stale local main ref (ENVIRONMENT_DEFECTS.md
+# defect 2). Refresh from origin and fast-forward local main so no session bases
+# work on the baked-in state; anything short of a pure fast-forward is left alone.
+if git -C "${CLAUDE_PROJECT_DIR:-.}" remote get-url origin >/dev/null 2>&1; then
+  git -C "${CLAUDE_PROJECT_DIR:-.}" fetch origin >/dev/null 2>&1 || true
+  if [ "$(git -C "${CLAUDE_PROJECT_DIR:-.}" branch --show-current 2>/dev/null)" = "main" ]; then
+    git -C "${CLAUDE_PROJECT_DIR:-.}" merge --ff-only origin/main >/dev/null 2>&1 || true
+  else
+    git -C "${CLAUDE_PROJECT_DIR:-.}" fetch origin main:main >/dev/null 2>&1 || true
+  fi
+fi
+
 ELIXIR_VSN="1.16.3"
 OTP_MAJOR="25"
 ELIXIR_DIR="/opt/elixir"
@@ -27,7 +39,9 @@ fi
 # ubuntu 24.04). apt's own elixir is too old for mix.exs (~> 1.16), hence the
 # separate precompiled Elixir below.
 if ! command -v erl >/dev/null 2>&1; then
-  $SUDO apt-get update -qq
+  # --allow-releaseinfo-change: a baked-in PPA renaming its InRelease Label
+  # (ENVIRONMENT_DEFECTS.md defect 3) must not block toolchain provisioning.
+  $SUDO apt-get update -qq --allow-releaseinfo-change
   DEBIAN_FRONTEND=noninteractive $SUDO apt-get install -y -qq erlang-nox erlang-dev unzip >/dev/null
 fi
 
