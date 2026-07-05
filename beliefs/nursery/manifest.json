@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 36,
+  "count": 38,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -87,6 +87,21 @@
       ],
       "status": "active",
       "timestamp": "2026-07-01"
+    },
+    {
+      "path": "council-mechanism.md",
+      "type": "concept",
+      "title": "Council - a disciplined review-and-converge round on a draft PR, distilled to the plan",
+      "description": "Covers the /council mechanism - a structured multi-agent review round run on a draft PR (comments, never committed files), driven to convergence and distilled into the target proto-belief plan. Settles the medium (draft PR), the record (distilled decisions plus a dated rejected-because block; the raw exchange referenced by commit, never copied), the close-gate (adjudicate-style, refuses while any finding is undispositioned), and the provenance-tiering rule that keeps a dev-dev review round out of the thread listing while an operator-in-the-loop design deliberation mints a thread. The concrete form of the review gate between work-drafted and work-minted; the review analog of /end. Unminted; rows staged.",
+      "tags": [
+        "nursery",
+        "workflow",
+        "review",
+        "provenance",
+        "multi-agent"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-04"
     },
     {
       "path": "graph-refounding.md",
@@ -218,7 +233,7 @@
       "path": "route-tagging.md",
       "type": "concept",
       "title": "Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus",
-      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /decompose. Unminted; rows staged.",
+      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Unminted; rows staged.",
       "tags": [
         "nursery",
         "threads",
@@ -233,7 +248,7 @@
       "path": "routing-ledger.md",
       "type": "concept",
       "title": "The routing ledger - per-thread dispatch for non-linear conversations",
-      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
+      "description": "Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /route skill (renamed from /decompose). Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.",
       "tags": [
         "nursery",
         "threads",
@@ -471,6 +486,23 @@
       "status": "active",
       "timestamp": "2026-07-03",
       "artifact": "session:2026-07-03-git-policy-release"
+    },
+    {
+      "path": "threads/2026-07-04-council-design.md",
+      "type": "thread",
+      "title": "2026-07-04 - council mechanism (review-gate designed; route-tagging audit dispositioned)",
+      "description": "The session that designed the /council review-and-converge mechanism - a draft PR as the medium (comments, never committed files), an adjudicate-style close-gate, decisions distilled into the target proto-belief with the raw exchange cited by commit, and the provenance-tiering rule (a dev-dev review round mints no thread; only operator design deliberation does). Authored beliefs/nursery/council-mechanism.md (staged, unminted), revised beliefs/nursery/route-tagging.md with the fresh-context audit's dispositions (F1 canonical-id keying, F2 the cb.verify.route_tags backstop, F4 the routes-ref tag syntax, F6 bounded-migration, F7 bloat bound; F3 spun off to /end), renamed /decompose to /route (swept route-tagging and routing-ledger), and captured a hand-off prompt for the git-check-hook-vs-cb:b573 rebase hazard. This thread is itself the tiering rule in force - its own dev-dev audit half is excised to PR #20, not persisted here. Use when resuming the council build, the route-tagging rework (PR #20), the /route fold into /end, or the rebase-hazard read-surface fix.",
+      "tags": [
+        "thread",
+        "council",
+        "review",
+        "provenance",
+        "route-tagging",
+        "lifecycle"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-04",
+      "artifact": "session:2026-07-04-council-design"
     },
     {
       "path": "threads/2026-07-04-route-tagging.md",

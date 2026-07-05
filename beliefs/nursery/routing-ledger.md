@@ -1,7 +1,7 @@
 ---
 type: concept
 title: The routing ledger - per-thread dispatch for non-linear conversations
-description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /decompose skill. Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.
+description: Covers the routing ledger - a per-thread table of topics, strand states, dispatch pointers, and dangling questions that lets a multi-topic thread be resumed from its ledger instead of from memory - designed as a router, never a digest (content lands in proto-belief documents; the ledger holds only pointers and states, keeping it outside cb:a386's reach); location lean in-thread, maintained by the hook or a /route skill (renamed from /decompose). Minted cb:b572, re-issued as cb:b582 (vocabulary); open on hook mechanics and the skill build.
 tags: [nursery, threads, provenance, workflow]
 status: active
 timestamp: 2026-07-02
@@ -26,8 +26,8 @@ it from becoming a stale digest?
 ## The design: a router, never a digest
 
 The originating proposal was a running thread-summary document - synthesized statements
-grouped by topic heading, updated by a `/decompose` skill, so the user replies from the
-summary instead of re-reading the thread. The trap is cb:a386: a persisted summary whose
+grouped by topic heading, updated by a `/route` skill (renamed from `/decompose`), so the
+user replies from the summary instead of re-reading the thread. The trap is cb:a386: a persisted summary whose
 freshness depends on remembering to regenerate it embeds the staleness it was meant to
 solve - and a summary that *restates* thread content also silently duplicates the proto-belief
 documents, where that content is supposed to live.
@@ -60,9 +60,10 @@ First instance: [threads/2026-07-02-authoring-pipeline](threads/2026-07-02-autho
 
 ## Maintenance
 
-For hook-captured threads, a `/decompose` skill (or an extension of the transcript hook's
-`/end` half) maintains the rows at the same moment content is routed into proto-belief documents -
-routing and ledger update are one motion, not a regeneration step that can be forgotten.
+For hook-captured threads, a `/route` skill (renamed from `/decompose`; folded into `/end`
+once built) maintains the rows at the same moment content is routed into proto-belief
+documents - routing and ledger update are one motion, not a regeneration step that can be
+forgotten.
 For hand-captured threads the ledger is hand-kept, as here. The skill build is open work;
 the practice does not wait for it (cb:b572 prescribes the ledger, not the automation).
 
@@ -72,7 +73,7 @@ the practice does not wait for it (cb:b572 prescribes the ledger, not the automa
 |---|---|---|---|---|
 | prescription | Every persisted thread carries a routing ledger: one row per topic, holding strand state, dispatch pointer, and dangling question; content lands in focus docs, never in the ledger. | cb:a386 | document:beliefs/nursery/routing-ledger.md | cb:b572 |
 
-Open rows (not yet candidates): the `/decompose` skill build and the hook-preservation
+Open rows (not yet candidates): the `/route` skill build and the hook-preservation
 mechanics may mint an action-item prescription once the design firms up.
 
 ## Thread excerpts (what grounds the design)
