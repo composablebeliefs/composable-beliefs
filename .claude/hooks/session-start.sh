@@ -57,3 +57,25 @@ mix deps.get
 mix compile
 
 echo "elixir toolchain ready: $(elixir --version | tail -1)"
+
+# Refresh git refs. The container image is pre-baked and cached across sessions,
+# so the local `main` ref is frozen at image-build time and can lag origin/main
+# by many commits (git never advances a local branch on its own; fetch only
+# moves remote-tracking refs). A routine `git checkout -B <branch> main` would
+# then silently base work on stale history. Fetch, then fast-forward the local
+# default branch to match origin - only when it is a clean ancestor and not the
+# checked-out branch. This only ever fast-forwards; it never rewrites history
+# (cb:b573). Failures are non-fatal (offline / no remote).
+if git -C "$CLAUDE_PROJECT_DIR" remote | grep -q .; then
+  git -C "$CLAUDE_PROJECT_DIR" fetch --quiet origin || true
+  default_ref="$(git -C "$CLAUDE_PROJECT_DIR" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || echo origin/main)"
+  default_branch="${default_ref#origin/}"
+  current_branch="$(git -C "$CLAUDE_PROJECT_DIR" branch --show-current)"
+  if [ "$current_branch" != "$default_branch" ] \
+     && git -C "$CLAUDE_PROJECT_DIR" rev-parse --verify --quiet "refs/heads/$default_branch" >/dev/null \
+     && git -C "$CLAUDE_PROJECT_DIR" rev-parse --verify --quiet "refs/remotes/origin/$default_branch" >/dev/null \
+     && git -C "$CLAUDE_PROJECT_DIR" merge-base --is-ancestor "$default_branch" "origin/$default_branch" 2>/dev/null; then
+    git -C "$CLAUDE_PROJECT_DIR" update-ref "refs/heads/$default_branch" "origin/$default_branch"
+    echo "fast-forwarded local $default_branch to origin/$default_branch"
+  fi
+fi
