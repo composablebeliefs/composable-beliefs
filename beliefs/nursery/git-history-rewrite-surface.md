@@ -1,12 +1,12 @@
 ---
 type: concept
 title: History rewriting where commits carry provenance (the git-check hook gap)
-description: Covers the read-surface gap that lets an agent rebase provenance-bearing git history - cb:b573 prohibits squash/rebase merges on the default branch only, CLAUDE.md's Git Policy (cb:b580) covers only commit autonomy and push gating, and the user-global git-check Stop hook recommends amend --reset-author / rebase --exec every turn that local commits show an unsigned badge. The vocabulary-read-surface pattern applied to a dangerous operation; the fix is a new prescription rendered into the Git Policy section.
+description: Covers the read-surface gap that lets an agent rebase provenance-bearing git history - cb:b573 prohibits squash/rebase merges on the default branch only, CLAUDE.md's Git Policy (cb:b580) covers only commit autonomy and push gating, and the user-global git-check Stop hook recommends amend --reset-author / rebase --exec every turn that local commits show an unsigned badge. The vocabulary-read-surface pattern applied to a dangerous operation; the fix is a new prescription rendered into the Git Policy section. Minted cb:b585/cb:b586, merged via PR #22 (2026-07-05); an effectiveness verification check is still outstanding, and the upstream hook fix is tracked in git-check-hook-upstream-fix.
 tags: [nursery, git, provenance, read-surface, workflow]
 status: active
 timestamp: 2026-07-05
 maturity: active
-threads: []
+threads: [2026-07-05-provenance-read-surface]
 ---
 
 # History rewriting where commits carry provenance (the git-check hook gap)
@@ -81,6 +81,22 @@ metadata failure found while re-proofing) - are recorded in
 `.claude/hooks/session-start.sh` where one is possible. The hook itself is
 user-global and cannot be fixed from this repo; the graph-side fix is this
 document's rule.
+
+## Status (2026-07-05): handled, verification check outstanding
+
+Both rows below minted and merged to main via PR #22 (merge commit `253291c`);
+CLAUDE.md renders cb:b585 in Git Policy and `mix cb.verify.commits` passes on
+the merged state. As of this date the gap SEEMS handled - but only
+mechanically verified (the paragraph renders; the citations resolve). A proper
+verification check is still owed before this counts as closed: the fix is a
+read-surface defense, and its effectiveness claim - that an agent holding
+unpushed provenance-bearing commits, nagged by the hook's amend/rebase remedy,
+declines to rewrite because CLAUDE.md told it to - has not been observed under
+fire. Verify by watching a fresh session hit the hook's advice in anger (or a
+deliberate proofing run) and recording the outcome as evidence on cb:b585;
+until then the belief's effectiveness is asserted, not demonstrated. The
+upstream fix that would remove the hazard at its source is a separate matter:
+[git-check-hook-upstream-fix](git-check-hook-upstream-fix.md).
 
 ## Mint manifest
 

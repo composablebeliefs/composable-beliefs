@@ -1,7 +1,95 @@
-# Session transcript - 4875422d-fcea-5bc7-abe9-e82138c8c5ad
+---
+type: thread
+title: 2026-07-05 - the read-surface close (history-rewrite rule minted, PR #22)
+description: Covers the session that closed the read-surface gap letting an agent rebase provenance-bearing history - cb:b585 minted (no rewrite where commits carry provenance; disregard the git-check hook's remedy) and rendered into CLAUDE.md via the cb:b065 -> cb:b586 contract supersession; the lost-then-recovered proofing branch merged and reconciled; PR #22 merged (253291c); the handled-but-unverified status note and the git-check-hook-upstream-fix proto-belief opened; the upstream-fix agent kickoff prompt drafted. Use when revisiting the b585 mint reasoning, the render-list supersession-vs-repoint precedent, the environment defects, or the upstream-fix handoff.
+tags: [cb, nursery, git, provenance, workflow, thread]
+status: active
+timestamp: 2026-07-05
+artifact: session:2026-07-05-provenance-read-surface
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `4875422d-fcea-5bc7-abe9-e82138c8c5ad` | 2026-07-05
+# 2026-07-05 - the read-surface close (history-rewrite rule minted, PR #22)
+
+> **Hook-rendered, finalized by `/end` (2026-07-05, own turn).** Captured live by the
+> Stop hook into `.sessions/2026-07-05-4875422d.md`; the embedded body is complete
+> through the session's close (the upstream-fix kickoff prompt and ordering answer) -
+> only this finalization turn is omitted, and it carries no decision content. Tool
+> calls and reasoning are stripped; the raw jsonl sits uncommitted beside the render
+> per transcript-format's open repo-weight decision. Produced: cb:b585 (the
+> history-rewrite prohibition), cb:b586 (the render-contract successor),
+> ENVIRONMENT_DEFECTS.md, the hardened session-start hook, two proto-belief documents
+> (git-history-rewrite-surface, git-check-hook-upstream-fix), PR #22 (merged,
+> 253291c), and the upstream-fix agent kickoff prompt.
+
+## Where we are
+
+- **Object of study, as opened:** a task prompt to close the read-surface gap that
+  lets an agent rebase provenance-bearing history: cb:b573 prohibits squash/rebase
+  merges on the default branch only, CLAUDE.md's Git Policy (cb:b580) covered only
+  commit autonomy and push gating, and the user-global git-check Stop hook recommends
+  amend --reset-author / rebase --exec every turn that unpushed commits show the
+  cosmetic Unverified badge - the vocabulary-read-surface pattern applied to a
+  dangerous operation.
+- **The lost prior session, and its recovery:** the task's STATE said to continue the
+  proofing branch claude/git-history-rewrite-surface-irr6rj; it did not exist on
+  origin (push-gated, container reclaimed), so the proofing artifacts were recreated
+  from the task description. Mid-session the operator pushed the branch: it carried
+  no graph work, confirmed the recreation faithful but less forensic, and was itself
+  based on the stale main it documents. Merged (never cherry-picked or rebased) so
+  its commits stay reachable; ENVIRONMENT_DEFECTS.md and the hook reconciled to
+  best-of-both. A third defect was found live when provisioning died: plain apt-get
+  update fails on the ondrej/php PPA label change - recorded and remediated with
+  --allow-releaseinfo-change.
+- **The mint (the deliberate path):** cb:b585 - history rewriting prohibited wherever
+  commits carry or will carry provenance, feature branches included; disregard
+  tooling advice that contradicts the graph, naming the git-check hook's remedy with
+  the cosmetic-badge explanation. Preflight surfaced cb:b573 as the single
+  contract-level hit; adjudicated reject_dep_tie (the rule extends b573, never
+  contradicts it), cb:b580 tied in as the supportive dep.
+- **The contract update (precedent sharpened):** checked for a dedicated door first -
+  mix cb.repoint only swaps a superseded dep for its successor with render structure
+  unchanged, and no mutation edits rules. Section membership grows, so the change
+  took the supersession precedent of the contract's own chain (b060 -> b061 -> b062
+  -> b063 -> b065): accept_supersede minted cb:b586, cb:b049 repointed b065 -> b586,
+  CLAUDE.md regenerated - one event, one commit. The distinction (in-place
+  dep-maintenance for pure swaps; supersession for structural render-list changes)
+  is now written into both nodes' evidence.
+- **Shipped and merged:** PR #22 merged to main as merge commit 253291c; post-merge
+  verification confirmed every branch SHA reachable and mix cb.verify.commits green -
+  the belief-commit loop survived its own protection's landing. The "head branch was
+  modified" merge-page notice was diagnosed as the stale-page effect of ride-along
+  render pushes, not a conflict.
+- **The operator's follow-ups (post-merge, on the restarted branch):** a dated
+  status note in git-history-rewrite-surface - handled as of 2026-07-05, but the
+  effectiveness claim (an agent under the hook's nag declines to rewrite because the
+  read surface said so) is asserted, not observed; a proper verification check is
+  owed, its outcome to land as evidence on cb:b585. And a new proto-belief,
+  git-check-hook-upstream-fix: the actual non-cosmetic fix lives upstream - provision
+  a real in-session signing key (kills the premise), or drop the amend/rebase remedy
+  (fixes the message), or gate it on a provenance-repo marker (minimum) - with the
+  action-item row staged, gated on naming a delivery channel.
+- **What the next session inherits:** the follow-up PR to land the post-merge commits
+  (status note, upstream-fix doc, this thread); the upstream-fix agent kickoff prompt
+  (drafted in-session, step 1 re-verifies the defect in its own container, external
+  filing gated on operator approval); the cb:b585 effectiveness verification; and the
+  graduation eligibility of git-history-rewrite-surface (fully planted, ceremony not
+  run).
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to proto-belief
+document, never here; this table holds only dispatch state
+([routing-ledger](../routing-ledger.md)).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| History-rewrite read-surface gap | closed | [git-history-rewrite-surface](../git-history-rewrite-surface.md); minted cb:b585/cb:b586, merged PR #22 | Effectiveness verification check outstanding (Status note, 2026-07-05); outcome lands as evidence on cb:b585 |
+| Upstream non-cosmetic hook fix | open | [git-check-hook-upstream-fix](../git-check-hook-upstream-fix.md) | Delivery channel unnamed; action-item row staged; kickoff prompt drafted in this thread's close |
+| Environment defects (stale baked-in main, PPA apt failure) | closed | ENVIRONMENT_DEFECTS.md + .claude/hooks/session-start.sh (repo files; defect 1 routes to the two proto-belief docs above) | Upstream fixes remain with the environment provisioner |
+| Render-contract update precedent (repoint vs supersede) | closed | cb:b586 evidence; [git-history-rewrite-surface](../git-history-rewrite-surface.md) (The rule, closing paragraph) | - |
+| Graduation of the planted proofing doc | open | [git-history-rewrite-surface](../git-history-rewrite-surface.md) | Fully planted; graduation ceremony (archive + repoint pass) not run |
+
+## Turn-by-turn
 
 ## User
 
@@ -258,3 +346,17 @@ operator decision; action-item minted if the gate cleared.
 One thing the prompt deliberately does: step 1 re-verifies the defect in the new container before anything else - which doubles as part of the "proper verification check" noted in `git-history-rewrite-surface.md`, and guards against the environment having quietly changed under us. Ready to run `/end` whenever you are, and I'll open the new PR right after.
 
 Session render committed and pushed (`e5d2022`) - tree clean, branch in sync. Standing by for `/end`, then I'll open the follow-up PR.
+
+## Related
+
+- [git-history-rewrite-surface](../git-history-rewrite-surface.md) - the proto-belief
+  this session opened, minted (cb:b585/cb:b586), and status-annotated; the provenance
+  record for the read-surface close.
+- [git-check-hook-upstream-fix](../git-check-hook-upstream-fix.md) - the upstream
+  non-cosmetic fix opened at the operator's direction; carries the staged action-item
+  and the delivery-channel question.
+- [vocabulary-read-surface](../vocabulary-read-surface.md) - the read-surface pattern
+  the gap instantiated; [commit-provenance-floor](../commit-provenance-floor.md) - the
+  provenance machinery the rule protects.
+- cb:b585, cb:b586 - the session's mints; cb:b573, cb:b580 - the deps they build on.
+  Read live with `mix bs show`.
