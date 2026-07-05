@@ -6,7 +6,7 @@ tags: [nursery, git, provenance, environment, upstream]
 status: active
 timestamp: 2026-07-05
 maturity: active
-threads: [2026-07-05-provenance-read-surface]
+threads: [2026-07-05-provenance-read-surface, 2026-07-05-git-rewrite-task-proofing]
 ---
 
 # The upstream fix for the git-check Stop hook (non-cosmetic)
