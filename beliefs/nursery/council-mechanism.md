@@ -6,7 +6,7 @@ tags: [nursery, workflow, review, provenance, multi-agent]
 status: active
 timestamp: 2026-07-04
 maturity: active
-threads: [2026-07-04-council-design]
+threads: [2026-07-04-council-design, 2026-07-06-route-tagging-enactment]
 ---
 
 # Council - a disciplined review-and-converge round on a draft PR, distilled to the plan
@@ -118,10 +118,10 @@ existing beliefs; grounding is this document.
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | A council review round runs on a draft PR as its medium: findings and responses are PR review comments, never files committed to the tree; the only artifacts that land in the repo are the distilled plan and the code. The medium is never `main` and never a replay of a round that already happened elsewhere. | cb:b573 | document:beliefs/nursery/council-mechanism.md | - |
-| prescription | A council round is distilled at close into the target proto-belief: settled decisions become its Open items and Mint-manifest rows, rejected alternatives fold into a dated rejected-because block, and the raw exchange is referenced by `commit:`/PR and never copied into the document. The distilled plan, not the transcript, is what an implementer receives. | cb:b569, cb:b386 | document:beliefs/nursery/council-mechanism.md | - |
-| prescription | `/council close` is a gate, not a dump: dry-run by default, it refuses to converge while any finding is undispositioned (agreed, refuted, or deferred), the same discipline `mix cb.adjudicate` applies to conflicts. | cb:b578 | document:beliefs/nursery/council-mechanism.md | - |
-| prescription | A dev-dev review round mints no thread and is cited by `commit:`/PR; only operator-in-the-loop design deliberation mints a thread. A review round is never persisted in a thread, with no embedded-exception clause; a mixed session excises its review half to a PR comment and finalizes only the design half. | cb:b578 | document:beliefs/nursery/council-mechanism.md | - |
+| prescription | A council review round runs on a draft PR as its medium: findings and responses are PR review comments, never files committed to the tree; the only artifacts that land in the repo are the distilled plan and the code. The medium is never `main` and never a replay of a round that already happened elsewhere. | cb:b573 | document:beliefs/nursery/council-mechanism.md | cb:b591 |
+| prescription | A council round is distilled at close into the target proto-belief: settled decisions become its Open items and Mint-manifest rows, rejected alternatives fold into a dated rejected-because block, and the raw exchange is referenced by `commit:`/PR and never copied into the document. The distilled plan, not the transcript, is what an implementer receives. | cb:b569, cb:b386 | document:beliefs/nursery/council-mechanism.md | cb:b592 |
+| prescription | `/council close` is a gate, not a dump: dry-run by default, it refuses to converge while any finding is undispositioned (agreed, refuted, or deferred), the same discipline `mix cb.adjudicate` applies to conflicts. | cb:b578 | document:beliefs/nursery/council-mechanism.md | cb:b593 |
+| prescription | A dev-dev review round mints no thread and is cited by `commit:`/PR; only operator-in-the-loop design deliberation mints a thread. A review round is never persisted in a thread, with no embedded-exception clause; a mixed session excises its review half to a PR comment and finalizes only the design half. | cb:b578 | document:beliefs/nursery/council-mechanism.md | cb:b594 |
 
 ## Thread excerpts (what grounds this)
 
@@ -144,7 +144,7 @@ selectively running /end over the second half."
 
 ## Related
 
-- [route-tagging](route-tagging.md) - the audit round that motivated this; the founding
+- [route-tagging](../archive/route-tagging.md) - the audit round that motivated this; the founding
   worked example, and the source of the distill-not-dump (whole-region bloat) and
   gate-not-dump (sin-of-omission) lessons.
 - [transcript-format](transcript-format.md) - the thread doctrine the provenance-tiering rule

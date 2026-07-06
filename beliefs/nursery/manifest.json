@@ -260,21 +260,6 @@
       "timestamp": "2026-07-02"
     },
     {
-      "path": "route-tagging.md",
-      "type": "concept",
-      "title": "Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus",
-      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Unminted; rows staged.",
-      "tags": [
-        "nursery",
-        "threads",
-        "provenance",
-        "linkage",
-        "workflow"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-04"
-    },
-    {
       "path": "routing-ledger.md",
       "type": "concept",
       "title": "The routing ledger - per-thread dispatch for non-linear conversations",
@@ -602,6 +587,24 @@
       "status": "active",
       "timestamp": "2026-07-05",
       "artifact": "session:2026-07-05-provenance-read-surface"
+    },
+    {
+      "path": "threads/2026-07-06-route-tagging-enactment.md",
+      "type": "thread",
+      "title": "2026-07-06 - route-tagging enactment - verifier built, seven candidates minted, spec graduated",
+      "description": "The A2 enactment session for the route-tagging rework (PR #20). Built mix cb.verify.route_tags - the spec's structural backstop (wellformedness, ref resolution, sink logs, byte-level log fidelity against re-derivation, ledger cross-check at warn level) - whose first run reproduced audit finding F5 (transcript-format tagged three times, no excerpt log), fixed by materializing the log from the verifier's own derivation. Minted the seven staged candidates through clean preflights: cb:b588/b589/b590 (route-tagging: tagging rule, excerpt log, verifier) and cb:b591-b594 (council-mechanism: draft-PR medium, distill-at-close, close gate, tiering rule). Made the cb:b569 graduation call - route-tagging graduated to beliefs/archive/ with citations repointed; council-mechanism held live pending the /council build. Use when resuming the /route build, the migration or bloat-bound opens, the /council build, or auditing this enactment.",
+      "tags": [
+        "thread",
+        "cb",
+        "threads",
+        "provenance",
+        "route-tagging",
+        "council",
+        "verification"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-06",
+      "artifact": "session:2026-07-06-route-tagging-enactment"
     },
     {
       "path": "threads/index.md",

@@ -1,0 +1,44 @@
+{
+  "id": "cb:b589",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "nursery",
+    "provenance",
+    "route-tagging",
+    "lifecycle:recurring"
+  ],
+  "claim": "Each referenced proto-belief document carries its route-tagged excerpts as an append-only, per-thread, date-stamped log of whole tagged paragraphs, materialized into the document and never regenerated; a document accepts appends while its matter is unresolved and freezes acceptance when the matter resolves. This is a readability-versus-freshness tradeoff, not cb:b386-clean; its completeness is backed structurally by `cb.verify.route_tags`, not by procedural discipline.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Staged and grounded in the route-tagging proto-belief document: materialized (not CLI-rendered) for GitHub/editor readability; append-at-route-time additive-only; the honest reframe away from the rejected 'no cache to refresh, b386-clean' claim is the audit's F2 disposition, with the residual exposures (forgotten append, un-propagated tag correction) named and backed by the verifier.",
+      "artifact": "document:beliefs/archive/route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Deliberation thread: the operator chose materialization over the CLI live render for how the graph is actually read, and rejected editorial trimming ('sins of omission') in favour of whole-region lifts.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the nursery",
+      "type": "workspace"
+    }
+  ],
+  "deps": [
+    "cb:b386",
+    "cb:b569",
+    "cb:b572"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-07-06"
+}

@@ -66,7 +66,7 @@
         },
         {
           "beliefs": [
-            "cb:b588"
+            "cb:b595"
           ],
           "title": "Collections"
         },
@@ -143,12 +143,12 @@
     },
     {
       "date": "2026-07-06",
-      "detail": "deps + cb:b588 via dag-proposal 2026-07-06-3c41afa3",
+      "detail": "deps + cb:b595 via dag-proposal 2026-07-06-3c41afa3",
       "artifact": "session:2026-07-06-3c41afa3"
     },
     {
       "date": "2026-07-06",
-      "detail": "Collections section render re-pointed from the superseded cb:b454 to its successor cb:b588 (same convention, storage naming corrected to beliefs/cb/ per-belief files after the cb:b558 split). Dep already swung via mix cb.repoint (slug 2026-07-06-3c41afa3); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged, per this contract's own Evidence 6 precedent.",
+      "detail": "Collections section render re-pointed from the superseded cb:b454 to its successor cb:b595 (same convention, storage naming corrected to beliefs/cb/ per-belief files after the cb:b558 split). Dep already swung via mix cb.repoint (slug 2026-07-06-3c41afa3); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged, per this contract's own Evidence 6 precedent.",
       "artifact": "session:2026-07-06-3c41afa3"
     }
   ],
@@ -171,7 +171,7 @@
     "cb:b565",
     "cb:b580",
     "cb:b587",
-    "cb:b588"
+    "cb:b595"
   ],
   "status": "active",
   "created": "2026-07-05"

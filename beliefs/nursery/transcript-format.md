@@ -6,7 +6,7 @@ tags: [nursery, transcript, format, provenance, spike]
 status: active
 timestamp: 2026-06-26
 maturity: contested
-threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow, 2026-07-02-fold-chronicle-into-threads]
+threads: [2026-06-25-belief-audit, 2026-06-26-nursery-workflow, 2026-07-02-fold-chronicle-into-threads, 2026-07-06-route-tagging-enactment]
 ---
 
 # How transcripts and proto-belief documents persist exchanges
@@ -153,6 +153,64 @@ competing.
 **User (2026-06-26, hook lag):** "how to make the the thread doc update after each response
 via the hook, to avoid the thread always being one response behind." (Folded in as the
 hook-lag fix above; the `cb:a518` tail-gap, recurring.)
+
+## Thread excerpts - route-tagged log (route-tagging spec)
+
+Append-only, per-thread, date-stamped log generated mechanically from the
+`<routes ref="transcript-format">` regions of the threads that fed this matter, lifted whole
+([route-tagging](../archive/route-tagging.md), staged). This matter is live, so the log accepts a new
+dated block each time a later thread routes to it; nothing here is regenerated. This sink was
+tagged in the 2026-07-04 retrofit but its log was not materialized (audit finding F5); the
+block below completes that retrofit, re-derived from the same tags by `mix
+cb.verify.route_tags`.
+
+Compiling 1 file (.ex)
+### 2026-07-03-end-skill-round-trip (2026-07-03)
+
+3 tagged region(s), lifted whole. Refs shown are the full ref-set of each region (this matter plus any it co-feeds).
+
+**[`transcript-format`]**  (co-feeds: `end-skill-redesign`)
+
+OPTIONS TO ANALYZE (the operator posed the first three)
+1. Split into /transcript + /end.
+2. A /final skill that runs both successively.
+3. Reorder events within /end.
+Key analysis to test and record: the decisive variable is TURNS, not skills.
+Option 2 (successive = same turn) does not close the gap. Option 3 fixes the
+honesty of the provenance note but not the structural gap. Option 1 works ONLY
+if finalization runs in a SEPARATE, LATER turn than the substantive close, so the
+render has caught up and the body includes the close turn (the finalizer's own
+turn is then the only gap, and it carries no decision content - the accepted
+tradeoff).
+Also evaluate a stronger proposal: stop embedding a frozen transcript body at all.
+The hook already persists the render continuously; embedding a second, one-turn-
+stale copy that can misdescribe itself is the cb:b386 duplication the framework
+rejects elsewhere. Have the finalized doc carry only what it synthesizes -
+narrative section + routing ledger + a pointer to the render for raw turns.
+Snag to surface: this depends on the render being durably retained, which is
+
+---
+
+**[`transcript-format`]**
+
+What is "transcript-format’s still-open repo-weight/LFS question."
+
+---
+
+**[`transcript-format`]**
+
+Every session produces two files in `.sessions/`: a **raw jsonl** (the full machine log - every reasoning step and tool call) and a **readable render** (responses only). The question transcript-format never settled is: *do we commit the raw jsonl into git, and if so, how do we stop it from bloating the repo forever?*
+
+The problem is that **git never forgets a blob.** Once you commit a file, it lives in `.git` history permanently, even if you later delete it from the working tree. So "commit the jsonl, delete it after `/end`, recover from history if needed" does *not* save space - the thing that makes it recoverable (the blob sitting in history) is exactly the weight. "Recoverable" and "no added weight" are in direct tension.
+
+The options transcript-format lists:
+- **git LFS** - store the raw out-of-band, keep the main repo lean, still recoverable. This is the doc's stated lean.
+- **Gitignore the raw** - commit only the render; you lose permanent raw audit (the host keeps raw ~30 days and then it's gone).
+- **External archive + a pointer.**
+
+On **2026-07-03 the operator punted**: for now, the raw jsonl stays gitignored (working-area only), the host's ~30-day retention is the safety net, and LFS remains the plan for whenever a concrete reason to persist raw actually shows up. So it's *deferred, not decided*.
+
+**Why my document depends on it:** my stronger proposal is to have the thread document stop embedding a copy of the turns and instead point at the render. That makes the render the *only* turn-by-turn record the thread offers - so the render now has to be durably kept and resolvable. Today the render lane *is* committed (only the raw jsonl is punted), so a pointer resolves fine. But if a future weight-saving decision ever prunes or externalizes renders the way LFS would the raw, my pointer would dangle. So my proposal can't be locked in until transcript-format confirms the render is permanently retained in-repo. That's the gate.
 
 ## Related
 - [nursery-architecture](nursery-architecture.md) - this reverses its "Layer 1 vestigial" lean.

@@ -4,24 +4,43 @@
   "kind": "convention",
   "domain": "system",
   "tags": [
-    "claude-md",
-    "collections"
+    "nursery",
+    "threads",
+    "provenance",
+    "route-tagging",
+    "lifecycle:recurring"
   ],
-  "claim": "The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared deps with `mix cb.verify.collection <namespace>`.",
-  "artifact": "session:2026-07-06-3c41afa3",
+  "claim": "A finalized thread body is route-tagged at finalization: each paragraph carries zero-or-more `<routes ref=\"...\">` refs, each a canonical artifact id (never a free topic name); refs are multi-valued on one element (no overlapping tags); the routed-to sink document is the aggregating ref and incidental belief/code ids are non-aggregating back-links; tagging runs on the frozen body as a motion of the same pass that routes content and updates the ledger.",
   "evidence": [
     {
       "date": "2026-07-06",
-      "detail": "The cb:b558 split (mix cb.migrate.split --write) moved the framework graph from the beliefs/beliefs.json array to per-belief files at beliefs/cb/<local>.json; the store reads and writes both layouts, so the query surface is unchanged. This node re-issues the collections convention with the storage naming corrected for the CLAUDE.md Collections section.",
-      "artifact": "session:2026-07-06-3c41afa3"
+      "detail": "Staged and grounded in the route-tagging proto-belief document: the tag is the located, auditable form of the selection act (the boundary lives in the thread), keyed on canonical artifact ids so the cross-thread join is exact; the sink/back-link split is the audit's F1 disposition. Demonstrated end to end on the 2026-07-03-end-skill-round-trip retrofit (18 regions, none crossing a turn boundary), verified by mix cb.verify.route_tags.",
+      "artifact": "document:beliefs/archive/route-tagging.md"
     },
     {
       "date": "2026-07-06",
-      "detail": "Accepted via human adjudication against cb:b454. Reasoning: The per-belief split (cb:b554, executed per cb:b558) removed beliefs/beliefs.json; the convention's parenthetical names a file that no longer exists on the CLAUDE.md read surface. Same convention, same section - only the storage naming changes, plus a note that --beliefs accepts either layout.",
-      "artifact": "adjudication:human:2026-07-06-3c41afa3"
+      "detail": "Deliberation thread: the design session that settled the tag key (artifact id over free topic name), granularity (per-paragraph, multi-ref, set-membership), placement (frozen body, at finalization), and the freeze trigger.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
     }
   ],
-  "deps": [],
+  "subjects": [
+    {
+      "ref": "nursery threads",
+      "type": "workspace"
+    }
+  ],
+  "deps": [
+    "cb:b572",
+    "cb:b583",
+    "cb:b569",
+    "cb:b582"
+  ],
+  "materialized": null,
   "status": "active",
   "created": "2026-07-06"
 }
