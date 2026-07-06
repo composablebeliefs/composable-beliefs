@@ -4,7 +4,7 @@ title: Nursery
 description: Use when orienting to the belief nursery - the floor-tier workspace where proto-belief documents are deliberated in place until they plant into the graph or compost.
 tags: [nursery, index]
 status: active
-timestamp: 2026-07-02
+timestamp: 2026-07-05
 ---
 
 # Nursery
@@ -97,6 +97,9 @@ makes staleness visible; it never silently decides.
 - [transcript-format](transcript-format.md) - contested - how transcripts and proto-belief documents persist exchanges; the current live reference.
 - [vocabulary-read-surface](vocabulary-read-surface.md) - active - retired registers (focus, brief, directive) leak from immutable claims and unswept living docs into agent output; candidate fix is render-time vocabulary aliasing on the cb:b566 id-alias precedent (annotate, never rewrite); deprecated-directory evacuation considered and rejected. The cb:b570 sweep executed 2026-07-03; the annotation build is gated on graph-refounding.
 - [graph-refounding](graph-refounding.md) - active - re-initialize the graph at a dev milestone so the shipped record is the design, not the dev churn: straight deletion fails the trailer/citation/test-corpus tethers; the workable form freezes the dev graph as a closed cb-v0: collection and re-mints the survivors into a fresh one, ancestors cited. Milestone definition, namespace assignment, and survival criterion open.
+- [git-history-rewrite-surface](git-history-rewrite-surface.md) - active - the read-surface gap that lets an agent rebase provenance-bearing history: cb:b573 covers only default-branch merges, cb:b580 only commit/push autonomy, and the user-global git-check Stop hook recommends amend/rebase every turn; the vocabulary-read-surface pattern applied to a dangerous op. Minted cb:b585 (no history rewriting where commits carry provenance; disregard the hook's remedy), rendered into CLAUDE.md's Git Policy via the cb:b065 -> cb:b586 contract supersession; merged via PR #22 (2026-07-05). Handled as of that date; an effectiveness verification check is still outstanding.
+- [git-check-hook-upstream-fix](git-check-hook-upstream-fix.md) - active - the non-cosmetic upstream fix for the git-check Stop hook's rewrite advice; the 2026-07-05 re-verification revised the preference order (signing already works at creation, so the fix is the hook's detection, then dropping the amend/rebase remedy, then gating it on a provenance-repo marker - see upstream-request-git-check-hook). Lives in the user-global CCR layer no repo can reach; cb:b587 (superseding cb:b585) is the in-repo defense, not the fix. Action-item row staged, gated on naming a delivery channel.
+- [upstream-request-git-check-hook](upstream-request-git-check-hook.md) - active - the paste-ready upstream request for the git-check Stop hook defect, companion to git-check-hook-upstream-fix; carries the 2026-07-05 revised forensics (commits are SSH-signed at creation and verify on GitHub; the hook's %G? check false-positives without an allowedSignersFile), which supersede the "signing applies at push time" premise. Grounded the cb:b587 mint (accept_supersede of cb:b585) that corrected CLAUDE.md's Git Policy rationale. Delivery channel still unnamed; the action-item row stays staged.
 - [mint-manifest-rename](mint-manifest-rename.md) - active - rename the ## Mint manifest section (cb:b567/b581) to plainer, type-accurate vocabulary such as "belief candidates": "mint manifest" is jargon and "mint" misleadingly implies the rows are prescription-only when they carry all four belief types. A wording sweep across seven living documents plus the cb:b581 convention, not a parser change (/assert does not read the heading by name). Naming call and supersede-vs-annotate-vs-hold-for-refounding open.
 
 ## Graduated
