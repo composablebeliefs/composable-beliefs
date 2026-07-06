@@ -6,7 +6,7 @@ tags: [nursery, workflow, review, provenance, multi-agent]
 status: active
 timestamp: 2026-07-04
 maturity: active
-threads: [2026-07-04-council-design]
+threads: [2026-07-04-council-design, 2026-07-06-route-tagging-enactment]
 ---
 
 # Council - a disciplined review-and-converge round on a draft PR, distilled to the plan
