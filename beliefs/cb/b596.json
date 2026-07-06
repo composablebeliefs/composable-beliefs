@@ -1,0 +1,31 @@
+{
+  "id": "cb:b596",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "claude-md",
+    "authoring",
+    "write-flow"
+  ],
+  "claim": "Author beliefs through the write flow, never by hand-editing the graph files: `mix cb.preflight --file <f>` checks a proposed belief for conflicts, `mix cb.adjudicate --file <f>` resolves them, and `mix cb.import --file <f>` writes the belief. Three further doors complete the sanctioned write surface: `mix cb.evidence <id> --detail <text> --artifact <uri>` appends a dated evidence entry to an existing belief - the one sanctioned in-place growth point on an immutable node; `mix cb.todo.close <id> --notes <text>` flips a materialized item open -> done with discharge notes; and `mix cb.supersede <id> --by <successor-id>` flips a belief to an existing successor - the deferred-supersession move, where adjudication cannot serve because it always mints a new node. All three are dry-run by default and write only with `--write`.",
+  "artifact": "session:2026-07-06-3c41afa3",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "The per-belief-files landing added mix cb.supersede (the cb:b112 -> cb:b554 deferred flip had no front door; the supersede Mutation type existed undriven). PR #28 review caught the doctrine drift: this convention's CLAUDE.md render still said two further doors, so a reader would treat the write surface as closed and route around the new task. Re-issued with the third door named; the flow and the other doors are carried verbatim.",
+      "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Accepted via human adjudication against cb:b533. Reasoning: mix cb.supersede joined the sanctioned write surface with the per-belief-files landing, and the CLAUDE.md Operations section renders this convention - leaving it at two doors makes the doctrine and the tooling disagree on the read surface. Same convention, same section; only the door list grows and 'graph file' becomes 'graph files' for the per-belief layout.",
+      "artifact": "adjudication:human:2026-07-06-3c41afa3"
+    }
+  ],
+  "deps": [
+    "cb:b522",
+    "cb:b530"
+  ],
+  "status": "active",
+  "created": "2026-07-06"
+}

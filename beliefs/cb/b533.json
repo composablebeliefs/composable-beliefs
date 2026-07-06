@@ -37,6 +37,7 @@
     "cb:b522",
     "cb:b530"
   ],
-  "status": "active",
+  "status": "superseded",
+  "superseded_by": "cb:b596",
   "created": "2026-06-12"
 }
