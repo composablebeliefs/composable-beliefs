@@ -64,7 +64,7 @@ mix cb.supersede <id> --by <successor-id>               # flip a belief to an ex
 - `skills/` - agent skills for a Claude-Code-style harness: `/assert`, `/assertions`, `/materialize`, `/position`, `/present-codepath`. Symlinked into `.claude/skills/`.
 - `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), [operational learnings](operations.md), the [case studies](case-studies/README.md) (the eval ledger, with the [run-manifest spec](case-studies/run-manifest.md) and the [worked example](case-studies/worked-example-eval-verdict.md)), and the generated [belief knowledge base](kb/README.md) (`cb:b599`).
 - `plans/` - closed shelf: design records and executed plans with their transcripts. `deprecated/` - archived shelves: `chronicles/` (session narratives, a register that now opens each thread document, cb:b578) and `docs/` (superseded essays and dated records). `positions/` - anchored stances.
-- CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard against the real source), `cb.verify.schema`, and the CLAUDE.md freshness gate.
+- CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard against the real source), `cb.verify.schema`, and the freshness gates on the generated files (CLAUDE.md, rules, the `docs/kb/` knowledge base).
 
 ## A quick tour
 

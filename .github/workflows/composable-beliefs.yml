@@ -31,3 +31,4 @@ jobs:
         run: |
           mix cb.generate.claude_md --check
           mix cb.generate.rules --check
+          mix cb.generate.kb --check
