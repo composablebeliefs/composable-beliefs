@@ -47,7 +47,7 @@ mix cb.supersede <id> --by <successor-id>               # flip a belief to an ex
 
 **Resolve** - `mix cb.resolve --file <rows.json>`: draft-mode anchor resolution, validating bare `{path, anchor, nth}` rows with no belief collection loaded (the verification gate for answer-time anchoring and the `/position` skill).
 
-**Render and generate**: `mix cb.generate.claude_md [--check]`, `mix cb.generate.rules`, `mix cb.generate.glossary [--check]`, `mix cb.render.codepath [--json]`, `mix cb.render.audit <id> [--check]`.
+**Render and generate**: `mix cb.generate.claude_md [--check]`, `mix cb.generate.kb [--check]` (the markdown knowledge base at `docs/kb/`, one page per belief), `mix cb.generate.rules`, `mix cb.generate.glossary [--check]`, `mix cb.render.codepath [--json]`, `mix cb.render.audit <id> [--check]`.
 
 **Audit**: `mix cb.audit.conflicts` (the `cb:b055` conflict-scope audit).
 
@@ -62,7 +62,7 @@ mix cb.supersede <id> --by <successor-id>               # flip a belief to an ex
 - `codepath/` - the `codepath:` collection: the belief-pipeline tour that also runs as a test suite.
 - `okf/` - the cb-okf knowledge methodology: the standard, its conformance corpus, a demo bundle, and the `cb-okf:` operational graph.
 - `skills/` - agent skills for a Claude-Code-style harness: `/assert`, `/assertions`, `/materialize`, `/position`, `/present-codepath`. Symlinked into `.claude/skills/`.
-- `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), [operational learnings](operations.md), and the [case studies](case-studies/README.md) (the eval ledger, with the [run-manifest spec](case-studies/run-manifest.md) and the [worked example](case-studies/worked-example-eval-verdict.md)).
+- `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), [operational learnings](operations.md), the [case studies](case-studies/README.md) (the eval ledger, with the [run-manifest spec](case-studies/run-manifest.md) and the [worked example](case-studies/worked-example-eval-verdict.md)), and the generated [belief knowledge base](kb/README.md) (`cb:b599`).
 - `plans/` - closed shelf: design records and executed plans with their transcripts. `deprecated/` - archived shelves: `chronicles/` (session narratives, a register that now opens each thread document, cb:b578) and `docs/` (superseded essays and dated records). `positions/` - anchored stances.
 - CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard against the real source), `cb.verify.schema`, and the CLAUDE.md freshness gate.
 

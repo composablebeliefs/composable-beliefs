@@ -31,6 +31,7 @@ The guide documents the mechanism. Applications of it to specific domains live i
 
 - [Glossary](../glossary.md) - every technical term across the codebase and the design graph, generated from `docs/glossary.data.json`. Chapters link a term's first load-bearing use to its entry.
 - [Reference](../reference.md) - the command surface and repo layout at a glance.
+- [Belief knowledge base](../kb/README.md) - one generated page per belief, navigable along deps, reverse deps, and supersession; any id this guide cites has a page there.
 - The live graph itself: `mix bs help` for the query surface, `mix bs show <id>` for any belief this guide cites.
 
 ## How to read it

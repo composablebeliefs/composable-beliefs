@@ -1,0 +1,26 @@
+{
+  "id": "cb:b599",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "kb",
+    "docs"
+  ],
+  "claim": "The belief knowledge base at docs/kb/ - one markdown page per belief plus an index, with links following deps, reverse deps, and supersession, every link carrying a one-sentence gloss per cb:b597 - is generated from the graph by `mix cb.generate.kb` and never hand-edited; CI keeps the committed tree fresh via `mix cb.generate.kb --check`, the same freshness gate CLAUDE.md uses, so the mirror answers the cb:b386 digest antipattern with a gate rather than memory.",
+  "artifact": "user:mreveley:2026-07-06",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Operator-directed build during the 2026-07-06 docs refactor session: a derived markdown mirror of the JSON beliefs forming a navigable DAG-shaped knowledge base, enabling docs to link belief references to readable pages. Design follows the CLAUDE.md precedent exactly: deterministic projection (CB.Render.Kb, pure build, byte-stable), committed output, CI-gated freshness with --check, write-mode pruning of stray pages. Golden behavior covered by test/cb/render/kb_test.exs.",
+      "artifact": "session:2026-07-06-docs-refactor"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b597",
+    "cb:b386"
+  ],
+  "status": "active",
+  "created": "2026-07-06"
+}
