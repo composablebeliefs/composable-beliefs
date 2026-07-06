@@ -32,6 +32,7 @@ It is the canonical narrative reference for this repository. Each chapter consol
 
 - [Glossary](../glossary.md) - every technical term across the codebase and the design graph, generated from `docs/glossary.data.json`. Chapters link a term's first load-bearing use to its entry.
 - [The run-manifest spec](../run-manifest.md) - the neutral JSON contract between an eval harness and the ledger.
+- [The derived index](derived-index.md) - the un-numbered companion to chapter 4: the disposable symbol/call-edge layer (`mix cb.index`) under the anchor and codepath machinery, and why structure never enters the graph.
 - [Worked example](../worked-example-eval-verdict.md) - an eval verdict traced to its evidence end to end, with real command output.
 - The live graph itself: `mix bs help` for the query surface, `mix bs show <id>` for any belief this guide cites.
 
