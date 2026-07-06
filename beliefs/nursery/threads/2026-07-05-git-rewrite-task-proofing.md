@@ -1,6 +1,96 @@
-# Session transcript - 08d1f993-0c6f-51ee-b664-5e0be26ac675
+---
+type: thread
+title: 2026-07-05 - the proofing run (task proofed, environment forensics, absorbed into the read-surface close)
+description: Covers the proofing session for the read-surface task - every premise verified against the repo, the fix mechanism found mischaracterized (CLAUDE.md is a pure belief renderer; Git Policy = cb:b580 via cb:b065's render_sections) and the scope steer flipped to the proto-belief path; the stale baked-in local main reflog-dated to the pre-warmed container image and the git-check hook's rewrite advice taken under fire without complying; the first ENVIRONMENT_DEFECTS.md and session-start fetch/fast-forward authored, the CCR field notes handed to the operator, and the corrected prompt that the read-surface close session executed. Use when revisiting the proofing findings, the environment forensics, or what the cb:b585 effectiveness check may count as evidence.
+tags: [cb, nursery, git, provenance, environment, thread]
+status: active
+timestamp: 2026-07-05
+artifact: session:2026-07-05-git-rewrite-task-proofing
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
+# 2026-07-05 - the proofing run (task proofed, environment forensics, absorbed into the read-surface close)
+
+> **Hook-rendered, finalized by `/end` (2026-07-05, own turn).** Captured live by the
+> Stop hook into `.sessions/2026-07-05-08d1f993.md`; the embedded body is complete
+> through the session's close (the merge-main reassessment) - only this finalization
+> turn is omitted, and it carries no decision content. Tool calls and reasoning are
+> stripped; the raw jsonl sits uncommitted beside the render per transcript-format's
+> open repo-weight decision. This session minted no beliefs, so no retro-pairing was
+> owed (cb:b507, vacuously satisfied). Produced: the proofing report, the first
+> ENVIRONMENT_DEFECTS.md and session-start fetch/fast-forward (both later reconciled
+> best-of-both by the read-surface close session), the CCR field notes, and the
+> corrected task prompt that session executed as PR #22.
+
+## Where we are
+
+- **Object of study, as opened:** "evaluate and proof this prompt, do not run yet" -
+  the task prompt to close the read-surface gap that lets an agent rebase
+  provenance-bearing history. The session's deliverable was the assessment, and the
+  discipline held: the task itself was never executed here.
+- **The proofing verdict:** premises almost entirely accurate, one consequential
+  mischaracterization. The prompt imagined a "generator change" could surface the
+  rule; reading `cb.generate.claude_md` and the graph showed the generator is a pure
+  renderer - every line is a belief's claim field, sections chosen by the
+  output-target contract cb:b065's render_sections, Git Policy rendering cb:b580
+  verbatim - so the only lever is a graph write through the sanctioned doors. That
+  finding flipped the prompt's scope steer: rendering cb:b573 verbatim cannot say
+  anything about feature-branch rebase, amend --reset-author, or disregarding the
+  hook, so the "lighter option" was ruled out and the proto-belief path prescribed.
+  Two execution blockers were also flagged: mix unprovisioned in the container, and
+  the stale local main.
+- **The hook fired in anger, repeatedly, mid-proofing:** the user-global git-check
+  Stop hook nagged this session's own provenance-bearing commits with its
+  amend/rebase remedy - the exact hazard under study, live. Each firing was read,
+  diagnosed as cosmetic (identity already correct; the N a missing signature from
+  the 0-byte in-session signing key; signing applied at push), and disregarded. The
+  eventual push preserved every SHA, empirically confirming that no rewrite was ever
+  needed. Caveat that matters for evidence: the declines were driven by this
+  session's own analysis, not by the read surface, which did not yet carry the rule.
+- **The environment forensics:** the operator asked how a day-old session had a
+  local main 161 commits stale. Reflogs answered precisely - the ref was baked into
+  a pre-warmed container image (~2026-06-30, pointing at a 06-26 commit) and git
+  never auto-advances a local branch, so it stayed frozen while origin/main moved.
+  The follow-up architecture question settled the model: the cached unit is the
+  environment, not the repo; sessions map to environments, environments to cached
+  container images; the repo is a source attached to the environment. The
+  list_environments tool never got approvable on this surface, so the binding stayed
+  confirmed-by-forensics only.
+- **What the session produced:** the first ENVIRONMENT_DEFECTS.md (defects 1 and 2)
+  and the session-start fetch/fast-forward mitigation; the CCR field notes handed to
+  the operator's second-brain system in-chat; and the corrected task prompt. On the
+  operator's "Push", the branch went to origin mid-flight of the sibling session -
+  which had started from the same task, found the branch missing, recreated the
+  proofing artifacts, then saw the real branch appear, merged it (never rebased),
+  and reconciled the defects record and hook to best-of-both.
+- **Where things stand now:** the merge-main reassessment found the corrected task
+  fully executed by that sibling session (cb:b585 minted, cb:b065 -> cb:b586,
+  Git Policy renders the rule, PR #22 merged at 253291c, its thread finalized as
+  2026-07-05-provenance-read-surface); this branch is entirely absorbed into main,
+  finished in substance. A third defect (the PPA apt failure) was found and recorded
+  by the sibling.
+- **What the next session inherits:** the cb:b585 effectiveness check (this thread
+  is supporting evidence - the hook's advice declined under fire - but not the clean
+  test, which needs a fresh session that ingests the new Git Policy); the upstream
+  hook-fix delivery channel decision (operator's); and nothing else - the proofing
+  strand itself is closed.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to proto-belief
+document, never here; this table holds only dispatch state
+([routing-ledger](../routing-ledger.md)).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| Task-prompt proofing (mechanism, scope steer, blockers) | closed | [git-history-rewrite-surface](../git-history-rewrite-surface.md) - the corrected prompt's findings became its The matter / The rule; consumed by the executing session (PR #22) | - |
+| Environment defects 1-2 (git-check rewrite advice; stale baked-in main) | closed | ENVIRONMENT_DEFECTS.md + .claude/hooks/session-start.sh (first versions authored here; reconciled by the read-surface close session) | Upstream fixes remain with the environment provisioner |
+| CCR architecture (environment as cache unit, image handoff) | closed (handed off) | Unrouted in-repo; field notes delivered to the operator's second-brain system in-chat | list_environments approval never reaches this surface; binding confirmed by forensics only |
+| cb:b585 effectiveness verification | open | [git-history-rewrite-surface](../git-history-rewrite-surface.md) (Status note) | This thread's under-fire declines are supporting evidence (analysis-driven, pre-render); the clean read-surface test and the evidence recording (mix + beliefs/ authorization) remain owed |
+| Upstream non-cosmetic hook fix | open | [git-check-hook-upstream-fix](../git-check-hook-upstream-fix.md) | Delivery channel unnamed (operator decision) |
+
+## Turn-by-turn
+
+> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.
 > Session `08d1f993-0c6f-51ee-b664-5e0be26ac675` | 2026-07-05
 
 ## User
@@ -527,98 +617,20 @@ Ride-along render committed (`671229e`), tree clean. Holding the push per the ga
 
 The open calls from the reassessment are still yours: sync/close out this branch, name the delivery channel for the upstream hook fix, and whether to record this session's under-fire observation as evidence on cb:b585 (needs `mix` provisioned plus your authorization for the `beliefs/` write).
 
-## User
+## Related
 
-Ok so ready to run /end?
-
-## Assistant
-
-`/end` complete. The thread is finalized, registered, and pushed.
-
-**What was written:** `beliefs/nursery/threads/2026-07-05-git-rewrite-task-proofing.md` - frontmatter synthesized, the capture-provenance blockquote stating the true boundary (body complete through the merge-main reassessment; only the finalization turn omitted, it carried no decisions), the operator-facing narrative of the arc (proofing verdict, the hook firing in anger and being disregarded, the reflog forensics on the stale baked-in main, the mid-flight recovery by the sibling session), a five-row routing ledger, the hook render as the turn-by-turn receipts, and a Related section.
-
-**Registration:** added to the threads index and the nursery manifest (count 41 → 42), and back-linked from the two proto-belief documents this session fed (`git-history-rewrite-surface`, `git-check-hook-upstream-fix`). No retro-pairing was owed - this session minted nothing. The raw jsonl stays in `.sessions/`, uncommitted, per the standing repo-weight decision.
-
-**Committed and pushed:** `1ae39ae` with the `Thread:` trailer; the push also synced the earlier merge-main commits, so the branch and its remote are now identical. No rewrites anywhere, fittingly.
-
-The routing ledger records the two strands left open for whoever picks them up: the cb:b585 effectiveness check (this thread is cited as supporting evidence; the clean read-surface test still owed) and the upstream hook fix (gated on your delivery-channel decision). Everything else is closed.
-
-## User
-
-I will need to open a pr to sync transcript, correct?
-
-Also, summarize the environment/orchestration architecture notes into a copyable code block
-
-## Assistant
-
-Correct - `main` only moves via merge-commit pull requests (cb:b573: squash and rebase merging are disabled in repository settings), so the thread finalization needs a PR to land. The branch currently sits exactly 2 commits ahead of `origin/main`: the reassessment render (`671229e`) and the thread finalization (`1ae39ae`) - everything older was already absorbed via PR #22/#23. Both are pushed, so the branch is PR-ready as-is. Say the word and I'll open it.
-
-Here are the architecture notes:
-
-```markdown
-# Claude Code cloud (CCR) - environment/orchestration architecture notes
-
-Learned: 2026-07-05, composablebeliefs/composable-beliefs sessions, while diagnosing
-a local `main` ref that was 161 commits stale in a day-old session. Confidence is
-marked per item: [E] = evidenced by in-container forensics, [D] = documented shape
-(code.claude.com/docs/en/claude-code-on-the-web), [I] = inference, unverified.
-
-## The unit model
-- [D] Users create an ENVIRONMENT in the app and attach GitHub repos to it as
-  sources. The environment also carries the network policy, env vars, and setup
-  scripts. Sessions run INSIDE an environment.
-- [D/E] An orchestrator maps session -> environment -> container. The cache key for
-  provisioned state is the ENVIRONMENT, not the repo: "spinning up an agent in a
-  repo" is really starting a session in whichever environment that repo is attached
-  to. Two environments attached to the same repo could hand out different images.
-- [E] Container images are pre-baked and cached across sessions (warm starts).
-  Proof: .git/refs/heads/main was written 2026-06-30 inside an image handed to a
-  2026-07-04 session; the repo's own session-start hook notes container state is
-  cached after the hook completes.
-- [I] Internals unverified: per-environment snapshot vs shared base layer, warm
-  pools, invalidation policy. The list_environments MCP tool needs an interactive
-  approval that never reached the operator surface, so environment enumeration was
-  impossible in-session; the binding was confirmed only by forensics.
-
-## Consequences that bite
-- [E] Anything baked into the image is FROZEN at bake time, not session time.
-  Observed: the local `main` ref (created at image build, never advanced - git
-  fetch only moves remote-tracking refs). Rule: base work on origin/<default>
-  after a fetch, never the bare local default branch. In-repo mitigation: a
-  SessionStart hook that fetches and fast-forwards.
-- [E] Bake-time state also rots in other layers: an apt PPA in the image changed
-  its release metadata upstream and plain `apt-get update` then failed (fix:
-  --allow-releaseinfo-change). Generalization: any image-baked cache (refs, apt
-  metadata, toolchains) can be stale or broken by the time a session sees it.
-- [E] The container is EPHEMERAL - reclaimed after inactivity. Unpushed commits die
-  with it. A sibling session, finding a branch missing from origin, concluded the
-  prior session's container was reclaimed before push and recreated the work.
-- [E] Two hook layers with different owners: repo-tracked hooks
-  (.claude/settings.json, versioned, fixable in-repo) and user-global hooks
-  (/root/.claude/*, injected by the environment layer, NOT reachable from any
-  repo). Defects in the global layer can only be flagged upstream; repos can only
-  build read-surface defenses.
-- [E] Commit signing is deferred to push time: the in-session signing key is empty
-  (0-byte pub, no private key), so local commits show %G? == N until pushed. Push
-  preserves SHAs (verified: remote tip identical to local after push).
-- [E] Sessions on the same repo run CONCURRENTLY and interleave: one session's
-  mid-flight push was observed, recovered, and merged by a sibling session working
-  the same task. Design implication: trust the remote/graph state over any
-  in-container assumption; re-fetch before reasoning about "what exists".
-```
-
-The one caveat worth repeating from the notes: the `[I]` items are honest gaps - I never got environment enumeration approved, so the exact caching internals remain inference. Want the PR opened?
-
-Render committed (`244d300`), tree clean, holding the push per the gate. Note for the PR: the branch now carries this one unpushed render on top of what's on origin - when you give the go-ahead for the PR I'll push it along so the PR captures the complete transcript through the close.
-
-## User
-
-Open the PR
-
-## Assistant
-
-PR opened: **[#24 - Finalize thread: 2026-07-05 the proofing run](https://github.com/composablebeliefs/composable-beliefs/pull/24)**, `claude/git-history-rewrite-surface-irr6rj` → `main`.
-
-It carries the three commits beyond main: the thread finalization (thread doc, index, manifest, back-links) and the two ride-along renders, including the one I pushed just now so the transcript in the PR is complete through the close. Merge it with a merge commit per the house rule - squash/rebase are disabled in settings anyway.
-
-Want me to subscribe to the PR and watch it (respond to review comments, autofix CI) until it merges?
+- [2026-07-05-provenance-read-surface](2026-07-05-provenance-read-surface.md) - the
+  sibling thread: the session that executed this thread's corrected prompt, recovered
+  and merged this branch, and minted cb:b585/cb:b586.
+- [git-history-rewrite-surface](../git-history-rewrite-surface.md) - the proto-belief
+  document the proofing findings fed; owns the cb:b585 Status note and the owed
+  effectiveness check.
+- [git-check-hook-upstream-fix](../git-check-hook-upstream-fix.md) - the upstream fix
+  this thread's forensics ground; open on the delivery-channel question.
+- [vocabulary-read-surface](../vocabulary-read-surface.md) - the read-surface pattern
+  the proofing applied to a dangerous operation.
+- `ENVIRONMENT_DEFECTS.md` - the defects record this session created (defects 1-2)
+  and the sibling extended (defect 3).
+- cb:b573 - merge-commit only, the dep the proofing verified; cb:b580 - the Git
+  Policy render the gap sat beside; cb:b585/cb:b586 - the rule and render contract
+  the sibling minted from the corrected prompt.

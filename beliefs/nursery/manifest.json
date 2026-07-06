@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 43,
+  "count": 44,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -568,6 +568,23 @@
       "status": "active",
       "timestamp": "2026-07-06",
       "artifact": "session:2026-07-05-git-check-hook-upstream"
+    },
+    {
+      "path": "threads/2026-07-05-git-rewrite-task-proofing.md",
+      "type": "thread",
+      "title": "2026-07-05 - the proofing run (task proofed, environment forensics, absorbed into the read-surface close)",
+      "description": "Covers the proofing session for the read-surface task - every premise verified against the repo, the fix mechanism found mischaracterized (CLAUDE.md is a pure belief renderer; Git Policy = cb:b580 via cb:b065's render_sections) and the scope steer flipped to the proto-belief path; the stale baked-in local main reflog-dated to the pre-warmed container image and the git-check hook's rewrite advice taken under fire without complying; the first ENVIRONMENT_DEFECTS.md and session-start fetch/fast-forward authored, the CCR field notes handed to the operator, and the corrected prompt that the read-surface close session executed. Use when revisiting the proofing findings, the environment forensics, or what the cb:b585 effectiveness check may count as evidence.",
+      "tags": [
+        "cb",
+        "nursery",
+        "git",
+        "provenance",
+        "environment",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05",
+      "artifact": "session:2026-07-05-git-rewrite-task-proofing"
     },
     {
       "path": "threads/2026-07-05-provenance-read-surface.md",

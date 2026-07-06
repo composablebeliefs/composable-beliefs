@@ -6,7 +6,7 @@ tags: [nursery, git, provenance, read-surface, workflow]
 status: active
 timestamp: 2026-07-05
 maturity: active
-threads: [2026-07-05-provenance-read-surface]
+threads: [2026-07-05-provenance-read-surface, 2026-07-05-git-rewrite-task-proofing]
 ---
 
 # History rewriting where commits carry provenance (the git-check hook gap)
