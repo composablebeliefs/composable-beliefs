@@ -15,11 +15,21 @@ defmodule CB.Config do
   then `CB_BELIEFS`, then the default path.
   """
 
-  @doc "Absolute path to the belief graph JSON file."
+  @doc """
+  Absolute path to the belief graph: the per-belief directory
+  (`beliefs/cb`, cb:b554) once it exists, otherwise the single-file
+  `beliefs/beliefs.json`. `CB.Belief.Store` handles both layouts, so an
+  override may point at either.
+  """
   def beliefs_path do
     Application.get_env(:cb, :beliefs_path) ||
       System.get_env("CB_BELIEFS") ||
-      Path.join(CB.repo_root(), "beliefs/beliefs.json")
+      default_beliefs_path()
+  end
+
+  defp default_beliefs_path do
+    dir = Path.join(CB.repo_root(), "beliefs/cb")
+    if File.dir?(dir), do: dir, else: Path.join(CB.repo_root(), "beliefs/beliefs.json")
   end
 
   @doc """

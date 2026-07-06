@@ -49,6 +49,7 @@ defmodule Mix.Tasks.Cb.Import.Eval do
 
   alias CB.Belief
   alias CB.Belief.Conflict
+  alias CB.Belief.Store
   alias CB.Eval.Manifest
   alias CB.JSON
 
@@ -144,16 +145,10 @@ defmodule Mix.Tasks.Cb.Import.Eval do
   end
 
   defp read_collection(path) do
-    cond do
-      not File.exists?(path) ->
-        {:ok, []}
-
-      true ->
-        case JSON.read(path) do
-          {:ok, data} when is_list(data) -> {:ok, Enum.map(data, &Belief.from_map/1)}
-          {:ok, _} -> {:error, {:collection_not_a_list, path}}
-          {:error, reason} -> {:error, {:collection_unreadable, path, reason}}
-        end
+    case Store.read(path) do
+      {:ok, beliefs} -> {:ok, beliefs}
+      {:error, :not_a_list} -> {:error, {:collection_not_a_list, path}}
+      {:error, reason} -> {:error, {:collection_unreadable, path, reason}}
     end
   end
 

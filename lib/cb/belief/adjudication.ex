@@ -24,11 +24,13 @@ defmodule CB.Belief.Adjudication do
 
   ## Atomicity
 
-  Both beliefs involved in a supersede live in the same JSON file, so
-  the atomicity guarantee reduces to a single atomic write of the full
-  list via `CB.Belief.Store.write/2`, which uses `CB.JSON`'s tmp-file +
-  rename pattern. Either both the status flip and the new belief land,
-  or neither does.
+  All writes go through `CB.Belief.Store.write/2`, which is atomic per
+  file (tmp + rename). In the single-file layout both beliefs involved
+  in a supersede land in one write. In the per-belief layout (cb:b554)
+  a supersede is two file writes; the store writes the successor before
+  flipping the predecessor, so a crash between the two leaves a
+  duplicate-claim conflict the preflight detects rather than a dangling
+  `superseded_by` reference.
 
   ## Race detection
 
@@ -48,7 +50,6 @@ defmodule CB.Belief.Adjudication do
   alias CB.Belief
   alias CB.Belief.Store
   alias CB.Config
-  alias CB.JSON
 
   @outcomes ~w(accept_supersede reject_dep_tie defer)
   @required_keys ~w(proposed conflicting_id outcome reasoning session_ref)
@@ -135,9 +136,9 @@ defmodule CB.Belief.Adjudication do
 
   defp read(path) do
     if File.exists?(path) do
-      case JSON.read(path) do
-        {:ok, data} when is_list(data) -> {:ok, Enum.map(data, &Belief.from_map/1)}
-        {:ok, _} -> {:error, :beliefs_not_a_list}
+      case Store.read(path) do
+        {:ok, beliefs} -> {:ok, beliefs}
+        {:error, :not_a_list} -> {:error, :beliefs_not_a_list}
         {:error, reason} -> {:error, {:read_failed, reason}}
       end
     else

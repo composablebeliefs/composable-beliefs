@@ -10,7 +10,7 @@ defmodule CB.Belief.EditPairs do
   and formats them for inclusion in composition subagent payloads.
   """
 
-  alias CB.Config
+  alias CB.Belief.Store
 
   @doc """
   Load all edit-pairs and their implications from the belief graph.
@@ -18,10 +18,7 @@ defmodule CB.Belief.EditPairs do
   Returns `{:ok, %{edit_pairs: [...], implications: [...]}}`.
   """
   def load do
-    path = Config.beliefs_path()
-
-    with {:ok, content} <- File.read(path),
-         {:ok, all} <- Jason.decode(content) do
+    with {:ok, all} <- Store.read_raw() do
       edit_pairs =
         all
         |> Enum.filter(&(&1["kind"] == "edit-pair"))
