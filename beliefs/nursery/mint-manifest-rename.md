@@ -115,7 +115,7 @@ convention rejects.
 
 Append-only, per-thread, date-stamped log generated from the
 `<routes ref="mint-manifest-rename">` regions of the threads that fed this matter, lifted
-whole ([route-tagging](route-tagging.md), staged). This matter is live, so the log accepts a
+whole ([route-tagging](../archive/route-tagging.md), staged). This matter is live, so the log accepts a
 new dated block each time a later thread routes to it; nothing here is regenerated. It
 demonstrates cross-thread aggregation: the same tag string in any thread lands here.
 

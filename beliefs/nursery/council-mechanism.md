@@ -144,7 +144,7 @@ selectively running /end over the second half."
 
 ## Related
 
-- [route-tagging](route-tagging.md) - the audit round that motivated this; the founding
+- [route-tagging](../archive/route-tagging.md) - the audit round that motivated this; the founding
   worked example, and the source of the distill-not-dump (whole-region bloat) and
   gate-not-dump (sin-of-omission) lessons.
 - [transcript-format](transcript-format.md) - the thread doctrine the provenance-tiering rule

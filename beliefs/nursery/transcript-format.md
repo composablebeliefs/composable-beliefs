@@ -158,7 +158,7 @@ hook-lag fix above; the `cb:a518` tail-gap, recurring.)
 
 Append-only, per-thread, date-stamped log generated mechanically from the
 `<routes ref="transcript-format">` regions of the threads that fed this matter, lifted whole
-([route-tagging](route-tagging.md), staged). This matter is live, so the log accepts a new
+([route-tagging](../archive/route-tagging.md), staged). This matter is live, so the log accepts a new
 dated block each time a later thread routes to it; nothing here is regenerated. This sink was
 tagged in the 2026-07-04 retrofit but its log was not materialized (audit finding F5); the
 block below completes that retrofit, re-derived from the same tags by `mix
