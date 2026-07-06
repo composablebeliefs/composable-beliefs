@@ -1,0 +1,24 @@
+{
+  "id": "cb:b558",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "lifecycle:discrete",
+    "per-belief-files"
+  ],
+  "claim": "Provide a one-time migration mix task that splits beliefs/beliefs.json into beliefs/<ns>/<local>.json (canonical per-node to_map serialization) and removes the single-file array.",
+  "subjects": [
+    {
+      "ref": "CB.Belief.Store",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b554",
+    "cb:b557"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-06-25"
+}

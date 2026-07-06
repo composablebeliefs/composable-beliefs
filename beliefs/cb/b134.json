@@ -1,0 +1,19 @@
+{
+  "id": "cb:b134",
+  "type": "attestation",
+  "kind": "design-observation",
+  "tags": [],
+  "claim": "Contracts are bound to domain, not implementation - they survive code rewrites. A domain expert can author them without understanding code; a coding agent can implement against them without understanding business context. Contracts generate tests, not the other way around: if you rewrote a module from scratch, every test breaks but the contract stays the same.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Contracts are bound to domain (survive rewrite); tests are bound to implementation (break on rewrite). The key relationship: contracts generate tests, not the other way around. A state-machine contract defines transition rules; the implementing module's drift check reads the contract and confirms the implementation matches - the contract is the authority.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-03-23"
+}

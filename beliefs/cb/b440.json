@@ -1,0 +1,24 @@
+{
+  "id": "cb:b440",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "dev",
+  "tags": [
+    "agent-architecture",
+    "delegation",
+    "ops-dev-split"
+  ],
+  "claim": "In parent/child architectural dev work, the user does not delegate understanding to the agent. The user must stay on-the-loop at every depth of nested work. This is what distinguishes parent/child structure from sub-agent delegation, which abstracts in-progress reasoning away from the user and forecloses intervention. A new depth level cannot arise without the user's participation in creating it. Maps onto an operations/engineering mode split: in operational work, delegation is fine (bounded, mechanical work); in architectural work, delegation breaks the user's ability to audit the reasoning that produces architectural decisions.",
+  "artifact": "session:working-thread",
+  "evidence": [
+    {
+      "date": "2026-04-23",
+      "detail": "Source statement: sub-agents insulate the user from interfacing with and monitoring the sub-agent, which both prevents intervention and acts as a deferment of understanding. The user delegates things that, in conceptual architecture work, should not be delegated - the nuance of architecture often lives in the implementation details. A research survey confirmed the anti-pattern has names in the literature (cognitive atrophy, the augmentation trap, deferred understanding) and that published multi-agent patterns all retain some delegation-of-understanding.",
+      "artifact": "session:working-thread"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-17"
+}

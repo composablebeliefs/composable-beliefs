@@ -1,0 +1,43 @@
+{
+  "id": "cb:b513",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "system",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "tooling",
+    "import"
+  ],
+  "claim": "Make mix cb.import validate id-namespace consistency: a spec whose new-belief ids lack the graph's namespace prefix (bare b484 in a cb:-namespaced graph) should be normalized or rejected, and the moduledoc example (lib/mix/tasks/cb.import.ex, which shows a bare 'a305') corrected. Today the task stores spec ids verbatim, so a bare-id batch lands silently inconsistent.",
+  "artifact": "session:2026-06-10-substrate-position-discussion",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Observed live: the b484-b488 import followed the moduledoc's bare-id example, the batch stored bare while every other node is cb:-prefixed, namespaced lookups (mix bs tree cb:b488) and intra-batch deps dangled, and the ids were corrected surgically afterward. The 2026-06-11 stasis-backlog import used namespaced ids and landed clean, isolating the defect to validation plus the misleading example.",
+      "artifact": "session:2026-06-10-substrate-position-discussion"
+    },
+    {
+      "date": "2026-06-11",
+      "detail": "Discharged 2026-06-11 (commit 06b6bc5, materialized t0003/t0004): rejection chosen over normalization - normalizing bare ids would also require heuristically rewriting intra-batch dep references, and would write a graph differing from the dry-run-reviewed spec. The graph's namespace is derived as the single prefix all existing ids share; empty, bare, or mixed graphs pass vacuously.",
+      "artifact": "document:deprecated/chronicles/2026-06-11-the-bare-id-class-closes.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "materialized": {
+    "date": "2026-06-11",
+    "todos": [
+      {
+        "action": "Make mix cb.import reject new-belief ids lacking the graph's namespace prefix (the single prefix all existing ids share; empty, bare, or mixed graphs pass vacuously) before any write",
+        "id": "t0003"
+      },
+      {
+        "action": "Correct the cb.import moduledoc's bare-id examples (a305 -> cb:a305, a044 -> cb:a044) and document the namespace gate under Validation",
+        "id": "t0004"
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-06-11"
+}

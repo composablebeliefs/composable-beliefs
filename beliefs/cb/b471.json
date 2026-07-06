@@ -1,0 +1,28 @@
+{
+  "id": "cb:b471",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "design",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "direction-of-fit"
+  ],
+  "claim": "The boundary between inference and directive is direction of fit made operational. Ask what would count as the belief being wrong: an inference is falsified - if the world disagrees, the belief is defective and is superseded or retracted (mind fits world); a directive is violated - the world disobeys and the response is to flag the violation rather than revise the rule - or withdrawn - the house stops standing behind it, superseding it with a successor or retiring it (world fits mind). Author-facing trichotomy: falsified means inference; violated means directive; withdrawn means directive.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "The membership test from the v2 design, with its trap rules: evaluations name the standard or move up; conditional prescriptions decompose into a means-end inference plus a goal-adopting directive; reportive definitions are descriptive while stipulative definitions are directives; deontic must is directive while alethic/structural must is inference. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

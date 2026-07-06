@@ -1,0 +1,45 @@
+{
+  "id": "cb:b030",
+  "type": "prescription",
+  "kind": "domain-rule",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "provenance"
+  ],
+  "name": "source-type-taxonomy",
+  "claim": "Attestation source identifiers follow a structured taxonomy split into authorship sources (record who/when formalized a claim; valid on any type) and artifact sources (cite a specific document; attestation-only)",
+  "rules": [
+    {
+      "given": "An attestation is being written",
+      "scenario": "Valid source prefixes",
+      "then": "The source must match one of: artifact prefixes (gmail:, source:, analysis:, transcript:, paper:, https://, a repository file path); authorship prefixes (user:, manual:, session:); or authorship sentinels (policy, legacy)",
+      "when": "The source field is validated"
+    },
+    {
+      "given": "A node records who/when a claim was formalized",
+      "scenario": "Authorship sources apply to any type",
+      "then": "Authorship sources (policy, legacy, user:<person>:<date>, manual:<person>:<date>, session:<date>) may appear on any structural type - a declared contract legitimately carries session:<date> to record when it was articulated",
+      "when": "The source field is populated"
+    },
+    {
+      "given": "A node has type aggregation or implication",
+      "scenario": "Artifact sources are attestation-only",
+      "then": "The source must not use artifact prefixes (gmail:, source:, analysis:, transcript:, paper:, URLs, file paths) - non-attestations reference specific documents via deps, not via source",
+      "when": "The source field is checked"
+    }
+  ],
+  "invariants": [
+    "Every active attestation has a non-null source",
+    "Source prefix determines the expected downstream resource shape",
+    "Authorship sources (policy, legacy, user:, manual:, session:) are valid on any type",
+    "Artifact sources (gmail:, source:, paper:, URLs, file paths) are attestation-only",
+    "Non-attestations cite external documents through deps, never through source directly"
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b303"
+  ],
+  "status": "active",
+  "created": "2026-04-12"
+}

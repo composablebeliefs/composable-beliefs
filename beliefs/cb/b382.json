@@ -1,0 +1,24 @@
+{
+  "id": "cb:b382",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "plans",
+    "dag-discipline",
+    "convention:claude-md"
+  ],
+  "claim": "Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "Several non-sequential plans authored a month or two earlier referenced modules that had been renamed, concepts that had been refactored, or work that had silently completed. Static implementation steps read as authoritative to a fresh agent but execute against current code as stale. The intent-over-implementation pattern is the better shape: the graph stores durable intent; implementation is re-derived at pickup.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-04-21"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "cb:b469",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "claude-md",
+    "skills"
+  ],
+  "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assert-session` persists session rules and agent error patterns; `/assertions` queries and traverses the graph; `/materialize` turns implications into concrete tasks; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+  "artifact": "session:2026-06-07-cb-claude-md-generation",
+  "evidence": [
+    {
+      "date": "2026-06-07",
+      "detail": "Encoded from the framework's hand-written CLAUDE.md into the graph so the file compiles from beliefs via the b042 output-target contract.",
+      "artifact": "session:2026-06-07-cb-claude-md-generation"
+    },
+    {
+      "date": "2026-06-09",
+      "detail": "cb-codepath plan-2/3 added the present-codepath skill and the codepath verify task; the rendered CLAUDE.md Skills line enumerates the skills and must include it.",
+      "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md"
+    },
+    {
+      "date": "2026-06-09",
+      "detail": "Accepted via human adjudication against cb:b453. Reasoning: The Skills section of the rendered CLAUDE.md enumerates shipped skills; present-codepath shipped in plan-2 (renderer) and gained assertions in plan-3 Step A.",
+      "artifact": "adjudication:human:cb-graph-housekeeping-2026-06-09"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "superseded",
+  "superseded_by": "cb:b480",
+  "created": "2026-06-09"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "cb:b441",
+  "type": "prescription",
+  "kind": "rule",
+  "domain": "dev",
+  "tags": [
+    "agent-architecture",
+    "delegation",
+    "sub-agents",
+    "lifecycle:recurring"
+  ],
+  "claim": "Sub-agent delegation is permissible specifically for adjudication tasks - reviewing a session's proposed beliefs against the current graph, producing merge/reject decisions with reasons. Adjudication has bounded input, bounded output, and the working-out is itself the artifact, so no understanding is hidden from the user. Do not extend this carve-out to other classes of work (research, refactoring, design, plan execution) without an explicit new belief justifying it.",
+  "artifact": "session:working-thread",
+  "evidence": [
+    {
+      "date": "2026-04-23",
+      "detail": "The carve-out: adjudication has bounded input (proposed beliefs vs current graph), bounded output (merge/reject decisions with reasons), and the working-out is itself the artifact, so no understanding is hidden. Without this carve-out the adjudication-via-subagent step would violate the no-delegation-of-understanding principle.",
+      "artifact": "session:working-thread"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b440"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-05-17"
+}

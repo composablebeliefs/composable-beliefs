@@ -1,0 +1,24 @@
+{
+  "id": "cb:b560",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "lifecycle:discrete",
+    "per-belief-files"
+  ],
+  "claim": "Update CB self-description for per-belief storage: regenerate CLAUDE.md, revise docs and schema prose that call the graph one JSON file, and supersede cb:b112 with cb:b554 now that per-belief storage is the implemented reality.",
+  "subjects": [
+    {
+      "ref": "CB.Config",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b554",
+    "cb:b558"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-06-25"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "cb:b460",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "design",
+  "tags": [
+    "belief-graph",
+    "operations"
+  ],
+  "claim": "The DAG is a shared prosthetic that compensates for different limitations: a human expert holds interconnections implicitly and attention-bounded, while an agent loses its working context at every session boundary. The graph gives both parties one explicit, queryable structure instead of implicit human memory versus ephemeral agent context.",
+  "artifact": "session:2026-06-07-cb-claude-md-generation",
+  "evidence": [
+    {
+      "date": "2026-06-07",
+      "detail": "Folded from docs/operations.md (operational learnings) into the graph; the learning predates this encoding and is now queryable rather than restated in prose.",
+      "artifact": "session:2026-06-07-cb-claude-md-generation"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-07"
+}

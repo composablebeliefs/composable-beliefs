@@ -1,0 +1,28 @@
+{
+  "id": "cb:b562",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "schema-v3",
+    "compat-shim"
+  ],
+  "claim": "Retire the schema-v3 structural-type compat shim once every registered collection verifies clean under the new vocabulary (mix cb.verify.collection across the belief-collections registry): remove the legacy type map behind CB.Belief.normalize_type/1, the _raw_type write-back passthrough in to_map/1, the CLI legacy-filter warning, and the verifier's tolerance for a stored contract field. Until then both vocabularies remain valid by design - the shim is the compat epoch, and retiring it closes the migration the structural-type-rename seed specs.",
+  "artifact": "document:beliefs/nursery/structural-type-rename.md",
+  "evidence": [],
+  "subjects": [
+    {
+      "ref": "CB.Belief",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b051",
+    "cb:b056",
+    "cb:b559"
+  ],
+  "status": "active",
+  "created": "2026-07-01"
+}

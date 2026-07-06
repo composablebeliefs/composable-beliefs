@@ -1,0 +1,70 @@
+{
+  "id": "cb:b066",
+  "type": "prescription",
+  "kind": "enum-registry",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "enum",
+    "artifact-scheme"
+  ],
+  "claim": "Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
+  "rules": [
+    {
+      "definitions": {
+        "code": "An anchored site within a repository file. Form: code:<repo-relative-path>#<anchor>. Everything after the first '#' is one opaque literal substring anchor (the fixed-string grep target); an optional trailing '@<N>' selects the Nth match, and a literal trailing '@<digits>' is percent-encoded as '%40<digits>'. Line numbers are never stored - they resolve at render/run time. document: remains the whole-file reference.",
+        "document": "A repository file reference. Form: document:<repo-relative-path>. Files under ops/, dates/, lib/, etc.",
+        "https": "An external URL. Form: https:<URL-rest>. Web pages, papers, external resources.",
+        "plan": "A plan/spec/intent reference. Form: plan:<id-or-descriptor>.",
+        "session": "A working session reference. Form: session:<date-or-descriptor>. Resolved via session transcript (persistence pipeline pending).",
+        "source": "A cached source document reference. Form: source:<slug>. Documents stored under ops/sources/ or similar.",
+        "user": "A direct user statement. Form: user:<name>:<date>. Internal authorship provenance."
+      },
+      "field": "artifact-scheme",
+      "values": [
+        "session",
+        "user",
+        "document",
+        "source",
+        "https",
+        "plan",
+        "code"
+      ]
+    }
+  ],
+  "invariants": [
+    "Exactly one rule entry, with field 'artifact-scheme'.",
+    "Each value matches /^[a-z][a-z0-9-]*$/.",
+    "Values are unique within the entry.",
+    "Every value has a corresponding entry in the definitions map.",
+    "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+  ],
+  "artifact": "session:2026-06-17-artifact-scheme-connector-cleanup",
+  "evidence": [
+    {
+      "date": "2026-06-17",
+      "detail": "Drops the gmail: scheme from the closed artifact-scheme enum. gmail: named a specific external product (a connector) inside a core schema enum; per the architectural invariant that CB's core may not name a specific connector, connector identity belongs in a source:/https: URI body, not in a scheme value. No active belief used gmail: (schemes in use: session, document, user, plan, source, https), so removal strands nothing. The seven inherited schemes and all five invariants carry forward verbatim from cb:b043; single-scheme supersession consistent with b397's batching discipline.",
+      "artifact": "session:2026-06-17-artifact-scheme-connector-cleanup"
+    },
+    {
+      "date": "2026-06-17",
+      "detail": "Accepted via human adjudication against cb:b043. Reasoning: Drop the gmail: scheme - it names a specific external product (a connector) inside CB's core artifact-scheme enum, violating the architectural invariant that the core may not name a connector. gmail: is unused by any active belief; the seven other schemes and all invariants carry forward verbatim. Connector identity belongs in a source:/https: URI body.",
+      "artifact": "adjudication:human:2026-06-17-artifact-scheme-connector-cleanup"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a mix task",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b397",
+    "cb:b398",
+    "cb:b407",
+    "cb:b467"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b067",
+  "created": "2026-06-17"
+}

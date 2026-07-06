@@ -1,0 +1,34 @@
+{
+  "id": "cb:b387",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "system",
+  "tags": [
+    "dag-discipline",
+    "consensus",
+    "governance"
+  ],
+  "claim": "The DAG requires a consensus mechanism: a workflow that surfaces conflicts between a proposed belief and existing nodes at authoring time, routes the resolution through adjudication (human, multi-agent patch, or tiered review by conflict weight), and produces a recorded outcome - either rejection-with-reasoning (the proposal is reshaped to dep on the existing belief as a constraint) or acceptance (the existing belief is superseded per b029 and the new one takes its place). Without this mechanism, the authoring surface depends on agent memory to query relevant contracts, and b375's gap (DAG as decorative vs operational) remains partially unaddressed. The mechanism is also the structural enforcement for b380 (never-back-down-without-appeal) - the rule is only executable if adjudication is available.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "A belief/contract conflict surfaced the mechanism as the missing piece. An operational graph treats contracts as current consensus rather than eternal truth, and provides a structured way for consensus to evolve. The mechanism proposal was raised by the user; this belief captures the principle.",
+      "artifact": "user:review-session-2026-04-21"
+    },
+    {
+      "date": "2026-04-22",
+      "detail": "Consensus mechanism v1 end-to-end validation complete: an integration test exercises preflight then accept-and-supersede adjudication against a minimal fixture graph; it verifies contract-level conflict detection, atomic supersession writes, status-enum invariant preservation, and semantic equivalence with the prior manual outcome. The never-back-down rule now has an execution layer.",
+      "artifact": "session:consensus-v1-validation"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b375",
+    "cb:b380",
+    "cb:b053",
+    "cb:b054"
+  ],
+  "status": "active",
+  "created": "2026-04-21"
+}

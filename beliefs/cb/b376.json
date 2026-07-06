@@ -1,0 +1,23 @@
+{
+  "id": "cb:b376",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "dag-discipline",
+    "integration"
+  ],
+  "name": "runtime-query-vs-authoring",
+  "claim": "For a belief graph to earn its keep operationally, beliefs must be queryable at session start and before writes - not only authored. Compiling beliefs into a static surface (a generated guidance file) is a once-per-session load, not a contextual query at decision time. Until contextual queries exist, the graph functions as developer-facing structure: valuable, but short of the operational claim.",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "Observed that a large share of a live graph's beliefs were self-referential (about the agent and system itself) with little operational use by skills at runtime. A once-per-session compile into a context file is not the same as a contextual query when a decision is made. The gap is a development state, not a refutation of the approach.",
+      "artifact": "session:graph-integration-review"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-04-21"
+}

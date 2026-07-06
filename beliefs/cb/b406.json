@@ -1,0 +1,34 @@
+{
+  "id": "cb:b406",
+  "type": "prescription",
+  "kind": "policy",
+  "domain": "system",
+  "tags": [
+    "belief-discipline",
+    "writing"
+  ],
+  "name": "present-tense-claims",
+  "claim": "A belief's claim should describe the optimal state in present tense. The claim states what is true, not what was changed or what is being avoided. Transitional language (renamed, previously, no longer, remain), enumeration of negations (X is not Y, X does not carry Z), and reactionary framing belong in evidence entries with dates. The claim survives once context fades; framing that depends on prior state goes stale and misleads.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-15",
+      "detail": "Recognized during drafting of b397–b405. Multiple primitives drifted into 'X is not Y' framing because they were authored against the prior state still being mentally active. Each was rewritten to describe optimal state directly.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    },
+    {
+      "date": "2026-05-17",
+      "detail": "name set to \"present-tense-claims\" via dag-proposal m14",
+      "artifact": "session:2026-05-17-policy-categorization"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-15"
+}

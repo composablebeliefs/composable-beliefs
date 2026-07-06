@@ -1,0 +1,24 @@
+{
+  "id": "cb:b556",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "lifecycle:discrete",
+    "per-belief-files"
+  ],
+  "claim": "Make CB.Belief.Store.read directory-aware: when the configured graph path resolves to a per-belief directory, glob and parse <ns>/<local>.json sorted by id; keep the single-file array as fallback for unsplit collections. The prototype proved the loaded graph byte-identical to the single-file load.",
+  "subjects": [
+    {
+      "ref": "CB.Belief.Store",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b554",
+    "cb:b555"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-06-25"
+}

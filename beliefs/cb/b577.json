@@ -1,0 +1,38 @@
+{
+  "id": "cb:b577",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "design",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "nursery",
+    "open-decision",
+    "archive-shelf"
+  ],
+  "claim": "Decide the archive shelf (Q7 of the seed-lifecycle deliberation): where graduated proto-belief documents and archived plans/ shelves physically live. The operator's invisibility requirement is attached - archived architecture must not sit in the working hierarchy confusing new agents - which rules out archive-in-place. Options on the table: a beliefs/archive/ sibling outside nursery/ proper (the current lean), graduating graph-subject documents alongside the existing plans/ shelves, or nursery/archive/ excluded from working views. Work gated on this decision must dep on its resolution when it mints: the seed-lifecycle graduation prescription, and proto-belief-rename spike item 4 (triage of still-live plans into proto-belief documents; physical archiving of the closed plans/ shelves with a cb.repoint pass).",
+  "artifact": "document:beliefs/nursery/seed-lifecycle.md",
+  "evidence": [
+    {
+      "date": "2026-07-02",
+      "detail": "Minted so the desk tracks the open decision. The mints-after-Q7 gate existed only as prose - in seed-lifecycle's resolution block, proto-belief-rename spike item 4, the authoring-pipeline routing ledger, and the nursery index - and pre-mint rows carry no machine-readable deps, so nothing structural prevented minting the gated work early. The gate becomes structural at mint time: item 4's and the graduation prescription's future nodes dep on this node's resolution.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-02-authoring-pipeline.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b569"
+  ],
+  "materialized": {
+    "date": "2026-07-03",
+    "todos": [
+      {
+        "action": "Archive shelf decided: graduated proto-belief documents live in beliefs/archive/, a sibling outside the nursery bundle (okf.manifest scans nursery/ only, so archived docs leave the live read surface). First graduation: end-skill-redesign.md.",
+        "id": "t0027",
+        "notes": "Operator decision 2026-07-03; shelf established at commit a77adbab7b7fd28ed3fffd80b26f8b98d6b2e987. Resolves Q7 of seed-lifecycle."
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-07-02"
+}

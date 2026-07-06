@@ -1,0 +1,23 @@
+{
+  "id": "cb:b448",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "design",
+  "tags": [
+    "claude-md",
+    "architecture"
+  ],
+  "claim": "There are no confidence scores. Subjective scores synthesized without a deterministic basis do no load-bearing work; rely on specific evidence and dependency structure instead.",
+  "artifact": "session:2026-06-07-cb-claude-md-generation",
+  "evidence": [
+    {
+      "date": "2026-06-07",
+      "detail": "Encoded from the framework's hand-written CLAUDE.md into the graph so the file compiles from beliefs via the b042 output-target contract.",
+      "artifact": "session:2026-06-07-cb-claude-md-generation"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-07"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cb:b561",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "docs",
+    "glossary",
+    "schema-v3"
+  ],
+  "claim": "Regenerate docs/glossary.md (and the cb-tut glossary data) from glossary.data.json in an environment with the ../belief-collections sibling checkout. The data file carries the structural-type-rename entry from the schema-v3 migration, but the rendered doc was deliberately not regenerated in the migration session: rendering without the full collection registry silently drops the method:/paradigm: cross-collection references and their referenced-beliefs appendix entries.",
+  "artifact": "document:beliefs/nursery/structural-type-rename.md",
+  "evidence": [],
+  "subjects": [],
+  "deps": [],
+  "materialized": {
+    "date": "2026-07-02",
+    "todos": [
+      {
+        "action": "Regenerate docs/glossary.md and the cb-tut glossary data from glossary.data.json with the full ../belief-collections registry present, preserving the method:/paradigm: cross-collection references and the referenced-beliefs appendix",
+        "id": "t0025",
+        "notes": "Registry reconstructed from the public belief-collections repo at main; mix cb.generate.glossary --check passes post-write (187 terms, 151 referenced beliefs; method:/paradigm: refs intact). Discharging commit: ce1f8ffa3f1cf1686302f66f69f53ebd2ba2be62"
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-07-01"
+}

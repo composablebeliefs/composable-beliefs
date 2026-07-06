@@ -1,0 +1,19 @@
+{
+  "id": "cb:b118",
+  "type": "prescription",
+  "kind": "convention",
+  "tags": [],
+  "claim": "Every primitive sourced from a document or email carries an evidence array with source details including dates and specific descriptions of what was observed. The claim is the agent's interpretation; the evidence carries the factual basis. The gap between claim and evidence is where misinterpretation lives and can be audited.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Every primitive sourced from a document or message carries an evidence array with the source language. All primitives have evidence arrays. The claim is the agent's interpretation; the evidence carries the factual basis, and the gap between them is where misinterpretation lives and can be audited.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-03-23"
+}

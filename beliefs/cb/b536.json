@@ -1,0 +1,30 @@
+{
+  "id": "cb:b536",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "verifier",
+    "method-contracts"
+  ],
+  "claim": "Upgrade the verdict-category firewall (method:a6) to contract grade: implement a named predicate in the collection verifier that fails any verdict whose subject category appears in the sold-category list carried by the firewall node, then supersede method:a6 from convention to a predicate-routing contract beside m-corroboration through m-correction. Until then the rule binds as authoring discipline only.",
+  "artifact": "user:monetization-contingency-2026-06-12",
+  "evidence": [
+    {
+      "date": "2026-06-12",
+      "detail": "method:a6 was minted as kind convention because the closed method-kind enum and the verifier's predicate registry had no slot for a category-scope check; the check itself is pure traversal over verdict subjects, so it belongs beside the m-* contracts once a predicate exists. Stipulated in the monetization-contingency adjudication's open items. Tag-overlap review: verifier work neighbors the method-check machinery; no existing claim covers this predicate, so no conflict.",
+      "artifact": "document:../amieval-direction/direction/2026-06-12-monetization-contingency-adjudication.md"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per cb:b507: stipulating thread verbatim at the paired artifact.",
+      "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-12"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "cb:b529",
+  "type": "inference",
+  "kind": "design-rationale",
+  "domain": "design",
+  "tags": [
+    "anchoring",
+    "verification",
+    "design-policy"
+  ],
+  "claim": "Anchored claims verify on a three-tier gradient: provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists in the substrate), and behavioral validity (predicates - the referent still behaves as claimed, contract grade). An anchor check is a necessary condition only: failure flags the claim for review, while success alone never re-validates the claim.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-12",
+      "detail": "Pinned in execution of b511 from the position's design-rationale appendix. The gradient has already been observed working: the b515 discharge dogfood found both lib/cb/codepath.ex anchors on the worked position had drifted to lib/cb/anchor.ex in the b512 extraction - the resolver flagged the failures for review, the anchors were re-pointed and verified green. Failure flagged the claims; success did not re-validate them - exactly the necessary-condition-only semantics. Anchored to the codepath verifier that runs the grounding-currency tier.",
+      "artifact": "code:lib/mix/tasks/cb.verify.codepath.ex#defmodule Mix.Tasks.Cb.Verify.Codepath"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b485",
+    "cb:b488"
+  ],
+  "status": "active",
+  "created": "2026-06-12"
+}

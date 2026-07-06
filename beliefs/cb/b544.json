@@ -1,0 +1,34 @@
+{
+  "id": "cb:b544",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "eval"
+  ],
+  "claim": "Run the dag-vs-prose eval with an OKF/Karpathy agent-maintained wiki as the prose-baseline arm, rather than an ad-hoc prose control. OKF is now a published, standardized, cross-linked, history-bearing prose substrate, so it is a credible external baseline the structured (CB) arm must beat; using it turns the bet-dossier crux (does structured substrate decisively beat strong plain-English?) from a strawman comparison into a defensible one. mix knowledge.emit can generate the structured arm's bundle from the same source graph.",
+  "artifact": "session:okf-2026-06-21",
+  "evidence": [
+    {
+      "date": "2026-06-21",
+      "detail": "From the OKF-vs-CB layering analysis: OKF raises the plain-English baseline CB must clear, which sharpens rather than threatens the eval - it supplies a credible prose control the analysis argues for. Public grounding: document:../knowledge/meta/okf-vs-cb-layering.md. No existing eval directive covers the prose-arm choice, so no conflict.",
+      "artifact": "document:../knowledge/meta/okf-vs-cb-layering.md"
+    },
+    {
+      "date": "2026-06-22",
+      "detail": "Source relocated: the knowledge standard folded into composable-beliefs/okf/ (okf-fold, cb:b546); the original document:../knowledge/... pointer is preserved historically above, this corrective entry resolves it in-repo now that ../knowledge is decommissioned.",
+      "artifact": "document:okf/meta/okf-vs-cb-layering.md"
+    },
+    {
+      "date": "2026-06-22",
+      "detail": "The knowledge repo was folded into composable-beliefs/okf/ (cb:b546); the prior document:../knowledge/ pointer dangles. Corrected target.",
+      "artifact": "document:okf/meta/okf-vs-cb-layering.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-21"
+}

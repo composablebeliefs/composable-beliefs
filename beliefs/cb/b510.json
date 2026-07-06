@@ -1,0 +1,30 @@
+{
+  "id": "cb:b510",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "viewer",
+    "deep-links"
+  ],
+  "claim": "Fix bare-id deep links in the graph viewer: links built from bare belief ids (a299-style, from older plan and position bodies) resolve to /dag/<bare-id>, but the viewer's selection index is keyed by namespaced ids, so the page loads with nothing selected and no warning. Either resolve bare ids against the default collection's namespace at selection time or surface an explicit unresolved-reference notice; silent no-op is the one behavior that should not survive.",
+  "artifact": "session:2026-06-11-positions-live-join",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Found while wiring plan-app position deep links: PlanLinks was extended to namespaced ids and those land selected via /c/<ns>/dag/<id>, but pre-existing bare-id references throughout plan bodies still emit /dag/<bare-id>, where Map.get(index, id) misses every namespaced key and select_by_id silently no-ops. Desk reviewed before minting per b504: not present among cb:b494-b503 and in no plan record. Preflight tag-overlap review: backlog/viewer-family overlap only, no active structure contradicted.",
+      "artifact": "session:2026-06-11-positions-live-join"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "cb:b485",
+  "type": "inference",
+  "kind": "design-rationale",
+  "domain": "design",
+  "tags": [
+    "design-policy",
+    "anchoring"
+  ],
+  "claim": "NL discussion above the substrate is productive exactly when every claim terminates in an anchor into the substrate; the anchor is what makes a prose claim adjudicable against the thing that runs.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "The position's central conditional, anchored to the mechanism that embodies it: CB.Codepath.resolve_anchor (lib/cb/codepath.ex) and the never-store-line-numbers rule (lib/cb/code_locator.ex). Both anchors verified resolving with exactly one grep -nF match at authoring time. Deps: the substrate claim (b484) plus b467's settled code-anchoring design.",
+      "artifact": "session:2026-06-10-substrate-position-discussion"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b484",
+    "cb:b467"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

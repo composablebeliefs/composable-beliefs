@@ -1,0 +1,44 @@
+{
+  "id": "cb:b515",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "agent",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "skills",
+    "positions"
+  ],
+  "claim": "Author the /position capture skill (skills/position/): run at the moment a thread settles something concrete, it applies the b496 ceremony gate (position document only when the verbatim reasoning is the artifact; otherwise route to /assert), stages a position file in the host repo's positions/ - verbatim passages, claims with intended types, **Anchor:** lines verified via the draft-mode resolver, Class header, Origin citing the session - and never writes beliefs/ directly; extraction stays with /assert. Belief-ref rendering follows the b503 convention. The 2026-06-10 thread is the worked trace, including the failure modes the rules must guard.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "The thread executed the full capture pipeline by hand - stance posed, position staged with verified anchors, preflight, import, DAG-status flip - and the user asked for the skill that mechanizes it at a chosen point in a thread. Depends practically on b512 (the anchor verification gate) and on b503 settling the reference convention.",
+      "artifact": "session:2026-06-10-substrate-position-discussion"
+    },
+    {
+      "date": "2026-06-11",
+      "detail": "Discharged 2026-06-11 (materialized t0012): skills/position/SKILL.md authored and registered via the .claude/skills symlink; CLAUDE.md skills line updated through the write flow (b521 -> b524, b062 -> b063). The skill encodes the gate-first order (b496 before any staging), b492 homing, the b511 section format with claims in codepath walk order, mandatory mix cb.resolve verification with loose anchors treated as authoring failures (b512), b503 three-tier belief-ref rendering after extraction, and the settle-time rule the b518 near-loss taught. Dogfooding the gate on the worked position caught real drift - both lib/cb/codepath.ex anchors had moved to lib/cb/anchor.ex in the b512 extraction - re-pointed and verified green: anchor failure flagging for review, the gradient working as designed.",
+      "artifact": "code:skills/position/SKILL.md#name: position"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b496",
+    "cb:b492",
+    "cb:b488"
+  ],
+  "materialized": {
+    "date": "2026-06-11",
+    "todos": [
+      {
+        "action": "Author skills/position/SKILL.md - settle-time capture: b496 ceremony gate first, b492 homing, b511 format with claims in codepath walk order, anchors verified via mix cb.resolve (b512), b503 belief-ref rendering after extraction, extraction left to /assert - and register it via the .claude/skills symlink",
+        "id": "t0012",
+        "notes": "Discharged in the authoring session itself. Dogfooding the resolver gate on the worked position caught real drift: both lib/cb/codepath.ex anchors (resolve_anchor, the anchor-not-found constructor) had moved to lib/cb/anchor.ex in the b512 extraction; re-pointed and verified green."
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-06-11"
+}

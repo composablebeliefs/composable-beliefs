@@ -1,0 +1,24 @@
+{
+  "id": "cb:b375",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "plans",
+    "dag-discipline",
+    "convention:claude-md"
+  ],
+  "claim": "Principles that should influence future decisions persist as DAG beliefs. Concrete sequenced action lists persist as plan documents. The distinguishing question is whether the content advises future decisions (DAG) or sequences present steps (plan). A single initiative often produces both: one DAG principle plus one plan executing it once.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "Without this distinction, plans accumulate as dead directives and the graph stays underused for meta-rules. The rule gives a mechanical cut: content that advises future decisions goes in the graph; content that sequences a specific set of steps goes in a plan. Many initiatives produce exactly one of each.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-04-21"
+}

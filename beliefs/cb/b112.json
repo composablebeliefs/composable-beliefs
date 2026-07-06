@@ -1,0 +1,19 @@
+{
+  "id": "cb:b112",
+  "type": "attestation",
+  "kind": "design-observation",
+  "tags": [],
+  "claim": "A centralized graph in a single file is preferred over per-entity belief files because cross-entity composition is the primary value. A primitive about one entity composes with a primitive about another to produce an implication - splitting by entity would fragment the graph. Subject-based queries provide per-entity views without separate files.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Considered and rejected: per-entity belief files. The centralized graph was preserved because cross-entity composition is the primary value, subject-based queries already provide per-entity views, and the store and query tools assume a single file.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-03-23"
+}

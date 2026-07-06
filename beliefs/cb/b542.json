@@ -1,0 +1,24 @@
+{
+  "id": "cb:b542",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "plan-app"
+  ],
+  "claim": "Fix plan-app status mis-bucketing: PlanApp.Sources.Plans.classify/1 matches the bucket regexes against the START of the **Status:** value (^superseded, ^done, ...), so a non-canonical header like 'largely superseded (2026-06)' falls through to :pending and a superseded plan renders as live work. Either canonicalize status headers to a leading keyword, or loosen classify to recognize the keyword anywhere in the value (carefully, to avoid false positives). Observed on cb-direction/plans/composable-beliefs-plans.md, which is largely superseded but buckets pending.",
+  "artifact": "user:plan-as-directive-view-2026-06-21",
+  "evidence": [
+    {
+      "date": "2026-06-21",
+      "detail": "Observed when confirming the cb-direction registry render: the one cb-direction plan is headed 'Status: largely superseded' yet surfaced in the pending bucket. classify/1 anchors each pattern with ^, so only a value beginning with the keyword classifies. A latent correctness gap for any non-canonical status string, not specific to this plan. Tag-overlap review: plan-app backlog family only; no existing directive covers status parsing, so no conflict.",
+      "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-21"
+}
