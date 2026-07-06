@@ -2,9 +2,8 @@
 
 A point-in-time audit of the `docs/` essays against the actual schema
 (`lib/cb/belief.ex`), the mix tasks (`lib/mix/tasks/*.ex`), and the live graph
-(`mix bs`). Produced while building the `cb-tut` annotated wiki
-(`composablebeliefs/cb-tut`); the full, rendered version is that repo's page 19
-(`pages/19-docs-vs-code.html`) and `research/notes/docs-eval.md`. This in-repo copy
+(`mix bs`). Produced while building an external annotated-wiki rendering of the
+docs; the full, rendered version lives with that external project. This in-repo copy
 is the condensed, resolvable record the desk directive `cb:a553` grounds in.
 
 ## Verdict

@@ -1154,8 +1154,8 @@
   },
   "lending-library": {
     "name": "Lending Library (lib:)",
-    "short": "The gentle on-ramp collection in belief-collections (namespace lib), a worked-example surface for learning the schema before building a real graph.",
-    "def": "The lending library (<code>lib:</code>, cb:b459) is the gentle on-ramp collection in belief-collections: a worked-example surface for learning the schema vocabulary before authoring a real graph. It is listed in <a href='glossary.html#collections-registry'>collections.json</a> alongside the framework and eval collections. It is one of several worked-example collections, the others including <code>method:</code>, <code>sdl</code>, and <code>toy</code>.",
+    "short": "The gentle on-ramp collection (namespace lib), an external worked-example surface for learning the schema before building a real graph.",
+    "def": "The lending library (<code>lib:</code>, cb:b598) is the gentle on-ramp collection, an external collection that links into cb: a worked-example surface for learning the schema vocabulary before authoring a real graph. It is listed in <a href='glossary.html#collections-registry'>collections.json</a> alongside the framework and eval collections. It is one of several worked-example collections, the others including <code>method:</code>, <code>sdl</code>, and <code>toy</code>.",
     "see": [
       "collection",
       "collections-registry",
@@ -1389,7 +1389,7 @@
   "cb-okf": {
     "name": "cb-okf: Collection",
     "short": "The OKF integration extension folded into composable-beliefs/okf/; the cb-okf namespace depends on cb and borrows its schema, adding an agent-index manifest and a tier model.",
-    "def": "<code>cb-okf:</code> is CB's OKF integration extension, folded into <code>composable-beliefs/okf/</code> (cb:b546), a namespace that depends on <code>cb:</code> and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance (cb:b544) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.",
+    "def": "<code>cb-okf:</code> is CB's OKF integration extension, folded into <code>composable-beliefs/okf/</code>, a namespace that depends on <code>cb:</code> and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance (cb:b544) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.",
     "see": [
       "okf",
       "tier-cb",

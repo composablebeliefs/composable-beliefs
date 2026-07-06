@@ -90,7 +90,7 @@ mix bs history cb:b067    # a supersession chain (the artifact-scheme enum)
 mix cb.verify.schema      # check the struct against the in-graph schema contracts
 ```
 
-The full command surface is in the [reference](docs/reference.md). For the guided version, see `../belief-collections/quickstart.md` in the sibling repo - if the self-referential `cb:` graph is a lot to meet first, start with the `lib:` lending-library collection there.
+The full command surface is in the [reference](docs/reference.md). Guided tours and teaching material ship as external collections that link into cb - if the self-referential `cb:` graph is a lot to meet first, start with a lending-library style on-ramp collection (`mix bs --beliefs <path>`).
 
 ## Documentation
 

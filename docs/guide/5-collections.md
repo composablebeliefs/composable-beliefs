@@ -30,18 +30,18 @@ mix cb.verify.collection <ns>
 
 The namespace-to-path lookup is a small registry - a `collections.json` mapping each namespace to its collection (a `beliefs.json` file or a per-belief directory). The framework hardcodes no registry: a collection repo links INTO cb by supplying one, per invocation (`--registry PATH`), per session (`CB_COLLECTIONS`), or per host application (`config :cb, collections_registry:`). The framework's own graph is verified by the exact code path it offers every borrower - composition is not a special mode, just the ordinary case with more than one file loaded.
 
-**The live collection map.** The framework repo ships three collections of its own; the rest live in external collection repos that link into cb (the reference staging layout keeps them in a `belief-collections` repo):
+**The live collection map.** The framework repo ships three collections of its own; the rest live in external collection repos that link into cb:
 
 | Namespace | What it holds | Lives in |
 | --- | --- | --- |
 | `cb` | the framework's self-describing design graph: schema, mechanism, positioning | this repo, `beliefs/` |
 | `codepath` | the code-anchored tour of CB's own pipeline ([chapter 4](4-code.md)) | this repo, `codepath/` |
 | `cb-okf` | the operational graph of the cb-okf knowledge extension | this repo, `okf/` |
-| `lib` | the lending library, the gentle on-ramp collection (`cb:b459`) | belief-collections |
-| `agent-behavior` | the why: the catalogue of agent failure modes CB answers | belief-collections |
-| `paradigm` | the broader argument for the paradigm shift | belief-collections |
-| `method` | the shared eval methodology contracts ([chapter 7](7-eval-ledger.md)) | belief-collections |
-| `sdl`, `toy` | eval provenance: worked-example observations, agreements, verdicts | belief-collections |
+| `lib` | the lending library, the gentle on-ramp collection (`cb:b598`) | external |
+| `agent-behavior` | the why: the catalogue of agent failure modes CB answers | external |
+| `paradigm` | the broader argument for the paradigm shift | external |
+| `method` | the shared eval methodology contracts ([chapter 7](7-eval-ledger.md)) | external |
+| `sdl`, `toy` | eval provenance: worked-example observations, agreements, verdicts | external |
 
 Two clusters are worth naming. The eval cluster (`method` + `sdl` + `toy`) is the worked example of all four structural types outside `cb:` - it is where aggregations earn their keep, and where chapter 7 lands. The knowledge cluster (`cb-okf`) is the rest of this chapter. Both borrow `cb:` by role and add their own vocabulary on top - the eval collections declare an `eval:` artifact scheme that `cb:` itself never carries.
 

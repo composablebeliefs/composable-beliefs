@@ -9,11 +9,7 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
       cross-linked as a same-file `#anchor` (the only jump Zed's markdown preview
       follows) and a "Referenced beliefs" appendix carrying each cited belief's
       claim, deps, and its source line in the graph.
-    * `<staging-root>/cb-tut/assets/glossary-data.js` - the tutorial's
-      `window.GLOSSARY`, where the staging root is the parent of the
-      linked registry's directory.
-
-  Both outputs are generated; do not hand-edit them. Edit `glossary.data.json`
+  The output is generated; do not hand-edit it. Edit `glossary.data.json`
   and rerun. Referenced beliefs are resolved across collections via a
   registry the caller links in - the framework hardcodes no external
   collection: pass `--registry PATH` (a `collections.json`) or set the
@@ -21,14 +17,14 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
 
   ## Usage
 
-      mix cb.generate.glossary --registry PATH          - write both outputs
+      mix cb.generate.glossary --registry PATH          - write docs/glossary.md
       mix cb.generate.glossary --registry PATH --check  - rebuild in memory, diff, write nothing
 
   ## Exit codes
 
   0 = generated or check passed, 1 = check found drift
   """
-  @shortdoc "Generate the glossary doc and cb-tut data from glossary.data.json"
+  @shortdoc "Generate the glossary doc from glossary.data.json"
 
   use Mix.Task
 
@@ -50,23 +46,18 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
         )
 
     registry = Path.expand(registry)
-    # cb-tut sits beside the collections repo in the staging layout, so
-    # the staging root is the parent of the registry's directory.
-    amieval = registry |> Path.dirname() |> then(&Path.expand("..", &1))
 
     raw_json = File.read!(Path.join(docs, "glossary.data.json"))
     glossary = Jason.decode!(raw_json)
     index = load_belief_index(registry, docs)
 
     md = build_md(glossary, index)
-    js = build_js(raw_json)
 
     md_path = Path.join(docs, "glossary.md")
-    js_path = Path.join([amieval, "cb-tut", "assets", "glossary-data.js"])
 
     if check? do
       drift =
-        [{md_path, md}, {js_path, js}]
+        [{md_path, md}]
         |> Enum.filter(fn {p, content} -> File.read(p) != {:ok, content} end)
         |> Enum.map(&elem(&1, 0))
 
@@ -78,23 +69,9 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
       end
     else
       File.write!(md_path, md)
-      File.write!(js_path, js)
       refs = Regex.scan(~r/^### /m, md) |> length()
-      Mix.shell().info("glossary: wrote docs/glossary.md and cb-tut/assets/glossary-data.js (#{map_size(glossary)} terms, #{refs} referenced beliefs)")
+      Mix.shell().info("glossary: wrote docs/glossary.md (#{map_size(glossary)} terms, #{refs} referenced beliefs)")
     end
-  end
-
-  # ---- cb-tut/assets/glossary-data.js: the canonical json verbatim ----
-  defp build_js(raw_json) do
-    header = """
-    // Glossary data for cb-tut. Each entry: slug -> { name, short, def, also?, see? }
-    // House style: hyphens only, never em/en dashes (cb:a455).
-    // GENERATED from composable-beliefs/docs/glossary.data.json (the canonical source);
-    // do not edit by hand - edit the json and run `mix cb.generate.glossary`.
-    // Loaded by wiki.js as window.GLOSSARY; rendered alphabetically by name on glossary.html.
-    """
-
-    header <> "window.GLOSSARY = " <> String.trim_trailing(raw_json) <> ";\n"
   end
 
   # ---- belief index: id -> %{belief, line, file} across all collections ----
@@ -219,9 +196,8 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
       "# Glossary",
       "",
       "Every technical term across the Composable Beliefs codebase and design graph, defined for",
-      "a reader meeting it for the first time. This is the canonical home of the glossary; the",
-      "[cb-tut guide](../../cb-tut/glossary.html) renders the same content, generated from the",
-      "shared source `glossary.data.json` beside this file.",
+      "a reader meeting it for the first time. This is the canonical home of the glossary,",
+      "generated from the source `glossary.data.json` beside this file.",
       "",
       "Term names in a definition link to that term's entry, and belief ids (`cb:a478`, `cb:c051`,",
       "`method:c7`, ...) link to the [Referenced beliefs](#referenced-beliefs) section at the end,",

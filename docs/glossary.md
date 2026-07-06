@@ -1,11 +1,10 @@
 # Glossary
 
 Every technical term across the Composable Beliefs codebase and design graph, defined for
-a reader meeting it for the first time. This is the canonical home of the glossary; the
-[cb-tut guide](../../cb-tut/glossary.html) renders the same content, generated from the
-shared source `glossary.data.json` beside this file.
+a reader meeting it for the first time. This is the canonical home of the glossary,
+generated from the source `glossary.data.json` beside this file.
 
-Term names in a definition link to that term's entry, and belief ids (`cb:b478`, `cb:b051`,
+Term names in a definition link to that term's entry, and belief ids (`cb:a478`, `cb:c051`,
 `method:c7`, ...) link to the [Referenced beliefs](#referenced-beliefs) section at the end,
 where each carries its claim and its source line in the graph. In Zed, open the Markdown
 preview (`markdown: open preview`) so the in-document links are clickable.
@@ -38,7 +37,7 @@ Adjudication (CB.Belief.Adjudication, adjudication.ex) applies a captured human 
 
 ## Ampliative
 
-A move is ampliative when its conclusion outruns its premises - a generalization or an abduction whose content exceeds what was given ([cb:b473](#cba473), [cb:b472](#cba472)). The ampliative move is exactly what an [inference](#inference) records and exactly what a [compound](#compound) is forbidden from making, since a conjunction can carry no content its parts lack. The worked illustration: two scorers each report one omitted record on one case, and the inference that the model silently drops records from all such bulk writes ever is the ampliative leap no chain of deductive steps can bridge.
+A move is ampliative when its conclusion outruns its premises - a generalization or an abduction whose content exceeds what was given ([cb:b473](#cbb473), [cb:b472](#cbb472)). The ampliative move is exactly what an [inference](#inference) records and exactly what a [compound](#compound) is forbidden from making, since a conjunction can carry no content its parts lack. The worked illustration: two scorers each report one omitted record on one case, and the inference that the model silently drops records from all such bulk writes ever is the ampliative leap no chain of deductive steps can bridge.
 
 **See also:** [Inference](#inference), [Licensing](#licensing), [Problem of Induction](#problem-of-induction), [Subject Containment](#subject-containment)
 
@@ -50,7 +49,7 @@ An anchor is a literal substring that `CB.Anchor` (anchor.ex) matches per line, 
 
 ## Anchored-Position Format
 
-The anchored-position format ([cb:b550](#cba550), [cb:b551](#cba551)) is the document shape: a `**Class:**` header, then `### Claim:` sections each with optional `**Anchor:**` lines holding [code:](#code-scheme) URIs, verified resolving with exactly one match at authoring time via the [draft-mode](#draft-mode) resolver. Claim order is the default [codepath](#codepath) walk order, and an optional terms block carries `{term, definition, anchor?}`. It is what makes a [position](#position) directly renderable as a tour.
+The anchored-position format ([cb:b550](#cbb550), [cb:b551](#cbb551)) is the document shape: a `**Class:**` header, then `### Claim:` sections each with optional `**Anchor:**` lines holding [code:](#code-scheme) URIs, verified resolving with exactly one match at authoring time via the [draft-mode](#draft-mode) resolver. Claim order is the default [codepath](#codepath) walk order, and an optional terms block carries `{term, definition, anchor?}`. It is what makes a [position](#position) directly renderable as a tour.
 
 **See also:** [Position](#position), [Position vs Codepath](#position-vs-codepath), [Draft Mode](#draft-mode), [code: Scheme](#code-scheme), [Codepath](#codepath)
 
@@ -58,19 +57,19 @@ The anchored-position format ([cb:b550](#cba550), [cb:b551](#cba551)) is the doc
 
 *Also: NL above the substrate*
 
-Answer-time anchoring ([cb:b488](#cba488), [cb:b485](#cba485)) requires that agent claims about code carry [code:](#code-scheme) anchors that resolve at read time, and an unresolvable anchor is an ungrounded claim. It rests on the broader point that prose discussion is productive exactly when every claim terminates in an anchor into the running substrate ([cb:b485](#cba485), [cb:b484](#cba484)), and that reading code re-scopes attention to the anchored stops carrying an argument - the editor as an adjudication surface ([cb:b486](#cba486), [cb:b487](#cba487)). Its verification gate is [draft mode](#draft-mode).
+Answer-time anchoring ([cb:b488](#cbb488), [cb:b485](#cbb485)) requires that agent claims about code carry [code:](#code-scheme) anchors that resolve at read time, and an unresolvable anchor is an ungrounded claim. It rests on the broader point that prose discussion is productive exactly when every claim terminates in an anchor into the running substrate ([cb:b485](#cbb485), [cb:b484](#cbb484)), and that reading code re-scopes attention to the anchored stops carrying an argument - the editor as an adjudication surface ([cb:b486](#cbb486), [cb:b487](#cbb487)). Its verification gate is [draft mode](#draft-mode).
 
 **See also:** [Natural Language Above the Substrate](#natural-language-above-the-substrate), [Draft Mode](#draft-mode), [code: Scheme](#code-scheme), [Anchor](#anchor), [Three-Tier Anchor Verification](#three-tier-anchor-verification)
 
 ## Artifact
 
-The `artifact` field carries provenance as a typed URI `scheme:id` naming the external referent a belief was derived from ([cb:b398](#cba398), [cb:b400](#cba400), [cb:b056](#cbc056)). Every [primitive](#primitive) cites one artifact; the scheme is drawn from the closed [artifact-scheme](#artifact-scheme) enum [cb:b066](#cbc066) and must match `^[a-z][a-z0-9_-]*:.+` (verifier.ex:237). It replaced the old quote/source pair, separating the typed referent from the dated [evidence](#evidence) that grounds the claim. See provenance.
+The `artifact` field carries provenance as a typed URI `scheme:id` naming the external referent a belief was derived from ([cb:b398](#cbb398), [cb:b400](#cbb400), [cb:b056](#cbb056)). Every [primitive](#primitive) cites one artifact; the scheme is drawn from the closed [artifact-scheme](#artifact-scheme) enum [cb:b066](#cbb066) and must match `^[a-z][a-z0-9_-]*:.+` (verifier.ex:237). It replaced the old quote/source pair, separating the typed referent from the dated [evidence](#evidence) that grounds the claim. See provenance.
 
 **See also:** [Artifact Scheme](#artifact-scheme), [code: Scheme](#code-scheme), [Evidence](#evidence), [Primitive](#primitive), [Stipulation Artifact](#stipulation-artifact)
 
 ## Artifact Scheme
 
-The artifact scheme is the lowercase token before the first colon of an [artifact](#artifact) URI, drawn from the closed enum [cb:b066](#cbc066): `document:` (a whole repo file), `code:` (an anchored within-file site), `session:`, `user:`, `source:` (a cached source doc), `https:`, and `plan:` ([cb:b407](#cba407)). The `code:` scheme was the b040-to-b043 addition and b066 dropped the connector-specific `gmail:`. Adding a value supersedes the whole enum contract ([cb:b397](#cba397)). Collections may declare their own schemes - the `method:` collection adds [eval:](#eval-scheme). The subset that can ground a directive is the [stipulation](#stipulation-artifact) set.
+The artifact scheme is the lowercase token before the first colon of an [artifact](#artifact) URI, drawn from the closed enum [cb:b066](#cbb066): `document:` (a whole repo file), `code:` (an anchored within-file site), `session:`, `user:`, `source:` (a cached source doc), `https:`, and `plan:` ([cb:b407](#cbb407)). The `code:` scheme was the b040-to-b043 addition and b066 dropped the connector-specific `gmail:`. Adding a value supersedes the whole enum contract ([cb:b397](#cbb397)). Collections may declare their own schemes - the `method:` collection adds [eval:](#eval-scheme). The subset that can ground a directive is the [stipulation](#stipulation-artifact) set.
 
 **See also:** [Artifact](#artifact), [code: Scheme](#code-scheme), [eval: Scheme](#eval-scheme), [Stipulation Artifact](#stipulation-artifact), [enum-registry](#enum-registry)
 
@@ -94,19 +93,19 @@ The audit tree is the published artifact (`mix cb.render.audit`, CB.Render.Audit
 
 ## Author Against the Live Graph
 
-The discipline is to author against the live graph, never from memory ([cb:b504](#cba504), [cb:b508](#cba508)): pull the repos, query the [desk](#the-desk), and follow artifacts before minting a belief, because multiple sessions write concurrently and a memory snapshot rots the moment another thread pushes. It is the operating-procedure consequence of treating [session memory as an ephemeral cache](#session-memory-as-ephemeral-cache), and the reason the [recency](#recency) view exists.
+The discipline is to author against the live graph, never from memory ([cb:b504](#cbb504), [cb:b508](#cbb508)): pull the repos, query the [desk](#the-desk), and follow artifacts before minting a belief, because multiple sessions write concurrently and a memory snapshot rots the moment another thread pushes. It is the operating-procedure consequence of treating [session memory as an ephemeral cache](#session-memory-as-ephemeral-cache), and the reason the [recency](#recency) view exists.
 
 **See also:** [The Desk](#the-desk), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Recency](#recency), [Consensus Mechanism](#consensus-mechanism), [Self-Bootstrapping Directive](#self-bootstrapping-directive)
 
 ## Axiom Is a Role
 
-CB has no axiom type: being foundational is a role a belief earns through fan-in, read off `mix bs dependents`, not a flag it declares ([cb:b506](#cba506)). The most-depended-on nodes ([cb:b467](#cba467), [cb:b470](#cba470), [cb:b485](#cba485) and a few others) are functionally axiomatic by how much rests on them, yet they remain ordinary revisable beliefs subject to the same write flow. This keeps the graph free of privileged nodes that escape supersession, consistent with the [no maintenance hatch](#no-maintenance-hatch) principle.
+CB has no axiom type: being foundational is a role a belief earns through fan-in, read off `mix bs dependents`, not a flag it declares ([cb:b506](#cbb506)). The most-depended-on nodes ([cb:b467](#cbb467), [cb:b470](#cbb470), [cb:b485](#cbb485) and a few others) are functionally axiomatic by how much rests on them, yet they remain ordinary revisable beliefs subject to the same write flow. This keeps the graph free of privileged nodes that escape supersession, consistent with the [no maintenance hatch](#no-maintenance-hatch) principle.
 
 **See also:** [No Maintenance Hatch](#no-maintenance-hatch), [Deps](#deps), [Supersession](#supersession), [Dependency Closure / Union](#dependency-closure--union)
 
 ## Belief
 
-A belief is the unit node of the DAG: one structured `%CB.Belief{}` claim about the world carrying a structural [type](#structural-type), a [kind](#kind), a [domain](#domain), a one-line [claim](#claim), provenance or [deps](#deps), [subjects](#subjects), and a [status](#status-lifecycle) ([cb:b478](#cba478), lib/cb/belief.ex). Beliefs are immutable: a change means a new node, never an in-place edit. In memory the whole graph is a flat list of these structs with deps as the only edges.
+A belief is the unit node of the DAG: one structured `%CB.Belief{}` claim about the world carrying a structural [type](#structural-type), a [kind](#kind), a [domain](#domain), a one-line [claim](#claim), provenance or [deps](#deps), [subjects](#subjects), and a [status](#status-lifecycle) ([cb:b478](#cbb478), lib/cb/belief.ex). Beliefs are immutable: a change means a new node, never an in-place edit. In memory the whole graph is a flat list of these structs with deps as the only edges.
 
 **See also:** [Structural Type](#structural-type), [Claim](#claim), [Deps](#deps), [Subjects](#subjects), [Immutability](#immutability)
 
@@ -120,7 +119,7 @@ The belief shell (`mix bs`, Mix.Tasks.Bs, bs.ex) is the deterministic, LLM-free 
 
 ## Beliefs vs Contracts
 
-Beliefs and contracts are two roles sharing one store ([cb:b120](#cba120)): a belief says this is true, while a contract says this will remain true. The consequence is different lifecycles - a belief becomes [stale](#staleness) and gets superseded, while a [contract](#contract) gets violated or upheld. Because both live in the same graph with the same schema, a behavioral invariant can start life as a prompt-enforced directive and be elevated to a code-enforced contract once code crystallizes around it - [inferences are prototypes for contracts](#inferences-as-contract-prototypes).
+Beliefs and contracts are two roles sharing one store ([cb:b120](#cbb120)): a belief says this is true, while a contract says this will remain true. The consequence is different lifecycles - a belief becomes [stale](#staleness) and gets superseded, while a [contract](#contract) gets violated or upheld. Because both live in the same graph with the same schema, a behavioral invariant can start life as a prompt-enforced directive and be elevated to a code-enforced contract once code crystallizes around it - [inferences are prototypes for contracts](#inferences-as-contract-prototypes).
 
 **See also:** [Contract](#contract), [Inferences as Contract Prototypes](#inferences-as-contract-prototypes), [Staleness](#staleness), [Directive](#directive)
 
@@ -134,37 +133,37 @@ A ring is build-order, not architecture: a capability is exercised when a real u
 
 *Also: a-prefix, c-prefix*
 
-Local id prefixes encode grade by convention: `c###` is reserved for [contract](#contract)-grade beliefs and `a###` for everything else (adjudication.ex, verifier.ex:586). The verifier enforces that every `c`-prefixed local id carries `contract: true`, and id generation stamps the right prefix on new nodes. The prefix is convention only and never the identity test: contract status is detected structurally via `CB.Belief.contract?/1` ([cb:b054](#cbc054)), so a contract is known by its non-empty rules or invariants, not its id.
+Local id prefixes encode grade by convention: `c###` is reserved for [contract](#contract)-grade beliefs and `a###` for everything else (adjudication.ex, verifier.ex:586). The verifier enforces that every `c`-prefixed local id carries `contract: true`, and id generation stamps the right prefix on new nodes. The prefix is convention only and never the identity test: contract status is detected structurally via `CB.Belief.contract?/1` ([cb:b054](#cbb054)), so a contract is known by its non-empty rules or invariants, not its id.
 
 **See also:** [Contract](#contract), [Namespaced ID](#namespaced-id), [Schema Verifier](#schema-verifier)
 
 ## CB Is the Ledger, Not the Bench
 
-CB is the ledger, not the lab bench (docs/eval-ledger.md, [cb:b539](#cba539)): eval execution stays in an external [harness](#harness), and CB ingests the [run-manifest](#run-manifest) output records and never grows toward execution. The division of labor is enforced by the tool's shape - [import.eval](#importeval) emits observation primitives only. Refusing to absorb the bench keeps CB's deterministic, LLM-free read path intact, the same boundary as [reasoning substrate, not memory](#reasoning-substrate-not-memory).
+CB is the ledger, not the lab bench (docs/eval-ledger.md, [cb:b539](#cbb539)): eval execution stays in an external [harness](#harness), and CB ingests the [run-manifest](#run-manifest) output records and never grows toward execution. The division of labor is enforced by the tool's shape - [import.eval](#importeval) emits observation primitives only. Refusing to absorb the bench keeps CB's deterministic, LLM-free read path intact, the same boundary as [reasoning substrate, not memory](#reasoning-substrate-not-memory).
 
 **See also:** [Harness](#harness), [Run-Manifest](#run-manifest), [import.eval](#importeval), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Eval Ledger](#eval-ledger)
 
 ## cb-okf: Collection
 
-`cb-okf:` is CB's OKF integration extension, folded into `composable-beliefs/okf/` ([cb:b546](#cba546)), a namespace that depends on `cb:` and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance ([cb:b544](#cba544)) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.
+`cb-okf:` is CB's OKF integration extension, folded into `composable-beliefs/okf/`, a namespace that depends on `cb:` and borrows its schema vocabulary. The name marks it as CB's dialect of OKF: the OKF floor (markdown + frontmatter + index) plus CB's additions - an agent-index manifest and a two-tier model - rather than being OKF-native. Its eval relevance ([cb:b544](#cbb544)) is to run the DAG-versus-prose study with an OKF/Karpathy agent-maintained wiki as the credible prose baseline the structured arm must beat.
 
 **See also:** [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [tier: cb](#tier-cb), [DAG-vs-Prose Eval](#dag-vs-prose-eval), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
 
 ## cb: Holds Only What and How
 
-The `cb:` collection holds only the framework's what and how - schema, mechanism, positioning - while the motivating why lives elsewhere: agent failure modes in `agent-behavior:` and the paradigm argument in `paradigm:` ([cb:b464](#cba464), [cb:b492](#cba492)). Because `cb:` depends only within itself, the framework ships clean and self-contained, without the narrative that motivated it. This is the collection-level expression of keeping the substrate consumer-blind.
+The `cb:` collection holds only the framework's what and how - schema, mechanism, positioning - while the motivating why lives elsewhere: agent failure modes in `agent-behavior:` and the paradigm argument in `paradigm:` ([cb:b464](#cbb464), [cb:b492](#cbb492)). Because `cb:` depends only within itself, the framework ships clean and self-contained, without the narrative that motivated it. This is the collection-level expression of keeping the substrate consumer-blind.
 
 **See also:** [Namespace](#namespace), [Collection](#collection), [Self-Referential Beliefs](#self-referential-beliefs), [Proving Ground](#proving-ground)
 
 ## Centralized Single-File Graph
 
-A centralized single-file graph is preferred over per-entity belief files ([cb:b112](#cba112)): the whole collection lives in one `beliefs.json`, which keeps it queryable as a unit, diffable in git, and [atomically](#atomic-write) writable. The [_keys](#_keys-shadow-field) round-trip is what makes rewriting the whole array on every write practical. It is the storage decision underneath the [store boundary](#store-boundary).
+A centralized single-file graph is preferred over per-entity belief files ([cb:b112](#cbb112)): the whole collection lives in one `beliefs.json`, which keeps it queryable as a unit, diffable in git, and [atomically](#atomic-write) writable. The [_keys](#_keys-shadow-field) round-trip is what makes rewriting the whole array on every write practical. It is the storage decision underneath the [store boundary](#store-boundary).
 
 **See also:** [Store Boundary](#store-boundary), [Atomic Write](#atomic-write), [_keys Shadow Field](#_keys-shadow-field), [Collection](#collection), [Pure Graph Over One File](#pure-graph-over-one-file)
 
 ## Ceremony Proportionate to Stance
 
-Persistence ceremony is proportionate to stance ([cb:b496](#cba496)): a [position](#position) document earns its keep when the reasoning itself is the artifact, while an observation with an obvious prescription skips the document and goes straight in as a [directive](#directive). The justification is practical - if every wart became a three-artifact pipeline, the pipeline would stop being read. It is the same proportionality that governs which sessions persist verbatim.
+Persistence ceremony is proportionate to stance ([cb:b496](#cbb496)): a [position](#position) document earns its keep when the reasoning itself is the artifact, while an observation with an obvious prescription skips the document and goes straight in as a [directive](#directive). The justification is practical - if every wart became a three-artifact pipeline, the pipeline would stop being read. It is the same proportionality that governs which sessions persist verbatim.
 
 **See also:** [Position](#position), [Decision-Weight Session](#decision-weight-session), [Directive](#directive), [Chronicle](#chronicle)
 
@@ -176,13 +175,13 @@ A chronicle ([cb:b520](#cbb520), superseded by [cb:b578](#cbb578)) was a dated p
 
 ## Claim
 
-The `claim` is the atomic one-liner a belief asserts, and it is the only field that survives into compiled output rendering (output_target.ex:131). Stuffing a multi-paragraph analysis into a claim inverts the relationship - the prose becomes the point and the claim becomes a title - so analyses live as source documents citing belief ids inline ([cb:b114](#cba114)). For descriptive beliefs the claim is the generalization the author is responsible for; the gap between it and the [evidence](#evidence) is where misinterpretation can be audited.
+The `claim` is the atomic one-liner a belief asserts, and it is the only field that survives into compiled output rendering (output_target.ex:131). Stuffing a multi-paragraph analysis into a claim inverts the relationship - the prose becomes the point and the claim becomes a title - so analyses live as source documents citing belief ids inline ([cb:b114](#cbb114)). For descriptive beliefs the claim is the generalization the author is responsible for; the gap between it and the [evidence](#evidence) is where misinterpretation can be audited.
 
 **See also:** [Claim / Evidence Gap](#claim--evidence-gap), [Evidence](#evidence), [Structural Type](#structural-type), [Compiled Document](#compiled-document)
 
 ## Claim / Evidence Gap
 
-The claim/evidence gap is the deliberate separation between the [claim](#claim) (the agent's interpretation, a generalization) and the [evidence](#evidence) detail (the factual narrative of what the source actually said) ([cb:b118](#cba118), [cb:b124](#cba124)). The gap is where misinterpretation lives, so it is made inspectable: a future session can ask whether the claim actually follows from these words. Keeping the two in distinct fields is what makes provenance auditable rather than asserted.
+The claim/evidence gap is the deliberate separation between the [claim](#claim) (the agent's interpretation, a generalization) and the [evidence](#evidence) detail (the factual narrative of what the source actually said) ([cb:b118](#cbb118), [cb:b124](#cbb124)). The gap is where misinterpretation lives, so it is made inspectable: a future session can ask whether the claim actually follows from these words. Keeping the two in distinct fields is what makes provenance auditable rather than asserted.
 
 **See also:** [Claim](#claim), [Evidence](#evidence), [Extraction-Time Discipline](#extraction-time-discipline), [Field Presence by Type](#field-presence-by-type)
 
@@ -190,7 +189,7 @@ The claim/evidence gap is the deliberate separation between the [claim](#claim) 
 
 *Also: nth selector*
 
-The code locator (CB.CodeLocator, code_locator.ex) parses a [code:](#code-scheme) artifact: the path runs to the first `#`, everything after is one opaque literal-substring [anchor](#anchor) (which may itself contain `#`), and an optional trailing `@N` selects the Nth match (a literal trailing `@digits` is percent-encoded as `%40digits`). It stores no line numbers; resolution happens at read time so refactors do not break the path ([cb:b467](#cba467)). It is the single parser the verifier and renderer share.
+The code locator (CB.CodeLocator, code_locator.ex) parses a [code:](#code-scheme) artifact: the path runs to the first `#`, everything after is one opaque literal-substring [anchor](#anchor) (which may itself contain `#`), and an optional trailing `@N` selects the Nth match (a literal trailing `@digits` is percent-encoded as `%40digits`). It stores no line numbers; resolution happens at read time so refactors do not break the path ([cb:b467](#cbb467)). It is the single parser the verifier and renderer share.
 
 **See also:** [code: Scheme](#code-scheme), [Anchor](#anchor), [Codepath](#codepath), [Answer-Time Anchoring](#answer-time-anchoring), [Draft Mode](#draft-mode)
 
@@ -198,13 +197,13 @@ The code locator (CB.CodeLocator, code_locator.ex) parses a [code:](#code-scheme
 
 *Also: code locator scheme*
 
-The `code:` scheme names an anchored site in a source file: `code:<repo-relative-path>#<anchor>[@N]` ([cb:b467](#cba467), parsed by [CB.CodeLocator](#code-locator)). Everything after the first `#` is one opaque literal-substring [anchor](#anchor), with an optional `@N` occurrence selector. Line numbers are never stored; they are resolved at render or run time by fixed-string match, so refactors do not break the path ([cb:b066](#cbc066)). It is the scheme behind [answer-time anchoring](#answer-time-anchoring) and [codepaths](#codepath).
+The `code:` scheme names an anchored site in a source file: `code:<repo-relative-path>#<anchor>[@N]` ([cb:b467](#cbb467), parsed by [CB.CodeLocator](#code-locator)). Everything after the first `#` is one opaque literal-substring [anchor](#anchor), with an optional `@N` occurrence selector. Line numbers are never stored; they are resolved at render or run time by fixed-string match, so refactors do not break the path ([cb:b066](#cbb066)). It is the scheme behind [answer-time anchoring](#answer-time-anchoring) and [codepaths](#codepath).
 
 **See also:** [Code Locator](#code-locator), [Anchor](#anchor), [Codepath](#codepath), [Answer-Time Anchoring](#answer-time-anchoring), [Artifact Scheme](#artifact-scheme)
 
 ## Codepath
 
-A codepath is a code-anchored belief collection that is simultaneously a narrated, branching tour of real source and a runnable test suite over it - same artifact, one gradient: assertions off is a guided walk, assertions on means contract-grade stops execute their routed predicates ([cb:b467](#cba467), CB.Codepath, codepath.ex). Each role has one home: location is the [code:](#code-scheme) artifact, narration is the [claim](#claim), derivation is the [deps](#deps), assertion is the [implies](#implies) rules, and order is a separate [render-spec](#codepath-render-spec). It extends CB's signature property - traverse from a verdict to the exact raw run - one level deeper, into the code. See codepaths.
+A codepath is a code-anchored belief collection that is simultaneously a narrated, branching tour of real source and a runnable test suite over it - same artifact, one gradient: assertions off is a guided walk, assertions on means contract-grade stops execute their routed predicates ([cb:b467](#cbb467), CB.Codepath, codepath.ex). Each role has one home: location is the [code:](#code-scheme) artifact, narration is the [claim](#claim), derivation is the [deps](#deps), assertion is the [implies](#implies) rules, and order is a separate [render-spec](#codepath-render-spec). It extends CB's signature property - traverse from a verdict to the exact raw run - one level deeper, into the code. See codepaths.
 
 **See also:** [Codepath Render-Spec](#codepath-render-spec), [Code Locator](#code-locator), [Anchor](#anchor), [Assertions Gradient](#assertions-gradient), [Inspection-Only Predicates](#inspection-only-predicates)
 
@@ -212,13 +211,13 @@ A codepath is a code-anchored belief collection that is simultaneously a narrate
 
 *Also: render_steps, entry*
 
-The codepath render-spec ([cb:b049](#cbc049)) is an [output-target](#output-target) contract tagged `output:codepath`, carrying an `entry` step id and `render_steps` rows of shape `{id, belief, goto?, choices?}` (output_target.ex). Navigation is render metadata that never enters [deps](#deps) and never lives in [claims](#claim), so reordering supersedes the render-spec rather than the claims, and the spec's deps equal the union of the rows' belief ids. Traversal is depth-first from `entry`, visited-guarded so cycles terminate.
+The codepath render-spec ([cb:b049](#cbb049)) is an [output-target](#output-target) contract tagged `output:codepath`, carrying an `entry` step id and `render_steps` rows of shape `{id, belief, goto?, choices?}` (output_target.ex). Navigation is render metadata that never enters [deps](#deps) and never lives in [claims](#claim), so reordering supersedes the render-spec rather than the claims, and the spec's deps equal the union of the rows' belief ids. Traversal is depth-first from `entry`, visited-guarded so cycles terminate.
 
 **See also:** [Codepath](#codepath), [Output Target](#output-target), [Dynamic Verifier](#dynamic-verifier), [Deps](#deps)
 
 ## Collection
 
-A collection is a `beliefs.json` graph in a declared [namespace](#namespace), with a sibling `manifest.json` carrying `namespace`, `description`, and cross-namespace [depends_on](#depends_on--borrowing-by-role) ([cb:b463](#cba463), CB.Collection, collection.ex). Any collection is queryable with `mix bs --beliefs PATH` or `CB_BELIEFS`. The live map of every collection is [collections.json](#collections-registry); examples include `cb`, `agent-behavior`, `method`, `sdl`, and `toy`. See collections and namespaces.
+A collection is a `beliefs.json` graph in a declared [namespace](#namespace), with a sibling `manifest.json` carrying `namespace`, `description`, and cross-namespace [depends_on](#depends_on--borrowing-by-role) ([cb:b463](#cbb463), CB.Collection, collection.ex). Any collection is queryable with `mix bs --beliefs PATH` or `CB_BELIEFS`. The live map of every collection is [collections.json](#collections-registry); examples include `cb`, `agent-behavior`, `method`, `sdl`, and `toy`. See collections and namespaces.
 
 **See also:** [Namespace](#namespace), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [Dependency Closure / Union](#dependency-closure--union), [Collections Registry](#collections-registry), [Lending Library (lib:)](#lending-library-lib)
 
@@ -226,7 +225,7 @@ A collection is a `beliefs.json` graph in a declared [namespace](#namespace), wi
 
 *Also: collections.json*
 
-The collections registry is `collections.json`, mapping each [namespace](#namespace) to the relative path of its `beliefs.json` (CB.Collection.Registry, collection.ex:34). Dependency [closures](#dependency-closure--union) resolve against it, so `mix cb.verify.collection` can find every depended-on graph. It is the local SSOT for which collections exist and where they live ([cb:b464](#cba464)), the live map prose files route to rather than enumerate.
+The collections registry is `collections.json`, mapping each [namespace](#namespace) to the relative path of its `beliefs.json` (CB.Collection.Registry, collection.ex:34). Dependency [closures](#dependency-closure--union) resolve against it, so `mix cb.verify.collection` can find every depended-on graph. It is the local SSOT for which collections exist and where they live ([cb:b464](#cbb464)), the live map prose files route to rather than enumerate.
 
 **See also:** [Collection](#collection), [Namespace](#namespace), [Dependency Closure / Union](#dependency-closure--union), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [Cross-Collection Desk (Future)](#cross-collection-desk-future)
 
@@ -234,7 +233,7 @@ The collections registry is `collections.json`, mapping each [namespace](#namesp
 
 *Also: CLAUDE.md, render_sections*
 
-A compiled document is generated from the graph: CLAUDE.md compiles from the beliefs an [output target](#output-target) names in `render_sections` ([cb:b060](#cbc060), [cb:b065](#cbc065), [cb:b466](#cba466), [cb:b482](#cba482)), so it is read-only, every line traces to one belief [claim](#claim), and CI gates the committed file against the graph. Compiled output also carries the source belief ids for traceability ([cb:b517](#cba517)). Rendering live and gating in CI is the structural answer to the [digest antipattern](#digest-file-antipattern).
+A compiled document is generated from the graph: CLAUDE.md compiles from the beliefs an [output target](#output-target) names in `render_sections` ([cb:b060](#cbb060), [cb:b065](#cbb065), [cb:b466](#cbb466), [cb:b482](#cbb482)), so it is read-only, every line traces to one belief [claim](#claim), and CI gates the committed file against the graph. Compiled output also carries the source belief ids for traceability ([cb:b517](#cbb517)). Rendering live and gating in CI is the structural answer to the [digest antipattern](#digest-file-antipattern).
 
 **See also:** [Output Target](#output-target), [Compiled Face vs Rendered Face](#compiled-face-vs-rendered-face), [Digest-File Antipattern](#digest-file-antipattern), [Claim](#claim), [Schema as Contracts](#schema-as-contracts)
 
@@ -246,7 +245,7 @@ The graph has two output faces: [compiled documents](#compiled-document) face th
 
 ## Composable Beliefs
 
-Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; [cb:b478](#cba478)). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the `cb:` collection and is exercised as a reasoning and audit substrate by host applications, the first being the eval evidence ledger. See [belief](#belief) and [structural type](#structural-type).
+Composable Beliefs (CB) is a framework for storing reasoning as a directed acyclic graph of typed, immutable, source-grounded claims, so that what one session concludes is readable and auditable by every later session and subagent without re-derivation (thesis; [cb:b478](#cbb478)). It is a pure deterministic graph over one JSON file (lib/cb/belief.ex), with an LLM-free read path so trust comes from structure and cited evidence. The framework ships as the `cb:` collection and is exercised as a reasoning and audit substrate by host applications, the first being the eval evidence ledger. See [belief](#belief) and [structural type](#structural-type).
 
 **See also:** [Belief](#belief), [Structural Type](#structural-type), [In-Memory Model](#in-memory-model), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Composition Over Retrieval](#composition-over-retrieval)
 
@@ -254,7 +253,7 @@ Composable Beliefs (CB) is a framework for storing reasoning as a directed acycl
 
 *Also: RAG boundary*
 
-Composition over retrieval ([cb:b462](#cba462), [cb:b539](#cba539)) names where the DAG's value lies: concluding what follows from combining facts, and surfacing questions no single document contains, rather than finding known context the way retrieval-augmented generation does. RAG finds known answers; this graph's payoff is the [inference](#inference) a single document cannot hold. It is the reason CB stays a [reasoning substrate](#reasoning-substrate-not-memory) and refuses to grow into a recall system.
+Composition over retrieval ([cb:b462](#cbb462), [cb:b539](#cbb539)) names where the DAG's value lies: concluding what follows from combining facts, and surfacing questions no single document contains, rather than finding known context the way retrieval-augmented generation does. RAG finds known answers; this graph's payoff is the [inference](#inference) a single document cannot hold. It is the reason CB stays a [reasoning substrate](#reasoning-substrate-not-memory) and refuses to grow into a recall system.
 
 **See also:** [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Inference](#inference), [Compound](#compound), [Shared Prosthetic](#shared-prosthetic)
 
@@ -262,19 +261,19 @@ Composition over retrieval ([cb:b462](#cba462), [cb:b539](#cba539)) names where 
 
 *Also: aggregate*
 
-A compound records the operation aggregate: a conjunction whose claim states exactly what its [deps](#deps) (two or more) jointly state, no more ([cb:b051](#cbc051), [cb:b474](#cba474), the strict-aggregate doctrine). It is the one deduction the schema stores ([cb:b473](#cba473)): A and B, therefore A-and-B is truth-preserving and non-ampliative, and its epistemic work is the selection of what to assemble and the naming of the agreement. [Subject containment](#subject-containment) ([cb:b058](#cbc058)) is its formal shadow: a compound's subject refs must be a subset of the union of its deps' subject refs. The framework's own `cb:` graph holds no compounds; they are exercised in eval collections as [cross-ruler agreement](#cross-ruler-agreement).
+A compound records the operation aggregate: a conjunction whose claim states exactly what its [deps](#deps) (two or more) jointly state, no more ([cb:b051](#cbb051), [cb:b474](#cbb474), the strict-aggregate doctrine). It is the one deduction the schema stores ([cb:b473](#cbb473)): A and B, therefore A-and-B is truth-preserving and non-ampliative, and its epistemic work is the selection of what to assemble and the naming of the agreement. [Subject containment](#subject-containment) ([cb:b058](#cbb058)) is its formal shadow: a compound's subject refs must be a subset of the union of its deps' subject refs. The framework's own `cb:` graph holds no compounds; they are exercised in eval collections as [cross-ruler agreement](#cross-ruler-agreement).
 
 **See also:** [Primitive](#primitive), [Inference](#inference), [Strict-Aggregate Doctrine](#strict-aggregate-doctrine), [Subject Containment](#subject-containment), [Cross-Ruler Agreement](#cross-ruler-agreement)
 
 ## Conflict Audit
 
-The conflict audit (CB.Audit.Conflicts, audit/conflicts.ex) surfaces two things for review: stale overrides (active nodes depping on superseded or retracted nodes) and scope overlaps (pairs of active directives sharing [conflict scope](#conflict-scope)). An overlap is a candidate for human judgment, never a verdict - semantic contradiction needs a reviewer ([cb:b055](#cbc055)). It is exposed as `mix cb.audit.conflicts` with filters for tag, domain, and a single related node.
+The conflict audit (CB.Audit.Conflicts, audit/conflicts.ex) surfaces two things for review: stale overrides (active nodes depping on superseded or retracted nodes) and scope overlaps (pairs of active directives sharing [conflict scope](#conflict-scope)). An overlap is a candidate for human judgment, never a verdict - semantic contradiction needs a reviewer ([cb:b055](#cbb055)). It is exposed as `mix cb.audit.conflicts` with filters for tag, domain, and a single related node.
 
 **See also:** [Conflict Scope](#conflict-scope), [Semantic Contact](#semantic-contact), [Staleness](#staleness), [Adjudication](#adjudication)
 
 ## Conflict Scope
 
-Two active [directives](#directive) are in conflict scope when they overlap on at least one axis - a shared tag, subject ref, or subject type - within the same [domain](#domain) ([cb:b055](#cbc055), supersedes [cb:b032](#cbc032)). Overlap is symmetric, never reflexive, and never cross-domain, and it is necessary but not sufficient for contradiction. Contradictory [inferences](#inference) are dissent, out of this audit's scope (consensus-thread work). The pressure behind requiring [adjudication](#adjudication) is that contradictions in the governance substrate must be expensive to introduce ([cb:b304](#cba304)).
+Two active [directives](#directive) are in conflict scope when they overlap on at least one axis - a shared tag, subject ref, or subject type - within the same [domain](#domain) ([cb:b055](#cbb055), supersedes [cb:b032](#cbb032)). Overlap is symmetric, never reflexive, and never cross-domain, and it is necessary but not sufficient for contradiction. Contradictory [inferences](#inference) are dissent, out of this audit's scope (consensus-thread work). The pressure behind requiring [adjudication](#adjudication) is that contradictions in the governance substrate must be expensive to introduce ([cb:b304](#cbb304)).
 
 **See also:** [Conflict Audit](#conflict-audit), [Semantic Contact](#semantic-contact), [Adjudication](#adjudication), [Domain](#domain), [Tags](#tags)
 
@@ -282,7 +281,7 @@ Two active [directives](#directive) are in conflict scope when they overlap on a
 
 *Also: consensual primitives*
 
-The consensus mechanism ([cb:b387](#cba387), [cb:b304](#cba304)) is the design root behind the write flow: surface conflicts at authoring time, route resolution through [adjudication](#adjudication) (human, multi-agent, or tiered by conflict weight), and produce a recorded outcome. Without it the authoring surface would depend on agent memory, which rots as concurrent threads push. Open extensions are consensual primitives (per-source attestations plus a consensus compound, [cb:b494](#cba494)) and multi-agent reconciliation ([cb:b495](#cba495)). It is why contradictions in the governance substrate are expensive to introduce.
+The consensus mechanism ([cb:b387](#cbb387), [cb:b304](#cbb304)) is the design root behind the write flow: surface conflicts at authoring time, route resolution through [adjudication](#adjudication) (human, multi-agent, or tiered by conflict weight), and produce a recorded outcome. Without it the authoring surface would depend on agent memory, which rots as concurrent threads push. Open extensions are consensual primitives (per-source attestations plus a consensus compound, [cb:b494](#cbb494)) and multi-agent reconciliation ([cb:b495](#cbb495)). It is why contradictions in the governance substrate are expensive to introduce.
 
 **See also:** [Preflight](#preflight), [Adjudication](#adjudication), [Write Flow](#write-flow), [Author Against the Live Graph](#author-against-the-live-graph), [Conflict Scope](#conflict-scope)
 
@@ -290,7 +289,7 @@ The consensus mechanism ([cb:b387](#cba387), [cb:b304](#cba304)) is the design r
 
 *Also: contract-grade*
 
-A contract is a [directive](#directive) formalized to machine-checkable grade, carrying `contract: true` with non-empty [rules](#rules) or [invariants](#invariants) ([cb:b054](#cbc054), founding def [cb:b300](#cba300)). Where an inference states WHAT (the conclusion), a contract states HOW (rules as Given/When/Then) and ALWAYS (invariants). Contract is a structural grade of a directive, never a fourth type, and it is detected structurally via `CB.Belief.contract?/1`, with the [c-prefix](#c-prefix--a-prefix) being convention only (belief.ex:118). See contracts.
+A contract is a [directive](#directive) formalized to machine-checkable grade, carrying `contract: true` with non-empty [rules](#rules) or [invariants](#invariants) ([cb:b054](#cbb054), founding def [cb:b300](#cbb300)). Where an inference states WHAT (the conclusion), a contract states HOW (rules as Given/When/Then) and ALWAYS (invariants). Contract is a structural grade of a directive, never a fourth type, and it is detected structurally via `CB.Belief.contract?/1`, with the [c-prefix](#c-prefix--a-prefix) being convention only (belief.ex:118). See contracts.
 
 **See also:** [Beliefs vs Contracts](#beliefs-vs-contracts), [Rule-Kind Catalogue](#rule-kind-catalogue), [Routing / Implementation Boundary](#routing--implementation-boundary), [Verification, Not Generation](#verification-not-generation), [c-Prefix / a-Prefix](#c-prefix--a-prefix)
 
@@ -302,37 +301,37 @@ A contract interpreter is one generic Elixir module per contract [kind](#kind) t
 
 ## Cross-Collection Desk (Future)
 
-The cross-collection desk ([cb:b500](#cba500), [cb:b543](#cba543)) is an open extension: one query surface for [unmaterialized discrete directives](#unlinked-directive) across all registered collections, rather than per-collection, with a global directive graph living in dotfiles. It generalizes [the desk](#the-desk) from a single graph to the whole working tree, so an operator can see every obligation in one place.
+The cross-collection desk ([cb:b500](#cbb500), [cb:b543](#cbb543)) is an open extension: one query surface for [unmaterialized discrete directives](#unlinked-directive) across all registered collections, rather than per-collection, with a global directive graph living in dotfiles. It generalizes [the desk](#the-desk) from a single graph to the whole working tree, so an operator can see every obligation in one place.
 
 **See also:** [The Desk](#the-desk), [Unlinked Directive](#unlinked-directive), [Collection](#collection), [Collections Registry](#collections-registry)
 
 ## Cross-Ruler Agreement
 
-Cross-ruler agreement is the eval [compound](#compound): it asserts that two independent [rulers](#ruler) reached the same outcome on the same case, corroboration neither [observation](#observation) states alone yet fully contained in what they say together (eval-ledger.md). It is human-authored, and contract [method:c4](#methodc4) (m-corroboration) requires every [verdict](#verdict) to reach such a compound or carry a `single-ruler` tag. It is the worked example of the [strict-aggregate doctrine](#strict-aggregate-doctrine) outside the framework's own graph.
+Cross-ruler agreement is the eval [compound](#compound): it asserts that two independent [rulers](#ruler) reached the same outcome on the same case, corroboration neither [observation](#observation) states alone yet fully contained in what they say together (eval-ledger.md). It is human-authored, and contract method:c4 (m-corroboration) requires every [verdict](#verdict) to reach such a compound or carry a `single-ruler` tag. It is the worked example of the [strict-aggregate doctrine](#strict-aggregate-doctrine) outside the framework's own graph.
 
 **See also:** [Compound](#compound), [Ruler](#ruler), [Observation](#observation), [Verdict](#verdict), [Strict-Aggregate Doctrine](#strict-aggregate-doctrine)
 
 ## DAG-Authorized Migration
 
-Schema evolution - removing or renaming a field - happens only through an adjudicated migration that the graph itself authorizes, anchored by a [compound](#compound) recording the decision ([cb:b436](#cba436), [cb:b438](#cba438)). This is the one mutation class allowed on the schema's own shape, and it is why the [expunged fields](#expunged-fields) are gone by record rather than by silent deletion. It is the schema-evolution instance of the [no maintenance hatch](#no-maintenance-hatch) principle: even the shape of a belief changes only through the write flow.
+Schema evolution - removing or renaming a field - happens only through an adjudicated migration that the graph itself authorizes, anchored by a [compound](#compound) recording the decision ([cb:b436](#cbb436), [cb:b438](#cbb438)). This is the one mutation class allowed on the schema's own shape, and it is why the [expunged fields](#expunged-fields) are gone by record rather than by silent deletion. It is the schema-evolution instance of the [no maintenance hatch](#no-maintenance-hatch) principle: even the shape of a belief changes only through the write flow.
 
 **See also:** [No Maintenance Hatch](#no-maintenance-hatch), [Expunged Fields](#expunged-fields), [Schema as Contracts](#schema-as-contracts), [Adjudication](#adjudication)
 
 ## DAG-vs-Prose Eval
 
-The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an [OKF](#cb-okf-collection)/Karpathy agent-maintained wiki rather than a strawman ([cb:b544](#cba544)), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.
+The dag-vs-prose eval is the study comparing a structured CB graph against a prose baseline on agent reasoning and adherence tasks (bench/dag-vs-prose-v2). Real runs exist - one DAG context scored 9/9 compound adherence against prose at 2/9. The credible prose arm is an [OKF](#cb-okf-collection)/Karpathy agent-maintained wiki rather than a strawman ([cb:b544](#cbb544)), which raises the bar the structured arm must clear and locates CB's remaining margin in the typed, deterministic, self-referential parts OKF omits. It is the empirical test behind the framework's central claim.
 
 **See also:** [cb-okf: Collection](#cb-okf-collection), [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [Composition Over Retrieval](#composition-over-retrieval), [Harness](#harness), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
 
 ## Decision-Weight Session
 
-A decision-weight session ([cb:b540](#cba540)) is one that mints or supersedes beliefs grounded in a `user:` or `session:` stipulation, settles a stance, or adjudicates positions. Such a session persists its thread verbatim, routed by subject - direction threads to the private direction repos, plan-scale dev to co-located `plans/`. Every belief minted is [retro-paired](#retro-pairing) with a document pointer. Lighter sessions need no verbatim persistence, by [ceremony proportionate to stance](#ceremony-proportionate-to-stance).
+A decision-weight session ([cb:b540](#cbb540)) is one that mints or supersedes beliefs grounded in a `user:` or `session:` stipulation, settles a stance, or adjudicates positions. Such a session persists its thread verbatim, routed by subject - direction threads to the private direction repos, plan-scale dev to co-located `plans/`. Every belief minted is [retro-paired](#retro-pairing) with a document pointer. Lighter sessions need no verbatim persistence, by [ceremony proportionate to stance](#ceremony-proportionate-to-stance).
 
 **See also:** [Transcript](#transcript), [Chronicle](#chronicle), [Retro-Pairing](#retro-pairing), [Ceremony Proportionate to Stance](#ceremony-proportionate-to-stance), [Position](#position)
 
 ## Dep-Repoint Front Door
 
-The dep-repoint front door (`mix cb.repoint`, [cb:b537](#cba537), [cb:b547](#cba547)) swings a [dep](#deps) from a superseded node to its successor as an atomic drop-plus-add (cb.repoint.ex). It is the maintenance move that clears [staleness](#staleness) caused by a dep being superseded, and the third of the three sanctioned [front doors](#write-flow). Some of its automation is still an open gap.
+The dep-repoint front door (`mix cb.repoint`, [cb:b537](#cbb537), [cb:b547](#cbb547)) swings a [dep](#deps) from a superseded node to its successor as an atomic drop-plus-add (cb.repoint.ex). It is the maintenance move that clears [staleness](#staleness) caused by a dep being superseded, and the third of the three sanctioned [front doors](#write-flow). Some of its automation is still an open gap.
 
 **See also:** [Evidence-Append Front Door](#evidence-append-front-door), [Todo-Close Front Door](#todo-close-front-door), [Staleness](#staleness), [Supersession](#supersession), [Write Flow](#write-flow)
 
@@ -354,19 +353,19 @@ A collection declares its cross-namespace dependencies in `manifest.json` via `d
 
 ## Deprecation
 
-Deprecation marks a belief or feature as not currently useful enough to carry, rather than wrong forever, and reinstatement is itself a belief ([cb:b390](#cba390)). The reference case is the [confidence field](#no-confidence-scores), deprecated rather than deleted so the path back to a derived confidence stays open if a concrete use-case ever appears. Deprecation contrasts with [retraction](#retraction), which asserts that something is wrong.
+Deprecation marks a belief or feature as not currently useful enough to carry, rather than wrong forever, and reinstatement is itself a belief ([cb:b390](#cbb390)). The reference case is the [confidence field](#no-confidence-scores), deprecated rather than deleted so the path back to a derived confidence stays open if a concrete use-case ever appears. Deprecation contrasts with [retraction](#retraction), which asserts that something is wrong.
 
 **See also:** [Retraction](#retraction), [No Confidence Scores](#no-confidence-scores), [Expunged Fields](#expunged-fields), [Status Lifecycle](#status-lifecycle)
 
 ## Deps
 
-`deps` is the belief-to-belief relation of logical derivation - the upstream ids whose claims together justify this claim - and it is the only kind of edge the DAG has ([cb:b408](#cba408), belief.ex:51, graph.ex:41). Deps are required on compounds and inferences, required-or-stipulated on non-contract directives, and absent on primitives. They are distinct from [subjects](#subjects): a belief can be about something without depending on it, and depend on something without being about it. Edges are implicit string pointers resolved on demand by CB.Belief.Graph.
+`deps` is the belief-to-belief relation of logical derivation - the upstream ids whose claims together justify this claim - and it is the only kind of edge the DAG has ([cb:b408](#cbb408), belief.ex:51, graph.ex:41). Deps are required on compounds and inferences, required-or-stipulated on non-contract directives, and absent on primitives. They are distinct from [subjects](#subjects): a belief can be about something without depending on it, and depend on something without being about it. Edges are implicit string pointers resolved on demand by CB.Belief.Graph.
 
 **See also:** [Subjects](#subjects), [Directive Grounding](#directive-grounding), [Field Presence by Type](#field-presence-by-type), [In-Memory Model](#in-memory-model), [Dependency Closure / Union](#dependency-closure--union)
 
 ## derivation-table
 
-`derivation-table` is a catalogued contract kind ([cb:b046](#cbc046)): its rules are arbitrary-column maps yielding `row(Col1..ColN)`, looked up by ANDing conditions, read by `CB.Belief.Contract.Table` (table.ex). It is the kind behind the [kind-type table](#kind-type-table) ([cb:b057](#cbc057)), which maps each kind to its allowed structural types. Like every interpreter it is generic over the belief passed in, with no hardcoded ids.
+`derivation-table` is a catalogued contract kind ([cb:b046](#cbb046)): its rules are arbitrary-column maps yielding `row(Col1..ColN)`, looked up by ANDing conditions, read by `CB.Belief.Contract.Table` (table.ex). It is the kind behind the [kind-type table](#kind-type-table) ([cb:b057](#cbb057)), which maps each kind to its allowed structural types. Like every interpreter it is generic over the belief passed in, with no hardcoded ids.
 
 **See also:** [enum-registry](#enum-registry), [state-machine](#state-machine), [implies](#implies), [Kind-Type Table](#kind-type-table), [Contract Interpreter](#contract-interpreter)
 
@@ -374,13 +373,13 @@ Deprecation marks a belief or feature as not currently useful enough to carry, r
 
 *Also: structural vs procedural freshness*
 
-The digest-file antipattern ([cb:b386](#cba386), the canonical example in mental-model.md) is a persisted cache of graph-derived content whose freshness depends on procedural enforcement - a skill telling agents to regenerate - which embeds the very [staleness](#staleness) it was meant to solve, because agents forget and the stale digest is then read as authoritative. The elimination path generalizes: render live from the DAG and gate in CI ([cb:b466](#cba466), [cb:b477](#cba477)). The same doctrine governs [compiled documents](#compiled-document) and [session memory](#session-memory-as-ephemeral-cache). See staleness.
+The digest-file antipattern ([cb:b386](#cbb386), the canonical example in mental-model.md) is a persisted cache of graph-derived content whose freshness depends on procedural enforcement - a skill telling agents to regenerate - which embeds the very [staleness](#staleness) it was meant to solve, because agents forget and the stale digest is then read as authoritative. The elimination path generalizes: render live from the DAG and gate in CI ([cb:b466](#cbb466), [cb:b477](#cbb477)). The same doctrine governs [compiled documents](#compiled-document) and [session memory](#session-memory-as-ephemeral-cache). See staleness.
 
 **See also:** [Staleness](#staleness), [Compiled Document](#compiled-document), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Recency](#recency)
 
 ## Direction of Fit
 
-Direction of fit is the boundary between [inference](#inference) and [directive](#directive) made operational - ask what would count as the belief being wrong ([cb:b471](#cba471), mental-model.md). An inference has mind-fits-world fit: the world disagrees, so the belief is defective and is superseded or retracted. A directive has world-fits-mind fit: the world disobeys, so the violation is flagged and the rule stands, or the house withdraws and supersedes or retires it. The author-facing trichotomy is falsified to inference, violated to directive, withdrawn to directive, and the boundary is enforced because materialization, the conflict audit, and contract grading attach only to directives ([cb:b470](#cba470)).
+Direction of fit is the boundary between [inference](#inference) and [directive](#directive) made operational - ask what would count as the belief being wrong ([cb:b471](#cbb471), mental-model.md). An inference has mind-fits-world fit: the world disagrees, so the belief is defective and is superseded or retracted. A directive has world-fits-mind fit: the world disobeys, so the violation is flagged and the rule stands, or the house withdraws and supersedes or retires it. The author-facing trichotomy is falsified to inference, violated to directive, withdrawn to directive, and the boundary is enforced because materialization, the conflict audit, and contract grading attach only to directives ([cb:b470](#cbb470)).
 
 **See also:** [Inference](#inference), [Directive](#directive), [Falsifiability](#falsifiability), [Retired](#retired)
 
@@ -388,13 +387,13 @@ Direction of fit is the boundary between [inference](#inference) and [directive]
 
 *Also: prescribe*
 
-A directive records the operation prescribe: something that should happen or must hold - a rule, guidance, policy, or [contract](#contract) ([cb:b051](#cbc051), [cb:b471](#cba471)). A directive is the only type that can be materialized, conflict-audited, or graded into a contract; it is grounded in [deps](#deps) or a [stipulation artifact](#stipulation-artifact) ([cb:b059](#cbc059)). By [direction of fit](#direction-of-fit) a directive is violated (the world disobeys, so flag the violation and keep the rule) or withdrawn (the house stops standing behind it, so supersede or [retire](#retired) it), and is never falsified. In eval work [guidance](#guidance) is the directive face; it is the structural type that carries work, the [desk](#the-desk).
+A directive records the operation prescribe: something that should happen or must hold - a rule, guidance, policy, or [contract](#contract) ([cb:b051](#cbb051), [cb:b471](#cbb471)). A directive is the only type that can be materialized, conflict-audited, or graded into a contract; it is grounded in [deps](#deps) or a [stipulation artifact](#stipulation-artifact) ([cb:b059](#cbb059)). By [direction of fit](#direction-of-fit) a directive is violated (the world disobeys, so flag the violation and keep the rule) or withdrawn (the house stops standing behind it, so supersede or [retire](#retired) it), and is never falsified. In eval work [guidance](#guidance) is the directive face; it is the structural type that carries work, the [desk](#the-desk).
 
 **See also:** [Primitive](#primitive), [Compound](#compound), [Inference](#inference), [Direction of Fit](#direction-of-fit), [Directive Grounding](#directive-grounding)
 
 ## Directive Grounding
 
-Directive grounding ([cb:b059](#cbc059), [cb:b476](#cba476)) requires that an active non-contract [directive](#directive) rest on [deps](#deps) or a [stipulation artifact](#stipulation-artifact) whose scheme is `plan`, `user`, `session`, or `document` (verifier.ex:373). External-source schemes like `source` and `https` never ground a directive, because a rule the house enforces must trace to an adoption event, not merely to an outside reference. This is the prescriptive counterpart to a primitive's single-[artifact](#artifact) grounding.
+Directive grounding ([cb:b059](#cbb059), [cb:b476](#cbb476)) requires that an active non-contract [directive](#directive) rest on [deps](#deps) or a [stipulation artifact](#stipulation-artifact) whose scheme is `plan`, `user`, `session`, or `document` (verifier.ex:373). External-source schemes like `source` and `https` never ground a directive, because a rule the house enforces must trace to an adoption event, not merely to an outside reference. This is the prescriptive counterpart to a primitive's single-[artifact](#artifact) grounding.
 
 **See also:** [Stipulation Artifact](#stipulation-artifact), [Field Presence by Type](#field-presence-by-type), [Directive](#directive), [Deps](#deps), [Artifact Scheme](#artifact-scheme)
 
@@ -406,19 +405,19 @@ The verifier discovers a collection's vocabulary by role rather than by hardcode
 
 ## Domain
 
-`domain` places a belief in a topical area, the closed enum [cb:b041](#cbc041): `system` (system and process design), `design`, `agent` (agent behavior, capability, limitation), `ops` (operational and business workflows), and `dev` (agent-system development and infra) (belief.ex:51). Domain matters for [conflict scope](#conflict-scope): two active directives overlap only within the same domain, and distinct non-null domains never overlap ([cb:b055](#cbc055)).
+`domain` places a belief in a topical area, the closed enum [cb:b041](#cbb041): `system` (system and process design), `design`, `agent` (agent behavior, capability, limitation), `ops` (operational and business workflows), and `dev` (agent-system development and infra) (belief.ex:51). Domain matters for [conflict scope](#conflict-scope): two active directives overlap only within the same domain, and distinct non-null domains never overlap ([cb:b055](#cbb055)).
 
 **See also:** [Kind](#kind), [enum-registry](#enum-registry), [Conflict Scope](#conflict-scope), [Tags](#tags)
 
 ## Draft Mode
 
-Draft mode (`mix cb.resolve`, [cb:b512](#cba512)) validates and resolves bare `{path, anchor, nth}` stop rows against a root with no belief collection loaded, so draft answers and anchored positions can use the one tested [resolver](#anchor). It is the verification gate for [answer-time anchoring](#answer-time-anchoring): landing [cb:b512](#cba512) unblocked [cb:b488](#cba488)'s escalation to contract grade. Exit 1 on any unresolved row makes it usable in CI.
+Draft mode (`mix cb.resolve`, [cb:b512](#cbb512)) validates and resolves bare `{path, anchor, nth}` stop rows against a root with no belief collection loaded, so draft answers and anchored positions can use the one tested [resolver](#anchor). It is the verification gate for [answer-time anchoring](#answer-time-anchoring): landing [cb:b512](#cbb512) unblocked [cb:b488](#cbb488)'s escalation to contract grade. Exit 1 on any unresolved row makes it usable in CI.
 
 **See also:** [Anchor](#anchor), [Answer-Time Anchoring](#answer-time-anchoring), [Anchored-Position Format](#anchored-position-format), [Code Locator](#code-locator)
 
 ## Drift Audit
 
-A drift audit ([cb:b384](#cba384)) is the maintenance cycle that iterates non-null [materialized](#materialized) beliefs, re-checks their effects, and either bumps `last_verified` or emits a drift primitive. It exists because materialization records a historical execution, not a standing guarantee - effects decay as code drifts. It is the action-history counterpart to [staleness](#staleness) detection on the truth axis.
+A drift audit ([cb:b384](#cbb384)) is the maintenance cycle that iterates non-null [materialized](#materialized) beliefs, re-checks their effects, and either bumps `last_verified` or emits a drift primitive. It exists because materialization records a historical execution, not a standing guarantee - effects decay as code drifts. It is the action-history counterpart to [staleness](#staleness) detection on the truth axis.
 
 **See also:** [Materialization](#materialization), [Materialized](#materialized), [Status vs Materialized](#status-vs-materialized), [Staleness](#staleness)
 
@@ -426,19 +425,19 @@ A drift audit ([cb:b384](#cba384)) is the maintenance cycle that iterates non-nu
 
 *Also: kind:definition, kind:schema*
 
-Two kinds carry both moods and so map to all four structural types in the [kind-type table](#kind-type-table): `definition` (vocabulary, not commitment - what a word, type, or field means, [cb:b437](#cba437), [cb:b408](#cba408)) and `schema` (a rule about belief or DAG structure, [cb:b300](#cba300)). For a dual-kind belief the structural type is decided per belief by [direction of fit](#direction-of-fit): a definition stated as a description is a primitive, while a schema rule the house enforces is a directive. The other prescriptive kinds, such as `policy` (an intentional commitment not mechanically enforced, [cb:b439](#cba439)) and `action-item` (a single completable task, [cb:b403](#cba403)), are directive only.
+Two kinds carry both moods and so map to all four structural types in the [kind-type table](#kind-type-table): `definition` (vocabulary, not commitment - what a word, type, or field means, [cb:b437](#cbb437), [cb:b408](#cbb408)) and `schema` (a rule about belief or DAG structure, [cb:b300](#cbb300)). For a dual-kind belief the structural type is decided per belief by [direction of fit](#direction-of-fit): a definition stated as a description is a primitive, while a schema rule the house enforces is a directive. The other prescriptive kinds, such as `policy` (an intentional commitment not mechanically enforced, [cb:b439](#cbb439)) and `action-item` (a single completable task, [cb:b403](#cbb403)), are directive only.
 
 **See also:** [Kind-Type Table](#kind-type-table), [Kind](#kind), [Direction of Fit](#direction-of-fit), [kind: policy](#kind-policy), [kind: action-item](#kind-action-item)
 
 ## Dynamic Verifier
 
-The dynamic verifier (`mix cb.verify.codepath`, CB.Codepath.Assertions, codepath/assertions.ex) is the one place [codepath](#codepath) predicates actually execute ([cb:b050](#cbc050)). For each contract-grade stop it takes the [implies](#implies) rules applicable under `assertions: on` and invokes each predicate, and `--record` writes the pass/fail result back to the belief's [materialized](#materialized) field as a recorded test run. It is the dynamic counterpart to the static [method check](#method-check) pass.
+The dynamic verifier (`mix cb.verify.codepath`, CB.Codepath.Assertions, codepath/assertions.ex) is the one place [codepath](#codepath) predicates actually execute ([cb:b050](#cbb050)). For each contract-grade stop it takes the [implies](#implies) rules applicable under `assertions: on` and invokes each predicate, and `--record` writes the pass/fail result back to the belief's [materialized](#materialized) field as a recorded test run. It is the dynamic counterpart to the static [method check](#method-check) pass.
 
 **See also:** [Codepath](#codepath), [Assertions Gradient](#assertions-gradient), [Routed Predicate](#routed-predicate), [Method Check](#method-check), [Materialization](#materialization)
 
 ## enum-registry
 
-`enum-registry` is one of the catalogued contract kinds ([cb:b046](#cbc046)): its rules declare `{field, values}`, yielding the fact `allowed(Field, Value)` read by `CB.Belief.Contract.Enum` (enum.ex). It is the kind behind the closed [kind](#kind) enum ([cb:b039](#cbc039)), the [domain](#domain) enum ([cb:b041](#cbc041)), and the [artifact-scheme](#artifact-scheme) enum ([cb:b066](#cbc066)). Enum-shaped fields take values only from these dedicated contracts, and adding a value supersedes the whole enum contract ([cb:b397](#cba397)), an instance of [immutability](#immutability) applied to the schema itself.
+`enum-registry` is one of the catalogued contract kinds ([cb:b046](#cbb046)): its rules declare `{field, values}`, yielding the fact `allowed(Field, Value)` read by `CB.Belief.Contract.Enum` (enum.ex). It is the kind behind the closed [kind](#kind) enum ([cb:b039](#cbb039)), the [domain](#domain) enum ([cb:b041](#cbb041)), and the [artifact-scheme](#artifact-scheme) enum ([cb:b066](#cbb066)). Enum-shaped fields take values only from these dedicated contracts, and adding a value supersedes the whole enum contract ([cb:b397](#cbb397)), an instance of [immutability](#immutability) applied to the schema itself.
 
 **See also:** [state-machine](#state-machine), [derivation-table](#derivation-table), [implies](#implies), [Rule-Kind Catalogue](#rule-kind-catalogue), [Discovered by Role](#discovered-by-role)
 
@@ -462,19 +461,19 @@ The eval-spec-as-contract is the hinge that fuses the framework and the integrat
 
 ## eval: Scheme
 
-The `eval:` scheme is a scorer-run identity URI declared by the `method:` collection rather than by `cb:` itself, demonstrating that collections may extend the closed [artifact-scheme](#artifact-scheme) enum for their own domain (eval-ledger.md, run-manifest.md). Its shape is `eval:<eval_id>/<run_id>/<ruler>` for an aggregate [observation](#observation) and adds `/<case_id>` for a per-case one. Contract [method:c5](#methodc5) (m-provenance) refuses any observation lacking an `eval:` URI and a raw-log pointer.
+The `eval:` scheme is a scorer-run identity URI declared by the `method:` collection rather than by `cb:` itself, demonstrating that collections may extend the closed [artifact-scheme](#artifact-scheme) enum for their own domain (eval-ledger.md, run-manifest.md). Its shape is `eval:<eval_id>/<run_id>/<ruler>` for an aggregate [observation](#observation) and adds `/<case_id>` for a per-case one. Contract method:c5 (m-provenance) refuses any observation lacking an `eval:` URI and a raw-log pointer.
 
 **See also:** [Artifact Scheme](#artifact-scheme), [Observation](#observation), [Methodology Contract](#methodology-contract), [import.eval](#importeval), [Identity Hashing](#identity-hashing)
 
 ## Evidence
 
-`evidence` is a list of dated entries, each `{date, artifact, detail}`, grounding a belief's [claim](#claim) ([cb:b118](#cba118)). The `detail` is the specific narrative of what happened or what the source said, while the claim is the generalization, and the [gap between them](#claim--evidence-gap) is where misinterpretation lives and can be audited. Appending an evidence entry is the one sanctioned in-place growth point on an otherwise immutable node ([cb:b302](#cba302), [cb:b522](#cba522)), exposed as the [evidence-append front door](#evidence-append-front-door). Evidence-entry artifacts are not enum-checked, so they may carry provenance schemes like `adjudication:`.
+`evidence` is a list of dated entries, each `{date, artifact, detail}`, grounding a belief's [claim](#claim) ([cb:b118](#cbb118)). The `detail` is the specific narrative of what happened or what the source said, while the claim is the generalization, and the [gap between them](#claim--evidence-gap) is where misinterpretation lives and can be audited. Appending an evidence entry is the one sanctioned in-place growth point on an otherwise immutable node ([cb:b302](#cbb302), [cb:b522](#cbb522)), exposed as the [evidence-append front door](#evidence-append-front-door). Evidence-entry artifacts are not enum-checked, so they may carry provenance schemes like `adjudication:`.
 
 **See also:** [Claim / Evidence Gap](#claim--evidence-gap), [Claim](#claim), [Evidence-Append Front Door](#evidence-append-front-door), [Structural Support](#structural-support), [Immutability](#immutability)
 
 ## Evidence-Append Front Door
 
-The evidence-append front door (`mix cb.evidence`, [cb:b522](#cba522), [cb:b531](#cba531)) appends a dated [evidence](#evidence) entry to an existing belief - the single sanctioned in-place growth point on an otherwise immutable node. It is one of three narrow front doors named in the compiled CLAUDE.md surface, alongside [todo close](#todo-close-front-door) and [dep re-point](#dep-repoint-front-door). Appending evidence grows the grounding of a claim without changing the claim itself.
+The evidence-append front door (`mix cb.evidence`, [cb:b522](#cbb522), [cb:b531](#cbb531)) appends a dated [evidence](#evidence) entry to an existing belief - the single sanctioned in-place growth point on an otherwise immutable node. It is one of three narrow front doors named in the compiled CLAUDE.md surface, alongside [todo close](#todo-close-front-door) and [dep re-point](#dep-repoint-front-door). Appending evidence grows the grounding of a claim without changing the claim itself.
 
 **See also:** [Evidence](#evidence), [Todo-Close Front Door](#todo-close-front-door), [Dep-Repoint Front Door](#dep-repoint-front-door), [Immutability](#immutability), [Write Flow](#write-flow)
 
@@ -488,25 +487,25 @@ Three fields were removed from the schema and no longer exist: `confidence` (a s
 
 *Also: field-level provenance*
 
-Extraction-time discipline ([cb:b119](#cba119), [cb:b125](#cba125), [cb:b131](#cba131)) requires that provenance and beliefs be created when reading sources, with retroactive attribution prohibited. A source is raw material from which [primitives](#primitive) are extracted ([cb:b113](#cba113), [cb:b114](#cba114)), so the graph stores structured beliefs rather than the sources themselves. Field-level `_provenance` on entities makes the data model auditable, and user-sourced provenance is authoritative ([cb:b124](#cba124), [cb:b428](#cba428), [cb:b362](#cba362)).
+Extraction-time discipline ([cb:b119](#cbb119), [cb:b125](#cbb125), [cb:b131](#cbb131)) requires that provenance and beliefs be created when reading sources, with retroactive attribution prohibited. A source is raw material from which [primitives](#primitive) are extracted ([cb:b113](#cbb113), [cb:b114](#cbb114)), so the graph stores structured beliefs rather than the sources themselves. Field-level `_provenance` on entities makes the data model auditable, and user-sourced provenance is authoritative ([cb:b124](#cbb124), [cb:b428](#cbb428), [cb:b362](#cbb362)).
 
 **See also:** [Sources Are Not Beliefs](#sources-are-not-beliefs), [Claim / Evidence Gap](#claim--evidence-gap), [Primitive Atomicity](#primitive-atomicity), [Non-Derivable Knowledge Only](#non-derivable-knowledge-only)
 
 ## Falsifiability
 
-Falsifiability is the obligation an [inference](#inference) accepts in exchange for its [licence](#licensing) to generalize: the world can disagree with it directly, rendering it defective and triggering supersession or retraction, while its deps remain active ([cb:b473](#cba473), [cb:b471](#cba471)). The operational test for the inference-versus-directive boundary is to ask what would count as the belief being wrong: if new evidence could show it false, it is an inference. In eval work the [staleness pivot](#staleness-pivot) is the falsification mechanism - a re-run on a new model_version falsifies the [verdict](#verdict).
+Falsifiability is the obligation an [inference](#inference) accepts in exchange for its [licence](#licensing) to generalize: the world can disagree with it directly, rendering it defective and triggering supersession or retraction, while its deps remain active ([cb:b473](#cbb473), [cb:b471](#cbb471)). The operational test for the inference-versus-directive boundary is to ask what would count as the belief being wrong: if new evidence could show it false, it is an inference. In eval work the [staleness pivot](#staleness-pivot) is the falsification mechanism - a re-run on a new model_version falsifies the [verdict](#verdict).
 
 **See also:** [Inference](#inference), [Licensing](#licensing), [Direction of Fit](#direction-of-fit), [Staleness Pivot](#staleness-pivot)
 
 ## Field Presence by Type
 
-Field presence ([cb:b052](#cbc052), supersedes [cb:b027](#cbc027)) is the contract governing which fields each [structural type](#structural-type) requires: compounds and inferences require [deps](#deps); non-contract directives require deps or a [stipulation artifact](#stipulation-artifact); declared contracts may stand alone; and contract fields are directive-only. It is the schema rule that makes the [type-as-function](#type-as-a-function) relationship enforceable, checked in CB.Schema.Verifier check_grounding (verifier.ex:375).
+Field presence ([cb:b052](#cbb052), supersedes [cb:b027](#cbb027)) is the contract governing which fields each [structural type](#structural-type) requires: compounds and inferences require [deps](#deps); non-contract directives require deps or a [stipulation artifact](#stipulation-artifact); declared contracts may stand alone; and contract fields are directive-only. It is the schema rule that makes the [type-as-function](#type-as-a-function) relationship enforceable, checked in CB.Schema.Verifier check_grounding (verifier.ex:375).
 
 **See also:** [Directive Grounding](#directive-grounding), [Stipulation Artifact](#stipulation-artifact), [Structural Type](#structural-type), [Type as a Function](#type-as-a-function), [Schema Discipline](#schema-discipline)
 
 ## Fixture Tag
 
-The fixture tag ([method:a5](#methoda5)) is auto-applied to any belief derived from synthetic or mock data, so test scaffolding can never be mistaken for a finding. In the bench, mock-LLM data is force-tagged `fixture` at the source, and the compliant `toy` collection carries fixture-tagged guidance. It is a small integrity guard that keeps the [ledger](#eval-ledger) honest about what is real.
+The fixture tag (method:a5) is auto-applied to any belief derived from synthetic or mock data, so test scaffolding can never be mistaken for a finding. In the bench, mock-LLM data is force-tagged `fixture` at the source, and the compliant `toy` collection carries fixture-tagged guidance. It is a small integrity guard that keeps the [ledger](#eval-ledger) honest about what is real.
 
 **See also:** [Tags](#tags), [Eval Collection](#eval-collection), [Verdict-Category Firewall](#verdict-category-firewall), [Methodology Contract](#methodology-contract)
 
@@ -524,7 +523,7 @@ The generative face is CB used to send knowledge out: typed claims compose into 
 
 ## Graph as the Index of Obligation
 
-The graph is the index of obligation ([cb:b489](#cba489)): work-to-do lives as [directives](#directive) - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable - while `plans/` and `docs/` hold records, never live todos. The four-type schema gave work its own structural type, so the backlog can live where the reasoning lives. A live todo is an unmaterialized discrete directive, and the open question of whether sessions actually reach for the backlog over plan files is [cb:b493](#cba493). See obligation in the graph.
+The graph is the index of obligation ([cb:b489](#cbb489)): work-to-do lives as [directives](#directive) - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable - while `plans/` and `docs/` hold records, never live todos. The four-type schema gave work its own structural type, so the backlog can live where the reasoning lives. A live todo is an unmaterialized discrete directive, and the open question of whether sessions actually reach for the backlog over plan files is [cb:b493](#cbb493). See obligation in the graph.
 
 **See also:** [The Desk](#the-desk), [Unlinked Directive](#unlinked-directive), [Lifecycle Tag](#lifecycle-tag), [Plan](#plan), [Status vs Materialized](#status-vs-materialized)
 
@@ -550,13 +549,13 @@ Eval belief ids are derived by hashing the identity tuple, never the content: `<
 
 ## Immutability
 
-Beliefs are never edited in place ([cb:b302](#cba302)): a change is a supersession (a new node plus a `superseded_by` link) or a retraction (a status flip with date and reason), and the lone sanctioned in-place edit is appending an [evidence](#evidence) entry. Editing in place would erase the history the DAG exists to preserve; immutability forces supersession chains, which make state drift visible as [stale deps](#staleness) rather than something a human must remember to check. The lifecycle is itself a state-machine contract, [cb:b053](#cbc053). Two fields stay deliberately mutable because action and linkage history are orthogonal to truth status: `materialized` and the status-transition linkage. See immutability and supersession.
+Beliefs are never edited in place ([cb:b302](#cbb302)): a change is a supersession (a new node plus a `superseded_by` link) or a retraction (a status flip with date and reason), and the lone sanctioned in-place edit is appending an [evidence](#evidence) entry. Editing in place would erase the history the DAG exists to preserve; immutability forces supersession chains, which make state drift visible as [stale deps](#staleness) rather than something a human must remember to check. The lifecycle is itself a state-machine contract, [cb:b053](#cbb053). Two fields stay deliberately mutable because action and linkage history are orthogonal to truth status: `materialized` and the status-transition linkage. See immutability and supersession.
 
 **See also:** [Status Lifecycle](#status-lifecycle), [Supersession](#supersession), [Retraction](#retraction), [No Maintenance Hatch](#no-maintenance-hatch), [Evidence](#evidence)
 
 ## implies
 
-`implies` is a catalogued contract kind ([cb:b046](#cbc046)): its rules are `{when, requires}` rows yielding `implies(When, Requires)`, read by `CB.Belief.Contract.Implies` (implies.ex), which reports which predicate slugs fire for a given field map. It is the routing layer for both [codepath](#codepath) assertions (routing on `assertions: on`) and [methodology checks](#methodology-contract) (routing on `verify: collection`). The named predicate is implemented in Elixir and resolved through the [predicate gate](#predicate-gate), never stored as code. The contract rule-kind `implies` sits on the prescriptive side, which is why the descriptive type was renamed away from [implication](#why-inference-over-implication).
+`implies` is a catalogued contract kind ([cb:b046](#cbb046)): its rules are `{when, requires}` rows yielding `implies(When, Requires)`, read by `CB.Belief.Contract.Implies` (implies.ex), which reports which predicate slugs fire for a given field map. It is the routing layer for both [codepath](#codepath) assertions (routing on `assertions: on`) and [methodology checks](#methodology-contract) (routing on `verify: collection`). The named predicate is implemented in Elixir and resolved through the [predicate gate](#predicate-gate), never stored as code. The contract rule-kind `implies` sits on the prescriptive side, which is why the descriptive type was renamed away from [implication](#why-inference-over-implication).
 
 **See also:** [enum-registry](#enum-registry), [state-machine](#state-machine), [derivation-table](#derivation-table), [Routed Predicate](#routed-predicate), [Method Check](#method-check)
 
@@ -584,19 +583,19 @@ There is no graph object in memory; the graph is a flat list of `%CB.Belief{}` s
 
 *Also: infer*
 
-An inference records the operation infer: an [ampliative](#ampliative) conclusion licensed to exceed what its [deps](#deps) jointly state, generalizing or abducing beyond its premises ([cb:b051](#cbc051), [cb:b473](#cba473), [cb:b472](#cba472)). It pays for that licence by being independently [falsifiable](#falsifiability): an inference is built to be superseded by new evidence while its deps stay active, so a clean run on a newer snapshot kills the generalization without touching the observations it rested on. Scope-widening past the deps' subjects is the structural signature of inference, and the verifier interrogates the deps-to-claim relation rather than the author's mental act. In eval work a [verdict](#verdict) is the inference face. See inference and licensing.
+An inference records the operation infer: an [ampliative](#ampliative) conclusion licensed to exceed what its [deps](#deps) jointly state, generalizing or abducing beyond its premises ([cb:b051](#cbb051), [cb:b473](#cbb473), [cb:b472](#cbb472)). It pays for that licence by being independently [falsifiable](#falsifiability): an inference is built to be superseded by new evidence while its deps stay active, so a clean run on a newer snapshot kills the generalization without touching the observations it rested on. Scope-widening past the deps' subjects is the structural signature of inference, and the verifier interrogates the deps-to-claim relation rather than the author's mental act. In eval work a [verdict](#verdict) is the inference face. See inference and licensing.
 
 **See also:** [Ampliative](#ampliative), [Licensing](#licensing), [Falsifiability](#falsifiability), [Direction of Fit](#direction-of-fit), [Verdict](#verdict)
 
 ## Inferences as Contract Prototypes
 
-Inferences and plain directives are prototypes for contracts ([cb:b173](#cba173), [cb:b174](#cba174)): a behavioral invariant lives as a directive, prompt-enforced, until code crystallizes around it, at which point it is elevated to a [contract](#contract) that is code-enforced via the [verify_against_contract](#verify_against_contract) pattern. This is the maturation path from a claim the house merely states to one it mechanically holds, and it is why [beliefs and contracts](#beliefs-vs-contracts) share one store.
+Inferences and plain directives are prototypes for contracts ([cb:b173](#cbb173), [cb:b174](#cbb174)): a behavioral invariant lives as a directive, prompt-enforced, until code crystallizes around it, at which point it is elevated to a [contract](#contract) that is code-enforced via the [verify_against_contract](#verify_against_contract) pattern. This is the maturation path from a claim the house merely states to one it mechanically holds, and it is why [beliefs and contracts](#beliefs-vs-contracts) share one store.
 
 **See also:** [Contract](#contract), [Beliefs vs Contracts](#beliefs-vs-contracts), [verify_against_contract](#verify_against_contract), [Inference](#inference)
 
 ## Inspection-Only Predicates
 
-Inspection-only is the discipline that [routed predicates](#routed-predicate) observe and never mutate ([cb:b050](#cbc050)): a predicate name must end in `?` or `_check` and resolve to an exported zero-arity boolean, and the [resolver](#predicate-gate) refuses anything else (predicate_gate.ex:21). This is what makes it safe for a contract in the graph to name a check that runs against live code. The dynamic verifier is the one place these predicates actually execute.
+Inspection-only is the discipline that [routed predicates](#routed-predicate) observe and never mutate ([cb:b050](#cbb050)): a predicate name must end in `?` or `_check` and resolve to an exported zero-arity boolean, and the [resolver](#predicate-gate) refuses anything else (predicate_gate.ex:21). This is what makes it safe for a contract in the graph to name a check that runs against live code. The dynamic verifier is the one place these predicates actually execute.
 
 **See also:** [Predicate Gate](#predicate-gate), [Routed Predicate](#routed-predicate), [Dynamic Verifier](#dynamic-verifier), [Codepath](#codepath), [Assertions Gradient](#assertions-gradient)
 
@@ -604,55 +603,55 @@ Inspection-only is the discipline that [routed predicates](#routed-predicate) ob
 
 *Also: invariants*
 
-`invariants` is a contract's list of statements that must always hold - the ALWAYS clause complementing the Given/When/Then of [rules](#rules) ([cb:b300](#cba300)). A directive is [contract](#contract)-grade exactly when its rules or invariants are non-empty, the biconditional the verifier enforces ([cb:b056](#cbc056), verifier.ex:187). Together rules and invariants make a contract the intermediate level of formality between prose and code.
+`invariants` is a contract's list of statements that must always hold - the ALWAYS clause complementing the Given/When/Then of [rules](#rules) ([cb:b300](#cbb300)). A directive is [contract](#contract)-grade exactly when its rules or invariants are non-empty, the biconditional the verifier enforces ([cb:b056](#cbb056), verifier.ex:187). Together rules and invariants make a contract the intermediate level of formality between prose and code.
 
 **See also:** [Rules](#rules), [Contract](#contract), [Neither Prose nor Code](#neither-prose-nor-code), [Schema Discipline](#schema-discipline)
 
 ## Kind
 
-`kind` is the belief's semantic classification, drawn from the closed 38-value enum registry [cb:b039](#cbc039) (belief.ex:51, kinds such as `observation`, `fact`, `policy`, `convention`, `schema`, `design-principle`). The kind binds mood: through the [kind-type table](#kind-type-table) ([cb:b057](#cbc057)) each kind maps to its allowed [structural types](#structural-type), converting the prescriptive/descriptive boundary from prose into a deterministic check. A kind absent from the table is unchecked, since the enum itself is the closure authority ([cb:b399](#cba399), [cb:b397](#cba397)). See the belief, field by field.
+`kind` is the belief's semantic classification, drawn from the closed 38-value enum registry [cb:b039](#cbb039) (belief.ex:51, kinds such as `observation`, `fact`, `policy`, `convention`, `schema`, `design-principle`). The kind binds mood: through the [kind-type table](#kind-type-table) ([cb:b057](#cbb057)) each kind maps to its allowed [structural types](#structural-type), converting the prescriptive/descriptive boundary from prose into a deterministic check. A kind absent from the table is unchecked, since the enum itself is the closure authority ([cb:b399](#cbb399), [cb:b397](#cbb397)). See the belief, field by field.
 
 **See also:** [Kind-Type Table](#kind-type-table), [Domain](#domain), [enum-registry](#enum-registry), [Dual Kinds](#dual-kinds), [kind: policy](#kind-policy)
 
 ## Kind-Type Table
 
-The kind-type table ([cb:b057](#cbc057), a derivation-table contract, design [cb:b472](#cba472)) binds each [kind](#kind) to the structural types it may take, turning the prescriptive/descriptive boundary into a deterministic check (kind binds mood). The 15 prescriptive kinds (policy, rule, action-item, convention, and so on) map to [directive](#directive) only; the 21 descriptive kinds (observation, fact, error-pattern, design-observation) map to primitive, compound, or inference; the two dual kinds map to all four (CB.Belief.Contract.Table, verifier.ex:156). A kind absent from the table is unchecked, since the kind enum is the closure authority. See the belief, field by field.
+The kind-type table ([cb:b057](#cbb057), a derivation-table contract, design [cb:b472](#cbb472)) binds each [kind](#kind) to the structural types it may take, turning the prescriptive/descriptive boundary into a deterministic check (kind binds mood). The 15 prescriptive kinds (policy, rule, action-item, convention, and so on) map to [directive](#directive) only; the 21 descriptive kinds (observation, fact, error-pattern, design-observation) map to primitive, compound, or inference; the two dual kinds map to all four (CB.Belief.Contract.Table, verifier.ex:156). A kind absent from the table is unchecked, since the kind enum is the closure authority. See the belief, field by field.
 
 **See also:** [Kind](#kind), [Dual Kinds](#dual-kinds), [Structural Type](#structural-type), [derivation-table](#derivation-table), [Type as a Function](#type-as-a-function)
 
 ## kind: action-item
 
-`kind: action-item` marks a single completable task, distinct from a standing `kind: rule` ([cb:b403](#cba403)). The verifier enforces its shape: an action-item must be a [directive](#directive) with `contract: false` and empty rules and invariants (verifier.ex:347). It is the natural [lifecycle:discrete](#lifecycle-tag) unit of the backlog, materialized into todos and then closed; a standing rule is `lifecycle:recurring` and never materializes.
+`kind: action-item` marks a single completable task, distinct from a standing `kind: rule` ([cb:b403](#cbb403)). The verifier enforces its shape: an action-item must be a [directive](#directive) with `contract: false` and empty rules and invariants (verifier.ex:347). It is the natural [lifecycle:discrete](#lifecycle-tag) unit of the backlog, materialized into todos and then closed; a standing rule is `lifecycle:recurring` and never materializes.
 
 **See also:** [kind: policy](#kind-policy), [Lifecycle Tag](#lifecycle-tag), [Materialization](#materialization), [The Desk](#the-desk), [Directive](#directive)
 
 ## kind: policy
 
-`kind: policy` marks an intentional commitment or domain truth true by convention - something the house decides to hold - that is not mechanically enforced today ([cb:b439](#cba439), [cb:b427](#cba427)). A policy is a [directive](#directive) with `contract: false`, mutually exclusive with contract-grade, and it typically carries a name. It contrasts with a [contract](#contract), which is the same prescriptive mood elevated to machine-checkable grade once code crystallizes around it.
+`kind: policy` marks an intentional commitment or domain truth true by convention - something the house decides to hold - that is not mechanically enforced today ([cb:b439](#cbb439), [cb:b427](#cbb427)). A policy is a [directive](#directive) with `contract: false`, mutually exclusive with contract-grade, and it typically carries a name. It contrasts with a [contract](#contract), which is the same prescriptive mood elevated to machine-checkable grade once code crystallizes around it.
 
 **See also:** [Dual Kinds](#dual-kinds), [kind: action-item](#kind-action-item), [Directive](#directive), [Contract](#contract), [Kind](#kind)
 
 ## Lap Log
 
-The lap log ([cb:b497](#cba497)) is a scratch markdown file the agent appends to station-by-station (`tmp/lap-log.md`), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable [thread document](#transcript), and it embodies the rule that [session memory is a cache](#session-memory-as-ephemeral-cache), not a store.
+The lap log ([cb:b497](#cbb497)) is a scratch markdown file the agent appends to station-by-station (`tmp/lap-log.md`), so the operator can keep a working session observable live in a split. It is a deliberately ephemeral working surface, distinct from the durable [thread document](#transcript), and it embodies the rule that [session memory is a cache](#session-memory-as-ephemeral-cache), not a store.
 
 **See also:** [Chronicle](#chronicle), [Transcript](#transcript), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Author Against the Live Graph](#author-against-the-live-graph)
 
 ## Lending Library (lib:)
 
-The lending library (`lib:`, [cb:b459](#cba459)) is the gentle on-ramp collection in belief-collections: a worked-example surface for learning the schema vocabulary before authoring a real graph. It is listed in [collections.json](#collections-registry) alongside the framework and eval collections. It is one of several worked-example collections, the others including `method:`, `sdl`, and `toy`.
+The lending library (`lib:`, [cb:b598](#cbb598)) is the gentle on-ramp collection, an external collection that links into cb: a worked-example surface for learning the schema vocabulary before authoring a real graph. It is listed in [collections.json](#collections-registry) alongside the framework and eval collections. It is one of several worked-example collections, the others including `method:`, `sdl`, and `toy`.
 
 **See also:** [Collection](#collection), [Collections Registry](#collections-registry), [Namespace](#namespace), [Centralized Single-File Graph](#centralized-single-file-graph)
 
 ## Licensing
 
-Licensing is the bargain that defines [inference](#inference): a conclusion is permitted to exceed what its deps jointly state, and it pays for that permission by being independently [falsifiable](#falsifiability) ([cb:b473](#cba473), [cb:b472](#cba472), narrated in mental-model.md). The price of the licence is the falsification lifecycle - a generalization is built to be superseded by new evidence while its deps stay true. This is why the schema separates the ampliative type from the non-ampliative [compound](#compound): the licence to generalize is granted only against the obligation to be killable.
+Licensing is the bargain that defines [inference](#inference): a conclusion is permitted to exceed what its deps jointly state, and it pays for that permission by being independently [falsifiable](#falsifiability) ([cb:b473](#cbb473), [cb:b472](#cbb472), narrated in mental-model.md). The price of the licence is the falsification lifecycle - a generalization is built to be superseded by new evidence while its deps stay true. This is why the schema separates the ampliative type from the non-ampliative [compound](#compound): the licence to generalize is granted only against the obligation to be killable.
 
 **See also:** [Inference](#inference), [Ampliative](#ampliative), [Falsifiability](#falsifiability), [Problem of Induction](#problem-of-induction)
 
 ## Lifecycle Tag
 
-The `lifecycle:` tag is load-bearing ([cb:b491](#cba491)): a `recurring` directive is a standing rule that never materializes, while a `discrete` directive is completable work. The backlog query keys on it - `mix bs list unlinked tag:lifecycle:discrete` is the [desk](#the-desk). An untagged directive degrades the backlog view, which is why the tag is treated as a convention authors must apply. See obligation in the graph.
+The `lifecycle:` tag is load-bearing ([cb:b491](#cbb491)): a `recurring` directive is a standing rule that never materializes, while a `discrete` directive is completable work. The backlog query keys on it - `mix bs list unlinked tag:lifecycle:discrete` is the [desk](#the-desk). An untagged directive degrades the backlog view, which is why the tag is treated as a convention authors must apply. See obligation in the graph.
 
 **See also:** [The Desk](#the-desk), [Unlinked Directive](#unlinked-directive), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation), [Tags](#tags), [kind: action-item](#kind-action-item)
 
@@ -666,7 +665,7 @@ Materialization turns a [directive](#directive) into concrete action items: it v
 
 *Also: materialized*
 
-`materialized` records a historical fact: that a [directive](#directive) was executed into concrete action items at a given date, as `{plan, date, last_verified}` plus todo refs ([cb:b383](#cba383), materializer.ex). It does not assert that the effects still hold, since code drifts; `last_verified` distinguishes historical execution from current verification, which a [drift audit](#drift-audit) re-checks. It is one of the two deliberately mutable fields, because action and linkage history are orthogonal to truth status. An active directive with no materialized items is an open obligation - a [live todo](#unlinked-directive).
+`materialized` records a historical fact: that a [directive](#directive) was executed into concrete action items at a given date, as `{plan, date, last_verified}` plus todo refs ([cb:b383](#cbb383), materializer.ex). It does not assert that the effects still hold, since code drifts; `last_verified` distinguishes historical execution from current verification, which a [drift audit](#drift-audit) re-checks. It is one of the two deliberately mutable fields, because action and linkage history are orthogonal to truth status. An active directive with no materialized items is an open obligation - a [live todo](#unlinked-directive).
 
 **See also:** [Materialization](#materialization), [Status vs Materialized](#status-vs-materialized), [Drift Audit](#drift-audit), [Unlinked Directive](#unlinked-directive), [Plan](#plan)
 
@@ -686,7 +685,7 @@ The method check (CB.Method.Checks, method/checks.ex) is the static pass that di
 
 ## Methodology Contract
 
-A methodology contract is a `method:` contract-grade belief whose [implies](#implies) rule routes to a named predicate in `CB.Eval.Predicates`, run as a static [method check](#method-check) during `mix cb.verify.collection` (eval-ledger.md). The six are m-corroboration ([method:c4](#methodc4)), m-provenance (c5), m-subjects (c6), m-runs (c7), m-judge-validation (c8), and m-correction (c9), plus [method:c10](#methodc10) binding a verdict to inference. Strip the eval vocabulary and what remains is general agent epistemics: seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate your judges, revise visibly ([paradigm:a364](#paradigma364)).
+A methodology contract is a `method:` contract-grade belief whose [implies](#implies) rule routes to a named predicate in `CB.Eval.Predicates`, run as a static [method check](#method-check) during `mix cb.verify.collection` (eval-ledger.md). The six are m-corroboration (method:c4), m-provenance (c5), m-subjects (c6), m-runs (c7), m-judge-validation (c8), and m-correction (c9), plus method:c10 binding a verdict to inference. Strip the eval vocabulary and what remains is general agent epistemics: seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate your judges, revise visibly (paradigm:a364).
 
 **See also:** [Method Check](#method-check), [implies](#implies), [Verdict](#verdict), [Cross-Ruler Agreement](#cross-ruler-agreement), [Six-Subject Convention](#six-subject-convention)
 
@@ -706,7 +705,7 @@ A mutation is a typed, atom-keyed in-memory edit dispatched purely by `CB.Belief
 
 ## Namespace
 
-A namespace is the prefix of a belief [id](#namespaced-id) naming the collection it belongs to ([cb:b463](#cba463)): ids are `namespace:local-id`, exactly one owning collection per namespace, globally unique. Deps may cross namespaces, but `cb:` depends only within `cb:` while every other collection may depend on `cb:`, which keeps the framework self-contained and shippable. Bare ids resolve when unambiguous.
+A namespace is the prefix of a belief [id](#namespaced-id) naming the collection it belongs to ([cb:b463](#cbb463)): ids are `namespace:local-id`, exactly one owning collection per namespace, globally unique. Deps may cross namespaces, but `cb:` depends only within `cb:` while every other collection may depend on `cb:`, which keeps the framework self-contained and shippable. Bare ids resolve when unambiguous.
 
 **See also:** [Namespaced ID](#namespaced-id), [Collection](#collection), [depends_on / Borrowing by Role](#depends_on--borrowing-by-role), [cb: Holds Only What and How](#cb-holds-only-what-and-how)
 
@@ -714,7 +713,7 @@ A namespace is the prefix of a belief [id](#namespaced-id) naming the collection
 
 *Also: id, bare id, local id*
 
-Every belief id is a namespaced string, `namespace:local-id` such as `cb:b029` or `agent-behavior:a054`, globally unique with exactly one owning collection per [namespace](#namespace) ([cb:b463](#cba463)). The local-id prefix encodes grade: `c###` for a [contract](#contract), `a###` for everything else, `o-<hash>` for an eval [observation](#observation), `t####` for a todo. A bare id (`b029`) resolves to its unique namespaced match (CB.Belief.Graph.resolve_id, graph.ex:22), the shared id-resolution primitive nearly every mix task uses.
+Every belief id is a namespaced string, `namespace:local-id` such as `cb:b029` or `agent-behavior:a054`, globally unique with exactly one owning collection per [namespace](#namespace) ([cb:b463](#cbb463)). The local-id prefix encodes grade: `c###` for a [contract](#contract), `a###` for everything else, `o-<hash>` for an eval [observation](#observation), `t####` for a todo. A bare id (`b029`) resolves to its unique namespaced match (CB.Belief.Graph.resolve_id, graph.ex:22), the shared id-resolution primitive nearly every mix task uses.
 
 **See also:** [Namespace](#namespace), [c-Prefix / a-Prefix](#c-prefix--a-prefix), [Collection](#collection), [Identity Hashing](#identity-hashing)
 
@@ -722,37 +721,37 @@ Every belief id is a namespaced string, `namespace:local-id` such as `cb:b029` o
 
 *Also: code as operational substrate, editor as adjudication surface*
 
-The principle behind [answer-time anchoring](#answer-time-anchoring): natural-language discussion above the code is productive exactly when every claim terminates in an [anchor](#anchor) into the running substrate ([cb:b485](#cba485)). Code is the only artifact whose meaning is enforced by execution, so it is the operational substrate rather than a persisting abstraction layer ([cb:b484](#cba484)), and reading it re-scopes to the anchored stops that carry an argument, making the editor an adjudication surface where claims meet what runs ([cb:b486](#cba486), [cb:b487](#cba487)).
+The principle behind [answer-time anchoring](#answer-time-anchoring): natural-language discussion above the code is productive exactly when every claim terminates in an [anchor](#anchor) into the running substrate ([cb:b485](#cbb485)). Code is the only artifact whose meaning is enforced by execution, so it is the operational substrate rather than a persisting abstraction layer ([cb:b484](#cbb484)), and reading it re-scopes to the anchored stops that carry an argument, making the editor an adjudication surface where claims meet what runs ([cb:b486](#cbb486), [cb:b487](#cbb487)).
 
 **See also:** [Answer-Time Anchoring](#answer-time-anchoring), [code: Scheme](#code-scheme), [Codepath](#codepath), [Three-Tier Anchor Verification](#three-tier-anchor-verification)
 
 ## Neither Prose nor Code
 
-Contracts fill the gap between literal code and plain English ([cb:b133](#cba133), [cb:b134](#cba134), [cb:b135](#cba135), synthesized in [cb:b138](#cba138)): a prose rule cannot be mechanically checked, and code cannot carry its own rationale, provenance, and supersession history, while a [contract](#contract) does both. Contracts are domain-bound (they survive code rewrites), substrate-independent (one state-machine contract is implemented in both compiled code and agent reasoning, [cb:b135](#cba135)), and they generate tests rather than the reverse ([cb:b134](#cba134)). This intermediate formality is what makes it safe for the graph to drive tests.
+Contracts fill the gap between literal code and plain English ([cb:b133](#cbb133), [cb:b134](#cbb134), [cb:b135](#cbb135), synthesized in [cb:b138](#cbb138)): a prose rule cannot be mechanically checked, and code cannot carry its own rationale, provenance, and supersession history, while a [contract](#contract) does both. Contracts are domain-bound (they survive code rewrites), substrate-independent (one state-machine contract is implemented in both compiled code and agent reasoning, [cb:b135](#cbb135)), and they generate tests rather than the reverse ([cb:b134](#cbb134)). This intermediate formality is what makes it safe for the graph to drive tests.
 
 **See also:** [Contract](#contract), [Verification, Not Generation](#verification-not-generation), [Routing / Implementation Boundary](#routing--implementation-boundary), [verify_against_contract](#verify_against_contract)
 
 ## No Confidence Scores
 
-CB has no `confidence` field by design ([cb:b448](#cba448), restated [cb:b481](#cba481)): a subjective scalar synthesized without a deterministic basis does no load-bearing work and hides what it pretends to measure. In its place, `CB.Belief.support/1` returns deterministic [structural support](#structural-support) counts, so a thin single-source claim and a load-bearing well-evidenced one are distinguishable by structure - rank by evidence, not vibes (mental-model.md). The field was [deprecated](#deprecation) rather than deleted ([cb:b390](#cba390)), leaving the path open to a derived confidence if a concrete use-case ever materializes. See why there are no confidence scores.
+CB has no `confidence` field by design ([cb:b448](#cbb448), restated [cb:b481](#cbb481)): a subjective scalar synthesized without a deterministic basis does no load-bearing work and hides what it pretends to measure. In its place, `CB.Belief.support/1` returns deterministic [structural support](#structural-support) counts, so a thin single-source claim and a load-bearing well-evidenced one are distinguishable by structure - rank by evidence, not vibes (mental-model.md). The field was [deprecated](#deprecation) rather than deleted ([cb:b390](#cbb390)), leaving the path open to a derived confidence if a concrete use-case ever materializes. See why there are no confidence scores.
 
 **See also:** [Structural Support](#structural-support), [Deprecation](#deprecation), [Composition Over Retrieval](#composition-over-retrieval), [Expunged Fields](#expunged-fields)
 
 ## No Em-Dashes / No Contrastive Shape
 
-Two house prose rules govern every surface in this tree, including this glossary: use hyphens only, never em-dashes or en-dashes ([cb:b455](#cba455)), and state what things are directly rather than reaching for the contrastive X-does-not-Y-it-Z shape ([cb:b505](#cba505)). These are [compiled](#compiled-document) formatting conventions, enforced because consistent prose is part of what makes the graph's output trustworthy. They are small instances of the broader principle that conventions in the graph are checkable.
+Two house prose rules govern every surface in this tree, including this glossary: use hyphens only, never em-dashes or en-dashes ([cb:b455](#cbb455)), and state what things are directly rather than reaching for the contrastive X-does-not-Y-it-Z shape ([cb:b505](#cbb505)). These are [compiled](#compiled-document) formatting conventions, enforced because consistent prose is part of what makes the graph's output trustworthy. They are small instances of the broader principle that conventions in the graph are checkable.
 
 **See also:** [Compiled Document](#compiled-document), [Schema Discipline](#schema-discipline)
 
 ## No Maintenance Hatch
 
-There is no maintenance hatch ([cb:b498](#cba498)): the framework's canon changes only through its own write flow, even at the foundations - the status-lifecycle contract was superseded via the lifecycle it defines (b029 to b053), and the type enum was replaced through adjudication by a node typed in the values it introduces (b026 to b051). Because no door bypasses the write flow, audit-trail completeness is structural, not behavioral: the history can be trusted without trusting that everyone behaved. This is the deepest justification for [immutability](#immutability) and the reason [axiom is a role](#axiom-is-a-role), never a privileged type.
+There is no maintenance hatch ([cb:b498](#cbb498)): the framework's canon changes only through its own write flow, even at the foundations - the status-lifecycle contract was superseded via the lifecycle it defines (b029 to b053), and the type enum was replaced through adjudication by a node typed in the values it introduces (b026 to b051). Because no door bypasses the write flow, audit-trail completeness is structural, not behavioral: the history can be trusted without trusting that everyone behaved. This is the deepest justification for [immutability](#immutability) and the reason [axiom is a role](#axiom-is-a-role), never a privileged type.
 
 **See also:** [Immutability](#immutability), [Status Lifecycle](#status-lifecycle), [Axiom Is a Role](#axiom-is-a-role), [DAG-Authorized Migration](#dag-authorized-migration), [Schema as Contracts](#schema-as-contracts)
 
 ## Non-Derivable Knowledge Only
 
-The DAG holds only non-derivable knowledge ([cb:b427](#cba427)): material already documented in code or docs is not duplicated into beliefs, and deductive consequences are computed on demand rather than stored ([cb:b473](#cba473)). This keeps the graph a store of claims that could not be reconstructed otherwise, consistent with [composition over retrieval](#composition-over-retrieval). It is why the framework's own graph contains the schema's what and how but routes the why to other collections.
+The DAG holds only non-derivable knowledge ([cb:b427](#cbb427)): material already documented in code or docs is not duplicated into beliefs, and deductive consequences are computed on demand rather than stored ([cb:b473](#cbb473)). This keeps the graph a store of claims that could not be reconstructed otherwise, consistent with [composition over retrieval](#composition-over-retrieval). It is why the framework's own graph contains the schema's what and how but routes the why to other collections.
 
 **See also:** [Composition Over Retrieval](#composition-over-retrieval), [Sources Are Not Beliefs](#sources-are-not-beliefs), [cb: Holds Only What and How](#cb-holds-only-what-and-how), [Strict-Aggregate Doctrine](#strict-aggregate-doctrine)
 
@@ -786,7 +785,7 @@ An output target is a `kind: output-target` directive whose rules declare how to
 
 ## Persistence Across Sessions
 
-Persistence across sessions and subagents ([cb:b339](#cba339), [cb:b340](#cba340), [cb:b341](#cba341), [cb:b110](#cba110)) is the core promise: a claim written by one session is readable by every later session and subagent without re-derivation. This is what makes the graph a [shared prosthetic](#shared-prosthetic) for attention and context, and it is why obligations and records must live in the graph and repos rather than in [session memory](#session-memory-as-ephemeral-cache).
+Persistence across sessions and subagents ([cb:b339](#cbb339), [cb:b340](#cbb340), [cb:b341](#cbb341), [cb:b110](#cbb110)) is the core promise: a claim written by one session is readable by every later session and subagent without re-derivation. This is what makes the graph a [shared prosthetic](#shared-prosthetic) for attention and context, and it is why obligations and records must live in the graph and repos rather than in [session memory](#session-memory-as-ephemeral-cache).
 
 **See also:** [Shared Prosthetic](#shared-prosthetic), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation), [Composable Beliefs](#composable-beliefs)
 
@@ -794,25 +793,25 @@ Persistence across sessions and subagents ([cb:b339](#cba339), [cb:b340](#cba340
 
 *Also: plans*
 
-A plan is what a large [directive](#directive) materializes into ([cb:b490](#cba490)): the [materialized](#materialized) field's plan path links the obligation to its execution record, and `plans/` are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts ([cb:b382](#cba382), [cb:b375](#cba375)). The reference direction inverts: query the graph for what is next, then follow it into `plans/` for how and history. Plan is retired as an artifact category ([cb:b569](#cbb569)): new work of that shape is a [proto-belief document](#proto-belief-document) whose mint-manifest rows are predominantly prescriptions, and `plans/` is a closed shelf, kept in place because references point into it.
+A plan is what a large [directive](#directive) materializes into ([cb:b490](#cbb490)): the [materialized](#materialized) field's plan path links the obligation to its execution record, and `plans/` are retained permanently as cited source docs. Plans encode intent as history; static implementation steps in a plan are liabilities, because intent lives in the DAG while the world drifts ([cb:b382](#cbb382), [cb:b375](#cbb375)). The reference direction inverts: query the graph for what is next, then follow it into `plans/` for how and history. Plan is retired as an artifact category ([cb:b569](#cbb569)): new work of that shape is a [proto-belief document](#proto-belief-document) whose mint-manifest rows are predominantly prescriptions, and `plans/` is a closed shelf, kept in place because references point into it.
 
 **See also:** [Materialization](#materialization), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation), [The Desk](#the-desk), [Self-Bootstrapping Directive](#self-bootstrapping-directive), [Proto-Belief Document](#proto-belief-document)
 
 ## Position
 
-A position document captures a settled stance whose verbatim wording matters, and its claims are then extracted into the graph through the `/position` skill ([cb:b492](#cba492), [cb:b528](#cba528)). It names the epistemic artifact (the stance plus its claims), while a [codepath](#codepath) names the render face resolved from the position's anchors - a position with anchors has a codepath. Framework-policy positions live in the framework repo's `positions/`, because a distributable framework must resolve every artifact its own graph cites ([cb:b492](#cba492)). See positions and chronicles.
+A position document captures a settled stance whose verbatim wording matters, and its claims are then extracted into the graph through the `/position` skill ([cb:b492](#cbb492), [cb:b528](#cbb528)). It names the epistemic artifact (the stance plus its claims), while a [codepath](#codepath) names the render face resolved from the position's anchors - a position with anchors has a codepath. Framework-policy positions live in the framework repo's `positions/`, because a distributable framework must resolve every artifact its own graph cites ([cb:b492](#cbb492)). See positions and chronicles.
 
 **See also:** [Position vs Codepath](#position-vs-codepath), [Anchored-Position Format](#anchored-position-format), [Ceremony Proportionate to Stance](#ceremony-proportionate-to-stance), [Codepath](#codepath), [Decision-Weight Session](#decision-weight-session)
 
 ## Position vs Codepath
 
-Position and codepath name two faces of one thing ([cb:b528](#cba528)): a [position](#position) names the epistemic artifact - the settled stance and its typed claims - while a [codepath](#codepath) names the render face, the navigable tour resolved from the position's anchors. The slogan is that a position with anchors has a codepath. This mirrors the broader [compiled-versus-rendered](#compiled-face-vs-rendered-face) split between what faces the agent and what faces the human.
+Position and codepath name two faces of one thing ([cb:b528](#cbb528)): a [position](#position) names the epistemic artifact - the settled stance and its typed claims - while a [codepath](#codepath) names the render face, the navigable tour resolved from the position's anchors. The slogan is that a position with anchors has a codepath. This mirrors the broader [compiled-versus-rendered](#compiled-face-vs-rendered-face) split between what faces the agent and what faces the human.
 
 **See also:** [Position](#position), [Codepath](#codepath), [Anchored-Position Format](#anchored-position-format), [Compiled Face vs Rendered Face](#compiled-face-vs-rendered-face)
 
 ## Predicate Gate
 
-The predicate gate (CB.PredicateGate, predicate_gate.ex:31) is the shared resolve point between a predicate name stored in the graph and the executable code it refers to. It enforces two checks per [cb:b050](#cbc050): the name matches the [inspection-only](#inspection-only-predicates) pattern, and it resolves to an exported function of the expected arity. Anything else is refused, because an executable string in the graph has nothing to grab onto - the [routing/implementation boundary](#routing--implementation-boundary) at the predicate level. The two predicate worlds (codepath arity-0 and collection arity-2) share only this gate.
+The predicate gate (CB.PredicateGate, predicate_gate.ex:31) is the shared resolve point between a predicate name stored in the graph and the executable code it refers to. It enforces two checks per [cb:b050](#cbb050): the name matches the [inspection-only](#inspection-only-predicates) pattern, and it resolves to an exported function of the expected arity. Anything else is refused, because an executable string in the graph has nothing to grab onto - the [routing/implementation boundary](#routing--implementation-boundary) at the predicate level. The two predicate worlds (codepath arity-0 and collection arity-2) share only this gate.
 
 **See also:** [Inspection-Only Predicates](#inspection-only-predicates), [Routed Predicate](#routed-predicate), [Routing / Implementation Boundary](#routing--implementation-boundary), [Dynamic Verifier](#dynamic-verifier), [Method Check](#method-check)
 
@@ -820,13 +819,13 @@ The predicate gate (CB.PredicateGate, predicate_gate.ex:31) is the shared resolv
 
 *Also: preflight buckets*
 
-Preflight (CB.Belief.Conflict, conflict.ex) is the read-only authoring-time check that compares a proposed belief against the live graph and buckets matches: contract-level conflicts (which block the write, exit 2), schema conflicts, supportive matches (dep candidates), and neutral matches. It matches on three axes - subject overlap, tag overlap, and claim token overlap above a threshold - and classifies a match as conflicting only with [semantic contact](#semantic-contact) ([cb:b064](#cbc064)). It is the mechanism that surfaces conflicts at authoring time, the heart of the [consensus mechanism](#consensus-mechanism).
+Preflight (CB.Belief.Conflict, conflict.ex) is the read-only authoring-time check that compares a proposed belief against the live graph and buckets matches: contract-level conflicts (which block the write, exit 2), schema conflicts, supportive matches (dep candidates), and neutral matches. It matches on three axes - subject overlap, tag overlap, and claim token overlap above a threshold - and classifies a match as conflicting only with [semantic contact](#semantic-contact) ([cb:b064](#cbb064)). It is the mechanism that surfaces conflicts at authoring time, the heart of the [consensus mechanism](#consensus-mechanism).
 
 **See also:** [Semantic Contact](#semantic-contact), [Preflight Escalation Rule](#preflight-escalation-rule), [Adjudication](#adjudication), [Consensus Mechanism](#consensus-mechanism), [Write Flow](#write-flow)
 
 ## Preflight Escalation Rule
 
-The preflight escalation rule ([cb:b064](#cbc064), [cb:b519](#cba519)) governs when a match escalates: only with [semantic contact](#semantic-contact) (a shared subject ref or claim overlap) does a match move into a conflict bucket, never on bare tag overlap alone. It is the contract that makes [preflight](#preflight) enforce, at write time, the doctrine that [conflict scope](#conflict-scope) states - that overlap is necessary but not sufficient for contradiction. Contract-grade matches always carry a contract-level priority regardless.
+The preflight escalation rule ([cb:b064](#cbb064), [cb:b519](#cbb519)) governs when a match escalates: only with [semantic contact](#semantic-contact) (a shared subject ref or claim overlap) does a match move into a conflict bucket, never on bare tag overlap alone. It is the contract that makes [preflight](#preflight) enforce, at write time, the doctrine that [conflict scope](#conflict-scope) states - that overlap is necessary but not sufficient for contradiction. Contract-grade matches always carry a contract-level priority regardless.
 
 **See also:** [Semantic Contact](#semantic-contact), [Preflight](#preflight), [Conflict Scope](#conflict-scope), [Contract](#contract)
 
@@ -834,25 +833,25 @@ The preflight escalation rule ([cb:b064](#cbc064), [cb:b519](#cba519)) governs w
 
 *Also: attest*
 
-A primitive records the operation attest: one atomic statement of what a single source said, grounded in an [artifact](#artifact) and dated [evidence](#evidence), with no [deps](#deps) ([cb:b051](#cbc051), [cb:b303](#cba303)). Atomicity here is about provenance, not logic ([cb:b475](#cba475), [cb:b298](#cba298)): what makes a claim primitive is that it derives from one source rather than from other beliefs, so a primitive conjoining separable assertions is a mis-authored [compound](#compound) that should be split at authoring time. A primitive is an immutable record, only superseded if the source itself is re-read differently. In eval work, an [observation](#observation) is the primitive face.
+A primitive records the operation attest: one atomic statement of what a single source said, grounded in an [artifact](#artifact) and dated [evidence](#evidence), with no [deps](#deps) ([cb:b051](#cbb051), [cb:b303](#cbb303)). Atomicity here is about provenance, not logic ([cb:b475](#cbb475), [cb:b298](#cbb298)): what makes a claim primitive is that it derives from one source rather than from other beliefs, so a primitive conjoining separable assertions is a mis-authored [compound](#compound) that should be split at authoring time. A primitive is an immutable record, only superseded if the source itself is re-read differently. In eval work, an [observation](#observation) is the primitive face.
 
 **See also:** [Compound](#compound), [Inference](#inference), [Directive](#directive), [Primitive Atomicity](#primitive-atomicity), [Artifact](#artifact)
 
 ## Primitive Atomicity
 
-Primitive atomicity ([cb:b475](#cba475), [cb:b298](#cba298)) is the doctrine that atomicity is about provenance, not logic: a claim is a [primitive](#primitive) because it derives from one source rather than from other beliefs. A primitive that conjoins separable assertions is therefore a mis-authored [compound](#compound) and should be split at authoring time, with the conjunction expressed as a compound depending on the split primitives. This keeps the single-source attestation honest and lets the graph distinguish what one source said from what several sources jointly support.
+Primitive atomicity ([cb:b475](#cbb475), [cb:b298](#cbb298)) is the doctrine that atomicity is about provenance, not logic: a claim is a [primitive](#primitive) because it derives from one source rather than from other beliefs. A primitive that conjoins separable assertions is therefore a mis-authored [compound](#compound) and should be split at authoring time, with the conjunction expressed as a compound depending on the split primitives. This keeps the single-source attestation honest and lets the graph distinguish what one source said from what several sources jointly support.
 
 **See also:** [Primitive](#primitive), [Compound](#compound), [Sources Are Not Beliefs](#sources-are-not-beliefs), [Extraction-Time Discipline](#extraction-time-discipline)
 
 ## Problem of Induction
 
-The problem of induction is that no finite set of observations deductively entails a universal generalization about all cases. CB makes this gap a structural feature: the premises of an [inference](#inference) are about particular cases (case 7 of run 3), while its conclusion is about every such case ever, and no chain of deductive steps bridges that distance ([cb:b473](#cba473)). The schema does not pretend to close the gap; it licenses the leap and then makes the resulting claim [falsifiable](#falsifiability), so a single counter-run can retire the generalization.
+The problem of induction is that no finite set of observations deductively entails a universal generalization about all cases. CB makes this gap a structural feature: the premises of an [inference](#inference) are about particular cases (case 7 of run 3), while its conclusion is about every such case ever, and no chain of deductive steps bridges that distance ([cb:b473](#cbb473)). The schema does not pretend to close the gap; it licenses the leap and then makes the resulting claim [falsifiable](#falsifiability), so a single counter-run can retire the generalization.
 
 **See also:** [Inference](#inference), [Ampliative](#ampliative), [Licensing](#licensing), [Falsifiability](#falsifiability)
 
 ## Proto-Belief Document
 
-*Also: focus (retired), seed (retired), brief (retired)*
+*Also: focus (retired)seed (retired)brief (retired)*
 
 The proto-belief document ([cb:b569](#cbb569)) is the nursery artifact: a mutable document in `beliefs/nursery/` where one separable matter is deliberated until its mint-manifest rows plant into the graph or the document composts. The retired registers focus, seed (for documents), brief, and plan all named this one artifact; no informal genre register survives the rename - mood is carried only by the structural type system, and a plan is a proto-belief document whose rows are predominantly prescriptions. Separable means the strands' eventual mint-manifest rows stand on independent argument (the split test). The commit trailer for document lifecycle events is `Proto-Belief:`, completing the chain Thread: -> Proto-Belief: -> Belief:. Threads keep seed informally, as the seed bed ideas germinate in.
 
@@ -872,13 +871,13 @@ The framework is pure deterministic graph code over one JSON file (composable-be
 
 ## Reasoning Substrate, Not Memory
 
-CB is a reasoning and audit substrate, not a memory system ([cb:b539](#cba539)): it layers over any memory or recall system rather than becoming one, and building retrieval into CB would forfeit the deterministic, LLM-free read path the framework exists to provide. [OKF](#okf-open-knowledge-format) is the prose and knowledge layer; CB is the verifiable-claims layer. This is the boundary that keeps the framework's value in [composition](#composition-over-retrieval) rather than recall. See OKF and the memory boundary.
+CB is a reasoning and audit substrate, not a memory system ([cb:b539](#cbb539)): it layers over any memory or recall system rather than becoming one, and building retrieval into CB would forfeit the deterministic, LLM-free read path the framework exists to provide. [OKF](#okf-open-knowledge-format) is the prose and knowledge layer; CB is the verifiable-claims layer. This is the boundary that keeps the framework's value in [composition](#composition-over-retrieval) rather than recall. See OKF and the memory boundary.
 
 **See also:** [Composition Over Retrieval](#composition-over-retrieval), [OKF (Open Knowledge Format)](#okf-open-knowledge-format), [Shared Prosthetic](#shared-prosthetic), [No Confidence Scores](#no-confidence-scores), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache)
 
 ## Recency
 
-The recency view ([cb:b501](#cba501), shipped as `mix bs recent`, CB.Belief.Graph.recent, graph.ex:272) reports what changed in a window: new nodes, supersessions, [evidence](#evidence) appends (strictly after creation), materializations, and retractions. The window test is a lexical ISO-date compare on the `created` and entry dates, so no git history is needed. It exists so that concurrent multi-session activity is observable without reading the commit log, supporting the discipline to [author against the live graph](#author-against-the-live-graph).
+The recency view ([cb:b501](#cbb501), shipped as `mix bs recent`, CB.Belief.Graph.recent, graph.ex:272) reports what changed in a window: new nodes, supersessions, [evidence](#evidence) appends (strictly after creation), materializations, and retractions. The window test is a lexical ISO-date compare on the `created` and entry dates, so no git history is needed. It exists so that concurrent multi-session activity is observable without reading the commit log, supporting the discipline to [author against the live graph](#author-against-the-live-graph).
 
 **See also:** [Staleness](#staleness), [Author Against the Live Graph](#author-against-the-live-graph), [Belief Shell (bs)](#belief-shell-bs), [Session Memory as Ephemeral Cache](#session-memory-as-ephemeral-cache)
 
@@ -890,7 +889,7 @@ The receptive face is CB used to take knowledge in: record findings as typed [pr
 
 ## Retired
 
-Retired is the directive-only terminal status: a rule the house has stopped standing behind and that is no longer in force ([cb:b053](#cbc053), verifier.ex:500). Descriptive claims (primitives, compounds, inferences) are [superseded](#supersession) or [retracted](#retraction) rather than retired, because they were never in force to begin with ([cb:b471](#cba471)). The verifier enforces that only [directives](#directive) carry this status, which is one of the structural ways the is/ought boundary shows up in the lifecycle.
+Retired is the directive-only terminal status: a rule the house has stopped standing behind and that is no longer in force ([cb:b053](#cbb053), verifier.ex:500). Descriptive claims (primitives, compounds, inferences) are [superseded](#supersession) or [retracted](#retraction) rather than retired, because they were never in force to begin with ([cb:b471](#cbb471)). The verifier enforces that only [directives](#directive) carry this status, which is one of the structural ways the is/ought boundary shows up in the lifecycle.
 
 **See also:** [Status Lifecycle](#status-lifecycle), [Directive](#directive), [Direction of Fit](#direction-of-fit), [Deprecation](#deprecation)
 
@@ -898,37 +897,37 @@ Retired is the directive-only terminal status: a rule the house has stopped stan
 
 *Also: retracted, retracted_on, retracted_reason*
 
-Retraction withdraws a belief as wrong or moot, flipping its status to `retracted` and recording `retracted_on` and `retracted_reason` ([cb:b053](#cbc053), cb.retract.ex, mutation.ex:137). It differs from [supersession](#supersession), which names a successor; a retracted node simply should not stand. A belief that deps on a retracted node becomes detectably [stale](#staleness). Eval corrections are dated supersessions rather than bare retractions, enforced by contract [method:c9](#methodc9).
+Retraction withdraws a belief as wrong or moot, flipping its status to `retracted` and recording `retracted_on` and `retracted_reason` ([cb:b053](#cbb053), cb.retract.ex, mutation.ex:137). It differs from [supersession](#supersession), which names a successor; a retracted node simply should not stand. A belief that deps on a retracted node becomes detectably [stale](#staleness). Eval corrections are dated supersessions rather than bare retractions, enforced by contract method:c9.
 
 **See also:** [Status Lifecycle](#status-lifecycle), [Supersession](#supersession), [Deprecation](#deprecation), [Staleness](#staleness)
 
 ## Retro-Pairing
 
-Retro-pairing ([cb:b507](#cba507), [cb:b540](#cba540)) pairs a `session:` [stipulation](#stipulation-artifact) with a `document:` pointer, so a belief grounded in an ephemeral session can still be reached cold by a later agent. It is the concrete practice that makes a directive [self-bootstrapping](#self-bootstrapping-directive), and it is one half of why [session artifacts](#session-artifacts-resolvable-future) need to dereference.
+Retro-pairing ([cb:b507](#cbb507), [cb:b540](#cbb540)) pairs a `session:` [stipulation](#stipulation-artifact) with a `document:` pointer, so a belief grounded in an ephemeral session can still be reached cold by a later agent. It is the concrete practice that makes a directive [self-bootstrapping](#self-bootstrapping-directive), and it is one half of why [session artifacts](#session-artifacts-resolvable-future) need to dereference.
 
 **See also:** [Self-Bootstrapping Directive](#self-bootstrapping-directive), [Stipulation Artifact](#stipulation-artifact), [Session Artifacts Resolvable (Future)](#session-artifacts-resolvable-future), [Decision-Weight Session](#decision-weight-session)
 
 ## Routed Predicate
 
-A routed predicate is named in a contract's [implies](#implies) rules but implemented in Elixir, resolved through the [predicate gate](#predicate-gate) (codepath/predicates.ex, eval/predicates.ex). It is the running embodiment of the [routing/implementation boundary](#routing--implementation-boundary) ([cb:b047](#cbc047)): the graph expresses which predicate fires on which condition, and the module carries the body. Codepath predicates are zero-arity and app-reading; methodology predicates are arity-2 and graph-reading.
+A routed predicate is named in a contract's [implies](#implies) rules but implemented in Elixir, resolved through the [predicate gate](#predicate-gate) (codepath/predicates.ex, eval/predicates.ex). It is the running embodiment of the [routing/implementation boundary](#routing--implementation-boundary) ([cb:b047](#cbb047)): the graph expresses which predicate fires on which condition, and the module carries the body. Codepath predicates are zero-arity and app-reading; methodology predicates are arity-2 and graph-reading.
 
 **See also:** [implies](#implies), [Predicate Gate](#predicate-gate), [Routing / Implementation Boundary](#routing--implementation-boundary), [Method Check](#method-check), [Dynamic Verifier](#dynamic-verifier)
 
 ## Routing / Implementation Boundary
 
-The routing/implementation boundary ([cb:b047](#cbc047)) is the keystone: contracts carry routing tables expressing which predicates fire on which conditions, while modules carry the predicate implementations, and the graph never stores executable code. This is what makes it safe for the graph to drive tests, since an executable string in the DAG would have nothing to grab onto (predicate_gate.ex). The same boundary appears in the [state-machine](#state-machine) that routes status edges without evaluating their requirements, and in every [routed predicate](#routed-predicate). See contracts.
+The routing/implementation boundary ([cb:b047](#cbb047)) is the keystone: contracts carry routing tables expressing which predicates fire on which conditions, while modules carry the predicate implementations, and the graph never stores executable code. This is what makes it safe for the graph to drive tests, since an executable string in the DAG would have nothing to grab onto (predicate_gate.ex). The same boundary appears in the [state-machine](#state-machine) that routes status edges without evaluating their requirements, and in every [routed predicate](#routed-predicate). See contracts.
 
 **See also:** [Rule-Kind Catalogue](#rule-kind-catalogue), [Routed Predicate](#routed-predicate), [Predicate Gate](#predicate-gate), [Verification, Not Generation](#verification-not-generation), [Contract](#contract)
 
 ## Rule-Kind Catalogue
 
-Contract rules decompose into a closed catalogue of rule kinds ([cb:b046](#cbc046)): each kind has a Datalog-shaped declarative fact and exactly one Elixir interpreter. The five are [state-machine](#state-machine) (edge/3), [enum-registry](#enum-registry) (allowed/2), [derivation-table](#derivation-table) (row/N), [implies](#implies) (implies/2), and [output-target](#output-target) (field/2). Datalog supplies the fact shape only; evaluation lives in each kind's ordinary interpreter - the graph routes, code implements (CB.Belief.Contract.*). The catalogue is itself a contract, an instance of the graph describing itself.
+Contract rules decompose into a closed catalogue of rule kinds ([cb:b046](#cbb046)): each kind has a Datalog-shaped declarative fact and exactly one Elixir interpreter. The five are [state-machine](#state-machine) (edge/3), [enum-registry](#enum-registry) (allowed/2), [derivation-table](#derivation-table) (row/N), [implies](#implies) (implies/2), and [output-target](#output-target) (field/2). Datalog supplies the fact shape only; evaluation lives in each kind's ordinary interpreter - the graph routes, code implements (CB.Belief.Contract.*). The catalogue is itself a contract, an instance of the graph describing itself.
 
 **See also:** [state-machine](#state-machine), [enum-registry](#enum-registry), [derivation-table](#derivation-table), [implies](#implies), [Routing / Implementation Boundary](#routing--implementation-boundary)
 
 ## Ruler
 
-A ruler is CB's word for a scorer or judge, a deterministic field-differ or an LLM judge alike, that turns one model output into an outcome (eval-ledger.md). It appears as a [subject](#subjects) of type `ruler` on every [observation](#observation), and an LLM-judge ruler requires a human-agreement validation record (contract [method:c8](#methodc8)). Two independent rulers reaching the same outcome is the basis of a [cross-ruler agreement](#cross-ruler-agreement) compound.
+A ruler is CB's word for a scorer or judge, a deterministic field-differ or an LLM judge alike, that turns one model output into an outcome (eval-ledger.md). It appears as a [subject](#subjects) of type `ruler` on every [observation](#observation), and an LLM-judge ruler requires a human-agreement validation record (contract method:c8). Two independent rulers reaching the same outcome is the basis of a [cross-ruler agreement](#cross-ruler-agreement) compound.
 
 **See also:** [Observation](#observation), [Cross-Ruler Agreement](#cross-ruler-agreement), [Six-Subject Convention](#six-subject-convention), [Methodology Contract](#methodology-contract), [Harness](#harness)
 
@@ -936,7 +935,7 @@ A ruler is CB's word for a scorer or judge, a deterministic field-differ or an L
 
 *Also: rules*
 
-`rules` is a contract's list of routing or relation rows, a tiny Datalog relation whose shape depends on the contract's [kind](#kind) and is read by exactly one interpreter module (CB.Belief.Contract.*). A directive is contract-grade iff its `rules` or [invariants](#invariants) are non-empty (the contract biconditional, [cb:b056](#cbc056)). The rules express which predicate fires on which condition; they never store executable code, the [routing/implementation boundary](#routing--implementation-boundary) ([cb:b047](#cbc047)). See the [rule-kind catalogue](#rule-kind-catalogue).
+`rules` is a contract's list of routing or relation rows, a tiny Datalog relation whose shape depends on the contract's [kind](#kind) and is read by exactly one interpreter module (CB.Belief.Contract.*). A directive is contract-grade iff its `rules` or [invariants](#invariants) are non-empty (the contract biconditional, [cb:b056](#cbb056)). The rules express which predicate fires on which condition; they never store executable code, the [routing/implementation boundary](#routing--implementation-boundary) ([cb:b047](#cbb047)). See the [rule-kind catalogue](#rule-kind-catalogue).
 
 **See also:** [Invariants](#invariants), [Contract](#contract), [Rule-Kind Catalogue](#rule-kind-catalogue), [Routing / Implementation Boundary](#routing--implementation-boundary), [implies](#implies)
 
@@ -948,13 +947,13 @@ The run-manifest (docs/run-manifest.md, CB.Eval.Manifest) is the neutral version
 
 ## Schema as Contracts
 
-The schema describes itself: its rules are expressed as [contracts](#contract) inside the graph ([cb:b051](#cbc051) through [cb:b059](#cbc059), [cb:b066](#cbc066)), and `mix cb.verify.schema` checks both the `CB.Belief` struct and the live graph against them ([cb:b482](#cba482)). The graph is therefore simultaneously the example and the specification, and the framework's own graph is verified by the same code path as every borrower's. This is the dogfooding that makes the [no maintenance hatch](#no-maintenance-hatch) principle real at the level of the schema. See the graph describes itself.
+The schema describes itself: its rules are expressed as [contracts](#contract) inside the graph ([cb:b051](#cbb051) through [cb:b059](#cbb059), [cb:b066](#cbb066)), and `mix cb.verify.schema` checks both the `CB.Belief` struct and the live graph against them ([cb:b482](#cbb482)). The graph is therefore simultaneously the example and the specification, and the framework's own graph is verified by the same code path as every borrower's. This is the dogfooding that makes the [no maintenance hatch](#no-maintenance-hatch) principle real at the level of the schema. See the graph describes itself.
 
 **See also:** [verify.schema](#verifyschema), [Schema Verifier](#schema-verifier), [Discovered by Role](#discovered-by-role), [No Maintenance Hatch](#no-maintenance-hatch), [Schema Discipline](#schema-discipline)
 
 ## Schema Discipline
 
-Schema discipline ([cb:b056](#cbc056), supersedes [cb:b038](#cbc038)) is the umbrella contract binding several rules into one: provenance flows through the [artifact](#artifact) field; `contract: true` is biconditional with non-empty rules or invariants; no belief carries the deleted [implication](#expunged-fields) field; enum-shaped fields bind to their [enum contracts](#enum-registry); and [kind](#kind) binds structural type via the [kind-type table](#kind-type-table) ([cb:b481](#cba481)). It is one of the contracts the schema uses to describe and check itself.
+Schema discipline ([cb:b056](#cbb056), supersedes [cb:b038](#cbb038)) is the umbrella contract binding several rules into one: provenance flows through the [artifact](#artifact) field; `contract: true` is biconditional with non-empty rules or invariants; no belief carries the deleted [implication](#expunged-fields) field; enum-shaped fields bind to their [enum contracts](#enum-registry); and [kind](#kind) binds structural type via the [kind-type table](#kind-type-table) ([cb:b481](#cbb481)). It is one of the contracts the schema uses to describe and check itself.
 
 **See also:** [Contract](#contract), [Field Presence by Type](#field-presence-by-type), [Schema as Contracts](#schema-as-contracts), [Expunged Fields](#expunged-fields), [enum-registry](#enum-registry)
 
@@ -966,13 +965,13 @@ Schema discipline ([cb:b056](#cbc056), supersedes [cb:b038](#cbc038)) is the umb
 
 ## Self-Bootstrapping Directive
 
-A self-bootstrapping directive ([cb:b507](#cba507)) is a backlog node reachable cold: a fresh session can reconstruct what to do from its [deps](#deps) and its resolvable `document:` or `plan:` artifacts, with no handoff prose. This is what makes the [desk](#the-desk) usable across sessions, and it is enforced in practice by [retro-pairing](#retro-pairing) every minted belief with a document pointer.
+A self-bootstrapping directive ([cb:b507](#cbb507)) is a backlog node reachable cold: a fresh session can reconstruct what to do from its [deps](#deps) and its resolvable `document:` or `plan:` artifacts, with no handoff prose. This is what makes the [desk](#the-desk) usable across sessions, and it is enforced in practice by [retro-pairing](#retro-pairing) every minted belief with a document pointer.
 
 **See also:** [The Desk](#the-desk), [Retro-Pairing](#retro-pairing), [Plan](#plan), [Author Against the Live Graph](#author-against-the-live-graph), [Session Artifacts Resolvable (Future)](#session-artifacts-resolvable-future)
 
 ## Self-Referential Beliefs
 
-A self-referential belief takes the agent itself as its subject - its own patterns, errors, and failure modes - using the ordinary schema with a [subject](#subjects) of type `agent` ([cb:b115](#cba115), thesis). This is the schema-level capability that the capstone's [self-referential face](#self-referential-face) puts to work: a system gaining a queryable model of its own failure modes that it can consult before acting. The failure-mode collection `agent-behavior:` is built largely from such beliefs.
+A self-referential belief takes the agent itself as its subject - its own patterns, errors, and failure modes - using the ordinary schema with a [subject](#subjects) of type `agent` ([cb:b115](#cbb115), thesis). This is the schema-level capability that the capstone's [self-referential face](#self-referential-face) puts to work: a system gaining a queryable model of its own failure modes that it can consult before acting. The failure-mode collection `agent-behavior:` is built largely from such beliefs.
 
 **See also:** [Self-Referential Face](#self-referential-face), [Subjects](#subjects), [Actualize](#actualize), [cb: Holds Only What and How](#cb-holds-only-what-and-how)
 
@@ -984,31 +983,31 @@ The self-referential face is CB used to take an agent itself as subject: claims 
 
 ## Semantic Contact
 
-Semantic contact is the escalation trigger in [preflight](#preflight): a match becomes a conflict only when it has a shared subject ref or claim overlap, because bare tag overlap is family resemblance rather than contact (conflict.ex:230, [cb:b064](#cbc064)). It enforces at write time what [conflict scope](#conflict-scope) states as doctrine - overlap is necessary but not sufficient for contradiction. This is what keeps the conflict bucket from filling with merely tag-adjacent neighbours.
+Semantic contact is the escalation trigger in [preflight](#preflight): a match becomes a conflict only when it has a shared subject ref or claim overlap, because bare tag overlap is family resemblance rather than contact (conflict.ex:230, [cb:b064](#cbb064)). It enforces at write time what [conflict scope](#conflict-scope) states as doctrine - overlap is necessary but not sufficient for contradiction. This is what keeps the conflict bucket from filling with merely tag-adjacent neighbours.
 
 **See also:** [Preflight](#preflight), [Preflight Escalation Rule](#preflight-escalation-rule), [Conflict Scope](#conflict-scope), [Tags](#tags)
 
 ## Session Artifacts Resolvable (Future)
 
-Session artifacts must become resolvable ([cb:b518](#cba518)): today a `session:` slug dereferences to nothing, so the proposed fix is a registry mapping each slug to the uuid-keyed jsonl [transcript](#transcript) on disk. Until it lands, [retro-pairing](#retro-pairing) a session stipulation with a `document:` pointer is the workaround that keeps a grounded belief reachable cold.
+Session artifacts must become resolvable ([cb:b518](#cbb518)): today a `session:` slug dereferences to nothing, so the proposed fix is a registry mapping each slug to the uuid-keyed jsonl [transcript](#transcript) on disk. Until it lands, [retro-pairing](#retro-pairing) a session stipulation with a `document:` pointer is the workaround that keeps a grounded belief reachable cold.
 
 **See also:** [Transcript](#transcript), [Retro-Pairing](#retro-pairing), [Stipulation Artifact](#stipulation-artifact), [Self-Bootstrapping Directive](#self-bootstrapping-directive)
 
 ## Session Memory as Ephemeral Cache
 
-Session memory is an ephemeral cache, never a store ([cb:b509](#cba509)): project and work state are banned from it, because the graph owns obligations, repos own records, and the bootstrap compiles from the graph. It is the [digest-file antipattern](#digest-file-antipattern) doctrine applied to the agent's own notebook - a remembered snapshot rots the moment another concurrent session pushes, which is why the discipline is to [author against the live graph](#author-against-the-live-graph). Load-bearing items are promoted through the write flow, then pruned.
+Session memory is an ephemeral cache, never a store ([cb:b509](#cbb509)): project and work state are banned from it, because the graph owns obligations, repos own records, and the bootstrap compiles from the graph. It is the [digest-file antipattern](#digest-file-antipattern) doctrine applied to the agent's own notebook - a remembered snapshot rots the moment another concurrent session pushes, which is why the discipline is to [author against the live graph](#author-against-the-live-graph). Load-bearing items are promoted through the write flow, then pruned.
 
 **See also:** [Digest-File Antipattern](#digest-file-antipattern), [Author Against the Live Graph](#author-against-the-live-graph), [Recency](#recency), [Lap Log](#lap-log), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory)
 
 ## Shared Prosthetic
 
-CB is a shared prosthetic ([cb:b460](#cba460)): one queryable structure that compensates for both human attention-bounds and agent context-loss at the same time. The human cannot hold a large reasoning graph in working memory and the agent cannot carry it across context windows, so both lean on the same DAG. It is why the graph serves [persistence across sessions](#persistence-across-sessions) and why obligation and records live in it rather than in any one participant's memory.
+CB is a shared prosthetic ([cb:b460](#cbb460)): one queryable structure that compensates for both human attention-bounds and agent context-loss at the same time. The human cannot hold a large reasoning graph in working memory and the agent cannot carry it across context windows, so both lean on the same DAG. It is why the graph serves [persistence across sessions](#persistence-across-sessions) and why obligation and records live in it rather than in any one participant's memory.
 
 **See also:** [Persistence Across Sessions](#persistence-across-sessions), [Reasoning Substrate, Not Memory](#reasoning-substrate-not-memory), [Composition Over Retrieval](#composition-over-retrieval), [Composable Beliefs](#composable-beliefs)
 
 ## Six-Subject Convention
 
-The six-subject convention (contract [method:c6](#methodc6)) is the [subject](#subjects) set every [observation](#observation) must carry: `eval`, `run`, `case`, `model`, `model_version`, and `ruler` (eval/predicates.ex). Because an eval result's natural provenance fields all land on the existing CB schema as subjects, tags, the artifact URI, and the evidence entry, every provenance dimension is queryable with zero new fields or query code. The `model_version` subject is also the [staleness pivot](#staleness-pivot).
+The six-subject convention (contract method:c6) is the [subject](#subjects) set every [observation](#observation) must carry: `eval`, `run`, `case`, `model`, `model_version`, and `ruler` (eval/predicates.ex). Because an eval result's natural provenance fields all land on the existing CB schema as subjects, tags, the artifact URI, and the evidence entry, every provenance dimension is queryable with zero new fields or query code. The `model_version` subject is also the [staleness pivot](#staleness-pivot).
 
 **See also:** [Subjects](#subjects), [Observation](#observation), [Methodology Contract](#methodology-contract), [Staleness Pivot](#staleness-pivot), [Ruler](#ruler)
 
@@ -1020,7 +1019,7 @@ When a collection declares no governing contract for a field, the verifier skips
 
 ## Sources Are Not Beliefs
 
-A source is raw material, not a belief ([cb:b113](#cba113), [cb:b114](#cba114)): the graph stores structured [primitives](#primitive) extracted from a source, while the source itself lives as a referenced [artifact](#artifact). This is why a multi-paragraph analysis is a source document citing belief ids inline rather than a belief with a giant [claim](#claim). The extraction happens at read time, never retroactively.
+A source is raw material, not a belief ([cb:b113](#cbb113), [cb:b114](#cbb114)): the graph stores structured [primitives](#primitive) extracted from a source, while the source itself lives as a referenced [artifact](#artifact). This is why a multi-paragraph analysis is a source document citing belief ids inline rather than a belief with a giant [claim](#claim). The extraction happens at read time, never retroactively.
 
 **See also:** [Extraction-Time Discipline](#extraction-time-discipline), [Primitive](#primitive), [Artifact](#artifact), [Claim](#claim), [Non-Derivable Knowledge Only](#non-derivable-knowledge-only)
 
@@ -1040,13 +1039,13 @@ Staleness is detectable, not remembered: an active non-primitive belief whose de
 
 ## Staleness Pivot
 
-The staleness pivot ([method:a2](#methoda2)) is the convention that a [verdict](#verdict) is scoped to a `model_version` subject, so when a re-run on a new snapshot changes the answer, the verdict is [superseded](#supersession) while the immutable [observations](#observation) stay true. Then `mix bs stale --cascade` flags the downstream [guidance](#guidance) directives for review. It is the move a flat spreadsheet cannot make honestly, and it is [staleness](#staleness) detection applied to evals.
+The staleness pivot (method:a2) is the convention that a [verdict](#verdict) is scoped to a `model_version` subject, so when a re-run on a new snapshot changes the answer, the verdict is [superseded](#supersession) while the immutable [observations](#observation) stay true. Then `mix bs stale --cascade` flags the downstream [guidance](#guidance) directives for review. It is the move a flat spreadsheet cannot make honestly, and it is [staleness](#staleness) detection applied to evals.
 
 **See also:** [Verdict](#verdict), [Staleness](#staleness), [Supersession](#supersession), [Observation](#observation), [Guidance](#guidance)
 
 ## state-machine
 
-`state-machine` is a catalogued contract kind ([cb:b046](#cbc046)): its rules declare `{from, to, requires}`, yielding `edge(From, To, Requires)` read by `CB.Belief.Contract.StateMachine` (state_machine.ex). It governs the [status lifecycle](#status-lifecycle) ([cb:b053](#cbc053)) and the four-type contract [cb:b051](#cbc051). It answers which edges exist and what each requires; it deliberately does not evaluate the requirement slugs, keeping the DSL tabular - the [routing/implementation boundary](#routing--implementation-boundary) in miniature.
+`state-machine` is a catalogued contract kind ([cb:b046](#cbb046)): its rules declare `{from, to, requires}`, yielding `edge(From, To, Requires)` read by `CB.Belief.Contract.StateMachine` (state_machine.ex). It governs the [status lifecycle](#status-lifecycle) ([cb:b053](#cbb053)) and the four-type contract [cb:b051](#cbb051). It answers which edges exist and what each requires; it deliberately does not evaluate the requirement slugs, keeping the DSL tabular - the [routing/implementation boundary](#routing--implementation-boundary) in miniature.
 
 **See also:** [enum-registry](#enum-registry), [derivation-table](#derivation-table), [implies](#implies), [Status Lifecycle](#status-lifecycle), [Routing / Implementation Boundary](#routing--implementation-boundary)
 
@@ -1054,19 +1053,19 @@ The staleness pivot ([method:a2](#methoda2)) is the convention that a [verdict](
 
 *Also: status*
 
-The `status` field is a closed enum governed by the state-machine contract [cb:b053](#cbc053) (dag-status-lifecycle): every belief begins `active` and may transition to [superseded](#supersession) (requires `superseded_by`), [retracted](#retraction) (requires `retracted_on` and `retracted_reason`), or [retired](#retired) (directive-only). All non-active states are terminal and immutable except for appending evidence (belief.ex:49, CB.Belief.Contract.StateMachine). The contract was itself superseded through the very lifecycle it defines (b029 to b053), an instance of the [no maintenance hatch](#no-maintenance-hatch) principle.
+The `status` field is a closed enum governed by the state-machine contract [cb:b053](#cbb053) (dag-status-lifecycle): every belief begins `active` and may transition to [superseded](#supersession) (requires `superseded_by`), [retracted](#retraction) (requires `retracted_on` and `retracted_reason`), or [retired](#retired) (directive-only). All non-active states are terminal and immutable except for appending evidence (belief.ex:49, CB.Belief.Contract.StateMachine). The contract was itself superseded through the very lifecycle it defines (b029 to b053), an instance of the [no maintenance hatch](#no-maintenance-hatch) principle.
 
 **See also:** [Immutability](#immutability), [Supersession](#supersession), [Retraction](#retraction), [Retired](#retired), [Staleness](#staleness)
 
 ## Status vs Materialized
 
-[Status](#status-lifecycle) and [materialized](#materialized) are orthogonal ([cb:b380](#cba380)): status asks whether the claim is still true, while materialized asks whether the action was executed. The combinations are meaningful - active and unmaterialized is still-actionable work, while active and materialized is discharged at a time yet still true as a principle. Separating the two is what lets the backlog live in the graph: a [live todo](#unlinked-directive) is an active directive not yet materialized.
+[Status](#status-lifecycle) and [materialized](#materialized) are orthogonal ([cb:b380](#cbb380)): status asks whether the claim is still true, while materialized asks whether the action was executed. The combinations are meaningful - active and unmaterialized is still-actionable work, while active and materialized is discharged at a time yet still true as a principle. Separating the two is what lets the backlog live in the graph: a [live todo](#unlinked-directive) is an active directive not yet materialized.
 
 **See also:** [Materialization](#materialization), [Materialized](#materialized), [Unlinked Directive](#unlinked-directive), [The Desk](#the-desk), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation)
 
 ## Stipulation Artifact
 
-A stipulation artifact is the record of an adoption event - where a prescription was decided - letting a convention be grounded without manufacturing fake [deps](#deps) ([cb:b476](#cba476), [cb:b059](#cbc059)). The closed subset of [schemes](#artifact-scheme) that can stipulate is `plan`, `user`, `session`, and `document` (the `@stipulation_schemes`, verifier.ex:373). It is how a `user:` or `session:` decision legitimately grounds a [directive](#directive) that derives from no other belief.
+A stipulation artifact is the record of an adoption event - where a prescription was decided - letting a convention be grounded without manufacturing fake [deps](#deps) ([cb:b476](#cbb476), [cb:b059](#cbb059)). The closed subset of [schemes](#artifact-scheme) that can stipulate is `plan`, `user`, `session`, and `document` (the `@stipulation_schemes`, verifier.ex:373). It is how a `user:` or `session:` decision legitimately grounds a [directive](#directive) that derives from no other belief.
 
 **See also:** [Directive Grounding](#directive-grounding), [Artifact Scheme](#artifact-scheme), [Field Presence by Type](#field-presence-by-type), [Retro-Pairing](#retro-pairing)
 
@@ -1078,7 +1077,7 @@ A stipulation artifact is the record of an adoption event - where a prescription
 
 ## Strict-Aggregate Doctrine
 
-The strict-aggregate doctrine ([cb:b474](#cba474)) holds that a [compound](#compound)'s claim states exactly the conjunction of what its deps say, with any interpretation or generalization trimmed out as [inference](#inference) content. The compound is the one truth-preserving entailment the schema stores (conjunction introduction, [cb:b473](#cba473)); all other deductive consequences are infinite and free, so query tools compute them on demand rather than storing them. The compound's real work is selection and naming - asserting that two independent rulers agree is a claim neither dep makes alone yet is fully contained in what they say together.
+The strict-aggregate doctrine ([cb:b474](#cbb474)) holds that a [compound](#compound)'s claim states exactly the conjunction of what its deps say, with any interpretation or generalization trimmed out as [inference](#inference) content. The compound is the one truth-preserving entailment the schema stores (conjunction introduction, [cb:b473](#cbb473)); all other deductive consequences are infinite and free, so query tools compute them on demand rather than storing them. The compound's real work is selection and naming - asserting that two independent rulers agree is a claim neither dep makes alone yet is fully contained in what they say together.
 
 **See also:** [Compound](#compound), [Subject Containment](#subject-containment), [Inference](#inference), [Cross-Ruler Agreement](#cross-ruler-agreement)
 
@@ -1086,7 +1085,7 @@ The strict-aggregate doctrine ([cb:b474](#cba474)) holds that a [compound](#comp
 
 *Also: support*
 
-Structural support is the deterministic substitute for a confidence score: `CB.Belief.support/1` (belief.ex:150) returns `%{artifact_count, evidence_count, dep_count}`, shown on the `Support:` line of every record. Because the counts are read off structure, a thin claim and a load-bearing one are distinguishable by query rather than by a declared number ([cb:b448](#cba448)). This is the concrete mechanism behind [no confidence scores](#no-confidence-scores): trust comes from cited evidence and dependency structure, with no subjective scoring anywhere in the system.
+Structural support is the deterministic substitute for a confidence score: `CB.Belief.support/1` (belief.ex:150) returns `%{artifact_count, evidence_count, dep_count}`, shown on the `Support:` line of every record. Because the counts are read off structure, a thin claim and a load-bearing one are distinguishable by query rather than by a declared number ([cb:b448](#cbb448)). This is the concrete mechanism behind [no confidence scores](#no-confidence-scores): trust comes from cited evidence and dependency structure, with no subjective scoring anywhere in the system.
 
 **See also:** [No Confidence Scores](#no-confidence-scores), [Evidence](#evidence), [Deps](#deps), [Artifact](#artifact)
 
@@ -1094,7 +1093,7 @@ Structural support is the deterministic substitute for a confidence score: `CB.B
 
 *Also: the four types, type*
 
-`type` is a closed enum of exactly four values, one per epistemic operation: [primitive](#primitive) (attest), [compound](#compound) (aggregate), [inference](#inference) (infer), and [directive](#directive) (prescribe). The type a belief carries determines which other fields are meaningful and which checks apply, governed by the state-machine contract [cb:b051](#cbc051) (design rationale [cb:b470](#cba470), [cb:b298](#cba298)), which supersedes the older three-type [cb:b026](#cbc026). The type string is authoritative in code; the verifier enforces per-type rules and the shell colours each type (lib/cb/belief.ex, CB.Schema.Verifier). See the four types.
+`type` is a closed enum of exactly four values, one per epistemic operation: [primitive](#primitive) (attest), [compound](#compound) (aggregate), [inference](#inference) (infer), and [directive](#directive) (prescribe). The type a belief carries determines which other fields are meaningful and which checks apply, governed by the state-machine contract [cb:b051](#cbb051) (design rationale [cb:b470](#cbb470), [cb:b298](#cbb298)), which supersedes the older three-type [cb:b026](#cbb026). The type string is authoritative in code; the verifier enforces per-type rules and the shell colours each type (lib/cb/belief.ex, CB.Schema.Verifier). See the four types.
 
 **See also:** [Primitive](#primitive), [Compound](#compound), [Inference](#inference), [Directive](#directive), [Type as a Function](#type-as-a-function)
 
@@ -1102,19 +1101,19 @@ Structural support is the deterministic substitute for a confidence score: `CB.B
 
 *Also: attestation, aggregation, prescription, schema v3*
 
-The schema-v3 vocabulary migration renamed the four [structural types](#structural-type) to nominalizations of the four epistemic verbs [cb:b051](#cbc051) names: [primitive](#primitive) became <em>attestation</em> (attest), [compound](#compound) became <em>aggregation</em> (aggregate), [inference](#inference) kept its name (infer), and [directive](#directive) became <em>prescription</em> (prescribe). A label migration, not a supersession - identity and claims unchanged, the source -> artifact precedent - recorded as evidence on [cb:b051](#cbc051). In the same epoch the stored [contract](#contract) boolean was demoted to a derived predicate: contract-grade is computed as non-empty rules/invariants (Belief.contract?/1, [cb:b056](#cbc056)), and no contract field is stored. Documents dated before the migration (chronicles, plans, analyses, and this glossary's pre-rename entries) keep the old vocabulary; read primitive as attestation, compound as aggregation, directive as prescription. Code accepts both vocabularies for the compat epoch (CB.Belief.normalize_type/1).
+The schema-v3 vocabulary migration renamed the four [structural types](#structural-type) to nominalizations of the four epistemic verbs [cb:b051](#cbb051) names: [primitive](#primitive) became <em>attestation</em> (attest), [compound](#compound) became <em>aggregation</em> (aggregate), [inference](#inference) kept its name (infer), and [directive](#directive) became <em>prescription</em> (prescribe). A label migration, not a supersession - identity and claims unchanged, the source -> artifact precedent - recorded as evidence on [cb:b051](#cbb051). In the same epoch the stored [contract](#contract) boolean was demoted to a derived predicate: contract-grade is computed as non-empty rules/invariants (Belief.contract?/1, [cb:b056](#cbb056)), and no contract field is stored. Documents dated before the migration (chronicles, plans, analyses, and this glossary's pre-rename entries) keep the old vocabulary; read primitive as attestation, compound as aggregation, directive as prescription. Code accepts both vocabularies for the compat epoch (CB.Belief.normalize_type/1).
 
 **See also:** [Structural Type](#structural-type), [Primitive](#primitive), [Compound](#compound), [Inference](#inference), [Directive](#directive), [Contract](#contract)
 
 ## Subject Containment
 
-Subject containment ([cb:b058](#cbc058), checked at CB.Schema.Verifier check_subject_containment, verifier.ex:448) is the formal shadow of the compound's non-ampliativity: an active [compound](#compound)'s [subject](#subjects) refs must be a subset of the union of its deps' subject refs, because a conjunction cannot be about anything its parts are not about. Scope-widening past that union is the structural signature of [inference](#inference), so the same check that validates compounds also tells the two derived types apart. Empty subjects pass vacuously. See inference licensing.
+Subject containment ([cb:b058](#cbb058), checked at CB.Schema.Verifier check_subject_containment, verifier.ex:448) is the formal shadow of the compound's non-ampliativity: an active [compound](#compound)'s [subject](#subjects) refs must be a subset of the union of its deps' subject refs, because a conjunction cannot be about anything its parts are not about. Scope-widening past that union is the structural signature of [inference](#inference), so the same check that validates compounds also tells the two derived types apart. Empty subjects pass vacuously. See inference licensing.
 
 **See also:** [Compound](#compound), [Inference](#inference), [Subjects](#subjects), [Ampliative](#ampliative), [Strict-Aggregate Doctrine](#strict-aggregate-doctrine)
 
 ## Subjects
 
-`subjects` is the belief-to-entity relation of topical reference - what a belief is about - as `{ref, type}` pairs over files, modules, models, eval runs, and sometimes other beliefs ([cb:b408](#cba408), graph.ex:333). It is distinct from [deps](#deps) (logical derivation): a primitive like [cb:b386](#cba386) is about the digest file yet depends on nothing. Subjects drive [subject containment](#subject-containment) for compounds and one axis of [conflict scope](#conflict-scope) for directives. Eval observations carry the [six-subject convention](#six-subject-convention).
+`subjects` is the belief-to-entity relation of topical reference - what a belief is about - as `{ref, type}` pairs over files, modules, models, eval runs, and sometimes other beliefs ([cb:b408](#cbb408), graph.ex:333). It is distinct from [deps](#deps) (logical derivation): a primitive like [cb:b386](#cbb386) is about the digest file yet depends on nothing. Subjects drive [subject containment](#subject-containment) for compounds and one axis of [conflict scope](#conflict-scope) for directives. Eval observations carry the [six-subject convention](#six-subject-convention).
 
 **See also:** [Deps](#deps), [Subject Containment](#subject-containment), [Conflict Scope](#conflict-scope), [Six-Subject Convention](#six-subject-convention), [Self-Referential Beliefs](#self-referential-beliefs)
 
@@ -1122,19 +1121,19 @@ Subject containment ([cb:b058](#cbc058), checked at CB.Schema.Verifier check_sub
 
 *Also: superseded, superseded_by*
 
-Supersession is the immutable replacement of a belief: a new successor node is written and the old node flips to `superseded` with `superseded_by` pointing forward to it ([cb:b053](#cbc053), [cb:b302](#cba302), adjudication.ex:160). The forward-linked chain is walked with `mix bs history` (CB.Belief.Graph.history, graph.ex:157), so every generation of a claim stays reachable. Supersession is how a re-run changes an eval [verdict](#verdict) without rewriting the [observations](#observation) beneath it: the old verdict renders struck through with a link to its successor.
+Supersession is the immutable replacement of a belief: a new successor node is written and the old node flips to `superseded` with `superseded_by` pointing forward to it ([cb:b053](#cbb053), [cb:b302](#cbb302), adjudication.ex:160). The forward-linked chain is walked with `mix bs history` (CB.Belief.Graph.history, graph.ex:157), so every generation of a claim stays reachable. Supersession is how a re-run changes an eval [verdict](#verdict) without rewriting the [observations](#observation) beneath it: the old verdict renders struck through with a link to its successor.
 
 **See also:** [Status Lifecycle](#status-lifecycle), [Retraction](#retraction), [Staleness](#staleness), [Verdict](#verdict), [Immutability](#immutability)
 
 ## Tags
 
-`tags` are flat cross-cutting labels (belief.ex), used as one axis of [conflict overlap](#conflict-scope) and as the carrier of several load-bearing conventions: the [lifecycle tag](#lifecycle-tag) (`lifecycle:discrete` or `lifecycle:recurring`) that distinguishes completable work from standing rules, the `output:codepath` and `output:claude-md` tags that route [output targets](#output-target), and the [fixture](#fixture-tag) tag that quarantines synthetic data. Bare tag overlap alone is family resemblance, never [semantic contact](#semantic-contact) ([cb:b064](#cbc064)).
+`tags` are flat cross-cutting labels (belief.ex), used as one axis of [conflict overlap](#conflict-scope) and as the carrier of several load-bearing conventions: the [lifecycle tag](#lifecycle-tag) (`lifecycle:discrete` or `lifecycle:recurring`) that distinguishes completable work from standing rules, the `output:codepath` and `output:claude-md` tags that route [output targets](#output-target), and the [fixture](#fixture-tag) tag that quarantines synthetic data. Bare tag overlap alone is family resemblance, never [semantic contact](#semantic-contact) ([cb:b064](#cbb064)).
 
 **See also:** [Lifecycle Tag](#lifecycle-tag), [Conflict Scope](#conflict-scope), [Semantic Contact](#semantic-contact), [Fixture Tag](#fixture-tag), [Output Target](#output-target)
 
 ## The Desk
 
-The desk is the live obligation surface: the query `mix bs list unlinked tag:lifecycle:discrete`, returning every [unlinked](#unlinked-directive) directive tagged [lifecycle:discrete](#lifecycle-tag) ([cb:b491](#cba491), [cb:b508](#cba508)). A session resumes by querying the desk rather than reading a handoff ([cb:b508](#cba508)), and a desk directive must be [self-bootstrapping](#self-bootstrapping-directive). The cross-collection desk view ([cb:b500](#cba500)) and a global directive graph in dotfiles ([cb:b543](#cba543)) are open extensions.
+The desk is the live obligation surface: the query `mix bs list unlinked tag:lifecycle:discrete`, returning every [unlinked](#unlinked-directive) directive tagged [lifecycle:discrete](#lifecycle-tag) ([cb:b491](#cbb491), [cb:b508](#cbb508)). A session resumes by querying the desk rather than reading a handoff ([cb:b508](#cbb508)), and a desk directive must be [self-bootstrapping](#self-bootstrapping-directive). The cross-collection desk view ([cb:b500](#cbb500)) and a global directive graph in dotfiles ([cb:b543](#cbb543)) are open extensions.
 
 **See also:** [Unlinked Directive](#unlinked-directive), [Lifecycle Tag](#lifecycle-tag), [Self-Bootstrapping Directive](#self-bootstrapping-directive), [Author Against the Live Graph](#author-against-the-live-graph), [Cross-Collection Desk (Future)](#cross-collection-desk-future)
 
@@ -1152,7 +1151,7 @@ Thermometer and thermostat names the capability duality between the two outward 
 
 ## Three-Tier Anchor Verification
 
-Anchor verification comes in three tiers ([cb:b529](#cba529)): provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists), and behavioral validity (predicates - it still behaves as claimed, contract grade). Each tier is a necessary condition only: a failed anchor flags a belief for review, while a passing anchor alone never re-validates the claim. This is the verification spine under [staleness](#staleness), [answer-time anchoring](#answer-time-anchoring), and the [dynamic verifier](#dynamic-verifier).
+Anchor verification comes in three tiers ([cb:b529](#cbb529)): provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists), and behavioral validity (predicates - it still behaves as claimed, contract grade). Each tier is a necessary condition only: a failed anchor flags a belief for review, while a passing anchor alone never re-validates the claim. This is the verification spine under [staleness](#staleness), [answer-time anchoring](#answer-time-anchoring), and the [dynamic verifier](#dynamic-verifier).
 
 **See also:** [Answer-Time Anchoring](#answer-time-anchoring), [Staleness](#staleness), [Dynamic Verifier](#dynamic-verifier), [Anchor](#anchor), [Natural Language Above the Substrate](#natural-language-above-the-substrate)
 
@@ -1164,7 +1163,7 @@ Anchor verification comes in three tiers ([cb:b529](#cba529)): provenance integr
 
 ## Todo-Close Front Door
 
-The todo-close front door (`mix cb.todo.close`, [cb:b530](#cba530)) flips a [materialized](#materialization) work item from open to done with discharge notes (CB.Todos.close, todos.ex:61). It is one of the three sanctioned [front doors](#write-flow). Note [cb:b523](#cba523): materialization notes currently get dropped by the JSON sink, an open gap.
+The todo-close front door (`mix cb.todo.close`, [cb:b530](#cbb530)) flips a [materialized](#materialization) work item from open to done with discharge notes (CB.Todos.close, todos.ex:61). It is one of the three sanctioned [front doors](#write-flow). Note [cb:b523](#cbb523): materialization notes currently get dropped by the JSON sink, an open gap.
 
 **See also:** [Materialization](#materialization), [Evidence-Append Front Door](#evidence-append-front-door), [Dep-Repoint Front Door](#dep-repoint-front-door), [The Desk](#the-desk), [Materializer / Sink](#materializer--sink)
 
@@ -1176,19 +1175,19 @@ A transcript ([cb:b578](#cbb578), [cb:b540](#cbb540)) is the condensed record of
 
 ## Type as a Function
 
-In the v2 schema the structural type is close to a deterministic function of three inputs: the mood the [kind](#kind) implies, the grounding (an [artifact](#artifact) for a single source versus [deps](#deps) for derived claims), and the subject [scope](#subject-containment) relative to the deps ([cb:b472](#cba472)). This is why the [kind-type table](#kind-type-table), the grounding check, and subject containment together can largely decide a belief's type from its other fields, and why the verifier interrogates structure rather than the author's intent.
+In the v2 schema the structural type is close to a deterministic function of three inputs: the mood the [kind](#kind) implies, the grounding (an [artifact](#artifact) for a single source versus [deps](#deps) for derived claims), and the subject [scope](#subject-containment) relative to the deps ([cb:b472](#cbb472)). This is why the [kind-type table](#kind-type-table), the grounding check, and subject containment together can largely decide a belief's type from its other fields, and why the verifier interrogates structure rather than the author's intent.
 
 **See also:** [Structural Type](#structural-type), [Kind-Type Table](#kind-type-table), [Subject Containment](#subject-containment), [Directive Grounding](#directive-grounding), [Field Presence by Type](#field-presence-by-type)
 
 ## Unlinked Directive
 
-An unlinked directive is one with no [materialized](#materialization) items: an open obligation, which is the structural form of a live todo ([cb:b489](#cba489)). `unlinked` is a list filter (filter.ex), and combined with the [lifecycle:discrete](#lifecycle-tag) tag it defines the [desk](#the-desk). The backlog has its own structural type because a todo is just a [directive](#directive) not yet materialized.
+An unlinked directive is one with no [materialized](#materialization) items: an open obligation, which is the structural form of a live todo ([cb:b489](#cbb489)). `unlinked` is a list filter (filter.ex), and combined with the [lifecycle:discrete](#lifecycle-tag) tag it defines the [desk](#the-desk). The backlog has its own structural type because a todo is just a [directive](#directive) not yet materialized.
 
 **See also:** [The Desk](#the-desk), [Lifecycle Tag](#lifecycle-tag), [Materialization](#materialization), [Status vs Materialized](#status-vs-materialized), [Graph as the Index of Obligation](#graph-as-the-index-of-obligation)
 
 ## Verdict
 
-A verdict is the falsifiable eval finding: an [inference](#inference) with `kind: verdict`, scoped to a `model_version` subject (eval-ledger.md). It is derived, never merely attested or prescribed - contract [method:c10](#methodc10) requires a verdict to be an inference - and it must be [corroborated](#cross-ruler-agreement) and cite at least three distinct runs ([method:c4](#methodc4), [method:c7](#methodc7)). It is the [staleness pivot](#staleness-pivot): a re-run on a new snapshot [supersedes](#supersession) the verdict while the observations beneath it stay true. The worked example is `sdl:a008`.
+A verdict is the falsifiable eval finding: an [inference](#inference) with `kind: verdict`, scoped to a `model_version` subject (eval-ledger.md). It is derived, never merely attested or prescribed - contract method:c10 requires a verdict to be an inference - and it must be [corroborated](#cross-ruler-agreement) and cite at least three distinct runs (method:c4, method:c7). It is the [staleness pivot](#staleness-pivot): a re-run on a new snapshot [supersedes](#supersession) the verdict while the observations beneath it stay true. The worked example is `sdl:a008`.
 
 **See also:** [Inference](#inference), [Guidance](#guidance), [Staleness Pivot](#staleness-pivot), [Cross-Ruler Agreement](#cross-ruler-agreement), [Methodology Contract](#methodology-contract)
 
@@ -1196,13 +1195,13 @@ A verdict is the falsifiable eval finding: an [inference](#inference) with `kind
 
 *Also: self-eval venue*
 
-The verdict-category firewall ([method:a6](#methoda6)) is the neutrality rule: the eval practice publishes no [verdict](#verdict) in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule ([method:a7](#methoda7)) keeps the ledger framework itself from being the system under test in the practice's own published evals. Both are public, citable beliefs, and they are what keep public verdicts [receptive-only](#receptive-face) while generative remediation stays private.
+The verdict-category firewall (method:a6) is the neutrality rule: the eval practice publishes no [verdict](#verdict) in any category where an owner-held product is sold, so the evaluator is never a contestant in what it judges (the sold-category list is currently empty). The companion self-eval-venue rule (method:a7) keeps the ledger framework itself from being the system under test in the practice's own published evals. Both are public, citable beliefs, and they are what keep public verdicts [receptive-only](#receptive-face) while generative remediation stays private.
 
 **See also:** [Verdict](#verdict), [Receptive Face](#receptive-face), [Thermometer and Thermostat](#thermometer-and-thermostat), [Fixture Tag](#fixture-tag)
 
 ## Verification, Not Generation
 
-Contracts are never compiled into code ([cb:b465](#cba465)): spec-to-code generation is nondeterministic and unmaintainable, so the contract-to-code relationship is verification rather than generation - drift surfaces as a failing test, not a regenerated module (the [verify_against_contract](#verify_against_contract) pattern, [cb:b417](#cba417), [cb:b425](#cba425)). This keeps a [contract](#contract) the durable artifact and the code its checked implementation, and it is why the graph can drive tests safely across the [routing/implementation boundary](#routing--implementation-boundary).
+Contracts are never compiled into code ([cb:b465](#cbb465)): spec-to-code generation is nondeterministic and unmaintainable, so the contract-to-code relationship is verification rather than generation - drift surfaces as a failing test, not a regenerated module (the [verify_against_contract](#verify_against_contract) pattern, [cb:b417](#cbb417), [cb:b425](#cbb425)). This keeps a [contract](#contract) the durable artifact and the code its checked implementation, and it is why the graph can drive tests safely across the [routing/implementation boundary](#routing--implementation-boundary).
 
 **See also:** [Contract](#contract), [verify_against_contract](#verify_against_contract), [Routing / Implementation Boundary](#routing--implementation-boundary), [Neither Prose nor Code](#neither-prose-nor-code)
 
@@ -1214,13 +1213,13 @@ Contracts are never compiled into code ([cb:b465](#cba465)): spec-to-code genera
 
 ## verify_against_contract
 
-`verify_against_contract/0` is the pattern by which a module implementing contract-governed behavior self-checks against the [contract](#contract) that governs it ([cb:b417](#cba417), [cb:b425](#cba425), [cb:b416](#cba416)). When the code and the in-graph contract diverge, the divergence shows up as a failing test rather than silently. It is the concrete realization of [verification, not generation](#verification-not-generation), and it is exercised by `mix cb.verify.schema`, which checks the `CB.Belief` struct against the schema contracts in the graph.
+`verify_against_contract/0` is the pattern by which a module implementing contract-governed behavior self-checks against the [contract](#contract) that governs it ([cb:b417](#cbb417), [cb:b425](#cbb425), [cb:b416](#cbb416)). When the code and the in-graph contract diverge, the divergence shows up as a failing test rather than silently. It is the concrete realization of [verification, not generation](#verification-not-generation), and it is exercised by `mix cb.verify.schema`, which checks the `CB.Belief` struct against the schema contracts in the graph.
 
 **See also:** [Verification, Not Generation](#verification-not-generation), [Contract](#contract), [verify.schema](#verifyschema), [Schema as Contracts](#schema-as-contracts)
 
 ## Why 'Inference' over 'Implication'
 
-The v1 schema called the ampliative derived type `implication`; v2 renamed it to [inference](#inference) (decision D1, [cb:b473](#cba473)). The argument: an implication licensed to state more than its premises imply is a contradiction in terms, and the contract rule-kind [implies](#implies) sits on the prescriptive side, so reusing the word descriptively would put one lexeme on both sides of the is/ought boundary. Mark confirmed the rename for launch, explicitly accepting the immutable-history cost in favour of long-term terminology ([cb:b470](#cba470)). The deleted `implication` field is one of the [expunged fields](#expunged-fields).
+The v1 schema called the ampliative derived type `implication`; v2 renamed it to [inference](#inference) (decision D1, [cb:b473](#cbb473)). The argument: an implication licensed to state more than its premises imply is a contradiction in terms, and the contract rule-kind [implies](#implies) sits on the prescriptive side, so reusing the word descriptively would put one lexeme on both sides of the is/ought boundary. Mark confirmed the rename for launch, explicitly accepting the immutable-history cost in favour of long-term terminology ([cb:b470](#cbb470)). The deleted `implication` field is one of the [expunged fields](#expunged-fields).
 
 **See also:** [Inference](#inference), [implies](#implies), [Expunged Fields](#expunged-fields), [Type as a Function](#type-as-a-function)
 
@@ -1228,7 +1227,7 @@ The v1 schema called the ampliative derived type `implication`; v2 renamed it to
 
 *Also: front doors*
 
-The write flow is the only sanctioned way to author beliefs: [preflight](#preflight) a proposal against the live graph, [adjudicate](#adjudication) any conflicts as a captured decision, then [import](#import) the result ([cb:b533](#cba533), [cb:b387](#cba387), [cb:b381](#cba381)). Every write task is dry-run by default and applies only with `--write`. The graph file is never hand-edited, because hand-editing would bypass the conflict surfacing and the immutable audit trail that the [no maintenance hatch](#no-maintenance-hatch) principle depends on. Three narrow [front doors](#evidence-append-front-door) handle in-place growth, todo closing, and dep re-pointing. See the write flow.
+The write flow is the only sanctioned way to author beliefs: [preflight](#preflight) a proposal against the live graph, [adjudicate](#adjudication) any conflicts as a captured decision, then [import](#import) the result ([cb:b533](#cbb533), [cb:b387](#cbb387), [cb:b381](#cbb381)). Every write task is dry-run by default and applies only with `--write`. The graph file is never hand-edited, because hand-editing would bypass the conflict surfacing and the immutable audit trail that the [no maintenance hatch](#no-maintenance-hatch) principle depends on. Three narrow [front doors](#evidence-append-front-door) handle in-place growth, todo closing, and dep re-pointing. See the write flow.
 
 **See also:** [Preflight](#preflight), [Adjudication](#adjudication), [Import](#import), [Consensus Mechanism](#consensus-mechanism), [Mutation](#mutation)
 
@@ -1240,21 +1239,227 @@ Every belief id cited above, with its claim and the line it lives on in the grap
 The source path is relative to this file; in Zed you can cmd-click `path:line` (or run
 `mix bs show <id>` in the `composable-beliefs` repo) to open the record.
 
+### cb:b026
+
+**prescription** · state-machine · _superseded_
+
+DAG node type field accepts exactly three values (primitive, compound, implication) and determines which other fields are meaningful
+
+deps: [cb:b298](#cbb298), [cb:b300](#cbb300)  
+source: `../beliefs/cb/b026.json:2`  ·  `mix bs show cb:b026`
+
+### cb:b027
+
+**prescription** · domain-rule · _superseded_
+
+Field presence on a DAG node is determined by structural type; compounds require deps, declared contracts may be standalone, and contract fields are implication-only
+
+deps: [cb:b298](#cbb298)  
+source: `../beliefs/cb/b027.json:2`  ·  `mix bs show cb:b027`
+
+### cb:b032
+
+**prescription** · audit-rule · _superseded_
+
+Two active implications share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful
+
+deps: [cb:b300](#cbb300), [cb:b304](#cbb304)  
+source: `../beliefs/cb/b032.json:2`  ·  `mix bs show cb:b032`
+
+### cb:b038
+
+**prescription** · schema · _superseded_
+
+Schema discipline: belief provenance is carried by an artifact field; contract-grade implications carry contract:true with non-empty rules/invariants; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from b039/b040/b041 respectively.
+
+deps: [cb:b397](#cbb397), [cb:b398](#cbb398), [cb:b399](#cbb399), [cb:b400](#cbb400), `cb:b401`, `cb:b402`, [cb:b403](#cbb403), `cb:b404`, `cb:b405`, [cb:b408](#cbb408)  
+source: `../beliefs/cb/b038.json:2`  ·  `mix bs show cb:b038`
+
+### cb:b039
+
+**prescription** · enum-registry · _active_
+
+Canonical enum of belief.kind values. Each value declared inline. The enum is closed: no belief.kind value outside this set is permitted on active beliefs.
+
+deps: [cb:b397](#cbb397)  
+source: `../beliefs/cb/b039.json:2`  ·  `mix bs show cb:b039`
+
+### cb:b041
+
+**prescription** · enum-registry · _active_
+
+Canonical enum of belief.domain values. Each value declared inline. The enum is closed.
+
+deps: [cb:b397](#cbb397)  
+source: `../beliefs/cb/b041.json:2`  ·  `mix bs show cb:b041`
+
+### cb:b046
+
+**prescription** · derivation-table · _active_
+
+Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
+
+source: `../beliefs/cb/b046.json:2`  ·  `mix bs show cb:b046`
+
+### cb:b047
+
+**prescription** · rule · _active_
+
+Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
+
+deps: [cb:b300](#cbb300), [cb:b054](#cbb054), [cb:b046](#cbb046)  
+source: `../beliefs/cb/b047.json:2`  ·  `mix bs show cb:b047`
+
+### cb:b049
+
+**prescription** · schema · _active_
+
+A codepath output-target is an output-target contract (kind 'output-target', tagged 'output:codepath') whose rules carry an 'entry' step id and 'render_steps' rows of shape {id, belief, goto?, choices?}. Each row's belief resolves to a belief anchored by a code: artifact; navigation (entry/goto/choices) is render metadata that never enters deps and never lives in the claim beliefs; deps equals the union of the rows' belief ids. Enforced statically by mix cb.verify.schema's codepath output-targets check; rendering the steps is the codepath renderer's job.
+
+deps: [cb:b467](#cbb467), `cb:b586`  
+source: `../beliefs/cb/b049.json:2`  ·  `mix bs show cb:b049`
+
+### cb:b050
+
+**prescription** · rule · _active_
+
+Codepath predicates are inspection-only: a routed predicate observes the system and never mutates it. The checkable proxy: every routed predicate name ends in '?' or '_check' and resolves to an exported zero-arity boolean function on the predicates module - CB.Codepath.Predicates.resolve/2 enforces the naming invariant and refuses to invoke anything else, so an executable string in the DAG has nothing to grab onto. The naming invariant is a verifiable proxy, not a proof of purity; the no-mutation rule itself is this contract.
+
+deps: [cb:b467](#cbb467), [cb:b047](#cbb047)  
+source: `../beliefs/cb/b050.json:2`  ·  `mix bs show cb:b050`
+
+### cb:b051
+
+**prescription** · state-machine · _active_
+
+DAG node type field accepts exactly four values - attestation, aggregation, inference, prescription - one per epistemic operation (attest, aggregate, infer, prescribe) - and determines which other fields are meaningful
+
+deps: [cb:b298](#cbb298), [cb:b470](#cbb470)  
+source: `../beliefs/cb/b051.json:2`  ·  `mix bs show cb:b051`
+
+### cb:b052
+
+**prescription** · domain-rule · _active_
+
+Field presence on a DAG node is determined by structural type; aggregations and inferences require deps, prescriptions require deps or a stipulation artifact, and contract fields are prescription-only
+
+deps: [cb:b298](#cbb298), [cb:b476](#cbb476)  
+source: `../beliefs/cb/b052.json:2`  ·  `mix bs show cb:b052`
+
+### cb:b053
+
+**prescription** · state-machine · _active_
+
+DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields; retired is the prescription-only exit - a withdrawn rule, never a falsified claim
+
+deps: [cb:b302](#cbb302), [cb:b471](#cbb471)  
+source: `../beliefs/cb/b053.json:2`  ·  `mix bs show cb:b053`
+
+### cb:b054
+
+**prescription** · derivation-rule · _active_
+
+A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. The c-prefix ID convention is a naming reflection of this structural property, not the definition of contract identity. Code that operates on contracts must detect them via Belief.contract?/1 and never by ID prefix matching.
+
+deps: [cb:b300](#cbb300), [cb:b470](#cbb470)  
+source: `../beliefs/cb/b054.json:2`  ·  `mix bs show cb:b054`
+
+### cb:b055
+
+**prescription** · audit-rule · _active_
+
+Two active prescriptions share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful. Contradictory prescriptions are actionable conflicts; contradictory inferences are dissent and live outside this audit's scope.
+
+deps: [cb:b304](#cbb304), [cb:b471](#cbb471)  
+source: `../beliefs/cb/b055.json:2`  ·  `mix bs show cb:b055`
+
+### cb:b056
+
+**prescription** · schema · _active_
+
+Schema discipline: belief provenance is carried by an artifact field; contract-grade is derived, not stored - a prescription with non-empty rules/invariants is contract-grade (Belief.contract?/1) and no contract field is carried; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from b039/b041/b043 respectively; kind binds allowed structural types via the kind-type derivation table.
+
+deps: [cb:b397](#cbb397), [cb:b398](#cbb398), [cb:b399](#cbb399), [cb:b400](#cbb400), `cb:b401`, `cb:b402`, [cb:b403](#cbb403), `cb:b404`, `cb:b405`, [cb:b408](#cbb408), [cb:b470](#cbb470)  
+source: `../beliefs/cb/b056.json:2`  ·  `mix bs show cb:b056`
+
+### cb:b057
+
+**prescription** · derivation-table · _active_
+
+Kind binds mood: each belief kind maps to the structural types it may inhabit, converting the prescriptive/descriptive boundary from prose to a deterministic check. Prescriptive kinds bind to prescription only; descriptive kinds may never be prescriptions; dual kinds (definition, schema) carry both moods and the choice is per belief by direction of fit.
+
+deps: [cb:b472](#cbb472)  
+source: `../beliefs/cb/b057.json:2`  ·  `mix bs show cb:b057`
+
+### cb:b058
+
+**prescription** · derivation-rule · _active_
+
+A conjunction cannot be about something its parts are not about: an active aggregation's subject refs must be a subset of the union of its deps' subject refs. Scope widening is the structural signature of inference - a claim whose subjects escape its deps is an inference or carries commentary to trim, never an aggregation. Empty subjects pass vacuously; the check earns its discriminating power only where subjects are populated.
+
+deps: [cb:b472](#cbb472), [cb:b474](#cbb474)  
+source: `../beliefs/cb/b058.json:2`  ·  `mix bs show cb:b058`
+
+### cb:b059
+
+**prescription** · derivation-rule · _active_
+
+A prescription is adopted: every active prescription grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. External-source schemes never ground a prescription.
+
+deps: [cb:b476](#cbb476)  
+source: `../beliefs/cb/b059.json:2`  ·  `mix bs show cb:b059`
+
+### cb:b060
+
+**prescription** · output-target · _superseded_
+
+The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.
+
+deps: `cb:b459`, `cb:b444`, [cb:b477](#cbb477), [cb:b478](#cbb478), `cb:b479`, [cb:b448](#cbb448), `cb:b449`, `cb:b450`, [cb:b482](#cbb482), [cb:b481](#cbb481), `cb:b480`, `cb:b454`, [cb:b455](#cbb455), `cb:b456`, `cb:b457`, `cb:b458`  
+source: `../beliefs/cb/b060.json:2`  ·  `mix bs show cb:b060`
+
+### cb:b064
+
+**prescription** · audit-rule · _active_
+
+Preflight escalates a matched belief into a conflict bucket only when the contract-grade or dag-schema trigger is accompanied by semantic contact: a shared subject ref or claim overlap. Bare tag overlap is family resemblance, not contact - it classifies as neutral (informational) and never blocks a write, but the entry keeps its contract-grade marker and the renderer annotates the grade, so a mis-tagged proposal still receives its diagnostic signal. This enforces at preflight time what b055 states as doctrine: overlap is necessary but not sufficient for contradiction.
+
+deps: [cb:b055](#cbb055), [cb:b519](#cbb519)  
+source: `../beliefs/cb/b064.json:2`  ·  `mix bs show cb:b064`
+
+### cb:b065
+
+**prescription** · output-target · _superseded_
+
+The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.
+
+deps: `cb:b444`, [cb:b448](#cbb448), `cb:b450`, `cb:b454`, [cb:b455](#cbb455), `cb:b457`, `cb:b458`, `cb:b459`, [cb:b477](#cbb477), [cb:b478](#cbb478), `cb:b479`, [cb:b482](#cbb482), [cb:b508](#cbb508), `cb:b524`, [cb:b533](#cbb533), `cb:b565`, `cb:b580`  
+source: `../beliefs/cb/b065.json:2`  ·  `mix bs show cb:b065`
+
+### cb:b066
+
+**prescription** · enum-registry · _superseded_
+
+Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.
+
+deps: [cb:b397](#cbb397), [cb:b398](#cbb398), [cb:b407](#cbb407), [cb:b467](#cbb467)  
+source: `../beliefs/cb/b066.json:2`  ·  `mix bs show cb:b066`
+
 ### cb:b110
 
 **attestation** · design-observation · _active_
 
 Compound assertions survive session boundaries - an implication created in March is still there in April, still linked to its deps, still flaggable if a dep changes. Without the DAG, every session re-reads raw data and reconstructs some fraction of the reasoning, losing compound insights that depend on having the right facts adjacent at the right time.
 
-source: `../beliefs/beliefs.json:27`  ·  `mix bs show cb:b110`
+source: `../beliefs/cb/b110.json:2`  ·  `mix bs show cb:b110`
 
 ### cb:b112
 
-**attestation** · design-observation · _active_
+**attestation** · design-observation · _superseded_
 
 A centralized graph in a single file is preferred over per-entity belief files because cross-entity composition is the primary value. A primitive about one entity composes with a primitive about another to produce an implication - splitting by entity would fragment the graph. Subject-based queries provide per-entity views without separate files.
 
-source: `../beliefs/beliefs.json:46`  ·  `mix bs show cb:b112`
+source: `../beliefs/cb/b112.json:2`  ·  `mix bs show cb:b112`
 
 ### cb:b113
 
@@ -1262,7 +1467,7 @@ source: `../beliefs/beliefs.json:46`  ·  `mix bs show cb:b112`
 
 Sources are not beliefs. A source document is raw material from which primitives are extracted. The graph stores structured beliefs; sources store evidence. The relationship is bidirectional - sources feed primitives upstream (a document becomes a primitive), and syntheses reference beliefs downstream (an analysis cites belief IDs). Both directions can be active on the same document.
 
-source: `../beliefs/beliefs.json:65`  ·  `mix bs show cb:b113`
+source: `../beliefs/cb/b113.json:2`  ·  `mix bs show cb:b113`
 
 ### cb:b114
 
@@ -1270,7 +1475,7 @@ source: `../beliefs/beliefs.json:65`  ·  `mix bs show cb:b113`
 
 Multi-paragraph analyses should not be belief kinds. The schema is built around atomic, composable beliefs - the claim field is a one-liner. Stuffing prose into a belief inverts the relationship: the prose becomes the point and the claim becomes a title. Analyses live as source documents referencing belief IDs inline.
 
-source: `../beliefs/beliefs.json:84`  ·  `mix bs show cb:b114`
+source: `../beliefs/cb/b114.json:2`  ·  `mix bs show cb:b114`
 
 ### cb:b115
 
@@ -1278,7 +1483,7 @@ source: `../beliefs/beliefs.json:84`  ·  `mix bs show cb:b114`
 
 Self-referential beliefs use the existing schema with subject type 'agent' - no special case needed. They capture agent operational patterns, failure modes, and collaboration dynamics using the same primitive/compound/implication structure as domain beliefs. Human-observed data (corrections, failure observations) produces the highest-quality self-referential primitives.
 
-source: `../beliefs/beliefs.json:103`  ·  `mix bs show cb:b115`
+source: `../beliefs/cb/b115.json:2`  ·  `mix bs show cb:b115`
 
 ### cb:b118
 
@@ -1286,7 +1491,7 @@ source: `../beliefs/beliefs.json:103`  ·  `mix bs show cb:b115`
 
 Every primitive sourced from a document or email carries an evidence array with source details including dates and specific descriptions of what was observed. The claim is the agent's interpretation; the evidence carries the factual basis. The gap between claim and evidence is where misinterpretation lives and can be audited.
 
-source: `../beliefs/beliefs.json:141`  ·  `mix bs show cb:b118`
+source: `../beliefs/cb/b118.json:2`  ·  `mix bs show cb:b118`
 
 ### cb:b119
 
@@ -1294,7 +1499,7 @@ source: `../beliefs/beliefs.json:141`  ·  `mix bs show cb:b118`
 
 Beliefs are created at extraction time - when the agent is actively reading a source or reasoning about entities - not backfilled retroactively. The exception is an explicit invocation to formalize prior reasoning from a conversation.
 
-source: `../beliefs/beliefs.json:160`  ·  `mix bs show cb:b119`
+source: `../beliefs/cb/b119.json:2`  ·  `mix bs show cb:b119`
 
 ### cb:b120
 
@@ -1302,7 +1507,7 @@ source: `../beliefs/beliefs.json:160`  ·  `mix bs show cb:b119`
 
 Beliefs and contracts are two roles sharing one store. Ordinary beliefs become stale and get superseded. Contracts are behavioral invariants that get violated or upheld, not superseded. A belief says 'this is true'; a contract says 'this will remain true.'
 
-source: `../beliefs/beliefs.json:179`  ·  `mix bs show cb:b120`
+source: `../beliefs/cb/b120.json:2`  ·  `mix bs show cb:b120`
 
 ### cb:b124
 
@@ -1310,7 +1515,7 @@ source: `../beliefs/beliefs.json:179`  ·  `mix bs show cb:b120`
 
 Field-level provenance (_provenance block on entities) maps source documents to the specific fields they substantiate. This makes the data model 100% auditable - if the agent tells you something, you can check the source. Errors become real-time hallucinations, not deep data mistakes.
 
-source: `../beliefs/beliefs.json:198`  ·  `mix bs show cb:b124`
+source: `../beliefs/cb/b124.json:2`  ·  `mix bs show cb:b124`
 
 ### cb:b125
 
@@ -1318,7 +1523,7 @@ source: `../beliefs/beliefs.json:198`  ·  `mix bs show cb:b124`
 
 Provenance _source attribution must only be assigned at extraction time - when the agent is actively reading the source document and pulling data from it. Retroactive attribution ('this data probably came from that document') is unreliable and prohibited. Unsourced data gets 'manual' and must be re-extracted from a candidate source to be upgraded.
 
-source: `../beliefs/beliefs.json:217`  ·  `mix bs show cb:b125`
+source: `../beliefs/cb/b125.json:2`  ·  `mix bs show cb:b125`
 
 ### cb:b131
 
@@ -1326,8 +1531,8 @@ source: `../beliefs/beliefs.json:217`  ·  `mix bs show cb:b125`
 
 The extraction-time discipline applies across all data layers: provenance attribution happens when reading source documents (b125), assertions are created when reading sources or reasoning about entities (b119), and event log entries are written at mutation time (a128). Retroactive attribution is prohibited at every layer because post-hoc source assignment is inherently unreliable.
 
-deps: [cb:b119](#cba119), [cb:b125](#cba125)  
-source: `../beliefs/beliefs.json:236`  ·  `mix bs show cb:b131`
+deps: [cb:b119](#cbb119), [cb:b125](#cbb125)  
+source: `../beliefs/cb/b131.json:2`  ·  `mix bs show cb:b131`
 
 ### cb:b133
 
@@ -1335,7 +1540,7 @@ source: `../beliefs/beliefs.json:236`  ·  `mix bs show cb:b131`
 
 Contracts fill the abstraction gap between literal code and plain English for supervising agentic coding. The system had implicit contracts scattered across three representations: structs (shape without behavioral invariants), skills (workflow without guarantees to callers), and the agent-instruction file (policy without mechanical verification). Contracts make these guarantees explicit, machine-readable, and verifiable.
 
-source: `../beliefs/beliefs.json:250`  ·  `mix bs show cb:b133`
+source: `../beliefs/cb/b133.json:2`  ·  `mix bs show cb:b133`
 
 ### cb:b134
 
@@ -1343,7 +1548,7 @@ source: `../beliefs/beliefs.json:250`  ·  `mix bs show cb:b133`
 
 Contracts are bound to domain, not implementation - they survive code rewrites. A domain expert can author them without understanding code; a coding agent can implement against them without understanding business context. Contracts generate tests, not the other way around: if you rewrote a module from scratch, every test breaks but the contract stays the same.
 
-source: `../beliefs/beliefs.json:269`  ·  `mix bs show cb:b134`
+source: `../beliefs/cb/b134.json:2`  ·  `mix bs show cb:b134`
 
 ### cb:b135
 
@@ -1351,7 +1556,7 @@ source: `../beliefs/beliefs.json:269`  ·  `mix bs show cb:b134`
 
 Contracts govern behavior across fundamentally different substrates. A single state-machine contract was independently implemented in compiled code and in agent reasoning, producing identical results without either knowing about the other. The contract served as intermediary: a domain expert authors it, an architect verifies against it, implementations derive from it.
 
-source: `../beliefs/beliefs.json:288`  ·  `mix bs show cb:b135`
+source: `../beliefs/cb/b135.json:2`  ·  `mix bs show cb:b135`
 
 ### cb:b138
 
@@ -1359,8 +1564,8 @@ source: `../beliefs/beliefs.json:288`  ·  `mix bs show cb:b135`
 
 The contract layer exists because: (1) implicit contracts were scattered across structs, skills, and the agent-instruction file with no unified representation (b133), (2) contracts must be domain-bound, surviving code rewrites while remaining mechanically verifiable (b134), (3) the same contract representation must govern behavior across different substrates - compiled code and LLM reasoning (b135). This positions contracts as the abstraction layer between domain expertise and implementation.
 
-deps: [cb:b133](#cba133), [cb:b134](#cba134), [cb:b135](#cba135)  
-source: `../beliefs/beliefs.json:307`  ·  `mix bs show cb:b138`
+deps: [cb:b133](#cbb133), [cb:b134](#cbb134), [cb:b135](#cbb135)  
+source: `../beliefs/cb/b138.json:2`  ·  `mix bs show cb:b138`
 
 ### cb:b173
 
@@ -1368,8 +1573,8 @@ source: `../beliefs/beliefs.json:307`  ·  `mix bs show cb:b138`
 
 Implications are prototypes for contracts. An implication encodes a behavioral invariant at the prompt level - compliance depends on the agent reading and following it. When code crystallizes around that invariant (a validation module, a state machine, a verify_against_contract/0 implementation), the implication should be elevated to a contract. Contracts provide strict guarantees because code enforces them and tests verify them. Implications that can never become contracts (pure reasoning directives, tone guidance) stay as implications indefinitely. Implications that could become contracts are effectively prototyping the invariant until code catches up.
 
-deps: [cb:b174](#cba174)  
-source: `../beliefs/beliefs.json:322`  ·  `mix bs show cb:b173`
+deps: [cb:b174](#cbb174)  
+source: `../beliefs/cb/b173.json:2`  ·  `mix bs show cb:b173`
 
 ### cb:b174
 
@@ -1377,7 +1582,7 @@ source: `../beliefs/beliefs.json:322`  ·  `mix bs show cb:b173`
 
 Implications are behavioral directives - they shape how the agent reasons and acts. They work through the prompt (surfaced via _patches.md). They're "soft" in the sense that compliance depends on the agent reading and following them. But they're durable - they survive session boundaries and compose with deps that explain why the rule exists. Contracts are structural invariants - they're verified by code (verify_against_contract/0). A contract that says "loan status transitions must follow this state machine" is testable because the Elixir module hardcodes the transitions and the test compares them to the DAG definition. If code drifts from the contract, the test fails. That's a strict guarantee. The boundary is the enforcement mechanism: implications are enforced by the prompt, contracts are enforced by code.
 
-source: `../beliefs/beliefs.json:354`  ·  `mix bs show cb:b174`
+source: `../beliefs/cb/b174.json:2`  ·  `mix bs show cb:b174`
 
 ### cb:b298
 
@@ -1385,7 +1590,7 @@ source: `../beliefs/beliefs.json:354`  ·  `mix bs show cb:b174`
 
 The DAG's structural types must cleanly separate data (primitive, compound) from arguments (implication) so that prescription is visible as a type, not a convention
 
-source: `../beliefs/beliefs.json:384`  ·  `mix bs show cb:b298`
+source: `../beliefs/cb/b298.json:2`  ·  `mix bs show cb:b298`
 
 ### cb:b300
 
@@ -1393,7 +1598,7 @@ source: `../beliefs/beliefs.json:384`  ·  `mix bs show cb:b298`
 
 A contract is the formalization of an implication - the implication states WHAT (the conclusion), the contract states HOW (rules as Given/When/Then scenarios) and ALWAYS (invariants)
 
-source: `../beliefs/beliefs.json:412`  ·  `mix bs show cb:b300`
+source: `../beliefs/cb/b300.json:2`  ·  `mix bs show cb:b300`
 
 ### cb:b302
 
@@ -1401,7 +1606,7 @@ source: `../beliefs/beliefs.json:412`  ·  `mix bs show cb:b300`
 
 Assertions are immutable once created - existing fields are never edited; the only mutations are status transitions (active -> superseded/retracted/retired) and append-only evidence entries
 
-source: `../beliefs/beliefs.json:440`  ·  `mix bs show cb:b302`
+source: `../beliefs/cb/b302.json:2`  ·  `mix bs show cb:b302`
 
 ### cb:b303
 
@@ -1409,7 +1614,7 @@ source: `../beliefs/beliefs.json:440`  ·  `mix bs show cb:b302`
 
 Primitives must cite a single provenance source via the source field; the source identifier follows a structured taxonomy (gmail:, source:, user:, manual:, policy, legacy, etc.)
 
-source: `../beliefs/beliefs.json:468`  ·  `mix bs show cb:b303`
+source: `../beliefs/cb/b303.json:2`  ·  `mix bs show cb:b303`
 
 ### cb:b304
 
@@ -1417,7 +1622,7 @@ source: `../beliefs/beliefs.json:468`  ·  `mix bs show cb:b303`
 
 Contradictions in the governance substrate must be expensive to introduce - if contradictions are free, agent behavior drifts silently as competing rules accumulate and no mechanism surfaces the tension
 
-source: `../beliefs/beliefs.json:758`  ·  `mix bs show cb:b304`
+source: `../beliefs/cb/b304.json:2`  ·  `mix bs show cb:b304`
 
 ### cb:b339
 
@@ -1425,7 +1630,7 @@ source: `../beliefs/beliefs.json:758`  ·  `mix bs show cb:b304`
 
 The composable beliefs DAG persists across agent sessions. A claim written by one session is readable by every subsequent session without re-derivation.
 
-source: `../beliefs/beliefs.json:930`  ·  `mix bs show cb:b339`
+source: `../beliefs/cb/b339.json:2`  ·  `mix bs show cb:b339`
 
 ### cb:b340
 
@@ -1433,7 +1638,7 @@ source: `../beliefs/beliefs.json:930`  ·  `mix bs show cb:b339`
 
 The DAG persists across subagent invocations. A subagent's context is isolated (a335), but the DAG is not: any subagent granted DAG access reads the same state written by the orchestrator or other subagents.
 
-source: `../beliefs/beliefs.json:954`  ·  `mix bs show cb:b340`
+source: `../beliefs/cb/b340.json:2`  ·  `mix bs show cb:b340`
 
 ### cb:b341
 
@@ -1441,7 +1646,7 @@ source: `../beliefs/beliefs.json:954`  ·  `mix bs show cb:b340`
 
 The DAG is the canonical source of truth for knowledge that must survive session boundaries. Within-session reasoning is ephemeral; only claims committed to the DAG are authoritative for future sessions and subagents.
 
-source: `../beliefs/beliefs.json:984`  ·  `mix bs show cb:b341`
+source: `../beliefs/cb/b341.json:2`  ·  `mix bs show cb:b341`
 
 ### cb:b362
 
@@ -1449,7 +1654,7 @@ source: `../beliefs/beliefs.json:984`  ·  `mix bs show cb:b341`
 
 When a writable field carries a user-authored provenance entry (source prefix user: or manual:) and a subsequent sync pass ingests an artifact (email, sheet, calendar) that disagrees, a pure overlay policy (user-wins) silently hides the contradiction and a pure artifact-wins policy silently discards the user edit. Both failure modes are invisible without explicit conflict detection at write time.
 
-source: `../beliefs/beliefs.json:1008`  ·  `mix bs show cb:b362`
+source: `../beliefs/cb/b362.json:2`  ·  `mix bs show cb:b362`
 
 ### cb:b375
 
@@ -1457,7 +1662,7 @@ source: `../beliefs/beliefs.json:1008`  ·  `mix bs show cb:b362`
 
 Principles that should influence future decisions persist as DAG beliefs. Concrete sequenced action lists persist as plan documents. The distinguishing question is whether the content advises future decisions (DAG) or sequences present steps (plan). A single initiative often produces both: one DAG principle plus one plan executing it once.
 
-source: `../beliefs/beliefs.json:1095`  ·  `mix bs show cb:b375`
+source: `../beliefs/cb/b375.json:2`  ·  `mix bs show cb:b375`
 
 ### cb:b380
 
@@ -1465,7 +1670,7 @@ source: `../beliefs/beliefs.json:1095`  ·  `mix bs show cb:b375`
 
 Implication lifecycle uses two orthogonal fields: `status` (active | superseded | retracted, per b029) describes whether the claim is still true; `materialized` (null | {plan, date}) describes whether the action was executed. An active-and-unmaterialized implication is still-actionable work; an active-and-materialized implication has been discharged at time T and remains true as a principle. This preserves b029's closed status enum while giving discrete implications a first-class discharged state via the `materialized` field, which a363 and downstream implications already use. Supersedes a373, which incorrectly proposed `materialized` as a fifth status value - a proposal authored without preflight DAG search and therefore without consensus.
 
-source: `../beliefs/beliefs.json:1119`  ·  `mix bs show cb:b380`
+source: `../beliefs/cb/b380.json:2`  ·  `mix bs show cb:b380`
 
 ### cb:b381
 
@@ -1473,8 +1678,8 @@ source: `../beliefs/beliefs.json:1119`  ·  `mix bs show cb:b380`
 
 When the authoring surface preflight-searches the DAG and surfaces a conflicting node against a proposed belief, the agent must not silently rework, weaken, or abandon the proposal to fit the existing node. The proposal enters adjudication per the consensus mechanism (human-as-judge, multi-agent patch, or tiered review). Retraction after evidence is valid; retraction under the perceived authority of the existing DAG state without adjudication is sycophancy-toward-the-DAG and is disallowed. The rule also applies to user pushback, but DAG pushback is the foundational case this rule addresses. This failure mode is distinct from social sycophancy (a051 reflexive agreement, a054 uncritical acceptance of user speculation): sycophancy-toward-the-DAG defers to accumulated structure rather than to a person, and is invisible without an explicit rule naming it.
 
-deps: [cb:b375](#cba375)  
-source: `../beliefs/beliefs.json:1148`  ·  `mix bs show cb:b381`
+deps: [cb:b375](#cbb375)  
+source: `../beliefs/cb/b381.json:2`  ·  `mix bs show cb:b381`
 
 ### cb:b382
 
@@ -1482,7 +1687,7 @@ source: `../beliefs/beliefs.json:1148`  ·  `mix bs show cb:b381`
 
 Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.
 
-source: `../beliefs/beliefs.json:1178`  ·  `mix bs show cb:b382`
+source: `../beliefs/cb/b382.json:2`  ·  `mix bs show cb:b382`
 
 ### cb:b383
 
@@ -1490,7 +1695,7 @@ source: `../beliefs/beliefs.json:1178`  ·  `mix bs show cb:b382`
 
 The `materialized` field on an implication records a historical fact: the action was executed at time T via plan P. It does not assert that the action's effects still hold. Effects decay (code drifts, principles stop being enforced, refactors regress). To distinguish historical execution from current verification, the `materialized` field carries a `last_verified` sub-field (null if never re-audited; ISO date if a drift audit has confirmed effects still hold). Shape: `materialized: null | {plan: path, date: ISO, last_verified: null | ISO}`. A fresh materialization has `last_verified: null`. An audited-and-still-current materialization has `last_verified` set to the audit date. Drift detection is handled by a separate audit cycle (see b383).
 
-source: `../beliefs/beliefs.json:1202`  ·  `mix bs show cb:b383`
+source: `../beliefs/cb/b383.json:2`  ·  `mix bs show cb:b383`
 
 ### cb:b384
 
@@ -1498,8 +1703,8 @@ source: `../beliefs/beliefs.json:1202`  ·  `mix bs show cb:b383`
 
 Materialized implications require periodic drift audits to confirm their effects still hold. A drift audit iterates over implications with non-null `materialized` field, re-evaluates whether the action's effects are still present (code still shaped as intended, bash still absent, modules still split, etc.), and either bumps `materialized.last_verified` to the audit date or emits a new primitive asserting the drift + proposes a re-materialization action. The audit is a first-class maintenance cycle, not a one-off. Audit cadence is case-dependent: some implications (module splits) decay slowly; others (bash removal) decay faster if the team isn't vigilant. Default cadence TBD; initial proposal is quarterly with per-implication overrides.
 
-deps: [cb:b382](#cba382)  
-source: `../beliefs/beliefs.json:1226`  ·  `mix bs show cb:b384`
+deps: [cb:b382](#cbb382)  
+source: `../beliefs/cb/b384.json:2`  ·  `mix bs show cb:b384`
 
 ### cb:b386
 
@@ -1507,7 +1712,7 @@ source: `../beliefs/beliefs.json:1226`  ·  `mix bs show cb:b384`
 
 A digest file that caches active implications, regenerated by a command, has freshness that depends on procedural enforcement (a skill tells agents to regenerate after writes). Agents can and do forget, producing a stale digest that is then read as authoritative by subsequent sessions. Persisted caches of graph-derived content whose freshness is procedural rather than structural are antipatterns; they embed the staleness risk they were meant to solve. The elimination path: fold active-implication loading into a session-start belief query and render the digest live from the graph instead of from disk.
 
-source: `../beliefs/beliefs.json:1254`  ·  `mix bs show cb:b386`
+source: `../beliefs/cb/b386.json:2`  ·  `mix bs show cb:b386`
 
 ### cb:b387
 
@@ -1515,8 +1720,8 @@ source: `../beliefs/beliefs.json:1254`  ·  `mix bs show cb:b386`
 
 The DAG requires a consensus mechanism: a workflow that surfaces conflicts between a proposed belief and existing nodes at authoring time, routes the resolution through adjudication (human, multi-agent patch, or tiered review by conflict weight), and produces a recorded outcome - either rejection-with-reasoning (the proposal is reshaped to dep on the existing belief as a constraint) or acceptance (the existing belief is superseded per b029 and the new one takes its place). Without this mechanism, the authoring surface depends on agent memory to query relevant contracts, and b375's gap (DAG as decorative vs operational) remains partially unaddressed. The mechanism is also the structural enforcement for b380 (never-back-down-without-appeal) - the rule is only executable if adjudication is available.
 
-deps: [cb:b375](#cba375), [cb:b380](#cba380), [cb:b053](#cbc053), [cb:b054](#cbc054)  
-source: `../beliefs/beliefs.json:1283`  ·  `mix bs show cb:b387`
+deps: [cb:b375](#cbb375), [cb:b380](#cbb380), [cb:b053](#cbb053), [cb:b054](#cbb054)  
+source: `../beliefs/cb/b387.json:2`  ·  `mix bs show cb:b387`
 
 ### cb:b390
 
@@ -1524,7 +1729,7 @@ source: `../beliefs/beliefs.json:1283`  ·  `mix bs show cb:b387`
 
 Deprecation is a pause, not a retirement. When a feature or field is deprecated, the decision is 'not currently useful enough to carry' rather than 'wrong forever.' The deprecation primitive records the reasoning for why the feature failed to earn its keep. If need arises later, the feature can be reinstated under new adjudication: the supersession or retraction of the deprecation primitive is itself a belief documenting the reversal. This distinguishes deprecation from retraction (reserved for beliefs that turned out false per b029). Confidence field deprecation is the reference case - it may be reinstated in derived form if concrete use-case ever materializes; the path is open.
 
-source: `../beliefs/beliefs.json:1372`  ·  `mix bs show cb:b390`
+source: `../beliefs/cb/b390.json:2`  ·  `mix bs show cb:b390`
 
 ### cb:b397
 
@@ -1532,7 +1737,7 @@ source: `../beliefs/beliefs.json:1372`  ·  `mix bs show cb:b390`
 
 Enum-shaped fields on beliefs (kind, domain, artifact-scheme, others as introduced) take values from sets declared in dedicated contracts. The constraint that a field's value is in a given enum is carried by the field's master contract (b038). The enumeration of allowed values is carried by a dedicated enum contract per field (b039 for kind, b040 for artifact-scheme, b041 for domain). The two layers compose via deps. Adding an enum value supersedes the enum contract for that field.
 
-source: `../beliefs/beliefs.json:1396`  ·  `mix bs show cb:b397`
+source: `../beliefs/cb/b397.json:2`  ·  `mix bs show cb:b397`
 
 ### cb:b398
 
@@ -1540,7 +1745,7 @@ source: `../beliefs/beliefs.json:1396`  ·  `mix bs show cb:b397`
 
 A belief's artifact field holds a typed URI identifying the external referent the belief was derived from. URI form: scheme:id where scheme is declared by b040 and id is scheme-specific. The artifact field carries provenance.
 
-source: `../beliefs/beliefs.json:1429`  ·  `mix bs show cb:b398`
+source: `../beliefs/cb/b398.json:2`  ·  `mix bs show cb:b398`
 
 ### cb:b399
 
@@ -1548,7 +1753,7 @@ source: `../beliefs/beliefs.json:1429`  ·  `mix bs show cb:b398`
 
 A belief's kind field holds a semantic classification value from the enum declared by b039. The kind field carries classification.
 
-source: `../beliefs/beliefs.json:1457`  ·  `mix bs show cb:b399`
+source: `../beliefs/cb/b399.json:2`  ·  `mix bs show cb:b399`
 
 ### cb:b400
 
@@ -1556,7 +1761,7 @@ source: `../beliefs/beliefs.json:1457`  ·  `mix bs show cb:b399`
 
 An artifact is an external referent - a file, gmail thread, session log, user statement, web page, or other addressable thing outside the belief graph. Artifacts are identified by typed URIs (per b040) and cited from beliefs via the artifact field.
 
-source: `../beliefs/beliefs.json:1485`  ·  `mix bs show cb:b400`
+source: `../beliefs/cb/b400.json:2`  ·  `mix bs show cb:b400`
 
 ### cb:b403
 
@@ -1564,7 +1769,7 @@ source: `../beliefs/beliefs.json:1485`  ·  `mix bs show cb:b400`
 
 kind:action-item = a single completable task. Type: implication. Contract: false. Rules and invariants: empty. Distinct from kind:rule (standing) and contract-grade implications (normative spec).
 
-source: `../beliefs/beliefs.json:1578`  ·  `mix bs show cb:b403`
+source: `../beliefs/cb/b403.json:2`  ·  `mix bs show cb:b403`
 
 ### cb:b407
 
@@ -1572,7 +1777,7 @@ source: `../beliefs/beliefs.json:1578`  ·  `mix bs show cb:b403`
 
 A URI scheme is the lowercase token preceding the first colon in a URI. For URI 'gmail:19c2...', the scheme is 'gmail'. URI schemes are standardized by RFC 3986.
 
-source: `../beliefs/beliefs.json:1697`  ·  `mix bs show cb:b407`
+source: `../beliefs/cb/b407.json:2`  ·  `mix bs show cb:b407`
 
 ### cb:b408
 
@@ -1580,7 +1785,7 @@ source: `../beliefs/beliefs.json:1697`  ·  `mix bs show cb:b407`
 
 A belief carries two distinct relations to other entities. `deps` is belief-to-belief logical derivation: the deps' claims together justify the current belief's claim; required on type:compound and type:implication, absent on type:primitive. `subjects` is belief-to-entity topical reference: what the belief is about, including artifacts (files, threads, URLs), code modules, and sometimes other beliefs. A belief can be about another belief without depending on it, and can depend on another belief without being about it.
 
-source: `../beliefs/beliefs.json:1718`  ·  `mix bs show cb:b408`
+source: `../beliefs/cb/b408.json:2`  ·  `mix bs show cb:b408`
 
 ### cb:b416
 
@@ -1588,8 +1793,8 @@ source: `../beliefs/beliefs.json:1718`  ·  `mix bs show cb:b408`
 
 Behavioral invariants that domain experts care about must be expressed as contracts in the DAG, not scattered across the agent-instruction file rules, struct definitions, and skill prose.
 
-deps: [cb:b138](#cba138), `cb:b424`  
-source: `../beliefs/beliefs.json:2077`  ·  `mix bs show cb:b416`
+deps: [cb:b138](#cbb138), `cb:b424`  
+source: `../beliefs/cb/b416.json:2`  ·  `mix bs show cb:b416`
 
 ### cb:b417
 
@@ -1597,8 +1802,8 @@ source: `../beliefs/beliefs.json:2077`  ·  `mix bs show cb:b416`
 
 Modules implementing contract-governed behavior must include verify_against_contract/0 to detect drift between contract and code.
 
-deps: [cb:b138](#cba138), `cb:b409`, [cb:b425](#cba425)  
-source: `../beliefs/beliefs.json:2096`  ·  `mix bs show cb:b417`
+deps: [cb:b138](#cbb138), `cb:b409`, [cb:b425](#cbb425)  
+source: `../beliefs/cb/b417.json:2`  ·  `mix bs show cb:b417`
 
 ### cb:b425
 
@@ -1606,7 +1811,7 @@ source: `../beliefs/beliefs.json:2096`  ·  `mix bs show cb:b417`
 
 Code modules implementing contract-governed behavior detect drift from their governing contract via a verify_against_contract/0 function. Drift between what the contract specifies and what the code does is detectable mechanically; un-detectable drift is the failure mode being prevented.
 
-source: `../beliefs/beliefs.json:2145`  ·  `mix bs show cb:b425`
+source: `../beliefs/cb/b425.json:2`  ·  `mix bs show cb:b425`
 
 ### cb:b427
 
@@ -1614,7 +1819,7 @@ source: `../beliefs/beliefs.json:2145`  ·  `mix bs show cb:b425`
 
 The DAG holds only non-derivable knowledge - business rules, system-specific conventions, observed patterns specific to this codebase. Material documented elsewhere (library docs, language specs, external references retrievable via standard tools) is not duplicated into the DAG.
 
-source: `../beliefs/beliefs.json:2174`  ·  `mix bs show cb:b427`
+source: `../beliefs/cb/b427.json:2`  ·  `mix bs show cb:b427`
 
 ### cb:b428
 
@@ -1622,7 +1827,7 @@ source: `../beliefs/beliefs.json:2174`  ·  `mix bs show cb:b427`
 
 User-sourced and manually-sourced provenance is authoritative. Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting. Authorization to sync does not include authorization to discard user judgment.
 
-source: `../beliefs/beliefs.json:2203`  ·  `mix bs show cb:b428`
+source: `../beliefs/cb/b428.json:2`  ·  `mix bs show cb:b428`
 
 ### cb:b436
 
@@ -1630,7 +1835,7 @@ source: `../beliefs/beliefs.json:2203`  ·  `mix bs show cb:b428`
 
 Removal or renaming of a field from the assertion schema happens via DAG-authorized schema migration. A migration consists of: (a) a compound belief asserting the migrations decision, with deps citing both this meta-convention and the primitive(s) carrying the new schema rules - the compound is the audit anchor and the citation point for future references, while the primitives carry the schema content; (b) adjudication through the consensus mechanism (once built) or direct user authorization (interim); (c) a bulk transformation executed under the compounds authority; (d) supersession or retirement of any contract the migration conflicts with. b029s per-node immutability permits this class of operation and no other. Individual node fields remain immutable outside authorized migrations.
 
-source: `../beliefs/beliefs.json:2233`  ·  `mix bs show cb:b436`
+source: `../beliefs/cb/b436.json:2`  ·  `mix bs show cb:b436`
 
 ### cb:b437
 
@@ -1638,7 +1843,7 @@ source: `../beliefs/beliefs.json:2233`  ·  `mix bs show cb:b436`
 
 Belief kind:definition signifies vocabulary, not commitment - used for beliefs that define what words, types, or fields mean rather than what should happen. Distinguished from kind:policy (intentional commitment) and kind:schema (rule about belief structure). Example: b400 defines what an artifact is; b403 defines kind:action-item; both are definitions.
 
-source: `../beliefs/beliefs.json:2262`  ·  `mix bs show cb:b437`
+source: `../beliefs/cb/b437.json:2`  ·  `mix bs show cb:b437`
 
 ### cb:b438
 
@@ -1646,8 +1851,8 @@ source: `../beliefs/beliefs.json:2262`  ·  `mix bs show cb:b437`
 
 The b039 kind enum is extended to admit 'definition' for beliefs that define vocabulary rather than enforce behavior or assert commitments. Migration follows b436: this compound is the audit anchor; primitive b437 carries the new rule; the b039 kind-enum contract is extended in place with the expanded enum under this migration's authority.
 
-deps: [cb:b436](#cba436), [cb:b437](#cba437)  
-source: `../beliefs/beliefs.json:2285`  ·  `mix bs show cb:b438`
+deps: [cb:b436](#cbb436), [cb:b437](#cbb437)  
+source: `../beliefs/cb/b438.json:2`  ·  `mix bs show cb:b438`
 
 ### cb:b439
 
@@ -1655,7 +1860,7 @@ source: `../beliefs/beliefs.json:2285`  ·  `mix bs show cb:b438`
 
 kind:policy on a belief signifies a mental/intentional commitment about how the system or agent should behave. A belief is kind:policy iff its commitment is not currently mechanically enforced by code, generator, or hook - if a verifier checks it, a generator emits from it, or a hook fires on it today, it is a contract, schema rule, or definition instead. kind:policy is mutually exclusive with contract:true; policies carry prose claim only, no rules or invariants. Every kind:policy belief carries a non-empty name field for stable citation. When a policy's intent is later mechanized, the policy migrates: a contract is authored citing the policy via deps per b409's three-layer chain, and the policy may either remain (stating the intent the contract enforces) or be superseded by a new policy stating the post-mechanization intent.
 
-source: `../beliefs/beliefs.json:2311`  ·  `mix bs show cb:b439`
+source: `../beliefs/cb/b439.json:2`  ·  `mix bs show cb:b439`
 
 ### cb:b448
 
@@ -1663,7 +1868,7 @@ source: `../beliefs/beliefs.json:2311`  ·  `mix bs show cb:b439`
 
 There are no confidence scores. Subjective scores synthesized without a deterministic basis do no load-bearing work; rely on specific evidence and dependency structure instead.
 
-source: `../beliefs/beliefs.json:2546`  ·  `mix bs show cb:b448`
+source: `../beliefs/cb/b448.json:2`  ·  `mix bs show cb:b448`
 
 ### cb:b455
 
@@ -1671,15 +1876,7 @@ source: `../beliefs/beliefs.json:2546`  ·  `mix bs show cb:b448`
 
 Never use emdashes. Use hyphens (-) instead.
 
-source: `../beliefs/beliefs.json:2711`  ·  `mix bs show cb:b455`
-
-### cb:b459
-
-**prescription** · convention · _active_
-
-Read this file for orientation; the guided tour lives with the teaching material in belief-collections (`../belief-collections/quickstart.md`), alongside the `lib:` on-ramp. Build with `mix deps.get && mix compile`.
-
-source: `../beliefs/beliefs.json:2926`  ·  `mix bs show cb:b459`
+source: `../beliefs/cb/b455.json:2`  ·  `mix bs show cb:b455`
 
 ### cb:b460
 
@@ -1687,7 +1884,7 @@ source: `../beliefs/beliefs.json:2926`  ·  `mix bs show cb:b459`
 
 The DAG is a shared prosthetic that compensates for different limitations: a human expert holds interconnections implicitly and attention-bounded, while an agent loses its working context at every session boundary. The graph gives both parties one explicit, queryable structure instead of implicit human memory versus ephemeral agent context.
 
-source: `../beliefs/beliefs.json:2948`  ·  `mix bs show cb:b460`
+source: `../beliefs/cb/b460.json:2`  ·  `mix bs show cb:b460`
 
 ### cb:b462
 
@@ -1695,15 +1892,15 @@ source: `../beliefs/beliefs.json:2948`  ·  `mix bs show cb:b460`
 
 The DAG's primary value is composition, not retrieval. RAG-style systems use a knowledge graph to find relevant context - known answers; this graph's value is concluding what follows from combining facts, which surfaces unknown questions. Retrieval finds; composition derives.
 
-source: `../beliefs/beliefs.json:2994`  ·  `mix bs show cb:b462`
+source: `../beliefs/cb/b462.json:2`  ·  `mix bs show cb:b462`
 
 ### cb:b463
 
 **prescription** · design-principle · _active_
 
-Belief ids are namespaced as `namespace:local-id` (e.g. `[cb:b038](#cbc038)`, `agent-behavior:a054`), with exactly one owning collection per namespace, so ids are globally unique. Deps may cross namespaces and resolve globally, but `cb:` depends only within `cb:`; every other collection may depend on `cb:`. The separator is `:`.
+Belief ids are namespaced as `namespace:local-id` (e.g. `[cb:b038](#cbb038)`, `agent-behavior:a054`), with exactly one owning collection per namespace, so ids are globally unique. Deps may cross namespaces and resolve globally, but `cb:` depends only within `cb:`; every other collection may depend on `cb:`. The separator is `:`.
 
-source: `../beliefs/beliefs.json:3017`  ·  `mix bs show cb:b463`
+source: `../beliefs/cb/b463.json:2`  ·  `mix bs show cb:b463`
 
 ### cb:b464
 
@@ -1711,23 +1908,23 @@ source: `../beliefs/beliefs.json:3017`  ·  `mix bs show cb:b463`
 
 `cb:` holds only the framework's what and how: schema, mechanism, and positioning. The motivation for why the framework emerged - agent failure modes, the paradigm argument - lives in the `agent-behavior:` and `paradigm:` collections, never in `cb:`. This keeps `cb:` self-contained and shippable without the narrative that motivated it.
 
-source: `../beliefs/beliefs.json:3040`  ·  `mix bs show cb:b464`
+source: `../beliefs/cb/b464.json:2`  ·  `mix bs show cb:b464`
 
 ### cb:b465
 
 **prescription** · design-principle · _active_
 
-Contracts are never compiled into code: spec-to-code generation is nondeterministic and unmaintainable. The contract-to-code relationship is verification, not generation - interpreters query a contract and the test suite asserts the code conforms (the `verify_against_contract` pattern, [cb:b417](#cba417) / [cb:b425](#cba425)). Drift surfaces as a failing test, not a regenerated module.
+Contracts are never compiled into code: spec-to-code generation is nondeterministic and unmaintainable. The contract-to-code relationship is verification, not generation - interpreters query a contract and the test suite asserts the code conforms (the `verify_against_contract` pattern, [cb:b417](#cbb417) / [cb:b425](#cbb425)). Drift surfaces as a failing test, not a regenerated module.
 
-source: `../beliefs/beliefs.json:3063`  ·  `mix bs show cb:b465`
+source: `../beliefs/cb/b465.json:2`  ·  `mix bs show cb:b465`
 
 ### cb:b466
 
 **prescription** · design-principle · _active_
 
-Generated prose (CLAUDE.md, rule files) compiles from the graph wherever there is an oracle to diff against, and its freshness is enforced structurally in CI - a gate fails on drift - not procedurally, per [cb:b386](#cba386). Hand-written prose is reserved for a distinct audience, the front-door README, and must never freeze graph-derived facts such as counts or lists, which drift; it points at the live source instead.
+Generated prose (CLAUDE.md, rule files) compiles from the graph wherever there is an oracle to diff against, and its freshness is enforced structurally in CI - a gate fails on drift - not procedurally, per [cb:b386](#cbb386). Hand-written prose is reserved for a distinct audience, the front-door README, and must never freeze graph-derived facts such as counts or lists, which drift; it points at the live source instead.
 
-source: `../beliefs/beliefs.json:3087`  ·  `mix bs show cb:b466`
+source: `../beliefs/cb/b466.json:2`  ·  `mix bs show cb:b466`
 
 ### cb:b467
 
@@ -1735,7 +1932,7 @@ source: `../beliefs/beliefs.json:3087`  ·  `mix bs show cb:b466`
 
 The cb-codepath plan set (plans/cb-codepath/) settles the code-anchoring design: a codepath is a cb collection; a claim anchors to a within-file site via code:<repo-relative-path>#<anchor>, where everything after the first '#' is one opaque literal substring anchor with an optional trailing '@<N>' occurrence selector (a literal trailing '@<digits>' is percent-encoded as '%40<digits>'); line numbers are never stored and resolve at render/run time; a missing anchor is a maintenance signal and multiple matches render against the first match with a tighten-this-anchor warning; ordering and branching live in an output-target render-spec (entry plus render_steps rows), never in the claim beliefs.
 
-source: `../beliefs/beliefs.json:3116`  ·  `mix bs show cb:b467`
+source: `../beliefs/cb/b467.json:2`  ·  `mix bs show cb:b467`
 
 ### cb:b470
 
@@ -1743,7 +1940,7 @@ source: `../beliefs/beliefs.json:3116`  ·  `mix bs show cb:b467`
 
 The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation: primitive (attest), compound (aggregate), inference (infer), directive (prescribe). The v1 implication type conflated two moods - descriptive conclusions licensed to exceed their deps, and prescriptions the house stands behind - and the machinery already sorted by that hidden boundary: materialization, the conflict audit, and contract grading attach only to prescriptions, while staleness and supersession-on-evidence respond to falsification of descriptions. Contract remains a structural grade, in v2 the machine-checkable grade of a directive.
 
-source: `../beliefs/beliefs.json:3823`  ·  `mix bs show cb:b470`
+source: `../beliefs/cb/b470.json:2`  ·  `mix bs show cb:b470`
 
 ### cb:b471
 
@@ -1751,7 +1948,7 @@ source: `../beliefs/beliefs.json:3823`  ·  `mix bs show cb:b470`
 
 The boundary between inference and directive is direction of fit made operational. Ask what would count as the belief being wrong: an inference is falsified - if the world disagrees, the belief is defective and is superseded or retracted (mind fits world); a directive is violated - the world disobeys and the response is to flag the violation rather than revise the rule - or withdrawn - the house stops standing behind it, superseding it with a successor or retiring it (world fits mind). Author-facing trichotomy: falsified means inference; violated means directive; withdrawn means directive.
 
-source: `../beliefs/beliefs.json:3850`  ·  `mix bs show cb:b471`
+source: `../beliefs/cb/b471.json:2`  ·  `mix bs show cb:b471`
 
 ### cb:b472
 
@@ -1759,7 +1956,7 @@ source: `../beliefs/beliefs.json:3850`  ·  `mix bs show cb:b471`
 
 In schema v2, type is a near-function of three checkable properties: type = f(mood(kind), grounding(artifact/deps), scope(subjects)). Mood is bound by the kind-type derivation table contract; grounding separates the descriptive types (artifact with no deps means primitive, deps mean compound or inference); subject containment separates compound from inference - a compound's subjects must be a subset of the union of its deps' subjects, with empty subjects passing vacuously, while an inference is licensed to widen scope. What stays judgment: choosing the kind, and the residual gray zone where a claim is subject-contained yet synthesizing; the write flow owns that residue.
 
-source: `../beliefs/beliefs.json:3878`  ·  `mix bs show cb:b472`
+source: `../beliefs/cb/b472.json:2`  ·  `mix bs show cb:b472`
 
 ### cb:b473
 
@@ -1767,7 +1964,7 @@ source: `../beliefs/beliefs.json:3878`  ·  `mix bs show cb:b472`
 
 The inference type is named for the ampliative move it records. A deduction's conclusion is contained in its premises and can fail only when a premise fails; deductive consequences are infinite and free, so the graph never stores them. An inference's conclusion outruns its deps - a generalization or an abduction - which is why it can be falsified while every dep stays true, and why the supersession-on-falsification lifecycle exists for it. The compound is the one entailment the schema stores (conjunction introduction), with subject containment as its formal shadow; the epistemic work a compound records is the selection of what to assemble. Type membership tracks the deps-to-claim relation, never the author's mental act, which is why the verifier interrogates scope rather than asking what kind of reasoning the author believes they performed.
 
-source: `../beliefs/beliefs.json:3905`  ·  `mix bs show cb:b473`
+source: `../beliefs/cb/b473.json:2`  ·  `mix bs show cb:b473`
 
 ### cb:b474
 
@@ -1775,7 +1972,7 @@ source: `../beliefs/beliefs.json:3905`  ·  `mix bs show cb:b473`
 
 Strict-aggregate doctrine: a compound's claim states exactly what its deps jointly state. Commentary beyond the conjunction - significance, interpretation, generalization - is inference content; when found on a compound it is trimmed by superseding with the conjunction-only claim and, where the commentary deserves to survive, minting an inference that deps on the compound.
 
-source: `../beliefs/beliefs.json:3933`  ·  `mix bs show cb:b474`
+source: `../beliefs/cb/b474.json:2`  ·  `mix bs show cb:b474`
 
 ### cb:b475
 
@@ -1783,7 +1980,7 @@ source: `../beliefs/beliefs.json:3933`  ·  `mix bs show cb:b474`
 
 Primitive atomicity doctrine: a primitive is one atomic statement of what a single source said, leaning verbatim. A primitive whose claim conjoins separable assertions is a mis-authored compound and is split at authoring time. Atomicity is judgment, enforced in the write flow rather than by a verifier check; source-checkable verbatim predicates are future work for cached sources.
 
-source: `../beliefs/beliefs.json:3961`  ·  `mix bs show cb:b475`
+source: `../beliefs/cb/b475.json:2`  ·  `mix bs show cb:b475`
 
 ### cb:b476
 
@@ -1791,16 +1988,16 @@ source: `../beliefs/beliefs.json:3961`  ·  `mix bs show cb:b475`
 
 A prescription is adopted, and adoption grounds in one of two places: in beliefs (deps - guidance resting on a verdict) or in a stipulation event (an artifact citing plan:, user:, or session: - a convention fixed by decision rather than derived from evidence). Schema v2 therefore requires of a non-contract directive deps or a stipulation artifact. This legitimizes conventions as directives without manufacturing fake deps; contract-grade directives keep their existing empty-deps exemption.
 
-source: `../beliefs/beliefs.json:3989`  ·  `mix bs show cb:b476`
+source: `../beliefs/cb/b476.json:2`  ·  `mix bs show cb:b476`
 
 ### cb:b477
 
 **prescription** · convention · _active_
 
-Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per [cb:b386](#cba386), a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
+Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per [cb:b386](#cbb386), a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.
 
-deps: [cb:b386](#cba386)  
-source: `../beliefs/beliefs.json:4813`  ·  `mix bs show cb:b477`
+deps: [cb:b386](#cbb386)  
+source: `../beliefs/cb/b477.json:2`  ·  `mix bs show cb:b477`
 
 ### cb:b478
 
@@ -1808,8 +2005,8 @@ source: `../beliefs/beliefs.json:4813`  ·  `mix bs show cb:b477`
 
 The mechanism is a directed acyclic graph of beliefs with four structural types: attestation (what a single source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen or must hold - what the house stands behind).
 
-deps: [cb:b470](#cba470)  
-source: `../beliefs/beliefs.json:4843`  ·  `mix bs show cb:b478`
+deps: [cb:b470](#cbb470)  
+source: `../beliefs/cb/b478.json:2`  ·  `mix bs show cb:b478`
 
 ### cb:b481
 
@@ -1817,16 +2014,16 @@ source: `../beliefs/beliefs.json:4843`  ·  `mix bs show cb:b478`
 
 Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; non-contract prescriptions ground in deps or a stipulation artifact; and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per b056).
 
-source: `../beliefs/beliefs.json:4935`  ·  `mix bs show cb:b481`
+source: `../beliefs/cb/b481.json:2`  ·  `mix bs show cb:b481`
 
 ### cb:b482
 
 **prescription** · convention · _active_
 
-The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: b051 (the four structural types), b053 (status lifecycle and immutability), b056 (schema discipline), b039/b043/b041 (the closed kind/artifact-scheme/domain enums), b057 (the kind-type table), b058 (subject containment), b059 (prescription grounding), and b055 (conflict scope). Read one with `mix bs show [cb:b051](#cbc051)`.
+The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: b051 (the four structural types), b053 (status lifecycle and immutability), b056 (schema discipline), b039/b043/b041 (the closed kind/artifact-scheme/domain enums), b057 (the kind-type table), b058 (subject containment), b059 (prescription grounding), and b055 (conflict scope). Read one with `mix bs show [cb:b051](#cbb051)`.
 
-deps: [cb:b470](#cba470)  
-source: `../beliefs/beliefs.json:4964`  ·  `mix bs show cb:b482`
+deps: [cb:b470](#cbb470)  
+source: `../beliefs/cb/b482.json:2`  ·  `mix bs show cb:b482`
 
 ### cb:b484
 
@@ -1834,8 +2031,8 @@ source: `../beliefs/beliefs.json:4964`  ·  `mix bs show cb:b482`
 
 Code is not an abstraction layer that persists; it is the operational substrate - the only artifact in the system whose meaning is enforced by execution.
 
-deps: [cb:b465](#cba465)  
-source: `../beliefs/beliefs.json:5157`  ·  `mix bs show cb:b484`
+deps: [cb:b465](#cbb465)  
+source: `../beliefs/cb/b484.json:2`  ·  `mix bs show cb:b484`
 
 ### cb:b485
 
@@ -1843,8 +2040,8 @@ source: `../beliefs/beliefs.json:5157`  ·  `mix bs show cb:b484`
 
 NL discussion above the substrate is productive exactly when every claim terminates in an anchor into the substrate; the anchor is what makes a prose claim adjudicable against the thing that runs.
 
-deps: [cb:b484](#cba484), [cb:b467](#cba467)  
-source: `../beliefs/beliefs.json:5182`  ·  `mix bs show cb:b485`
+deps: [cb:b484](#cbb484), [cb:b467](#cbb467)  
+source: `../beliefs/cb/b485.json:2`  ·  `mix bs show cb:b485`
 
 ### cb:b486
 
@@ -1852,8 +2049,8 @@ source: `../beliefs/beliefs.json:5182`  ·  `mix bs show cb:b485`
 
 The editor's role shifts from authoring surface to adjudication surface - the place where claims meet the thing that actually runs.
 
-deps: [cb:b484](#cba484), [cb:b485](#cba485)  
-source: `../beliefs/beliefs.json:5208`  ·  `mix bs show cb:b486`
+deps: [cb:b484](#cbb484), [cb:b485](#cbb485)  
+source: `../beliefs/cb/b486.json:2`  ·  `mix bs show cb:b486`
 
 ### cb:b487
 
@@ -1861,8 +2058,8 @@ source: `../beliefs/beliefs.json:5208`  ·  `mix bs show cb:b486`
 
 Reading code re-scopes from building a whole mental model to reading the anchored stops that carry an argument.
 
-deps: [cb:b485](#cba485), [cb:b486](#cba486)  
-source: `../beliefs/beliefs.json:5234`  ·  `mix bs show cb:b487`
+deps: [cb:b485](#cbb485), [cb:b486](#cbb486)  
+source: `../beliefs/cb/b487.json:2`  ·  `mix bs show cb:b487`
 
 ### cb:b488
 
@@ -1870,8 +2067,8 @@ source: `../beliefs/beliefs.json:5234`  ·  `mix bs show cb:b487`
 
 Agent claims about code must carry code: anchors that resolve at read time; an unresolvable anchor is an ungrounded claim and must be fixed or withdrawn before the claim is presented.
 
-deps: [cb:b485](#cba485)  
-source: `../beliefs/beliefs.json:5260`  ·  `mix bs show cb:b488`
+deps: [cb:b485](#cbb485)  
+source: `../beliefs/cb/b488.json:2`  ·  `mix bs show cb:b488`
 
 ### cb:b489
 
@@ -1879,8 +2076,8 @@ source: `../beliefs/beliefs.json:5260`  ·  `mix bs show cb:b488`
 
 The graph is the index of obligation: work to do lives as directives - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable. plans/ and docs/ hold records of designs and executions, never live todos; a live todo is an unmaterialized discrete directive.
 
-deps: [cb:b382](#cba382), [cb:b380](#cba380)  
-source: `../beliefs/beliefs.json:5292`  ·  `mix bs show cb:b489`
+deps: [cb:b382](#cbb382), [cb:b380](#cbb380)  
+source: `../beliefs/cb/b489.json:2`  ·  `mix bs show cb:b489`
 
 ### cb:b490
 
@@ -1888,8 +2085,8 @@ source: `../beliefs/beliefs.json:5292`  ·  `mix bs show cb:b489`
 
 A plan is what a large directive materializes into: the materialized field's plan path links obligation to execution record. Plan files are retained permanently as source documents cited via document:/plan: URIs and evidence entries; the direction of reference inverts - query the graph for what is next, follow it into plans/ for how and history.
 
-deps: [cb:b382](#cba382), [cb:b383](#cba383)  
-source: `../beliefs/beliefs.json:5319`  ·  `mix bs show cb:b490`
+deps: [cb:b382](#cbb382), [cb:b383](#cbb383)  
+source: `../beliefs/cb/b490.json:2`  ·  `mix bs show cb:b490`
 
 ### cb:b491
 
@@ -1897,8 +2094,8 @@ source: `../beliefs/beliefs.json:5319`  ·  `mix bs show cb:b490`
 
 The lifecycle tag is load-bearing for the graph-as-backlog: recurring directives are standing rules that never materialize, discrete directives are completable work, and the backlog query is unlinked plus lifecycle:discrete (b380's still-actionable test, narrowed to the work-bearing lifecycle class). An untagged directive degrades the backlog view.
 
-deps: [cb:b380](#cba380)  
-source: `../beliefs/beliefs.json:5346`  ·  `mix bs show cb:b491`
+deps: [cb:b380](#cbb380)  
+source: `../beliefs/cb/b491.json:2`  ·  `mix bs show cb:b491`
 
 ### cb:b492
 
@@ -1906,7 +2103,7 @@ source: `../beliefs/beliefs.json:5346`  ·  `mix bs show cb:b491`
 
 Framework-policy position documents live in this repo (positions/): cb: beliefs ground in repo-relative document: URIs, and a distributable framework must resolve every artifact its own graph cites. The homing boundary is unchanged - claims about CB-the-system land in cb:, claims about the world or mission land in collections.
 
-source: `../beliefs/beliefs.json:5373`  ·  `mix bs show cb:b492`
+source: `../beliefs/cb/b492.json:2`  ·  `mix bs show cb:b492`
 
 ### cb:b493
 
@@ -1914,8 +2111,8 @@ source: `../beliefs/beliefs.json:5373`  ·  `mix bs show cb:b492`
 
 The graph-as-work-index holds at authoring time and is untested at working time: no mechanism yet queries the graph contextually at decision time, and whether working sessions reach for the unlinked backlog rather than plan files is behavioral. The stasis-then-test phase is the experiment that decides it.
 
-deps: [cb:b489](#cba489)  
-source: `../beliefs/beliefs.json:5402`  ·  `mix bs show cb:b493`
+deps: [cb:b489](#cbb489)  
+source: `../beliefs/cb/b493.json:2`  ·  `mix bs show cb:b493`
 
 ### cb:b494
 
@@ -1923,7 +2120,7 @@ source: `../beliefs/beliefs.json:5402`  ·  `mix bs show cb:b493`
 
 Design the consensual-primitives mechanism: when multiple sources state the same belief in different wording, the graph holds per-source attestation primitives plus a consensus compound carrying the shared formulation. Preflight's supportive-match bucket is the discovery mechanism; evaluate a new adjudication outcome (attest-and-corroborate: add the attestation and supersede the consensus compound with one more dep) alongside reject_dep_tie.
 
-source: `../beliefs/beliefs.json:5428`  ·  `mix bs show cb:b494`
+source: `../beliefs/cb/b494.json:2`  ·  `mix bs show cb:b494`
 
 ### cb:b495
 
@@ -1931,7 +2128,7 @@ source: `../beliefs/beliefs.json:5428`  ·  `mix bs show cb:b494`
 
 Decide the multi-agent consensus direction: whether CB's eval focus is the mission or the on-ramp to cross-agent belief reconciliation (two publishers, same model_version, a detected verdict conflict, an adjudicated outcome). The smallest enabling tool either way is pairwise preflight: one collection's proposed beliefs preflighted against another collection's union.
 
-source: `../beliefs/beliefs.json:5458`  ·  `mix bs show cb:b495`
+source: `../beliefs/cb/b495.json:2`  ·  `mix bs show cb:b495`
 
 ### cb:b496
 
@@ -1939,8 +2136,8 @@ source: `../beliefs/beliefs.json:5458`  ·  `mix bs show cb:b495`
 
 Persistence ceremony is proportionate to stance. A position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - and its claims are then extracted into the graph. Observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them. If every wart became a three-artifact pipeline, the pipeline would stop being read.
 
-deps: [cb:b492](#cba492)  
-source: `../beliefs/beliefs.json:5488`  ·  `mix bs show cb:b496`
+deps: [cb:b492](#cbb492)  
+source: `../beliefs/cb/b496.json:2`  ·  `mix bs show cb:b496`
 
 ### cb:b497
 
@@ -1948,8 +2145,8 @@ source: `../beliefs/beliefs.json:5488`  ·  `mix bs show cb:b496`
 
 Live agent work is observable through a lap log: a scratch markdown file (tmp/) the operator keeps open in an editor split, appended station by station as work proceeds. Entries follow the anchor discipline: the content anchor is the stored truth, the line number is a convenience snapshot resolved at write time and never copied forward, and any station that rewrites a file re-emits fresh locators on its way out. The log is scaffolding - whatever it surfaces that matters graduates to the transcript or the graph at lap end.
 
-deps: [cb:b467](#cba467), [cb:b485](#cba485), [cb:b488](#cba488)  
-source: `../beliefs/beliefs.json:5519`  ·  `mix bs show cb:b497`
+deps: [cb:b467](#cbb467), [cb:b485](#cbb485), [cb:b488](#cbb488)  
+source: `../beliefs/cb/b497.json:2`  ·  `mix bs show cb:b497`
 
 ### cb:b498
 
@@ -1957,7 +2154,7 @@ source: `../beliefs/beliefs.json:5519`  ·  `mix bs show cb:b497`
 
 Framework canon changes only through its own write flow, including at the foundations: the status-lifecycle contract was superseded via the lifecycle it defines (b029 -> b053), and the type enum was replaced through adjudication by a node typed in the values it introduces (b026 -> b051). There is no maintenance hatch, so the completeness of the audit trail is structural rather than behavioral - the history can be trusted without trusting that everyone behaved, because there is no door to bypass it.
 
-source: `../beliefs/beliefs.json:5552`  ·  `mix bs show cb:b498`
+source: `../beliefs/cb/b498.json:2`  ·  `mix bs show cb:b498`
 
 ### cb:b500
 
@@ -1965,7 +2162,7 @@ source: `../beliefs/beliefs.json:5552`  ·  `mix bs show cb:b498`
 
 Provide a cross-collection desk view: a single query surface for unmaterialized discrete directives across the framework graph and all registered collections, so the live backlog is one command rather than one command per collection.
 
-source: `../beliefs/beliefs.json:5606`  ·  `mix bs show cb:b500`
+source: `../beliefs/cb/b500.json:2`  ·  `mix bs show cb:b500`
 
 ### cb:b501
 
@@ -1973,7 +2170,7 @@ source: `../beliefs/beliefs.json:5606`  ·  `mix bs show cb:b500`
 
 Provide a recency view: a query answering what changed in the graph over a given window (new nodes, supersessions, evidence appends, materializations), so concurrent multi-session activity is observable without reading git log on the JSON.
 
-source: `../beliefs/beliefs.json:5636`  ·  `mix bs show cb:b501`
+source: `../beliefs/cb/b501.json:2`  ·  `mix bs show cb:b501`
 
 ### cb:b504
 
@@ -1981,8 +2178,8 @@ source: `../beliefs/beliefs.json:5636`  ·  `mix bs show cb:b501`
 
 Author obligations against the live graph, never from session memory: before minting a backlog node, pull the repos and query the desk (unlinked + lifecycle:discrete) plus the work's artifacts. Session memory, digests, and other caches are orientation; the graph is the SSOT of what remains. Multiple sessions write these repos concurrently, and a memory snapshot rots the moment another thread pushes.
 
-deps: [cb:b489](#cba489)  
-source: `../beliefs/beliefs.json:5739`  ·  `mix bs show cb:b504`
+deps: [cb:b489](#cbb489)  
+source: `../beliefs/cb/b504.json:2`  ·  `mix bs show cb:b504`
 
 ### cb:b505
 
@@ -1990,7 +2187,7 @@ source: `../beliefs/beliefs.json:5739`  ·  `mix bs show cb:b504`
 
 In docs and prose, state what things are directly. The contrastive sentence shape 'X doesn't Y, it Z' (denial followed by correction) is banned; lead with what the thing is. Sibling to the no-emdash rule (b455).
 
-source: `../beliefs/beliefs.json:5765`  ·  `mix bs show cb:b505`
+source: `../beliefs/cb/b505.json:2`  ·  `mix bs show cb:b505`
 
 ### cb:b506
 
@@ -1998,7 +2195,7 @@ source: `../beliefs/beliefs.json:5765`  ·  `mix bs show cb:b505`
 
 Axiom is a role, not a type: entrenchment is earned through fan-in. A belief that many active beliefs depend on is functionally axiomatic - the role is read off the graph (bs dependents), never declared, and the belief remains revisable like everything else; superseding it is expensive exactly in proportion to what rests on it.
 
-source: `../beliefs/beliefs.json:5794`  ·  `mix bs show cb:b506`
+source: `../beliefs/cb/b506.json:2`  ·  `mix bs show cb:b506`
 
 ### cb:b507
 
@@ -2006,8 +2203,8 @@ source: `../beliefs/beliefs.json:5794`  ·  `mix bs show cb:b506`
 
 A backlog directive is self-bootstrapping: an agent reading it cold must be able to reach everything needed to begin - the vision, the conventions, the prior work - through the directive's deps and resolvable artifacts (document:/plan:). A session: stipulation is a dead end for a fresh agent until the session-persistence pipeline lands; pair it with a document: pointer in evidence to the transcript or position where the stipulation is readable.
 
-deps: [cb:b489](#cba489), [cb:b504](#cba504)  
-source: `../beliefs/beliefs.json:5822`  ·  `mix bs show cb:b507`
+deps: [cb:b489](#cbb489), [cb:b504](#cbb504)  
+source: `../beliefs/cb/b507.json:2`  ·  `mix bs show cb:b507`
 
 ### cb:b508
 
@@ -2015,8 +2212,8 @@ source: `../beliefs/beliefs.json:5822`  ·  `mix bs show cb:b507`
 
 A session resumes from the graph, never from a handoff: pull the repos, query the desk (`mix bs list unlinked tag:lifecycle:discrete`) for live obligations and `mix bs stale --cascade` for review flags, then follow each prescription's deps and document:/plan: artifacts to the records that ground it. Trust the graph over any memory, digest, or note - other sessions write these repos concurrently.
 
-deps: [cb:b489](#cba489), [cb:b504](#cba504)  
-source: `../beliefs/beliefs.json:5849`  ·  `mix bs show cb:b508`
+deps: [cb:b489](#cbb489), [cb:b504](#cbb504)  
+source: `../beliefs/cb/b508.json:2`  ·  `mix bs show cb:b508`
 
 ### cb:b509
 
@@ -2024,8 +2221,8 @@ source: `../beliefs/beliefs.json:5849`  ·  `mix bs show cb:b508`
 
 Agent session memory is an ephemeral cache, never a store: project and work state is banned from it - the graph owns obligations, the repos own records, CLAUDE.md compiles the bootstrap. At session end, promote anything load-bearing through the write flow, then prune; what survives between sessions is at most a thin operator-preferences layer, and only until a private overlay collection gives preferences a graph home. The b386 doctrine applied to the agent's own notebook: a cache whose freshness is procedural embeds the staleness it was meant to solve.
 
-deps: [cb:b504](#cba504), [cb:b386](#cba386)  
-source: `../beliefs/beliefs.json:6016`  ·  `mix bs show cb:b509`
+deps: [cb:b504](#cbb504), [cb:b386](#cbb386)  
+source: `../beliefs/cb/b509.json:2`  ·  `mix bs show cb:b509`
 
 ### cb:b512
 
@@ -2033,8 +2230,8 @@ source: `../beliefs/beliefs.json:6016`  ·  `mix bs show cb:b509`
 
 Provide draft-mode anchor resolution: a `mix cb.resolve --file` entry point that validates and resolves bare {path, anchor, nth} stop rows against a root, with no belief collection required. CB.Codepath.resolve/3 (lib/cb/codepath.ex) dereferences belief ids today, so unregistered artifacts - draft answers, anchored positions - cannot use the one tested resolver. This is the verification gate for answer-time anchoring (b488) and the /position capture skill, and it is b488's stated escalation condition to contract grade.
 
-deps: [cb:b488](#cba488), [cb:b467](#cba467)  
-source: `../beliefs/beliefs.json:6124`  ·  `mix bs show cb:b512`
+deps: [cb:b488](#cbb488), [cb:b467](#cbb467)  
+source: `../beliefs/cb/b512.json:2`  ·  `mix bs show cb:b512`
 
 ### cb:b517
 
@@ -2043,7 +2240,7 @@ source: `../beliefs/beliefs.json:6124`  ·  `mix bs show cb:b512`
 Emit belief ids in compiled output: CB.OutputTarget renders render_sections claims bare (render_section/3, lib/cb/output_target.ex), so a compiled digest like CLAUDE.md strips line-level provenance and anything quoting it cites the rendering instead of the graph. Each compiled line should carry its belief id per the b503 reference convention once settled, so quoting the digest is still citing the graph. b061 makes the digest read-only and canonical, which raises the stakes.
 
 deps: `cb:b503`, `cb:b030`  
-source: `../beliefs/beliefs.json:6346`  ·  `mix bs show cb:b517`
+source: `../beliefs/cb/b517.json:2`  ·  `mix bs show cb:b517`
 
 ### cb:b518
 
@@ -2052,16 +2249,16 @@ source: `../beliefs/beliefs.json:6346`  ·  `mix bs show cb:b517`
 Make session: artifacts resolvable: evidence cites descriptive slugs (session:2026-06-10-substrate-position-discussion) that dereference to nothing, while the transcripts they name exist on disk as uuid-keyed jsonl files under ~/.claude/projects/<encoded-project>/. Provide the mapping - a session registry, or slug metadata stamped at capture time - so session: evidence dereferences the way document: and code: artifacts do.
 
 deps: `cb:b030`  
-source: `../beliefs/beliefs.json:6386`  ·  `mix bs show cb:b518`
+source: `../beliefs/cb/b518.json:2`  ·  `mix bs show cb:b518`
 
 ### cb:b519
 
 **prescription** · action-item · _active_
 
-Calibrate preflight conflict-level escalation: bare tag-overlap with a contract-grade node currently escalates a proposal to a contract-level block, costing an adjudication interrupt on genuinely disjoint matches - every dag-schema-tagged proposal hits the same multi-contract wall and receives the same boilerplate review. Decide and encode the criteria for when overlap warrants blocking versus informational priority (for example: require claim-overlap or subject-overlap in addition to a shared tag before contract-level), and land the change as a preflight-bucketing revision with a c055-family supersession if the scope doctrine moves.
+Calibrate preflight conflict-level escalation: bare tag-overlap with a contract-grade node currently escalates a proposal to a contract-level block, costing an adjudication interrupt on genuinely disjoint matches - every dag-schema-tagged proposal hits the same multi-contract wall and receives the same boilerplate review. Decide and encode the criteria for when overlap warrants blocking versus informational priority (for example: require claim-overlap or subject-overlap in addition to a shared tag before contract-level), and land the change as a preflight-bucketing revision with a b055-family supersession if the scope doctrine moves.
 
-deps: [cb:b055](#cbc055)  
-source: `../beliefs/beliefs.json:6454`  ·  `mix bs show cb:b519`
+deps: [cb:b055](#cbb055)  
+source: `../beliefs/cb/b519.json:2`  ·  `mix bs show cb:b519`
 
 ### cb:b520
 
@@ -2069,8 +2266,8 @@ source: `../beliefs/beliefs.json:6454`  ·  `mix bs show cb:b519`
 
 Every thread that does substantive work persists twice at close: a transcript (the condensed record, co-located with its plan set or the thread's center of gravity) and a chronicle (chronicles/, dated) - a prose narrative for the operator: where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits. The transcript serves the audit, the graph serves the work, the chronicle serves the steering; in a chronicle, narrative carries the load and ids stay subordinate - the inverse of the receipts register.
 
-deps: [cb:b489](#cba489), [cb:b497](#cba497)  
-source: `../beliefs/beliefs.json:6516`  ·  `mix bs show cb:b520`
+deps: [cb:b489](#cbb489), [cb:b497](#cbb497)  
+source: `../beliefs/cb/b520.json:2`  ·  `mix bs show cb:b520`
 
 ### cb:b522
 
@@ -2078,7 +2275,7 @@ source: `../beliefs/beliefs.json:6516`  ·  `mix bs show cb:b520`
 
 Provide an evidence-append front door: a sanctioned entry point (a Mutation type plus a mix task) for appending a dated evidence entry to an existing belief. Evidence is the one sanctioned in-place growth point on an immutable node, yet it is the only common write without tooling - every append today is an ad-hoc scripted Store write.
 
-source: `../beliefs/beliefs.json:6720`  ·  `mix bs show cb:b522`
+source: `../beliefs/cb/b522.json:2`  ·  `mix bs show cb:b522`
 
 ### cb:b523
 
@@ -2086,7 +2283,7 @@ source: `../beliefs/beliefs.json:6720`  ·  `mix bs show cb:b522`
 
 Make materialization notes persist: the /materialize skill requires each action item to carry notes referencing the directive's reasoning for traceability, but CB.Materializer.Sink.JSON records only id/action/source/created/status and drops extra keys by design, so the promised traceability never lands - not in the todo record, not in the materialized link-back refs. Either the default sink persists notes (and the link-back carries them) or the skill stops mandating what the flow discards; the silent divergence between the skill's contract and the sink's behavior is the part that must not survive.
 
-source: `../beliefs/beliefs.json:6775`  ·  `mix bs show cb:b523`
+source: `../beliefs/cb/b523.json:2`  ·  `mix bs show cb:b523`
 
 ### cb:b528
 
@@ -2094,7 +2291,7 @@ source: `../beliefs/beliefs.json:6775`  ·  `mix bs show cb:b523`
 
 Position names the epistemic artifact - the stance and its claims. Codepath names the render face - the navigable tour resolved from the position's anchors. A position with anchors has a codepath; the term 'walkthrough' is retired with its repo.
 
-source: `../beliefs/beliefs.json:7101`  ·  `mix bs show cb:b528`
+source: `../beliefs/cb/b528.json:2`  ·  `mix bs show cb:b528`
 
 ### cb:b529
 
@@ -2102,8 +2299,8 @@ source: `../beliefs/beliefs.json:7101`  ·  `mix bs show cb:b528`
 
 Anchored claims verify on a three-tier gradient: provenance integrity (source anchors - the quoted evidence still exists), grounding currency (code anchors - the referent still exists in the substrate), and behavioral validity (predicates - the referent still behaves as claimed, contract grade). An anchor check is a necessary condition only: failure flags the claim for review, while success alone never re-validates the claim.
 
-deps: [cb:b485](#cba485), [cb:b488](#cba488)  
-source: `../beliefs/beliefs.json:7127`  ·  `mix bs show cb:b529`
+deps: [cb:b485](#cbb485), [cb:b488](#cbb488)  
+source: `../beliefs/cb/b529.json:2`  ·  `mix bs show cb:b529`
 
 ### cb:b530
 
@@ -2111,8 +2308,8 @@ source: `../beliefs/beliefs.json:7127`  ·  `mix bs show cb:b529`
 
 Extend the write-flow front door to the todo collection: a sanctioned entry point for flipping a materialized item's status (open -> done, with discharge notes). The belief half of the gap closed with mix cb.evidence (b522); the todo half remains - every t-item status flip is still a hand-rolled script against todos.json, and the flip is half of every discharge.
 
-deps: [cb:b522](#cba522)  
-source: `../beliefs/beliefs.json:7154`  ·  `mix bs show cb:b530`
+deps: [cb:b522](#cbb522)  
+source: `../beliefs/cb/b530.json:2`  ·  `mix bs show cb:b530`
 
 ### cb:b531
 
@@ -2120,17 +2317,17 @@ source: `../beliefs/beliefs.json:7154`  ·  `mix bs show cb:b530`
 
 Surface the evidence front door in the generated CLAUDE.md: the Operations write-flow line (cb:b449, rendered via b063) names preflight/adjudicate/import but not mix cb.evidence, so the one sanctioned in-place write is invisible to a cold session reading the file. Supersede b449 with a successor naming the evidence append, re-point b063's deps, and regenerate per the live-render rule (b386).
 
-deps: [cb:b522](#cba522)  
-source: `../beliefs/beliefs.json:7201`  ·  `mix bs show cb:b531`
+deps: [cb:b522](#cbb522)  
+source: `../beliefs/cb/b531.json:2`  ·  `mix bs show cb:b531`
 
 ### cb:b533
 
-**prescription** · convention · _active_
+**prescription** · convention · _superseded_
 
 Author beliefs through the write flow, never by hand-editing the graph file: `mix cb.preflight --file <f>` checks a proposed belief for conflicts, `mix cb.adjudicate --file <f>` resolves them, and `mix cb.import --file <f>` writes the belief. Two further doors complete the sanctioned write surface: `mix cb.evidence <id> --detail <text> --artifact <uri>` appends a dated evidence entry to an existing belief - the one sanctioned in-place growth point on an immutable node - and `mix cb.todo.close <id> --notes <text>` flips a materialized item open -> done with discharge notes. Both are dry-run by default and write only with `--write`.
 
-deps: [cb:b522](#cba522), [cb:b530](#cba530)  
-source: `../beliefs/beliefs.json:7336`  ·  `mix bs show cb:b533`
+deps: [cb:b522](#cbb522), [cb:b530](#cbb530)  
+source: `../beliefs/cb/b533.json:2`  ·  `mix bs show cb:b533`
 
 ### cb:b537
 
@@ -2138,8 +2335,8 @@ source: `../beliefs/beliefs.json:7336`  ·  `mix bs show cb:b533`
 
 Extend the write-flow front door to dep re-points: a sanctioned mix task for re-pointing a belief's dep from a superseded node to its successor (drop-dep + add-dep in one atomic pass, dry-run default, refusal on dangling targets, mirroring mix cb.evidence and mix cb.todo.close). The Mutation clauses exist and append their own evidence trail; only the task front door is missing, so every re-point is still a hand-rolled mix run script.
 
-deps: [cb:b522](#cba522), [cb:b530](#cba530)  
-source: `../beliefs/beliefs.json:7594`  ·  `mix bs show cb:b537`
+deps: [cb:b522](#cbb522), [cb:b530](#cbb530)  
+source: `../beliefs/cb/b537.json:2`  ·  `mix bs show cb:b537`
 
 ### cb:b539
 
@@ -2147,17 +2344,17 @@ source: `../beliefs/beliefs.json:7594`  ·  `mix bs show cb:b537`
 
 Composable Beliefs is a reasoning and audit substrate, not a memory system: it layers over any memory/recall system rather than becoming one. Vector memory, model calls, recall/retrieval, and eval execution stay outside CB's scope and are owned by an external harness; CB ingests their outputs as observations and audits what they store and claim. Building retrieval into CB would forfeit the deterministic, LLM-free read path - the property the framework exists to provide.
 
-deps: [cb:b462](#cba462)  
-source: `../beliefs/beliefs.json:7666`  ·  `mix bs show cb:b539`
+deps: [cb:b462](#cbb462)  
+source: `../beliefs/cb/b539.json:2`  ·  `mix bs show cb:b539`
 
 ### cb:b540
 
 **prescription** · convention · _active_
 
-A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of [cb:b520](#cba520). The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos (amieval-direction, cb-direction), plan-scale dev threads to the co-located plans/<set>/ convention. Every belief minted that session is then retro-paired ([cb:b507](#cba507)) with a document: pointer to that thread. The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act. Until the session-artifact pipeline ([cb:b518](#cba518)) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction, and this convention is the bridge to that mechanization. A plan is optional scaffolding warranted only at plan-scale ([cb:b496](#cba496)), authored in the repo whose system it concerns ([cb:b492](#cba492)) and never standing in for the directive it grounds.
+A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of [cb:b520](#cbb520). The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos (amieval-direction, cb-direction), plan-scale dev threads to the co-located plans/<set>/ convention. Every belief minted that session is then retro-paired ([cb:b507](#cbb507)) with a document: pointer to that thread. The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act. Until the session-artifact pipeline ([cb:b518](#cbb518)) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction, and this convention is the bridge to that mechanization. A plan is optional scaffolding warranted only at plan-scale ([cb:b496](#cbb496)), authored in the repo whose system it concerns ([cb:b492](#cbb492)) and never standing in for the directive it grounds.
 
-deps: [cb:b520](#cba520), [cb:b507](#cba507)  
-source: `../beliefs/beliefs.json:7758`  ·  `mix bs show cb:b540`
+deps: [cb:b507](#cbb507), [cb:b578](#cbb578)  
+source: `../beliefs/cb/b540.json:2`  ·  `mix bs show cb:b540`
 
 ### cb:b543
 
@@ -2165,8 +2362,8 @@ source: `../beliefs/beliefs.json:7758`  ·  `mix bs show cb:b540`
 
 Stand up a global, cross-project directive graph (in the operator's dotfiles) that compiles its active directives to the global ~/.claude/CLAUDE.md, the way the cb: graph compiles to its repo CLAUDE.md. Cross-project obligations and operator preferences currently have no graph home and are invisible to a cold agent started outside any single repo's context; a dotfiles-resident collection plus a generate step makes them ambient everywhere. Composes with b499 (operator-local default overlay) and b500 (cross-collection desk view): the overlay projects private nodes locally, this graph hosts the genuinely global ones.
 
-deps: `cb:b499`, [cb:b500](#cba500)  
-source: `../beliefs/beliefs.json:7852`  ·  `mix bs show cb:b543`
+deps: `cb:b499`, [cb:b500](#cbb500)  
+source: `../beliefs/cb/b543.json:2`  ·  `mix bs show cb:b543`
 
 ### cb:b544
 
@@ -2174,23 +2371,15 @@ source: `../beliefs/beliefs.json:7852`  ·  `mix bs show cb:b543`
 
 Run the dag-vs-prose eval with an OKF/Karpathy agent-maintained wiki as the prose-baseline arm, rather than an ad-hoc prose control. OKF is now a published, standardized, cross-linked, history-bearing prose substrate, so it is a credible external baseline the structured (CB) arm must beat; using it turns the bet-dossier crux (does structured substrate decisively beat strong plain-English?) from a strawman comparison into a defensible one. mix knowledge.emit can generate the structured arm's bundle from the same source graph.
 
-source: `../beliefs/beliefs.json:7890`  ·  `mix bs show cb:b544`
-
-### cb:b546
-
-**prescription** · action-item · _active_
-
-Fold the knowledge standard (amieval/knowledge) into composable-beliefs as the okf: extension, in a fresh execution session. The tooling already lives here (mix knowledge.*, lib/cb/knowledge/*) and the knowledge: graph is already a CB collection, so knowledge is in fact CB's OKF integration extension whose docs+corpus+graph merely sit in a separate repo; that repo boundary is the seam that kept the thread-persistence policy ([cb:b540](#cba540)) from surfacing to a fresh agent. Move the standard into composable-beliefs/okf/ (mirroring the in-repo codepath/ collection), rename the belief namespace knowledge: -> okf: via re-import into a fresh collection (no rename task exists; local parts a001-a005 preserved, a004's internal dep updated), rewire couplings (belief-collections/collections.json key+path, the conformance test to a local okf/conformance, the stale frontmatter.ex docstring), reconcile the moved docs (mix commands run from repo root against okf/<bundle>; reframe 'separate standard repo' framing; add the manifest's bespoke-not-OKF clarification to KNOWLEDGE.md section 5), handle the dangling cb: document:../knowledge/... evidence pointers with a light touch (leave historical or append corrective evidence, never rewrite), then decommission the knowledge repo. Keep the conceptual line as a namespace (cb: vs okf:), not a repo. Detailed steps + verification: plan:okf-fold. Related okf-collection beliefs to fold: knowledge:a003 (the beliefs/-guard, becomes okf:a003), knowledge:a004 (graph-compile okf/CLAUDE.md), knowledge:a005 (port regen to a mix task). Out of scope but recommended alongside: the SessionStart hook + amieval root CLAUDE.md ([cb:b543](#cba543) family) that make surfacing structural rather than procedural.
-
-source: `../beliefs/beliefs.json:7983`  ·  `mix bs show cb:b546`
+source: `../beliefs/cb/b544.json:2`  ·  `mix bs show cb:b544`
 
 ### cb:b547
 
 **prescription** · convention · _active_
 
-Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum ([cb:b066](#cbc066)) has no rebind operation - cb:b545 records the same missing-rebind gap even for commits - so the pointers silently dangle the moment the path moves. A repo move is therefore not done until its inbound artifacts resolve again. Before decommissioning, sweep every dependent graph for the old path; repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written). The okf-fold ([cb:b546](#cba546)) is the worked example: deleting amieval/knowledge left four cb: evidence artifacts ([cb:b518](#cba518)/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit.
+Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum ([cb:b066](#cbb066)) has no rebind operation - cb:b545 records the same missing-rebind gap even for commits - so the pointers silently dangle the moment the path moves. A repo move is therefore not done until its inbound artifacts resolve again. Before decommissioning, sweep every dependent graph for the old path; repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written). The okf-fold (cb:b546) is the worked example: deleting amieval/knowledge left four cb: evidence artifacts ([cb:b518](#cbb518)/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit.
 
-source: `../beliefs/beliefs.json:8024`  ·  `mix bs show cb:b547`
+source: `../beliefs/cb/b547.json:2`  ·  `mix bs show cb:b547`
 
 ### cb:b550
 
@@ -2198,8 +2387,8 @@ source: `../beliefs/beliefs.json:8024`  ·  `mix bs show cb:b547`
 
 Anchored-position format: a position document carries a **Class:** header field; its stance decomposes into ### Claim: sections, each of which may carry one or more **Anchor:** lines holding code: URIs in the b066 grammar; every anchor is verified resolving with exactly one match at authoring time via the draft-mode resolver; and claim order is the default codepath walk order.
 
-deps: [cb:b485](#cba485), [cb:b488](#cba488), `cb:b067`  
-source: `../beliefs/beliefs.json:8133`  ·  `mix bs show cb:b550`
+deps: [cb:b485](#cbb485), [cb:b488](#cbb488), `cb:b067`  
+source: `../beliefs/cb/b550.json:2`  ·  `mix bs show cb:b550`
 
 ### cb:b551
 
@@ -2207,8 +2396,8 @@ source: `../beliefs/beliefs.json:8133`  ·  `mix bs show cb:b550`
 
 A position may carry a terms block: entries of shape {term, definition, anchor?}. A term naming a code construct anchors to its defining site, so the definition is a navigable stop; prose-only definitions remain valid for terms with no code referent.
 
-deps: [cb:b550](#cba550)  
-source: `../beliefs/beliefs.json:8182`  ·  `mix bs show cb:b551`
+deps: [cb:b550](#cbb550)  
+source: `../beliefs/cb/b551.json:2`  ·  `mix bs show cb:b551`
 
 ### cb:b569
 
@@ -2216,8 +2405,8 @@ source: `../beliefs/beliefs.json:8182`  ·  `mix bs show cb:b551`
 
 The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.
 
-deps: [cb:b475](#cba475), `cb:b581`  
-source: `../beliefs/beliefs.json:8809`  ·  `mix bs show cb:b569`
+deps: [cb:b475](#cbb475), `cb:b581`  
+source: `../beliefs/cb/b569.json:2`  ·  `mix bs show cb:b569`
 
 ### cb:b578
 
@@ -2225,311 +2414,14 @@ source: `../beliefs/beliefs.json:8809`  ·  `mix bs show cb:b569`
 
 Every thread that does substantive work persists once at close: as the thread document, which opens with an operator-facing narrative section carrying the chronicle's register - where things stood, the arc with its incidents as story beats, where things stand now, and what the next session inherits - narrative carrying the load, ids subordinate. The narrative section serves the steering, the thread body serves the audit, the graph serves the work: obligations already live in the graph and resumption state in the routing ledger, so the narrative was the chronicle's only surviving load and it travels with the thread instead of on a separate shelf. chronicles/ is closed to new entries; the existing files are historical record kept in place because references point into them, with physical archiving gated on the archive-shelf decision and a cb.repoint pass.
 
-deps: [cb:b489](#cba489), `cb:b582`  
-source: `../beliefs/beliefs.json:9106`  ·  `mix bs show cb:b578`
+deps: [cb:b489](#cbb489), `cb:b582`  
+source: `../beliefs/cb/b578.json:2`  ·  `mix bs show cb:b578`
 
-### cb:b026
+### cb:b598
 
-**prescription** · state-machine · _superseded_
+**prescription** · convention · _active_
 
-DAG node type field accepts exactly three values (primitive, compound, implication) and determines which other fields are meaningful
+Read this file for orientation; guided tours and teaching material ship as external collections that link into cb (query one with `mix bs --beliefs <path>`). Build with `mix deps.get && mix compile`.
 
-deps: [cb:b298](#cba298), [cb:b300](#cba300)  
-source: `../beliefs/beliefs.json:496`  ·  `mix bs show cb:b026`
-
-### cb:b027
-
-**prescription** · domain-rule · _superseded_
-
-Field presence on a DAG node is determined by structural type; compounds require deps, declared contracts may be standalone, and contract fields are implication-only
-
-deps: [cb:b298](#cba298)  
-source: `../beliefs/beliefs.json:548`  ·  `mix bs show cb:b027`
-
-### cb:b032
-
-**prescription** · audit-rule · _superseded_
-
-Two active implications share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful
-
-deps: [cb:b300](#cba300), [cb:b304](#cba304)  
-source: `../beliefs/beliefs.json:782`  ·  `mix bs show cb:b032`
-
-### cb:b038
-
-**prescription** · schema · _superseded_
-
-Schema discipline: belief provenance is carried by an artifact field; contract-grade implications carry contract:true with non-empty rules/invariants; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from b039/b040/b041 respectively.
-
-deps: [cb:b397](#cba397), [cb:b398](#cba398), [cb:b399](#cba399), [cb:b400](#cba400), `cb:b401`, `cb:b402`, [cb:b403](#cba403), `cb:b404`, `cb:b405`, [cb:b408](#cba408)  
-source: `../beliefs/beliefs.json:1775`  ·  `mix bs show cb:b038`
-
-### cb:b039
-
-**prescription** · enum-registry · _active_
-
-Canonical enum of belief.kind values. Each value declared inline. The enum is closed: no belief.kind value outside this set is permitted on active beliefs.
-
-deps: [cb:b397](#cba397)  
-source: `../beliefs/beliefs.json:1833`  ·  `mix bs show cb:b039`
-
-### cb:b041
-
-**prescription** · enum-registry · _active_
-
-Canonical enum of belief.domain values. Each value declared inline. The enum is closed.
-
-deps: [cb:b397](#cba397)  
-source: `../beliefs/beliefs.json:2020`  ·  `mix bs show cb:b041`
-
-### cb:b046
-
-**prescription** · derivation-table · _active_
-
-Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
-
-source: `../beliefs/beliefs.json:3375`  ·  `mix bs show cb:b046`
-
-### cb:b047
-
-**prescription** · rule · _active_
-
-Contracts carry routing tables; modules carry predicate implementations. The DSL expresses which predicates fire on which conditions; it does not express how predicates are implemented.
-
-deps: [cb:b300](#cba300), [cb:b054](#cbc054), [cb:b046](#cbc046)  
-source: `../beliefs/beliefs.json:3484`  ·  `mix bs show cb:b047`
-
-### cb:b049
-
-**prescription** · schema · _active_
-
-A codepath output-target is an output-target contract (kind 'output-target', tagged 'output:codepath') whose rules carry an 'entry' step id and 'render_steps' rows of shape {id, belief, goto?, choices?}. Each row's belief resolves to a belief anchored by a code: artifact; navigation (entry/goto/choices) is render metadata that never enters deps and never lives in the claim beliefs; deps equals the union of the rows' belief ids. Enforced statically by mix cb.verify.schema's codepath output-targets check; rendering the steps is the codepath renderer's job.
-
-deps: [cb:b467](#cba467), [cb:b065](#cbc065)  
-source: `../beliefs/beliefs.json:3683`  ·  `mix bs show cb:b049`
-
-### cb:b050
-
-**prescription** · rule · _active_
-
-Codepath predicates are inspection-only: a routed predicate observes the system and never mutates it. The checkable proxy: every routed predicate name ends in '?' or '_check' and resolves to an exported zero-arity boolean function on the predicates module - CB.Codepath.Predicates.resolve/2 enforces the naming invariant and refuses to invoke anything else, so an executable string in the DAG has nothing to grab onto. The naming invariant is a verifiable proxy, not a proof of purity; the no-mutation rule itself is this contract.
-
-deps: [cb:b467](#cba467), [cb:b047](#cbc047)  
-source: `../beliefs/beliefs.json:3769`  ·  `mix bs show cb:b050`
-
-### cb:b051
-
-**prescription** · state-machine · _active_
-
-DAG node type field accepts exactly four values - attestation, aggregation, inference, prescription - one per epistemic operation (attest, aggregate, infer, prescribe) - and determines which other fields are meaningful
-
-deps: [cb:b298](#cba298), [cb:b470](#cba470)  
-source: `../beliefs/beliefs.json:4017`  ·  `mix bs show cb:b051`
-
-### cb:b052
-
-**prescription** · domain-rule · _active_
-
-Field presence on a DAG node is determined by structural type; aggregations and inferences require deps, prescriptions require deps or a stipulation artifact, and contract fields are prescription-only
-
-deps: [cb:b298](#cba298), [cb:b476](#cba476)  
-source: `../beliefs/beliefs.json:4085`  ·  `mix bs show cb:b052`
-
-### cb:b053
-
-**prescription** · state-machine · _active_
-
-DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields; retired is the prescription-only exit - a withdrawn rule, never a falsified claim
-
-deps: [cb:b302](#cba302), [cb:b471](#cba471)  
-source: `../beliefs/beliefs.json:4162`  ·  `mix bs show cb:b053`
-
-### cb:b054
-
-**prescription** · derivation-rule · _active_
-
-A node is contract-grade iff its type is prescription and its rules or invariants array is non-empty - contract is the machine-checkable grade of a prescription, not a type. The c-prefix ID convention is a naming reflection of this structural property, not the definition of contract identity. Code that operates on contracts must detect them via Belief.contract?/1 and never by ID prefix matching.
-
-deps: [cb:b300](#cba300), [cb:b470](#cba470)  
-source: `../beliefs/beliefs.json:4222`  ·  `mix bs show cb:b054`
-
-### cb:b055
-
-**prescription** · audit-rule · _active_
-
-Two active prescriptions share conflict scope when they occupy overlapping territory along at least one axis (tag, subject ref, subject type) within the same domain - overlap signals the pair is close enough that a contradiction would be meaningful. Contradictory prescriptions are actionable conflicts; contradictory inferences are dissent and live outside this audit's scope.
-
-deps: [cb:b304](#cba304), [cb:b471](#cba471)  
-source: `../beliefs/beliefs.json:4278`  ·  `mix bs show cb:b055`
-
-### cb:b056
-
-**prescription** · schema · _active_
-
-Schema discipline: belief provenance is carried by an artifact field; contract-grade is derived, not stored - a prescription with non-empty rules/invariants is contract-grade (Belief.contract?/1) and no contract field is carried; the implication field is absent; enum-shaped fields (kind, domain, artifact-scheme) take values from b039/b041/b043 respectively; kind binds allowed structural types via the kind-type derivation table.
-
-deps: [cb:b397](#cba397), [cb:b398](#cba398), [cb:b399](#cba399), [cb:b400](#cba400), `cb:b401`, `cb:b402`, [cb:b403](#cba403), `cb:b404`, `cb:b405`, [cb:b408](#cba408), [cb:b470](#cba470)  
-source: `../beliefs/beliefs.json:4336`  ·  `mix bs show cb:b056`
-
-### cb:b057
-
-**prescription** · derivation-table · _active_
-
-Kind binds mood: each belief kind maps to the structural types it may inhabit, converting the prescriptive/descriptive boundary from prose to a deterministic check. Prescriptive kinds bind to prescription only; descriptive kinds may never be prescriptions; dual kinds (definition, schema) carry both moods and the choice is per belief by direction of fit.
-
-deps: [cb:b472](#cba472)  
-source: `../beliefs/beliefs.json:4402`  ·  `mix bs show cb:b057`
-
-### cb:b058
-
-**prescription** · derivation-rule · _active_
-
-A conjunction cannot be about something its parts are not about: an active aggregation's subject refs must be a subset of the union of its deps' subject refs. Scope widening is the structural signature of inference - a claim whose subjects escape its deps is an inference or carries commentary to trim, never an aggregation. Empty subjects pass vacuously; the check earns its discriminating power only where subjects are populated.
-
-deps: [cb:b472](#cba472), [cb:b474](#cba474)  
-source: `../beliefs/beliefs.json:4711`  ·  `mix bs show cb:b058`
-
-### cb:b059
-
-**prescription** · derivation-rule · _active_
-
-A prescription is adopted: every active prescription grounds in deps (the beliefs it rests on) or in a stipulation artifact citing plan:, user:, session:, or document: - the record of the adoption event. External-source schemes never ground a prescription.
-
-deps: [cb:b476](#cba476)  
-source: `../beliefs/beliefs.json:4763`  ·  `mix bs show cb:b059`
-
-### cb:b060
-
-**prescription** · output-target · _superseded_
-
-The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.
-
-deps: [cb:b459](#cba459), `cb:b444`, [cb:b477](#cba477), [cb:b478](#cba478), `cb:b479`, [cb:b448](#cba448), `cb:b449`, `cb:b450`, [cb:b482](#cba482), [cb:b481](#cba481), `cb:b480`, `cb:b454`, [cb:b455](#cba455), `cb:b456`, `cb:b457`, `cb:b458`  
-source: `../beliefs/beliefs.json:4994`  ·  `mix bs show cb:b060`
-
-### cb:b064
-
-**prescription** · audit-rule · _active_
-
-Preflight escalates a matched belief into a conflict bucket only when the contract-grade or dag-schema trigger is accompanied by semantic contact: a shared subject ref or claim overlap. Bare tag overlap is family resemblance, not contact - it classifies as neutral (informational) and never blocks a write, but the entry keeps its contract-grade marker and the renderer annotates the grade, so a mis-tagged proposal still receives its diagnostic signal. This enforces at preflight time what b055 states as doctrine: overlap is necessary but not sufficient for contradiction.
-
-deps: [cb:b055](#cbc055), [cb:b519](#cba519)  
-source: `../beliefs/beliefs.json:7248`  ·  `mix bs show cb:b064`
-
-### cb:b065
-
-**prescription** · output-target · _active_
-
-The framework CLAUDE.md compiles from the beliefs listed in this contract's render_sections. The file is read-only and regenerated from the cb: graph by `mix cb.generate.claude_md`. Authoring happens by creating beliefs (via /assert) and by editing this contract's render_sections; hand-edits to CLAUDE.md are overwritten on the next generation.
-
-deps: `cb:b444`, [cb:b448](#cba448), `cb:b450`, `cb:b454`, [cb:b455](#cba455), `cb:b456`, `cb:b457`, `cb:b458`, [cb:b459](#cba459), [cb:b477](#cba477), [cb:b478](#cba478), `cb:b479`, [cb:b482](#cba482), [cb:b508](#cba508), `cb:b524`, [cb:b533](#cba533), `cb:b565`  
-source: `../beliefs/beliefs.json:7378`  ·  `mix bs show cb:b065`
-
-### cb:b066
-
-**prescription** · enum-registry · _superseded_
-
-Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.
-
-deps: [cb:b397](#cba397), [cb:b398](#cba398), [cb:b407](#cba407), [cb:b467](#cba467)  
-source: `../beliefs/beliefs.json:7688`  ·  `mix bs show cb:b066`
-
-### method:a2
-
-**directive** · convention · _active_
-
-model-version/<model>@<snapshot> is the staleness pivot. Verdicts are scoped to a model_version subject and are superseded when a new snapshot's evidence lands; observations are immutable measurements of a past run and are never superseded by snapshot changes.
-
-source: `../../belief-collections/method/beliefs.json:186`  ·  `mix bs show method:a2`
-
-### method:a5
-
-**directive** · convention · _active_
-
-Beliefs derived from synthetic, mock, or test data carry the tag 'fixture'. A fixture-tagged belief is honest test scaffolding: it must never be published or rendered into an audit tree presented as a finding. The ledger's entries must not need an asterisk later.
-
-source: `../../belief-collections/method/beliefs.json:258`  ·  `mix bs show method:a5`
-
-### method:a6
-
-**directive** · convention · _active_
-
-The eval practice publishes no verdict in any category where an owner-held product is sold. The sold-category list is part of this directive's grounding and is empty as of 2026-06-12. Adding a category requires superseding this node - a dated, public graph event - never a quiet edit. Until the verifier carries a named predicate for this rule, it binds as authoring discipline: a proposed verdict whose subject falls in a sold category is not a verdict and must not be authored.
-
-source: `../../belief-collections/method/beliefs.json:652`  ·  `mix bs show method:a6`
-
-### method:a7
-
-**directive** · convention · _active_
-
-A study in which the ledger framework itself (or any owner-held system) is the system under test publishes as first-party research on the framework's own surfaces - preregistered, logs open, framed as the author evaluating his own system. It never publishes as a neutral verdict of the eval practice, and its conclusions are never cited as neutral verdicts. The eval practice's verdict surface evaluates third-party systems only.
-
-source: `../../belief-collections/method/beliefs.json:681`  ·  `mix bs show method:a7`
-
-### method:c4
-
-**directive** · implies · _active_ · contract
-
-Every active verdict rests on cross-ruler corroboration or visibly declares that it does not: a kind:verdict implication depends, directly or transitively, on at least one active compound tagged cross-ruler-agreement, or carries the tag single-ruler as an explicit escape hatch the reader can see.
-
-source: `../../belief-collections/method/beliefs.json:282`  ·  `mix bs show method:c4`
-
-### method:c5
-
-**directive** · implies · _active_ · contract
-
-Every active observation primitive is grounded twice: in its identity and in its raw log. It carries an eval: artifact naming the (eval, run[, case], ruler) tuple it measures, and at least one of its evidence entries cites a raw log via a document: or https: artifact.
-
-source: `../../belief-collections/method/beliefs.json:318`  ·  `mix bs show method:c5`
-
-### method:c6
-
-**directive** · implies · _active_ · contract
-
-Every active observation primitive carries the six-subject convention: subjects of type eval, run, case, model, model_version, and ruler. An observation tagged aggregate covers a whole (run, ruler) pair and may omit the case subject.
-
-deps: `method:a1`, `method:a3`  
-source: `../../belief-collections/method/beliefs.json:354`  ·  `mix bs show method:c6`
-
-### method:c7
-
-**directive** · implies · _active_ · contract
-
-A verdict cites at least three distinct runs - the house minimum, carried as the rule's min param. There is no escape hatch: a result that cannot cite the minimum is not a weaker verdict, it is not a verdict. Author it as an observation or as exploratory guidance, and the check does not apply.
-
-source: `../../belief-collections/method/beliefs.json:393`  ·  `mix bs show method:c7`
-
-### method:c8
-
-**directive** · implies · _active_ · contract
-
-An observation scored by an LLM judge is joined by the judge's validation record: for every active observation whose ruler subject ref begins ruler/llm-judge, an active belief tagged judge-validation shares that ruler subject ref and the observation's eval subject ref.
-
-deps: `method:a4`  
-source: `../../belief-collections/method/beliefs.json:432`  ·  `mix bs show method:c8`
-
-### method:c9
-
-**directive** · implies · _active_ · contract
-
-Corrections are supersessions, visibly worn: a belief tagged correction is the successor of a superseded belief and carries a dated evidence entry. Retraction without a successor is reserved for full withdrawal, marked by the tag withdrawn on the retracted belief.
-
-source: `../../belief-collections/method/beliefs.json:469`  ·  `mix bs show method:c9`
-
-### method:c10
-
-**directive** · derivation-table · _active_ · contract
-
-Kind binds mood for the eval vocabulary: each method:c2 kind maps to the structural types it may inhabit. A verdict must be derived, never merely attested or prescribed - it is inference-only; guidance, protocol, and convention prescribe; observations attest or aggregate; definitions carry both moods, decided per belief by direction of fit.
-
-source: `../../belief-collections/method/beliefs.json:505`  ·  `mix bs show method:c10`
-
-### paradigm:a364
-
-**inference** · design-observation · _active_
-
-The method: methodology contracts are agent epistemics in their most checkable form - corroboration, provenance, sample-size, judge calibration, and visible revision as machine-checked graph structure.
-
-deps: `paradigm:a361`  
-source: `../../belief-collections/paradigm/beliefs.json:692`  ·  `mix bs show paradigm:a364`
+source: `../beliefs/cb/b598.json:2`  ·  `mix bs show cb:b598`
 

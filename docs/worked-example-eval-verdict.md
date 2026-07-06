@@ -1,6 +1,6 @@
 # Worked example: tracing an eval verdict to its evidence
 
-This worked example teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance` in the sibling `belief-collections` repo): a published eval, `silent-data-loss-v1`, rendered in miniature. Eleven beliefs (six active, five superseded - the supersessions are part of the lesson) capture two scorer observations of a single failing case, the cross-ruler agreement they compose into, the verdict inference and the guidance directives that rest on it, and two layers of history: the collection's move onto the shared `method:` vocabulary, and the four-type migration that split the original verdict into a finding and a prescription.
+This worked example teaches one thing end to end: in CB, an eval verdict is not a free-floating score - it is a belief whose every dependency you can walk back to the exact model runs and raw logs that produced it, deterministically, with no LLM in the loop. The vehicle is the `sdl` collection (`eval-provenance`, an external collection that links into cb): a published eval, `silent-data-loss-v1`, rendered in miniature. Eleven beliefs (six active, five superseded - the supersessions are part of the lesson) capture two scorer observations of a single failing case, the cross-ruler agreement they compose into, the verdict inference and the guidance directives that rest on it, and two layers of history: the collection's move onto the shared `method:` vocabulary, and the four-type migration that split the original verdict into a finding and a prescription.
 
 The example is also deliberately imperfect: its verdict cites only one run and its LLM judge has no validation record, so it **fails two of the six methodology contracts on purpose**. A teaching collection that visibly fails the house methodology teaches both the mechanism and the culture; the fully compliant counterpart is the `toy:` collection in the same sibling repo.
 
@@ -9,10 +9,10 @@ All commands run from the `composable-beliefs/` repo root and point at the sibli
 ```sh
 mix deps.get && mix compile          # one-time build
 # sdl steps target the sibling collection:
-mix bs <cmd> --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs <cmd> --beliefs path/to/eval-provenance/beliefs.json
 ```
 
-You can set `CB_BELIEFS=../belief-collections/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final steps query CB's own graph (`beliefs/cb/`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This worked example uses the explicit flag throughout.
+You can set `CB_BELIEFS=path/to/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final steps query CB's own graph (`beliefs/cb/`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This worked example uses the explicit flag throughout.
 
 ## Verify the collection
 
@@ -56,8 +56,8 @@ Third, the two `FAIL`s - which are the point, not a bug. The verdict `sdl:a008` 
 ## See its shape
 
 ```sh
-mix bs stats --beliefs ../belief-collections/eval-provenance/beliefs.json
-mix bs list  --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs stats --beliefs path/to/eval-provenance/beliefs.json
+mix bs list  --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```
@@ -119,7 +119,7 @@ Six active beliefs, and all four structural types on one screen: **2 primitives*
 This is the centerpiece. One command renders the verdict and everything it stands on:
 
 ```sh
-mix bs tree sdl:a008 --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs tree sdl:a008 --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```
@@ -162,7 +162,7 @@ The HTML shows what the terminal tree cannot: every evidence entry's raw-log art
 The tree shows structure; `show` shows the full provenance record for a single observation:
 
 ```sh
-mix bs show sdl:a1 --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs show sdl:a1 --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```
@@ -208,7 +208,7 @@ Three details worth internalizing:
 Now `show` the compound for contrast:
 
 ```sh
-mix bs show sdl:a010 --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs show sdl:a010 --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```
@@ -238,10 +238,10 @@ The compound grounds in `Deps: sdl:a1, sdl:a2` (`deps=2`) where the primitive gr
 Because all nine eval fields landed on existing schema fields, every dimension is already queryable - this needed **zero new query code**:
 
 ```sh
-mix bs list eval/silent-data-loss-v1   --beliefs ../belief-collections/eval-provenance/beliefs.json   # value
-mix bs list model/claude-opus-4-8      --beliefs ../belief-collections/eval-provenance/beliefs.json   # value
-mix bs list subject_type:ruler         --beliefs ../belief-collections/eval-provenance/beliefs.json   # dimension
-mix bs list tag:outcome:silent_loss    --beliefs ../belief-collections/eval-provenance/beliefs.json   # tag
+mix bs list eval/silent-data-loss-v1   --beliefs path/to/eval-provenance/beliefs.json   # value
+mix bs list model/claude-opus-4-8      --beliefs path/to/eval-provenance/beliefs.json   # value
+mix bs list subject_type:ruler         --beliefs path/to/eval-provenance/beliefs.json   # dimension
+mix bs list tag:outcome:silent_loss    --beliefs path/to/eval-provenance/beliefs.json   # tag
 ```
 
 ```
@@ -265,7 +265,7 @@ Three query shapes, all pre-existing (the remaining outputs elided; the counts a
 ## Staleness and the model_version pivot
 
 ```sh
-mix bs stale --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs stale --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```
@@ -279,7 +279,7 @@ What matters is the model that fires when a new model snapshot arrives. Stalenes
 The collection's own history already demonstrates the supersession machinery for real - a different trigger (vocabulary re-homing rather than a new snapshot), same mechanics:
 
 ```sh
-mix bs history sdl:a4 --beliefs ../belief-collections/eval-provenance/beliefs.json
+mix bs history sdl:a4 --beliefs path/to/eval-provenance/beliefs.json
 ```
 
 ```

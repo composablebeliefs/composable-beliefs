@@ -76,4 +76,4 @@ CB_BELIEFS=codepath/beliefs.json mix cb.render.codepath belief-pipeline   # tour
 CB_BELIEFS=codepath/beliefs.json mix cb.verify.codepath belief-pipeline   # test the pipeline
 ```
 
-For the guided version, see `../belief-collections/quickstart.md`.
+Guided tours ship as external collections that link into cb.

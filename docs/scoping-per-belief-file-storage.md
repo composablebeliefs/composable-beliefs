@@ -33,7 +33,7 @@ explicit operator authorization under the Data Protection rule.
   superseded, 1 retracted), ids cb:b098 through cb:b587, ~496 KB.
 - Two more single-file collections live in this repo and are *not* targets of
   the split: `okf/beliefs.json` and `codepath/beliefs.json`. External
-  collections live in `../belief-collections/` behind a registry
+  collections live outside this repo behind a registry
   (`collections.json`: namespace -> relative path to a `beliefs.json`).
 - All belief I/O funnels through `CB.Belief.Store.read/0` and `Store.write/2`
   (`lib/cb/belief/store.ex`, 44 lines), which resolve the path via
@@ -66,7 +66,7 @@ The six prescriptions, in dependency order, with what each takes:
 2. **cb:b556 - directory-aware read.** When the configured graph location is a
    per-belief directory, glob `<ns>/<local>.json` and parse each; keep the
    single-file array as the fallback so unsplit collections (okf, codepath,
-   belief-collections) keep working unchanged. Prototype-proven at ~25 lines.
+   external ones) keep working unchanged. Prototype-proven at ~25 lines.
    Half a day including tests. Two decisions to settle here (see "Decisions"
    below): what the configured path points at, and what order the loaded list
    carries.
@@ -116,7 +116,7 @@ These are real work items not covered by cb:b555-b560:
   function and have both `Store.read` and `Collection.load` call it, so the
   layout knowledge lives in exactly one place. Same treatment for
   `cb.import.eval`'s `read_collection/1`. Without this, `mix
-  cb.verify.collection` and the belief-collections workflow break the moment
+  cb.verify.collection` and the external-collections workflow break the moment
   the split lands. (+ a few hours, belongs inside step 2.)
 
 - **The codepath collection breaks and must be re-authored, not just fixed.**
