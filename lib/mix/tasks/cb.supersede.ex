@@ -48,7 +48,6 @@ defmodule Mix.Tasks.Cb.Supersede do
 
   use Mix.Task
 
-  alias CB.Belief.Graph
   alias CB.Belief.Mutation
   alias CB.Belief.Store
 
@@ -64,7 +63,9 @@ defmodule Mix.Tasks.Cb.Supersede do
       halt("unknown options: #{flags}")
     end
 
-    if path = opts[:beliefs], do: Application.put_env(:cb, :beliefs_path, path)
+    with {:error, message} <- CB.TaskSupport.beliefs_override(opts[:beliefs]) do
+      halt(message)
+    end
 
     id =
       case positional do
@@ -145,18 +146,7 @@ defmodule Mix.Tasks.Cb.Supersede do
     end
   end
 
-  defp resolve(beliefs, id) do
-    case Graph.resolve_id(beliefs, id) do
-      {:ok, canonical} ->
-        {:ok, canonical}
-
-      {:error, :not_found} ->
-        {:error, "no belief with id: #{id}"}
-
-      {:error, {:ambiguous, ids}} ->
-        {:error, "ambiguous id '#{id}' matches: #{Enum.join(ids, ", ")} - qualify the namespace"}
-    end
-  end
+  defp resolve(beliefs, id), do: CB.TaskSupport.resolve(beliefs, id)
 
   defp report(plan) do
     IO.puts("Supersede")
@@ -167,25 +157,10 @@ defmodule Mix.Tasks.Cb.Supersede do
   end
 
   @doc false
-  def require_opt(nil, flag), do: {:error, "#{flag} is required"}
-
-  def require_opt(value, flag) do
-    if String.trim(value) == "" do
-      {:error, "#{flag} must not be empty"}
-    else
-      {:ok, value}
-    end
-  end
+  defdelegate require_opt(value, flag), to: CB.TaskSupport
 
   @doc false
-  def validate_date(nil), do: {:ok, nil}
-
-  def validate_date(date) do
-    case Date.from_iso8601(date) do
-      {:ok, _} -> {:ok, date}
-      {:error, _} -> {:error, "--date must be an ISO date (YYYY-MM-DD), got: #{date}"}
-    end
-  end
+  defdelegate validate_date(date), to: CB.TaskSupport
 
   defp usage do
     "Usage: mix cb.supersede <belief-id> --by <successor-id> --slug <slug> [--date YYYY-MM-DD] [--write]"

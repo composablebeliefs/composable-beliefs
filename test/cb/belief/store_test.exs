@@ -47,8 +47,20 @@ defmodule CB.Belief.StoreTest do
       assert {:ok, [%Belief{id: "cb:b002"}, %Belief{id: "cb:b001"}]} = Store.read(path)
     end
 
-    test "a missing path reads as the empty collection", %{tmp_dir: dir} do
-      assert {:ok, []} = Store.read(Path.join(dir, "absent.json"))
+    test "an explicit missing path is an error, not an empty collection", %{tmp_dir: dir} do
+      assert {:error, :enoent} = Store.read(Path.join(dir, "absent.json"))
+    end
+
+    test "an existing single-file collection at an extensionless path stays single-file",
+         %{tmp_dir: dir} do
+      path = Path.join(dir, "graph")
+      File.write!(path, Jason.encode!([node_map("cb:b001")]))
+
+      assert {:ok, [%Belief{id: "cb:b001"} = belief]} = Store.read(path)
+      # the layout read is the layout written back
+      assert {:ok, ^path} = Store.write([belief], path)
+      refute File.dir?(path)
+      assert {:ok, [%Belief{id: "cb:b001"}]} = Store.read(path)
     end
 
     test "a non-array file is an error", %{tmp_dir: dir} do
@@ -78,6 +90,14 @@ defmodule CB.Belief.StoreTest do
       node_dir = Path.join(dir, "cb")
       File.mkdir_p!(node_dir)
       File.write!(Path.join(node_dir, "b001.json"), Jason.encode!([1, 2]))
+
+      assert {:error, {:bad_node, _}} = Store.read(node_dir)
+    end
+
+    test "a node file without a string id is an error, not a nil-id belief", %{tmp_dir: dir} do
+      node_dir = Path.join(dir, "cb")
+      File.mkdir_p!(node_dir)
+      File.write!(Path.join(node_dir, "stray.json"), Jason.encode!(%{"namespace" => "cb"}))
 
       assert {:error, {:bad_node, _}} = Store.read(node_dir)
     end
@@ -151,7 +171,32 @@ defmodule CB.Belief.StoreTest do
       beliefs = Enum.map([node_map("cb:b001"), node_map("cb:b001")], &Belief.from_map/1)
 
       assert {:error, {:duplicate_node, ["b001.json"]}} = Store.write(beliefs, node_dir)
-      assert {:ok, []} = Store.read(node_dir)
+      # refused before the directory was even created
+      assert {:error, :enoent} = Store.read(node_dir)
+    end
+
+    test "an id whose local part would escape the directory is refused", %{tmp_dir: dir} do
+      node_dir = Path.join(dir, "cb")
+      beliefs = [Belief.from_map(node_map("cb:../b999"))]
+
+      assert {:error, {:bad_id, ["cb:../b999"]}} = Store.write(beliefs, node_dir)
+      refute File.exists?(Path.join(dir, "b999.json"))
+      # refused before the directory was even created
+      assert {:error, :enoent} = Store.read(node_dir)
+    end
+
+    test "the deletion pass leaves foreign .json files alone", %{tmp_dir: dir} do
+      node_dir = Path.join(dir, "cb")
+      File.mkdir_p!(node_dir)
+      manifest = Path.join(node_dir, "manifest.json")
+      File.write!(manifest, Jason.encode!(%{"namespace" => "cb"}))
+
+      beliefs = [Belief.from_map(node_map("cb:b001"))]
+      assert {:ok, ^node_dir} = Store.write(beliefs, node_dir)
+
+      assert File.exists?(manifest)
+      # ...but the foreign file still poisons reads, by design
+      assert {:error, {:bad_node, _}} = Store.read(node_dir)
     end
 
     test "a supersession round-trips: successor added, predecessor flipped", %{tmp_dir: dir} do

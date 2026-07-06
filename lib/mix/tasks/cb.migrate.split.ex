@@ -28,9 +28,13 @@ defmodule Mix.Tasks.Cb.Migrate.Split do
   Refuses if the path is already a directory (nothing to split), the
   file is not a JSON array, the collection carries more than one id
   namespace (local filenames strip the namespace, so mixed namespaces
-  could collide), any id repeats, or - after writing - the directory
-  does not load back node-for-node identical to the single file. The
-  single file is only removed after that verification passes.
+  could collide), any id repeats, or - after writing - the node files
+  do not decode back to exactly the raw JSON data the single file
+  carried. The single file is only removed after that verification
+  passes; on any write or verification failure the partially-written
+  target directory is removed again, so the single file stays the
+  authoritative store (CB.Config would otherwise prefer the directory
+  the moment it exists).
   """
   @shortdoc "Split a single-file belief collection into per-belief files"
 
@@ -86,14 +90,29 @@ defmodule Mix.Tasks.Cb.Migrate.Split do
       summary = %{namespace: ns, count: length(beliefs), target: target, applied: write?}
 
       if write? do
-        with {:ok, _} <- Store.write(beliefs, target),
-             :ok <- verify_roundtrip(beliefs, target) do
-          File.rm!(path)
-          {:ok, summary}
+        case apply_split(beliefs, path, target) do
+          :ok ->
+            {:ok, summary}
+
+          {:error, _} = err ->
+            # A half-written or unverified target must not survive:
+            # CB.Config prefers the beliefs/cb directory the moment it
+            # exists, so leaving it in place would silently shadow the
+            # still-authoritative single file on every subsequent read.
+            File.rm_rf(target)
+            err
         end
       else
         {:ok, summary}
       end
+    end
+  end
+
+  defp apply_split(beliefs, path, target) do
+    with {:ok, _} <- Store.write(beliefs, target),
+         :ok <- verify_roundtrip(path, target) do
+      File.rm!(path)
+      :ok
     end
   end
 
@@ -159,29 +178,28 @@ defmodule Mix.Tasks.Cb.Migrate.Split do
     IO.puts(:stderr, "  then:       remove #{Path.basename(path)}")
   end
 
-  # The directory must load back node-for-node identical to the single
-  # file (canonical serialization, order-independent). The single file
-  # is not removed unless this passes.
-  defp verify_roundtrip(beliefs, target) do
-    case Store.read(target) do
-      {:ok, reloaded} ->
-        if canonical(reloaded) == canonical(beliefs) do
-          :ok
-        else
-          {:error,
-           "verification failed: #{target} does not load back identical to the single file (left in place)"}
-        end
-
-      {:error, why} ->
-        {:error, "verification failed reading #{target}: #{inspect(why)}"}
+  # The node files must decode back to the same raw JSON data the
+  # single file carried (order-independent; map equality, so key order
+  # is irrelevant). Comparing raw-to-raw keeps the struct boundary out
+  # of both sides: a lossy from_map/to_map would drop the same data
+  # from both and verify clean if the structs were compared instead.
+  # The single file is not removed unless this passes.
+  defp verify_roundtrip(path, target) do
+    with {:ok, source} <- Store.read_raw(path),
+         {:ok, reloaded} <- Store.read_raw(target) do
+      if by_id(source) == by_id(reloaded) do
+        :ok
+      else
+        {:error,
+         "verification failed: #{target} does not decode back identical to #{path}; " <>
+           "the single file is authoritative and untouched"}
+      end
+    else
+      {:error, why} -> {:error, "verification failed reading back: #{inspect(why)}"}
     end
   end
 
-  defp canonical(beliefs) do
-    beliefs
-    |> Enum.map(&(&1 |> Belief.to_map() |> Jason.encode!()))
-    |> Enum.sort()
-  end
+  defp by_id(raw_nodes), do: Map.new(raw_nodes, &{&1["id"], &1})
 
   defp halt(message) do
     IO.puts(:stderr, "Error: #{message}")

@@ -195,9 +195,12 @@ defmodule CB.Belief.Mutation do
   `{:error, {mutation_id, reason}}` so the caller can pinpoint which
   mutation failed without scanning the batch.
 
-  On error, the caller discards the partial result and re-writes the
-  pre-batch state to disk — `Belief.Store.write/2`'s atomic tmp+rename
-  ensures no half-applied state lands.
+  On error, the caller discards the partial result, so nothing
+  half-applied is handed to `Belief.Store.write/2`. Persistence
+  atomicity is the store's concern: one atomic tmp+rename for a
+  single-file collection, a two-phase stage-then-rename per node for
+  the per-belief layout (atomic per file, not across the batch - see
+  `CB.Belief.Store`).
 
   Takes the same `opts` as `apply_one/3`; they're threaded through to
   every per-type clause.

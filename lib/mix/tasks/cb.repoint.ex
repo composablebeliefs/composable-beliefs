@@ -70,7 +70,9 @@ defmodule Mix.Tasks.Cb.Repoint do
       halt("unknown options: #{flags}")
     end
 
-    if path = opts[:beliefs], do: Application.put_env(:cb, :beliefs_path, path)
+    with {:error, message} <- CB.TaskSupport.beliefs_override(opts[:beliefs]) do
+      halt(message)
+    end
 
     id =
       case positional do
@@ -198,19 +200,7 @@ defmodule Mix.Tasks.Cb.Repoint do
     end
   end
 
-  defp resolve(beliefs, id, label) do
-    case Graph.resolve_id(beliefs, id) do
-      {:ok, canonical} ->
-        {:ok, canonical}
-
-      {:error, :not_found} ->
-        {:error, "no belief with #{label} id: #{id}"}
-
-      {:error, {:ambiguous, ids}} ->
-        {:error,
-         "ambiguous #{label} id '#{id}' matches: #{Enum.join(ids, ", ")} - qualify the namespace"}
-    end
-  end
+  defp resolve(beliefs, id, label), do: CB.TaskSupport.resolve(beliefs, id, label)
 
   defp report(plan) do
     IO.puts("Dep re-point")
@@ -224,33 +214,11 @@ defmodule Mix.Tasks.Cb.Repoint do
   defp deps_str([]), do: "-"
   defp deps_str(deps), do: Enum.join(deps, ", ")
 
-  @doc """
-  Validate a required string option: present and non-empty.
-  """
-  @spec require_opt(String.t() | nil, String.t()) :: {:ok, String.t()} | {:error, String.t()}
-  def require_opt(nil, flag), do: {:error, "#{flag} is required"}
+  @doc false
+  defdelegate require_opt(value, flag), to: CB.TaskSupport
 
-  def require_opt(value, flag) do
-    if String.trim(value) == "" do
-      {:error, "#{flag} must not be empty"}
-    else
-      {:ok, value}
-    end
-  end
-
-  @doc """
-  Validate the optional `--date` value as an ISO 8601 date. `nil`
-  passes through - the evidence entries default to today.
-  """
-  @spec validate_date(String.t() | nil) :: {:ok, String.t() | nil} | {:error, String.t()}
-  def validate_date(nil), do: {:ok, nil}
-
-  def validate_date(date) do
-    case Date.from_iso8601(date) do
-      {:ok, _} -> {:ok, date}
-      {:error, _} -> {:error, "--date must be an ISO date (YYYY-MM-DD), got: #{date}"}
-    end
-  end
+  @doc false
+  defdelegate validate_date(date), to: CB.TaskSupport
 
   defp usage do
     "Usage: mix cb.repoint <belief-id> --from <dep> --to <dep> --slug <slug> [--date YYYY-MM-DD] [--write]"

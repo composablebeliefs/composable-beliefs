@@ -147,6 +147,8 @@ defmodule Mix.Tasks.Cb.Import.Eval do
   defp read_collection(path) do
     case Store.read(path) do
       {:ok, beliefs} -> {:ok, beliefs}
+      # A collection that does not exist yet is created by this import.
+      {:error, :enoent} -> {:ok, []}
       {:error, :not_a_list} -> {:error, {:collection_not_a_list, path}}
       {:error, reason} -> {:error, {:collection_unreadable, path, reason}}
     end
