@@ -6,6 +6,14 @@ Everything here is the general mechanism of the [guide](../guide/README.md) appl
 
 One boundary is held on purpose: **CB is the ledger; the lab bench stays external.** Running evals - orchestration, sampling, retries, model calls - happens in an external harness. CB ingests the harness's *output record* through one neutral format and never grows toward execution.
 
+## Why this domain needs a ledger
+
+The measured failure modes of eval pipelines are structural, which is what makes a structural ledger the right tool:
+
+- **Judges fail systematically.** Swap the order of two answers and most LLM judges flip their verdict in a large fraction of comparisons; pad an answer with information-free repetition and most judges reward it ([Zheng et al. 2023](https://arxiv.org/abs/2306.05685)). Judges measurably favor their own outputs ([Panickssery et al. 2024](https://arxiv.org/abs/2404.13076)), and more than a dozen distinct judge biases are catalogued with effect sizes ([Ye et al. 2024](https://arxiv.org/abs/2410.02736)).
+- **Awareness alone does no measurable work.** LLMs exhibit a self-correction blind spot: competent at correcting errors in others' output, failing on identical errors in their own ([Liu et al. 2025](https://arxiv.org/abs/2507.02778)).
+- **The mitigations that work are procedures**: swap-and-require-agreement, binary grading against concrete criteria, judge panels, calibration against human labels. Human-subjects research reached the same verdict decades earlier (Meehl's clinical-versus-statistical prediction; Kahneman and Tversky's heuristics-and-biases program): systematic error yields to procedure and structure. The mapping from human biases to LLM failure modes is functional; what transfers is the debiasing logic, and that is the part the ledger encodes as machine-checkable contracts.
+
 ## The shape of a finding
 
 A published finding is an evidence chain that exercises all four structural types, with a strict division of labour between machine and human. One term of art: a **ruler** is the ledger's word for a scorer or judge - deterministic differs and LLM judges alike.
@@ -60,6 +68,10 @@ mix cb.render.audit toy:a10 --collection toy --out audit.html  # a verdict's evi
 ```
 
 The entire eval ledger - observations, agreements, verdicts, guidance, methodology - required *no new schema*. The eval collections declare one extra artifact scheme (`eval:`) and a handful of kinds, and everything else is the same four types, the same lifecycle, the same verifier discovered by role.
+
+## Current state
+
+The pipeline has been exercised end to end on genuine Inspect logs: harness run -> adapter -> run-manifest -> import -> verified collection -> rendered audit tree, with idempotent re-import, identity-conflict detection, and golden-file determinism tests on the renderer. That round trip used the zero-cost mockllm provider, so by the fixture-provenance rule everything in it carries the `fixture` tag: it demonstrates the machine and is deliberately distinguishable from a finding. No real finding is published yet; the first one is human work the machinery is waiting on - choosing the eval, judging load-bearing cases, authoring the aggregations and verdict.
 
 > **Grounding.**
 > - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:b539` (the scope boundary: CB ingests and audits records; execution stays in the harness).
