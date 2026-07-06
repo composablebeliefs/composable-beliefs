@@ -6,6 +6,7 @@ tags: [nursery, git, provenance, environment, upstream]
 status: active
 timestamp: 2026-07-05
 maturity: active
+threads: [2026-07-05-git-check-hook-upstream]
 ---
 
 # Upstream request: CCR git-check Stop hook - false "Unverified" detection and history-rewrite remedy
