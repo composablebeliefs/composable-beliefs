@@ -76,7 +76,7 @@ The reason is concrete. Building retrieval into the read path would put a model,
 
 Composable Beliefs was not designed on a whiteboard. It was extracted from a real production agent system running a live operation, where the agent's own instruction file was compiled from a belief graph rather than written by hand. Each prescription the agent followed was a pointer into the graph, carrying the source it rested on and the record of how it had changed. The framework is what remained once that machinery was generalized and lifted out of the application it grew up inside.
 
-That origin sets the altitude of this whole guide. CB is defined by its mechanism - typed, immutable, source-grounded, composable claims on a dependency graph with a deterministic read path - never by any single thing it has been used for. The mechanism is the part you can check against the code and the graph. The applications live downstream of it; the first of them, grounding model-evaluation findings, is [chapter 7](7-eval-ledger.md).
+That origin sets the altitude of this whole guide. CB is defined by its mechanism - typed, immutable, source-grounded, composable claims on a dependency graph with a deterministic read path - never by any single thing it has been used for. The mechanism is the part you can check against the code and the graph. Applications live downstream of it, documented separately as [case studies](../case-studies/README.md).
 
 ---
 

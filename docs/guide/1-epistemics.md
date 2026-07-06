@@ -69,7 +69,7 @@ An aggregation states exactly what its deps jointly state, and nothing more. It 
 
 The strict-aggregate doctrine (`cb:b474`) protects that boundary from the authoring side: an aggregation's claim is the conjunction, with any interpretation or generalization trimmed off and pushed up into an inference. The formal guard is [subject containment](../glossary.md#subject-containment) (`cb:b058`): an active aggregation's `subjects` - the things it is about - must be a subset of the union of its deps' subjects, because a conjunction cannot be about something its parts are not about. The moment a claim's subjects escape its deps' union, it has stopped aggregating and started inferring; that is the machine-checkable line between the two types.
 
-> **Caveat.** The framework's own `cb:` graph currently contains zero aggregations (`mix bs stats`). The type is fully real and contract-governed, but it earns its keep where many beliefs share subjects so that containment has something to bite on - which happens in eval collections, where six-subject observations pile up. [Chapter 7](7-eval-ledger.md) teaches the aggregation from a real eval finding.
+> **Caveat.** The framework's own `cb:` graph currently contains zero aggregations (`mix bs stats`). The type is fully real and contract-governed, but it earns its keep where many beliefs share subjects so that containment has something to bite on - which happens in eval collections, where six-subject observations pile up. [The eval-ledger case study](../case-studies/eval-ledger.md) shows the aggregation on a real finding.
 
 ## Inference: licensed to exceed the evidence
 

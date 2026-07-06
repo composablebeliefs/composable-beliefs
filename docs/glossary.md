@@ -942,7 +942,7 @@ A ruler is CB's word for a scorer or judge, a deterministic field-differ or an L
 
 ## Run-Manifest
 
-The run-manifest (docs/run-manifest.md, CB.Eval.Manifest) is the neutral version-1 JSON record of one harness execution: `eval_id`, `date`, `model`, `model_version`, harness identity, and a list of runs whose scorers ([rulers](#ruler)) carry outcome counts and optional load-bearing cases. It is the single contract between the [harness](#harness) and the ledger - CB never learns any harness's native log format - and the only door into the graph. A thin per-harness adapter writes it; [import.eval](#importeval) reads it.
+The run-manifest (docs/case-studies/run-manifest.md, CB.Eval.Manifest) is the neutral version-1 JSON record of one harness execution: `eval_id`, `date`, `model`, `model_version`, harness identity, and a list of runs whose scorers ([rulers](#ruler)) carry outcome counts and optional load-bearing cases. It is the single contract between the [harness](#harness) and the ledger - CB never learns any harness's native log format - and the only door into the graph. A thin per-harness adapter writes it; [import.eval](#importeval) reads it.
 
 **See also:** [Harness](#harness), [import.eval](#importeval), [Observation](#observation), [Identity Hashing](#identity-hashing), [eval: Scheme](#eval-scheme)
 
@@ -978,7 +978,7 @@ A self-referential belief takes the agent itself as its subject - its own patter
 
 ## Self-Referential Face
 
-The self-referential face is CB used to take an agent itself as subject: claims about a system's own failure modes, giving it a queryable model of how it tends to fail that it can consult before acting (docs/actualization.md). It is the schema capability of [self-referential beliefs](#self-referential-beliefs) put to work as the third of the [three faces](#the-three-faces). It is the single-agent form of the group-scale failures the eval vertical studies, the [actualize](#actualize) rung of the ladder.
+The self-referential face is CB used to take an agent itself as subject: claims about a system's own failure modes, giving it a queryable model of how it tends to fail that it can consult before acting (deprecated/docs/actualization.md). It is the schema capability of [self-referential beliefs](#self-referential-beliefs) put to work as the third of the [three faces](#the-three-faces). It is the single-agent form of the group-scale failures the eval vertical studies, the [actualize](#actualize) rung of the ladder.
 
 **See also:** [The Three Faces](#the-three-faces), [Self-Referential Beliefs](#self-referential-beliefs), [Specify, Deduce, Actualize](#specify-deduce-actualize), [Proving Ground](#proving-ground)
 

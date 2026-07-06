@@ -39,15 +39,19 @@ mix cb.todo.close <id> --notes <text> --commit <sha>    # flip a todo open -> do
                                                         #   (--no-commit to record none exists)
 mix cb.repoint <id> --from <dep> --to <dep>             # swing a dep to its successor
 mix cb.retract <id> --reason <text>                     # retract with date and reason
+mix cb.supersede <id> --by <successor-id>               # flip a belief to an existing
+                                                        #   successor (deferred supersession)
 ```
 
-**Verify.** Static (deterministic, no predicate execution): `mix cb.verify.schema` checks one collection against the contracts it carries; `mix cb.verify.collection <namespace>` checks it in the context of its declared dependency collections, including the eval method-check pass; `mix cb.verify.commits` checks the belief-commit provenance loop in both directions. Dynamic (the one place predicates run): `mix cb.verify.codepath [--record]`.
+**Verify.** Static (deterministic, no predicate execution): `mix cb.verify.schema` checks one collection against the contracts it carries; `mix cb.verify.collection <namespace>` checks it in the context of its declared dependency collections, including the eval method-check pass; `mix cb.verify.commits` checks the belief-commit provenance loop in both directions; `mix cb.verify.route_tags` checks route tags resolve and excerpt logs match their re-derivation. Dynamic (the one place predicates run): `mix cb.verify.codepath [--record]`.
 
 **Resolve** - `mix cb.resolve --file <rows.json>`: draft-mode anchor resolution, validating bare `{path, anchor, nth}` rows with no belief collection loaded (the verification gate for answer-time anchoring and the `/position` skill).
 
 **Render and generate**: `mix cb.generate.claude_md [--check]`, `mix cb.generate.rules`, `mix cb.generate.glossary [--check]`, `mix cb.render.codepath [--json]`, `mix cb.render.audit <id> [--check]`.
 
 **Audit**: `mix cb.audit.conflicts` (the `cb:b055` conflict-scope audit).
+
+**Migrate**: `mix cb.migrate.split` - one-time migration of a single-file collection into per-belief files (`cb:b558`).
 
 **OKF interop** ([guide chapter 5](guide/5-collections.md#the-cb-okf-knowledge-extension)): `mix okf.emit`, `mix okf.ingest`, `mix okf.manifest [--check]`, `mix okf.validate`.
 
@@ -58,8 +62,8 @@ mix cb.retract <id> --reason <text>                     # retract with date and 
 - `codepath/` - the `codepath:` collection: the belief-pipeline tour that also runs as a test suite.
 - `okf/` - the cb-okf knowledge methodology: the standard, its conformance corpus, a demo bundle, and the `cb-okf:` operational graph.
 - `skills/` - agent skills for a Claude-Code-style harness: `/assert`, `/assertions`, `/materialize`, `/position`, `/present-codepath`. Symlinked into `.claude/skills/`.
-- `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), the [run-manifest spec](run-manifest.md), the [worked example](worked-example-eval-verdict.md), and the essays and dated analyses.
-- `plans/` - closed shelf: design records and executed plans with their transcripts. `deprecated/chronicles/` - archived shelf: session narratives, a register that now opens each thread document (cb:b578). `positions/` - anchored stances.
+- `docs/` - [the guide](guide/README.md), this reference, the [glossary](glossary.md), [operational learnings](operations.md), and the [case studies](case-studies/README.md) (the eval ledger, with the [run-manifest spec](case-studies/run-manifest.md) and the [worked example](case-studies/worked-example-eval-verdict.md)).
+- `plans/` - closed shelf: design records and executed plans with their transcripts. `deprecated/` - archived shelves: `chronicles/` (session narratives, a register that now opens each thread document, cb:b578) and `docs/` (superseded essays and dated records). `positions/` - anchored stances.
 - CI (`.github/workflows/composable-beliefs.yml`) - on every push: the test suite (including an anchor-rot guard against the real source), `cb.verify.schema`, and the CLAUDE.md freshness gate.
 
 ## A quick tour

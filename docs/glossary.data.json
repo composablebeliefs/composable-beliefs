@@ -1699,7 +1699,7 @@
   "run-manifest": {
     "name": "Run-Manifest",
     "short": "The neutral version-1 JSON record of one harness execution; the single contract between bench and ledger, and the only door into the graph.",
-    "def": "The run-manifest (docs/run-manifest.md, CB.Eval.Manifest) is the neutral version-1 JSON record of one harness execution: <code>eval_id</code>, <code>date</code>, <code>model</code>, <code>model_version</code>, harness identity, and a list of runs whose scorers (<a href='glossary.html#ruler'>rulers</a>) carry outcome counts and optional load-bearing cases. It is the single contract between the <a href='glossary.html#harness'>harness</a> and the ledger - CB never learns any harness's native log format - and the only door into the graph. A thin per-harness adapter writes it; <a href='glossary.html#import-eval'>import.eval</a> reads it.",
+    "def": "The run-manifest (docs/case-studies/run-manifest.md, CB.Eval.Manifest) is the neutral version-1 JSON record of one harness execution: <code>eval_id</code>, <code>date</code>, <code>model</code>, <code>model_version</code>, harness identity, and a list of runs whose scorers (<a href='glossary.html#ruler'>rulers</a>) carry outcome counts and optional load-bearing cases. It is the single contract between the <a href='glossary.html#harness'>harness</a> and the ledger - CB never learns any harness's native log format - and the only door into the graph. A thin per-harness adapter writes it; <a href='glossary.html#import-eval'>import.eval</a> reads it.",
     "see": [
       "harness",
       "import-eval",
@@ -1770,7 +1770,7 @@
   "self-referential-face": {
     "name": "Self-Referential Face",
     "short": "CB used to give a system a queryable model of its own failure modes - claims whose subject is an agent itself, that it can consult before acting so it resists the next failure.",
-    "def": "The self-referential face is CB used to take an agent itself as subject: claims about a system's own failure modes, giving it a queryable model of how it tends to fail that it can consult before acting (docs/actualization.md). It is the schema capability of <a href='glossary.html#self-referential-beliefs'>self-referential beliefs</a> put to work as the third of the <a href='glossary.html#three-faces'>three faces</a>. It is the single-agent form of the group-scale failures the eval vertical studies, the <a href='glossary.html#actualize'>actualize</a> rung of the ladder.",
+    "def": "The self-referential face is CB used to take an agent itself as subject: claims about a system's own failure modes, giving it a queryable model of how it tends to fail that it can consult before acting (deprecated/docs/actualization.md). It is the schema capability of <a href='glossary.html#self-referential-beliefs'>self-referential beliefs</a> put to work as the third of the <a href='glossary.html#three-faces'>three faces</a>. It is the single-agent form of the group-scale failures the eval vertical studies, the <a href='glossary.html#actualize'>actualize</a> rung of the ladder.",
     "see": [
       "three-faces",
       "self-referential-beliefs",

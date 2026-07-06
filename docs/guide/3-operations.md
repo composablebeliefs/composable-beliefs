@@ -93,7 +93,7 @@ The decision becomes a permanent, queryable feature of the graph - a supersessio
 - `mix cb.todo.close <id> --notes <text>` - flips a materialized work item open -> done with discharge notes. Since the `cb:b563` gate, every close must either cite its implementing commit (`--commit <full-sha>`, validated and dereferenced against the repository) or explicitly record that none exists (`--no-commit`); silent omission stops being possible at the door.
 - `mix cb.repoint <id> --from <dep> --to <dep>` - swings a dependency from a superseded node to its successor as an atomic drop-then-add, the move that keeps the stale report clean after a supersession (`cb:b537`).
 - `mix cb.retract <id> --reason <text>` - marks a belief retracted with its date and reason. Retraction records "this should not stand"; to *replace* a belief with a better one, supersede through adjudication instead.
-- `mix cb.import.eval <manifest> --collection <path>` - materializes an eval run-manifest as observation attestations ([chapter 7](7-eval-ledger.md)).
+- `mix cb.import.eval <manifest> --collection <path>` - materializes an eval run-manifest as observation attestations ([the eval-ledger case study](../case-studies/eval-ledger.md)).
 
 All of them route through the same mutation engine and atomic write path as the main flow, and each appends its own evidence trail - even an edit to the graph leaves a trace inside the node it touched.
 

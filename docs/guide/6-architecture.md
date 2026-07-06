@@ -64,7 +64,7 @@ Around seventy modules organize into layers, each hanging off the loaded list. T
 | **Materialization** | `CB.Belief.Materializer`, `CB.Materializer.Sink` (+ `Sink.JSON`, `Sink.Test`), `CB.Todos` | prescription -> action items -> pluggable sink -> link back; the todo collection and its commit-gated close |
 | **Anchoring and codepaths** | `CB.CodeLocator`, `CB.Anchor`, `CB.Codepath` (+ `Predicates`, `Assertions`) | the `code:` grammar, fixed-string resolution, tour rendering and the dynamic verifier ([chapter 4](4-code.md)) |
 | **Commit provenance** | `CB.CommitLocator`, `CB.Commits` | the `commit:` scheme parser and the two-way belief-commit verification |
-| **Eval ingestion** | `CB.Eval.Manifest`, `CB.Eval.Predicates` | run-manifest parsing and deterministic observation emission; the eval graph predicates ([chapter 7](7-eval-ledger.md)) |
+| **Eval ingestion** | `CB.Eval.Manifest`, `CB.Eval.Predicates` | run-manifest parsing and deterministic observation emission; the eval graph predicates ([the eval-ledger case study](../case-studies/eval-ledger.md)) |
 | **Audit and render** | `CB.Audit.Conflicts`, `CB.Render.Audit` | the standing conflict-scope audit; the self-contained HTML evidence tree |
 | **OKF interop** | `CB.Okf.{Emit,Ingest,Manifest,Validate,Frontmatter}` | the bridge between the belief layer and the cb-okf prose layer ([chapter 5](5-collections.md)) |
 | **The edge** | `lib/mix/tasks/*.ex` | thin argv shells over the modules: `bs`, the `cb.*` write/verify/render tasks, the `okf.*` tasks. Write tasks apply only with `--write`. |
@@ -79,7 +79,7 @@ For a point-in-time appraisal of how these docs track the code - method, finding
 
 ---
 
-Next: [chapter 7, the eval ledger](7-eval-ledger.md) - the first shipped application of the substrate.
+This closes the guide. Applications of the mechanism are documented separately: [case studies](../case-studies/README.md).
 
 > **Grounding.**
 > - In the graph: `cb:b112` (the single-file rationale) and `cb:b554`-`cb:b560` (the per-belief-file refinement), `cb:b302` (immutability; change adds to the record), `cb:b539` (the deterministic, model-free read path as the protected asset).

@@ -40,10 +40,10 @@ The namespace-to-path lookup is a small registry, `belief-collections/collection
 | `lib` | the lending library, the gentle on-ramp collection (`cb:b459`) | belief-collections |
 | `agent-behavior` | the why: the catalogue of agent failure modes CB answers | belief-collections |
 | `paradigm` | the broader argument for the paradigm shift | belief-collections |
-| `method` | the shared eval methodology contracts ([chapter 7](7-eval-ledger.md)) | belief-collections |
+| `method` | the shared eval methodology contracts ([the eval-ledger case study](../case-studies/eval-ledger.md)) | belief-collections |
 | `sdl`, `toy` | eval provenance: worked-example observations, agreements, verdicts | belief-collections |
 
-Two clusters are worth naming. The eval cluster (`method` + `sdl` + `toy`) is the worked example of all four structural types outside `cb:` - it is where aggregations earn their keep, and where chapter 7 lands. The knowledge cluster (`cb-okf`) is the rest of this chapter. Both borrow `cb:` by role and add their own vocabulary on top - the eval collections declare an `eval:` artifact scheme that `cb:` itself never carries.
+Two clusters are worth naming. The eval cluster (`method` + `sdl` + `toy`) is the worked example of all four structural types outside `cb:` - it is where aggregations earn their keep, and where [the eval-ledger case study](../case-studies/eval-ledger.md) lands. The knowledge cluster (`cb-okf`) is the rest of this chapter. Both borrow `cb:` by role and add their own vocabulary on top - the eval collections declare an `eval:` artifact scheme that `cb:` itself never carries.
 
 > **Pitfall.** Depending on another collection's beliefs without declaring the namespace in your manifest. This *passes* `mix cb.verify.schema`, because the single-collection check counts and defers cross-namespace deps rather than resolving them. The gap surfaces only at `mix cb.verify.collection`, where the closure is built from `depends_on`: an undeclared namespace is never loaded, the dep resolves to nothing, and the check fails. A dep that crosses a namespace boundary is a promise your manifest has to keep.
 
