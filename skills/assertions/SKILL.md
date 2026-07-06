@@ -1,4 +1,4 @@
-Traverse and query the composable beliefs DAG from `beliefs/beliefs.json`. Read-only.
+Traverse and query the composable beliefs DAG from `beliefs/cb/` (one JSON file per node). Read-only.
 
 See `docs/guide/README.md` for the canonical system reference.
 

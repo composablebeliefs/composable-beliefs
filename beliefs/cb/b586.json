@@ -66,7 +66,7 @@
         },
         {
           "beliefs": [
-            "cb:b454"
+            "cb:b588"
           ],
           "title": "Collections"
         },
@@ -135,6 +135,21 @@
       "date": "2026-07-05",
       "detail": "Git Policy section render re-pointed from the superseded cb:b585 to its successor cb:b587 (same rule, corrected badge rationale: commits are SSH-signed at creation and verify on GitHub; the hook's %G? check false-positives without an allowedSignersFile). Dep already swung via mix cb.repoint (slug 2205c5d9-git-check-hook-upstream); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged.",
       "artifact": "session:2205c5d9-git-check-hook-upstream"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps − cb:b454 via dag-proposal 2026-07-06-3c41afa3",
+      "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps + cb:b588 via dag-proposal 2026-07-06-3c41afa3",
+      "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Collections section render re-pointed from the superseded cb:b454 to its successor cb:b588 (same convention, storage naming corrected to beliefs/cb/ per-belief files after the cb:b558 split). Dep already swung via mix cb.repoint (slug 2026-07-06-3c41afa3); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged, per this contract's own Evidence 6 precedent.",
+      "artifact": "session:2026-07-06-3c41afa3"
     }
   ],
   "subjects": [],
@@ -142,7 +157,6 @@
     "cb:b444",
     "cb:b448",
     "cb:b450",
-    "cb:b454",
     "cb:b455",
     "cb:b457",
     "cb:b458",
@@ -156,7 +170,8 @@
     "cb:b533",
     "cb:b565",
     "cb:b580",
-    "cb:b587"
+    "cb:b587",
+    "cb:b588"
   ],
   "status": "active",
   "created": "2026-07-05"

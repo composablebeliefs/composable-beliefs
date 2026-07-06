@@ -8,6 +8,13 @@
     "per-belief-files"
   ],
   "claim": "Simplify the _keys mechanism in CB.Belief: drop the whole-array churn-suppression rationale (moot once writes are per-file), retaining only absent-vs-null round-trip fidelity if still needed.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Discharged 2026-07-06: the churn-suppression rationale is moot per-file - Store.write skips byte-identical node files, so no whole-array rewrite exists to stabilize. _keys is retained solely for absent-vs-null round-trip fidelity, which per-node files still need (from_map_roundtrips? holds against the split graph); the store and adjudication docs no longer cite array churn as its purpose.",
+      "artifact": "commit:45f8587337bc6bdaea0488e282189f1bbf63237c"
+    }
+  ],
   "subjects": [
     {
       "ref": "CB.Belief",

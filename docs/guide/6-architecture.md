@@ -11,13 +11,15 @@ Two properties fall out and shape everything else. First, every public function 
 ## The data-flow pipeline
 
 ```
-beliefs/beliefs.json          canonical store: a JSON array of beliefs
-        |                       File.read + Jason.decode
+beliefs/cb/<local>.json       canonical store: one JSON file per belief
+        |                       (a single beliefs.json array still reads
+        |                        as the fallback for unsplit collections)
         v
-CB.JSON.read/1                raw decode -> {:ok, list}
+CB.JSON.read/1                raw decode, one node per file
         |
         v
-CB.Belief.Store.read/0        Enum.map(data, &CB.Belief.from_map/1)
+CB.Belief.Store.read/0        Enum.map(data, &CB.Belief.from_map/1),
+        |                       sorted naturally by id
         |
         v
 [ %CB.Belief{} ]              in-memory list of structs = THE graph
@@ -28,10 +30,10 @@ CB.Belief.Store.read/0        Enum.map(data, &CB.Belief.from_map/1)
         +--> verify : Schema.Verifier / method checks   (cb.verify.*)
         +--> render : OutputTarget / Codepath / Audit   (cb.render.*, generate.*)
         +--> write  : Mutation / Adjudication -> Store.write/2
-        |               Enum.map(_, &CB.Belief.to_map/1)
+        |               CB.Belief.to_map/1 per node
         |               Jason.encode!(pretty: true)
-        v             CB.JSON.write_atomic_raw/2  (tmp + rename)
-beliefs/beliefs.json
+        v             CB.JSON.write_atomic_raw/2  (tmp + rename per file;
+beliefs/cb/<local>.json        changed nodes written, removed deleted)
 ```
 
 One read path in at the top, four uses of the loaded list in the middle, one write path back to disk at the bottom. Every stage is pure and returns a tagged tuple; these are the actual call sites, not a metaphor.

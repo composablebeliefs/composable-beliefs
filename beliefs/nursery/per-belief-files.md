@@ -77,6 +77,17 @@ the `agent-behavior:a411` precedent (not a `document:` pointer - that mechanism 
 `nursery-architecture.md` was aspirational and unimplemented). `cb:a112` is left active; its
 supersession is folded into `cb:a560` and lands only when the code does.
 
+## Landed (2026-07-06)
+The full chain (`cb:b555`-`cb:b560`, the b-serial successors of the ids above) is implemented and
+discharged - evidence on each directive cites the landing commits. The graph lives at
+`beliefs/cb/<local>.json`; `mix cb.migrate.split` performed and verified the 248-node split and
+removed `beliefs.json`. The write-atomicity constraint resolved as per-file tmp+rename with
+new-before-changed ordering; ordering became canonical-by-id (natural sort, so `b1000` follows
+`b999`). `cb:b112` is superseded by `cb:b554` via the new `mix cb.supersede` door (the flip had no
+front door; adjudication only mints new successors). The codepath tour was re-authored
+(`codepath:b006`/`b007`). Still open outside this repo: the belief-collections registry entry for
+`cb:` and the glossary regeneration (generator now handles per-belief collections).
+
 ## Related
 - [seed-absorption](seed-absorption.md) - the alternative link mechanism (fold into a `seed` prop).
 - [nursery-architecture](nursery-architecture.md) - the one-document-per-matter model this follows.

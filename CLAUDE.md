@@ -44,7 +44,7 @@ Skills coordinate authoring, query, and presentation: `/assert` adds beliefs fro
 
 ## Collections
 
-The framework ships only its own `cb:` graph (`beliefs/beliefs.json`). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` and verify one against its declared deps with `mix cb.verify.collection <namespace>`.
+The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared deps with `mix cb.verify.collection <namespace>`.
 
 ## Formatting
 

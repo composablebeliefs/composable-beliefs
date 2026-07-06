@@ -3,7 +3,7 @@
 **Date:** 2026-03-14
 **Prerequisite:** `mix bs help` for full command reference
 
-> **Schema-refresh note (2026-06):** Written against the pre-split monorepo graph. The framework graph now lives at `beliefs/beliefs.json` (point the shell elsewhere with `--beliefs PATH` or `CB_BELIEFS`); the example counts and IDs below are illustrative and predate the repo split. The `confidence` field has been removed (replaced by structural support — artifact/evidence/dep counts), so the Tier 2 Preview's `suggested confidence` output is conceptual only.
+> **Schema-refresh note (2026-06):** Written against the pre-split monorepo graph. The framework graph now lives at `beliefs/cb/`, one file per node (point the shell elsewhere with `--beliefs PATH` or `CB_BELIEFS`); the example counts and IDs below are illustrative and predate the repo split. The `confidence` field has been removed (replaced by structural support — artifact/evidence/dep counts), so the Tier 2 Preview's `suggested confidence` output is conceptual only.
 
 Examples use a live DAG (originally `examples/assertions.json`) of assertions derived from the Unix/belief-shell analysis.
 

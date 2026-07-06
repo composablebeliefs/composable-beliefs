@@ -18,6 +18,7 @@
   ],
   "subjects": [],
   "deps": [],
-  "status": "active",
+  "status": "superseded",
+  "superseded_by": "cb:b588",
   "created": "2026-06-07"
 }

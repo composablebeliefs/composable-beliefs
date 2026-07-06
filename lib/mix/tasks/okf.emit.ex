@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Okf.Emit do
 
       mix okf.emit <out-dir>
 
-  Reads `beliefs/beliefs.json` and writes one `tier: cb` OKF document per belief
+  Reads the belief graph (`beliefs/cb/` by default) and writes one `tier: cb` OKF document per belief
   (plus an index and manifest) at <out-dir>. The result is a valid Knowledge bundle -
   verify with `mix okf.validate <out-dir>`.
   """

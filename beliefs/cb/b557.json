@@ -8,6 +8,13 @@
     "per-belief-files"
   ],
   "claim": "Make CB.Belief.Store.write persist the belief list as one file per node (write changed, delete removed) instead of rewriting a single array, and choose the multi-node write atomicity strategy: per-file tmp+rename, temp-dir swap, or accept non-transactional multi-file writes at local/single-writer scale (the constraint recorded in cb:b554).",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Discharged 2026-07-06: Store.write diffs the belief list against the on-disk directory - new nodes written before changed ones (a crash mid-supersession leaves a duplicate-claim conflict preflight detects, never a dangling superseded_by), byte-identical files skipped so untouched nodes never churn, removed nodes deleted, duplicate ids refused before any write. Atomicity strategy chosen per the cb:b554 constraint: per-file tmp+rename (CB.JSON.write_atomic_raw), non-transactional across nodes, accepted at local single-writer scale.",
+      "artifact": "commit:45f8587337bc6bdaea0488e282189f1bbf63237c"
+    }
+  ],
   "subjects": [
     {
       "ref": "CB.Belief.Store",

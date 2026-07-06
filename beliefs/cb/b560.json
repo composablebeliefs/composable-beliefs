@@ -8,6 +8,13 @@
     "per-belief-files"
   ],
   "claim": "Update CB self-description for per-belief storage: regenerate CLAUDE.md, revise docs and schema prose that call the graph one JSON file, and supersede cb:b112 with cb:b554 now that per-belief storage is the implemented reality.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Discharged 2026-07-06: cb:b112 superseded by cb:b554 via the new mix cb.supersede door (the deferred flip, landing only now that per-belief storage is the implemented reality); cb:b454 superseded by cb:b588 through preflight (clean) and adjudication, cb:b586's Collections render re-pointed, CLAUDE.md regenerated; the codepath tour re-authored (codepath:b006/b007); docs (guide chapters 1/3/4/6, cookbook, cb-on-the-beam, worked example), skills (assert, assertions), and okf/emit prose revised off the one-JSON-file description. Remaining outside this repo: the belief-collections registry entry for cb: and the glossary regeneration (its generator is now layout-aware; the staging sibling was absent in this environment).",
+      "artifact": "session:2026-07-06-3c41afa3"
+    }
+  ],
   "subjects": [
     {
       "ref": "CB.Config",

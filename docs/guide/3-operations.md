@@ -24,7 +24,7 @@ Two addressing conventions: `mix bs <id>` with no verb means `show`, and an id m
 
 The power is concentrated in `list`, whose filters compose - each word becomes a predicate and they are ANDed. The vocabulary: a structural type (`attestation`/`aggregation`/`inference`/`prescription` - the legacy names still resolve this epoch), a status (`active`/`superseded`/`retracted`/`all`; the default is `active`, because a graph accretes dead nodes forever by design and the live working set should not be buried under its own history), `contracts` (contract-grade only), `unlinked` (prescriptions with no materialized items), `stale`, and `tag:`/`kind:`/`domain:`/`subject_type:` selectors. Intent reads straight off the line: `mix bs list prescription domain:dev tag:write-flow` is exactly "active dev-domain prescriptions tagged write-flow".
 
-Every subcommand reads one graph - by default `beliefs/beliefs.json`. Point it elsewhere with `--beliefs PATH` (one command) or the `CB_BELIEFS` environment variable (a whole session); the flag wins over the variable, the variable over the default. `bs` reads a single file: to check a collection *together with everything it borrows*, use `mix cb.verify.collection` over the dependency closure ([chapter 5](5-collections.md)).
+Every subcommand reads one graph - by default the per-belief directory `beliefs/cb/` (one JSON file per node). Point it elsewhere with `--beliefs PATH` (one command) or the `CB_BELIEFS` environment variable (a whole session); the flag wins over the variable, the variable over the default, and a path may name either a per-belief directory or a single `beliefs.json` array. `bs` reads one collection: to check a collection *together with everything it borrows*, use `mix cb.verify.collection` over the dependency closure ([chapter 5](5-collections.md)).
 
 **A worked session** - the four moves you make constantly, live against this repo:
 
@@ -65,12 +65,12 @@ proposal.json  (a candidate belief, never typed into beliefs.json)
 +----------------------------------------------------------+
 |  adjudicate: re-read the DAG, race-guard (is the loser    |
 |  still active?), apply one of three structural outcomes,  |
-|  ONE atomic Store.write                                   |
+|  one Store.write (atomic per node file)                   |
 +----------------------------------------------------------+
     |
     |  mix cb.import <spec.json> --write
     v
-beliefs/beliefs.json   (supersession history + conflict audit intact)
+beliefs/cb/<local>.json   (supersession history + conflict audit intact)
 ```
 
 **Preflight classifies; it never decides.** It tests three match axes - a shared subject ref, a shared tag, and claim overlap (within the same domain, at least a quarter of the shorter claim's meaningful words appear in the other) - and sorts every match into four buckets: a contract-level conflict that blocks the write, a schema conflict, a supportive match (a dependency candidate), or a neutral match. The task exits non-zero on a blocking conflict, so a script cannot sail past one.

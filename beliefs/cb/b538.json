@@ -21,6 +21,11 @@
       "date": "2026-06-23",
       "detail": "Second specimen, 2026-06-23: a session staged beliefs.json carrying its cb:b550/cb:b551 stale-reference fix (the b043->b066 cascade) after running mix bs stale --cascade (clean) and mix cb.verify.schema (green). Before it ran git commit, a concurrent session's commit (8c161cf, minting cb:b549) had already staged the same beliefs.json and swept the b550/b551 writes into its own commit and push - so the agent's own 'git commit' found nothing to commit and a clean tree. The agent verified b550/b551 were present in HEAD and on origin (they were), so nothing was lost this time. Unlike the 585f9ec specimen the swept HEAD was gates-green, but only by timing luck, not because the committing session checked: the sweep mechanism is identical and the torn-HEAD risk b538 names is unmitigated.",
       "artifact": "session:2026-06-23-okf-thread-end-sweep"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Mitigation landed 2026-07-06: the per-belief split (cb:b554/b558) dissolves the sweep mechanism for non-overlapping writes - concurrent sessions minting different nodes stage disjoint beliefs/cb/<local>.json files, so a mid-session commit no longer scoops a foreign in-flight write out of a shared array file. The torn-HEAD hazard narrows to genuinely overlapping writes to the same node and to shared rendered surfaces (CLAUDE.md); the gates-before-commit discipline this item asks to encode remains undecided.",
+      "artifact": "commit:4d059178579eb3e771d7f7422794e5037ec7a1a0"
     }
   ],
   "subjects": [],

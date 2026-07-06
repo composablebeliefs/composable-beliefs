@@ -4,7 +4,7 @@ defmodule CB.SchemaContractsTest do
 
   Unlike `CB.Belief.ContractTest` (which exercises the interpreters against
   inline fixtures), this suite loads the *reshaped* schema contracts straight
-  from the `cb:` belief graph (`beliefs/beliefs.json`), drives them through
+  from the `cb:` belief graph (`beliefs/cb/`), drives them through
   the contract interpreters, and asserts that `CB.Belief` and the live graph
   conform. This is the `verify_against_contract` pattern: the contract in the
   graph is the source of truth, and the code is checked against it.

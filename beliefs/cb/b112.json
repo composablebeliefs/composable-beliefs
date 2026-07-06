@@ -10,10 +10,16 @@
       "date": "2026-03-23",
       "detail": "Considered and rejected: per-entity belief files. The centralized graph was preserved because cross-entity composition is the primary value, subject-based queries already provide per-entity views, and the store and query tools assume a single file.",
       "artifact": "document:design-notes"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "superseded by cb:b554 via dag-proposal 2026-07-06-3c41afa3",
+      "artifact": "session:2026-07-06-3c41afa3"
     }
   ],
   "subjects": [],
   "deps": [],
-  "status": "active",
+  "status": "superseded",
+  "superseded_by": "cb:b554",
   "created": "2026-03-23"
 }

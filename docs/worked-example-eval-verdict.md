@@ -12,7 +12,7 @@ mix deps.get && mix compile          # one-time build
 mix bs <cmd> --beliefs ../belief-collections/eval-provenance/beliefs.json
 ```
 
-You can set `CB_BELIEFS=../belief-collections/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final steps query CB's own graph (`beliefs/beliefs.json`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This worked example uses the explicit flag throughout.
+You can set `CB_BELIEFS=../belief-collections/eval-provenance/beliefs.json` once instead of repeating the flag. One caveat: the final steps query CB's own graph (`beliefs/cb/`, the default), so either keep the explicit `--beliefs` on the `sdl` steps and drop it for the `cb:` steps, or unset `CB_BELIEFS` before the `cb:` steps. This worked example uses the explicit flag throughout.
 
 ## Verify the collection
 
@@ -294,7 +294,7 @@ Three generations of one verdict, each supersession a different lesson: `a4 -> a
 
 ## The self-describing payoff
 
-Everything above used `bs` against a foreign collection. The same shape describes CB's own schema. Drop the `--beliefs` flag to query the framework graph (`beliefs/beliefs.json`):
+Everything above used `bs` against a foreign collection. The same shape describes CB's own schema. Drop the `--beliefs` flag to query the framework graph (`beliefs/cb/`, one file per node):
 
 ```sh
 mix bs tree cb:c056
