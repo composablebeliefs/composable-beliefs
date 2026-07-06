@@ -32,11 +32,14 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
       mix cb.verify.collection agent-behavior   # unions cb: + paradigm: + itself
       mix cb.verify.collection lib              # self-contained: loads only lib:
 
-  The registry (default `../belief-collections/collections.json`, relative
-  to the framework root) maps each namespace to its `beliefs.json`. Dependency
-  resolution is transitive and cycle-safe - `agent-behavior:` and `paradigm:`
-  depend on each other. A collection with no `manifest.json` is treated as a
-  leaf (no dependencies).
+  The registry maps each namespace to its collection (a `beliefs.json`
+  file or a per-belief directory). The framework hardcodes no external
+  collection - the link arrives from outside: pass `--registry PATH`, or
+  set the `CB_COLLECTIONS` environment variable (a host application can
+  also set `config :cb, collections_registry:`). Dependency resolution
+  is transitive and cycle-safe - `agent-behavior:` and `paradigm:`
+  depend on each other. A collection with no `manifest.json` is treated
+  as a leaf (no dependencies).
 
   ## Exit codes
 
@@ -60,7 +63,13 @@ defmodule Mix.Tasks.Cb.Verify.Collection do
     quiet = opts[:quiet] || false
     target = target_namespace(positional)
 
-    registry_path = opts[:registry] || Collection.default_registry_path()
+    registry_path =
+      opts[:registry] || Collection.configured_registry() ||
+        halt_err(
+          "no collection registry linked: pass --registry PATH (a collections.json) " <>
+            "or set CB_COLLECTIONS - the framework hardcodes no external collection"
+        )
+
     reg = unwrap(Collection.registry(registry_path))
 
     # Target plus its transitive, cycle-safe depends_on closure (target first).

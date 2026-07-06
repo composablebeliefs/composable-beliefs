@@ -9,16 +9,20 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
       cross-linked as a same-file `#anchor` (the only jump Zed's markdown preview
       follows) and a "Referenced beliefs" appendix carrying each cited belief's
       claim, deps, and its source line in the graph.
-    * `../cb-tut/assets/glossary-data.js` - the tutorial's `window.GLOSSARY`.
+    * `<staging-root>/cb-tut/assets/glossary-data.js` - the tutorial's
+      `window.GLOSSARY`, where the staging root is the parent of the
+      linked registry's directory.
 
   Both outputs are generated; do not hand-edit them. Edit `glossary.data.json`
-  and rerun. Referenced beliefs are resolved across collections via
-  `../belief-collections/collections.json`.
+  and rerun. Referenced beliefs are resolved across collections via a
+  registry the caller links in - the framework hardcodes no external
+  collection: pass `--registry PATH` (a `collections.json`) or set the
+  `CB_COLLECTIONS` environment variable.
 
   ## Usage
 
-      mix cb.generate.glossary          - write both outputs
-      mix cb.generate.glossary --check  - rebuild in memory, diff, write nothing
+      mix cb.generate.glossary --registry PATH          - write both outputs
+      mix cb.generate.glossary --registry PATH --check  - rebuild in memory, diff, write nothing
 
   ## Exit codes
 
@@ -32,13 +36,27 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
 
   @impl true
   def run(args) do
-    check? = "--check" in args
+    {opts, _positional, _} =
+      OptionParser.parse(args, strict: [check: :boolean, registry: :string])
+
+    check? = opts[:check] || false
     docs = Path.join(CB.repo_root(), "docs")
-    amieval = Path.expand("..", CB.repo_root())
+
+    registry =
+      opts[:registry] || CB.Collection.configured_registry() ||
+        halt(
+          "no collection registry linked: pass --registry PATH (a collections.json) " <>
+            "or set CB_COLLECTIONS - the framework hardcodes no external collection"
+        )
+
+    registry = Path.expand(registry)
+    # cb-tut sits beside the collections repo in the staging layout, so
+    # the staging root is the parent of the registry's directory.
+    amieval = registry |> Path.dirname() |> then(&Path.expand("..", &1))
 
     raw_json = File.read!(Path.join(docs, "glossary.data.json"))
     glossary = Jason.decode!(raw_json)
-    index = load_belief_index(amieval, docs)
+    index = load_belief_index(registry, docs)
 
     md = build_md(glossary, index)
     js = build_js(raw_json)
@@ -83,9 +101,9 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
   # A collection location is a single beliefs.json array or a per-belief
   # directory of <local>.json node files (cb:b554); the source ref points
   # at the array line or the node file's id line respectively.
-  defp load_belief_index(amieval, docs) do
-    coldir = Path.join(amieval, "belief-collections")
-    reg = Jason.decode!(File.read!(Path.join(coldir, "collections.json")))["collections"]
+  defp load_belief_index(registry, docs) do
+    coldir = Path.dirname(registry)
+    reg = Jason.decode!(File.read!(registry))["collections"]
 
     Enum.reduce(reg, %{}, fn {_ns, rel}, acc ->
       path = Path.expand(rel, coldir)
@@ -322,5 +340,11 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
     |> String.replace("&harr;", "<->")
     |> String.replace("&quot;", "\"")
     |> String.replace("&#39;", "'")
+  end
+
+  @spec halt(String.t()) :: no_return()
+  defp halt(message) do
+    Mix.shell().error("Error: " <> message)
+    exit({:shutdown, 1})
   end
 end

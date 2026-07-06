@@ -21,19 +21,20 @@ defmodule CB.Collection do
   Every function returns `{:ok, _}` / `{:error, reason}` — nothing halts, so the
   API is usable from a long-lived process (a LiveView) as well as a mix task.
 
+  The framework carries no reference to any external collection: the
+  registry path always arrives from outside (a task's `--registry` flag,
+  the `CB_COLLECTIONS` environment variable, or the host application's
+  `config :cb, collections_registry:` - see `configured_registry/0`).
+
   ## Example
 
-      {:ok, reg} = CB.Collection.registry()
+      {:ok, reg} = CB.Collection.registry("path/to/collections.json")
       {:ok, %{union: beliefs}} = CB.Collection.load_union("agent-behavior", reg)
       # `beliefs` is agent-behavior: plus its cb:/paradigm: dependency closure
   """
 
   alias CB.{Belief, JSON}
   alias CB.Belief.Store
-
-  # Registry location relative to the framework root. A staging-monorepo
-  # convenience; the durable declarations live in each collection's manifest.
-  @default_registry "../belief-collections/collections.json"
 
   defmodule Registry do
     @moduledoc """
@@ -58,18 +59,28 @@ defmodule CB.Collection do
           union: [Belief.t()]
         }
 
-  @doc "Absolute path of the default registry (framework-root-relative)."
-  @spec default_registry_path() :: String.t()
-  def default_registry_path, do: Path.expand(Path.join(CB.repo_root(), @default_registry))
+  @doc """
+  The registry link supplied by the environment, or `nil`.
+
+  The framework hardcodes no external collection: a collection repo (or
+  the operator) links INTO cb by supplying its registry - per invocation
+  via each task's `--registry` flag, per session via the
+  `CB_COLLECTIONS` environment variable, or per host application via
+  `config :cb, collections_registry: path`.
+  """
+  @spec configured_registry() :: String.t() | nil
+  def configured_registry do
+    Application.get_env(:cb, :collections_registry) || System.get_env("CB_COLLECTIONS")
+  end
 
   @doc """
-  Load and validate a registry file. Defaults to `default_registry_path/0`.
+  Load and validate a registry file.
 
   Returns `{:ok, %Registry{}}` or `{:error, reason}` where reason is
   `{:registry_unreadable, path, inner}` or `{:bad_registry, message}`.
   """
   @spec registry(String.t()) :: {:ok, Registry.t()} | {:error, term()}
-  def registry(path \\ default_registry_path()) do
+  def registry(path) do
     expanded = Path.expand(path)
 
     case JSON.read(expanded) do
@@ -163,8 +174,6 @@ defmodule CB.Collection do
   loaded) or a registry path (loaded for you).
   """
   @spec load_union(String.t(), Registry.t() | String.t()) :: {:ok, union()} | {:error, term()}
-  def load_union(target, registry_or_path \\ default_registry_path())
-
   def load_union(target, %Registry{} = reg) do
     with {:ok, namespaces} <- closure(target, reg),
          {:ok, loaded} <- load_all(namespaces, reg) do

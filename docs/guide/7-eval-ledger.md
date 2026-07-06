@@ -17,7 +17,7 @@ The four types as eval roles is the same is/ought machinery from chapter 1, appl
 
 ## Methodology as contracts that enforce themselves
 
-House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanically check. Here it is six contract-grade beliefs in the shared `method:` collection (in the sibling belief-collections repo), each routing to a named predicate that runs over any eval collection during `mix cb.verify.collection`:
+House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanically check. Here it is six contract-grade beliefs in the shared `method:` collection (an external collection that links into cb), each routing to a named predicate that runs over any eval collection during `mix cb.verify.collection`:
 
 | Contract | What it enforces |
 | --- | --- |
@@ -52,7 +52,7 @@ The result: a reader of a published finding can answer "what evidence does this 
 
 ## Walk it yourself
 
-The worked example lives in the sibling belief-collections repo as the `sdl:` collection (the silent-data-loss finding) with the small `toy:` collection for self-contained demonstrations, and [the worked-example doc](../worked-example-eval-verdict.md) traces a verdict end to end with real command output: from the published finding down to the raw logs, the methodology checks that judge it, and the supersession machinery run for real - including a check *built to fail on purpose*, so you can see what a violation looks like. The short version:
+The worked example lives in an external collection repo as the `sdl:` collection (the silent-data-loss finding) with the small `toy:` collection for self-contained demonstrations, and [the worked-example doc](../worked-example-eval-verdict.md) traces a verdict end to end with real command output: from the published finding down to the raw logs, the methodology checks that judge it, and the supersession machinery run for real - including a check *built to fail on purpose*, so you can see what a violation looks like. The short version:
 
 ```sh
 mix cb.verify.collection toy                                   # schema checks + all six method checks
@@ -66,6 +66,6 @@ The schema payoff is worth naming: the entire eval ledger - observations, agreem
 Next: [chapter 8, beyond the ledger](8-beyond-the-ledger.md) - the capstone: the ledger as one face of three.
 
 > **Grounding.**
-> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:b539` (ledger, not lab bench - the scope boundary).
+> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) and the `sdl:`/`toy:` worked collections, all external collections that link into cb; `cb:b539` (ledger, not lab bench - the scope boundary).
 > - In the code: `lib/cb/eval/manifest.ex` (parsing and deterministic emission), `lib/cb/eval/predicates.ex` and `lib/cb/method/checks.ex` (the methodology pass), `lib/cb/render/audit.ex` (the audit tree), the `mix cb.import.eval` and `mix cb.render.audit` tasks.
 > - In the docs: [the run-manifest spec](../run-manifest.md), [the worked example](../worked-example-eval-verdict.md).

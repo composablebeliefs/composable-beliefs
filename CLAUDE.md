@@ -6,7 +6,7 @@ A framework for giving AI agents persistent, source-grounded, inspectable reason
 
 ## Quick Start
 
-Read this file for orientation; the guided tour lives with the teaching material in belief-collections (`../belief-collections/quickstart.md`), alongside the `lib:` on-ramp. Build with `mix deps.get && mix compile`.
+Read this file for orientation; guided tours and teaching material ship as external collections that link into cb (query one with `mix bs --beliefs <path>`). Build with `mix deps.get && mix compile`.
 
 Query the graph with the belief shell, deterministic pure traversal with no LLM: `mix bs list [filters]`, `mix bs show <id>`, `mix bs tree <id>`, `mix bs stale`, `mix bs stats`. Run `mix bs help` for the full command set; ids may be bare (`b029`) or namespaced (`cb:b029`).
 
@@ -44,7 +44,7 @@ Skills coordinate authoring, query, and presentation: `/assert` adds beliefs fro
 
 ## Collections
 
-The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared deps with `mix cb.verify.collection <namespace>`.
+The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). All other collections are external artifacts that link INTO cb: each declares its namespace and cross-namespace `depends_on` in a `manifest.json`, and the framework carries no reference to any of them - no default registry, no staged sibling path. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared dependency collections with `mix cb.verify.collection <namespace> --registry <collections.json>` (the `CB_COLLECTIONS` environment variable supplies the same link for a session).
 
 ## Formatting
 

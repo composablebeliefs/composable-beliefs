@@ -28,9 +28,9 @@ mix cb.verify.collection <ns>
   3. verify + method checks run over that union
 ```
 
-The namespace-to-path lookup is a small registry, `belief-collections/collections.json`, mapping each namespace to its graph file. The framework's own graph is verified by the exact code path it offers every borrower - composition is not a special mode, just the ordinary case with more than one file loaded.
+The namespace-to-path lookup is a small registry - a `collections.json` mapping each namespace to its collection (a `beliefs.json` file or a per-belief directory). The framework hardcodes no registry: a collection repo links INTO cb by supplying one, per invocation (`--registry PATH`), per session (`CB_COLLECTIONS`), or per host application (`config :cb, collections_registry:`). The framework's own graph is verified by the exact code path it offers every borrower - composition is not a special mode, just the ordinary case with more than one file loaded.
 
-**The live collection map.** The framework repo ships three collections of its own; the rest live in the sibling `belief-collections` repo:
+**The live collection map.** The framework repo ships three collections of its own; the rest live in external collection repos that link into cb (the reference staging layout keeps them in a `belief-collections` repo):
 
 | Namespace | What it holds | Lives in |
 | --- | --- | --- |
@@ -94,4 +94,4 @@ Next: [chapter 6, inside the code](6-architecture.md) - the Elixir implementatio
 
 > **Grounding.**
 > - In the graph: `cb:b463` (namespacing and the one-way dependency rule), `cb:b464` (`cb:` holds only the what and how), `cb:b459` (the lending-library on-ramp), `cb:b112` (the single-file rationale) and `cb:b554`-`cb:b560` (per-belief files: the refinement and its plan), `cb:b546` (fold the knowledge standard in as the extension at `okf/`), `cb:b539` (not a memory system), `cb:b462` (composition over retrieval), `cb:b460` (the shared prosthetic), `cb:b544` (the DAG-versus-prose eval).
-> - In the code and repo: `lib/cb/collection.ex` (closure and union), `lib/cb/schema/verifier.ex` (discovery by role; deferred cross-namespace deps), `lib/cb/config.ex` (`--beliefs`/`CB_BELIEFS` precedence), `lib/cb/okf/` and the `mix okf.*` tasks, `okf/` (the standard, its conformance corpus, and the `cb-okf:` manifest), `belief-collections/collections.json` (the registry).
+> - In the code and repo: `lib/cb/collection.ex` (closure and union), `lib/cb/schema/verifier.ex` (discovery by role; deferred cross-namespace deps), `lib/cb/config.ex` (`--beliefs`/`CB_BELIEFS` precedence), `lib/cb/okf/` and the `mix okf.*` tasks, `okf/` (the standard, its conformance corpus, and the `cb-okf:` manifest), the `collections.json` registry an external collection repo supplies (`--registry` / `CB_COLLECTIONS`).

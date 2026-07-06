@@ -1,0 +1,27 @@
+{
+  "id": "cb:b597",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "collections"
+  ],
+  "claim": "The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). All other collections are external artifacts that link INTO cb: each declares its namespace and cross-namespace `depends_on` in a `manifest.json`, and the framework carries no reference to any of them - no default registry, no staged sibling path. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared dependency collections with `mix cb.verify.collection <namespace> --registry <collections.json>` (the `CB_COLLECTIONS` environment variable supplies the same link for a session).",
+  "artifact": "session:2026-07-06-3c41afa3",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Operator decision at PR #28 approval: the belief-collections staging repo must not be a concern of the cb repo - external collections link into cb, cb has no awareness of them, and no external collection is hardcoded. The code side landed in the same change: CB.Collection lost its ../belief-collections default registry, and cb.verify.collection, cb.render.audit, and cb.generate.glossary take the link via --registry or CB_COLLECTIONS. This node re-issues the collections convention with the coupling removed from the read surface.",
+      "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Accepted via human adjudication against cb:b595. Reasoning: Operator decision: cb must carry no reference to any external collection, but cb:b595 names belief-collections and its ../belief-collections/ staging path on the CLAUDE.md read surface, and the lib: on-ramp pointer with it. Same convention, same section - the external naming is removed and the explicit-link mechanism (--registry / CB_COLLECTIONS) is stated instead. Preflight surfaced two non-contract claim-overlap hits, cb:b398 (artifact field) and cb:b399 (kind field): shared schema vocabulary (external, declares, namespace) with no semantic contradiction - reviewed and dismissed per the cb:b055 conflict-scope doctrine.",
+      "artifact": "adjudication:human:2026-07-06-3c41afa3"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-06"
+}

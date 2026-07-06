@@ -124,18 +124,20 @@ defmodule CB.Method.ChecksTest do
   describe "against the real method: contracts (integration)" do
     # The sdl worked example is the canonical failing fixture: it
     # deliberately violates m-runs and m-judge-validation (see its
-    # README). Skipped when the sibling belief-collections checkout is
-    # absent so the suite stays self-contained elsewhere.
-    @registry CB.Collection.default_registry_path()
+    # README). The framework hardcodes no external collection, so the
+    # registry link comes from CB_COLLECTIONS; skipped when it is unset
+    # or absent so the suite stays self-contained elsewhere.
 
     @tag :collections
     test "sdl fails exactly m-runs and m-judge-validation; toy passes all six" do
-      if File.exists?(@registry) do
-        {:ok, %{union: sdl}} = CB.Collection.load_union("sdl")
+      registry = System.get_env("CB_COLLECTIONS")
+
+      if registry && File.exists?(registry) do
+        {:ok, %{union: sdl}} = CB.Collection.load_union("sdl", registry)
         failed = for row <- Checks.run(sdl), row.result == "fail", do: row.name
         assert Enum.sort(failed) == ["m-judge-validation", "m-runs"]
 
-        {:ok, %{union: toy}} = CB.Collection.load_union("toy")
+        {:ok, %{union: toy}} = CB.Collection.load_union("toy", registry)
         rows = Checks.run(toy)
         assert length(rows) == 6
         assert Checks.passed?(rows)

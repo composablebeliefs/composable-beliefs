@@ -88,7 +88,12 @@ defmodule Mix.Tasks.Cb.Render.Audit do
   defp load(opts) do
     cond do
       ns = opts[:collection] ->
-        registry = opts[:registry] || Collection.default_registry_path()
+        registry =
+          opts[:registry] || Collection.configured_registry() ||
+            halt(
+              "no collection registry linked: pass --registry PATH (a collections.json) " <>
+                "or set CB_COLLECTIONS - the framework hardcodes no external collection"
+            )
 
         case Collection.load_union(ns, registry) do
           {:ok, %{union: union}} -> {union, ns}

@@ -490,7 +490,7 @@ defmodule Mix.Tasks.Bs do
 
     COLLECTION
       --beliefs PATH       Query an alternate graph (CB_BELIEFS env var too),
-                           e.g. ../belief-collections/library/beliefs.json
+                           a beliefs.json file or a per-belief directory
     """)
   end
 

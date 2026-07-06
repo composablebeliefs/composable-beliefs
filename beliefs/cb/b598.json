@@ -1,0 +1,27 @@
+{
+  "id": "cb:b598",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "orientation"
+  ],
+  "claim": "Read this file for orientation; guided tours and teaching material ship as external collections that link into cb (query one with `mix bs --beliefs <path>`). Build with `mix deps.get && mix compile`.",
+  "artifact": "session:2026-07-06-3c41afa3",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Operator decision at PR #28 approval: cb carries no reference to any external collection. The Quick Start pointer named the belief-collections checkout and its ../belief-collections/quickstart.md path; re-issued with the pointer generalized to the link mechanism. Build instruction carried verbatim.",
+      "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Accepted via human adjudication against cb:b459. Reasoning: Operator decision: cb must carry no reference to any external collection, but the Quick Start convention names the belief-collections sibling and a staged path to its quickstart.md on the CLAUDE.md read surface. Same orientation role - the sibling naming is generalized to external collections that link into cb.",
+      "artifact": "adjudication:human:2026-07-06-3c41afa3"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-06"
+}

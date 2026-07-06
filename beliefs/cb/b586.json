@@ -19,7 +19,7 @@
       "render_sections": [
         {
           "beliefs": [
-            "cb:b459",
+            "cb:b598",
             "cb:b444"
           ],
           "title": "Quick Start"
@@ -66,7 +66,7 @@
         },
         {
           "beliefs": [
-            "cb:b595"
+            "cb:b597"
           ],
           "title": "Collections"
         },
@@ -165,6 +165,31 @@
       "date": "2026-07-06",
       "detail": "Operations section render re-pointed from the superseded cb:b533 to its successor cb:b596 (same convention; the door list grows to name mix cb.supersede, per the PR #28 review finding that the doctrine and tooling disagreed). Dep already swung via mix cb.repoint (slug 2026-07-06-3c41afa3-pr28-review); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged.",
       "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps − cb:b595 via dag-proposal 2026-07-06-3c41afa3-decouple",
+      "artifact": "session:2026-07-06-3c41afa3-decouple"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps + cb:b597 via dag-proposal 2026-07-06-3c41afa3-decouple",
+      "artifact": "session:2026-07-06-3c41afa3-decouple"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps − cb:b459 via dag-proposal 2026-07-06-3c41afa3-decouple",
+      "artifact": "session:2026-07-06-3c41afa3-decouple"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "deps + cb:b598 via dag-proposal 2026-07-06-3c41afa3-decouple",
+      "artifact": "session:2026-07-06-3c41afa3-decouple"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Quick Start and Collections renders re-pointed to the decoupled successors (cb:b459 -> cb:b598, cb:b595 -> cb:b597): per the operator decision at PR #28 approval, cb carries no reference to any external collection, so the sections drop the belief-collections naming and staged paths in favor of the link mechanism (--registry / CB_COLLECTIONS). Deps already swung via mix cb.repoint (slug 2026-07-06-3c41afa3-decouple); this entry records the matching render_sections swaps. Pure dep maintenance - render structure unchanged.",
+      "artifact": "session:2026-07-06-3c41afa3"
     }
   ],
   "subjects": [],
@@ -175,7 +200,6 @@
     "cb:b455",
     "cb:b457",
     "cb:b458",
-    "cb:b459",
     "cb:b477",
     "cb:b478",
     "cb:b479",
@@ -185,8 +209,9 @@
     "cb:b565",
     "cb:b580",
     "cb:b587",
-    "cb:b595",
-    "cb:b596"
+    "cb:b596",
+    "cb:b597",
+    "cb:b598"
   ],
   "status": "active",
   "created": "2026-07-05"
