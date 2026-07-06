@@ -9690,6 +9690,11 @@
         "date": "2026-07-06",
         "detail": "Deliberation thread: the design session that settled the tag key (artifact id over free topic name), granularity (per-paragraph, multi-ref, set-membership), placement (frozen body, at finalization), and the freeze trigger.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9730,6 +9735,11 @@
         "date": "2026-07-06",
         "detail": "Deliberation thread: the operator chose materialization over the CLI live render for how the graph is actually read, and rejected editorial trimming ('sins of omission') in favour of whole-region lifts.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9769,6 +9779,11 @@
         "date": "2026-07-06",
         "detail": "Implemented as mix cb.verify.route_tags (lib/cb/route_tags.ex): five checks - wellformedness, ref resolution, sink logs, log fidelity (byte-level re-derivation match), ledger cross-check at warn level. Its first run reproduced audit finding F5 (transcript-format tagged but no log), fixed in the same commit.",
         "artifact": "commit:d9f730c8d170d7c18fd85006315726591fb33de8"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9806,6 +9821,11 @@
         "date": "2026-07-06",
         "detail": "Deliberation thread: the operator-in-the-loop session that designed the council mechanism and rejected the committed-files medium.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9843,6 +9863,11 @@
         "date": "2026-07-06",
         "detail": "Demonstrated by this rule's own founding round: the route-tagging audit's findings were dispositioned into route-tagging.md's Audit dispositions block and the full report relocated to PR #20 as a comment, cited, never committed.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9880,6 +9905,11 @@
         "date": "2026-07-06",
         "detail": "Deliberation thread: the close-gate design, modeled on mix cb.adjudicate's refusal semantics.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [
@@ -9917,6 +9947,11 @@
         "date": "2026-07-06",
         "detail": "Enforced on its own founding session: the 2026-07-04 council-design thread excised its dev-dev audit half to PR #20 and finalized only the design half - the rule in force before it was minted.",
         "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
       }
     ],
     "subjects": [

@@ -1,7 +1,97 @@
-# Session transcript - b47c5fd8-12f3-53b6-b385-7a2b0783821b
+---
+type: thread
+title: 2026-07-06 - route-tagging enactment - verifier built, seven candidates minted, spec graduated
+description: The A2 enactment session for the route-tagging rework (PR #20). Built mix cb.verify.route_tags - the spec's structural backstop (wellformedness, ref resolution, sink logs, byte-level log fidelity against re-derivation, ledger cross-check at warn level) - whose first run reproduced audit finding F5 (transcript-format tagged three times, no excerpt log), fixed by materializing the log from the verifier's own derivation. Minted the seven staged candidates through clean preflights: cb:b588/b589/b590 (route-tagging: tagging rule, excerpt log, verifier) and cb:b591-b594 (council-mechanism: draft-PR medium, distill-at-close, close gate, tiering rule). Made the cb:b569 graduation call - route-tagging graduated to beliefs/archive/ with citations repointed; council-mechanism held live pending the /council build. Use when resuming the /route build, the migration or bloat-bound opens, the /council build, or auditing this enactment.
+tags: [thread, cb, threads, provenance, route-tagging, council, verification]
+status: active
+timestamp: 2026-07-06
+artifact: session:2026-07-06-route-tagging-enactment
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `b47c5fd8-12f3-53b6-b385-7a2b0783821b` | 2026-07-04
+# 2026-07-06 - route-tagging enactment - verifier built, seven candidates minted, spec graduated
+
+> **Hook-captured, /end-finalized (2026-07-06).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents are. Closed under the
+> cb:b583 turn-separation rule: `/end` ran alone in its own turn, after the push that ended
+> the substantive work, so the render had advanced to include that close. The embedded body
+> is complete through the push-confirmation exchange; the only turn omitted is this `/end`
+> turn itself. One capture artifact to disclose honestly: the session hit a usage limit
+> mid-arc, so the enactment work (verifier, mint, graduation) was reported in the
+> post-limit "Continue" turn rather than narrated as it ran - the receipts are the three
+> commits and the PR body, not turn-by-turn prose. The cb:b507 retro-pair for cb:b588-b594
+> landed in this `/end` turn, pair-then-write, before this document was written.
+
+## Where things stand (the narrative)
+
+**Where things stood.** PR #20 existed as an empty scaffold - a placeholder opened on the
+old main so the fresh-context audit round had a home. The audit's dispositions had been
+folded into the spec by PR #21, and the previous agent's hand-off scoped the remaining work:
+the A2 enactment (build `cb.verify.route_tags`, mint the route-tagging and council
+candidates) plus the rebase-hazard read-surface fix.
+
+**The arc.** The session verified the hand-off against the graph before executing: item 1
+was confirmed accurate; item 2 evaporated mid-session - two merges of main (PRs #21 through
+#26) brought in other sessions' completion of the entire rebase-hazard fix (cb:b585
+superseded by cb:b587 with the corrected SSH-signing premise, cb:b586 turning CLAUDE.md into
+a rendered contract), so the scope narrowed to the enactment alone. The git-check Stop hook
+fired repeatedly across the session - each firing disregarded per cb:b587, a live
+demonstration of the rule the other sessions had just minted.
+
+With mint authorization granted and push instructed, the enactment ran in three commits.
+`mix cb.verify.route_tags` (d9f730c): five checks - tag wellformedness, ref resolution,
+sink logs, log fidelity as a byte-level match against re-derivation from the current tags,
+and a routing-ledger cross-check held at warn level because tag coverage stays editorial.
+Its first run reproduced audit finding F5 exactly - `transcript-format` tagged three times
+in the 2026-07-03 thread, no excerpt log - and the fix landed in the same commit, the
+missing log materialized by the verifier's own derivation rather than hand-copied. The mint
+(13e8f8c): all seven preflights clean, no adjudications; cb:b588 (tagging rule), cb:b589
+(excerpt log), cb:b590 (verifier) for route-tagging, cb:b591-b594 (draft-PR medium,
+distill-at-close, close gate, tiering rule) for council-mechanism; one deliberate delta,
+cb:b588 gaining cb:b582 as a dep preflight surfaced as supportive. The graduation call
+(6b326b5), made against cb:b569: route-tagging graduated to `beliefs/archive/` - manifest
+fully planted, mechanism demonstrated end to end, backstop built, residual opens separable -
+with `document:` citations swung to the archive path and okf.validate's seventeen broken-link
+errors repaired as mechanical address fixes, frozen prose untouched. council-mechanism
+stayed live: rows planted, but the `/council` build is unbuilt and its Open strands share
+reasoning with the matter.
+
+**Where things stand.** PR #20 is pushed, ready for review, its body rewritten to describe
+the enactment; every verifier is green (430 tests, schema 20/20, commits 3/3, route_tags
+4 passed with the designed coverage warning, okf.validate 0 errors, CLAUDE.md current). The
+graph carries cb:b588-b594, each retro-paired to this thread. route-tagging is an archived,
+planted matter; council-mechanism is live with its manifest planted.
+
+**What the next session inherits.** The merge of PR #20 (merge commit only, cb:b573) is the
+operator's. The parked follow-ups: the `/route` automation build (with routing-ledger; the
+ledger cross-check's warnings on nine untagged pre-spec threads are its backlog), the
+migration decision for pre-spec hand-picked excerpt sections, the bloat bound, and the
+`/council` skill build against the four minted rules.
+
+## Routing
+
+One row per topic this thread touched. Content lives in the routed-to document, never here
+([routing-ledger](../routing-ledger.md), cb:b582).
+
+| Topic | State | Routed to | Dangling |
+|---|---|---|---|
+| Branch + PR #20 scaffold | closed | narrative - seeded empty to host the relocated audit round | - |
+| Hand-off note verified against the graph | closed | narrative - item 1 accurate; branch needed the updated main | - |
+| Item 2 (rebase-hazard read-surface fix) | closed | narrative - completed by other sessions (cb:b585-b587, cb:b586); dropped from scope | - |
+| git-check hook firings | closed | narrative - disregarded per cb:b587 each firing; benign until push | - |
+| Build `cb.verify.route_tags` | closed | [route-tagging](../../archive/route-tagging.md) - cb:b590; lib/cb/route_tags.ex, 23 tests | - |
+| Audit F5 (transcript-format log gap) | closed | [transcript-format](../transcript-format.md) - log appended, derived by the verifier | - |
+| Mint the route-tagging rows | closed | [route-tagging](../../archive/route-tagging.md) - cb:b588, cb:b589, cb:b590; preflights clean | - |
+| Mint the council-mechanism rows | closed | [council-mechanism](../council-mechanism.md) - cb:b591-b594; preflights clean | - |
+| cb:b588 dep delta (cb:b582) | closed | narrative - preflight-supportive, ledger-pass load-bearing | - |
+| Graduation call (cb:b569) | closed | [route-tagging](../../archive/route-tagging.md) graduated; [council-mechanism](../council-mechanism.md) held live | - |
+| Relocation repoints (links + document: citations) | closed | narrative - okf.validate 0 errors; frozen prose untouched | - |
+| PR #20 body, ready flip, push | closed | narrative - pushed, ready for review | - |
+| Merge PR #20 | open | operator - merge commit only (cb:b573) | pending |
+| `/route` build + untagged pre-spec threads | paused | [route-tagging](../../archive/route-tagging.md) Open, [routing-ledger](../routing-ledger.md) | nine threads warn in the ledger cross-check |
+| Migration + bloat bound | paused | [route-tagging](../../archive/route-tagging.md) Open | future signals, recorded |
+| `/council` build | paused | [council-mechanism](../council-mechanism.md) Open | four minted rules await the skill |
+| Route-tag this thread's own body | paused | unrouted - the `/route` motion, unbuilt | this finalized body is not yet tagged |
 
 ## User
 
@@ -191,15 +281,18 @@ Pushed and ready.
 
 Remaining wind-down is yours: run `/end` alone in its own turn, then merge #20 via merge commit. After the merge, the retro-pair evidence for this session's thread lands via `mix cb.evidence`, and the parked follow-ups (`/route` build, migration decision, bloat bound) are queued for future sessions.
 
-Running `/end`. It's in its own turn — the close work (verifier, mint, graduation, push) all landed in prior turns, so the render has caught up. One deviation from the ideal ordering to repair: the cb:b507 retro-pair has *not* happened yet (I had deferred it), so per pair-then-write I'll do it now — slug first, evidence entries, then the doc.
+The staged render is committed and pushed (`8612be3`); tree clean, branch in sync with origin. PR #20 is ready for review — the wind-down steps (`/end` alone, then merge-commit) are yours whenever you're ready.
 
-The `/end` close is complete and pushed (`71a3c52`).
+## Related
 
-**What landed:**
-- **Retro-pair first** (cb:b507): `document:` evidence citing the thread appended to all seven minted beliefs (`cb:b588`–`cb:b594`) via `mix cb.evidence --write`, *before* the doc was written.
-- **Thread finalized**: `beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md` — frontmatter, capture-provenance blockquote (body complete through the push-confirmation exchange; only this `/end` turn omitted; the mid-arc usage-limit gap disclosed honestly per cb:b584), the operator-facing narrative, a 17-row routing ledger, the hook-rendered body, and Related links.
-- **Registered**: threads index entry, manifest regenerated, back-links added to `council-mechanism.md` and `transcript-format.md` (`route-tagging.md` is archived and frozen, so the thread links to it rather than editing it).
-- **Raw jsonl** left in `.sessions/`, uncommitted, per the transcript-format punt.
-- **All verifiers green**: okf.validate 0 errors, schema 20/20, commits 3/3, route_tags 4 passed (the new thread joins the expected untagged-thread warning — the unbuilt `/route` motion's backlog, as disclosed in its own ledger).
-
-The thread is the single persisted close artifact. The one remaining wind-down step is yours: **merge PR #20 via merge commit**. After that, the parked follow-ups (`/route` build, migration decision, bloat bound, `/council` build) are queued for future sessions, all reachable from the thread's ledger.
+- [route-tagging](../../archive/route-tagging.md) - the spec this session enacted and
+  graduated: cb:b588 (tagging rule), cb:b589 (excerpt log), cb:b590 (verifier) planted; its
+  residual opens (/route build, migration, bloat bound) hand forward from the archive.
+- [council-mechanism](../council-mechanism.md) - rows planted this session (cb:b591-b594),
+  document held live pending the /council build and its open design strands.
+- [transcript-format](../transcript-format.md) - received the F5 excerpt log this session,
+  completing the 2026-07-04 retrofit's third sink.
+- [routing-ledger](../routing-ledger.md) - the ledger cross-check now built into the
+  verifier reads its rows; the /route build remains its open work.
+- Beliefs minted: cb:b588, cb:b589, cb:b590, cb:b591, cb:b592, cb:b593, cb:b594 - each
+  retro-paired to this thread (cb:b507).
