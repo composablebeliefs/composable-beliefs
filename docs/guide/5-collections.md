@@ -11,13 +11,13 @@ A **collection** is a `beliefs.json` graph in a declared namespace, paired with 
 - Exactly one owning collection per namespace, so an id is globally unique across the ecosystem.
 - Dependencies may cross namespaces, as long as the other namespace is declared in `depends_on`.
 - **`cb:` depends only within `cb:`.** Every other collection may depend on the framework graph; it depends on none of them.
-- Bare ids resolve when unambiguous; a bare id matching two namespaces is an error, not a guess.
+- Bare ids resolve when unambiguous; a bare id matching two namespaces is an error.
 
 The one-way rule is the load-bearing one. If `cb:` could depend on `agent-behavior:`, shipping the framework would mean shipping the failure-mode catalogue that motivated it, and the framework graph could go stale whenever that catalogue did. The same reasoning gives the content split (`cb:b464`): **`cb:` holds only the framework's what and how** - schema, mechanism, positioning. The motivating *why* lives outside: the agent failure modes in `agent-behavior:`, the paradigm argument in `paradigm:`. A reader who wants the design loads `cb:` alone and finds a complete, internally consistent graph; a reader who wants the motivation loads the collections that depend on it and cite its ids, never the reverse.
 
 ## Borrowing by role, and the closure
 
-When a collection declares `depends_on: ["cb"]`, it borrows the framework's contracts - **by the role they play, never by literal id**. This is the discovery-by-role machinery from [chapter 2](2-schema.md#the-graph-describes-itself) doing the work that makes composition possible: the verifier finds an enum contract by the field it declares, the status lifecycle by its tag, the kind-type table by its columns. A borrowing collection that re-declares a vocabulary under its own ids is checked against its own declaration, and a collection that declares no contract for some field has that check **skipped, not failed** - "nothing declares this vocabulary" is a visible outcome distinct from "checked and wrong".
+When a collection declares `depends_on: ["cb"]`, it borrows the framework's contracts - **by the role they play**. This is the discovery-by-role machinery from [chapter 2](2-schema.md#the-graph-describes-itself) doing the work that makes composition possible: the verifier finds an enum contract by the field it declares, the status lifecycle by its tag, the kind-type table by its columns. A borrowing collection that re-declares a vocabulary under its own ids is checked against its own declaration, and a collection that declares no contract for some field has that check **skipped** - "nothing declares this vocabulary" stays a visible outcome distinct from "checked and wrong".
 
 Verification of a borrowing collection runs over the whole closure:
 
@@ -80,7 +80,7 @@ The projection is lossy by design, and the shape of the loss is the boundary res
 
 The most important thing CB refuses to become is a memory system (`cb:b539`). Vector memory, model calls, recall and retrieval, and eval execution all stay outside its scope; CB ingests their outputs as observations and audits them. The reason is the property the framework exists to provide: every read - shell, verifier, document compilation - is plain data traversal. Build retrieval into CB and a read becomes a model call: nondeterministic, unauditable, different on each run.
 
-Underneath the refusal is a claim about where the value comes from: **composition, not retrieval** (`cb:b462`). A RAG-style system uses a graph to *find* relevant context - surfacing answers that already exist in the corpus. This graph's value is *concluding* what follows from combining facts. Retrieval can hand you back two observations that a record was dropped on case 7 of two runs; only composition produces the corroboration and the generalization on top. Retrieval finds; composition derives - a similarity index bolted onto the graph would find the leaves and miss the structure.
+Underneath the refusal is a claim about where the value comes from: **composition over retrieval** (`cb:b462`). A RAG-style system uses a graph to *find* relevant context - surfacing answers that already exist in the corpus. This graph's value is *concluding* what follows from combining facts. Retrieval can hand you back two observations that a record was dropped on case 7 of two runs; only composition produces the corroboration and the generalization on top. Retrieval finds; composition derives - a similarity index bolted onto the graph would find the leaves and miss the structure.
 
 The same structure serves two readers at once (`cb:b460`): the DAG is a **shared prosthetic** compensating for two different limitations with one queryable object - a human expert's attention-bounded, implicit grasp of the interconnections, and an agent's context loss at every session boundary.
 

@@ -165,6 +165,11 @@
       "date": "2026-07-06",
       "detail": "Operations section render re-pointed from the superseded cb:b533 to its successor cb:b596 (same convention; the door list grows to name mix cb.supersede, per the PR #28 review finding that the doctrine and tooling disagreed). Dep already swung via mix cb.repoint (slug 2026-07-06-3c41afa3-pr28-review); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged.",
       "artifact": "session:2026-07-06-3c41afa3"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "superseded by cb:b598 via dag-proposal 2026-07-06-belief-ref-protocol",
+      "artifact": "session:2026-07-06-belief-ref-protocol"
     }
   ],
   "subjects": [],
@@ -188,6 +193,7 @@
     "cb:b595",
     "cb:b596"
   ],
-  "status": "active",
+  "status": "superseded",
+  "superseded_by": "cb:b598",
   "created": "2026-07-05"
 }

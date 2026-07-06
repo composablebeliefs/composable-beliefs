@@ -4,7 +4,7 @@ An application of the substrate: grounding model-evaluation findings in an immut
 
 Everything here is the general mechanism of the [guide](../guide/README.md) applied to one domain. The application lives mostly in the sibling belief-collections repo (the `method:`, `sdl:`, and `toy:` collections); what lives in this repo is the domain-neutral machinery the application exercises: the importer, the methodology pass, and the audit renderer.
 
-One boundary is held on purpose: **CB is the ledger, not the lab bench.** Running evals - orchestration, sampling, retries, model calls - happens in an external harness. CB ingests the harness's *output record* through one neutral format and never grows toward execution.
+One boundary is held on purpose: **CB is the ledger; the lab bench stays external.** Running evals - orchestration, sampling, retries, model calls - happens in an external harness. CB ingests the harness's *output record* through one neutral format and never grows toward execution.
 
 ## The shape of a finding
 
@@ -26,19 +26,19 @@ House methodology usually lives in prose - a METHODOLOGY.md nobody can mechanica
 | m-corroboration | every verdict reaches a cross-ruler-agreement aggregation, or visibly carries the `single-ruler` escape tag |
 | m-provenance | every observation carries an `eval:` identity URI *and* a raw-log pointer in its evidence |
 | m-subjects | every observation carries the six conventional subjects (eval, run, case, model, model_version, ruler) |
-| m-runs | every verdict cites at least 3 distinct runs - **no escape hatch**: a result that can't is not a weaker verdict, it is not a verdict; author it as an observation or guidance |
+| m-runs | every verdict cites at least 3 distinct runs - **no escape hatch**: a result that falls short is authored as an observation or guidance instead |
 | m-judge-validation | every LLM-judge observation is joined by that judge's human-agreement validation record |
 | m-correction | corrections are supersessions with dated evidence; bare retraction is reserved for full withdrawal |
 
-Because these are graph-shape checks, they are pure traversal - deterministic - so they run as a static pass beside the schema checks, not in the dynamic verifier. A failed check names the offending belief ids: the failure message is the work order. And "methodology v2" is not a doc edit; it is a batch of adjudicated supersessions of these contracts, dated and diffable via `mix bs history`.
+Because these are graph-shape checks, they are pure traversal - deterministic - so they run as a static pass beside the schema checks. A failed check names the offending belief ids: the failure message is the work order. And "methodology v2" is a batch of adjudicated supersessions of these contracts, dated and diffable via `mix bs history`.
 
 ## The run-manifest: how harness output becomes ledger input
 
 The seam between bench and ledger is one neutral JSON format, the **run-manifest** ([full spec](run-manifest.md)). A thin adapter per harness converts native logs to it; CB never learns any harness's log format. `mix cb.import.eval <manifest.json> --collection <path> [--write]` validates, generates a spec, preflights each fresh observation, and hands the result to the ordinary import path. Three properties keep the importer mechanical:
 
 - **The aggregation policy is structural.** Every (run, ruler) pair yields one aggregate observation, always; per-case observations are minted only for cases the manifest lists as *load-bearing*. The judgment of what is load-bearing stays upstream with a human; the importer stays mechanical - and warns if a manifest would flood the graph, because the graph must stay human-readable.
-- **Identity is hashed, so change is detectable.** Belief ids derive from the observation's identity tuple (eval, run, ruler[, case]), never its content. The same manifest re-imported is a detected no-op; a *changed* manifest under the same run id is a hard error - a corrected run is a new `run_id`, never a quiet rewrite.
-- **It emits observations only** - no aggregations, no verdicts. The moment an importer authors judgments, the judgment layer has been automated away; the tool's shape enforces the division of labour. One provenance rule rides along: anything derived from synthetic or mock data carries the `fixture` tag, so test scaffolding can never be mistaken for a finding.
+- **Identity is hashed, so change is detectable.** Belief ids derive from the observation's identity tuple (eval, run, ruler[, case]). The same manifest re-imported is a detected no-op; a *changed* manifest under the same run id is a hard error - a corrected run gets a new `run_id`.
+- **It emits observations only.** The moment an importer authors judgments, the judgment layer has been automated away; the tool's shape enforces the division of labour. One provenance rule rides along: anything derived from synthetic or mock data carries the `fixture` tag, so test scaffolding can never be mistaken for a finding.
 
 ## The audit tree: the published artifact
 
@@ -46,7 +46,7 @@ The seam between bench and ledger is one neutral JSON format, the **run-manifest
 mix cb.render.audit <verdict-id> --collection <ns> --out audit.html
 ```
 
-renders a belief's full evidence tree as **one self-contained HTML file**: verdict at the root, deps walked down to leaf observations, every subject, tag, artifact, and evidence entry's raw-log pointer. Superseded nodes render struck-through with a link to their successor; nodes resting on superseded deps carry a `stale` badge; a footer records the union's namespaces and content digest. Zero JavaScript (collapse/expand is native `<details>`), no external assets, no network: a reader needs a browser, not Elixir. A `--json` twin exposes the same tree as data, and `--check` lets CI gate a committed tree against the graph exactly as CLAUDE.md is gated.
+renders a belief's full evidence tree as **one self-contained HTML file**: verdict at the root, deps walked down to leaf observations, every subject, tag, artifact, and evidence entry's raw-log pointer. Superseded nodes render struck-through with a link to their successor; nodes resting on superseded deps carry a `stale` badge; a footer records the union's namespaces and content digest. Zero JavaScript (collapse/expand is native `<details>`), no external assets, no network: a reader needs only a browser. A `--json` twin exposes the same tree as data, and `--check` lets CI gate a committed tree against the graph exactly as CLAUDE.md is gated.
 
 The result: a reader of a published finding can answer "what evidence does this verdict rest on, and where are the raw logs?" by traversal, and a corrected finding *visibly wears* its correction.
 
@@ -62,6 +62,6 @@ mix cb.render.audit toy:a10 --collection toy --out audit.html  # a verdict's evi
 The entire eval ledger - observations, agreements, verdicts, guidance, methodology - required *no new schema*. The eval collections declare one extra artifact scheme (`eval:`) and a handful of kinds, and everything else is the same four types, the same lifecycle, the same verifier discovered by role.
 
 > **Grounding.**
-> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:b539` (ledger, not lab bench - the scope boundary).
+> - In the graph and collections: the `method:` contracts (m-corroboration through m-correction) in belief-collections; the `sdl:` and `toy:` worked collections; `cb:b539` (the scope boundary: CB ingests and audits records; execution stays in the harness).
 > - In the code: `lib/cb/eval/manifest.ex` (parsing and deterministic emission), `lib/cb/eval/predicates.ex` and `lib/cb/method/checks.ex` (the methodology pass), `lib/cb/render/audit.ex` (the audit tree), the `mix cb.import.eval` and `mix cb.render.audit` tasks.
 > - In the docs: [the run-manifest spec](run-manifest.md), [the worked example](worked-example-eval-verdict.md).

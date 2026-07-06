@@ -2,13 +2,13 @@
 
 Companion to [the guide](guide/README.md). The durable *principles* now live in the graph as beliefs (`mix bs list domain:design tag:operations`); this doc keeps the **workflow** - how to run an extraction session in practice.
 
-> The shared-prosthetic framing (`cb:b460`), composition-over-retrieval (`cb:b462`), scope-decisions-as-beliefs (`cb:b461`), and the centralized-graph rationale (`cb:b112`) are beliefs now, not prose here - read them with `mix bs show`.
+> The shared-prosthetic framing (`cb:b460`), composition-over-retrieval (`cb:b462`), scope-decisions-as-beliefs (`cb:b461`), and the centralized-graph rationale (`cb:b112`) are beliefs now - read them with `mix bs show`.
 
 ## Extraction workflow
 
 A productive extraction session processes source documents and produces concrete operational value:
 
-1. **Archive source documents** to `sources/` as cleaned text (strip binary attachments, trim quoted text beyond two levels, keep message metadata and IDs). Name files `YYYY-MM-DD-slug.md`. The archive is a stable snapshot, not the live document - the originating system stays the source of truth.
+1. **Archive source documents** to `sources/` as cleaned text (strip binary attachments, trim quoted text beyond two levels, keep message metadata and IDs). Name files `YYYY-MM-DD-slug.md`. The archive is a stable snapshot; the originating system stays the source of truth.
 
 2. **Read with decomposition intent.** Instead of reading linearly and coming away with "mostly handled," parse each section for irreducible claims and evaluate each for composition with existing beliefs.
 
@@ -114,7 +114,7 @@ then invoke `/end` as its own separate exchange. Run that way, the render has
 advanced to include the close, so the embedded body is complete through it and
 only the contentless `/end` turn is omitted. `/end` run inline warns that the
 current turn will not be captured; a same-turn `/final` does not satisfy the rule
-(a turn boundary is a separate exchange, not a second skill call). Whatever
+(a turn boundary requires a separate exchange). Whatever
 happens, the thread document's capture-provenance note states the true boundary
 and never claims coverage it lacks (cb:b584) - the fold-chronicle close overstated
 itself by one full topic, which is the failure that note prevents.

@@ -17,7 +17,7 @@ It is the canonical narrative reference for this repository. Each chapter consol
 
 | # | Chapter | What it covers |
 | --- | --- | --- |
-| 0 | [Orientation](0-orientation.md) | Why a belief graph at all. The problem it targets - attention, not storage - and where the framework came from. |
+| 0 | [Orientation](0-orientation.md) | Why a belief graph at all. The problem it targets - the relevant claim surfacing at the moment of decision - and where the framework came from. |
 | 1 | [The epistemic core](1-epistemics.md) | The four structural types - attestation, aggregation, inference, prescription - one per epistemic operation. Licensing and falsifiability, immutability and the status lifecycle, and why there are no confidence scores. |
 | 2 | [The schema](2-schema.md) | The belief field by field, provenance and the closed artifact-scheme enum, contracts as schema-as-data, and how the graph describes its own schema in the graph. |
 | 3 | [Operating the graph](3-operations.md) | Querying with the belief shell, the preflight-adjudicate-import write flow, obligation as queryable prescriptions, staleness detected instead of remembered, and the nursery where proto-beliefs gestate. |
@@ -39,6 +39,8 @@ The chapters build in order, and reading straight through is the intended path -
 
 Every command shown is real and runs read-only against the live graph. You do not need the Elixir source open for the conceptual chapters, but chapter 6 rewards having `lib/` beside you.
 
-A note on ids: immutable claims preserve the vocabulary and contract ids of their day. Where an older claim says "assertion" for belief, "implication" for inference, or names a contract that has since been superseded, that is history, not error; `mix bs history <id>` walks any reference forward to the current node. This guide names current ids and the current type vocabulary throughout.
+How citations work here (`cb:b597`, the belief-reference protocol): a belief id always accompanies its content - either the sentence it grounds states what the belief claims, or the reference carries a one-sentence gloss - so you never have to leave the page to know what a cited belief says. `mix bs show <id>` reads the full node when you want the evidence behind it.
+
+A note on ids: immutable claims preserve the vocabulary and contract ids of their day. Where an older claim says "assertion" for belief, "implication" for inference, or names a contract that has since been superseded, that is history preserved verbatim; `mix bs history <id>` walks any reference forward to the current node. This guide names current ids and the current type vocabulary throughout.
 
 > **Relationship to cb-tut.** The sibling `cb-tut` repository renders this same material as an interactive HTML wiki (hover cards for beliefs and glossary terms, in-page search). This guide is the markdown source of truth the tutorial converges on: a chapter here corresponds to a cb-tut module, the grounding boxes carry the same ids, and the glossary data is shared (`mix cb.generate.glossary` renders both). Where the media differ, the tutorial's hover affordances become explicit `mix bs show` commands and glossary links here.

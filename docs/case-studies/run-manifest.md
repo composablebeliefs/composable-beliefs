@@ -3,7 +3,7 @@
 The run-manifest is the contract between the lab bench and the ledger: a neutral JSON
 record of one harness execution that `mix cb.import.eval` deterministically
 materializes as observation beliefs in an eval collection. A thin adapter per harness
-(Inspect first; it lives in the eval repo, not here) converts native logs *to this
+(Inspect first; it lives in the eval repo) converts native logs *to this
 format*; CB never learns any harness's native log format.
 
 ## Shape
@@ -50,9 +50,9 @@ format*; CB never learns any harness's native log format.
 
 | field | required | rule |
 |---|---|---|
-| `manifest_version` | yes | must be the integer `1`; unknown versions refuse, never best-effort parse |
+| `manifest_version` | yes | must be the integer `1`; unknown versions are refused outright |
 | `eval_id` | yes | non-empty string; becomes the `eval/<eval_id>` subject and the first `eval:` URI segment |
-| `date` | yes | `YYYY-MM-DD`; becomes `created` and the evidence date on every emitted belief - determinism requires the date to come from the manifest, never from the importer's clock |
+| `date` | yes | `YYYY-MM-DD`; becomes `created` and the evidence date on every emitted belief - determinism requires the date to come from the manifest |
 | `model` | yes | non-empty string; the `model/<model>` subject |
 | `model_version` | yes | non-empty string, conventionally `<model>@<snapshot>`; the staleness pivot (`method:a2`) |
 | `harness.name` | yes | non-empty string |
@@ -75,7 +75,7 @@ format*; CB never learns any harness's native log format.
 
 Two levels by design. Every `(run, ruler)` pair yields **one aggregate observation**,
 always. A per-case observation is minted **only** for cases listed under
-`load_bearing_cases`. The manifest, not the importer, decides what is load-bearing -
+`load_bearing_cases`. The manifest decides what is load-bearing -
 the judgment stays upstream, the importer stays mechanical. If an import would emit
 a flood of beliefs, the load-bearing list is wrong; the importer warns above a
 threshold rather than silently complying.
@@ -98,7 +98,7 @@ enforced by the tool's shape.
 
 ## Identity, determinism, idempotence
 
-Belief ids derive from the observation's identity tuple, not its content:
+Belief ids derive from the observation's identity tuple:
 
     aggregate: <ns>:o-<hash>  where hash = first 8 hex chars of
                sha256("cb-eval-v1|" <> eval_id <> "|" <> run_id <> "|" <> ruler)
@@ -122,5 +122,5 @@ Consequences:
     mix cb.import.eval <manifest.json> --collection <path/to/beliefs.json> [--write]
 
 validate manifest -> generate spec -> preflight each fresh observation against the
-collection (a conflict is a signal, not an obstacle to bypass) -> hand the fresh
+collection (a conflict is a signal to act on) -> hand the fresh
 beliefs to the existing import path. Dry run prints the spec; `--write` commits.

@@ -36,15 +36,15 @@ CB.Belief.Store.read/0        Enum.map(data, &CB.Belief.from_map/1),
 beliefs/cb/<local>.json        changed nodes written, removed deleted)
 ```
 
-One read path in at the top, four uses of the loaded list in the middle, one write path back to disk at the bottom. Every stage is pure and returns a tagged tuple; these are the actual call sites, not a metaphor.
+One read path in at the top, four uses of the loaded list in the middle, one write path back to disk at the bottom. Every stage is pure and returns a tagged tuple; these are the actual call sites.
 
 ## The graph in memory is a flat list
 
-There is no graph object. The graph in memory is a flat `[%CB.Belief{}]` list, nothing more. Edges are implicit: a belief's `deps` holds string ids naming other beliefs, and a traversal follows those strings. For fast lookup, `CB.Belief.Graph.index/1` builds a `%{id => belief}` map on demand. Forward edges are a direct read of `deps`; reverse edges are not stored anywhere - `dependents` is computed by scanning every belief's deps for the target id.
+The graph in memory is a flat `[%CB.Belief{}]` list, nothing more. Edges are implicit: a belief's `deps` holds string ids naming other beliefs, and a traversal follows those strings. For fast lookup, `CB.Belief.Graph.index/1` builds a `%{id => belief}` map on demand. Forward edges are a direct read of `deps`; reverse edges are not stored anywhere - `dependents` is computed by scanning every belief's deps for the target id.
 
 > **Key idea.** There is no graph data structure to keep consistent - only a list of structs and an index derived from it on demand. Every traversal recomputes what it needs from that one list. The simplicity is what makes the read path trivially deterministic and trivially testable.
 
-One consequence surprises people: **the collection is a DAG by discipline, not by enforcement.** Nothing in the storage rejects a belief whose deps eventually point back to itself. The defense is local instead - every recursive walker carries its own `MapSet` visited set (the dependency walk, the eval predicates, the codepath traversal), because nothing upstream guarantees the input is acyclic. If you write a new traversal, it carries its own visited set too.
+One consequence surprises people: **the collection is a DAG by discipline.** Nothing in the storage rejects a belief whose deps eventually point back to itself. The defense is local instead - every recursive walker carries its own `MapSet` visited set (the dependency walk, the eval predicates, the codepath traversal), because nothing upstream guarantees the input is acyclic. If you write a new traversal, it carries its own visited set too.
 
 **The `_keys` shadow field** answers the question a whole-array store raises: if every write re-encodes the whole file, why doesn't it churn records nobody touched? Each struct remembers which JSON keys its source object actually had, and `to_map/1` emits a field only if it was originally present or now holds a meaningful value, in one canonical key order. Load the graph, change one belief, write it back, and the diff touches only that belief - byte-stable round-trips across hundreds of untouched records. (The planned per-belief-file layout, `cb:b554`, retires this workaround; see [chapter 5](5-collections.md#storage-one-file-today-one-file-per-node-next).)
 

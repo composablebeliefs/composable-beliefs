@@ -22,7 +22,7 @@ code:lib/cb/belief.ex#def contract?@1
 
 The load-bearing decision is the last line. A locator stores no line number. At render or run time, `CB.Anchor.resolve/2` reads the file and finds the lines containing the literal anchor by fixed-string match - never a regex - and the resolved line number is computed at that moment and thrown away after use. Move the anchored code in a refactor and the locator still finds it, because it was never pinned to a coordinate the refactor would invalidate.
 
-Drift produces signals, never crashes. A **missing anchor** (the substring is no longer in the file) resolves to nothing with a warning - the maintenance cue that the anchored symbol was deleted or renamed; the stop still renders. A **loose anchor** (multiple matches, no `@N`) renders the first match plus a tighten-this-anchor warning. An explicit `@N` warns only when out of range.
+Drift produces signals. A **missing anchor** (the substring is no longer in the file) resolves to nothing with a warning - the maintenance cue that the anchored symbol was deleted or renamed; the stop still renders. A **loose anchor** (multiple matches, no `@N`) renders the first match plus a tighten-this-anchor warning. An explicit `@N` warns only when out of range.
 
 ## Codepaths: one artifact, one gradient
 
@@ -36,7 +36,7 @@ Each job has exactly one home, so nothing is doubly stated and nothing can drift
 | narration | the belief's `claim` |
 | derivation | the belief's `deps` |
 | assertion | the contract's `implies` rules |
-| order | a separate render-spec, never the claims |
+| order | a separate render-spec |
 
 **The render-spec orders the tour.** Ordering and branching live in an output-target contract governed by `cb:b049`: an `entry` step id plus `render_steps` rows of `{id, belief, goto?, choices?}`. Navigation is render metadata that never enters `deps` and never lives in the claims - reordering a tour supersedes the render-spec and leaves every claim untouched, the same immutability move as always. The two relations are tied by a checked invariant: the render-spec's `deps` must equal the union of its steps' belief ids, enforced inside `mix cb.verify.schema`, so navigation can never quietly pull in or drop a claim.
 
@@ -123,7 +123,7 @@ The dated prose narratives that used to persist separately in `chronicles/` are 
 
 The newest capture surface automates the raw end of this: a harness hook writes living session transcripts into `beliefs/nursery/threads/` as the session runs - crash-safe, human-readable, and explicitly *not* provenance (the nursery seeds and retro-paired thread records are; [chapter 3](3-operations.md#the-nursery-where-beliefs-gestate)).
 
-**Session memory is a cache, never a store** (`cb:b509`). Project and work state is banned from it: the graph owns obligations, the repositories own records, and CLAUDE.md compiles the bootstrap. This is the digest antipattern (`cb:b386`) applied to the agent's own notebook - if you treat memory as a store and a concurrent session pushes a superseding belief, your snapshot becomes wrong with no stale-dep signal to catch it, because a private notebook is not in the graph that `mix bs stale` walks. Live work stays observable without violating the rule through the **lap log** (`cb:b497`): a scratch markdown file the operator keeps open in an editor split while the agent appends station by station - scaffolding whose load-bearing content graduates to the transcript or the graph at lap end.
+**Session memory is a cache** (`cb:b509`). Project and work state is banned from it: the graph owns obligations, the repositories own records, and CLAUDE.md compiles the bootstrap. This is the digest antipattern (`cb:b386`) applied to the agent's own notebook - if you treat memory as a store and a concurrent session pushes a superseding belief, your snapshot becomes wrong with no stale-dep signal to catch it, because a private notebook is not in the graph that `mix bs stale` walks. Live work stays observable without violating the rule through the **lap log** (`cb:b497`): a scratch markdown file the operator keeps open in an editor split while the agent appends station by station - scaffolding whose load-bearing content graduates to the transcript or the graph at lap end.
 
 > **Pitfall.** Treating session memory or the narrative section as the source of truth for work state. Memory is pruned at close; the narrative section is steering prose with ids deliberately subordinate; neither is queryable, conflict-audited, or staleness-linked. The one source of truth for what is next is the desk. The narrative tells the operator the story; the graph tells the agent the work.
 

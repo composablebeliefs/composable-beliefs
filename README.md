@@ -4,12 +4,12 @@ Composable Beliefs (CB) is a directed acyclic graph of immutable, source-grounde
 
 Two commitments define the design:
 
-- **Beliefs, not facts.** The unit of the graph records what is believed, on what evidence, and what would have to change - truth status is tracked and revisable, never presumed. A belief can turn out to be wrong without breaking the model; that is what retraction is for.
+- **Beliefs, held revisably.** The unit of the graph records what is believed, on what evidence, and what would have to change - truth status is tracked and revisable. A belief can turn out to be wrong without breaking the model; that is what retraction is for.
 - **Reasoning is authored.** Humans and agents create every belief, exercising judgment at each step; CB records the derivation and keeps it walkable.
 
 ## The mechanism
 
-At its core CB is a schema. The graph has four structural types, one per epistemic operation: attestation (what a source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen). Beliefs are never edited in place - they are superseded - so anything still resting on a replaced premise is mechanically detectable. There are no confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure, not a declared number.
+At its core CB is a schema. The graph has four structural types, one per epistemic operation: attestation (what a source said), aggregation (what its deps jointly state), inference (a conclusion licensed to exceed its deps), and prescription (what should happen). Every change to a belief is a supersession - a new node replacing the old, with the old kept and linked forward - so anything still resting on a replaced premise is mechanically detectable. There are no confidence scores: how well-grounded a belief is falls out of artifacts, evidence, and dependency structure.
 
 The format is plain JSON. What ships in this repo is the schema plus the machinery that enforces it - an Elixir library and mix-task suite for querying, verifying, authoring, and rendering belief graphs - and the framework's own self-describing design graph in `beliefs/cb/`. One dependency (Jason), pure deterministic traversal, no LLM anywhere in the read path; CI gates every push on the test suite and the graph verifiers.
 
@@ -29,7 +29,7 @@ cb:b047 [contract] Contracts carry routing tables; modules carry predicate imple
 └── cb:b046 [contract] Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry
 ```
 
-A design rule of this framework (`cb:b047`) is data, not prose; the premises it rests on are themselves beliefs you can keep walking; and the traversal is pure - no model, no ranking, no retrieval, just the graph.
+A design rule of this framework (`cb:b047`) is data; the premises it rests on are themselves beliefs you can keep walking; and the traversal is pure - no model, no ranking, no retrieval, just the graph.
 
 ## Scope
 

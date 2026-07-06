@@ -2,9 +2,9 @@
 
 Frontier agents already know an enormous amount. They fail at a different thing: surfacing the one consideration that matters at the moment a decision is made, and giving the person who runs them something to inspect afterward. This chapter makes the case for storing an agent's reasoning as a graph, and previews the four moves the rest of the guide teaches in full.
 
-## The problem: attention, not storage
+## The problem: attention
 
-Reach for a belief graph because of a specific, observed failure. Frontier models already know most things; the gap is rarely what they have stored but whether the relevant claim surfaces at the instant a choice is made. A bigger context window or a better recall store keeps more around, and the relevant fact can still fail to arrive when the agent needs it. The graph exists to be a shared prosthetic for both a human's bounded attention and an agent's context loss: one queryable structure that makes the right node findable on demand (`cb:b460`).
+Reach for a belief graph because of a specific, observed failure. Frontier models already know most things; the gap is whether the relevant claim surfaces at the instant a choice is made. A bigger context window or a better recall store keeps more around, and the relevant fact can still fail to arrive when the agent needs it. The graph exists to be a shared prosthetic for both a human's bounded attention and an agent's context loss: one queryable structure that makes the right node findable on demand (`cb:b460`).
 
 The usual way to steer an agent makes this worse, because it leaves nothing to check. The status quo is a hand-written instruction file in plain English - a `CLAUDE.md`, a set of skills. A flat instruction like "always verify sources" tells the agent what to do and tells the operator nothing about why it is there, on what grounds, or whether it still holds. There is no source to read back to, no dependency to follow, no history of how the rule changed. A belief carrying its source, its dependencies, and its lifecycle gives you all three, so a human can audit why an agent decided something rather than taking the instruction on faith.
 
@@ -34,7 +34,7 @@ Three adjectives in the definition are load-bearing. **Source-grounded** means e
 
 ## The four moves, previewed
 
-Every belief records exactly one of four epistemic operations, and the operation it records is its structural type - a closed enum, one value per operation, that determines which other fields even apply (`cb:b051`, design rationale `cb:b470`). One operation per type is the whole design, not an accident of naming. Chapter 1 teaches each in full; here is the map.
+Every belief records exactly one of four epistemic operations, and the operation it records is its structural type - a closed enum, one value per operation, that determines which other fields even apply (`cb:b051`, design rationale `cb:b470`). One operation per type is the whole design. Chapter 1 teaches each in full; here is the map.
 
 | Operation | Structural type | What it records |
 | --- | --- | --- |
@@ -47,7 +47,7 @@ The split does real work. Attest and aggregate stay inside their sources: an att
 
 ## Why "composable"
 
-The name points at the move that carries the value. The graph is not built to find a fact you already filed; it is built to conclude what follows from combining facts that live in different places. A composition can state something true that no single source ever states, and that conclusion is exactly the kind of consideration a single session tends to miss (`cb:b462`).
+The name points at the move that carries the value. The graph is built to conclude what follows from combining facts that live in different places. A composition can state something true that no single source ever states, and that conclusion is exactly the kind of consideration a single session tends to miss (`cb:b462`).
 
 ```
   attestation A               attestation B
@@ -62,26 +62,26 @@ The name points at the move that carries the value. The graph is not built to fi
       +-------------------------------+
 ```
 
-> **Why this matters.** Retrieval and composition answer different questions. "What did we already record about X?" is retrieval. "What follows, given everything we have recorded?" is composition over retrieval, and it is the question that catches the conflict no single document contains (`cb:b462`, `cb:b539`). The two are not rivals at one job; the graph sits a layer above whatever stores the raw material.
+> **Why this matters.** Retrieval and composition answer different questions. "What did we already record about X?" is retrieval. "What follows, given everything we have recorded?" is composition over retrieval, and it is the question that catches the conflict no single document contains (`cb:b462`, `cb:b539`). The graph sits a layer above whatever stores the raw material.
 
 ## What CB refuses to be
 
-A system is defined as much by what it declines to do. Composable Beliefs is a reasoning and audit substrate, not a memory system, and that boundary is itself a codified prescription in the graph rather than a preference (`cb:b539`). Vector memory, model calls, recall and retrieval, and the execution of any downstream task all stay outside its scope. CB layers over whatever memory or recall system you already run rather than growing into one.
+A system is defined as much by what it declines to do. Composable Beliefs is a reasoning and audit substrate, and its boundary against growing into a memory system is itself a codified prescription in the graph (`cb:b539`). Vector memory, model calls, recall and retrieval, and the execution of any downstream task all stay outside its scope. CB layers over whatever memory or recall system you already run rather than growing into one.
 
 The reason is concrete. Building retrieval into the read path would put a model, a ranker, or a similarity search between a question and the answer the graph returns. That would forfeit the single property the framework exists to provide: a deterministic, model-free read path, where traversing the graph yields the same answer every time and a human can re-check it by hand.
 
-> **Caveat.** "Substrate" is a precise claim, not modesty. CB is the layer that holds typed, grounded, supersedable claims. It is not the store of raw documents, and whatever holds the underlying material - a wiki, a document store, a vector index - is a source below CB, privileged by nothing in the schema. CB composes over memory systems rather than competing with them.
+> **Caveat.** "Substrate" is a precise claim. CB is the layer that holds typed, grounded, supersedable claims; whatever holds the underlying material - a wiki, a document store, a vector index - is a source below CB, privileged by nothing in the schema. CB composes over memory systems.
 
 ## Where it came from
 
-Composable Beliefs was not designed on a whiteboard. It was extracted from a real production agent system running a live operation, where the agent's own instruction file was compiled from a belief graph rather than written by hand. Each prescription the agent followed was a pointer into the graph, carrying the source it rested on and the record of how it had changed. The framework is what remained once that machinery was generalized and lifted out of the application it grew up inside.
+Composable Beliefs was extracted from a real production agent system running a live operation, where the agent's own instruction file was compiled from a belief graph. Each prescription the agent followed was a pointer into the graph, carrying the source it rested on and the record of how it had changed. The framework is what remained once that machinery was generalized and lifted out of the application it grew up inside.
 
-That origin sets the altitude of this whole guide. CB is defined by its mechanism - typed, immutable, source-grounded, composable claims on a dependency graph with a deterministic read path - never by any single thing it has been used for. The mechanism is the part you can check against the code and the graph. Applications live downstream of it, documented separately as [case studies](../case-studies/README.md).
+That origin sets the altitude of this whole guide. CB is defined by its mechanism - typed, immutable, source-grounded, composable claims on a dependency graph with a deterministic read path. The mechanism is the part you can check against the code and the graph. Applications live downstream of it, documented separately as [case studies](../case-studies/README.md).
 
 ---
 
 Next: [chapter 1, the epistemic core](1-epistemics.md) - the four types in full, the licensing idea, immutability, and why there are no confidence scores.
 
 > **Grounding.**
-> - In the graph: `cb:b460` (the shared-prosthetic framing), `cb:b462` (composition over retrieval - the value is reasoning, not lookup), `cb:b539` (CB is a reasoning and audit substrate, not a memory system, with a deterministic LLM-free read path), `cb:b478` (the one-paragraph definition of the mechanism), `cb:b051` / `cb:b470` (the four types, one per epistemic operation).
+> - In the graph: `cb:b460` (the shared-prosthetic framing), `cb:b462` (composition over retrieval - the value is concluding what follows from combining recorded claims), `cb:b539` (the scope boundary: a reasoning and audit substrate with a deterministic LLM-free read path; memory, retrieval, and execution stay outside), `cb:b478` (the one-paragraph definition of the mechanism), `cb:b051` / `cb:b470` (the four types, one per epistemic operation).
 > - In the code: `lib/cb/belief.ex` (the `%CB.Belief{}` struct and its enums).

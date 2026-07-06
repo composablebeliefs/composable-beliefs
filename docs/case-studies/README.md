@@ -1,6 +1,6 @@
 # Case studies
 
-Composable Beliefs is a general mechanism; the documents in this directory describe applications of it to specific domains. The framing discipline throughout: the substrate is defined knowing nothing of any consumer, so the accurate sentence is always "a host uses CB to do X", never "CB is the X". The [guide](../guide/README.md) documents the mechanism itself; nothing in it depends on any material here.
+Composable Beliefs is a general mechanism; the documents in this directory describe applications of it to specific domains. The framing discipline throughout: the substrate is defined knowing nothing of any consumer, so the accurate sentence is always "a host uses CB to do X". The [guide](../guide/README.md) documents the mechanism itself; nothing in it depends on any material here.
 
 Current case studies:
 
