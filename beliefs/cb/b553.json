@@ -21,6 +21,11 @@
       "date": "2026-06-23",
       "detail": "Rejected as dep-tie against cb:b417. Reasoning: Reviewed and rejected as a false-positive contract-level escalation. Overlap is claim_overlap on the token 'contract' plus tag-overlap on backlog/lifecycle:discrete. Subject matter is disjoint: b417 governs verify_against_contract in contract-implementing Elixir modules; this directive is a documentation-maintenance task that refreshes superseded contract ids in prose docs. No contradiction. Dep-tie records the review (vacuous as grounding, harmless as constraint), per the b517/b030 precedent. The over-escalation on weak claim-overlap is the calibration gap b519 tracks.",
       "artifact": "adjudication:human:cb-tut-close-2026-06-23"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "2026-07-06 docs refactor: the legacy essays this audit item had bannered (composable-beliefs-thesis.md, actualization.md, cb-on-the-beam.md) moved from bannered-in-place to archived untouched under deprecated/docs/, with a redirect stub kept at docs/2026-06-23-docs-vs-code-audit.md for the graph's two document: citations. reference.md additionally gained the doors the original sweep did not list: cb.supersede, cb.verify.route_tags, cb.migrate.split. Guide restructured to chapters 0-6 with the eval ledger reframed as docs/case-studies/.",
+      "artifact": "commit:2d5ec488c20d86c2dcdb19af3454e1a2efd5f418"
     }
   ],
   "deps": [

@@ -11,7 +11,13 @@
   ],
   "claim": "Migrate the remaining living docs to the schema-v3 structural-type vocabulary (attestation/aggregation/inference/prescription; derived contract-grade). Still carrying the old type names: docs/eval-ledger.md, docs/worked-example-eval-verdict.md, docs/run-manifest.md, docs/operations.md, docs/composable-beliefs-thesis.md, docs/cb-on-the-beam.md, docs/actualization.md. Sequence the eval-facing three (worked-example, run-manifest, eval-ledger) with the belief-collections sibling migration - they describe collections whose data may still carry the old vocabulary, so migrating their prose ahead of the data would desync doc from graph. The narrative four (operations, thesis, cb-on-the-beam, actualization) have no such coupling and can be done in any session. The historical record (chronicles/, plans/, dated analyses, nursery threads) stays untouched per the structural-type-rename seed's docs step. Context: the 2026-07-02 session migrated README.md, docs/mental-model.md, docs/reference.md, and docs/belief-graph.md; this prescription covers the remainder.",
   "artifact": "user:mark:2026-07-02",
-  "evidence": [],
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "2026-07-06 docs refactor (mission-statement reorganization): docs/operations.md's extraction workflow migrated to the schema-v3 vocabulary (attestation/aggregation/inference/prescription). Of the narrative four, thesis, cb-on-the-beam, and actualization were archived untouched to deprecated/docs/ rather than migrated - they left the living-docs surface, so the migration obligation no longer attaches. docs/eval-ledger.md is a v3-current stub and the new case-study rendition (docs/case-studies/eval-ledger.md) is v3 throughout. Remainder: worked-example-eval-verdict.md and run-manifest.md (now under docs/case-studies/) still carry the old type names, correctly sequenced with the belief-collections sibling migration per this prescription.",
+      "artifact": "commit:2d5ec488c20d86c2dcdb19af3454e1a2efd5f418"
+    }
+  ],
   "subjects": [],
   "deps": [],
   "materialized": null,
