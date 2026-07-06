@@ -87,18 +87,18 @@ One row per topic this thread touched. Content lives in the routed-to document, 
 | Topic | State | Routed to | Dangling |
 |---|---|---|---|
 | Verify the end-skill round-trip arc holds | closed | [end-skill-redesign](../../archive/end-skill-redesign.md) - all links traversable, graph green | - |
-| Formalize the scattershot thread-excerpt sections (the matter) | closed | [route-tagging](../route-tagging.md) | - |
-| Tag key: routed-to artifact id vs free topic name | closed | [route-tagging](../route-tagging.md) - artifact id | - |
-| Doc-side view: live-rendered vs materialized | closed | [route-tagging](../route-tagging.md) - materialized, for GitHub readability | - |
-| Granularity: whole-turn vs per-paragraph multi-ref | closed | [route-tagging](../route-tagging.md) - per-paragraph, multi-ref, set-membership | - |
-| Freeze trigger + one-focus-per-doc | closed | [route-tagging](../route-tagging.md) (cb:b569) - matter-resolution, not archival | - |
-| Graduated-doc edge (A vs B) | closed | [route-tagging](../route-tagging.md) - A (new doc on re-opening) | - |
-| Draft the route-tagging proto-belief document | closed | [route-tagging](../route-tagging.md) - 3 staged candidates, unminted | - |
+| Formalize the scattershot thread-excerpt sections (the matter) | closed | [route-tagging](../../archive/route-tagging.md) | - |
+| Tag key: routed-to artifact id vs free topic name | closed | [route-tagging](../../archive/route-tagging.md) - artifact id | - |
+| Doc-side view: live-rendered vs materialized | closed | [route-tagging](../../archive/route-tagging.md) - materialized, for GitHub readability | - |
+| Granularity: whole-turn vs per-paragraph multi-ref | closed | [route-tagging](../../archive/route-tagging.md) - per-paragraph, multi-ref, set-membership | - |
+| Freeze trigger + one-focus-per-doc | closed | [route-tagging](../../archive/route-tagging.md) (cb:b569) - matter-resolution, not archival | - |
+| Graduated-doc edge (A vs B) | closed | [route-tagging](../../archive/route-tagging.md) - A (new doc on re-opening) | - |
+| Draft the route-tagging proto-belief document | closed | [route-tagging](../../archive/route-tagging.md) - 3 staged candidates, unminted | - |
 | Retrofit the reference example (tag thread + excerpt logs) | closed | [end-skill-redesign](../../archive/end-skill-redesign.md), [mint-manifest-rename](../mint-manifest-rename.md), this thread | - |
 | Dangling end-skill-redesign link | closed | [mint-manifest-rename](../mint-manifest-rename.md) - repointed to archive path | - |
-| Tag syntax (`<routes>` block vs comment fence) | paused | [route-tagging](../route-tagging.md) Open - shipped provisional `<routes>` | comment-fence alternative not evaluated |
-| No-trim excerpt bloat | open | [route-tagging](../route-tagging.md) Open | whether whole-region lifting needs a bound |
-| `/decompose` build (tag + append-excerpt motion) | open | [routing-ledger](../routing-ledger.md), [route-tagging](../route-tagging.md) | automation unbuilt; tagging hand-done |
+| Tag syntax (`<routes>` block vs comment fence) | paused | [route-tagging](../../archive/route-tagging.md) Open - shipped provisional `<routes>` | comment-fence alternative not evaluated |
+| No-trim excerpt bloat | open | [route-tagging](../../archive/route-tagging.md) Open | whether whole-region lifting needs a bound |
+| `/decompose` build (tag + append-excerpt motion) | open | [routing-ledger](../routing-ledger.md), [route-tagging](../../archive/route-tagging.md) | automation unbuilt; tagging hand-done |
 | Route-tag this thread's own body | paused | unrouted - the `/decompose` motion, deferred | this finalized body is not yet tagged |
 | Fresh-context audit of the retrofit | open | unrouted - operator will run | tag placements, freeze-backfill, syntax choices |
 | Commit signing (unsigned commits) | closed | narrative - env limitation (empty key), not a blocker; applies at push | - |
@@ -514,7 +514,7 @@ You're clear to run `/end` in your next turn (alone). I'll be here when you retu
 
 ## Related
 
-- [route-tagging](../route-tagging.md) - the proto-belief document this session authored; the
+- [route-tagging](../../archive/route-tagging.md) - the proto-belief document this session authored; the
   spec whose three candidates stay staged and unminted, and whose Open items (tag syntax,
   no-trim bloat, ref targets, migration, `/decompose` build) this thread hands forward.
 - [statement-provenance](../statement-provenance.md) - the back-edge route-tagging makes

@@ -82,15 +82,15 @@ One row per topic this thread touched. Content lives in the routed-to document, 
 
 | Topic | State | Routed to | Dangling |
 |---|---|---|---|
-| Route-tagging audit round (dev-dev review) | closed | PR #20 (comment) + [route-tagging](../route-tagging.md) dispositions; **excised from this thread** per the tiering rule | - |
+| Route-tagging audit round (dev-dev review) | closed | PR #20 (comment) + [route-tagging](../../archive/route-tagging.md) dispositions; **excised from this thread** per the tiering rule | - |
 | Council branch proposals (Idea 1/2) | closed | [council-mechanism](../council-mechanism.md) - draft-PR medium chosen; dedicated council branch rejected (shadow store) | - |
 | Provenance tiering (review round vs design → thread-or-not) | closed | [council-mechanism](../council-mechanism.md) - dev-dev cited by commit, operator design mints a thread | - |
 | `/council` skill (four motions, close-gate) | closed | [council-mechanism](../council-mechanism.md) - staged, unminted | - |
 | Distill-not-dump record model | closed | [council-mechanism](../council-mechanism.md) | - |
-| Route-tagging audit dispositions (F1-F7) | closed | [route-tagging](../route-tagging.md) - revised | - |
-| `/decompose` → `/route` rename + fold into `/end` | closed | [route-tagging](../route-tagging.md), [routing-ledger](../routing-ledger.md) - swept | - |
+| Route-tagging audit dispositions (F1-F7) | closed | [route-tagging](../../archive/route-tagging.md) - revised | - |
+| `/decompose` → `/route` rename + fold into `/end` | closed | [route-tagging](../../archive/route-tagging.md), [routing-ledger](../routing-ledger.md) - swept | - |
 | Author council-mechanism (B) | closed | [council-mechanism](../council-mechanism.md) | - |
-| Revise route-tagging (A1) | closed | [route-tagging](../route-tagging.md) | - |
+| Revise route-tagging (A1) | closed | [route-tagging](../../archive/route-tagging.md) | - |
 | Route-tagging rework enactment (A2) | open | PR #20 ([route-tagging-rework](https://github.com/composablebeliefs/composable-beliefs/pull/20)) | build cb.verify.route_tags, mint, post audit comment |
 | cb:b573 no-rebase read-surface gap + hook conflict | open | hand-off prompt (this thread's body); CLAUDE.md generator | surface cb:b573; flag the global git-check hook |
 | Tiering-rule home | open | [council-mechanism](../council-mechanism.md) Open | own proto-belief vs fold into transcript-format |
@@ -752,7 +752,7 @@ Committed. Short version: **`/end` first, then PR, then merge** - the thread doc
 
 - [council-mechanism](../council-mechanism.md) - the proto-belief this session authored (B):
   the `/council` review-and-converge round, staged and unminted; this thread is its grounding.
-- [route-tagging](../route-tagging.md) - revised this session (A1) with the fresh-context
+- [route-tagging](../../archive/route-tagging.md) - revised this session (A1) with the fresh-context
   audit's dispositions and the `/decompose` -> `/route` rename; the audit round that drove the
   revision is cited by commit, not threaded.
 - [routing-ledger](../routing-ledger.md) - swept for the `/route` rename; supplies the

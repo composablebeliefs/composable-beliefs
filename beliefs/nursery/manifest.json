@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 44,
+  "count": 43,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -258,21 +258,6 @@
       ],
       "status": "active",
       "timestamp": "2026-07-02"
-    },
-    {
-      "path": "route-tagging.md",
-      "type": "concept",
-      "title": "Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus",
-      "description": "Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked \"Thread excerpts\" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Unminted; rows staged.",
-      "tags": [
-        "nursery",
-        "threads",
-        "provenance",
-        "linkage",
-        "workflow"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-04"
     },
     {
       "path": "routing-ledger.md",

@@ -92,7 +92,7 @@ build. The archive shelf now exists for the next terminal document that graduate
 One row per topic this thread touched. Content lives in the routed-to document, never here
 ([routing-ledger](../routing-ledger.md), cb:b582).
 
-The body below is **route-tagged** ([route-tagging](../route-tagging.md), staged): substantive
+The body below is **route-tagged** ([route-tagging](../../archive/route-tagging.md), staged): substantive
 paragraph-runs are wrapped in `routes` blocks keyed on the routed-to artifact id (a doc,
 belief, or code path; multi-valued where a run feeds several matters, never crossing a turn
 boundary). Grep the body for `routes ref` to scan by matter; each referenced proto-belief

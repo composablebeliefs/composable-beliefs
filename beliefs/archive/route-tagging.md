@@ -1,15 +1,24 @@
 ---
 type: concept
 title: Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus
-description: Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked "Thread excerpts" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Unminted; rows staged.
+description: Covers marking each thread paragraph with the artifact it feeds via per-paragraph, multi-ref route tags placed on the frozen body at finalization, so a focus's cross-thread discussion aggregates into an append-only, date-stamped excerpt log in its proto-belief document. Formalizes the scattershot hand-picked "Thread excerpts" sections into a located, auditable, cross-thread audit trail. The concrete form of statement-provenance's back-edge, keyed on the routing-ledger's routed-to vocabulary; a third motion of /route (renamed from /decompose), folded into /end once built. Revised 2026-07-04 against a fresh-context audit. Minted 2026-07-06 (cb:b588 tagging rule, cb:b589 excerpt log, cb:b590 verifier); graduated.
 tags: [nursery, threads, provenance, linkage, workflow]
 status: active
 timestamp: 2026-07-04
-maturity: active
+maturity: planted
+minted: [cb:b588, cb:b589, cb:b590]
 threads: [2026-07-04-route-tagging, 2026-07-04-council-design]
 ---
 
 # Route-tagging - per-paragraph topic tags that aggregate thread excerpts per focus
+
+> **Graduated 2026-07-06.** Planted as cb:b588 (route tags on the finalized body), cb:b589
+> (the append-only excerpt log), and cb:b590 (the `cb.verify.route_tags` structural
+> backstop, built the same session), then moved to the archive shelf (beliefs/archive/,
+> cb:b577). Historical record of a completed deliberation; the live rules are in the graph.
+> The residual Open items live on: the `/route` build with
+> [routing-ledger](../nursery/routing-ledger.md), migration and the bloat bound as future
+> signals recorded below.
 
 ## The matter
 
@@ -187,10 +196,10 @@ statement-provenance and transcript-format are unminted and cited as document gr
 
 | Type | Draft claim | Deps | Grounding | Minted |
 |---|---|---|---|---|
-| prescription | A finalized thread body is route-tagged at finalization: each paragraph carries zero-or-more `<routes ref="...">` refs, each a canonical artifact id (never a free topic name); refs are multi-valued on one element (no overlapping tags); the routed-to sink document is the aggregating ref and incidental belief/code ids are non-aggregating back-links; tagging runs on the frozen body as a motion of the same pass that routes content and updates the ledger. | cb:b572, cb:b583, cb:b569 | document:beliefs/nursery/route-tagging.md | - |
-| prescription | Each referenced proto-belief document carries its route-tagged excerpts as an append-only, per-thread, date-stamped log of whole tagged paragraphs, materialized into the document and never regenerated; a document accepts appends while its matter is unresolved and freezes acceptance when the matter resolves. This is a readability-versus-freshness tradeoff, not cb:b386-clean; its completeness is backed structurally by `cb.verify.route_tags`, not by procedural discipline. | cb:b386, cb:b569, cb:b572 | document:beliefs/nursery/route-tagging.md | - |
-| prescription | `cb.verify.route_tags` re-derives each sink's excerpt log from the current route tags and fails on divergence, converting the log's freshness guarantee from procedural to structural; it also enforces that every ref resolves to a real artifact and every tagged sink carries its log. Tag *coverage* (that every feeding paragraph was tagged) stays editorial and is lifted only to row granularity by a routing-ledger cross-check. | cb:b386 | document:beliefs/nursery/route-tagging.md | - |
-| prescription | `/route` (renamed from `/decompose`) gains route-tagging and excerpt-append as motions alongside routing and ledger-update, run once over the frozen body at finalization, and folded into `/end` as a finalization step once built. | cb:b572, cb:b583 | document:beliefs/nursery/route-tagging.md | - |
+| prescription | A finalized thread body is route-tagged at finalization: each paragraph carries zero-or-more `<routes ref="...">` refs, each a canonical artifact id (never a free topic name); refs are multi-valued on one element (no overlapping tags); the routed-to sink document is the aggregating ref and incidental belief/code ids are non-aggregating back-links; tagging runs on the frozen body as a motion of the same pass that routes content and updates the ledger. | cb:b572, cb:b583, cb:b569 | document:beliefs/archive/route-tagging.md | cb:b588 |
+| prescription | Each referenced proto-belief document carries its route-tagged excerpts as an append-only, per-thread, date-stamped log of whole tagged paragraphs, materialized into the document and never regenerated; a document accepts appends while its matter is unresolved and freezes acceptance when the matter resolves. This is a readability-versus-freshness tradeoff, not cb:b386-clean; its completeness is backed structurally by `cb.verify.route_tags`, not by procedural discipline. | cb:b386, cb:b569, cb:b572 | document:beliefs/archive/route-tagging.md | cb:b589 |
+| prescription | `cb.verify.route_tags` re-derives each sink's excerpt log from the current route tags and fails on divergence, converting the log's freshness guarantee from procedural to structural; it also enforces that every ref resolves to a real artifact and every tagged sink carries its log. Tag *coverage* (that every feeding paragraph was tagged) stays editorial and is lifted only to row granularity by a routing-ledger cross-check. | cb:b386 | document:beliefs/archive/route-tagging.md | cb:b590 |
+| prescription | `/route` (renamed from `/decompose`) gains route-tagging and excerpt-append as motions alongside routing and ledger-update, run once over the frozen body at finalization, and folded into `/end` as a finalization step once built. | cb:b572, cb:b583 | document:beliefs/archive/route-tagging.md | - |
 
 ## Thread excerpts (2026-07-04)
 
@@ -218,19 +227,19 @@ many topics that should be separately marked. More realistic is per-paragraph."
 
 ## Related
 
-- [statement-provenance](statement-provenance.md) - the back-edge this makes concrete
+- [statement-provenance](../nursery/statement-provenance.md) - the back-edge this makes concrete
   (exchange -> artifact); its open "annotate inline vs side index" question is answered here
   by inline per-paragraph tags. Co-designed, not bolted on: one mechanism, two readings.
-- [routing-ledger](routing-ledger.md) - supplies the routed-to vocabulary the tags key on,
+- [routing-ledger](../nursery/routing-ledger.md) - supplies the routed-to vocabulary the tags key on,
   and the `/route` pass (renamed from `/decompose`) this inserts a third motion into.
   Per-thread dispatch (coarse); route-tags are sub-thread location (fine); the two compose.
-- [council-mechanism](council-mechanism.md) - the review mechanism whose founding worked
+- [council-mechanism](../nursery/council-mechanism.md) - the review mechanism whose founding worked
   example was the audit of this spec; the source of the tiering rule under which that audit
   round is cited by commit rather than threaded.
-- [transcript-format](transcript-format.md) - the forward excerpts rule and the frozen-body
+- [transcript-format](../nursery/transcript-format.md) - the forward excerpts rule and the frozen-body
   persistence (cb:b583) this depends on; its frontmatter-preservation is the model for
   keeping tags across hook rewrites.
-- [mint-manifest](mint-manifest.md) - the candidate-row convention this document's Mint
+- [mint-manifest](../nursery/mint-manifest.md) - the candidate-row convention this document's Mint
   manifest follows (cb:b567/b581).
-- [seed-lifecycle](seed-lifecycle.md) - graduation and the terminal-document freeze this
+- [seed-lifecycle](../nursery/seed-lifecycle.md) - graduation and the terminal-document freeze this
   reads matter-resolution against (cb:b569 unit doctrine one level up).
