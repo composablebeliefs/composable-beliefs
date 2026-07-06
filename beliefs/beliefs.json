@@ -9666,5 +9666,270 @@
     "materialized": null,
     "status": "active",
     "created": "2026-07-05"
+  },
+  {
+    "id": "cb:b588",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "threads",
+      "provenance",
+      "route-tagging",
+      "lifecycle:recurring"
+    ],
+    "claim": "A finalized thread body is route-tagged at finalization: each paragraph carries zero-or-more `<routes ref=\"...\">` refs, each a canonical artifact id (never a free topic name); refs are multi-valued on one element (no overlapping tags); the routed-to sink document is the aggregating ref and incidental belief/code ids are non-aggregating back-links; tagging runs on the frozen body as a motion of the same pass that routes content and updates the ledger.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the route-tagging proto-belief document: the tag is the located, auditable form of the selection act (the boundary lives in the thread), keyed on canonical artifact ids so the cross-thread join is exact; the sink/back-link split is the audit's F1 disposition. Demonstrated end to end on the 2026-07-03-end-skill-round-trip retrofit (18 regions, none crossing a turn boundary), verified by mix cb.verify.route_tags.",
+        "artifact": "document:beliefs/nursery/route-tagging.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Deliberation thread: the design session that settled the tag key (artifact id over free topic name), granularity (per-paragraph, multi-ref, set-membership), placement (frozen body, at finalization), and the freeze trigger.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "nursery threads",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b572",
+      "cb:b583",
+      "cb:b569",
+      "cb:b582"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b589",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "provenance",
+      "route-tagging",
+      "lifecycle:recurring"
+    ],
+    "claim": "Each referenced proto-belief document carries its route-tagged excerpts as an append-only, per-thread, date-stamped log of whole tagged paragraphs, materialized into the document and never regenerated; a document accepts appends while its matter is unresolved and freezes acceptance when the matter resolves. This is a readability-versus-freshness tradeoff, not cb:b386-clean; its completeness is backed structurally by `cb.verify.route_tags`, not by procedural discipline.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the route-tagging proto-belief document: materialized (not CLI-rendered) for GitHub/editor readability; append-at-route-time additive-only; the honest reframe away from the rejected 'no cache to refresh, b386-clean' claim is the audit's F2 disposition, with the residual exposures (forgotten append, un-propagated tag correction) named and backed by the verifier.",
+        "artifact": "document:beliefs/nursery/route-tagging.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Deliberation thread: the operator chose materialization over the CLI live render for how the graph is actually read, and rejected editorial trimming ('sins of omission') in favour of whole-region lifts.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the nursery",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b386",
+      "cb:b569",
+      "cb:b572"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b590",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "nursery",
+      "provenance",
+      "route-tagging",
+      "verification"
+    ],
+    "claim": "`cb.verify.route_tags` re-derives each sink's excerpt log from the current route tags and fails on divergence, converting the log's freshness guarantee from procedural to structural; it also enforces that every ref resolves to a real artifact and every tagged sink carries its log. Tag coverage (that every feeding paragraph was tagged) stays editorial and is lifted only to row granularity by a routing-ledger cross-check.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the route-tagging proto-belief document as the structural backstop the F2 disposition demands: the verifier closes the forgotten-append and un-propagated-correction exposures for tags that exist, and is honest about the coverage axis it cannot mechanize.",
+        "artifact": "document:beliefs/nursery/route-tagging.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Implemented as mix cb.verify.route_tags (lib/cb/route_tags.ex): five checks - wellformedness, ref resolution, sink logs, log fidelity (byte-level re-derivation match), ledger cross-check at warn level. Its first run reproduced audit finding F5 (transcript-format tagged but no log), fixed in the same commit.",
+        "artifact": "commit:d9f730c8d170d7c18fd85006315726591fb33de8"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "lib/cb/route_tags.ex",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "cb:b386"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b591",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "council",
+      "review",
+      "workflow",
+      "git"
+    ],
+    "claim": "A council review round runs on a draft PR as its medium: findings and responses are PR review comments, never files committed to the tree; the only artifacts that land in the repo are the distilled plan and the code. The medium is never `main` and never a replay of a round that already happened elsewhere.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the council-mechanism proto-belief document: a council folder of committed analyses is a shadow graph (a handoff store by another name); the PR comment lane keeps review noise discoverable but out of the tree, consistent with the merge-commit-only curated-artifact ethos.",
+        "artifact": "document:beliefs/nursery/council-mechanism.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Deliberation thread: the operator-in-the-loop session that designed the council mechanism and rejected the committed-files medium.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the council review workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b573"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b592",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "council",
+      "review",
+      "nursery",
+      "provenance"
+    ],
+    "claim": "A council round is distilled at close into the target proto-belief: settled decisions become its Open items and Mint-manifest rows, rejected alternatives fold into a dated rejected-because block, and the raw exchange is referenced by `commit:`/PR and never copied into the document. The distilled plan, not the transcript, is what an implementer receives.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the council-mechanism proto-belief document: distillation keeps the proto-belief the single authoritative surface (one document per separable matter) and leaves the raw exchange cited, not copied - the anti-digest discipline applied to review rounds.",
+        "artifact": "document:beliefs/nursery/council-mechanism.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Demonstrated by this rule's own founding round: the route-tagging audit's findings were dispositioned into route-tagging.md's Audit dispositions block and the full report relocated to PR #20 as a comment, cited, never committed.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the council review workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b569",
+      "cb:b386"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b593",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "dev",
+    "tags": [
+      "council",
+      "review",
+      "skills"
+    ],
+    "claim": "`/council close` is a gate, not a dump: dry-run by default, it refuses to converge while any finding is undispositioned (agreed, refuted, or deferred), the same discipline `mix cb.adjudicate` applies to conflicts.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the council-mechanism proto-belief document: convergence is an adjudication, so the close motion inherits the write flow's discipline - every finding carries an explicit disposition before the round may converge.",
+        "artifact": "document:beliefs/nursery/council-mechanism.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Deliberation thread: the close-gate design, modeled on mix cb.adjudicate's refusal semantics.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the council review workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b578"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "cb:b594",
+    "type": "prescription",
+    "kind": "convention",
+    "domain": "system",
+    "tags": [
+      "council",
+      "threads",
+      "thread-persistence",
+      "provenance"
+    ],
+    "claim": "A dev-dev review round mints no thread and is cited by `commit:`/PR; only operator-in-the-loop design deliberation mints a thread. A review round is never persisted in a thread, with no embedded-exception clause; a mixed session excises its review half to a PR comment and finalizes only the design half.",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Staged and grounded in the council-mechanism proto-belief document: threads persist operator deliberation, not agent-agent review noise; the tiering rule keeps the thread shelf a record of design decisions.",
+        "artifact": "document:beliefs/nursery/council-mechanism.md"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Enforced on its own founding session: the 2026-07-04 council-design thread excised its dev-dev audit half to PR #20 and finalized only the design half - the rule in force before it was minted.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "nursery threads",
+        "type": "workspace"
+      }
+    ],
+    "deps": [
+      "cb:b578"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-07-06"
   }
 ]
