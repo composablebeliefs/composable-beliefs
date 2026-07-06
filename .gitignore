@@ -12,6 +12,9 @@ erl_crash.dump
 # ExUnit @tag :tmp_dir scratch
 /tmp/
 
+# Derived structural index (mix cb.index) - regenerable, never tracked
+/.cb-derived/
+
 # Auto-captured session transcripts, non-provenance (the nursery seeds are).
 # The renders (.md) are tracked - the hook stages them each turn so they ride
 # along with the session's commits (transcript-format's render lane). Only the
