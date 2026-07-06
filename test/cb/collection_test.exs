@@ -139,6 +139,37 @@ defmodule CB.CollectionTest do
       {:ok, reg} = Collection.registry(path)
       assert {:error, {:not_an_array, "a", _}} = Collection.load_union("a", reg)
     end
+
+    @tag :tmp_dir
+    test "unions a per-belief directory collection with a single-file dependency", %{
+      tmp_dir: dir
+    } do
+      # "a" uses the per-belief layout (a/a/<local>.json, registry entry
+      # pointing at the node directory); "b" stays a single-file array.
+      path = fixture(dir, %{"b" => %{beliefs: [belief("b:1")]}})
+
+      registry =
+        Path.join(dir, "collections.json")
+        |> File.read!()
+        |> Jason.decode!()
+        |> put_in(["collections", "a"], "a/a")
+
+      File.write!(Path.join(dir, "collections.json"), Jason.encode!(registry))
+
+      node_dir = Path.join(dir, "a/a")
+      File.mkdir_p!(node_dir)
+      File.write!(Path.join(node_dir, "2.json"), Jason.encode!(belief("a:2")))
+      File.write!(Path.join(node_dir, "1.json"), Jason.encode!(belief("a:1")))
+
+      File.write!(
+        Path.join(dir, "a/manifest.json"),
+        Jason.encode!(%{"namespace" => "a", "depends_on" => ["b"]})
+      )
+
+      {:ok, reg} = Collection.registry(path)
+      assert {:ok, result} = Collection.load_union("a", reg)
+      assert Enum.map(result.union, & &1.id) == ["a:1", "a:2", "b:1"]
+    end
   end
 
   describe "namespaces/1" do

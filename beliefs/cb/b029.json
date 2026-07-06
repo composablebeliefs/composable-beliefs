@@ -1,0 +1,57 @@
+{
+  "id": "cb:b029",
+  "type": "prescription",
+  "kind": "state-machine",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "status-lifecycle"
+  ],
+  "name": "dag-status-lifecycle",
+  "claim": "DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields",
+  "rules": [
+    {
+      "from": "active",
+      "requires": [
+        "superseded_by"
+      ],
+      "to": "superseded"
+    },
+    {
+      "from": "active",
+      "requires": [
+        "retracted_on",
+        "retracted_reason"
+      ],
+      "to": "retracted"
+    },
+    {
+      "from": "active",
+      "requires": [
+        "contract"
+      ],
+      "to": "retired"
+    }
+  ],
+  "invariants": [
+    "status is a closed enum: active | superseded | retracted | retired",
+    "superseded_by is non-null iff status is superseded",
+    "retracted_on and retracted_reason are non-null iff status is retracted",
+    "retired status is exclusive to contract-grade implications",
+    "terminal states (superseded, retracted, retired) have no outgoing transitions and are immutable except for appending to evidence"
+  ],
+  "evidence": [
+    {
+      "date": "2026-06-07",
+      "detail": "reshaped rules from BDD scenarios to {from,to,requires} transition rows for the state-machine interpreter; representational, content-preserving (the lost rule content is retained as curated invariants).",
+      "artifact": "session:2026-06-07-cb-restructure-stage2"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b302"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b053",
+  "created": "2026-04-12"
+}

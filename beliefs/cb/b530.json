@@ -1,0 +1,47 @@
+{
+  "id": "cb:b530",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "write-flow",
+    "todos"
+  ],
+  "claim": "Extend the write-flow front door to the todo collection: a sanctioned entry point for flipping a materialized item's status (open -> done, with discharge notes). The belief half of the gap closed with mix cb.evidence (b522); the todo half remains - every t-item status flip is still a hand-rolled script against todos.json, and the flip is half of every discharge.",
+  "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md",
+  "evidence": [
+    {
+      "date": "2026-06-12",
+      "detail": "Two specimens bracket the gap: the t0013 flip went through raw python (the ensure_ascii incident's other half), and the t0014 flip went through an ad-hoc mix run -e script in the very session that built the evidence front door - the b522 discharge could sanction its own evidence append but not its own todo flip. Preflight 2026-06-12: 0 contract, 2 non-contract flags (b494, b498), both bare tag_overlap with no semantic contact - b498 (canon changes through the write flow) is supportive in spirit; reviewed per b055 and proceeded.",
+      "artifact": "document:deprecated/chronicles/2026-06-12-the-front-door-opens.md"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Specimens nine and ten by the running count: the t0015/t0016 status flips in the b519 discharge went through a hand-rolled .exs (CB.JSON read, Jason pretty encode, write_atomic_raw) - serialization pinned by using the sink's own modules, but still an ad-hoc script in the session that had just used mix cb.evidence for the belief half of the same discharge. The asymmetry is now the routine shape of every close: sanctioned append on the node, hand-rolled flip on the todo.",
+      "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Discharged 2026-06-12 (materialized t0017): CB.Todos now owns the collection's serialization - tolerant read, atomic pretty write, strict open->done close that keeps materialization notes and appends discharge notes - with mix cb.todo.close fronting it (dry-run default, --notes required, refusals on unknown ids and non-open status) and the materializer's JSON sink rerouted through the same store, so the append and flip paths share one encoding and the ensure_ascii drift class is closed by construction on this collection too. Smoke-verified on a temp copy of the live file: non-ascii notes landed unescaped, untouched records byte-identical. t0017's own flip was the front door's first production run.",
+      "artifact": "code:lib/mix/tasks/cb.todo.close.ex#defmodule Mix.Tasks.Cb.Todo.Close do"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b522"
+  ],
+  "materialized": {
+    "date": "2026-06-12",
+    "todos": [
+      {
+        "action": "Provide the todo-flip front door: CB.Todos store owning the collection's read/atomic write/close (strict open -> done, materialization notes kept with discharge notes appended as a new paragraph), the mix cb.todo.close task fronting it (dry-run default, --notes required, --todos override, refusals on unknown ids and non-open status), and the materializer's JSON sink rerouted through the same store so the append path and the flip path share one serialization",
+        "id": "t0017",
+        "notes": "b530: ten specimens of hand-rolled flips counted across the closes; the flip of this very item is the front door's first production run"
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-06-12"
+}

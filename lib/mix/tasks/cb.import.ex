@@ -72,7 +72,10 @@ defmodule Mix.Tasks.Cb.Import do
     {opts, positional, _} =
       OptionParser.parse(args, strict: [write: :boolean, beliefs: :string])
 
-    if opts[:beliefs], do: Application.put_env(:cb, :beliefs_path, opts[:beliefs])
+    with {:error, message} <- CB.TaskSupport.beliefs_override(opts[:beliefs]) do
+      IO.puts(:stderr, "Error: " <> message)
+      System.halt(1)
+    end
 
     write? = opts[:write] || false
 

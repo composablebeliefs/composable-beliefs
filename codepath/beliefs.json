@@ -23,7 +23,8 @@
         "type": "doc"
       }
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "codepath:b006",
     "created": "2026-06-09"
   },
   {
@@ -224,6 +225,16 @@
         "date": "2026-06-09",
         "detail": "Accepted via human adjudication against codepath:a002. Reasoning: plan-3 Step A: the stop becomes contract-grade so the codepath asserts as well as narrates. c031 requires contract: true to live on an implication, so the implication-grade reshaping is a supersession, not an edit; the claim and anchor are carried verbatim with the assertion sentence appended. Routing only - the predicate body lives in CB.Codepath.Predicates per c037.",
         "artifact": "adjudication:human:cb-codepath-plan-3-2026-06-09"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "deps − codepath:a001 via dag-proposal 2026-07-06-3c41afa3",
+        "artifact": "session:2026-07-06-3c41afa3"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "deps + codepath:b006 via dag-proposal 2026-07-06-3c41afa3",
+        "artifact": "session:2026-07-06-3c41afa3"
       }
     ],
     "subjects": [
@@ -233,7 +244,7 @@
       }
     ],
     "deps": [
-      "codepath:a001"
+      "codepath:b006"
     ],
     "materialized": {
       "date": "2026-06-09",
@@ -432,7 +443,119 @@
       "codepath:c003",
       "codepath:c004"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "codepath:b007",
     "created": "2026-06-09"
+  },
+  {
+    "id": "codepath:b006",
+    "type": "attestation",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "belief-pipeline",
+      "codepath-stop"
+    ],
+    "claim": "Raw data - each file is one belief (id, kind, claim, deps), named by its local id. The graph is the directory of these files; composition stays in deps, with no containing array.",
+    "artifact": "code:beliefs/cb/b554.json#\"id\":@1",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Observed in beliefs/cb/ after the cb:b558 split: the graph serializes as one JSON object per file, each opening with its id field; the single-file array is gone. The anchor pins the id line of cb:b554 - the node that records the per-belief-files decision this stop narrates (explicit @1, matching the superseded stop's convention).",
+        "artifact": "code:beliefs/cb/b554.json#\"id\":@1"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Accepted via human adjudication against codepath:a001. Reasoning: The per-belief split (cb:b554 decision, executed via mix cb.migrate.split per cb:b558) removed beliefs/beliefs.json; the stop's claim that the whole graph is one file no longer holds and its code: anchor no longer resolves. Same stop, same role in the tour - only the storage reality it narrates changed.",
+        "artifact": "adjudication:human:2026-07-06-3c41afa3"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "beliefs/cb",
+        "type": "doc"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-07-06"
+  },
+  {
+    "id": "codepath:b007",
+    "type": "prescription",
+    "kind": "output-target",
+    "domain": "system",
+    "tags": [
+      "output:codepath",
+      "belief-pipeline"
+    ],
+    "name": "belief-pipeline",
+    "claim": "The belief-pipeline codepath: a narrated, branching tour of the pipeline from raw data to render (beliefs/cb/<local>.json -> Belief.from_map/1 -> Store.read/0 -> Formatter.table/2) that also runs as a test suite. Entry and step navigation live in this render-spec per cb:c044; presented interactively by the present-codepath skill, linearly by mix cb.render.codepath, and asserted by mix cb.verify.codepath (the data stop narrates only - the gradient).",
+    "rules": [
+      {
+        "entry": "data"
+      },
+      {
+        "render_steps": [
+          {
+            "belief": "codepath:b006",
+            "choices": [
+              {
+                "goto": "from-map",
+                "label": "How does raw JSON become a struct?"
+              },
+              {
+                "goto": "formatter",
+                "label": "How is it rendered back out?"
+              }
+            ],
+            "id": "data"
+          },
+          {
+            "belief": "codepath:c002",
+            "goto": "store",
+            "id": "from-map"
+          },
+          {
+            "belief": "codepath:c003",
+            "id": "store"
+          },
+          {
+            "belief": "codepath:c004",
+            "id": "formatter"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "Navigation here is render metadata; reordering this spec supersedes this belief, never the claim beliefs it references."
+    ],
+    "artifact": "document:plans/cb-codepath/plan-3-assertions-runtime.md",
+    "evidence": [
+      {
+        "date": "2026-07-06",
+        "detail": "Re-pointed the data stop at codepath:b006, the per-belief-files successor of codepath:a001 (the cb:b554 decision executed via cb:b558); pipeline naming in the claim updated from beliefs.json to beliefs/cb/<local>.json. Steps, entry, and branching otherwise unchanged from the superseded codepath:c005.",
+        "artifact": "session:2026-07-06-3c41afa3"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Accepted via human adjudication against codepath:c005. Reasoning: The render-spec's data step and deps reference codepath:a001, superseded by codepath:b006 after the per-belief split; per its own invariant, re-pointing the spec's steps is a supersession of the spec, never an edit. Same stops, same entry branch - only the data-stop reference and the raw-data naming in the claim change.",
+        "artifact": "adjudication:human:2026-07-06-3c41afa3"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "CB.Codepath",
+        "type": "module"
+      }
+    ],
+    "deps": [
+      "codepath:b006",
+      "codepath:c002",
+      "codepath:c003",
+      "codepath:c004"
+    ],
+    "status": "active",
+    "created": "2026-07-06"
   }
 ]

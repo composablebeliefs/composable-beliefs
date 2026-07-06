@@ -1,0 +1,72 @@
+{
+  "id": "cb:b043",
+  "type": "prescription",
+  "kind": "enum-registry",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "enum",
+    "artifact-scheme"
+  ],
+  "claim": "Canonical enum of artifact URI schemes. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
+  "rules": [
+    {
+      "definitions": {
+        "code": "An anchored site within a repository file. Form: code:<repo-relative-path>#<anchor>. Everything after the first '#' is one opaque literal substring anchor (the fixed-string grep target); an optional trailing '@<N>' selects the Nth match, and a literal trailing '@<digits>' is percent-encoded as '%40<digits>'. Line numbers are never stored - they resolve at render/run time. document: remains the whole-file reference.",
+        "document": "A repository file reference. Form: document:<repo-relative-path>. Files under ops/, dates/, lib/, etc.",
+        "gmail": "A Gmail thread reference. Form: gmail:<thread-id>. Resolved via Gmail API.",
+        "https": "An external URL. Form: https:<URL-rest>. Web pages, papers, external resources.",
+        "plan": "A plan/spec/intent reference. Form: plan:<id-or-descriptor>.",
+        "session": "A working session reference. Form: session:<date-or-descriptor>. Resolved via session transcript (persistence pipeline pending).",
+        "source": "A cached source document reference. Form: source:<slug>. Documents stored under ops/sources/ or similar.",
+        "user": "A direct user statement. Form: user:<name>:<date>. Internal authorship provenance."
+      },
+      "field": "artifact-scheme",
+      "values": [
+        "gmail",
+        "session",
+        "user",
+        "document",
+        "source",
+        "https",
+        "plan",
+        "code"
+      ]
+    }
+  ],
+  "invariants": [
+    "Exactly one rule entry, with field 'artifact-scheme'.",
+    "Each value matches /^[a-z][a-z0-9-]*$/.",
+    "Values are unique within the entry.",
+    "Every value has a corresponding entry in the definitions map.",
+    "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+  ],
+  "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
+  "evidence": [
+    {
+      "date": "2026-06-09",
+      "detail": "Added the 'code' scheme for within-file anchored sites per cb-codepath plan-1; the seven inherited schemes and all invariants are unchanged from cb:b040. Single-scheme supersession consistent with b397's batching discipline: the eval: scheme was deliberately not co-added - it belongs to the separate sdl / eval-provenance mission per the plan-1 decision.",
+      "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md"
+    },
+    {
+      "date": "2026-06-09",
+      "detail": "Accepted via human adjudication against cb:b040. Reasoning: cb-codepath plan-1 (user-authorized 2026-06-09) extends the closed artifact-scheme enum with the code: locator. A closed enum changes only by superseding its contract as a whole; the successor carries the full enum (seven inherited schemes plus code) and all invariants verbatim. Only code: is added in this supersession - eval: stays with the separate sdl / eval-provenance mission per the plan-1 batching decision (b397).",
+      "artifact": "adjudication:human:cb-codepath-plan-1-2026-06-09"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a mix task",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b397",
+    "cb:b398",
+    "cb:b407",
+    "cb:b467"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b066",
+  "created": "2026-06-09"
+}

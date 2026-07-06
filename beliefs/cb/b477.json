@@ -1,0 +1,30 @@
+{
+  "id": "cb:b477",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "active-implications"
+  ],
+  "claim": "Active behavioral prescriptions are not cached to a digest file; load them live from the graph by querying active prescriptions (`mix bs list prescription`). Per cb:b386, a digest whose freshness depends on remembering to regenerate it is an antipattern that embeds the staleness it was meant to solve - render live from the DAG instead.",
+  "artifact": "session:2026-06-10-cb-schema-v2-landing",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Accepted via human adjudication against cb:b445. Reasoning: cb-schema-v2: the query token changes with the type rename (bs list implication -> bs list directive); content otherwise unchanged.",
+      "artifact": "adjudication:human:session:2026-06-10-cb-schema-v2-landing"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b386"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

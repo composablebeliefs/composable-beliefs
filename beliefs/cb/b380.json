@@ -1,0 +1,29 @@
+{
+  "id": "cb:b380",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "convention:assert-skill"
+  ],
+  "claim": "Implication lifecycle uses two orthogonal fields: `status` (active | superseded | retracted, per b029) describes whether the claim is still true; `materialized` (null | {plan, date}) describes whether the action was executed. An active-and-unmaterialized implication is still-actionable work; an active-and-materialized implication has been discharged at time T and remains true as a principle. This preserves b029's closed status enum while giving discrete implications a first-class discharged state via the `materialized` field, which a363 and downstream implications already use. Supersedes a373, which incorrectly proposed `materialized` as a fifth status value - a proposal authored without preflight DAG search and therefore without consensus.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "A predecessor belief proposed materialization as a status value; the status enum is closed (active | superseded | retracted | retired, with retired exclusive to contracts). The conflict was surfaced in review after authoring, not before. The orthogonal-field model matches existing usage in earlier implications.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "belief-authoring",
+      "type": "skill"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-04-21"
+}

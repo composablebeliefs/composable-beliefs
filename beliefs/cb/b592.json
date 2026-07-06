@@ -1,0 +1,43 @@
+{
+  "id": "cb:b592",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "council",
+    "review",
+    "nursery",
+    "provenance"
+  ],
+  "claim": "A council round is distilled at close into the target proto-belief: settled decisions become its Open items and Mint-manifest rows, rejected alternatives fold into a dated rejected-because block, and the raw exchange is referenced by `commit:`/PR and never copied into the document. The distilled plan, not the transcript, is what an implementer receives.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Staged and grounded in the council-mechanism proto-belief document: distillation keeps the proto-belief the single authoritative surface (one document per separable matter) and leaves the raw exchange cited, not copied - the anti-digest discipline applied to review rounds.",
+      "artifact": "document:beliefs/nursery/council-mechanism.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Demonstrated by this rule's own founding round: the route-tagging audit's findings were dispositioned into route-tagging.md's Audit dispositions block and the full report relocated to PR #20 as a comment, cited, never committed.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the council review workflow",
+      "type": "workflow"
+    }
+  ],
+  "deps": [
+    "cb:b569",
+    "cb:b386"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-07-06"
+}

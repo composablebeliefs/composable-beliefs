@@ -1,0 +1,31 @@
+{
+  "id": "cb:b556",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "lifecycle:discrete",
+    "per-belief-files"
+  ],
+  "claim": "Make CB.Belief.Store.read directory-aware: when the configured graph path resolves to a per-belief directory, glob and parse <ns>/<local>.json sorted by id; keep the single-file array as fallback for unsplit collections. The prototype proved the loaded graph byte-identical to the single-file load.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Discharged 2026-07-06: Store.read is directory-aware - a directory path loads one node per <local>.json file sorted naturally by id (b1000 after b999, settling the digit-rollover hazard), a .json path keeps the single-file array as the fallback for unsplit collections, and CB.Config's default resolves to beliefs/cb once the split exists. Layout equivalence covered by test (the same collection loads identically from either layout).",
+      "artifact": "commit:45f8587337bc6bdaea0488e282189f1bbf63237c"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "CB.Belief.Store",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b554",
+    "cb:b555"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-06-25"
+}

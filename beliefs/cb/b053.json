@@ -1,0 +1,60 @@
+{
+  "id": "cb:b053",
+  "type": "prescription",
+  "kind": "state-machine",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "status-lifecycle"
+  ],
+  "name": "dag-status-lifecycle",
+  "claim": "DAG node status follows a directed transition: active -> superseded | retracted | retired, with all non-active states terminal and requiring the appropriate linkage fields; retired is the prescription-only exit - a withdrawn rule, never a falsified claim",
+  "rules": [
+    {
+      "from": "active",
+      "requires": [
+        "superseded_by"
+      ],
+      "to": "superseded"
+    },
+    {
+      "from": "active",
+      "requires": [
+        "retracted_on",
+        "retracted_reason"
+      ],
+      "to": "retracted"
+    },
+    {
+      "from": "active",
+      "requires": [],
+      "to": "retired"
+    }
+  ],
+  "invariants": [
+    "status is a closed enum: active | superseded | retracted | retired",
+    "superseded_by is non-null iff status is superseded",
+    "retracted_on and retracted_reason are non-null iff status is retracted",
+    "retired status is exclusive to prescriptions - descriptive claims are superseded or retracted, never retired; an inference is falsified, a prescription is violated or withdrawn",
+    "terminal states (superseded, retracted, retired) have no outgoing transitions and are immutable except for appending to evidence"
+  ],
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Accepted via human adjudication against cb:b029. Reasoning: cb-schema-v2: retired widens from contract-grade implications to any directive (a withdrawn rule retires whether or not it carries machine-checkable teeth); the contract-field transition requirement drops accordingly. Direction-of-fit grounding via cb:b471.",
+      "artifact": "adjudication:human:session:2026-06-10-cb-schema-v2-landing"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b302",
+    "cb:b471"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

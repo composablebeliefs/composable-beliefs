@@ -1,0 +1,30 @@
+{
+  "id": "cb:b174",
+  "type": "attestation",
+  "kind": "composable-belief",
+  "tags": [],
+  "name": "implication-contract-enforcement-boundary",
+  "who": null,
+  "claim": "Implications are behavioral directives - they shape how the agent reasons and acts. They work through the prompt (surfaced via _patches.md). They're \"soft\" in the sense that compliance depends on the agent reading and following them. But they're durable - they survive session boundaries and compose with deps that explain why the rule exists. Contracts are structural invariants - they're verified by code (verify_against_contract/0). A contract that says \"loan status transitions must follow this state machine\" is testable because the Elixir module hardcodes the transitions and the test compares them to the DAG definition. If code drifts from the contract, the test fails. That's a strict guarantee. The boundary is the enforcement mechanism: implications are enforced by the prompt, contracts are enforced by code.",
+  "artifact": "user:2026-03-27",
+  "evidence": [
+    {
+      "date": "2026-03-27",
+      "detail": "The user articulated the implication/contract distinction. Some constraints live at the prompt level - they are not enforced by code, but by the skill instructions. An implication is the right vehicle. If a validation module were built, the implication could be elevated to a contract. This clarified the enforcement boundary between the two kinds.",
+      "artifact": "user:2026-03-27"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "assertions",
+      "type": "system"
+    }
+  ],
+  "deps": [],
+  "materialized": null,
+  "status": "active",
+  "superseded_by": null,
+  "retracted_on": null,
+  "retracted_reason": null,
+  "created": "2026-03-27"
+}

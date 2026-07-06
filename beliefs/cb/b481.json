@@ -1,0 +1,29 @@
+{
+  "id": "cb:b481",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "schema"
+  ],
+  "claim": "Schema rules in force: no `confidence` field; no `patch` kind; no separate `implication` prose field, since meaning is carried by `claim` plus `deps`; attestations ground their claim with an `artifact` URI and dated `evidence`; non-contract prescriptions ground in deps or a stipulation artifact; and contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per b056).",
+  "artifact": "session:2026-06-10-cb-schema-v2-landing",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "CLAUDE.md schema-rules sentence updated for v2: the b038 reference moves to its successor b056 and the D4 grounding rule joins the in-force list.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    },
+    {
+      "date": "2026-06-10",
+      "detail": "Accepted via human adjudication against cb:b452. Reasoning: cb-schema-v2: the referenced schema-discipline contract id changes with the b038 supersession; the grounding rule joins the rules in force.",
+      "artifact": "adjudication:human:session:2026-06-10-cb-schema-v2-landing"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "superseded",
+  "superseded_by": "cb:b565",
+  "created": "2026-06-10"
+}

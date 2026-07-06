@@ -1,0 +1,27 @@
+{
+  "id": "cb:b576",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "id-protocol",
+    "docs"
+  ],
+  "claim": "Regenerate docs/glossary.md properly via mix cb.generate.glossary in an environment where the belief-collections registry (../belief-collections/collections.json) is present. The migration applied the letter-swap to the generated file in place - equivalent for id references, but not a true regeneration - so the file is correct today and this item exists to restore the generated-not-edited invariant.",
+  "artifact": "document:beliefs/nursery/cb-id-b-migration.md",
+  "evidence": [
+    {
+      "date": "2026-07-02",
+      "detail": "Deferred from the cb-id-b-migration (PR #10): the generator dereferences the sibling registry, absent from the migration environment. Materialized as a desk obligation on operator instruction.",
+      "artifact": "commit:eb8cb76dc054750ac97f087fe8be1238c69becc2"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b566"
+  ],
+  "status": "active",
+  "created": "2026-07-02"
+}

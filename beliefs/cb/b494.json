@@ -1,0 +1,30 @@
+{
+  "id": "cb:b494",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "design",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "dag-schema",
+    "consensual-primitives"
+  ],
+  "claim": "Design the consensual-primitives mechanism: when multiple sources state the same belief in different wording, the graph holds per-source attestation primitives plus a consensus compound carrying the shared formulation. Preflight's supportive-match bucket is the discovery mechanism; evaluate a new adjudication outcome (attest-and-corroborate: add the attestation and supersede the consensus compound with one more dep) alongside reject_dep_tie.",
+  "artifact": "session:2026-06-10-cb-schema-design-threads",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Raised by Mark 2026-06-10 in the post-README schema-design discussion, deferred behind the four-type schema change; persisted to the graph at stasis entry per b489 (previously living only in session memory). The alternative shape - one primitive, N evidence entries - fights the singular artifact field and evidence immutability. Preflight 2026-06-11: dag-schema tag-family overlap only (17 contract-level / 32 schema); reviewed per b055 - the item proposes future design work and contradicts no active structure; the b467/b040 review precedent applies.",
+      "artifact": "session:2026-06-10-cb-schema-design-threads"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+}

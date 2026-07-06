@@ -1,0 +1,15 @@
+{
+  "id": "cb:b138",
+  "type": "inference",
+  "kind": "design-rationale",
+  "tags": [],
+  "claim": "The contract layer exists because: (1) implicit contracts were scattered across structs, skills, and the agent-instruction file with no unified representation (b133), (2) contracts must be domain-bound, surviving code rewrites while remaining mechanically verifiable (b134), (3) the same contract representation must govern behavior across different substrates - compiled code and LLM reasoning (b135). This positions contracts as the abstraction layer between domain expertise and implementation.",
+  "subjects": [],
+  "deps": [
+    "cb:b133",
+    "cb:b134",
+    "cb:b135"
+  ],
+  "status": "active",
+  "created": "2026-03-23"
+}

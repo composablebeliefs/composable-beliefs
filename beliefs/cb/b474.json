@@ -1,0 +1,28 @@
+{
+  "id": "cb:b474",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "authoring"
+  ],
+  "claim": "Strict-aggregate doctrine: a compound's claim states exactly what its deps jointly state. Commentary beyond the conjunction - significance, interpretation, generalization - is inference content; when found on a compound it is trimmed by superseding with the conjunction-only claim and, where the commentary deserves to survive, minting an inference that deps on the compound.",
+  "artifact": "plan:cb-schema-v2",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "D3 resolved as trim: tolerating descriptive commentary within subject containment reopens the boundary the inference type exists to close. First application: sdl:a3's second sentence trims into the a006 split during the v2 migration. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

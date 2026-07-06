@@ -1,0 +1,46 @@
+{
+  "id": "cb:b588",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "nursery",
+    "threads",
+    "provenance",
+    "route-tagging",
+    "lifecycle:recurring"
+  ],
+  "claim": "A finalized thread body is route-tagged at finalization: each paragraph carries zero-or-more `<routes ref=\"...\">` refs, each a canonical artifact id (never a free topic name); refs are multi-valued on one element (no overlapping tags); the routed-to sink document is the aggregating ref and incidental belief/code ids are non-aggregating back-links; tagging runs on the frozen body as a motion of the same pass that routes content and updates the ledger.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Staged and grounded in the route-tagging proto-belief document: the tag is the located, auditable form of the selection act (the boundary lives in the thread), keyed on canonical artifact ids so the cross-thread join is exact; the sink/back-link split is the audit's F1 disposition. Demonstrated end to end on the 2026-07-03-end-skill-round-trip retrofit (18 regions, none crossing a turn boundary), verified by mix cb.verify.route_tags.",
+      "artifact": "document:beliefs/archive/route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Deliberation thread: the design session that settled the tag key (artifact id over free topic name), granularity (per-paragraph, multi-ref, set-membership), placement (frozen body, at finalization), and the freeze trigger.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-04-route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "nursery threads",
+      "type": "workspace"
+    }
+  ],
+  "deps": [
+    "cb:b572",
+    "cb:b583",
+    "cb:b569",
+    "cb:b582"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-07-06"
+}

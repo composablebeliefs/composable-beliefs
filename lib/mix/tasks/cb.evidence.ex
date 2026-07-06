@@ -39,7 +39,6 @@ defmodule Mix.Tasks.Cb.Evidence do
 
   use Mix.Task
 
-  alias CB.Belief.Graph
   alias CB.Belief.Mutation
   alias CB.Belief.Store
 
@@ -61,7 +60,9 @@ defmodule Mix.Tasks.Cb.Evidence do
       halt("unknown options: #{flags}")
     end
 
-    if path = opts[:beliefs], do: Application.put_env(:cb, :beliefs_path, path)
+    with {:error, message} <- CB.TaskSupport.beliefs_override(opts[:beliefs]) do
+      halt(message)
+    end
 
     id =
       case positional do
@@ -118,18 +119,7 @@ defmodule Mix.Tasks.Cb.Evidence do
   defp put_date(mutation, nil), do: mutation
   defp put_date(mutation, date), do: Map.put(mutation, :date, date)
 
-  defp resolve(beliefs, id) do
-    case Graph.resolve_id(beliefs, id) do
-      {:ok, canonical} ->
-        {:ok, canonical}
-
-      {:error, :not_found} ->
-        {:error, "no belief with id: #{id}"}
-
-      {:error, {:ambiguous, ids}} ->
-        {:error, "ambiguous id '#{id}' matches: #{Enum.join(ids, ", ")} - qualify the namespace"}
-    end
-  end
+  defp resolve(beliefs, id), do: CB.TaskSupport.resolve(beliefs, id)
 
   defp report(before, updated, canonical) do
     belief = Enum.find(updated, &(&1.id == canonical))
@@ -185,15 +175,7 @@ defmodule Mix.Tasks.Cb.Evidence do
   Validate the optional `--date` value as an ISO 8601 date. `nil`
   passes through - the mutation defaults to today.
   """
-  @spec validate_date(String.t() | nil) :: {:ok, String.t() | nil} | {:error, String.t()}
-  def validate_date(nil), do: {:ok, nil}
-
-  def validate_date(date) do
-    case Date.from_iso8601(date) do
-      {:ok, _} -> {:ok, date}
-      {:error, _} -> {:error, "--date must be an ISO date (YYYY-MM-DD), got: #{date}"}
-    end
-  end
+  defdelegate validate_date(date), to: CB.TaskSupport
 
   defp usage do
     "Usage: mix cb.evidence <belief-id> --detail \"...\" --artifact <uri> [--date YYYY-MM-DD] [--write]"

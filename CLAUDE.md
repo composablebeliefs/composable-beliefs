@@ -28,7 +28,7 @@ There are no confidence scores. Subjective scores synthesized without a determin
 
 ## Operations
 
-Author beliefs through the write flow, never by hand-editing the graph file: `mix cb.preflight --file <f>` checks a proposed belief for conflicts, `mix cb.adjudicate --file <f>` resolves them, and `mix cb.import --file <f>` writes the belief. Two further doors complete the sanctioned write surface: `mix cb.evidence <id> --detail <text> --artifact <uri>` appends a dated evidence entry to an existing belief - the one sanctioned in-place growth point on an immutable node - and `mix cb.todo.close <id> --notes <text>` flips a materialized item open -> done with discharge notes. Both are dry-run by default and write only with `--write`.
+Author beliefs through the write flow, never by hand-editing the graph files: `mix cb.preflight --file <f>` checks a proposed belief for conflicts, `mix cb.adjudicate --file <f>` resolves them, and `mix cb.import --file <f>` writes the belief. Three further doors complete the sanctioned write surface: `mix cb.evidence <id> --detail <text> --artifact <uri>` appends a dated evidence entry to an existing belief - the one sanctioned in-place growth point on an immutable node; `mix cb.todo.close <id> --notes <text>` flips a materialized item open -> done with discharge notes; and `mix cb.supersede <id> --by <successor-id>` flips a belief to an existing successor - the deferred-supersession move, where adjudication cannot serve because it always mints a new node. All three are dry-run by default and write only with `--write`.
 
 Verify with the graph's own tooling: `mix cb.verify.schema` checks a collection against the contracts it carries, `mix cb.verify.collection <namespace>` checks it together with its declared dependency collections, and `mix cb.generate.claude_md --check` confirms this file is current.
 
@@ -44,7 +44,7 @@ Skills coordinate authoring, query, and presentation: `/assert` adds beliefs fro
 
 ## Collections
 
-The framework ships only its own `cb:` graph (`beliefs/beliefs.json`). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` and verify one against its declared deps with `mix cb.verify.collection <namespace>`.
+The framework ships only its own `cb:` graph (`beliefs/cb/`, one JSON file per node). Worked examples and other collections live in belief-collections (staged at `../belief-collections/`), each with a `manifest.json` declaring its namespace and cross-namespace `depends_on`; the `lib:` lending-library is the gentle on-ramp. Query a collection with `mix bs --beliefs <path>` - a single `beliefs.json` file or a per-belief directory both work - and verify one against its declared deps with `mix cb.verify.collection <namespace>`.
 
 ## Formatting
 

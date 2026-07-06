@@ -1,0 +1,27 @@
+{
+  "id": "cb:b467",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "system",
+  "tags": [
+    "cb-codepath",
+    "artifact-scheme"
+  ],
+  "claim": "The cb-codepath plan set (plans/cb-codepath/) settles the code-anchoring design: a codepath is a cb collection; a claim anchors to a within-file site via code:<repo-relative-path>#<anchor>, where everything after the first '#' is one opaque literal substring anchor with an optional trailing '@<N>' occurrence selector (a literal trailing '@<digits>' is percent-encoded as '%40<digits>'); line numbers are never stored and resolve at render/run time; a missing anchor is a maintenance signal and multiple matches render against the first match with a tighten-this-anchor warning; ordering and branching live in an output-target render-spec (entry plus render_steps rows), never in the claim beliefs.",
+  "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
+  "evidence": [
+    {
+      "date": "2026-06-09",
+      "detail": "plans/cb-codepath/ (README decision record + plan-0..3) landed 2026-06-09 after the design discussion collapsed the standalone code-walkthrough plugin into cb as the single schema authority. plan-1 pins the code: locator grammar (first-# split, opaque anchor, @N occurrence, %40 escape, first-match-plus-warning on multiples) and the codepath output-target shape; plan-0 (fold + rename) executed the same day. Preflight 2026-06-09 surfaced tag/claim-overlap matches only (dag-schema family); reviewed against b026-b042: no semantic conflict - the one genuine conflict is b040's enum closure, resolved by the adjudicated b040 supersession this primitive feeds.",
+      "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-codepath/plan-1-schema-groundwork.md",
+      "type": "doc"
+    }
+  ],
+  "status": "active",
+  "created": "2026-06-09"
+}

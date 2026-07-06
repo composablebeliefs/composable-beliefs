@@ -80,26 +80,50 @@ defmodule Mix.Tasks.Cb.Generate.Glossary do
   end
 
   # ---- belief index: id -> %{belief, line, file} across all collections ----
+  # A collection location is a single beliefs.json array or a per-belief
+  # directory of <local>.json node files (cb:b554); the source ref points
+  # at the array line or the node file's id line respectively.
   defp load_belief_index(amieval, docs) do
     coldir = Path.join(amieval, "belief-collections")
     reg = Jason.decode!(File.read!(Path.join(coldir, "collections.json")))["collections"]
 
     Enum.reduce(reg, %{}, fn {_ns, rel}, acc ->
-      file = Path.expand(rel, coldir)
+      path = Path.expand(rel, coldir)
 
-      if File.exists?(file) do
-        raw = File.read!(file)
-        line_of = line_index(raw)
-        rel_to_docs = rel_path(docs, file)
+      cond do
+        File.dir?(path) -> index_node_dir(path, docs, acc)
+        File.exists?(path) -> index_array_file(path, docs, acc)
+        true -> acc
+      end
+    end)
+  end
 
-        raw
-        |> Jason.decode!()
-        |> Enum.reduce(acc, fn b, a ->
-          id = b["id"]
-          if Map.has_key?(a, id), do: a, else: Map.put(a, id, %{belief: b, line: line_of[id], file: rel_to_docs})
-        end)
+  defp index_array_file(file, docs, acc) do
+    raw = File.read!(file)
+    line_of = line_index(raw)
+    rel_to_docs = rel_path(docs, file)
+
+    raw
+    |> Jason.decode!()
+    |> Enum.reduce(acc, fn b, a ->
+      id = b["id"]
+      if Map.has_key?(a, id), do: a, else: Map.put(a, id, %{belief: b, line: line_of[id], file: rel_to_docs})
+    end)
+  end
+
+  defp index_node_dir(dir, docs, acc) do
+    {:ok, files} = CB.JSON.list_dir(dir)
+
+    Enum.reduce(files, acc, fn file, a ->
+      raw = File.read!(file)
+      b = Jason.decode!(raw)
+      id = b["id"]
+
+      if is_nil(id) or Map.has_key?(a, id) do
+        a
       else
-        acc
+        line = line_index(raw)[id]
+        Map.put(a, id, %{belief: b, line: line, file: rel_path(docs, file)})
       end
     end)
   end

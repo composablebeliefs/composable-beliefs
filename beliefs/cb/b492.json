@@ -1,0 +1,29 @@
+{
+  "id": "cb:b492",
+  "type": "prescription",
+  "kind": "rule",
+  "domain": "system",
+  "tags": [
+    "positions",
+    "homing",
+    "distro"
+  ],
+  "claim": "Framework-policy position documents live in this repo (positions/): cb: beliefs ground in repo-relative document: URIs, and a distributable framework must resolve every artifact its own graph cites. The homing boundary is unchanged - claims about CB-the-system land in cb:, claims about the world or mission land in collections.",
+  "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "User decision in the wrap-up-to-stasis discussion (the design intention and policy of the system should live within the system), sharpened by the distro-resolvability argument: a cb: node citing a document in a sibling repo points across a boundary the standalone distro does not ship. Precedent: positions/2026-06-10-code-as-operational-substrate.md -> b484-b488.",
+      "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "positions/2026-06-11-obligation-lives-in-the-graph.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+}

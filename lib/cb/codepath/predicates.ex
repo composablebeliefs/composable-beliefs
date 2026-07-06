@@ -20,7 +20,6 @@ defmodule CB.Codepath.Predicates do
   alias CB.Belief
   alias CB.Belief.Formatter
   alias CB.Belief.Store
-  alias CB.{Config, JSON}
 
   @doc """
   Resolve a routed predicate name to a zero-arity function.
@@ -87,7 +86,7 @@ defmodule CB.Codepath.Predicates do
   to the original map (the `_keys` bookkeeping preserves field presence).
   """
   def from_map_roundtrips? do
-    case JSON.read(Config.beliefs_path()) do
+    case Store.read_raw() do
       {:ok, raw} when is_list(raw) ->
         Enum.all?(raw, fn map ->
           map

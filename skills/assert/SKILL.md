@@ -16,7 +16,7 @@ See `docs/guide/README.md` for the canonical system reference.
 
 1. **Read** the referenced artifact, entity, or conversation context.
 
-2. **Load existing assertions** from `beliefs/beliefs.json`. Note the last ID to generate sequential new IDs.
+2. **Load existing assertions** from the belief graph (`beliefs/cb/`, one file per node; `mix bs list all`). Note the last ID to generate sequential new IDs.
 
 3. **Identify attestations.** Extract non-reducible facts worth asserting. Each attestation:
    - Has `type: "attestation"`
@@ -63,7 +63,7 @@ See `docs/guide/README.md` for the canonical system reference.
 
    Capture each adjudication as a session-local record with: `proposed` (the proposed belief shape), `conflicting_id`, `outcome` (one of the three), `reasoning` (user text). Hold these in the conversation for the adjudication step. Run `mix cb.adjudicate --file <adjudication.json>` to process adjudications before Step 9.
 
-9. **Write** to `beliefs/beliefs.json` after user approval. **Do not write any belief whose preflight surfaced an unresolved conflict** - every conflict must have a captured adjudication first. Contract-level conflicts additionally require explicit user adjudication per b380.
+9. **Write** to the belief graph (via the import/adjudicate doors) after user approval. **Do not write any belief whose preflight surfaced an unresolved conflict** - every conflict must have a captured adjudication first. Contract-level conflicts additionally require explicit user adjudication per b380.
 
 10. **No digest to regenerate.** Per cb:b386 and cb:b477, active prescriptions are read live from the graph (`mix bs list prescription`); the framework keeps no cached digest to update after authoring.
 
@@ -79,4 +79,4 @@ See `docs/guide/README.md` for the canonical system reference.
 
 ## Data protection
 
-Writing to `beliefs/beliefs.json` requires explicit user authorization. Always present proposed assertions and get confirmation before writing.
+Writing to the belief graph under `beliefs/` requires explicit user authorization. Always present proposed assertions and get confirmation before writing.

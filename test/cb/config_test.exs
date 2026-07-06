@@ -37,6 +37,12 @@ defmodule CB.ConfigTest do
   end
 
   test "falls back to the default path when neither is set" do
-    assert String.ends_with?(Config.beliefs_path(), "beliefs/beliefs.json")
+    # The default is the per-belief directory once the split exists
+    # (cb:b554), the single-file array before it.
+    if File.dir?(Path.join(CB.repo_root(), "beliefs/cb")) do
+      assert String.ends_with?(Config.beliefs_path(), "beliefs/cb")
+    else
+      assert String.ends_with?(Config.beliefs_path(), "beliefs/beliefs.json")
+    end
   end
 end

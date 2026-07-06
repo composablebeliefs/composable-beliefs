@@ -1,0 +1,19 @@
+{
+  "id": "cb:b133",
+  "type": "attestation",
+  "kind": "design-observation",
+  "tags": [],
+  "claim": "Contracts fill the abstraction gap between literal code and plain English for supervising agentic coding. The system had implicit contracts scattered across three representations: structs (shape without behavioral invariants), skills (workflow without guarantees to callers), and the agent-instruction file (policy without mechanical verification). Contracts make these guarantees explicit, machine-readable, and verifiable.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Code and file trees are the wrong abstraction layer for a person supervising agentic coding: literal code is too low-level, plain English has no guarantees, contracts fill the gap. The system had implicit contracts scattered across structs (shape without behavioral invariants), skills (workflow without guarantees), and instruction files (policy without mechanical verification). Contracts make these guarantees explicit, machine-readable, and verifiable.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-03-23"
+}

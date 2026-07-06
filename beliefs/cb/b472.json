@@ -1,0 +1,27 @@
+{
+  "id": "cb:b472",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2"
+  ],
+  "claim": "In schema v2, type is a near-function of three checkable properties: type = f(mood(kind), grounding(artifact/deps), scope(subjects)). Mood is bound by the kind-type derivation table contract; grounding separates the descriptive types (artifact with no deps means primitive, deps mean compound or inference); subject containment separates compound from inference - a compound's subjects must be a subset of the union of its deps' subjects, with empty subjects passing vacuously, while an inference is licensed to widen scope. What stays judgment: choosing the kind, and the residual gray zone where a claim is subject-contained yet synthesizing; the write flow owns that residue.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "The type function elevates the inference/directive boundary from authoring discipline to enforcement: the kind-type table is a derivation-table contract interpreted by CB.Belief.Contract.Table and checked by the verifier by role; subject containment is a deterministic verifier check on compounds. Containment earns its power only where subjects are populated (six-subject eval collections, agent-behavior); in subject-sparse graphs the compound triage stays judgment. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

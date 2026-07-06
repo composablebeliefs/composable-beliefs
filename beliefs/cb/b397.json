@@ -1,0 +1,33 @@
+{
+  "id": "cb:b397",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "enum-discipline"
+  ],
+  "claim": "Enum-shaped fields on beliefs (kind, domain, artifact-scheme, others as introduced) take values from sets declared in dedicated contracts. The constraint that a field's value is in a given enum is carried by the field's master contract (b038). The enumeration of allowed values is carried by a dedicated enum contract per field (b039 for kind, b040 for artifact-scheme, b041 for domain). The two layers compose via deps. Adding an enum value supersedes the enum contract for that field.",
+  "artifact": "session:2026-05-15-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-15",
+      "detail": "The kind field had drifted to dozens of distinct values with clear duplication. Enum-constraint via the contract layer prevents recurrence.",
+      "artifact": "session:2026-05-15-schema-discipline"
+    },
+    {
+      "date": "2026-05-17",
+      "detail": "Re-typed during a categorization sweep.",
+      "artifact": "session:2026-05-17-policy-categorization"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-15"
+}

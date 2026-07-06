@@ -1,0 +1,25 @@
+{
+  "id": "cb:b484",
+  "type": "inference",
+  "kind": "design-observation",
+  "domain": "design",
+  "tags": [
+    "design-policy",
+    "substrate"
+  ],
+  "claim": "Code is not an abstraction layer that persists; it is the operational substrate - the only artifact in the system whose meaning is enforced by execution.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Stated by the agent in the 2026-06-10 amieval discussion on anchored-answer schemas, against the claim that IDEs and code-reading become unnecessary as work migrates to NL agent discussion; the user directed verbatim conversion to a position and extraction into cb:. Grounded in b465's verification-not-generation principle: code is where enforcement lives, drift surfaces as a failing test.",
+      "artifact": "session:2026-06-10-substrate-position-discussion"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b465"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

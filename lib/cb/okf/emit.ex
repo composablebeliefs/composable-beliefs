@@ -6,7 +6,7 @@ defmodule CB.Okf.Emit do
   carries over. The emitted bundle is designed to pass `mix okf.validate`.
 
   This is a lossy projection - nested evidence/subjects are not represented in the
-  frontmatter subset; the canonical store remains `beliefs/beliefs.json`. The CB
+  frontmatter subset; the canonical store remains the belief graph (`beliefs/cb/`, one file per node). The CB
   structural type is preserved in a `cb_type` field so a CB-aware reader can recover it.
 
   OKF's published type vocabulary (`okf/standard/types.md`) is its own and does not

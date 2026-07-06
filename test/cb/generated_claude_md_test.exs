@@ -17,13 +17,14 @@ defmodule CB.GeneratedClaudeMdTest do
   """
   use ExUnit.Case, async: true
 
-  alias CB.{Belief, JSON, OutputTarget}
+  alias CB.{Belief, OutputTarget}
+  alias CB.Belief.Store
 
   @claude_md_tag "output:claude-md"
 
   # {store path relative to repo root, expected output_path}
   @targets [
-    {"beliefs/beliefs.json", "CLAUDE.md"},
+    {"beliefs/cb", "CLAUDE.md"},
     {"okf/beliefs.json", "okf/CLAUDE.md"}
   ]
 
@@ -50,14 +51,14 @@ defmodule CB.GeneratedClaudeMdTest do
 
       assert File.read!(abs) == content,
              "#{@file_rel} is stale - run `mix cb.generate.claude_md" <>
-               unless(@store_rel == "beliefs/beliefs.json", do: " --beliefs #{@store_rel}", else: "") <>
+               unless(@store_rel == "beliefs/cb", do: " --beliefs #{@store_rel}", else: "") <>
                "` to regenerate"
     end
   end
 
   defp load_store(path) do
-    {:ok, data} = JSON.read(path)
-    Enum.map(data, &Belief.from_map/1)
+    {:ok, beliefs} = Store.read(path)
+    beliefs
   end
 
   defp claude_md_target?(%Belief{status: "active", kind: "output-target", tags: tags}),

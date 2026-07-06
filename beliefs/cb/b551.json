@@ -1,0 +1,38 @@
+{
+  "id": "cb:b551",
+  "type": "prescription",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "positions",
+    "schema",
+    "anchoring",
+    "terms",
+    "lifecycle:recurring"
+  ],
+  "claim": "A position may carry a terms block: entries of shape {term, definition, anchor?}. A term naming a code construct anchors to its defining site, so the definition is a navigable stop; prose-only definitions remain valid for terms with no code referent.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-12",
+      "detail": "Pinned in execution of b511 from the position's design-rationale appendix (appended 2026-06-11 at user direction after the b511 self-bootstrap audit found the rationale reachable only through an unresolvable session: slug - the b518 gap). The terms block is the one b511 format element not yet mechanized in skills/position/SKILL.md; it stays optional in the format until a worked instance needs it.",
+      "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md"
+    },
+    {
+      "date": "2026-06-23",
+      "detail": "Dep repoint only: cb:b526 (anchored-position format) was superseded by cb:b550 during the b043->b066 stale-reference refresh, leaving this terms-block directive depping a superseded parent. Repoint dep cb:b526 -> cb:b550; the terms-block format is unchanged.",
+      "artifact": "session:2026-06-23-c066-stale-ref-refresh"
+    },
+    {
+      "date": "2026-06-23",
+      "detail": "Accepted via human adjudication against cb:b527. Reasoning: Repoint the dep cb:b526 -> cb:b550 after b526 was superseded in the b043->b066 stale-ref refresh. The terms-block format is unchanged; this clears the cascade tail.",
+      "artifact": "adjudication:human:2026-06-23-c066-stale-ref-refresh"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b550"
+  ],
+  "status": "active",
+  "created": "2026-06-23"
+}

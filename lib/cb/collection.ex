@@ -2,11 +2,14 @@ defmodule CB.Collection do
   @moduledoc """
   Resolve and load belief collections through a local registry.
 
-  A collection is a `beliefs.json` graph in a declared `namespace` (`cb:`,
-  `lib:`, `agent-behavior:`, …) with a sibling `manifest.json` carrying its
+  A collection is a belief graph in a declared `namespace` (`cb:`, `lib:`,
+  `agent-behavior:`, …) - either a single `beliefs.json` array or a
+  per-belief directory of `<local>.json` node files (cb:b554) - with a
+  `manifest.json` in the parent directory of that location carrying its
   `namespace`, `description`, and cross-namespace `depends_on`. A registry
-  (`collections.json`: `namespace -> path-to-beliefs.json`, relative to the
-  registry file) maps namespaces to graphs.
+  (`collections.json`: `namespace -> path-to-collection`, relative to the
+  registry file) maps namespaces to graphs; `CB.Belief.Store` owns the
+  file-vs-directory distinction.
 
   Collections are not standalone: a dependent collection's beliefs reference
   beliefs in the namespaces it `depends_on`. So loading a collection for
@@ -26,6 +29,7 @@ defmodule CB.Collection do
   """
 
   alias CB.{Belief, JSON}
+  alias CB.Belief.Store
 
   # Registry location relative to the framework root. A staging-monorepo
   # convenience; the durable declarations live in each collection's manifest.
@@ -84,7 +88,7 @@ defmodule CB.Collection do
   @spec namespaces(Registry.t()) :: [String.t()]
   def namespaces(%Registry{collections: map}), do: map |> Map.keys() |> Enum.sort()
 
-  @doc "Absolute path to a namespace's `beliefs.json`."
+  @doc "Absolute path to a namespace's collection (a `beliefs.json` file or a per-belief directory)."
   @spec collection_path(String.t(), Registry.t()) :: {:ok, String.t()} | {:error, term()}
   def collection_path(ns, %Registry{collections: map, dir: dir}) do
     case Map.fetch(map, ns) do
@@ -142,9 +146,9 @@ defmodule CB.Collection do
   @spec load(String.t(), Registry.t()) :: {:ok, [Belief.t()]} | {:error, term()}
   def load(ns, %Registry{} = reg) do
     with {:ok, path} <- collection_path(ns, reg) do
-      case JSON.read(path) do
-        {:ok, data} when is_list(data) -> {:ok, Enum.map(data, &Belief.from_map/1)}
-        {:ok, _} -> {:error, {:not_an_array, ns, path}}
+      case Store.read_raw(path) do
+        {:ok, data} -> {:ok, Enum.map(data, &Belief.from_map/1)}
+        {:error, :not_a_list} -> {:error, {:not_an_array, ns, path}}
         {:error, reason} -> {:error, {:collection_unreadable, ns, path, reason}}
       end
     end

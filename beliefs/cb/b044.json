@@ -1,0 +1,47 @@
+{
+  "id": "cb:b044",
+  "type": "prescription",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "output:codepath",
+    "cb-codepath"
+  ],
+  "claim": "A codepath output-target is an output-target contract (kind 'output-target', tagged 'output:codepath') whose rules carry an 'entry' step id and 'render_steps' rows of shape {id, belief, goto?, choices?}. Each row's belief resolves to a belief anchored by a code: artifact; navigation (entry/goto/choices) is render metadata that never enters deps and never lives in the claim beliefs; deps equals the union of the rows' belief ids. Enforced statically by mix cb.verify.schema's codepath output-targets check; rendering the steps is the codepath renderer's job.",
+  "rules": [],
+  "invariants": [
+    "A codepath output-target has kind 'output-target' and tag 'output:codepath'.",
+    "Rules carry exactly one 'entry' and one non-empty 'render_steps' list; 'entry' names a step id.",
+    "Step rows are {id, belief, goto?, choices?}; step ids are unique within the target; every 'goto' and choice 'goto' names an existing step id.",
+    "Every step's 'belief' resolves to an existing belief whose artifact is a valid code: locator.",
+    "Navigation (entry, goto, choices) is render metadata only - it never enters deps and never lives in the claim beliefs.",
+    "deps equals the union of belief ids referenced by render_steps.",
+    "A codepath render-spec is drafted outside the graph and imported once settled; a post-import reorder supersedes the output-target belief itself, never the claim beliefs it references."
+  ],
+  "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md",
+  "evidence": [
+    {
+      "date": "2026-06-09",
+      "detail": "cb-codepath plan-1 settled reusing the existing output-target kind (the mechanism cb:b042 demonstrates for CLAUDE.md) over minting a new b035 kind, with navigation on parallel render_steps rows rather than overloading render_sections. CB.OutputTarget.validate_codepath/2 and the verifier's codepath output-targets check implement these invariants.",
+      "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "CB.OutputTarget",
+      "type": "module"
+    },
+    {
+      "ref": "CB.Schema.Verifier",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b467",
+    "cb:b042"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b049",
+  "created": "2026-06-09"
+}

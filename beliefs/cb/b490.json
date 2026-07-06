@@ -1,0 +1,27 @@
+{
+  "id": "cb:b490",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "work-tracking",
+    "plans",
+    "positions"
+  ],
+  "claim": "A plan is what a large directive materializes into: the materialized field's plan path links obligation to execution record. Plan files are retained permanently as source documents cited via document:/plan: URIs and evidence entries; the direction of reference inverts - query the graph for what is next, follow it into plans/ for how and history.",
+  "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Extracted from the obligation-lives-in-the-graph position. The relationship was already in the schema (b382's materialized shape carries a plan path) and the four-type landing ran in exactly this shape before anyone named it: canon in the graph, choreography and deviations in plans/cb-schema-v2/.",
+      "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b382",
+    "cb:b383"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
+}
