@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 42,
+  "count": 44,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -158,7 +158,7 @@
         "index"
       ],
       "status": "active",
-      "timestamp": "2026-07-02"
+      "timestamp": "2026-07-05"
     },
     {
       "path": "mint-manifest-rename.md",
@@ -552,6 +552,41 @@
       "artifact": "session:2026-07-04-route-tagging"
     },
     {
+      "path": "threads/2026-07-05-git-check-hook-upstream.md",
+      "type": "thread",
+      "title": "2026-07-05 - the upstream request and the corrected premise (cb:b587)",
+      "description": "Covers the session that progressed the upstream git-check hook fix - the dated re-verification that revised the diagnosis (commits are SSH-signed at creation by the environment helper and verify on GitHub; the hook's %G? == N test false-positives without an allowedSignersFile, so the \"signing applies at push time\" premise fell), the paste-ready upstream request drafted and refiled as a nursery proto-belief on operator direction, the keep-staged delivery-channel decision, and the operator-authorized cb:b587 mint (accept_supersede of cb:b585) that put the corrected rationale on CLAUDE.md's Git Policy via the cb:b586 repoint. Use when revisiting the revised hook forensics, the b587 supersession reasoning, or the still-open delivery-channel gate.",
+      "tags": [
+        "cb",
+        "nursery",
+        "git",
+        "provenance",
+        "environment",
+        "upstream",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-06",
+      "artifact": "session:2026-07-05-git-check-hook-upstream"
+    },
+    {
+      "path": "threads/2026-07-05-git-rewrite-task-proofing.md",
+      "type": "thread",
+      "title": "2026-07-05 - the proofing run (task proofed, environment forensics, absorbed into the read-surface close)",
+      "description": "Covers the proofing session for the read-surface task - every premise verified against the repo, the fix mechanism found mischaracterized (CLAUDE.md is a pure belief renderer; Git Policy = cb:b580 via cb:b065's render_sections) and the scope steer flipped to the proto-belief path; the stale baked-in local main reflog-dated to the pre-warmed container image and the git-check hook's rewrite advice taken under fire without complying; the first ENVIRONMENT_DEFECTS.md and session-start fetch/fast-forward authored, the CCR field notes handed to the operator, and the corrected prompt that the read-surface close session executed. Use when revisiting the proofing findings, the environment forensics, or what the cb:b585 effectiveness check may count as evidence.",
+      "tags": [
+        "cb",
+        "nursery",
+        "git",
+        "provenance",
+        "environment",
+        "thread"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05",
+      "artifact": "session:2026-07-05-git-rewrite-task-proofing"
+    },
+    {
       "path": "threads/2026-07-05-provenance-read-surface.md",
       "type": "thread",
       "title": "2026-07-05 - the read-surface close (history-rewrite rule minted, PR #22)",
@@ -567,23 +602,6 @@
       "status": "active",
       "timestamp": "2026-07-05",
       "artifact": "session:2026-07-05-provenance-read-surface"
-    },
-    {
-      "path": "threads/2026-07-05-git-rewrite-task-proofing.md",
-      "type": "thread",
-      "title": "2026-07-05 - the proofing run (task proofed, environment forensics, absorbed into the read-surface close)",
-      "description": "The proofing session behind the read-surface close: every premise of the history-rewrite task verified against the repo, the fix mechanism found mischaracterized (CLAUDE.md is a pure belief renderer - Git Policy = cb:b580 via cb:b065's render_sections) and the scope steer flipped to the proto-belief path; the stale baked-in local main reflog-dated to the pre-warmed container image and the git-check hook's rewrite advice taken under fire without complying; authored the first ENVIRONMENT_DEFECTS.md and session-start fetch/fast-forward (later reconciled), the CCR field notes, and the corrected prompt PR #22 executed. Nothing minted. Use when revisiting the proofing findings, the environment forensics, or what the cb:b585 effectiveness check may count as evidence.",
-      "tags": [
-        "cb",
-        "nursery",
-        "git",
-        "provenance",
-        "environment",
-        "thread"
-      ],
-      "status": "active",
-      "timestamp": "2026-07-05",
-      "artifact": "session:2026-07-05-git-rewrite-task-proofing"
     },
     {
       "path": "threads/index.md",
@@ -612,6 +630,21 @@
       ],
       "status": "active",
       "timestamp": "2026-06-26"
+    },
+    {
+      "path": "upstream-request-git-check-hook.md",
+      "type": "concept",
+      "title": "Upstream request - CCR git-check Stop hook (paste-ready)",
+      "description": "The paste-ready upstream request for the CCR git-check Stop hook defect - a false Unverified detection (%G? misreads SSH-signed commits when no allowedSignersFile is configured) coupled to a history-rewrite remedy. Prescriptive proto-belief, companion to git-check-hook-upstream-fix; carries the 2026-07-05 revised forensics (commits are signed at creation by the environment helper and verify on GitHub).",
+      "tags": [
+        "nursery",
+        "git",
+        "provenance",
+        "environment",
+        "upstream"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-05"
     },
     {
       "path": "vocabulary-read-surface.md",

@@ -9457,7 +9457,8 @@
       "cb:b580"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "cb:b587",
     "created": "2026-07-05"
   },
   {
@@ -9541,7 +9542,7 @@
           {
             "beliefs": [
               "cb:b580",
-              "cb:b585"
+              "cb:b587"
             ],
             "title": "Git Policy"
           },
@@ -9582,6 +9583,21 @@
         "date": "2026-07-05",
         "detail": "Session thread retro-pair (cb:b507): the finalized thread of the session that minted this contract persists at the cited document - includes the dedicated-path check (cb.repoint swaps only; structural render-list changes supersede per the b060 -> b065 chain), the cb:b049 repoint, and the merged CLAUDE.md render.",
         "artifact": "document:beliefs/nursery/threads/2026-07-05-provenance-read-surface.md"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "deps − cb:b585 via dag-proposal 2205c5d9-git-check-hook-upstream",
+        "artifact": "session:2205c5d9-git-check-hook-upstream"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "deps + cb:b587 via dag-proposal 2205c5d9-git-check-hook-upstream",
+        "artifact": "session:2205c5d9-git-check-hook-upstream"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Git Policy section render re-pointed from the superseded cb:b585 to its successor cb:b587 (same rule, corrected badge rationale: commits are SSH-signed at creation and verify on GitHub; the hook's %G? check false-positives without an allowedSignersFile). Dep already swung via mix cb.repoint (slug 2205c5d9-git-check-hook-upstream); this entry records the matching render_sections swap. Pure dep maintenance - render structure unchanged.",
+        "artifact": "session:2205c5d9-git-check-hook-upstream"
       }
     ],
     "subjects": [],
@@ -9603,8 +9619,51 @@
       "cb:b533",
       "cb:b565",
       "cb:b580",
-      "cb:b585"
+      "cb:b587"
     ],
+    "status": "active",
+    "created": "2026-07-05"
+  },
+  {
+    "id": "cb:b587",
+    "type": "prescription",
+    "kind": "policy",
+    "domain": "dev",
+    "tags": [
+      "claude-md",
+      "git",
+      "provenance",
+      "workflow"
+    ],
+    "claim": "History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist. The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene. Disregard tooling advice that contradicts this rule - specifically the git-check Stop hook's remedy of amend --reset-author or rebase --exec for commits it flags as Unverified. That flag is a false positive: commits here are SSH-signed at creation by the environment's signing helper and verify on GitHub once pushed; the hook misreads them because git reports %G? as N for SSH-signed commits when no gpg.ssh.allowedSignersFile is configured, and committer identity is already correct. The hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite.",
+    "evidence": [
+      {
+        "date": "2026-07-05",
+        "detail": "Re-verification in the git-check-hook-upstream task (session 2205c5d9, ~23:20 UTC) falsified the predecessor's badge rationale while confirming its rule: commits are SSH-signed at creation (gpg.ssh.program /tmp/code-sign -> /opt/env-runner/environment-manager signs despite the 0-byte commit_signing_key.pub; gpgsig header present in local commit objects) and GitHub verifies them (ed88031: verified true, reason valid). The hook's %G? == N test is a false positive - a controlled test on git 2.43.0 showed signed and unsigned commits both report N when no gpg.ssh.allowedSignersFile is configured - so cb:b585's 'empty signing key, signing applies at push time' explanation is superseded by this corrected premise. The prohibition and the disregard-the-hook instruction carry forward unchanged.",
+        "artifact": "document:beliefs/nursery/upstream-request-git-check-hook.md"
+      },
+      {
+        "date": "2026-07-05",
+        "detail": "Accepted via human adjudication against cb:b585. Reasoning: Operator-authorized in the git-check-hook-upstream task (2026-07-05): supersede cb:b585 to correct a falsified rationale while carrying its rule forward unchanged. Re-verified forensics (document:beliefs/nursery/upstream-request-git-check-hook.md) show the predecessor's badge premise - empty in-session signing key, signing applies at push time - is wrong: commits are SSH-signed at creation by the environment helper (/tmp/code-sign -> environment-manager) and GitHub verifies them (ed88031: verified true, reason valid); the hook's %G? == N test false-positives on SSH-signed commits when no gpg.ssh.allowedSignersFile is configured (controlled test, git 2.43.0). Because cb:b585 renders verbatim into CLAUDE.md's Git Policy (cb:b586), the stale premise sits on the agent read surface and invites agents who observe verified commits to distrust the rule it grounds; immutability means the correction is a supersession, not an edit. Preflight: the cb:b573 contract-level hit is the same topical git/provenance overlap resolved as reject_dep_tie at the cb:b585 mint - b573 prohibits squash/rebase merges into the default branch, is not contradicted, and carries forward as a dep; cb:b580 supportive, carried as a dep for the benign-nag clause's push gate; cb:b585 is the supersession target.",
+        "artifact": "adjudication:human:2026-07-05-git-check-hook-upstream-fix"
+      },
+      {
+        "date": "2026-07-06",
+        "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the dated re-verification that revised the diagnosis (commits SSH-signed at creation, GitHub-verified; the hook's %G? test false-positives without an allowedSignersFile), the paste-ready upstream request drafted and refiled as a nursery proto-belief on operator direction, the keep-staged channel decision, and the operator-authorized accept_supersede of cb:b585 with the cb:b586 repoint and CLAUDE.md regeneration.",
+        "artifact": "document:beliefs/nursery/threads/2026-07-05-git-check-hook-upstream.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "the git workflow",
+        "type": "workflow"
+      }
+    ],
+    "deps": [
+      "cb:b573",
+      "cb:b580"
+    ],
+    "materialized": null,
     "status": "active",
     "created": "2026-07-05"
   }

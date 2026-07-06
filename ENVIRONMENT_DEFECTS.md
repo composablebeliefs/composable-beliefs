@@ -41,6 +41,28 @@ user-global tooling that this repo depends on but does not control.
 - **In-repo mitigation (applied):** cb:b585 surfaces the no-history-rewrite rule
   and an explicit "disregard the git-check hook" instruction on the CLAUDE.md
   read surface, rendered from the graph via the cb:b586 output-target contract.
+- **Re-verified 2026-07-05 (~23:20 UTC), with a revised diagnosis:** the hook
+  is unchanged (sha256 `1e1c4971...768ea690`, amend/rebase remedy still at line
+  58) and `commit_signing_key.pub` is still 0 bytes - but deeper forensics
+  supersede the "unsigned, signing applies at push time" reading above.
+  Commits in this environment ARE SSH-signed at creation: `gpg.ssh.program`
+  points at `/tmp/code-sign` -> `/opt/env-runner/environment-manager`, which
+  produces a valid ssh-ed25519 signature regardless of the empty key file
+  (verified via `git cat-file commit`, `gpgsig` header present locally), and
+  GitHub verifies the pushed result (commit `ed88031`: `verified: true,
+  reason: valid` from the REST API). The hook's `%G? == N` test is a false
+  positive: with `gpg.format=ssh` and no `gpg.ssh.allowedSignersFile`, git
+  2.43.0 reports `N` for signed and unsigned commits alike (confirmed by
+  controlled test), so the hook flags every unpushed in-session commit as
+  Unverified even though it will verify. The hook's premise comment ("%G? is
+  N for unsigned commits; ... a reliable presence check") is false for SSH
+  signatures. This strengthens the case against the remedy - it prescribes
+  history rewriting to fix a state that does not exist - and shifts the
+  preferred upstream fix from "provision a signing key" (effectively already
+  in place) to "fix the hook's detection". Full record:
+  `beliefs/nursery/upstream-request-git-check-hook.md`. The read-surface rule
+  was re-issued the same day as cb:b587 (accept_supersede of cb:b585) so
+  CLAUDE.md's Git Policy carries the corrected rationale.
 
 ## 2. Pre-baked container image ships a stale local `main` (upstream + in-repo mitigation)
 
