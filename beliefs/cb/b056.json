@@ -45,6 +45,16 @@
       "date": "2026-07-01",
       "detail": "The stored contract boolean was demoted to a derived predicate: contract-grade is computed as rules/invariants non-empty (Belief.contract?/1) and the contract field was stripped from the 39 nodes carrying it (zero drift measured against the former biconditional). This contract's rules/invariants now state the biconditional as the definition of the predicate.",
       "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "deps − cb:b401 via dag-proposal atomize-migration-2026-07-07",
+      "artifact": "session:atomize-migration-2026-07-07"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "deps + cb:b811 via dag-proposal atomize-migration-2026-07-07",
+      "artifact": "session:atomize-migration-2026-07-07"
     }
   ],
   "subjects": [],
@@ -53,13 +63,13 @@
     "cb:b398",
     "cb:b399",
     "cb:b400",
-    "cb:b401",
     "cb:b402",
     "cb:b403",
     "cb:b404",
     "cb:b405",
     "cb:b408",
-    "cb:b470"
+    "cb:b470",
+    "cb:b811"
   ],
   "status": "active",
   "created": "2026-06-10"
