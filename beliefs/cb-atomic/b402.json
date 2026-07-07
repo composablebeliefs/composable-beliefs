@@ -1,0 +1,29 @@
+{
+  "id": "cb:b402",
+  "type": "prescription",
+  "kind": "policy",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "claim-discipline"
+  ],
+  "name": "claim-discipline",
+  "claim": "A belief's meaning is carried by its claim and its declared deps. The reasoning from deps to claim is self-evident from the claim's wording and the deps' content. When the connection requires bridging prose, the claim is underspecified (rewrite) or the node is overcommitted (decompose into multiple beliefs).",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-17",
+      "detail": "name set to \"claim-discipline\" via dag-proposal m12",
+      "artifact": "session:2026-05-17-policy-categorization"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-15"
+}

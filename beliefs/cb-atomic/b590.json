@@ -1,0 +1,42 @@
+{
+  "id": "cb:b590",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "nursery",
+    "provenance",
+    "route-tagging",
+    "verification"
+  ],
+  "claim": "`cb.verify.route_tags` re-derives each sink's excerpt log from the current route tags and fails on divergence, converting the log's freshness guarantee from procedural to structural; it also enforces that every ref resolves to a real artifact and every tagged sink carries its log. Tag coverage (that every feeding paragraph was tagged) stays editorial and is lifted only to row granularity by a routing-ledger cross-check.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Staged and grounded in the route-tagging proto-belief document as the structural backstop the F2 disposition demands: the verifier closes the forgotten-append and un-propagated-correction exposures for tags that exist, and is honest about the coverage axis it cannot mechanize.",
+      "artifact": "document:beliefs/archive/route-tagging.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Implemented as mix cb.verify.route_tags (lib/cb/route_tags.ex): five checks - wellformedness, ref resolution, sink logs, log fidelity (byte-level re-derivation match), ledger cross-check at warn level. Its first run reproduced audit finding F5 (transcript-format tagged but no log), fixed in the same commit.",
+      "artifact": "commit:d9f730c8d170d7c18fd85006315726591fb33de8"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that built mix cb.verify.route_tags (whose first run reproduced audit F5 and whose derivation materialized the missing transcript-format log), minted the three route-tagging rows through clean preflights, and graduated the source document to beliefs/archive/ on the cb:b569 call, with council-mechanism held live.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "lib/cb/route_tags.ex",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b386"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-07-06"
+}

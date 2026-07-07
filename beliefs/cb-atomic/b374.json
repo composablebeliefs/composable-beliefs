@@ -1,0 +1,35 @@
+{
+  "id": "cb:b374",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "convention:assert-skill"
+  ],
+  "claim": "Implications carry a lifecycle distinct from truth. A discrete implication (one with a specific completable action) transitions `active -> materialized` when its spawning plan completes and retains the plan link as provenance. A recurring implication (a rule that fires whenever its condition holds) remains active indefinitely. Neither is retracted on satisfaction; retraction is reserved for beliefs that turn out to be wrong. At authoring time the /assert skill must prompt the user to classify the implication as discrete or recurring.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "The distinction matters because without it, discrete implications either accumulate forever as active (a graveyard) or get retracted on completion (losing the distinction between wrong and done). Materialization as a separate state preserves history while filtering active-view queries.",
+      "artifact": "user:review-session-2026-04-21"
+    },
+    {
+      "date": "2026-04-21",
+      "detail": "Superseded. The original belief proposed materialization as a fifth status value, contradicting the closed status enum. The authoring did not preflight-search the graph for conflicting nodes; the conflict was caught only in review. The successor models materialization as an orthogonal field, preserving the status enum. This supersession performs the outcome of the consensus mechanism before the mechanism itself exists.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a skill definition",
+      "type": "skill"
+    }
+  ],
+  "deps": [],
+  "status": "superseded",
+  "superseded_by": "b380",
+  "created": "2026-04-21"
+}

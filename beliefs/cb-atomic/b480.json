@@ -1,0 +1,31 @@
+{
+  "id": "cb:b480",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "claude-md",
+    "skills"
+  ],
+  "claim": "Skills coordinate authoring, query, and presentation: `/assert` adds beliefs from artifacts, entities, or reasoning; `/assert-session` persists session rules and agent error patterns; `/assertions` queries and traverses the graph; `/materialize` turns directives into concrete tasks; `/present-codepath` walks a codepath - a code-anchored collection rendered as a narrated, branching tour of real source that can also run as a test suite (`mix cb.verify.codepath`).",
+  "artifact": "session:2026-06-10-cb-schema-v2-landing",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Accepted via human adjudication against cb:b469. Reasoning: cb-schema-v2: /materialize operates on directives (you do not materialize a theory).",
+      "artifact": "adjudication:human:session:2026-06-10-cb-schema-v2-landing"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b470"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b521",
+  "created": "2026-06-10"
+}

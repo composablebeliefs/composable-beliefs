@@ -1,0 +1,35 @@
+{
+  "id": "cb:b812",
+  "type": "attestation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "okf",
+    "manifest",
+    "threads",
+    "transcript",
+    "dot-dir"
+  ],
+  "claim": "OKF bundle doc discovery (CB.Okf.Manifest.doc_paths/1, shared with the validator) enumerates markdown docs via Elixir's Path.wildcard, whose default match_dot: false skips dot-directories - so the beliefs/nursery/threads/.sessions/ draft area is structurally invisible to manifest build and validation.",
+  "artifact": "code:lib/cb/okf/manifest.ex#Path.wildcard(Path.join(root, \"**/*.md\"))",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b579; the source attestation event is recorded on cb:b579's evidence.",
+      "artifact": "code:lib/cb/okf/manifest.ex#Path.wildcard(Path.join(root, \"**/*.md\"))"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "lib/cb/okf/manifest.ex",
+      "type": "artifact"
+    },
+    {
+      "ref": "beliefs/nursery/threads/.sessions/",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

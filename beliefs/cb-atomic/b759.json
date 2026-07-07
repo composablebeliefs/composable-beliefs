@@ -1,0 +1,28 @@
+{
+  "id": "cb:b759",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "belief-fields"
+  ],
+  "claim": "`deps` is belief-to-belief logical derivation - the deps' claims together justify the current belief's claim - required on type:compound and type:implication, absent on type:primitive.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b408; the source attestation event is recorded on cb:b408's evidence.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief module",
+      "type": "module"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

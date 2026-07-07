@@ -1,0 +1,54 @@
+{
+  "id": "cb:b579",
+  "type": "aggregation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "okf",
+    "manifest",
+    "threads",
+    "transcript",
+    "dot-dir"
+  ],
+  "claim": "OKF bundle doc discovery (CB.Okf.Manifest.doc_paths/1, shared with the validator) enumerates markdown docs via Elixir's Path.wildcard, whose default match_dot: false skips dot-directories - so the beliefs/nursery/threads/.sessions/ draft area is structurally invisible to manifest build and validation. The leading dot in .sessions is load-bearing: it is what keeps the frontmatter-less, per-turn-rewritten session drafts out of the validated bundle. Passing match_dot: true to that wildcard, or renaming the directory without the dot, would silently pull the drafts into discovery and break manifest validation.",
+  "artifact": "code:lib/cb/okf/manifest.ex#Path.wildcard(Path.join(root, \"**/*.md\"))",
+  "evidence": [
+    {
+      "date": "2026-07-02",
+      "detail": "Surfaced while deliberating whether .sessions should be de-dotted after its renders became committed (the ride-along lane made the 'gitignored working area' reading of the dot stale). Inspection of doc_paths/1 showed discovery uses bare Path.wildcard with no match_dot option, so Elixir's default (dot-dirs unmatched) is the only mechanism excluding .sessions/ drafts from the bundle; a graph and docs sweep found zero occurrences of match_dot, meaning the exclusion was entirely implicit in one line of code. The dot was retained and its rationale re-read: not 'gitignored' but 'outside the validated bundle'.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-01-seed-lifecycle.md"
+    },
+    {
+      "date": "2026-07-03",
+      "detail": "Renumbered from cb:a566 (as minted on the PR #8 branch, which forked before the id migration) during the merge with main: serial 566 is taken in the letter-swap alias space by cb:b566, so the pure letter-swap could not apply - the same collision class as the a566 -> b572 renumber in the migration merge. Minted here as the next free b-serial.",
+      "artifact": "session:2026-07-03-fix-pr8-merge"
+    },
+    {
+      "date": "2026-07-03",
+      "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b812, cb:b813, cb:b814. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "lib/cb/okf/manifest.ex",
+      "type": "artifact"
+    },
+    {
+      "ref": "beliefs/nursery/threads/.sessions/",
+      "type": "artifact"
+    }
+  ],
+  "deps": [
+    "cb:b812",
+    "cb:b813",
+    "cb:b814"
+  ],
+  "status": "active",
+  "created": "2026-07-02"
+}

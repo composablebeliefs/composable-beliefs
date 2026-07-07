@@ -1,0 +1,28 @@
+{
+  "id": "cb:b760",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "belief-fields"
+  ],
+  "claim": "`subjects` is belief-to-entity topical reference - what the belief is about - including artifacts (files, threads, URLs), code modules, and sometimes other beliefs.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b408; the source attestation event is recorded on cb:b408's evidence.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief module",
+      "type": "module"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

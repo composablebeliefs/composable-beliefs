@@ -1,0 +1,27 @@
+{
+  "id": "cb:b489",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "work-tracking",
+    "backlog",
+    "positions"
+  ],
+  "claim": "The graph is the index of obligation: work to do lives as directives - grounded, subject-scoped, conflict-audited, staleness-linked, and queryable. plans/ and docs/ hold records of designs and executions, never live todos; a live todo is an unmaterialized discrete directive.",
+  "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Extracted from the obligation-lives-in-the-graph position (the cb-schema-v2 wrap-up-to-stasis discussion). Extends b382's intent-lives-in-the-DAG authoring rule with the obligation-index half: the four-type schema gave work its own structural type, so the backlog can live where the reasoning lives.",
+      "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b382",
+    "cb:b380"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
+}

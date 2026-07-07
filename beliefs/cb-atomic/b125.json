@@ -1,0 +1,19 @@
+{
+  "id": "cb:b125",
+  "type": "prescription",
+  "kind": "convention",
+  "tags": [],
+  "claim": "Provenance _source attribution must only be assigned at extraction time - when the agent is actively reading the source document and pulling data from it. Retroactive attribution ('this data probably came from that document') is unreliable and prohibited. Unsourced data gets 'manual' and must be re-extracted from a candidate source to be upgraded.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Provenance attribution must only be assigned at extraction time, when the agent is actively reading the source. Retroactive attribution is unreliable and prohibited. This parallels the extraction-time belief-creation principle: claims about data sources must be made at the moment of reading, not after the fact.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-03-23"
+}

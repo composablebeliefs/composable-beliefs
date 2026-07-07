@@ -1,0 +1,27 @@
+{
+  "id": "cb:b491",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "work-tracking",
+    "backlog",
+    "lifecycle",
+    "positions"
+  ],
+  "claim": "The lifecycle tag is load-bearing for the graph-as-backlog: recurring directives are standing rules that never materialize, discrete directives are completable work, and the backlog query is unlinked plus lifecycle:discrete (b380's still-actionable test, narrowed to the work-bearing lifecycle class). An untagged directive degrades the backlog view.",
+  "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Extracted from the obligation-lives-in-the-graph position. Without the discrete/recurring discipline, bs list unlinked conflates standing rules with actionable work and the native backlog view reads wrong. Preflight 2026-06-11: tag-overlap with b380/b383 (tied in as deps) and b390 (deprecation convention, compatible); no semantic conflict.",
+      "artifact": "document:positions/2026-06-11-obligation-lives-in-the-graph.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b380"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
+}

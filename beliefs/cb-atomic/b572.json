@@ -1,0 +1,33 @@
+{
+  "id": "cb:b572",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "nursery",
+    "threads",
+    "provenance",
+    "lifecycle:recurring"
+  ],
+  "claim": "Every persisted thread carries a routing ledger: a table with one row per topic the thread touches, holding the strand state (open, paused, closed), the dispatch pointer (the focus doc the strand's content routed to, or unrouted), and the dangling question when one is pending. Synthesized content always lands in focus docs, never in the ledger; the ledger carries only pointers and states, so it cannot become a digest of the thread or a shadow copy of the seeds. A multi-topic thread is resumed by reading its ledger, not by replaying the conversation or trusting memory.",
+  "artifact": "document:beliefs/nursery/routing-ledger.md",
+  "evidence": [
+    {
+      "date": "2026-07-02",
+      "detail": "Deliberated as the nursery focus beliefs/nursery/routing-ledger.md and planted from its manifest row while the focus stays live for the /decompose skill build and the hook-preservation mechanics. First instance carried at the top of beliefs/nursery/threads/2026-07-02-authoring-pipeline.md, dispatching the seven strands of the session that designed it - including a paused unrouted strand (backfilling existing threads) that demonstrates exactly the state the ledger exists to hold. The originating thread-summary proposal was reshaped into a router after the cb:b386 digest objection: content restated in a parallel doc goes stale procedurally and shadows the focus docs, while pointers and states cannot. Preflight 2026-07-02: clean - no contract-level or schema conflicts, 20 neutral tag-overlap matches. The cited commit landed the brief batch; its parent captured the thread.",
+      "artifact": "commit:d7e40cb53359ad194210f0ebedeb4dcc403bbf87"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "nursery threads",
+      "type": "workspace"
+    }
+  ],
+  "deps": [
+    "cb:b386"
+  ],
+  "status": "superseded",
+  "superseded_by": "cb:b582",
+  "created": "2026-07-02"
+}

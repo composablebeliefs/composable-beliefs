@@ -1,0 +1,29 @@
+{
+  "id": "cb:b797",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "migration-record"
+  ],
+  "claim": "All eight collections verify under v2; sdl reproduces exactly its two teaching method-check failures.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b483; the source attestation event is recorded on cb:b483's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

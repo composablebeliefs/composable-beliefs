@@ -1,0 +1,23 @@
+{
+  "id": "cb:b740",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "materialization"
+  ],
+  "claim": "The `materialized` field records a historical fact - the action was executed at time T via plan P - and does not assert that the action's effects still hold.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b383; the source attestation event is recorded on cb:b383's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

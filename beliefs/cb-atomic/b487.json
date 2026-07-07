@@ -1,0 +1,26 @@
+{
+  "id": "cb:b487",
+  "type": "inference",
+  "kind": "design-observation",
+  "domain": "design",
+  "tags": [
+    "design-policy",
+    "anchoring"
+  ],
+  "claim": "Reading code re-scopes from building a whole mental model to reading the anchored stops that carry an argument.",
+  "artifact": "document:positions/2026-06-10-code-as-operational-substrate.md",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Anchored to the presenter rule that states the re-scoping ('the value is the reader reading the real file, not a wall of agent prose', skills/present-codepath/SKILL.md); anchor verified resolving with exactly one match at authoring time.",
+      "artifact": "session:2026-06-10-substrate-position-discussion"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b485",
+    "cb:b486"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

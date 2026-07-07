@@ -1,0 +1,42 @@
+{
+  "id": "cb:b591",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "dev",
+  "tags": [
+    "council",
+    "review",
+    "workflow",
+    "git"
+  ],
+  "claim": "A council review round runs on a draft PR as its medium: findings and responses are PR review comments, never files committed to the tree; the only artifacts that land in the repo are the distilled plan and the code. The medium is never `main` and never a replay of a round that already happened elsewhere.",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Staged and grounded in the council-mechanism proto-belief document: a council folder of committed analyses is a shadow graph (a handoff store by another name); the PR comment lane keeps review noise discoverable but out of the tree, consistent with the merge-commit-only curated-artifact ethos.",
+      "artifact": "document:beliefs/nursery/council-mechanism.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Deliberation thread: the operator-in-the-loop session that designed the council mechanism and rejected the committed-files medium.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-04-council-design.md"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Session thread retro-pair (cb:b507): the minting session's finalized thread persists at the cited document - the A2 enactment that minted the four council-mechanism rows through clean preflights alongside the route-tagging enactment, and held council-mechanism live in the nursery (rows planted, /council build and Open strands unresolved) on the cb:b569 graduation call.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-route-tagging-enactment.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the council review workflow",
+      "type": "workflow"
+    }
+  ],
+  "deps": [
+    "cb:b573"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-07-06"
+}

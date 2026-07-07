@@ -1,0 +1,22 @@
+{
+  "id": "cb:b806",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "schema"
+  ],
+  "claim": "Schema rule in force: no `confidence` field.",
+  "artifact": "document:beliefs/nursery/contract-predicate-demotion.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b565; the source attestation event is recorded on cb:b565's evidence.",
+      "artifact": "document:beliefs/nursery/contract-predicate-demotion.md"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

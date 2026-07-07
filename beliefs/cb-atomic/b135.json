@@ -1,0 +1,28 @@
+{
+  "id": "cb:b135",
+  "type": "aggregation",
+  "kind": "design-observation",
+  "tags": [],
+  "claim": "Contracts govern behavior across fundamentally different substrates. A single state-machine contract was independently implemented in compiled code and in agent reasoning, producing identical results without either knowing about the other. The contract served as intermediary: a domain expert authors it, an architect verifies against it, implementations derive from it.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-03-23",
+      "detail": "Two implementations were tested against the same record: both rejected an invalid transition when required fields were missing, both accepted a valid one. Neither knew about the other. The contract governed behavior across two fundamentally different substrates - compiled code and agent reasoning - without modification.",
+      "artifact": "document:design-notes"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b723, cb:b724, cb:b725. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b723",
+    "cb:b724",
+    "cb:b725"
+  ],
+  "status": "active",
+  "created": "2026-03-23"
+}

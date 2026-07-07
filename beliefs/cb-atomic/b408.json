@@ -1,0 +1,37 @@
+{
+  "id": "cb:b408",
+  "type": "aggregation",
+  "kind": "definition",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "belief-fields"
+  ],
+  "claim": "A belief carries two distinct relations to other entities. `deps` is belief-to-belief logical derivation: the deps' claims together justify the current belief's claim; required on type:compound and type:implication, absent on type:primitive. `subjects` is belief-to-entity topical reference: what the belief is about, including artifacts (files, threads, URLs), code modules, and sometimes other beliefs. A belief can be about another belief without depending on it, and can depend on another belief without being about it.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-17",
+      "detail": "kind:policy → kind:definition via dag-proposal m27",
+      "artifact": "session:2026-05-17-policy-categorization"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b759, cb:b760, cb:b761. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief module",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b759",
+    "cb:b760",
+    "cb:b761"
+  ],
+  "status": "active",
+  "created": "2026-05-15"
+}

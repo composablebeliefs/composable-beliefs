@@ -1,0 +1,40 @@
+{
+  "id": "cb:b532",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "write-flow",
+    "materializer"
+  ],
+  "claim": "Give CB.Belief.Materializer bare-id resolution: materialize/1 rejects a bare id (node_not_found on 'b519') while mix bs and mix cb.evidence both resolve bare ids when exactly one belief matches - and the /materialize skill's own spec example uses a bare id, so the documented path fails on first try. Reuse the resolution (and ambiguity error) the evidence front door already carries.",
+  "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md",
+  "evidence": [
+    {
+      "date": "2026-06-12",
+      "detail": "Hit live in the b519 discharge: the materialization spec was written with belief_id 'b519' per the skill's own example shape, failed with {:node_not_found, \"b519\"}, and succeeded only after namespacing to 'cb:b519'. The temp script's exit-0-on-error compounded it - the && rm cleaned up the failed script before the retry. mix cb.evidence resolves the same bare id without complaint in the same session. Kin to the bare-id class b510/b513 close: this is the materializer member. Preflight 2026-06-12 (first close under the b064 calibration): 0 contract, 0 schema, 25 neutral - all bare tag_overlap from the backlog family, reviewed at a glance, no wall.",
+      "artifact": "document:deprecated/chronicles/2026-06-12-overlap-is-not-contact.md"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Discharged 2026-06-12 (materialized t0018): find_node routes through Graph.resolve_id, the same resolution the bs and cb.evidence front doors carry - a bare id resolves when exactly one belief matches, ambiguity surfaces as {:ambiguous_id, ids} instead of node_not_found, and the canonical id is what gets linked and returned. The /materialize skill doc now states the bare-or-namespaced contract. This discharge's own materialization passed bare ids (b530, b532) per the skill's example shape: first-try success on the documented path. 326 tests passing, ambiguity case covered.",
+      "artifact": "code:lib/cb/belief/materializer.ex#defp find_node(id) do"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "materialized": {
+    "date": "2026-06-12",
+    "todos": [
+      {
+        "action": "Route CB.Belief.Materializer.find_node through Graph.resolve_id so materialize/1 accepts bare or namespaced ids (bare resolving when exactly one belief matches, ambiguity surfacing as {:ambiguous_id, ids}), link and return the canonical id, and state the contract in the /materialize skill doc",
+        "id": "t0018",
+        "notes": "b532: the skill's own example shape (bare id) failed on first try in the b519 discharge; this materialization passes bare ids as its own live demonstration"
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-06-12"
+}

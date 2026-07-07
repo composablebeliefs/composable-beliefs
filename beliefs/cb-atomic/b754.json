@@ -1,0 +1,28 @@
+{
+  "id": "cb:b754",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "enum-discipline"
+  ],
+  "claim": "The constraint that a field's value is in a given enum is carried by the field's master contract (b038), while the enumeration of allowed values is carried by a dedicated enum contract per field (b039 for kind, b040 for artifact-scheme, b041 for domain); the two layers compose via deps.",
+  "artifact": "session:2026-05-15-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b397; the source attestation event is recorded on cb:b397's evidence.",
+      "artifact": "session:2026-05-15-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

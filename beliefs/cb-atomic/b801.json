@@ -1,0 +1,28 @@
+{
+  "id": "cb:b801",
+  "type": "attestation",
+  "kind": "design-observation",
+  "domain": "system",
+  "tags": [
+    "per-belief-files",
+    "storage"
+  ],
+  "claim": "Per-belief atomic files (one JSON file per node at beliefs/<ns>/<local>.json) are preferred over both the single-file array and per-entity grouping.",
+  "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b554; the source attestation event is recorded on cb:b554's evidence.",
+      "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief graph",
+      "type": "storage"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

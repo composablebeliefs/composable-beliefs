@@ -1,0 +1,43 @@
+{
+  "id": "cb:b501",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "observability",
+    "recency"
+  ],
+  "claim": "Provide a recency view: a query answering what changed in the graph over a given window (new nodes, supersessions, evidence appends, materializations), so concurrent multi-session activity is observable without reading git log on the JSON.",
+  "artifact": "session:2026-06-11-stasis-observability",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Second finding of the observation-loop walkthrough, made acute the same day by three sessions writing the repos concurrently. Persisted as a directive per b496. Preflight 2026-06-11: observability tag-overlap with b497 (the lap-log convention, compatible sibling); no semantic conflict.",
+      "artifact": "session:2026-06-11-stasis-observability"
+    },
+    {
+      "date": "2026-06-11",
+      "detail": "Live specimen within hours of authoring: a stale-memory directive (paradigm:a367) was minted for an extraction another session had already completed; the observation lap caught it at the READ station. A recency view makes that class of authoring error structurally unlikely rather than vigilance-dependent.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "materialized": {
+    "date": "2026-06-11",
+    "todos": [
+      {
+        "action": "Implement mix bs recent [--since DATE | --days N]: deterministic window scan over the loaded graph, events grouped by class (new nodes, supersessions, evidence appends, materializations, retractions); honors --beliefs PATH",
+        "id": "t0001"
+      },
+      {
+        "action": "Cover and document bs recent: tests for the window scan and each event class, plus the mix bs help entry",
+        "id": "t0002"
+      }
+    ]
+  },
+  "status": "active",
+  "created": "2026-06-11"
+}

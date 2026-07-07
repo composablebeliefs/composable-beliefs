@@ -1,0 +1,44 @@
+{
+  "id": "cb:b554",
+  "type": "aggregation",
+  "kind": "design-observation",
+  "domain": "system",
+  "tags": [
+    "per-belief-files",
+    "storage"
+  ],
+  "claim": "Per-belief atomic files (one JSON file per node at beliefs/<ns>/<local>.json) are preferred over both the single-file array and per-entity grouping. The cross-entity-composition concern recorded against per-entity files (cb:b112) does not apply to per-node files: every belief is addressed uniformly and composition stays via deps. Per-node files eliminate the _keys whole-array churn-suppression workaround, align with the anti-digest principle (cb:b386), and prepare the store for a database backend. Constraint: multi-node writes (e.g. supersession) lose single-file write-atomicity and become N file writes, acceptable at local/single-writer scale or via an all-or-nothing write helper. cb:b112's supersession is deferred to cb:b560 so the active graph does not claim per-file storage before the code implements it.",
+  "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239",
+  "evidence": [
+    {
+      "date": "2026-06-25",
+      "detail": "Deliberated as the nursery focus beliefs/nursery/per-belief-files.md and planted from there. Worktree prototype (branch proto/per-belief-files) split beliefs.json into 213 beliefs/cb/<local>.json files and made CB.Belief.Store.read directory-aware; the loaded graph proved byte-identical to the single-file load (8251-line canonical serialization, diff clean), and mix bs plus mix cb.verify.schema (20 passed, 0 failed) ran unchanged. Store is the near-sole I/O chokepoint; only Store.read/write touch the layout.",
+      "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239"
+    },
+    {
+      "date": "2026-07-06",
+      "detail": "Implemented 2026-07-06: the b555-b560 chain landed - layout-aware store, migration task, the 248-node split to beliefs/cb/<local>.json, and the self-description sweep. The multi-node write constraint resolved as per-file tmp+rename with new-before-changed ordering; cb:b112's deferred supersession by this node executed via mix cb.supersede.",
+      "artifact": "commit:4d059178579eb3e771d7f7422794e5037ec7a1a0"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b801, cb:b802, cb:b803, cb:b804, cb:b805. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief graph",
+      "type": "storage"
+    }
+  ],
+  "deps": [
+    "cb:b801",
+    "cb:b802",
+    "cb:b803",
+    "cb:b804",
+    "cb:b805"
+  ],
+  "status": "active",
+  "created": "2026-06-25"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "cb:b742",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "materialization"
+  ],
+  "claim": "The `materialized` field carries a `last_verified` sub-field distinguishing historical execution from current verification, with shape `materialized: null | {plan: path, date: ISO, last_verified: null | ISO}`.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b383; the source attestation event is recorded on cb:b383's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

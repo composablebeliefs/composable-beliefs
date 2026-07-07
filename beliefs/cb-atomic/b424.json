@@ -1,0 +1,29 @@
+{
+  "id": "cb:b424",
+  "type": "prescription",
+  "kind": "policy",
+  "domain": "system",
+  "tags": [
+    "dag-discipline",
+    "centralization"
+  ],
+  "name": "dag-is-canonical-home-for-behavioral-commitment",
+  "claim": "Behavioral invariants belong in DAG contracts, not scattered across the agent-instruction file, struct definitions, or skill prose. Every code module encoding domain rules has a corresponding DAG contract. Agent-instruction files (a skill definition, the agent-instruction file) translate intent and reference the DAG; they do not carry logic of their own.",
+  "artifact": "session:2026-05-16-policy-citation-sweep",
+  "evidence": [
+    {
+      "date": "2026-05-16",
+      "detail": "A citation sweep surfaced several behavioral contracts whose underlying intent is centralization of behavioral commitment in the graph. The shared policy is authored to make the citation derivation explicit.",
+      "artifact": "session:2026-05-16-policy-citation-sweep"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-16"
+}

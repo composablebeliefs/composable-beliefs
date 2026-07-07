@@ -1,0 +1,23 @@
+{
+  "id": "cb:b765",
+  "type": "attestation",
+  "kind": "design-observation",
+  "domain": "design",
+  "tags": [
+    "audit-chain",
+    "open-question",
+    "transcripts"
+  ],
+  "claim": "The audit chain for architectural decisions runs: code -> contract -> graph -> plan/recap metadata -> raw conversation.",
+  "artifact": "session:working-thread",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b442; the source attestation event is recorded on cb:b442's evidence.",
+      "artifact": "session:working-thread"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

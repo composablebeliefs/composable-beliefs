@@ -1,0 +1,29 @@
+{
+  "id": "cb:b747",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "cache",
+    "antipattern"
+  ],
+  "claim": "The elimination path for the digest antipattern: fold active-implication loading into a session-start belief query and render the digest live from the graph instead of from disk.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b386; the source attestation event is recorded on cb:b386's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the active-implications digest",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

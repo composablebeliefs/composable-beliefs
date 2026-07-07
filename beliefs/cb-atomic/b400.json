@@ -1,0 +1,28 @@
+{
+  "id": "cb:b400",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "artifact"
+  ],
+  "claim": "An artifact is an external referent — a file, gmail thread, session log, user statement, web page, or other addressable thing outside the belief graph. Artifacts are identified by typed URIs (per b040) and cited from beliefs via the artifact field.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-17",
+      "detail": "kind:policy → kind:definition via dag-proposal m23",
+      "artifact": "session:2026-05-17-policy-categorization"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-15"
+}

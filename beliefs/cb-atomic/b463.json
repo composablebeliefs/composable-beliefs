@@ -1,0 +1,23 @@
+{
+  "id": "cb:b463",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "system",
+  "tags": [
+    "restructure",
+    "namespacing"
+  ],
+  "claim": "Belief ids are namespaced as `namespace:local-id` (e.g. `cb:b038`, `agent-behavior:a054`), with exactly one owning collection per namespace, so ids are globally unique. Deps may cross namespaces and resolve globally, but `cb:` depends only within `cb:`; every other collection may depend on `cb:`. The separator is `:`.",
+  "artifact": "session:2026-06-08-cb-restructure-dogfood",
+  "evidence": [
+    {
+      "date": "2026-06-08",
+      "detail": "Extracted from the settled multi-repo restructure design (CB-RESTRUCTURE-HANDOFF.md §2.1); realized across the cb:/agent-behavior:/paradigm: graphs and the resolver/verifier in Stages 1-4.",
+      "artifact": "session:2026-06-08-cb-restructure-dogfood"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-08"
+}

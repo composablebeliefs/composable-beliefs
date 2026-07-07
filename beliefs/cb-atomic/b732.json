@@ -1,0 +1,23 @@
+{
+  "id": "cb:b732",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "provenance",
+    "conflict-detection",
+    "sync"
+  ],
+  "claim": "When a writable field carries a user-authored provenance entry (user: or manual:) and a subsequent sync pass ingests an artifact that disagrees, a pure overlay policy (user-wins) silently hides the contradiction.",
+  "artifact": "session:2026-04-20",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b362; the source attestation event is recorded on cb:b362's evidence.",
+      "artifact": "session:2026-04-20"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

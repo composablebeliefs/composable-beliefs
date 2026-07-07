@@ -1,0 +1,30 @@
+{
+  "id": "cb:b340",
+  "type": "attestation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "dag",
+    "persistence",
+    "subagent"
+  ],
+  "name": "dag-persists-across-subagents",
+  "claim": "The DAG persists across subagent invocations. A subagent's context is isolated (a335), but the DAG is not: any subagent granted DAG access reads the same state written by the orchestrator or other subagents.",
+  "artifact": "source:beam-belief-graph-parallels",
+  "evidence": [
+    {
+      "date": "2026-04-14",
+      "detail": "Separates the subagent-boundary axis from the session-boundary axis; they are structurally distinct even though both are boundaries the graph crosses.",
+      "artifact": "source:beam-belief-graph-parallels"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "agent",
+      "type": "agent"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-04-14"
+}

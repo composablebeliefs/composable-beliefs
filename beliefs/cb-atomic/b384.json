@@ -1,0 +1,28 @@
+{
+  "id": "cb:b384",
+  "type": "prescription",
+  "kind": "rule",
+  "domain": "system",
+  "tags": [
+    "maintenance",
+    "dag-discipline",
+    "lifecycle:recurring"
+  ],
+  "name": "drift-audit-cycle-for-materialized-implications",
+  "claim": "Materialized implications require periodic drift audits to confirm their effects still hold. A drift audit iterates over implications with non-null `materialized` field, re-evaluates whether the action's effects are still present (code still shaped as intended, bash still absent, modules still split, etc.), and either bumps `materialized.last_verified` to the audit date or emits a new primitive asserting the drift + proposes a re-materialization action. The audit is a first-class maintenance cycle, not a one-off. Audit cadence is case-dependent: some implications (module splits) decay slowly; others (bash removal) decay faster if the team isn't vigilant. Default cadence TBD; initial proposal is quarterly with per-implication overrides.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-04-21",
+      "detail": "Materialization as a historical-only fact implies that some mechanism must periodically re-verify effects or the graph accumulates false claims of current success. The drift audit is that mechanism, paired with the materialization principle as its execution layer.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b382"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-04-21"
+}

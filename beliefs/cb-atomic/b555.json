@@ -1,0 +1,30 @@
+{
+  "id": "cb:b555",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "dev",
+  "tags": [
+    "lifecycle:discrete",
+    "per-belief-files"
+  ],
+  "claim": "Centralize belief-graph I/O through CB.Belief.Store: route the three readers that bypass it - CB.Codepath.Predicates (predicates.ex), CB.Belief.EditPairs (edit_pairs.ex), and the CB.Belief.Adjudication race-guard re-read (adjudication.ex) - through Store.read, so Store becomes the sole place that knows the on-disk layout. Precondition for per-belief storage (cb:b554).",
+  "evidence": [
+    {
+      "date": "2026-07-06",
+      "detail": "Discharged 2026-07-06: the three bypass readers (CB.Codepath.Predicates, CB.Belief.EditPairs, the CB.Belief.Adjudication race-guard re-read) route through Store.read/read_raw, and two path-parameterized readers the plan had not named (CB.Collection.load, cb.import.eval's read_collection) share the same loader, so Store is the sole place that knows the on-disk layout. Landed with the layout-aware store.",
+      "artifact": "commit:45f8587337bc6bdaea0488e282189f1bbf63237c"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "CB.Belief.Store",
+      "type": "module"
+    }
+  ],
+  "deps": [
+    "cb:b554"
+  ],
+  "materialized": null,
+  "status": "active",
+  "created": "2026-06-25"
+}

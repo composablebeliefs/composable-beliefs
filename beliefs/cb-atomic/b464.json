@@ -1,0 +1,23 @@
+{
+  "id": "cb:b464",
+  "type": "prescription",
+  "kind": "design-principle",
+  "domain": "system",
+  "tags": [
+    "restructure",
+    "collections"
+  ],
+  "claim": "`cb:` holds only the framework's what and how: schema, mechanism, and positioning. The motivation for why the framework emerged - agent failure modes, the paradigm argument - lives in the `agent-behavior:` and `paradigm:` collections, never in `cb:`. This keeps `cb:` self-contained and shippable without the narrative that motivated it.",
+  "artifact": "session:2026-06-08-cb-restructure-dogfood",
+  "evidence": [
+    {
+      "date": "2026-06-08",
+      "detail": "Extracted from the restructure design (CB-RESTRUCTURE-HANDOFF.md §2.2, §3); enforced by the post-partition gate that cb: has zero deps outside cb:.",
+      "artifact": "session:2026-06-08-cb-restructure-dogfood"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-08"
+}

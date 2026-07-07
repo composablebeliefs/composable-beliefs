@@ -1,0 +1,82 @@
+{
+  "id": "cb:b035",
+  "type": "prescription",
+  "kind": "derivation-table",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "dsl"
+  ],
+  "name": "contract-shape-catalogue",
+  "claim": "Contract rules decompose into a closed registry of interpretable kinds, each with a Datalog fact shape, an Elixir interpreter module, and required fields per rule entry",
+  "rules": [
+    {
+      "exemplars": [
+        "c001"
+      ],
+      "fact_shape": "edge(From, To, Requires)",
+      "interpreter": "Belief.Contract.StateMachine",
+      "kind": "state-machine",
+      "required_rule_fields": [
+        "from",
+        "to",
+        "requires"
+      ]
+    },
+    {
+      "exemplars": [
+        "c010",
+        "c011",
+        "c012",
+        "c013",
+        "c016"
+      ],
+      "fact_shape": "allowed(Field, Value)",
+      "interpreter": "Belief.Contract.Enum",
+      "kind": "enum-registry",
+      "required_rule_fields": [
+        "field",
+        "values"
+      ]
+    },
+    {
+      "exemplars": [
+        "c003",
+        "c008",
+        "c009",
+        "b035"
+      ],
+      "fact_shape": "row(Col1, ..., ColN)",
+      "interpreter": "Belief.Contract.Table",
+      "kind": "derivation-table",
+      "required_rule_fields": []
+    },
+    {
+      "exemplars": [
+        "c036"
+      ],
+      "fact_shape": "implies(When, Requires)",
+      "interpreter": "Belief.Contract.Implies",
+      "kind": "implies",
+      "required_rule_fields": [
+        "when",
+        "requires"
+      ]
+    }
+  ],
+  "invariants": [
+    "Every contract with non-empty rules must have a kind matching one entry in this catalogue",
+    "Each kind has exactly one interpreter module",
+    "The catalogue is closed: new kinds require updating this contract"
+  ],
+  "subjects": [
+    {
+      "ref": "assertions/",
+      "type": "assertions"
+    }
+  ],
+  "deps": [],
+  "status": "superseded",
+  "superseded_by": "cb:b046",
+  "created": "2026-04-22"
+}

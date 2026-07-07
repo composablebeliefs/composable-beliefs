@@ -1,0 +1,23 @@
+{
+  "id": "cb:b748",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "deprecation"
+  ],
+  "claim": "Deprecation is a pause, not a retirement: the decision is 'not currently useful enough to carry' rather than 'wrong forever'.",
+  "artifact": "user:review-agent-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b390; the source attestation event is recorded on cb:b390's evidence.",
+      "artifact": "user:review-agent-session-2026-04-21"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

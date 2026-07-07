@@ -1,0 +1,28 @@
+{
+  "id": "cb:b757",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "type-system"
+  ],
+  "claim": "type:implication is a prescriptive derivation from deps - the claim states what must be done or must be true based on the deps.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b404; the source attestation event is recorded on cb:b404's evidence.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

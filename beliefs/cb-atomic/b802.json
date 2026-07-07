@@ -1,0 +1,28 @@
+{
+  "id": "cb:b802",
+  "type": "attestation",
+  "kind": "design-observation",
+  "domain": "system",
+  "tags": [
+    "per-belief-files",
+    "storage"
+  ],
+  "claim": "The cross-entity-composition concern recorded against per-entity files (cb:b112) does not apply to per-node files: every belief is addressed uniformly and composition stays via deps.",
+  "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b554; the source attestation event is recorded on cb:b554's evidence.",
+      "artifact": "session:a0e89dc3-3d00-4274-be85-af54ef363239"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the belief graph",
+      "type": "storage"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

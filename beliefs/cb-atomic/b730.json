@@ -1,0 +1,23 @@
+{
+  "id": "cb:b730",
+  "type": "attestation",
+  "kind": "composable-belief",
+  "claim": "A contract such as 'loan status transitions must follow this state machine' is testable because the Elixir module hardcodes the transitions and the test compares them to the DAG definition - if code drifts from the contract, the test fails, a strict guarantee.",
+  "artifact": "user:2026-03-27",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b174; the source attestation event is recorded on cb:b174's evidence.",
+      "artifact": "user:2026-03-27"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "assertions",
+      "type": "system"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

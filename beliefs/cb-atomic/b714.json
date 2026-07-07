@@ -1,0 +1,17 @@
+{
+  "id": "cb:b714",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Field-level provenance (_provenance block on entities) maps source documents to the specific fields they substantiate.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b124; the source attestation event is recorded on cb:b124's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

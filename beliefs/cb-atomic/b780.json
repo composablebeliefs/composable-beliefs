@@ -1,0 +1,29 @@
+{
+  "id": "cb:b780",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "design",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "direction-of-fit"
+  ],
+  "claim": "A directive is violated - the world disobeys and the response is to flag the violation rather than revise the rule - or withdrawn - the house stops standing behind it, superseding it with a successor or retiring it (world fits mind).",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b471; the source attestation event is recorded on cb:b471's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

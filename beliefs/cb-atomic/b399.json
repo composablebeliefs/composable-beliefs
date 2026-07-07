@@ -1,0 +1,28 @@
+{
+  "id": "cb:b399",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "kind"
+  ],
+  "claim": "A belief's kind field holds a semantic classification value from the enum declared by b039. The kind field carries classification.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-05-17",
+      "detail": "kind:policy → kind:schema via dag-proposal m22",
+      "artifact": "session:2026-05-17-policy-categorization"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-05-15"
+}

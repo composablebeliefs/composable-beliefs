@@ -1,0 +1,29 @@
+{
+  "id": "cb:b796",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "migration-record"
+  ],
+  "claim": "All seven sibling collections (codepath, method, sdl, toy, lib, agent-behavior, paradigm) migrated to the v2 schema via mix cb.migrate.v2, with adjudicated splits sdl:a006 -> a008+a009 and toy:a9 -> a10+a11, the D3 trim sdl:a3 -> a010, and six agent-behavior mood re-homes (b396-b401).",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b483; the source attestation event is recorded on cb:b483's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

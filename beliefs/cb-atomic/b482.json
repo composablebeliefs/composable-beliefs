@@ -1,0 +1,30 @@
+{
+  "id": "cb:b482",
+  "type": "prescription",
+  "kind": "convention",
+  "domain": "system",
+  "tags": [
+    "claude-md",
+    "schema"
+  ],
+  "claim": "The schema's single source of truth is `lib/cb/belief.ex`. The graph's own schema is expressed as contracts in the graph: b051 (the four structural types), b053 (status lifecycle and immutability), b056 (schema discipline), b039/b043/b041 (the closed kind/artifact-scheme/domain enums), b057 (the kind-type table), b058 (subject containment), b059 (prescription grounding), and b055 (conflict scope). Read one with `mix bs show cb:b051`.",
+  "artifact": "session:2026-06-10-cb-schema-v2-landing",
+  "evidence": [
+    {
+      "date": "2026-06-10",
+      "detail": "Accepted via human adjudication against cb:b468. Reasoning: cb-schema-v2: the contract id map regenerates after the b026-family supersessions; the three new v2 contracts join the family.",
+      "artifact": "adjudication:human:session:2026-06-10-cb-schema-v2-landing"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b470"
+  ],
+  "status": "active",
+  "created": "2026-06-10"
+}

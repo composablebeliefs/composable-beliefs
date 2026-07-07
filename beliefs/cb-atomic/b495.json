@@ -1,0 +1,30 @@
+{
+  "id": "cb:b495",
+  "type": "prescription",
+  "kind": "action-item",
+  "domain": "design",
+  "tags": [
+    "backlog",
+    "lifecycle:discrete",
+    "consensus",
+    "multi-agent"
+  ],
+  "claim": "Decide the multi-agent consensus direction: whether CB's eval focus is the mission or the on-ramp to cross-agent belief reconciliation (two publishers, same model_version, a detected verdict conflict, an adjudicated outcome). The smallest enabling tool either way is pairwise preflight: one collection's proposed beliefs preflighted against another collection's union.",
+  "artifact": "session:2026-06-10-cb-schema-design-threads",
+  "evidence": [
+    {
+      "date": "2026-06-11",
+      "detail": "Raised by Mark 2026-06-10 (CB as a consensus/negotiation/mediation mechanism across agentic belief graphs); the machinery is already consensus-shaped - namespaced collections, preflight, adjudication records, cross-namespace supersession, conflict scope, cross-ruler compounds. Persisted to the graph at stasis entry per b489.",
+      "artifact": "session:2026-06-10-cb-schema-design-threads"
+    },
+    {
+      "date": "2026-06-12",
+      "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+}
