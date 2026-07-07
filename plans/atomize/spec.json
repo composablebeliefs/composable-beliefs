@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "date": "2026-07-07",
+  "lane": "descriptive",
+  "id_base": 700,
+  "notes": "Decomposition spec for the descriptive lane of the atomization migration (attestations and inferences). Dispositions: 'aggregate' retypes the node to aggregation in place (id and claim unchanged), mints the listed atoms as new attestations carrying the parent's artifact/kind/domain/tags/subjects, and sets the parent's deps to the atom ids; 'trim' rewrites an inference's claim to its conclusion (deps already carry the basis); 'keep' passes the node through unchanged. Atom ids are assigned by the generator: spec nodes sorted ascending, atoms numbered sequentially from id_base.",
+  "nodes": {
+    "cb:b110": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Compound assertions survive session boundaries - an implication created in March is still there in April, still linked to its deps, still flaggable if a dep changes.",
+        "Without the DAG, every session re-reads raw data and reconstructs some fraction of the reasoning, losing compound insights that depend on having the right facts adjacent at the right time."
+      ]
+    },
+    "cb:b113": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Sources are not beliefs: a source document is raw material from which primitives are extracted.",
+        "The graph stores structured beliefs; sources store evidence.",
+        "The source-belief relationship is bidirectional - sources feed primitives upstream and syntheses reference belief IDs downstream - and both directions can be active on the same document."
+      ]
+    },
+    "cb:b114": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Multi-paragraph analyses should not be belief kinds.",
+        "The schema is built around atomic, composable beliefs - the claim field is a one-liner.",
+        "Stuffing prose into a belief inverts the relationship: the prose becomes the point and the claim becomes a title.",
+        "Analyses live as source documents referencing belief IDs inline."
+      ]
+    },
+    "cb:b115": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Self-referential beliefs use the existing schema with subject type 'agent' - no special case needed.",
+        "Self-referential beliefs capture agent operational patterns, failure modes, and collaboration dynamics using the same primitive/compound/implication structure as domain beliefs.",
+        "Human-observed data (corrections, failure observations) produces the highest-quality self-referential primitives."
+      ]
+    },
+    "cb:b117": {
+      "disposition": "aggregate",
+      "atoms": [
+        "A traversal-path belief presents a path through graph nodes rather than synthesizing deps into a single belief - the routing IS the argument.",
+        "A traversal-path's conclusion is separable from its routing, enabling independent evaluation."
+      ]
+    },
+    "cb:b124": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Field-level provenance (_provenance block on entities) maps source documents to the specific fields they substantiate.",
+        "Field-level provenance makes the data model 100% auditable - if the agent tells you something, you can check the source.",
+        "Under field-level provenance, errors become real-time hallucinations, not deep data mistakes."
+      ]
+    },
+    "cb:b131": {
+      "disposition": "keep",
+      "note": "Inference; claim enumerates its basis but the conclusion (retroactive attribution prohibited at every layer) is one claim. Candidate for a later trim pass."
+    },
+    "cb:b133": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Contracts fill the abstraction gap between literal code and plain English for supervising agentic coding.",
+        "The system had implicit contracts scattered across three representations: structs (shape without behavioral invariants), skills (workflow without guarantees to callers), and the agent-instruction file (policy without mechanical verification).",
+        "Contracts make implicit guarantees explicit, machine-readable, and verifiable."
+      ]
+    },
+    "cb:b134": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Contracts are bound to domain, not implementation - they survive code rewrites.",
+        "A domain expert can author contracts without understanding code; a coding agent can implement against them without understanding business context.",
+        "Contracts generate tests, not the other way around: if you rewrote a module from scratch, every test breaks but the contract stays the same."
+      ]
+    },
+    "cb:b135": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Contracts govern behavior across fundamentally different substrates.",
+        "A single state-machine contract was independently implemented in compiled code and in agent reasoning, producing identical results without either knowing about the other.",
+        "A contract serves as intermediary: a domain expert authors it, an architect verifies against it, implementations derive from it."
+      ]
+    },
+    "cb:b138": {
+      "disposition": "trim",
+      "claim": "Contracts constitute the abstraction layer between domain expertise and implementation.",
+      "note": "Claim previously restated its three deps (b133, b134, b135) as a numbered basis; per claim-discipline (b402) the deps carry the basis and the claim carries the conclusion."
+    },
+    "cb:b173": {
+      "disposition": "trim",
+      "claim": "Implications are prototypes for contracts: an implication encodes a behavioral invariant at the prompt level, and when code crystallizes around that invariant the implication is elevated to a contract, while implications that can never become contracts (pure reasoning directives, tone guidance) stay implications indefinitely.",
+      "note": "Compressed from six sentences to the conclusion; the enforcement-boundary basis lives in dep b174."
+    },
+    "cb:b174": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Implications are behavioral directives - they shape how the agent reasons and acts.",
+        "Implications work through the prompt (surfaced via _patches.md) and are 'soft': compliance depends on the agent reading and following them.",
+        "Implications are durable - they survive session boundaries and compose with deps that explain why the rule exists.",
+        "Contracts are structural invariants - they are verified by code (verify_against_contract/0).",
+        "A contract such as 'loan status transitions must follow this state machine' is testable because the Elixir module hardcodes the transitions and the test compares them to the DAG definition - if code drifts from the contract, the test fails, a strict guarantee.",
+        "The implication-contract boundary is the enforcement mechanism: implications are enforced by the prompt, contracts are enforced by code."
+      ]
+    },
+    "cb:b298": { "disposition": "keep" },
+    "cb:b300": { "disposition": "keep" },
+    "cb:b302": { "disposition": "keep" },
+    "cb:b303": { "disposition": "keep" },
+    "cb:b339": {
+      "disposition": "keep",
+      "note": "Second sentence operationalizes the first, not a separable assertion; the node was itself already decomposed from a coarser claim."
+    },
+    "cb:b340": { "disposition": "keep", "note": "Same axis-isolation pattern as b339." },
+    "cb:b341": { "disposition": "keep", "note": "Same axis-isolation pattern as b339." },
+    "cb:b362": {
+      "disposition": "aggregate",
+      "atoms": [
+        "When a writable field carries a user-authored provenance entry (user: or manual:) and a subsequent sync pass ingests an artifact that disagrees, a pure overlay policy (user-wins) silently hides the contradiction.",
+        "When a writable field carries a user-authored provenance entry and a subsequent sync pass ingests an artifact that disagrees, a pure artifact-wins policy silently discards the user edit.",
+        "Both user-vs-artifact divergence failure modes are invisible without explicit conflict detection at write time."
+      ]
+    },
+    "cb:b376": {
+      "disposition": "keep",
+      "note": "Conjunctive, but the node carries no artifact, so decomposition would mint ungrounded atoms; deferred to an evidence-repair pass."
+    },
+    "cb:b380": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Implication lifecycle field `status` (active | superseded | retracted, per b029) describes whether the claim is still true.",
+        "Implication lifecycle field `materialized` (null | {plan, date}) describes whether the action was executed; status and materialized are orthogonal.",
+        "An active-and-unmaterialized implication is still-actionable work; an active-and-materialized implication has been discharged at time T and remains true as a principle.",
+        "The two-field lifecycle preserves b029's closed status enum while giving discrete implications a first-class discharged state via `materialized`, which a363 and downstream implications already use.",
+        "a373's proposal of `materialized` as a fifth status value was authored without preflight DAG search and therefore without consensus, and is superseded by the two-field design."
+      ]
+    },
+    "cb:b383": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The `materialized` field records a historical fact - the action was executed at time T via plan P - and does not assert that the action's effects still hold.",
+        "Materialization effects decay: code drifts, principles stop being enforced, refactors regress.",
+        "The `materialized` field carries a `last_verified` sub-field distinguishing historical execution from current verification, with shape `materialized: null | {plan: path, date: ISO, last_verified: null | ISO}`.",
+        "A fresh materialization has `last_verified: null`; an audited-and-still-current materialization has `last_verified` set to the audit date.",
+        "Drift detection for materialized effects is handled by a separate audit cycle."
+      ]
+    },
+    "cb:b386": {
+      "disposition": "aggregate",
+      "atoms": [
+        "A digest file caching active implications, regenerated by command, has freshness that depends on procedural enforcement - agents can and do forget, producing a stale digest read as authoritative by subsequent sessions.",
+        "Persisted caches of graph-derived content whose freshness is procedural rather than structural are antipatterns; they embed the staleness risk they were meant to solve.",
+        "The elimination path for the digest antipattern: fold active-implication loading into a session-start belief query and render the digest live from the graph instead of from disk."
+      ]
+    },
+    "cb:b390": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Deprecation is a pause, not a retirement: the decision is 'not currently useful enough to carry' rather than 'wrong forever'.",
+        "The deprecation primitive records the reasoning for why the feature failed to earn its keep.",
+        "A deprecated feature can be reinstated under new adjudication: the supersession or retraction of the deprecation primitive is itself a belief documenting the reversal.",
+        "Deprecation is distinct from retraction, which is reserved for beliefs that turned out false (per b029).",
+        "Confidence-field deprecation is the reference case for deprecation-as-pause: it may be reinstated in derived form if a concrete use-case ever materializes."
+      ]
+    },
+    "cb:b397": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Enum-shaped fields on beliefs (kind, domain, artifact-scheme, others as introduced) take values from sets declared in dedicated contracts.",
+        "The constraint that a field's value is in a given enum is carried by the field's master contract (b038), while the enumeration of allowed values is carried by a dedicated enum contract per field (b039 for kind, b040 for artifact-scheme, b041 for domain); the two layers compose via deps.",
+        "Adding an enum value supersedes the enum contract for that field."
+      ]
+    },
+    "cb:b398": { "disposition": "keep", "note": "One definition: referent, URI form, role." },
+    "cb:b399": { "disposition": "keep" },
+    "cb:b400": { "disposition": "keep", "note": "One definition plus identification mechanism." },
+    "cb:b401": {
+      "disposition": "keep",
+      "note": "Describes the v1 stored contract field, contradicted by the b056 derived-grade rule; the right move is supersession or retirement in a follow-up adjudication, not decomposition."
+    },
+    "cb:b403": { "disposition": "keep", "note": "Facets of one vocabulary entry, not conjoined assertions." },
+    "cb:b404": {
+      "disposition": "aggregate",
+      "atoms": [
+        "type:compound is a descriptive synthesis of facts from deps - the claim states what the deps together describe.",
+        "type:implication is a prescriptive derivation from deps - the claim states what must be done or must be true based on the deps.",
+        "A belief whose claim has both descriptive and prescriptive shapes is represented as two beliefs, one per type, linked via deps."
+      ]
+    },
+    "cb:b407": { "disposition": "keep", "note": "One fact plus illustration and standard citation." },
+    "cb:b408": {
+      "disposition": "aggregate",
+      "atoms": [
+        "`deps` is belief-to-belief logical derivation - the deps' claims together justify the current belief's claim - required on type:compound and type:implication, absent on type:primitive.",
+        "`subjects` is belief-to-entity topical reference - what the belief is about - including artifacts (files, threads, URLs), code modules, and sometimes other beliefs.",
+        "Aboutness and dependence are independent: a belief can be about another belief without depending on it, and can depend on another belief without being about it."
+      ]
+    },
+    "cb:b409": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Logical underpinnings of code and data decisions trace through a three-layer chain: policy beliefs (kind:policy, type:primitive) state what must be true, contract beliefs (contract:true, type:implication) derive rules from policies via deps and express them in DSL (rules/invariants), and code modules implement the contract rules.",
+        "Each layer of the policy-contract-code chain links to the next: contracts dep on policies, and contracts cite their implementing code modules via subjects.",
+        "Discovery along the policy-contract-code chain is bidirectional via DAG traversal - no back-pointer field is needed because depended-on-by is computable from deps."
+      ]
+    },
+    "cb:b437": { "disposition": "keep", "note": "One vocabulary entry; contrast and examples are elaboration." },
+    "cb:b442": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The audit chain for architectural decisions runs: code -> contract -> graph -> plan/recap metadata -> raw conversation.",
+        "The audit chain's bottom rung is currently ephemeral, single-machine, prunable transcript files.",
+        "Lossy synthesis is sufficient for most plans but may be inadequate for architecturally load-bearing decisions where the audit needs to reach the raw negotiation.",
+        "When (if ever) durable-in-version-control verbatim conversation is worth the storage and maintenance cost is an open question."
+      ]
+    },
+    "cb:b458": { "disposition": "keep", "note": "Origin claim plus scope statement." },
+    "cb:b467": {
+      "disposition": "aggregate",
+      "atoms": [
+        "A codepath is a cb collection.",
+        "A codepath claim anchors to a within-file site via code:<repo-relative-path>#<anchor>, where everything after the first '#' is one opaque literal substring anchor with an optional trailing '@<N>' occurrence selector (a literal trailing '@<digits>' is percent-encoded as '%40<digits>').",
+        "Line numbers are never stored in code anchors; they resolve at render/run time.",
+        "A missing code anchor is a maintenance signal, and multiple matches render against the first match with a tighten-this-anchor warning.",
+        "Codepath ordering and branching live in an output-target render-spec (entry plus render_steps rows), never in the claim beliefs."
+      ]
+    },
+    "cb:b470": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The cb-schema-v2 design (plans/cb-schema-v2/design.md, decided 2026-06-10) replaces the three-type schema with four structural types, one per epistemic operation: primitive (attest), compound (aggregate), inference (infer), directive (prescribe).",
+        "The v1 implication type conflated two moods: descriptive conclusions licensed to exceed their deps, and prescriptions the house stands behind.",
+        "The machinery already sorted by the hidden mood boundary: materialization, the conflict audit, and contract grading attach only to prescriptions, while staleness and supersession-on-evidence respond to falsification of descriptions.",
+        "Contract remains a structural grade in v2 - the machine-checkable grade of a directive."
+      ]
+    },
+    "cb:b471": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The boundary between inference and directive is direction of fit made operational: ask what would count as the belief being wrong.",
+        "An inference is falsified - if the world disagrees, the belief is defective and is superseded or retracted (mind fits world).",
+        "A directive is violated - the world disobeys and the response is to flag the violation rather than revise the rule - or withdrawn - the house stops standing behind it, superseding it with a successor or retiring it (world fits mind).",
+        "The author-facing trichotomy: falsified means inference; violated means directive; withdrawn means directive."
+      ]
+    },
+    "cb:b472": {
+      "disposition": "aggregate",
+      "atoms": [
+        "In schema v2, type is a near-function of three checkable properties: type = f(mood(kind), grounding(artifact/deps), scope(subjects)).",
+        "Mood is bound by the kind-type derivation table contract.",
+        "Grounding separates the descriptive types: artifact with no deps means primitive; deps mean compound or inference.",
+        "Subject containment separates compound from inference - a compound's subjects must be a subset of the union of its deps' subjects, with empty subjects passing vacuously, while an inference is licensed to widen scope.",
+        "What stays judgment in v2 typing: choosing the kind, and the residual gray zone where a claim is subject-contained yet synthesizing; the write flow owns that residue."
+      ]
+    },
+    "cb:b473": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The inference type is named for the ampliative move it records.",
+        "A deduction's conclusion is contained in its premises and can fail only when a premise fails; deductive consequences are infinite and free, so the graph never stores them.",
+        "An inference's conclusion outruns its deps - a generalization or an abduction - which is why it can be falsified while every dep stays true, and why the supersession-on-falsification lifecycle exists for it.",
+        "The compound is the one entailment the schema stores (conjunction introduction), with subject containment as its formal shadow; the epistemic work a compound records is the selection of what to assemble.",
+        "Type membership tracks the deps-to-claim relation, never the author's mental act, which is why the verifier interrogates scope rather than asking what kind of reasoning the author believes they performed."
+      ]
+    },
+    "cb:b476": {
+      "disposition": "aggregate",
+      "atoms": [
+        "A prescription is adopted, and adoption grounds in one of two places: in beliefs (deps - guidance resting on a verdict) or in a stipulation event (an artifact citing plan:, user:, or session: - a convention fixed by decision rather than derived from evidence).",
+        "Schema v2 requires of a non-contract directive deps or a stipulation artifact.",
+        "The deps-or-stipulation requirement legitimizes conventions as directives without manufacturing fake deps; contract-grade directives keep their existing empty-deps exemption."
+      ]
+    },
+    "cb:b483": {
+      "disposition": "aggregate",
+      "atoms": [
+        "The framework graph migrated to the four-type v2 schema on 2026-06-10: 76 nodes re-typed, the b026/b027/b029/b031/b032/b038 contract family superseded by b051-b056, new contracts b057/b058/b059, and the CLAUDE.md render beliefs superseded and regenerated.",
+        "All seven sibling collections (codepath, method, sdl, toy, lib, agent-behavior, paradigm) migrated to the v2 schema via mix cb.migrate.v2, with adjudicated splits sdl:a006 -> a008+a009 and toy:a9 -> a10+a11, the D3 trim sdl:a3 -> a010, and six agent-behavior mood re-homes (b396-b401).",
+        "All eight collections verify under v2; sdl reproduces exactly its two teaching method-check failures."
+      ]
+    },
+    "cb:b484": { "disposition": "keep" },
+    "cb:b485": { "disposition": "keep" },
+    "cb:b486": { "disposition": "keep" },
+    "cb:b487": { "disposition": "keep" },
+    "cb:b493": { "disposition": "keep" },
+    "cb:b498": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Framework canon changes only through its own write flow, including at the foundations.",
+        "The status-lifecycle contract was superseded via the lifecycle it defines (b029 -> b053), and the type enum was replaced through adjudication by a node typed in the values it introduces (b026 -> b051).",
+        "Because there is no maintenance hatch, the completeness of the audit trail is structural rather than behavioral - the history can be trusted without trusting that everyone behaved."
+      ]
+    },
+    "cb:b506": { "disposition": "keep", "note": "One concept plus its operationalization." },
+    "cb:b529": { "disposition": "keep", "note": "Inference; gradient plus necessary-condition qualifier is one conclusion." },
+    "cb:b554": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Per-belief atomic files (one JSON file per node at beliefs/<ns>/<local>.json) are preferred over both the single-file array and per-entity grouping.",
+        "The cross-entity-composition concern recorded against per-entity files (cb:b112) does not apply to per-node files: every belief is addressed uniformly and composition stays via deps.",
+        "Per-node files eliminate the _keys whole-array churn-suppression workaround, align with the anti-digest principle (cb:b386), and prepare the store for a database backend.",
+        "Per-node storage constraint: multi-node writes (e.g. supersession) lose single-file write-atomicity and become N file writes, acceptable at local/single-writer scale or via an all-or-nothing write helper.",
+        "cb:b112's supersession is deferred to cb:b560 so the active graph does not claim per-file storage before the code implements it."
+      ]
+    },
+    "cb:b565": {
+      "disposition": "aggregate",
+      "atoms": [
+        "Schema rule in force: no `confidence` field.",
+        "Schema rule in force: no `patch` kind.",
+        "Schema rule in force: no separate `implication` prose field, since meaning is carried by `claim` plus `deps`.",
+        "Schema rule in force: attestations ground their claim with an `artifact` URI and dated `evidence`.",
+        "Schema rule in force: every active prescription grounds in deps or a stipulation artifact (per b059).",
+        "Schema rule in force: contract-grade is derived, not stored - a prescription with non-empty `rules`/`invariants` is contract-grade, with no `contract` field carried (per b056)."
+      ]
+    },
+    "cb:b579": {
+      "disposition": "aggregate",
+      "atoms": [
+        "OKF bundle doc discovery (CB.Okf.Manifest.doc_paths/1, shared with the validator) enumerates markdown docs via Elixir's Path.wildcard, whose default match_dot: false skips dot-directories - so the beliefs/nursery/threads/.sessions/ draft area is structurally invisible to manifest build and validation.",
+        "The leading dot in .sessions is load-bearing: it is what keeps the frontmatter-less, per-turn-rewritten session drafts out of the validated bundle.",
+        "Passing match_dot: true to the OKF discovery wildcard, or renaming the .sessions directory without the dot, would silently pull the session drafts into discovery and break manifest validation."
+      ]
+    }
+  }
+}
