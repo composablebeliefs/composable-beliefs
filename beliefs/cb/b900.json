@@ -1,0 +1,17 @@
+{
+  "id": "cb:b900",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "claim": "The gap between claim and evidence is where misinterpretation lives and can be audited.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b118; the source attestation event is recorded on cb:b118's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

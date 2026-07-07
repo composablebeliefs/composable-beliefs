@@ -167,7 +167,14 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
 
     active = beliefs |> Enum.filter(&(&1.status == "active")) |> MapSet.new(& &1.id)
     spec_ids = MapSet.new(Map.keys(spec["nodes"]))
-    missing = MapSet.difference(lane, spec_ids)
+
+    # A lane: "prescriptive" spec runs post-swap, where the descriptive
+    # lane is consumed - only the entries it names are validated.
+    missing =
+      if spec["lane"] == "prescriptive",
+        do: MapSet.new(),
+        else: MapSet.difference(lane, spec_ids)
+
     extra = MapSet.difference(spec_ids, active)
 
     problems =

@@ -1,0 +1,75 @@
+{
+  "version": 2,
+  "date": "2026-07-07",
+  "lane": "prescriptive",
+  "id_base": 900,
+  "notes": "Tranche 3 of the atomization migration: the decomposable 3-sentence prescriptions, run post-swap (lane: prescriptive skips descriptive-lane completeness; only named entries are touched). Same dispositions as spec.json. The rest of the 3-sentence tier stays as-is: enum registries and schema contracts are already in target shape, discrete action-items carry their work description, and norm-plus-elaboration claims are keeps per the b402 rewrite/decompose boundary.",
+  "nodes": {
+    "cb:b118": {
+      "disposition": "restate",
+      "claim": "Every primitive sourced from a document or email carries an evidence array with source details including dates and specific descriptions of what was observed: the claim is the agent's interpretation, the evidence carries the factual basis.",
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "The gap between claim and evidence is where misinterpretation lives and can be audited."
+      ]
+    },
+    "cb:b424": {
+      "disposition": "restate",
+      "claim": "Behavioral invariants belong in DAG contracts, not scattered across the agent-instruction file, struct definitions, or skill prose.",
+      "invariants": [
+        "Every code module encoding domain rules has a corresponding DAG contract",
+        "Agent-instruction files (a skill definition, the agent-instruction file) translate intent and reference the DAG; they do not carry logic of their own"
+      ]
+    },
+    "cb:b428": {
+      "disposition": "restate",
+      "claim": "User-sourced and manually-sourced provenance is authoritative.",
+      "invariants": [
+        "Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting",
+        "Authorization to sync does not include authorization to discard user judgment"
+      ]
+    },
+    "cb:b436": {
+      "disposition": "restate",
+      "claim": "Removal or renaming of a field from the assertion schema happens via DAG-authorized schema migration; individual node fields remain immutable outside authorized migrations.",
+      "invariants": [
+        "A migration carries a compound belief asserting the decision, with deps citing this meta-convention and the primitive(s) carrying the new schema rules - the compound is the audit anchor and the citation point for future references, the primitives carry the schema content",
+        "A migration is adjudicated through the consensus mechanism (once built) or direct user authorization (interim)",
+        "The bulk transformation executes under the compound's authority",
+        "Any contract the migration conflicts with is superseded or retired",
+        "b029's per-node immutability permits this class of operation and no other"
+      ]
+    },
+    "cb:b441": {
+      "disposition": "restate",
+      "claim": "Sub-agent delegation is permissible specifically for adjudication tasks - reviewing a session's proposed beliefs against the current graph, producing merge/reject decisions with reasons - and the carve-out does not extend to other classes of work (research, refactoring, design, plan execution) without an explicit new belief justifying it.",
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "Adjudication has bounded input, bounded output, and the working-out is itself the artifact, so no understanding is hidden from the user."
+      ]
+    },
+    "cb:b465": {
+      "disposition": "restate",
+      "claim": "Contracts are never compiled into code: the contract-to-code relationship is verification, not generation - interpreters query a contract and the test suite asserts the code conforms (the `verify_against_contract` pattern, cb:b417 / cb:b425), so drift surfaces as a failing test, not a regenerated module.",
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "Spec-to-code generation is nondeterministic and unmaintainable."
+      ]
+    },
+    "cb:b475": {
+      "disposition": "restate",
+      "claim": "Primitive atomicity doctrine: a primitive is one atomic statement of what a single source said, leaning verbatim - a primitive whose claim conjoins separable assertions is a mis-authored compound and is split at authoring time.",
+      "invariants": [
+        "Atomicity is judgment, enforced in the write flow rather than by a verifier check; source-checkable verbatim predicates are future work for cached sources"
+      ]
+    },
+    "cb:b525": {
+      "disposition": "restate",
+      "claim": "The repository README is a succinct front door - pitch, the two commitments, use cases, the sixty-second demo, quick start, a documentation map, honest status - and stays near 100 lines.",
+      "invariants": [
+        "Narrative, reference, and worked-example material lives in docs/ files linked from the README's Documentation section (mental-model.md, codepaths.md, eval-ledger.md, reference.md, worked-example-eval-verdict.md)",
+        "New deep material is added as or into a docs/ file and linked from the map, never appended to the README"
+      ]
+    }
+  }
+}

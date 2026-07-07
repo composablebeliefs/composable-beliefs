@@ -8,13 +8,22 @@
     "centralization"
   ],
   "name": "dag-is-canonical-home-for-behavioral-commitment",
-  "claim": "Behavioral invariants belong in DAG contracts, not scattered across the agent-instruction file, struct definitions, or skill prose. Every code module encoding domain rules has a corresponding DAG contract. Agent-instruction files (a skill definition, the agent-instruction file) translate intent and reference the DAG; they do not carry logic of their own.",
+  "claim": "Behavioral invariants belong in DAG contracts, not scattered across the agent-instruction file, struct definitions, or skill prose.",
+  "invariants": [
+    "Every code module encoding domain rules has a corresponding DAG contract",
+    "Agent-instruction files (a skill definition, the agent-instruction file) translate intent and reference the DAG; they do not carry logic of their own"
+  ],
   "artifact": "session:2026-05-16-policy-citation-sweep",
   "evidence": [
     {
       "date": "2026-05-16",
       "detail": "A citation sweep surfaced several behavioral contracts whose underlying intent is centralization of behavioral commitment in the graph. The shared policy is authored to make the citation derivation explicit.",
       "artifact": "session:2026-05-16-policy-citation-sweep"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: Behavioral invariants belong in DAG contracts, not scattered across the agent-instruction file, struct definitions, or skill prose. Every code module encoding domain rules has a corresponding DAG contract. Agent-instruction files (a skill definition, the agent-instruction file) translate intent and reference the DAG; they do not carry logic of their own.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [

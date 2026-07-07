@@ -9,18 +9,24 @@
     "sub-agents",
     "lifecycle:recurring"
   ],
-  "claim": "Sub-agent delegation is permissible specifically for adjudication tasks - reviewing a session's proposed beliefs against the current graph, producing merge/reject decisions with reasons. Adjudication has bounded input, bounded output, and the working-out is itself the artifact, so no understanding is hidden from the user. Do not extend this carve-out to other classes of work (research, refactoring, design, plan execution) without an explicit new belief justifying it.",
+  "claim": "Sub-agent delegation is permissible specifically for adjudication tasks - reviewing a session's proposed beliefs against the current graph, producing merge/reject decisions with reasons - and the carve-out does not extend to other classes of work (research, refactoring, design, plan execution) without an explicit new belief justifying it.",
   "artifact": "session:working-thread",
   "evidence": [
     {
       "date": "2026-04-23",
       "detail": "The carve-out: adjudication has bounded input (proposed beliefs vs current graph), bounded output (merge/reject decisions with reasons), and the working-out is itself the artifact, so no understanding is hidden. Without this carve-out the adjudication-via-subagent step would violate the no-delegation-of-understanding principle.",
       "artifact": "session:working-thread"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b901, now deps. Previous claim: Sub-agent delegation is permissible specifically for adjudication tasks - reviewing a session's proposed beliefs against the current graph, producing merge/reject decisions with reasons. Adjudication has bounded input, bounded output, and the working-out is itself the artifact, so no understanding is hidden from the user. Do not extend this carve-out to other classes of work (research, refactoring, design, plan execution) without an explicit new belief justifying it.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
   "deps": [
-    "cb:b440"
+    "cb:b440",
+    "cb:b901"
   ],
   "materialized": null,
   "status": "active",
