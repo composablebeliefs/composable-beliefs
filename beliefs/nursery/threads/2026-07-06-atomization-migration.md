@@ -1,7 +1,98 @@
-# Session transcript - bc9284a8-f04c-53b0-a7ad-71f5e1b35673
+---
+type: thread
+title: 2026-07-06 - atomization migration - the graph decomposed to atoms and swapped
+description: The wholesale atomization migration, proposal to merge-ready PR in one session. The operator proposed decomposing conjunctive beliefs into single-sentence attestations with composites as aggregations; the assessment found the graph already held that doctrine (cb:b475/b402/b405) while violating it - 30 of 48 attestations conjunctive, zero aggregations ever. Executed as a spec-driven regenerable parallel graph (plans/atomize/, mix cb.migrate.atomize) then swapped: 31 attestations retyped to aggregation over 126 minted atoms, 24 prescriptions restated (norms in claims, enumerables in invariants, rationale in dep atoms), doctrine minted as cb:b597, b401 superseded by migration atom b811. Graph 258 -> 392 nodes, PR #29. Use when auditing the migration, resuming the 2-sentence tier or dep-grounding follow-ups, or citing the parallel-graph migration pattern.
+tags: [thread, cb, schema, atomicity, migration, aggregation]
+status: active
+timestamp: 2026-07-07
+artifact: session:2026-07-06-atomization-migration
+---
 
-> Auto-captured by the Stop hook. **Non-provenance** (see [index](index.md)) - the nursery seeds are the provenance. Substantive responses are kept; short pre-tool narration, reasoning, and tool calls are stripped.  
-> Session `bc9284a8-f04c-53b0-a7ad-71f5e1b35673` | 2026-07-06
+# 2026-07-06 - atomization migration - the graph decomposed to atoms and swapped
+
+> **Hook-captured, /end-finalized (2026-07-07).** Body auto-rendered by the Stop hook
+> (responses only; reasoning and tool calls stripped); metadata, narrative, and routing
+> synthesized at close. **Non-provenance** - the proto-belief documents and the migration
+> spec are. Closed under the cb:b583 turn-separation rule: `/end` ran alone in its own
+> turn, after the PR-creation exchange that ended the substantive work, so the embedded
+> body is complete through PR #29's creation; the only turn omitted is this `/end` turn
+> itself. The session spanned 2026-07-06 into 2026-07-07; the render slug carries the
+> start date. Retro-pairing (cb:b507): cb:b597, the one belief minted through the write
+> flow from this session's operator exchange, was paired to this document in this turn,
+> pair-then-write. The 129 atoms and 42 reshaped nodes the migration minted are
+> deliberately NOT thread-paired: their provenance is the reviewed spec
+> (plans/atomize/spec.json, spec-2.json) and design record (plans/atomize/design.md),
+> which every touched node already cites in its migration evidence entry - pairing them
+> here would recreate the digest antipattern the graph warns about.
+
+## Where things stand (the narrative)
+
+**Where things stood.** The graph carried 257 nodes; the aggregation structural type had
+never been instantiated; the atomicity doctrine (cb:b475) had been active since 2026-06-10
+while 30 of 48 active attestations conjoined multiple assertions, and cb:b405's
+decomposition sweep sat prescribed but never materialized. The operator opened with the
+decomposition proposal and asked for an assessment.
+
+**The arc.** The assessment came back: the proposal is the graph's own doctrine, violated
+in practice - and the genuinely new element was putting the unused aggregation type to
+work. The operator then made the call that shaped everything after: the DAG is more
+aspirationally immutable than practically (one star, no users), correctness outranks
+ceremony, do the wholesale migration as a parallel DAG where a decomposed belief keeps its
+id and claim but becomes an aggregation over newly minted atoms. The session sharpened
+that into mechanism - judgment in a reviewable spec, generation deterministic and
+regenerable, identity preserved, the cb:b051 vocabulary-migration precedent extended from
+labels to grounding - and minted it as doctrine (cb:b597) through preflight/import before
+executing.
+
+Execution ran in lanes. The descriptive lane covered all 57 attestations and inferences
+with complete coverage required: 31 aggregations over 115 atoms, 2 inference trims, 24
+keeps with recorded reasons. The generator (`mix cb.migrate.atomize`) surfaced one real
+bug worth remembering: the store serializes the *raw stored* type for round-trip
+stability, so the first emitted graph silently carried zero aggregations until the retype
+landed on both the normalized and raw fields - caught by querying the output, now pinned
+by a regression test. The prescriptive lane followed as increments (prescriptions cannot
+become aggregations - the b057 mood binding): a new `restate` disposition moved norms into
+claims, enumerable content into invariants, and extracted rationale into atoms the
+prescription deps on. Tranche 1 took the eleven 5+-sentence claims, tranche 2 the eleven
+4-sentence ones, tranche 3 (post-swap, via a `lane: prescriptive` mode) the eight
+decomposable 3-sentence ones - including cb:b475 itself, which now practices what it
+preaches.
+
+On "Proceed," the swap replaced beliefs/cb wholesale and regenerated CLAUDE.md in the same
+commit - its Git Policy section now renders the tightened b580/b587 norms with their
+rationale living in the graph as dep atoms. Follow-through ran entirely on sanctioned
+doors: cb:b401 (which still described the removed stored contract field) was superseded by
+cb:b811, the migration-minted atom already stating the current rule - the deferred-
+supersession door meeting a successor the migration had incidentally created; the stale
+flag that raised on cb:b056 was discharged with `mix cb.repoint`; cb:b545 turned out to
+need nothing, its materialized todo already closed with the implementing commit recorded.
+
+**Where things stand now.** The live graph is 392 nodes, 346 active: 31 aggregations, 155
+attestations (126 of them single-sentence migration atoms), 9 inferences, 197
+prescriptions - 24 carrying invariants that used to be claim prose. Every pre-existing id
+survived; every claim change carries an evidence entry with the previous text. Schema
+verifies 20/20 with subject containment finally exercised, CLAUDE.md is current, 470 tests
+green, stale set unchanged at its 3 pre-existing items. PR #29 carries the branch.
+
+**What the next session inherits.** Run `mix cb.verify.collection` for the sibling
+collections locally before merging PR #29 (belief-collections is not staged in the remote
+environment). The 2-sentence prescription tier (~60 nodes) is mostly legitimate keeps -
+opportunistic pass at best. Grounding the dep-less prescriptions in the newly minted atoms
+is the remaining structural improvement and wants its own matching session. And cb:b405
+(sweep-discipline) deserves an operator call: this migration effectively executed it, so
+it could be materialized-and-discharged or restated to current vocabulary.
+
+## Routing
+
+| Topic | State | Dispatch | Dangling question |
+| --- | --- | --- | --- |
+| Decomposition assessment (proposal vs graph doctrine) | closed | minted cb:b597; mechanism recorded in plans/atomize/design.md | - |
+| Descriptive-lane decomposition (57 nodes) | closed | plans/atomize/spec.json; swapped into beliefs/cb | - |
+| Prescriptive-lane decomposition (tranches 1-3) | closed | plans/atomize/spec.json + spec-2.json; swapped | - |
+| Prescriptive 2-sentence tier + dep-grounding of unlinked prescriptions | open | unrouted | which dep-less prescriptions ground in which migration atoms? |
+| cb:b405 sweep-discipline disposition | open | unrouted | materialize-and-discharge, or restate to current vocabulary? |
+| Sibling-collections verification | open | unrouted (noted in PR #29 body) | does mix cb.verify.collection pass against the swapped graph locally? |
+| PR #29 merge | open | https://github.com/composablebeliefs/composable-beliefs/pull/29 | - |
 
 ## User
 
@@ -182,3 +273,12 @@ PR created: [#29 - Atomization migration: decompose conjunctive nodes into singl
 It covers the full arc - spec, generator, parallel graph, swap, and the post-swap follow-through - with the verification story and one pre-merge caveat noted in the body: `mix cb.verify.collection` for the sibling collections couldn't run here since belief-collections isn't staged in this environment, so that's worth a local run before merging.
 
 Want me to watch the PR? I can subscribe to its activity and respond to review comments or fix CI failures as they come in.
+
+## Related
+
+- [plans/atomize/design.md](../../../plans/atomize/design.md) - the migration mechanism and swap record
+- [plans/atomize/spec.json](../../../plans/atomize/spec.json) / [spec-2.json](../../../plans/atomize/spec-2.json) - the decomposition judgment, all lanes
+- cb:b597 - atomization-migration-doctrine, minted this session and retro-paired to this thread
+- cb:b475 / cb:b402 / cb:b405 - the pre-existing doctrine this migration executed
+- cb:b401 -> cb:b811 supersession; cb:b056 repoint - the post-swap follow-through
+- [PR #29](https://github.com/composablebeliefs/composable-beliefs/pull/29) - the branch under review

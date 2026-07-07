@@ -1,6 +1,6 @@
 {
   "bundle": "nursery",
-  "count": 44,
+  "count": 45,
   "docs": [
     {
       "path": "assertions-rename.md",
@@ -587,6 +587,23 @@
       "status": "active",
       "timestamp": "2026-07-05",
       "artifact": "session:2026-07-05-provenance-read-surface"
+    },
+    {
+      "path": "threads/2026-07-06-atomization-migration.md",
+      "type": "thread",
+      "title": "2026-07-06 - atomization migration - the graph decomposed to atoms and swapped",
+      "description": "The wholesale atomization migration, proposal to merge-ready PR in one session. The operator proposed decomposing conjunctive beliefs into single-sentence attestations with composites as aggregations; the assessment found the graph already held that doctrine (cb:b475/b402/b405) while violating it - 30 of 48 attestations conjunctive, zero aggregations ever. Executed as a spec-driven regenerable parallel graph (plans/atomize/, mix cb.migrate.atomize) then swapped: 31 attestations retyped to aggregation over 126 minted atoms, 24 prescriptions restated (norms in claims, enumerables in invariants, rationale in dep atoms), doctrine minted as cb:b597, b401 superseded by migration atom b811. Graph 258 -> 392 nodes, PR #29. Use when auditing the migration, resuming the 2-sentence tier or dep-grounding follow-ups, or citing the parallel-graph migration pattern.",
+      "tags": [
+        "thread",
+        "cb",
+        "schema",
+        "atomicity",
+        "migration",
+        "aggregation"
+      ],
+      "status": "active",
+      "timestamp": "2026-07-07",
+      "artifact": "session:2026-07-06-atomization-migration"
     },
     {
       "path": "threads/2026-07-06-route-tagging-enactment.md",
