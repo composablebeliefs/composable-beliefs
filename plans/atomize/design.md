@@ -1,5 +1,11 @@
 # Atomization migration - descriptive lane
 
+**Status: swapped 2026-07-07.** The generated graph replaced `beliefs/cb/`
+(389 nodes) and CLAUDE.md was regenerated in the same commit. The spec is
+now the historical record of the decomposition judgment; `mix
+cb.migrate.atomize` self-fences against the swapped graph (the minted atom
+ids collide with its allocation range, and the atoms have no spec entries).
+
 Wholesale decomposition of conjunctive descriptive nodes (attestations and
 inferences) into single-sentence atoms, per the primitive atomicity doctrine
 (cb:b475) and claim discipline (cb:b402). Operator-authorized departure from

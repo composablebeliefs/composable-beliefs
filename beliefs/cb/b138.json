@@ -3,7 +3,14 @@
   "type": "inference",
   "kind": "design-rationale",
   "tags": [],
-  "claim": "The contract layer exists because: (1) implicit contracts were scattered across structs, skills, and the agent-instruction file with no unified representation (b133), (2) contracts must be domain-bound, surviving code rewrites while remaining mechanically verifiable (b134), (3) the same contract representation must govern behavior across different substrates - compiled code and LLM reasoning (b135). This positions contracts as the abstraction layer between domain expertise and implementation.",
+  "claim": "Contracts constitute the abstraction layer between domain expertise and implementation.",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim trimmed to its conclusion per claim discipline (cb:b402); the basis lives in deps. Previous claim: The contract layer exists because: (1) implicit contracts were scattered across structs, skills, and the agent-instruction file with no unified representation (b133), (2) contracts must be domain-bound, surviving code rewrites while remaining mechanically verifiable (b134), (3) the same contract representation must govern behavior across different substrates - compiled code and LLM reasoning (b135). This positions contracts as the abstraction layer between domain expertise and implementation.",
+      "artifact": "document:plans/atomize/design.md"
+    }
+  ],
   "subjects": [],
   "deps": [
     "cb:b133",

@@ -1,6 +1,6 @@
 {
   "id": "cb:b470",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-rationale",
   "domain": "system",
   "tags": [
@@ -14,6 +14,11 @@
       "date": "2026-06-10",
       "detail": "Design record written and stress-tested 2026-06-10 (worked sdl migration, per-collection inventory, code touch points); decisions D1-D6 resolved the same day, D1 (type name 'inference') confirmed by Mark for launch with the immutable-history consideration explicitly overridden in favor of long-term terminology. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
       "artifact": "document:plans/cb-schema-v2/design.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b774, cb:b775, cb:b776, cb:b777. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -21,6 +26,12 @@
       "ref": "plans/cb-schema-v2/design.md",
       "type": "doc"
     }
+  ],
+  "deps": [
+    "cb:b774",
+    "cb:b775",
+    "cb:b776",
+    "cb:b777"
   ],
   "status": "active",
   "created": "2026-06-10"

@@ -1,6 +1,6 @@
 {
   "id": "cb:b114",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-observation",
   "tags": [],
   "claim": "Multi-paragraph analyses should not be belief kinds. The schema is built around atomic, composable beliefs - the claim field is a one-liner. Stuffing prose into a belief inverts the relationship: the prose becomes the point and the claim becomes a title. Analyses live as source documents referencing belief IDs inline.",
@@ -10,10 +10,20 @@
       "date": "2026-03-23",
       "detail": "The prose is the primary artifact, not a property of a one-line claim. Stuffing a multi-paragraph analysis into a belief inverts the relationship. All beliefs have atomic claims.",
       "artifact": "document:design-notes"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b705, cb:b706, cb:b707, cb:b708. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b705",
+    "cb:b706",
+    "cb:b707",
+    "cb:b708"
+  ],
   "status": "active",
   "created": "2026-03-23"
 }

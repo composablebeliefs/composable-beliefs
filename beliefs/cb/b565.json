@@ -1,6 +1,6 @@
 {
   "id": "cb:b565",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "schema",
   "domain": "system",
   "tags": [
@@ -14,10 +14,22 @@
       "date": "2026-07-02",
       "detail": "Accepted via human adjudication against cb:b481. Reasoning: b059 carve-out collapse (option a of the contract-predicate-demotion seed, user-confirmed): the schema-rules sentence's grounding clause widens from non-contract prescriptions to every active prescription. The contract-level claim overlaps (b052, b056, b059) are the contracts this sentence describes - b052 and b059 are collapsed in the same migration pass, b056 is referenced unchanged.",
       "artifact": "adjudication:human:2026-07-02-contract-grounding-decision"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b806, cb:b807, cb:b808, cb:b809, cb:b810, cb:b811. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b806",
+    "cb:b807",
+    "cb:b808",
+    "cb:b809",
+    "cb:b810",
+    "cb:b811"
+  ],
   "status": "active",
   "created": "2026-07-02"
 }

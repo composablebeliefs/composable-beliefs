@@ -1,6 +1,6 @@
 {
   "id": "cb:b380",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "schema",
   "domain": "system",
   "tags": [
@@ -15,6 +15,11 @@
       "date": "2026-04-21",
       "detail": "A predecessor belief proposed materialization as a status value; the status enum is closed (active | superseded | retracted | retired, with retired exclusive to contracts). The conflict was surfaced in review after authoring, not before. The orthogonal-field model matches existing usage in earlier implications.",
       "artifact": "user:review-session-2026-04-21"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b735, cb:b736, cb:b737, cb:b738, cb:b739. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -23,7 +28,13 @@
       "type": "skill"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b735",
+    "cb:b736",
+    "cb:b737",
+    "cb:b738",
+    "cb:b739"
+  ],
   "status": "active",
   "created": "2026-04-21"
 }

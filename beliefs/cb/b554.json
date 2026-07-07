@@ -1,6 +1,6 @@
 {
   "id": "cb:b554",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-observation",
   "domain": "system",
   "tags": [
@@ -19,6 +19,11 @@
       "date": "2026-07-06",
       "detail": "Implemented 2026-07-06: the b555-b560 chain landed - layout-aware store, migration task, the 248-node split to beliefs/cb/<local>.json, and the self-description sweep. The multi-node write constraint resolved as per-file tmp+rename with new-before-changed ordering; cb:b112's deferred supersession by this node executed via mix cb.supersede.",
       "artifact": "commit:4d059178579eb3e771d7f7422794e5037ec7a1a0"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b801, cb:b802, cb:b803, cb:b804, cb:b805. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -27,7 +32,13 @@
       "type": "storage"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b801",
+    "cb:b802",
+    "cb:b803",
+    "cb:b804",
+    "cb:b805"
+  ],
   "status": "active",
   "created": "2026-06-25"
 }

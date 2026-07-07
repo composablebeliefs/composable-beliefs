@@ -1,6 +1,6 @@
 {
   "id": "cb:b579",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-property",
   "domain": "system",
   "tags": [
@@ -27,6 +27,11 @@
       "date": "2026-07-03",
       "detail": "Retro-paired per cb:b507 at session close: the thread record of the minting session (2026-07-02/03, fold-chronicle-into-threads). Pairing executed before /end wrote the file - the pair-then-write ordering adopted this session - so the close itself is captured in the record this entry cites.",
       "artifact": "document:beliefs/nursery/threads/2026-07-02-fold-chronicle-into-threads.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b812, cb:b813, cb:b814. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -39,7 +44,11 @@
       "type": "artifact"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b812",
+    "cb:b813",
+    "cb:b814"
+  ],
   "status": "active",
   "created": "2026-07-02"
 }

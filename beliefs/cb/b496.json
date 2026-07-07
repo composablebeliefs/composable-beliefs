@@ -8,7 +8,7 @@
     "authoring",
     "ceremony"
   ],
-  "claim": "Persistence ceremony is proportionate to stance. A position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - and its claims are then extracted into the graph. Observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them. If every wart became a three-artifact pipeline, the pipeline would stop being read.",
+  "claim": "Persistence ceremony is proportionate to stance: a position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - with its claims then extracted into the graph, while observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them.",
   "artifact": "session:2026-06-11-stasis-observability",
   "evidence": [
     {
@@ -20,11 +20,17 @@
       "date": "2026-06-12",
       "detail": "Retro-pair per the b507 close protocol: the session slug this node stipulates from is readable in the thread record - the schema-landing main body and postscripts 2-6 cover the stasis, observability, and ceremony exchanges where these stipulations were made.",
       "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b822, now deps. Previous claim: Persistence ceremony is proportionate to stance. A position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - and its claims are then extracted into the graph. Observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them. If every wart became a three-artifact pipeline, the pipeline would stop being read.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
   "deps": [
-    "cb:b492"
+    "cb:b492",
+    "cb:b822"
   ],
   "status": "active",
   "created": "2026-06-11"

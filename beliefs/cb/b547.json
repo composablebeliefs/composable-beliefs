@@ -9,7 +9,7 @@
     "artifact",
     "provenance"
   ],
-  "claim": "Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum (cb:b066) has no rebind operation - cb:b545 records the same missing-rebind gap even for commits - so the pointers silently dangle the moment the path moves. A repo move is therefore not done until its inbound artifacts resolve again. Before decommissioning, sweep every dependent graph for the old path; repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written). The okf-fold (cb:b546) is the worked example: deleting amieval/knowledge left four cb: evidence artifacts (cb:b518/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit.",
+  "claim": "A repo move (folding, renaming, or relocating) is not done until its inbound document:/code: artifacts resolve again: before decommissioning, sweep every dependent graph for the old path and repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written).",
   "artifact": "session:2026-06-22-knowledge-audit-collapse",
   "evidence": [
     {
@@ -26,10 +26,18 @@
       "date": "2026-06-22",
       "detail": "Verbatim thread (the okf-fold audit) persisted; session: slug resolves here.",
       "artifact": "document:plans/okf-fold/sessions/2026-06-22-knowledge-audit-collapse.jsonl"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b823, cb:b824, now deps. Previous claim: Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum (cb:b066) has no rebind operation - cb:b545 records the same missing-rebind gap even for commits - so the pointers silently dangle the moment the path moves. A repo move is therefore not done until its inbound artifacts resolve again. Before decommissioning, sweep every dependent graph for the old path; repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written). The okf-fold (cb:b546) is the worked example: deleting amieval/knowledge left four cb: evidence artifacts (cb:b518/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b823",
+    "cb:b824"
+  ],
   "status": "active",
   "created": "2026-06-22"
 }
