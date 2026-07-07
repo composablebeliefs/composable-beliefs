@@ -1,27 +1,20 @@
 {
   "id": "cb:b821",
   "type": "attestation",
-  "kind": "observation",
+  "kind": "design-observation",
   "domain": "dev",
   "tags": [
-    "claude-md",
-    "git",
-    "provenance",
-    "workflow"
+    "agent-architecture",
+    "delegation",
+    "ops-dev-split"
   ],
-  "claim": "The git-check Stop hook's Unverified flag is a false positive in this environment: commits are SSH-signed at creation by the environment's signing helper and verify on GitHub once pushed, but git reports %G? as N for SSH-signed commits when no gpg.ssh.allowedSignersFile is configured, while committer identity is already correct.",
-  "artifact": "session:2205c5d9-git-check-hook-upstream",
+  "claim": "The on-the-loop requirement maps onto an operations/engineering mode split: in operational work delegation is fine (bounded, mechanical work), while in architectural work delegation breaks the user's ability to audit the reasoning that produces architectural decisions.",
+  "artifact": "session:working-thread",
   "evidence": [
     {
       "date": "2026-07-07",
-      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b587; the source attestation event is recorded on cb:b587's evidence.",
-      "artifact": "session:2205c5d9-git-check-hook-upstream"
-    }
-  ],
-  "subjects": [
-    {
-      "ref": "the git workflow",
-      "type": "workflow"
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b440; the source attestation event is recorded on cb:b440's evidence.",
+      "artifact": "session:working-thread"
     }
   ],
   "deps": [],

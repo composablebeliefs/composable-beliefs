@@ -1,20 +1,20 @@
 {
   "id": "cb:b818",
   "type": "attestation",
-  "kind": "design-observation",
+  "kind": "design-rationale",
   "domain": "dev",
   "tags": [
-    "agent-architecture",
-    "delegation",
-    "ops-dev-split"
+    "plans",
+    "dag-discipline",
+    "convention:claude-md"
   ],
-  "claim": "Sub-agent delegation abstracts in-progress reasoning away from the user and forecloses intervention; parent/child structure, where the user stays on-the-loop at every depth, is distinguished from delegation by exactly this.",
-  "artifact": "session:working-thread",
+  "claim": "Plans that restate what is generable at execution time duplicate the DAG and the codebase, the two stores that do not drift relative to themselves.",
+  "artifact": "user:review-session-2026-04-21",
   "evidence": [
     {
       "date": "2026-07-07",
-      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b440; the source attestation event is recorded on cb:b440's evidence.",
-      "artifact": "session:working-thread"
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b382; the source attestation event is recorded on cb:b382's evidence.",
+      "artifact": "user:review-session-2026-04-21"
     }
   ],
   "deps": [],

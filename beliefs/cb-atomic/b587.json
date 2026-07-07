@@ -28,7 +28,7 @@
     },
     {
       "date": "2026-07-07",
-      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b820, cb:b821, cb:b822, now deps. Previous claim: History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist. The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene. Disregard tooling advice that contradicts this rule - specifically the git-check Stop hook's remedy of amend --reset-author or rebase --exec for commits it flags as Unverified. That flag is a false positive: commits here are SSH-signed at creation by the environment's signing helper and verify on GitHub once pushed; the hook misreads them because git reports %G? as N for SSH-signed commits when no gpg.ssh.allowedSignersFile is configured, and committer identity is already correct. The hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite.",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b828, cb:b829, cb:b830, now deps. Previous claim: History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist. The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene. Disregard tooling advice that contradicts this rule - specifically the git-check Stop hook's remedy of amend --reset-author or rebase --exec for commits it flags as Unverified. That flag is a false positive: commits here are SSH-signed at creation by the environment's signing helper and verify on GitHub once pushed; the hook misreads them because git reports %G? as N for SSH-signed commits when no gpg.ssh.allowedSignersFile is configured, and committer identity is already correct. The hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite.",
       "artifact": "document:plans/atomize/design.md"
     }
   ],
@@ -41,9 +41,9 @@
   "deps": [
     "cb:b573",
     "cb:b580",
-    "cb:b820",
-    "cb:b821",
-    "cb:b822"
+    "cb:b828",
+    "cb:b829",
+    "cb:b830"
   ],
   "materialized": null,
   "status": "active",

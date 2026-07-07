@@ -21,14 +21,14 @@
     },
     {
       "date": "2026-07-07",
-      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b816, cb:b817, now deps. Previous claim: Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b817, cb:b818, now deps. Previous claim: Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.",
       "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
   "deps": [
-    "cb:b816",
-    "cb:b817"
+    "cb:b817",
+    "cb:b818"
   ],
   "status": "active",
   "created": "2026-04-21"

@@ -1,0 +1,24 @@
+{
+  "id": "cb:b824",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "dev",
+  "tags": [
+    "collections",
+    "repo-organization",
+    "artifact",
+    "provenance"
+  ],
+  "claim": "The okf-fold (cb:b546) is the worked example of repo-move orphaning: deleting amieval/knowledge left four cb: evidence artifacts (cb:b518/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit.",
+  "artifact": "session:2026-06-22-knowledge-audit-collapse",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b547; the source attestation event is recorded on cb:b547's evidence.",
+      "artifact": "session:2026-06-22-knowledge-audit-collapse"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

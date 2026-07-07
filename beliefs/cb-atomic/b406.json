@@ -8,7 +8,10 @@
     "writing"
   ],
   "name": "present-tense-claims",
-  "claim": "A belief's claim should describe the optimal state in present tense. The claim states what is true, not what was changed or what is being avoided. Transitional language (renamed, previously, no longer, remain), enumeration of negations (X is not Y, X does not carry Z), and reactionary framing belong in evidence entries with dates. The claim survives once context fades; framing that depends on prior state goes stale and misleads.",
+  "claim": "A belief's claim describes the optimal state in present tense: it states what is true, not what was changed or what is being avoided.",
+  "invariants": [
+    "Transitional language (renamed, previously, no longer, remain), enumeration of negations (X is not Y, X does not carry Z), and reactionary framing belong in evidence entries with dates"
+  ],
   "artifact": "session:2026-05-15-dag-schema-discipline",
   "evidence": [
     {
@@ -20,6 +23,11 @@
       "date": "2026-05-17",
       "detail": "name set to \"present-tense-claims\" via dag-proposal m14",
       "artifact": "session:2026-05-17-policy-categorization"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b819, now deps. Previous claim: A belief's claim should describe the optimal state in present tense. The claim states what is true, not what was changed or what is being avoided. Transitional language (renamed, previously, no longer, remain), enumeration of negations (X is not Y, X does not carry Z), and reactionary framing belong in evidence entries with dates. The claim survives once context fades; framing that depends on prior state goes stale and misleads.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -28,7 +36,9 @@
       "type": "artifact"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b819"
+  ],
   "status": "active",
   "created": "2026-05-15"
 }

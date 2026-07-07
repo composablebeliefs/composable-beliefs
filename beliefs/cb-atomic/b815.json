@@ -2,20 +2,18 @@
   "id": "cb:b815",
   "type": "attestation",
   "kind": "observation",
-  "domain": "agent",
+  "domain": "dev",
   "tags": [
-    "agent-behavior",
+    "plans",
     "dag-discipline",
-    "sycophancy",
-    "lifecycle:recurring",
-    "convention:assert-skill"
+    "convention:claude-md"
   ],
-  "claim": "Sycophancy-toward-the-DAG is distinct from social sycophancy (a051 reflexive agreement, a054 uncritical acceptance of user speculation): it defers to accumulated structure rather than to a person, and is invisible without an explicit rule naming it.",
+  "claim": "A single initiative often produces both a DAG principle and a plan executing it once.",
   "artifact": "user:review-session-2026-04-21",
   "evidence": [
     {
       "date": "2026-07-07",
-      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b381; the source attestation event is recorded on cb:b381's evidence.",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b375; the source attestation event is recorded on cb:b375's evidence.",
       "artifact": "user:review-session-2026-04-21"
     }
   ],

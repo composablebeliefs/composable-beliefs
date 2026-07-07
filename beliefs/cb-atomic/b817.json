@@ -8,7 +8,7 @@
     "dag-discipline",
     "convention:claude-md"
   ],
-  "claim": "Plans that restate what is generable at execution time duplicate the DAG and the codebase, the two stores that do not drift relative to themselves.",
+  "claim": "Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution.",
   "artifact": "user:review-session-2026-04-21",
   "evidence": [
     {

@@ -10,7 +10,7 @@
     "merge-policy"
   ],
   "name": "merge-commit-only",
-  "claim": "Merge-commit only: pull requests land on main via merge commits; squash merging and rebase merging are prohibited and disabled in repository settings (2026-07-02). Both rewrite merged history to new SHAs, and the graph's provenance machinery dereferences merged SHAs: commit: artifacts cite implementing commits by content address, Belief: trailers bind commits to nodes, and nodes like cb:b566 carry commit: citations whose targets must exist in every fresh clone. A squash or rebase merge leaves the cited SHAs reachable only through the host's hidden PR refs - absent from a clean clone - so mix cb.verify.commits fails and the belief-commit loop is severed. The prohibition is doubly held: repository settings enforce it mechanically, and this prescription records why, so the setting cannot later be flipped back as a harmless preference.",
+  "claim": "Merge-commit only: pull requests land on main via merge commits; squash merging and rebase merging are prohibited and disabled in repository settings (2026-07-02) - doubly held, since settings enforce it mechanically and this prescription records why, so the setting cannot later be flipped back as a harmless preference.",
   "rules": [
     "Pull requests merge via merge commit only; the squash-merge and rebase-merge methods are disabled in repository settings and stay disabled.",
     "A merge never rewrites the SHAs of the commits it lands: any workflow that would re-address merged commits (squash, rebase-and-merge, history rewriting on the default branch) is out of bounds.",
@@ -25,6 +25,11 @@
       "date": "2026-07-02",
       "detail": "Stipulated by the operator during PR #10 review, where the id migration made the dependency concrete: cb:b566 cites its migration commit by SHA and its mint commit carries the first Belief: trailer - a squash or rebase merge of that PR would have orphaned both. Squash and rebase merging disabled in repository settings the same day.",
       "artifact": "https://github.com/composablebeliefs/composable-beliefs/pull/10"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b825, cb:b826, now deps. Previous claim: Merge-commit only: pull requests land on main via merge commits; squash merging and rebase merging are prohibited and disabled in repository settings (2026-07-02). Both rewrite merged history to new SHAs, and the graph's provenance machinery dereferences merged SHAs: commit: artifacts cite implementing commits by content address, Belief: trailers bind commits to nodes, and nodes like cb:b566 carry commit: citations whose targets must exist in every fresh clone. A squash or rebase merge leaves the cited SHAs reachable only through the host's hidden PR refs - absent from a clean clone - so mix cb.verify.commits fails and the belief-commit loop is severed. The prohibition is doubly held: repository settings enforce it mechanically, and this prescription records why, so the setting cannot later be flipped back as a harmless preference.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -36,7 +41,9 @@
   "deps": [
     "cb:b563",
     "cb:b566",
-    "cb:b568"
+    "cb:b568",
+    "cb:b825",
+    "cb:b826"
   ],
   "status": "active",
   "created": "2026-07-02"

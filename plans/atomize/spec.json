@@ -457,6 +457,97 @@
     "cb:b541": {
       "disposition": "keep",
       "note": "Discrete feature todo; content is the work description."
+    },
+    "cb:b580": {
+      "disposition": "restate",
+      "claim": "Commit autonomously; push only when explicitly instructed: a session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first, while the remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction.",
+      "atom_kind": "observation",
+      "atoms": [
+        "The ask-before-commit rule deadlocked against the ride-along render lane: the Stop hook stages the session render each turn expecting it to ride along with the session's commits, and a policy that gates every commit on the operator turns that expectation into a per-turn interruption."
+      ]
+    },
+    "cb:b577": {
+      "disposition": "keep",
+      "note": "Discrete decision todo (archive shelf); options list is the work description."
+    },
+    "cb:b573": {
+      "disposition": "restate",
+      "claim": "Merge-commit only: pull requests land on main via merge commits; squash merging and rebase merging are prohibited and disabled in repository settings (2026-07-02) - doubly held, since settings enforce it mechanically and this prescription records why, so the setting cannot later be flipped back as a harmless preference.",
+      "atom_kind": "observation",
+      "atom_artifact": "user:mark:2026-07-02",
+      "atoms": [
+        "Squash and rebase merging rewrite merged history to new SHAs, while the graph's provenance machinery dereferences merged SHAs: commit: artifacts cite implementing commits by content address, Belief: trailers bind commits to nodes, and nodes like cb:b566 carry commit: citations whose targets must exist in every fresh clone.",
+        "A squash or rebase merge leaves cited SHAs reachable only through the host's hidden PR refs - absent from a clean clone - so mix cb.verify.commits fails and the belief-commit loop is severed."
+      ]
+    },
+    "cb:b568": {
+      "disposition": "restate",
+      "claim": "Atomic lifecycle commits: every commit recording an authoring-lifecycle transition records exactly one transition of one artifact - the belief atomicity doctrine transposed from nodes to commits - so a commit conjoining separable lifecycle events is a mis-authored bundle, split at commit time.",
+      "invariants": [
+        "Atomic means one event, not one file: a brief together with the index and manifest updates it forces is one event",
+        "Typed trailers (Thread:, Focus:, Belief:) map one-to-one onto commits, so a trailer grep returns exactly one artifact's history"
+      ]
+    },
+    "cb:b547": {
+      "disposition": "restate",
+      "claim": "A repo move (folding, renaming, or relocating) is not done until its inbound document:/code: artifacts resolve again: before decommissioning, sweep every dependent graph for the old path and repoint each typed artifact with a corrective evidence append (mix cb.evidence) to the new location, leaving the original entry as dated history (claims and detail prose are immutable and stay as written).",
+      "atom_kind": "observation",
+      "atoms": [
+        "Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum (cb:b066) has no rebind operation, so the pointers silently dangle the moment the path moves.",
+        "The okf-fold (cb:b546) is the worked example of repo-move orphaning: deleting amieval/knowledge left four cb: evidence artifacts (cb:b518/b540/b543/b544) pointing at document:../knowledge/..., caught only in the post-fold audit."
+      ]
+    },
+    "cb:b496": {
+      "disposition": "restate",
+      "claim": "Persistence ceremony is proportionate to stance: a position document earns its keep when the reasoning is the artifact - a stance whose verbatim wording matters - with its claims then extracted into the graph, while observations with an obvious prescription skip the document and go straight into the graph as directives, the gap carried as rationale prose or a small design-gap node underneath, stipulated by the thread that surfaced them.",
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "If every wart became a three-artifact pipeline, the pipeline would stop being read."
+      ]
+    },
+    "cb:b463": {
+      "disposition": "restate",
+      "claim": "Belief ids are namespaced as `namespace:local-id` (e.g. `cb:b038`, `agent-behavior:a054`), with exactly one owning collection per namespace, so ids are globally unique.",
+      "invariants": [
+        "Deps may cross namespaces and resolve globally, but `cb:` depends only within `cb:`; every other collection may depend on `cb:`",
+        "The id separator is `:`"
+      ]
+    },
+    "cb:b439": {
+      "disposition": "restate",
+      "claim": "kind:policy on a belief signifies a mental/intentional commitment about how the system or agent should behave, held exactly while the commitment is not mechanically enforced - if a verifier checks it, a generator emits from it, or a hook fires on it today, it is a contract, schema rule, or definition instead.",
+      "invariants": [
+        "kind:policy is mutually exclusive with contract-grade; policies carry prose claim only, no rules or invariants",
+        "Every kind:policy belief carries a non-empty name field for stable citation",
+        "When a policy's intent is later mechanized, the policy migrates: a contract is authored citing the policy via deps per b409's three-layer chain, and the policy either remains (stating the intent the contract enforces) or is superseded by a new policy stating the post-mechanization intent"
+      ],
+      "note": "The original's 'mutually exclusive with contract:true' modernized to contract-grade per b056 (the stored field no longer exists)."
+    },
+    "cb:b406": {
+      "disposition": "restate",
+      "claim": "A belief's claim describes the optimal state in present tense: it states what is true, not what was changed or what is being avoided.",
+      "invariants": [
+        "Transitional language (renamed, previously, no longer, remain), enumeration of negations (X is not Y, X does not carry Z), and reactionary framing belong in evidence entries with dates"
+      ],
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "A claim survives once context fades; framing that depends on prior state goes stale and misleads."
+      ]
+    },
+    "cb:b375": {
+      "disposition": "restate",
+      "claim": "Principles that should influence future decisions persist as DAG beliefs; concrete sequenced action lists persist as plan documents - the distinguishing question is whether the content advises future decisions (DAG) or sequences present steps (plan).",
+      "atom_kind": "observation",
+      "atoms": [
+        "A single initiative often produces both a DAG principle and a plan executing it once."
+      ]
+    },
+    "cb:b120": {
+      "disposition": "restate",
+      "claim": "Beliefs and contracts are two roles sharing one store: a belief says 'this is true'; a contract says 'this will remain true.'",
+      "invariants": [
+        "Ordinary beliefs become stale and get superseded; contracts are behavioral invariants that get violated or upheld, not superseded"
+      ]
     }
   }
 }

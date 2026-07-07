@@ -1,0 +1,24 @@
+{
+  "id": "cb:b823",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "dev",
+  "tags": [
+    "collections",
+    "repo-organization",
+    "artifact",
+    "provenance"
+  ],
+  "claim": "Folding, renaming, or relocating a repo orphans every inbound document:/code: artifact that other graphs cite into it: the artifact enum (cb:b066) has no rebind operation, so the pointers silently dangle the moment the path moves.",
+  "artifact": "session:2026-06-22-knowledge-audit-collapse",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b547; the source attestation event is recorded on cb:b547's evidence.",
+      "artifact": "session:2026-06-22-knowledge-audit-collapse"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}
