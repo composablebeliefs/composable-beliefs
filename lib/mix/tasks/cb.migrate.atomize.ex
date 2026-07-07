@@ -18,11 +18,20 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
     artifact, and carry one migration evidence entry citing the parent.
   - `trim` - an inference's claim is replaced with the spec's claim; a
     migration evidence entry records the rewrite.
+  - `restate` - the prescriptive-lane disposition: the claim is rewritten
+    to the norm, enumerable normative content lands in `invariants`, and
+    descriptive rationale optionally extracts to atoms (kind from
+    `atom_kind`, artifact from `atom_artifact` or the parent) that are
+    appended to the prescription's deps. Unlike the descriptive lane,
+    prescriptive entries are incremental - prescriptions without a spec
+    entry pass through unchanged.
   - `keep` - passes through unchanged.
 
   Atom ids are allocated deterministically: aggregate nodes in ascending
-  id order, atoms numbered sequentially from the spec's `id_base`. The
-  task refuses to run if an allocated id already exists in the graph.
+  id order, then restate nodes in ascending id order (so the descriptive
+  lane's atom ids stay stable as prescriptive entries accrete), numbered
+  sequentially from the spec's `id_base`. The task refuses to run if an
+  allocated id already exists in the graph.
 
   ## Usage
 
@@ -148,23 +157,24 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
   end
 
   # Spec and graph must agree on the descriptive lane: every active
-  # attestation/inference has exactly one spec entry, and every spec
-  # entry names such a node.
+  # attestation/inference has exactly one spec entry. Prescriptions are
+  # the incremental lane - entries are validated but never required.
   defp check_coverage(spec, beliefs) do
     lane =
       beliefs
       |> Enum.filter(&(&1.status == "active" and &1.type in @descriptive_leaf_types))
       |> MapSet.new(& &1.id)
 
+    active = beliefs |> Enum.filter(&(&1.status == "active")) |> MapSet.new(& &1.id)
     spec_ids = MapSet.new(Map.keys(spec["nodes"]))
     missing = MapSet.difference(lane, spec_ids)
-    extra = MapSet.difference(spec_ids, lane)
+    extra = MapSet.difference(spec_ids, active)
 
     problems =
       Enum.map(Enum.sort(missing), &"active descriptive node #{&1} has no spec entry") ++
         Enum.map(
           Enum.sort(extra),
-          &"spec entry #{&1} is not an active attestation/inference in the graph"
+          &"spec entry #{&1} is not an active node in the graph"
         ) ++
         malformed_entries(spec, beliefs)
 
@@ -186,6 +196,9 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
           atoms = entry["atoms"] || []
 
           cond do
+            b.type != "attestation" ->
+              ["aggregate #{id} is a #{b.type}; only attestations retype to aggregation"]
+
             length(atoms) < 2 ->
               ["aggregate #{id} carries #{length(atoms)} atoms; minimum is 2"]
 
@@ -203,6 +216,32 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
           if is_binary(entry["claim"]) and String.trim(entry["claim"]) != "",
             do: [],
             else: ["trim #{id} carries no replacement claim"]
+
+        {"restate", %Belief{} = b} ->
+          atoms = entry["atoms"] || []
+
+          cond do
+            b.type != "prescription" ->
+              ["restate #{id} is a #{b.type}; restate is the prescriptive-lane disposition"]
+
+            !is_binary(entry["claim"]) or String.trim(entry["claim"]) == "" ->
+              ["restate #{id} carries no replacement claim"]
+
+            (entry["invariants"] || []) != [] and b.invariants != [] ->
+              ["restate #{id} would clobber existing invariants; append is not supported"]
+
+            atoms != [] and !is_binary(entry["atom_kind"]) ->
+              ["restate #{id} mints atoms but names no atom_kind (a descriptive kind)"]
+
+            atoms != [] and !is_binary(entry["atom_artifact"] || b.artifact) ->
+              ["restate #{id} mints atoms but has no artifact for them (set atom_artifact)"]
+
+            Enum.any?(atoms, &(!is_binary(&1) or String.trim(&1) == "")) ->
+              ["restate #{id} carries a blank atom"]
+
+            true ->
+              []
+          end
 
         {"keep", %Belief{}} ->
           []
@@ -223,10 +262,12 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
     base = spec["id_base"] || 700
     [ns | _] = String.split(hd(Enum.to_list(existing)) || "cb:x", ":")
 
+    # Aggregates allocate before restates so the descriptive lane's atom
+    # ids stay stable as prescriptive entries accrete incrementally.
     {allocation, _next} =
       spec["nodes"]
-      |> Enum.filter(fn {_, e} -> e["disposition"] == "aggregate" end)
-      |> Enum.sort_by(fn {id, _} -> id end)
+      |> Enum.filter(fn {_, e} -> (e["atoms"] || []) != [] end)
+      |> Enum.sort_by(fn {id, e} -> {if(e["disposition"] == "aggregate", do: 0, else: 1), id} end)
       |> Enum.reduce({%{}, base}, fn {id, entry}, {acc, n} ->
         count = length(entry["atoms"])
         ids = Enum.map(n..(n + count - 1), &"#{ns}:b#{&1}")
@@ -295,6 +336,43 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
 
             {trimmed, minted}
 
+          %{"disposition" => "restate"} = entry ->
+            atom_ids = allocation[b.id] || []
+
+            atoms =
+              Enum.zip(atom_ids, entry["atoms"] || [])
+              |> Enum.map(
+                &mint_atom(&1, b, date, %{
+                  kind: entry["atom_kind"],
+                  artifact: entry["atom_artifact"] || b.artifact
+                })
+              )
+
+            grounding =
+              if atoms == [],
+                do: "",
+                else:
+                  " Descriptive rationale extracted to atoms #{Enum.join(atom_ids, ", ")}, now deps."
+
+            restated = %{
+              b
+              | claim: entry["claim"],
+                invariants: entry["invariants"] || b.invariants,
+                deps: b.deps ++ atom_ids,
+                evidence:
+                  b.evidence ++
+                    [
+                      %{
+                        "date" => date,
+                        "detail" =>
+                          "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants.#{grounding} Previous claim: #{b.claim}",
+                        "artifact" => "document:plans/atomize/design.md"
+                      }
+                    ]
+            }
+
+            {restated, minted ++ atoms}
+
           _ ->
             {b, minted}
         end
@@ -307,18 +385,21 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
       atoms: length(minted),
       aggregated: Enum.count(spec["nodes"], fn {_, e} -> e["disposition"] == "aggregate" end),
       trimmed: Enum.count(spec["nodes"], fn {_, e} -> e["disposition"] == "trim" end),
+      restated: Enum.count(spec["nodes"], fn {_, e} -> e["disposition"] == "restate" end),
       kept: Enum.count(spec["nodes"], fn {_, e} -> e["disposition"] == "keep" end)
     }
 
     {:ok, output, stats}
   end
 
-  defp mint_atom({id, claim}, %Belief{} = parent, date) do
+  defp mint_atom(pair, parent, date, overrides \\ %{})
+
+  defp mint_atom({id, claim}, %Belief{} = parent, date, overrides) do
     # Inherited keys the parent does not carry are dropped rather than
     # serialized as null/[] - the store's convention is absent keys.
     inherited =
       %{
-        "kind" => parent.kind,
+        "kind" => overrides[:kind] || parent.kind,
         "domain" => parent.domain,
         "tags" => parent.tags,
         "subjects" => parent.subjects
@@ -331,13 +412,13 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
         "id" => id,
         "type" => "attestation",
         "claim" => claim,
-        "artifact" => parent.artifact,
+        "artifact" => overrides[:artifact] || parent.artifact,
         "evidence" => [
           %{
             "date" => date,
             "detail" =>
               "Minted by the atomization migration (plans/atomize) as an atom of #{parent.id}; the source attestation event is recorded on #{parent.id}'s evidence.",
-            "artifact" => parent.artifact
+            "artifact" => overrides[:artifact] || parent.artifact
           }
         ],
         "deps" => [],
@@ -390,7 +471,8 @@ defmodule Mix.Tasks.Cb.Migrate.Atomize do
     IO.puts(:stderr, "Atomize #{beliefs_path} -> #{target}")
     IO.puts(:stderr, "  aggregated: #{stats.aggregated} nodes retyped to aggregation")
     IO.puts(:stderr, "  atoms:      #{stats.atoms} attestations minted")
-    IO.puts(:stderr, "  trimmed:    #{stats.trimmed} inference claims")
+    IO.puts(:stderr, "  trimmed:    #{stats.trimmed} claims")
+    IO.puts(:stderr, "  restated:   #{stats.restated} prescriptions")
     IO.puts(:stderr, "  kept:       #{stats.kept} descriptive nodes unchanged")
     IO.puts(:stderr, "  total:      #{stats.total} nodes in output")
   end

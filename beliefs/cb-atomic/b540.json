@@ -8,7 +8,14 @@
     "decision-weight",
     "provenance"
   ],
-  "claim": "A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of cb:b520. The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos (amieval-direction, cb-direction), plan-scale dev threads to the co-located plans/<set>/ convention. Every belief minted that session is then retro-paired (cb:b507) with a document: pointer to that thread. The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act. Until the session-artifact pipeline (cb:b518) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction, and this convention is the bridge to that mechanization. A plan is optional scaffolding warranted only at plan-scale (cb:b496), authored in the repo whose system it concerns (cb:b492) and never standing in for the directive it grounds.",
+  "claim": "A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of cb:b520.",
+  "invariants": [
+    "The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos, plan-scale dev threads to the co-located plans/<set>/ convention",
+    "Every belief minted that session is retro-paired (cb:b507) with a document: pointer to that thread",
+    "The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act",
+    "Until the session-artifact pipeline (cb:b518) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction and this convention is the bridge to that mechanization",
+    "A plan is optional scaffolding warranted only at plan-scale (cb:b496), authored in the repo whose system it concerns (cb:b492), never standing in for the directive it grounds"
+  ],
   "artifact": "user:thread-persistence-protocol-2026-06-21",
   "evidence": [
     {
@@ -40,6 +47,11 @@
       "date": "2026-07-03",
       "detail": "deps + cb:b578 via dag-proposal 2026-07-03-fold-chronicle-into-threads",
       "artifact": "session:2026-07-03-fold-chronicle-into-threads"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of cb:b520. The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos (amieval-direction, cb-direction), plan-scale dev threads to the co-located plans/<set>/ convention. Every belief minted that session is then retro-paired (cb:b507) with a document: pointer to that thread. The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act. Until the session-artifact pipeline (cb:b518) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction, and this convention is the bridge to that mechanization. A plan is optional scaffolding warranted only at plan-scale (cb:b496), authored in the repo whose system it concerns (cb:b492) and never standing in for the directive it grounds.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],

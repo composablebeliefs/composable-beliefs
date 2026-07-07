@@ -47,8 +47,21 @@ already exists in the live graph.
   (aggregate and keep verbatim, trim excepted).
 - Output loads, is a DAG, and passes `mix cb.verify.schema`.
 
-## Prescriptive lane (not in this spec)
+## Prescriptive lane (incremental)
 
-Prescriptions decompose differently - enumerable claim content moves into
-`rules`/`invariants` and rationale into deps - and follow as a second spec
-once the descriptive lane lands.
+Prescriptions decompose differently and cannot become aggregations (the
+b057 mood binding): the claim keeps the norm, enumerable normative content
+moves into `invariants` (free-form prose, unlike the interpretable-kind
+`rules` DSL, which this migration deliberately does not touch), and
+descriptive rationale extracts to atoms appended to the prescription's
+deps (`restate` disposition; atoms take `atom_kind`/`atom_artifact` since
+prescriptive kinds cannot land on attestations). Unlike the descriptive
+lane, coverage is incremental - prescriptions without a spec entry pass
+through unchanged - so the tranche can grow spec revision by spec
+revision. First tranche: the eleven 5+-sentence claims (7 restates, 1
+trim, 3 keeps for discrete work items where decomposition is ceremony;
+b545 additionally flagged as likely overtaken by events).
+
+Note for swap time: restates change prescription claims, and some (b587's
+Git Policy paragraph) render into CLAUDE.md - regenerate it
+(`mix cb.generate.claude_md`) as part of the swap commit.

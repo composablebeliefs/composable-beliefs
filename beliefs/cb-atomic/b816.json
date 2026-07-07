@@ -1,0 +1,23 @@
+{
+  "id": "cb:b816",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "dev",
+  "tags": [
+    "plans",
+    "dag-discipline",
+    "convention:claude-md"
+  ],
+  "claim": "Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b382; the source attestation event is recorded on cb:b382's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

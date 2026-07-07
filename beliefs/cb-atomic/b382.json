@@ -8,17 +8,28 @@
     "dag-discipline",
     "convention:claude-md"
   ],
-  "claim": "Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.",
+  "claim": "Plans encode intent, not implementation: intent lives in the DAG as beliefs, current state is assessed at execution time against the live codebase, and the implementation sequence is generated fresh when work is picked up, from intent plus current state.",
+  "invariants": [
+    "A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state; everything else is a DAG assertion"
+  ],
   "artifact": "user:review-session-2026-04-21",
   "evidence": [
     {
       "date": "2026-04-21",
       "detail": "Several non-sequential plans authored a month or two earlier referenced modules that had been renamed, concepts that had been refactored, or work that had silently completed. Static implementation steps read as authoritative to a fresh agent but execute against current code as stale. The intent-over-implementation pattern is the better shape: the graph stores durable intent; implementation is re-derived at pickup.",
       "artifact": "user:review-session-2026-04-21"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b816, cb:b817, now deps. Previous claim: Plans should encode intent, not implementation. Intent lives in the DAG as beliefs; current state is assessed at execution time against the live codebase; implementation sequence is generated fresh when work is picked up, from intent + current state. Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution. A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state. Everything else is a DAG assertion.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b816",
+    "cb:b817"
+  ],
   "status": "active",
   "created": "2026-04-21"
 }

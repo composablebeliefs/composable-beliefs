@@ -145,6 +145,39 @@ defmodule Mix.Tasks.Cb.Migrate.AtomizeTest do
     end
   end
 
+  test "restate rewrites the norm, sets invariants, and grounds rationale atoms", %{tmp_dir: dir} do
+    graph = seed_graph(dir)
+
+    spec =
+      seed_spec(dir, %{
+        "cb:b004" => %{
+          "disposition" => "restate",
+          "claim" => "Something must hold.",
+          "invariants" => ["The enumerable detail"],
+          "atom_kind" => "observation",
+          "atoms" => ["The rationale the source stated."]
+        }
+      })
+
+    target = Path.join(dir, "cb-atomic")
+
+    quietly(fn ->
+      assert {:ok, %{applied: true, restated: 1, atoms: 3, total: 7}} =
+               Task.atomize(spec, graph, target, true)
+    end)
+
+    raw = Jason.decode!(File.read!(Path.join(target, "b004.json")))
+    assert raw["type"] == "prescription"
+    assert raw["invariants"] == ["The enumerable detail"]
+    # Restate atoms allocate after the aggregate's, keeping those stable.
+    assert raw["deps"] == ["cb:b902"]
+
+    atom = Jason.decode!(File.read!(Path.join(target, "b902.json")))
+    assert atom["type"] == "attestation"
+    assert atom["kind"] == "observation"
+    assert atom["artifact"] == "session:stipulation"
+  end
+
   test "refuses a spec that does not cover the lane", %{tmp_dir: dir} do
     graph = seed_graph(dir)
     spec = seed_spec(dir, %{"cb:b003" => nil})

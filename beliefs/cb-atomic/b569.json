@@ -9,7 +9,14 @@
     "authoring",
     "lifecycle:recurring"
   ],
-  "claim": "The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.",
+  "claim": "Nursery conventions: the nursery artifact is the proto-belief document - one per separable matter, mood carried only by the structural type system on its mint-manifest rows, lifecycle marked by the Proto-Belief: commit trailer.",
+  "invariants": [
+    "The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them; threads keep seed informally as the seed bed ideas germinate in",
+    "A plan is a proto-belief document whose mint-manifest rows are predominantly prescriptions",
+    "One proto-belief document per separable matter: separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document",
+    "Split and merge are cheap before the gate; the boundary only turns costly at mint",
+    "The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:"
+  ],
   "artifact": "document:beliefs/nursery/proto-belief-rename.md",
   "evidence": [
     {
@@ -26,6 +33,11 @@
       "date": "2026-07-03",
       "detail": "deps + cb:b581 via dag-proposal 2026-07-03-vocabulary-reissue-test",
       "artifact": "session:2026-07-03-vocabulary-reissue-test"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: The nursery artifact is the proto-belief document. The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them: mood distinctions are carried only by the structural type system, on mint-manifest rows - a plan is a proto-belief document whose rows are predominantly prescriptions. Threads keep seed informally as the seed bed ideas germinate in. The unit doctrine, verbatim: One proto-belief document per separable matter. Separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document. Split and merge are cheap before the gate; the boundary only turns costly at mint. The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [

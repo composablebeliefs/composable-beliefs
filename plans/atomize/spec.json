@@ -1,9 +1,9 @@
 {
   "version": 1,
   "date": "2026-07-07",
-  "lane": "descriptive",
+  "lane": "descriptive+prescriptive",
   "id_base": 700,
-  "notes": "Decomposition spec for the descriptive lane of the atomization migration (attestations and inferences). Dispositions: 'aggregate' retypes the node to aggregation in place (id and claim unchanged), mints the listed atoms as new attestations carrying the parent's artifact/kind/domain/tags/subjects, and sets the parent's deps to the atom ids; 'trim' rewrites an inference's claim to its conclusion (deps already carry the basis); 'keep' passes the node through unchanged. Atom ids are assigned by the generator: spec nodes sorted ascending, atoms numbered sequentially from id_base.",
+  "notes": "Decomposition spec for the atomization migration. Descriptive lane (complete coverage required): 'aggregate' retypes a conjunctive attestation to aggregation in place (id and claim unchanged), minting the listed atoms as attestations that carry the parent's artifact/kind/domain/tags/subjects, with the parent's deps set to the atom ids; 'trim' rewrites a claim to its conclusion (deps carry the basis); 'keep' passes through with a recorded reason. Prescriptive lane (incremental; absent prescriptions pass through): 'restate' rewrites the claim to the norm, moves enumerable normative content to invariants, and optionally extracts descriptive rationale to atoms (atom_kind, atom_artifact) appended to deps. Atom ids are generator-assigned: aggregates ascending then restates ascending, sequential from id_base, so descriptive atom ids stay stable as prescriptive entries accrete.",
   "nodes": {
     "cb:b110": {
       "disposition": "aggregate",
@@ -101,16 +101,30 @@
         "The implication-contract boundary is the enforcement mechanism: implications are enforced by the prompt, contracts are enforced by code."
       ]
     },
-    "cb:b298": { "disposition": "keep" },
-    "cb:b300": { "disposition": "keep" },
-    "cb:b302": { "disposition": "keep" },
-    "cb:b303": { "disposition": "keep" },
+    "cb:b298": {
+      "disposition": "keep"
+    },
+    "cb:b300": {
+      "disposition": "keep"
+    },
+    "cb:b302": {
+      "disposition": "keep"
+    },
+    "cb:b303": {
+      "disposition": "keep"
+    },
     "cb:b339": {
       "disposition": "keep",
       "note": "Second sentence operationalizes the first, not a separable assertion; the node was itself already decomposed from a coarser claim."
     },
-    "cb:b340": { "disposition": "keep", "note": "Same axis-isolation pattern as b339." },
-    "cb:b341": { "disposition": "keep", "note": "Same axis-isolation pattern as b339." },
+    "cb:b340": {
+      "disposition": "keep",
+      "note": "Same axis-isolation pattern as b339."
+    },
+    "cb:b341": {
+      "disposition": "keep",
+      "note": "Same axis-isolation pattern as b339."
+    },
     "cb:b362": {
       "disposition": "aggregate",
       "atoms": [
@@ -169,14 +183,25 @@
         "Adding an enum value supersedes the enum contract for that field."
       ]
     },
-    "cb:b398": { "disposition": "keep", "note": "One definition: referent, URI form, role." },
-    "cb:b399": { "disposition": "keep" },
-    "cb:b400": { "disposition": "keep", "note": "One definition plus identification mechanism." },
+    "cb:b398": {
+      "disposition": "keep",
+      "note": "One definition: referent, URI form, role."
+    },
+    "cb:b399": {
+      "disposition": "keep"
+    },
+    "cb:b400": {
+      "disposition": "keep",
+      "note": "One definition plus identification mechanism."
+    },
     "cb:b401": {
       "disposition": "keep",
       "note": "Describes the v1 stored contract field, contradicted by the b056 derived-grade rule; the right move is supersession or retirement in a follow-up adjudication, not decomposition."
     },
-    "cb:b403": { "disposition": "keep", "note": "Facets of one vocabulary entry, not conjoined assertions." },
+    "cb:b403": {
+      "disposition": "keep",
+      "note": "Facets of one vocabulary entry, not conjoined assertions."
+    },
     "cb:b404": {
       "disposition": "aggregate",
       "atoms": [
@@ -185,7 +210,10 @@
         "A belief whose claim has both descriptive and prescriptive shapes is represented as two beliefs, one per type, linked via deps."
       ]
     },
-    "cb:b407": { "disposition": "keep", "note": "One fact plus illustration and standard citation." },
+    "cb:b407": {
+      "disposition": "keep",
+      "note": "One fact plus illustration and standard citation."
+    },
     "cb:b408": {
       "disposition": "aggregate",
       "atoms": [
@@ -202,7 +230,10 @@
         "Discovery along the policy-contract-code chain is bidirectional via DAG traversal - no back-pointer field is needed because depended-on-by is computable from deps."
       ]
     },
-    "cb:b437": { "disposition": "keep", "note": "One vocabulary entry; contrast and examples are elaboration." },
+    "cb:b437": {
+      "disposition": "keep",
+      "note": "One vocabulary entry; contrast and examples are elaboration."
+    },
     "cb:b442": {
       "disposition": "aggregate",
       "atoms": [
@@ -212,7 +243,10 @@
         "When (if ever) durable-in-version-control verbatim conversation is worth the storage and maintenance cost is an open question."
       ]
     },
-    "cb:b458": { "disposition": "keep", "note": "Origin claim plus scope statement." },
+    "cb:b458": {
+      "disposition": "keep",
+      "note": "Origin claim plus scope statement."
+    },
     "cb:b467": {
       "disposition": "aggregate",
       "atoms": [
@@ -277,11 +311,21 @@
         "All eight collections verify under v2; sdl reproduces exactly its two teaching method-check failures."
       ]
     },
-    "cb:b484": { "disposition": "keep" },
-    "cb:b485": { "disposition": "keep" },
-    "cb:b486": { "disposition": "keep" },
-    "cb:b487": { "disposition": "keep" },
-    "cb:b493": { "disposition": "keep" },
+    "cb:b484": {
+      "disposition": "keep"
+    },
+    "cb:b485": {
+      "disposition": "keep"
+    },
+    "cb:b486": {
+      "disposition": "keep"
+    },
+    "cb:b487": {
+      "disposition": "keep"
+    },
+    "cb:b493": {
+      "disposition": "keep"
+    },
     "cb:b498": {
       "disposition": "aggregate",
       "atoms": [
@@ -290,8 +334,14 @@
         "Because there is no maintenance hatch, the completeness of the audit trail is structural rather than behavioral - the history can be trusted without trusting that everyone behaved."
       ]
     },
-    "cb:b506": { "disposition": "keep", "note": "One concept plus its operationalization." },
-    "cb:b529": { "disposition": "keep", "note": "Inference; gradient plus necessary-condition qualifier is one conclusion." },
+    "cb:b506": {
+      "disposition": "keep",
+      "note": "One concept plus its operationalization."
+    },
+    "cb:b529": {
+      "disposition": "keep",
+      "note": "Inference; gradient plus necessary-condition qualifier is one conclusion."
+    },
     "cb:b554": {
       "disposition": "aggregate",
       "atoms": [
@@ -320,6 +370,93 @@
         "The leading dot in .sessions is load-bearing: it is what keeps the frontmatter-less, per-turn-rewritten session drafts out of the validated bundle.",
         "Passing match_dot: true to the OKF discovery wildcard, or renaming the .sessions directory without the dot, would silently pull the session drafts into discovery and break manifest validation."
       ]
+    },
+    "cb:b569": {
+      "disposition": "restate",
+      "claim": "Nursery conventions: the nursery artifact is the proto-belief document - one per separable matter, mood carried only by the structural type system on its mint-manifest rows, lifecycle marked by the Proto-Belief: commit trailer.",
+      "invariants": [
+        "The names focus, seed (for documents), brief, and plan are retired, and no informal genre register survives them; threads keep seed informally as the seed bed ideas germinate in",
+        "A plan is a proto-belief document whose mint-manifest rows are predominantly prescriptions",
+        "One proto-belief document per separable matter: separable means the strands' eventual mint-manifest rows stand on independent argument; strands whose rows need each other's reasoning share a document",
+        "Split and merge are cheap before the gate; the boundary only turns costly at mint",
+        "The commit trailer for document lifecycle events is Proto-Belief:, completing the chain Thread: -> Proto-Belief: -> Belief:"
+      ]
+    },
+    "cb:b546": {
+      "disposition": "trim",
+      "claim": "Fold the knowledge standard (amieval/knowledge) into composable-beliefs as the okf: extension in a fresh execution session: move the standard into composable-beliefs/okf/, re-import the belief namespace knowledge: -> okf:, rewire couplings, reconcile the moved docs, handle dangling document: pointers with a light touch (leave historical or append corrective evidence, never rewrite), then decommission the knowledge repo - keeping the conceptual line as a namespace (cb: vs okf:), not a repo, with detailed steps and verification in plan:okf-fold.",
+      "note": "The dropped inventory (related okf-collection beliefs, out-of-scope recommendations) lives in the plan:okf-fold artifact the claim cites; the previous claim is preserved in the migration evidence entry."
+    },
+    "cb:b540": {
+      "disposition": "restate",
+      "claim": "A decision-weight session - one that mints or supersedes beliefs grounded in a user:/session: stipulation, settles a stance, or adjudicates contradictory positions - persists its thread verbatim at close, not only as the condensed transcript of cb:b520.",
+      "invariants": [
+        "The verbatim thread (user messages and assistant prose as written, tool activity bracketed) lands in the repo the thread centers on, by subject: strategy/direction threads to the private direction repos, plan-scale dev threads to the co-located plans/<set>/ convention",
+        "Every belief minted that session is retro-paired (cb:b507) with a document: pointer to that thread",
+        "The directive remains the SSOT and must stay self-bootstrapping on its own claim and deps; the verbatim thread is provenance a reader may consult, never a dependency a fresh agent needs to act",
+        "Until the session-artifact pipeline (cb:b518) makes the real transcript resolvable, the verbatim thread is a faithful reconstruction and this convention is the bridge to that mechanization",
+        "A plan is optional scaffolding warranted only at plan-scale (cb:b496), authored in the repo whose system it concerns (cb:b492), never standing in for the directive it grounds"
+      ]
+    },
+    "cb:b587": {
+      "disposition": "restate",
+      "claim": "History rewriting is prohibited wherever commits carry or will carry provenance - feature branches included, not only the default branch cb:b573 already protects: no rebase, no squash, no amend, no --reset-author on commits that exist - and tooling advice that contradicts this rule, specifically the git-check Stop hook's amend --reset-author or rebase --exec remedy for commits it flags as Unverified, is disregarded.",
+      "atom_kind": "observation",
+      "atom_artifact": "session:2205c5d9-git-check-hook-upstream",
+      "atoms": [
+        "The graph's provenance machinery dereferences commit SHAs (commit: artifacts, Belief:/Proto-Belief:/Thread: trailers, mix cb.verify.commits), and a session's local commits become citation targets the moment a mint lands, so rewriting them severs the belief-commit loop before any repository setting can intervene.",
+        "The git-check Stop hook's Unverified flag is a false positive in this environment: commits are SSH-signed at creation by the environment's signing helper and verify on GitHub once pushed, but git reports %G? as N for SSH-signed commits when no gpg.ssh.allowedSignersFile is configured, while committer identity is already correct.",
+        "The git-check Stop hook re-fires every turn until commits are pushed - expected and benign, never a reason to rewrite."
+      ]
+    },
+    "cb:b440": {
+      "disposition": "restate",
+      "claim": "In parent/child architectural dev work, the user does not delegate understanding to the agent: the user must stay on-the-loop at every depth of nested work, and a new depth level cannot arise without the user's participation in creating it.",
+      "atom_kind": "design-observation",
+      "atoms": [
+        "Sub-agent delegation abstracts in-progress reasoning away from the user and forecloses intervention; parent/child structure, where the user stays on-the-loop at every depth, is distinguished from delegation by exactly this.",
+        "The on-the-loop requirement maps onto an operations/engineering mode split: in operational work delegation is fine (bounded, mechanical work), while in architectural work delegation breaks the user's ability to audit the reasoning that produces architectural decisions."
+      ]
+    },
+    "cb:b384": {
+      "disposition": "restate",
+      "claim": "Materialized implications require periodic drift audits to confirm their effects still hold; the audit is a first-class maintenance cycle, not a one-off.",
+      "invariants": [
+        "A drift audit iterates over implications with non-null materialized field, re-evaluates whether the action's effects are still present, and either bumps materialized.last_verified to the audit date or emits a new primitive asserting the drift and proposing a re-materialization action",
+        "Audit cadence is case-dependent - some implications (module splits) decay slowly, others (bash removal) decay faster; default cadence TBD, initial proposal quarterly with per-implication overrides"
+      ]
+    },
+    "cb:b382": {
+      "disposition": "restate",
+      "claim": "Plans encode intent, not implementation: intent lives in the DAG as beliefs, current state is assessed at execution time against the live codebase, and the implementation sequence is generated fresh when work is picked up, from intent plus current state.",
+      "invariants": [
+        "A plan file survives only if it encodes sequencing that cannot be generated - actual choreography across sessions, or constraints not derivable from current state; everything else is a DAG assertion"
+      ],
+      "atom_kind": "design-rationale",
+      "atoms": [
+        "Static implementation steps in plans are liabilities because the world drifts between plan authoring and plan execution.",
+        "Plans that restate what is generable at execution time duplicate the DAG and the codebase, the two stores that do not drift relative to themselves."
+      ]
+    },
+    "cb:b381": {
+      "disposition": "restate",
+      "claim": "When preflight surfaces a conflicting node against a proposed belief, the agent must not silently rework, weaken, or abandon the proposal to fit the existing node: the proposal enters adjudication per the consensus mechanism (human-as-judge, multi-agent patch, or tiered review), because retraction after evidence is valid but retraction under the perceived authority of existing DAG state without adjudication is sycophancy-toward-the-DAG and is disallowed; the rule also applies to user pushback, but DAG pushback is the foundational case.",
+      "atom_kind": "observation",
+      "atoms": [
+        "Sycophancy-toward-the-DAG is distinct from social sycophancy (a051 reflexive agreement, a054 uncritical acceptance of user speculation): it defers to accumulated structure rather than to a person, and is invisible without an explicit rule naming it."
+      ]
+    },
+    "cb:b545": {
+      "disposition": "keep",
+      "note": "Decision memo in an action-item; likely overtaken by events - the commit: scheme it weighs now exists in cb:b067 and mix cb.verify.commits ships - so the right move is cb.todo.close with discharge notes, not decomposition."
+    },
+    "cb:b564": {
+      "disposition": "keep",
+      "note": "Discrete worklist whose enumerable content is the work itself; closes via cb.todo.close."
+    },
+    "cb:b541": {
+      "disposition": "keep",
+      "note": "Discrete feature todo; content is the work description."
     }
   }
 }
