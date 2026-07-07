@@ -74,9 +74,7 @@ survived; every claim change carries an evidence entry with the previous text. S
 verifies 20/20 with subject containment finally exercised, CLAUDE.md is current, 470 tests
 green, stale set unchanged at its 3 pre-existing items. PR #29 carries the branch.
 
-**What the next session inherits.** Run `mix cb.verify.collection` for the sibling
-collections locally before merging PR #29 (belief-collections is not staged in the remote
-environment). The 2-sentence prescription tier (~60 nodes) is mostly legitimate keeps -
+**What the next session inherits.** The 2-sentence prescription tier (~60 nodes) is mostly legitimate keeps -
 opportunistic pass at best. Grounding the dep-less prescriptions in the newly minted atoms
 is the remaining structural improvement and wants its own matching session. And cb:b405
 (sweep-discipline) deserves an operator call: this migration effectively executed it, so
@@ -91,7 +89,7 @@ it could be materialized-and-discharged or restated to current vocabulary.
 | Prescriptive-lane decomposition (tranches 1-3) | closed | plans/atomize/spec.json + spec-2.json; swapped | - |
 | Prescriptive 2-sentence tier + dep-grounding of unlinked prescriptions | open | unrouted | which dep-less prescriptions ground in which migration atoms? |
 | cb:b405 sweep-discipline disposition | open | unrouted | materialize-and-discharge, or restate to current vocabulary? |
-| Sibling-collections verification | open | unrouted (noted in PR #29 body) | does mix cb.verify.collection pass against the swapped graph locally? |
+| Sibling-collections verification | closed | dropped per operator instruction (2026-07-07): do not reference that repo; caveat removed from the PR #29 body | - |
 | PR #29 merge | open | https://github.com/composablebeliefs/composable-beliefs/pull/29 | - |
 
 ## User
