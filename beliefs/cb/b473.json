@@ -1,6 +1,6 @@
 {
   "id": "cb:b473",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-rationale",
   "domain": "design",
   "tags": [
@@ -15,6 +15,11 @@
       "date": "2026-06-10",
       "detail": "Naming rationale from the D1 debate, decided for 'inference' over retaining 'implication': an implication licensed to state more than its premises imply is a contradiction in terms; the falsified-while-deps-stand lifecycle is the structural proof these nodes exceed their premises; the contract kind 'implies' sits on the prescriptive side, so reusing 'implication' descriptively would put one lexeme on both sides of the is/ought boundary. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
       "artifact": "document:plans/cb-schema-v2/why-inference.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b787, cb:b788, cb:b789, cb:b790, cb:b791. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -22,6 +27,13 @@
       "ref": "plans/cb-schema-v2/why-inference.md",
       "type": "doc"
     }
+  ],
+  "deps": [
+    "cb:b787",
+    "cb:b788",
+    "cb:b789",
+    "cb:b790",
+    "cb:b791"
   ],
   "status": "active",
   "created": "2026-06-10"

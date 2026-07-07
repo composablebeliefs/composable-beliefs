@@ -1,0 +1,33 @@
+{
+  "id": "cb:b597",
+  "type": "prescription",
+  "kind": "governance",
+  "domain": "system",
+  "tags": [
+    "migration",
+    "atomicity",
+    "dag-schema"
+  ],
+  "name": "atomization-migration-doctrine",
+  "claim": "Wholesale atomization of conjunctive descriptive nodes proceeds as a regenerable parallel-graph migration rather than per-node supersession: decomposition judgment lives in a reviewed spec (plans/atomize/spec.json), generation is deterministic (mix cb.migrate.atomize, emitting beliefs/cb-atomic), and identity is preserved - an aggregate-disposed node keeps its id and claim, retypes to aggregation, and grounds in newly minted single-sentence atom attestations. This extends the cb:b051 vocabulary-migration precedent (in-place, identity-preserving structural correction) from labels to grounding; the swap into beliefs/cb is a separate, reviewed replacement commit.",
+  "artifact": "session:2026-07-07-atomize-descriptive-lane",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Operator stipulation: the graph's immutability is aspirational rather than practical at current adoption, correctness outranks strict ceremony, and the wholesale migration is authorized as a parallel DAG with id-and-claim-preserving retypes. Descriptive lane executed this session: 31 aggregations over 115 atoms (cb:b700-b814), 2 inference trims, 24 keeps; output verifies 20/20 schema checks.",
+      "artifact": "session:2026-07-07-atomize-descriptive-lane"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Retro-pair per the b507 close protocol: the operator exchange this doctrine stipulates from - the decomposition assessment, the parallel-DAG proposal with id-and-claim-preserving retypes, the authorization to proceed, and the swap instruction - is readable in the session thread record.",
+      "artifact": "document:beliefs/nursery/threads/2026-07-06-atomization-migration.md"
+    }
+  ],
+  "subjects": [],
+  "deps": [
+    "cb:b475",
+    "cb:b402"
+  ],
+  "status": "active",
+  "created": "2026-07-07"
+}

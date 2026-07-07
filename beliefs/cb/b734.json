@@ -1,0 +1,23 @@
+{
+  "id": "cb:b734",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "provenance",
+    "conflict-detection",
+    "sync"
+  ],
+  "claim": "Both user-vs-artifact divergence failure modes are invisible without explicit conflict detection at write time.",
+  "artifact": "session:2026-04-20",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b362; the source attestation event is recorded on cb:b362's evidence.",
+      "artifact": "session:2026-04-20"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

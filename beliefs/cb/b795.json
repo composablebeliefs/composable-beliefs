@@ -1,0 +1,29 @@
+{
+  "id": "cb:b795",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "migration-record"
+  ],
+  "claim": "The framework graph migrated to the four-type v2 schema on 2026-06-10: 76 nodes re-typed, the b026/b027/b029/b031/b032/b038 contract family superseded by b051-b056, new contracts b057/b058/b059, and the CLAUDE.md render beliefs superseded and regenerated.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b483; the source attestation event is recorded on cb:b483's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

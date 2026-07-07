@@ -1,6 +1,6 @@
 {
   "id": "cb:b442",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-observation",
   "domain": "design",
   "tags": [
@@ -15,10 +15,20 @@
       "date": "2026-04-23",
       "detail": "The audit chain framed by the user: examine the code artifact, the contract, the graph nodes the contract depends on, the metadata for the threads from which those nodes were created, and if necessary the transcript and plans. A spike attempted to address bottom-rung lossiness by making conversation durable in version control; it was abandoned because the plan/transcript/recap system covers most needs. The unresolved tension is whether bottom-rung lossiness ever justifies revisiting durable verbatim for architecturally load-bearing decisions.",
       "artifact": "session:working-thread"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b765, cb:b766, cb:b767, cb:b768. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b765",
+    "cb:b766",
+    "cb:b767",
+    "cb:b768"
+  ],
   "status": "active",
   "created": "2026-05-17"
 }

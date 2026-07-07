@@ -1,0 +1,23 @@
+{
+  "id": "cb:b822",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "system",
+  "tags": [
+    "positions",
+    "authoring",
+    "ceremony"
+  ],
+  "claim": "If every wart became a three-artifact pipeline, the pipeline would stop being read.",
+  "artifact": "session:2026-06-11-stasis-observability",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b496; the source attestation event is recorded on cb:b496's evidence.",
+      "artifact": "session:2026-06-11-stasis-observability"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

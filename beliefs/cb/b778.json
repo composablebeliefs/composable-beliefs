@@ -1,0 +1,29 @@
+{
+  "id": "cb:b778",
+  "type": "attestation",
+  "kind": "definition",
+  "domain": "design",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "direction-of-fit"
+  ],
+  "claim": "The boundary between inference and directive is direction of fit made operational: ask what would count as the belief being wrong.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b471; the source attestation event is recorded on cb:b471's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "cb:b731",
+  "type": "attestation",
+  "kind": "composable-belief",
+  "claim": "The implication-contract boundary is the enforcement mechanism: implications are enforced by the prompt, contracts are enforced by code.",
+  "artifact": "user:2026-03-27",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b174; the source attestation event is recorded on cb:b174's evidence.",
+      "artifact": "user:2026-03-27"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "assertions",
+      "type": "system"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

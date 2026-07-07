@@ -1,0 +1,23 @@
+{
+  "id": "cb:b818",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "dev",
+  "tags": [
+    "plans",
+    "dag-discipline",
+    "convention:claude-md"
+  ],
+  "claim": "Plans that restate what is generable at execution time duplicate the DAG and the codebase, the two stores that do not drift relative to themselves.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b382; the source attestation event is recorded on cb:b382's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

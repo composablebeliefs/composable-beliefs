@@ -1,0 +1,24 @@
+{
+  "id": "cb:b901",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "dev",
+  "tags": [
+    "agent-architecture",
+    "delegation",
+    "sub-agents",
+    "lifecycle:recurring"
+  ],
+  "claim": "Adjudication has bounded input, bounded output, and the working-out is itself the artifact, so no understanding is hidden from the user.",
+  "artifact": "session:working-thread",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b441; the source attestation event is recorded on cb:b441's evidence.",
+      "artifact": "session:working-thread"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

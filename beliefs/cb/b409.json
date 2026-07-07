@@ -1,6 +1,6 @@
 {
   "id": "cb:b409",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "architectural-synthesis",
   "domain": "system",
   "tags": [
@@ -15,6 +15,11 @@
       "date": "2026-05-17",
       "detail": "kind:policy → kind:architectural-synthesis via dag-proposal m28",
       "artifact": "session:2026-05-17-policy-categorization"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b762, cb:b763, cb:b764. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -23,7 +28,11 @@
       "type": "module"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b762",
+    "cb:b763",
+    "cb:b764"
+  ],
   "status": "active",
   "created": "2026-05-15"
 }

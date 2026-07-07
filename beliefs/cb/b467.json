@@ -1,6 +1,6 @@
 {
   "id": "cb:b467",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-rationale",
   "domain": "system",
   "tags": [
@@ -14,6 +14,11 @@
       "date": "2026-06-09",
       "detail": "plans/cb-codepath/ (README decision record + plan-0..3) landed 2026-06-09 after the design discussion collapsed the standalone code-walkthrough plugin into cb as the single schema authority. plan-1 pins the code: locator grammar (first-# split, opaque anchor, @N occurrence, %40 escape, first-match-plus-warning on multiples) and the codepath output-target shape; plan-0 (fold + rename) executed the same day. Preflight 2026-06-09 surfaced tag/claim-overlap matches only (dag-schema family); reviewed against b026-b042: no semantic conflict - the one genuine conflict is b040's enum closure, resolved by the adjudicated b040 supersession this primitive feeds.",
       "artifact": "document:plans/cb-codepath/plan-1-schema-groundwork.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b769, cb:b770, cb:b771, cb:b772, cb:b773. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -21,6 +26,13 @@
       "ref": "plans/cb-codepath/plan-1-schema-groundwork.md",
       "type": "doc"
     }
+  ],
+  "deps": [
+    "cb:b769",
+    "cb:b770",
+    "cb:b771",
+    "cb:b772",
+    "cb:b773"
   ],
   "status": "active",
   "created": "2026-06-09"

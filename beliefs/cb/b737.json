@@ -1,0 +1,29 @@
+{
+  "id": "cb:b737",
+  "type": "attestation",
+  "kind": "schema",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "lifecycle",
+    "convention:assert-skill"
+  ],
+  "claim": "An active-and-unmaterialized implication is still-actionable work; an active-and-materialized implication has been discharged at time T and remains true as a principle.",
+  "artifact": "user:review-session-2026-04-21",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b380; the source attestation event is recorded on cb:b380's evidence.",
+      "artifact": "user:review-session-2026-04-21"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "belief-authoring",
+      "type": "skill"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

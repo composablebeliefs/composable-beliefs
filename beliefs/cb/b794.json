@@ -1,0 +1,29 @@
+{
+  "id": "cb:b794",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "grounding"
+  ],
+  "claim": "The deps-or-stipulation requirement legitimizes conventions as directives without manufacturing fake deps; contract-grade directives keep their existing empty-deps exemption.",
+  "artifact": "document:plans/cb-schema-v2/design.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b476; the source attestation event is recorded on cb:b476's evidence.",
+      "artifact": "document:plans/cb-schema-v2/design.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/design.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

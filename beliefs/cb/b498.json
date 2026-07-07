@@ -1,6 +1,6 @@
 {
   "id": "cb:b498",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-property",
   "domain": "system",
   "tags": [
@@ -15,10 +15,19 @@
       "date": "2026-06-11",
       "detail": "Observed during the four-type schema landing (2026-06-10) and named in the significance exchange the next day: the heaviest self-application load the change discipline has taken - its own type system - ran entirely through preflight, adjudication, and supersession, with the chains walkable via bs history and the migration recorded as b483. Preflight 2026-06-11: dag-schema tag-family overlap only (17 contract-level / 33 schema); reviewed per b055 - the claim attests a demonstrated property of the very contracts matched and contradicts none; b467/b040 review precedent.",
       "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b798, cb:b799, cb:b800. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b798",
+    "cb:b799",
+    "cb:b800"
+  ],
   "status": "active",
   "created": "2026-06-11"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "cb:b799",
+  "type": "attestation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "self-hosting",
+    "write-flow",
+    "dag-schema"
+  ],
+  "claim": "The status-lifecycle contract was superseded via the lifecycle it defines (b029 -> b053), and the type enum was replaced through adjudication by a node typed in the values it introduces (b026 -> b051).",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b498; the source attestation event is recorded on cb:b498's evidence.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

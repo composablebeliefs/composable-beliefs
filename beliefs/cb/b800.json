@@ -1,0 +1,23 @@
+{
+  "id": "cb:b800",
+  "type": "attestation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "self-hosting",
+    "write-flow",
+    "dag-schema"
+  ],
+  "claim": "Because there is no maintenance hatch, the completeness of the audit trail is structural rather than behavioral - the history can be trusted without trusting that everyone behaved.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b498; the source attestation event is recorded on cb:b498's evidence.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

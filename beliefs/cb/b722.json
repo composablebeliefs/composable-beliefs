@@ -1,0 +1,17 @@
+{
+  "id": "cb:b722",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Contracts generate tests, not the other way around: if you rewrote a module from scratch, every test breaks but the contract stays the same.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b134; the source attestation event is recorded on cb:b134's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

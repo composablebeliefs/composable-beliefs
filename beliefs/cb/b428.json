@@ -9,13 +9,22 @@
     "authority"
   ],
   "name": "user-provenance-wins-on-conflict",
-  "claim": "User-sourced and manually-sourced provenance is authoritative. Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting. Authorization to sync does not include authorization to discard user judgment.",
+  "claim": "User-sourced and manually-sourced provenance is authoritative.",
+  "invariants": [
+    "Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting",
+    "Authorization to sync does not include authorization to discard user judgment"
+  ],
   "artifact": "session:2026-05-16-policy-citation-sweep",
   "evidence": [
     {
       "date": "2026-05-16",
       "detail": "Synthesized during a citation sweep from the underlying conflict-detection observation. Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting.",
       "artifact": "session:2026-05-16-policy-citation-sweep"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: User-sourced and manually-sourced provenance is authoritative. Sync passes that would overwrite a user-sourced field with a different derived value surface the conflict instead of silently overwriting. Authorization to sync does not include authorization to discard user judgment.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [

@@ -1,0 +1,17 @@
+{
+  "id": "cb:b718",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "The system had implicit contracts scattered across three representations: structs (shape without behavioral invariants), skills (workflow without guarantees to callers), and the agent-instruction file (policy without mechanical verification).",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b133; the source attestation event is recorded on cb:b133's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "cb:b798",
+  "type": "attestation",
+  "kind": "design-property",
+  "domain": "system",
+  "tags": [
+    "self-hosting",
+    "write-flow",
+    "dag-schema"
+  ],
+  "claim": "Framework canon changes only through its own write flow, including at the foundations.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b498; the source attestation event is recorded on cb:b498's evidence.",
+      "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

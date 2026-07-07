@@ -1,0 +1,17 @@
+{
+  "id": "cb:b709",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Self-referential beliefs use the existing schema with subject type 'agent' - no special case needed.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b115; the source attestation event is recorded on cb:b115's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

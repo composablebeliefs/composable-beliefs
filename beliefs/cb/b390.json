@@ -1,6 +1,6 @@
 {
   "id": "cb:b390",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "schema",
   "domain": "system",
   "tags": [
@@ -15,10 +15,21 @@
       "date": "2026-04-21",
       "detail": "Surfaced during discussion of whether confidence should return as a derived (deterministic) field. User statement: 'we can always reinstate it if the need actually arrives.' The distinction matters because retraction closes the door (belief was wrong) while deprecation keeps it open (belief failed to earn its keep at current scale). Without this distinction the DAG accumulates permanent NOs where it could have paused-for-later.",
       "artifact": "user:review-agent-session-2026-04-21"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b748, cb:b749, cb:b750, cb:b751, cb:b752. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b748",
+    "cb:b749",
+    "cb:b750",
+    "cb:b751",
+    "cb:b752"
+  ],
   "status": "active",
   "created": "2026-04-21"
 }

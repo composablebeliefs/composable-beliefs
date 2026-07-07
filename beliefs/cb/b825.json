@@ -1,0 +1,30 @@
+{
+  "id": "cb:b825",
+  "type": "attestation",
+  "kind": "observation",
+  "domain": "dev",
+  "tags": [
+    "git",
+    "provenance",
+    "workflow",
+    "merge-policy"
+  ],
+  "claim": "Squash and rebase merging rewrite merged history to new SHAs, while the graph's provenance machinery dereferences merged SHAs: commit: artifacts cite implementing commits by content address, Belief: trailers bind commits to nodes, and nodes like cb:b566 carry commit: citations whose targets must exist in every fresh clone.",
+  "artifact": "user:mark:2026-07-02",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b573; the source attestation event is recorded on cb:b573's evidence.",
+      "artifact": "user:mark:2026-07-02"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "the merge workflow",
+      "type": "workflow"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "cb:b723",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Contracts govern behavior across fundamentally different substrates.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b135; the source attestation event is recorded on cb:b135's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

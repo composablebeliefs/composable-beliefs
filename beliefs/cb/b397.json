@@ -1,6 +1,6 @@
 {
   "id": "cb:b397",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "schema",
   "domain": "system",
   "tags": [
@@ -19,6 +19,11 @@
       "date": "2026-05-17",
       "detail": "Re-typed during a categorization sweep.",
       "artifact": "session:2026-05-17-policy-categorization"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b753, cb:b754, cb:b755. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -27,7 +32,11 @@
       "type": "artifact"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b753",
+    "cb:b754",
+    "cb:b755"
+  ],
   "status": "active",
   "created": "2026-05-15"
 }

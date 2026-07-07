@@ -1,0 +1,17 @@
+{
+  "id": "cb:b725",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "A contract serves as intermediary: a domain expert authors it, an architect verifies against it, implementations derive from it.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b135; the source attestation event is recorded on cb:b135's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

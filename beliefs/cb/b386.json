@@ -1,6 +1,6 @@
 {
   "id": "cb:b386",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "observation",
   "domain": "system",
   "tags": [
@@ -15,6 +15,11 @@
       "date": "2026-04-21",
       "detail": "In one session, several implications were added and the digest was not regenerated; subsequent readers would see the pre-change state even though the graph had advanced. This is a structural failure mode of the cache-file-as-digest pattern, not an individual-agent lapse.",
       "artifact": "user:review-session-2026-04-21"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b745, cb:b746, cb:b747. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -23,7 +28,11 @@
       "type": "artifact"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b745",
+    "cb:b746",
+    "cb:b747"
+  ],
   "status": "active",
   "created": "2026-04-21"
 }

@@ -1,0 +1,29 @@
+{
+  "id": "cb:b789",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "design",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "naming"
+  ],
+  "claim": "An inference's conclusion outruns its deps - a generalization or an abduction - which is why it can be falsified while every dep stays true, and why the supersession-on-falsification lifecycle exists for it.",
+  "artifact": "document:plans/cb-schema-v2/why-inference.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b473; the source attestation event is recorded on cb:b473's evidence.",
+      "artifact": "document:plans/cb-schema-v2/why-inference.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/why-inference.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

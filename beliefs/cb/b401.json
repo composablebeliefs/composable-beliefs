@@ -14,6 +14,11 @@
       "date": "2026-05-17",
       "detail": "kind:policy → kind:schema via dag-proposal m24",
       "artifact": "session:2026-05-17-policy-categorization"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "superseded by cb:b811 via dag-proposal atomize-migration-2026-07-07",
+      "artifact": "session:atomize-migration-2026-07-07"
     }
   ],
   "subjects": [
@@ -31,6 +36,7 @@
     }
   ],
   "deps": [],
-  "status": "active",
+  "status": "superseded",
+  "superseded_by": "cb:b811",
   "created": "2026-05-15"
 }

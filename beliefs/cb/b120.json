@@ -3,13 +3,21 @@
   "type": "prescription",
   "kind": "convention",
   "tags": [],
-  "claim": "Beliefs and contracts are two roles sharing one store. Ordinary beliefs become stale and get superseded. Contracts are behavioral invariants that get violated or upheld, not superseded. A belief says 'this is true'; a contract says 'this will remain true.'",
+  "claim": "Beliefs and contracts are two roles sharing one store: a belief says 'this is true'; a contract says 'this will remain true.'",
+  "invariants": [
+    "Ordinary beliefs become stale and get superseded; contracts are behavioral invariants that get violated or upheld, not superseded"
+  ],
   "artifact": "document:design-notes",
   "evidence": [
     {
       "date": "2026-03-23",
       "detail": "Beliefs versus contracts: ordinary beliefs carry statuses active/superseded/retracted; contracts are contract-grade implications that may additionally use retired. Both live in the same store.",
       "artifact": "document:design-notes"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: Beliefs and contracts are two roles sharing one store. Ordinary beliefs become stale and get superseded. Contracts are behavioral invariants that get violated or upheld, not superseded. A belief says 'this is true'; a contract says 'this will remain true.'",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],

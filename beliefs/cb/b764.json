@@ -1,0 +1,29 @@
+{
+  "id": "cb:b764",
+  "type": "attestation",
+  "kind": "architectural-synthesis",
+  "domain": "system",
+  "tags": [
+    "dag-schema",
+    "linking",
+    "traceability"
+  ],
+  "claim": "Discovery along the policy-contract-code chain is bidirectional via DAG traversal - no back-pointer field is needed because depended-on-by is computable from deps.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b409; the source attestation event is recorded on cb:b409's evidence.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a mix task",
+      "type": "module"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

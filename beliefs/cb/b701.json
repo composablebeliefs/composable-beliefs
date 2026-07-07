@@ -1,0 +1,17 @@
+{
+  "id": "cb:b701",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Without the DAG, every session re-reads raw data and reconstructs some fraction of the reasoning, losing compound insights that depend on having the right facts adjacent at the right time.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b110; the source attestation event is recorded on cb:b110's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

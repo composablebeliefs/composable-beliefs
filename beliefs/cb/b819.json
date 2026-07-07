@@ -1,0 +1,28 @@
+{
+  "id": "cb:b819",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "system",
+  "tags": [
+    "belief-discipline",
+    "writing"
+  ],
+  "claim": "A claim survives once context fades; framing that depends on prior state goes stale and misleads.",
+  "artifact": "session:2026-05-15-dag-schema-discipline",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b406; the source attestation event is recorded on cb:b406's evidence.",
+      "artifact": "session:2026-05-15-dag-schema-discipline"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "a plan document",
+      "type": "artifact"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

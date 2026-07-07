@@ -1,6 +1,6 @@
 {
   "id": "cb:b483",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "observation",
   "domain": "system",
   "tags": [
@@ -15,6 +15,11 @@
       "date": "2026-06-10",
       "detail": "Executed under Mark's proceed authorization following D1-D6 resolution (D1 'inference' confirmed by Mark for launch, overriding the immutable-history consideration). Execution amendments recorded in the design doc: b026/b027 added to the supersession list (found via plan-0 preflight); document: admitted as a stipulation scheme (the design's own worked re-homes are document-grounded). History re-typed by best fit, never split; dep re-points on b387/b047/b049/a007 recorded in their evidence or here.",
       "artifact": "document:plans/cb-schema-v2/design.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b795, cb:b796, cb:b797. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -22,6 +27,11 @@
       "ref": "plans/cb-schema-v2/design.md",
       "type": "doc"
     }
+  ],
+  "deps": [
+    "cb:b795",
+    "cb:b796",
+    "cb:b797"
   ],
   "status": "active",
   "created": "2026-06-10"

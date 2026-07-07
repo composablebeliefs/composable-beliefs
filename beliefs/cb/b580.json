@@ -7,7 +7,7 @@
     "claude-md",
     "git"
   ],
-  "claim": "Commit autonomously; push only when explicitly instructed. A session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first. The remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction. This supersedes the ask-before-commit rule, which deadlocked against the ride-along render lane: the Stop hook stages the session render each turn expecting it to ride along with the session's commits, and a policy that gates every commit on the operator turns that expectation into a per-turn interruption.",
+  "claim": "Commit autonomously; push only when explicitly instructed: a session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first, while the remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction.",
   "artifact": "user:mark:2026-07-03",
   "evidence": [
     {
@@ -19,6 +19,11 @@
       "date": "2026-07-03",
       "detail": "Accepted via human adjudication against cb:b456. Reasoning: Operator chose to release the ask-before-commit policy: the ride-along transcript render lane assumes sessions commit as they work, and gating every commit on explicit instruction deadlocked that design into a per-turn prompt. Successor keeps the push gate (the remote is the publication boundary) while freeing local commits.",
       "artifact": "adjudication:human:session:d2ce915c-f0b7-550a-b422-86108204d983"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Descriptive rationale extracted to atoms cb:b827, now deps. Previous claim: Commit autonomously; push only when explicitly instructed. A session commits its own completed work as it lands - including ride-along artifacts the repo's hooks stage, such as the .sessions transcript renders - without asking first. The remote is the gate: pushing, merging, and anything else that publishes beyond the local clone requires explicit instruction. This supersedes the ask-before-commit rule, which deadlocked against the ride-along render lane: the Stop hook stages the session render each turn expecting it to ride along with the session's commits, and a policy that gates every commit on the operator turns that expectation into a per-turn interruption.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -27,7 +32,9 @@
       "type": "workflow"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b827"
+  ],
   "status": "active",
   "created": "2026-07-03"
 }

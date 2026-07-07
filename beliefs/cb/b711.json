@@ -1,0 +1,17 @@
+{
+  "id": "cb:b711",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Human-observed data (corrections, failure observations) produces the highest-quality self-referential primitives.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b115; the source attestation event is recorded on cb:b115's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

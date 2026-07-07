@@ -1,0 +1,17 @@
+{
+  "id": "cb:b707",
+  "type": "attestation",
+  "kind": "design-observation",
+  "claim": "Stuffing prose into a belief inverts the relationship: the prose becomes the point and the claim becomes a title.",
+  "artifact": "document:design-notes",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b114; the source attestation event is recorded on cb:b114's evidence.",
+      "artifact": "document:design-notes"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

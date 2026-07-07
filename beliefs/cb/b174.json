@@ -1,6 +1,6 @@
 {
   "id": "cb:b174",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "composable-belief",
   "tags": [],
   "name": "implication-contract-enforcement-boundary",
@@ -12,6 +12,11 @@
       "date": "2026-03-27",
       "detail": "The user articulated the implication/contract distinction. Some constraints live at the prompt level - they are not enforced by code, but by the skill instructions. An implication is the right vehicle. If a validation module were built, the implication could be elevated to a contract. This clarified the enforcement boundary between the two kinds.",
       "artifact": "user:2026-03-27"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b726, cb:b727, cb:b728, cb:b729, cb:b730, cb:b731. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
@@ -20,7 +25,14 @@
       "type": "system"
     }
   ],
-  "deps": [],
+  "deps": [
+    "cb:b726",
+    "cb:b727",
+    "cb:b728",
+    "cb:b729",
+    "cb:b730",
+    "cb:b731"
+  ],
   "materialized": null,
   "status": "active",
   "superseded_by": null,

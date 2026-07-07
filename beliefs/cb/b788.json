@@ -1,0 +1,29 @@
+{
+  "id": "cb:b788",
+  "type": "attestation",
+  "kind": "design-rationale",
+  "domain": "design",
+  "tags": [
+    "dag-schema",
+    "schema-v2",
+    "naming"
+  ],
+  "claim": "A deduction's conclusion is contained in its premises and can fail only when a premise fails; deductive consequences are infinite and free, so the graph never stores them.",
+  "artifact": "document:plans/cb-schema-v2/why-inference.md",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b473; the source attestation event is recorded on cb:b473's evidence.",
+      "artifact": "document:plans/cb-schema-v2/why-inference.md"
+    }
+  ],
+  "subjects": [
+    {
+      "ref": "plans/cb-schema-v2/why-inference.md",
+      "type": "doc"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

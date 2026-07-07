@@ -1,0 +1,23 @@
+{
+  "id": "cb:b767",
+  "type": "attestation",
+  "kind": "design-observation",
+  "domain": "design",
+  "tags": [
+    "audit-chain",
+    "open-question",
+    "transcripts"
+  ],
+  "claim": "Lossy synthesis is sufficient for most plans but may be inadequate for architecturally load-bearing decisions where the audit needs to reach the raw negotiation.",
+  "artifact": "session:working-thread",
+  "evidence": [
+    {
+      "date": "2026-07-07",
+      "detail": "Minted by the atomization migration (plans/atomize) as an atom of cb:b442; the source attestation event is recorded on cb:b442's evidence.",
+      "artifact": "session:working-thread"
+    }
+  ],
+  "deps": [],
+  "status": "active",
+  "created": "2026-07-07"
+}

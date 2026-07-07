@@ -1,6 +1,6 @@
 {
   "id": "cb:b117",
-  "type": "attestation",
+  "type": "aggregation",
   "kind": "design-observation",
   "tags": [],
   "claim": "A traversal-path belief presents a path through graph nodes rather than synthesizing deps into a single belief. The routing IS the argument - like a modular synthesizer patch. The conclusion is separable from the routing, enabling independent evaluation.",
@@ -10,10 +10,18 @@
       "date": "2026-03-23",
       "detail": "A traversal-path belief differs from a compound in three ways: it presents a traversal where a compound synthesizes; its conclusion is separable from its routing, enabling independent evaluation; and its support is derived from downstream agreement rather than author assessment.",
       "artifact": "document:design-notes"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): retyped attestation -> aggregation, id and claim unchanged; grounding decomposed into atoms cb:b712, cb:b713. Prior evidence entries remain the record of the original attestation event.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [],
-  "deps": [],
+  "deps": [
+    "cb:b712",
+    "cb:b713"
+  ],
   "status": "active",
   "created": "2026-03-23"
 }

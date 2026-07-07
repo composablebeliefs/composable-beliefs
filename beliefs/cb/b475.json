@@ -8,13 +8,21 @@
     "schema-v2",
     "authoring"
   ],
-  "claim": "Primitive atomicity doctrine: a primitive is one atomic statement of what a single source said, leaning verbatim. A primitive whose claim conjoins separable assertions is a mis-authored compound and is split at authoring time. Atomicity is judgment, enforced in the write flow rather than by a verifier check; source-checkable verbatim predicates are future work for cached sources.",
+  "claim": "Primitive atomicity doctrine: a primitive is one atomic statement of what a single source said, leaning verbatim - a primitive whose claim conjoins separable assertions is a mis-authored compound and is split at authoring time.",
+  "invariants": [
+    "Atomicity is judgment, enforced in the write flow rather than by a verifier check; source-checkable verbatim predicates are future work for cached sources"
+  ],
   "artifact": "plan:cb-schema-v2",
   "evidence": [
     {
       "date": "2026-06-10",
       "detail": "D5 resolved: keep the type name 'primitive' and encode atomicity plus verbatim-leaning discipline as authoring convention; a rename to 'atomic' stacked on an already-breaking format change fails b397's one-structural-change batching discipline for near-zero gain. Preflight 2026-06-10: tag/claim-overlap matches only (dag-schema contract family, 14 contract-level / 24 schema); reviewed per b032 - overlap is necessary but not sufficient for contradiction: no semantic conflict with active structure, since this primitive attests the v2 design record and prescribes nothing; the genuine tension with b026's three-value type enum resolves through the staged b026/b027/b029/b031/b032/b038 supersessions this primitive feeds in plan-2, per the b467/b040 precedent.",
       "artifact": "document:plans/cb-schema-v2/design.md"
+    },
+    {
+      "date": "2026-07-07",
+      "detail": "Atomization migration (plans/atomize): claim restated to the norm; enumerable content moved to invariants. Previous claim: Primitive atomicity doctrine: a primitive is one atomic statement of what a single source said, leaning verbatim. A primitive whose claim conjoins separable assertions is a mis-authored compound and is split at authoring time. Atomicity is judgment, enforced in the write flow rather than by a verifier check; source-checkable verbatim predicates are future work for cached sources.",
+      "artifact": "document:plans/atomize/design.md"
     }
   ],
   "subjects": [
